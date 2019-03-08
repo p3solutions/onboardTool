@@ -12,7 +12,7 @@ function getProjectName() {
     } else {
         userProject.push(project);
     }
-    console.log('userProject', userProject)
+    console.log('userProject', userProject);
     $.ajax({
         url: 'Admin_Module_Send_Invites',
         type: 'post',
@@ -36,14 +36,14 @@ $('#project_id_Select').on('changed.bs.select', function (e) {
     var selected = e.target.value;
     console.log("selected", selected)
 });
-
+var userApplication = [];
 function projectdetails_dropdown_Initial(arrSelected) {
     var selected = $(this).find("option:selected");
 
     console.log("selected ---->", arrSelected);
-        var application = $('#application').val();
-    console.log("testing------>",application)
-    var userApplication = [];
+    var  application = $('#application').val();
+    console.log("testing------>",application);
+
     if (application.includes(",")) {
         userApplication = application.split(",");
     } else {
@@ -101,8 +101,10 @@ $('#project_id_Select').on('change', function () {
                 console.log("admin_app_key--->", key);
                 console.log("admin_app_value", value);
                 select.append('<option data-subtext="' + value + '">' + value + '</option>');
+                //userApplication.push(value);
             });
-            $('#projapp option').attr("selected", "selected");
+            //$('#projapp option').attr("selected", "selected");
+            select.selectpicker('val', userApplication);
             select.selectpicker('refresh');
         }
     });
