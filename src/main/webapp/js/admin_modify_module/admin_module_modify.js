@@ -124,7 +124,7 @@ $(document).ready(function () {
         var application_id = $('#projapp').val();
         var f = document.loginForm;
         f.method = "post";
-        f.action = '/Update_User_registration?uname=' + uname + '&fname=' + fname + '&lname=' + lname + '&email_val=' + email_val + '&project_id=' + project_id + '&application_id=' + application_id + '&id=' + $('#userId').val();
+        f.action = 'Update_User_registration?uname=' + uname + '&fname=' + fname + '&lname=' + lname + '&email_val=' + email_val + '&project_id=' + project_id + '&application_id=' + application_id + '&id=' + $('#userId').val();
         f.submit();
 
     });
