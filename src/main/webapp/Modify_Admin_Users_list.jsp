@@ -36,7 +36,7 @@
 
     <style type="text/css">
         .breadcrumb-div {
-            background-color: #e7e7e7;
+            background-color: #fff;
             color: #010101;
         }
 
@@ -258,20 +258,46 @@
 
                 <div class="main-page">
 
-                    <section>
+                    <div class="container-fluid">
 
+                        <div class="row page-title-div">
+                            <div class="col-sm-6">
+                                <h2 class="title">Modify the List Of User
+
+                                </h2>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                        <div class="row breadcrumb-div">
+                            <div class="col-sm-6">
+                                <ul class="breadcrumb">
+                                    <li><a href="Project_List.jsp"><i class="fa fa-home"></i>Home</a></li>
+                                    <li class="active">Admin</li>
+
+                                </ul>
+                            </div>
+
+
+
+                        </div>
+                        <!-- /.row -->
+                    </div>
+
+                    <section class="section">
                         <div class="row">
                             <div class="col-md-12">
 
-                                <div class="content">
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="card">
-                                                    <div class="header">
-                                                        <h4 class="title" style="text-align: center">Modify the List Of
-                                                            User</h4>
-                                                    </div>
+
+                                <div class="container-fluid">
+                                    <div class="col-12 grid-margin">
+                                        <div class="card">
+                                            <div class="card-body">
+
+                                                <br>
+                                                <form class="form-sample">
+                                                    <p class="card-description">
+
+                                                    </p>
                                                     <div class="content table-responsive table-full-width">
                                                         <table class="table table-hover table-striped" id="datatable">
                                                             <thead>
@@ -288,6 +314,7 @@
                                                             <tbody>
 
                                                             </tbody>
+
                                                         </table>
                                                         <div class="col-md-12">
                                                             <input type="hidden" id="role_conf" value="<%= info %>"
@@ -308,22 +335,22 @@
                                                     &nbsp;&nbsp;
 
                                                     <button type="button" id="edit_button" name="edit_button"
-                                                            class="btn btn-primary">
+                                                            class="btn btn-success">
                                                         Edit User
                                                     </button>
 
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </section>
                 </div>
+                </section>
             </div>
         </div>
-    </form>
+</div>
+</form>
 </div>
 <script>
     var data_row_id;
@@ -539,5 +566,3 @@
 
 </body>
 </html>
-
-

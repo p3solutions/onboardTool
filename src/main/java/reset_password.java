@@ -69,7 +69,7 @@ public class reset_password extends HttpServlet {
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(email));
             message.setSubject("Recovery Mail");
-            message.setText("http://localhost:8081/reset_pass.jsp");
+            message.setText("http://localhost:8080/reset_pass.jsp");
 
             Transport.send(message);
             pw.println("<html><body>");

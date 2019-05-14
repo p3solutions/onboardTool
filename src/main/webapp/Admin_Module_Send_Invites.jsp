@@ -20,16 +20,10 @@
     <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen">
     <link rel="stylesheet" href="css/lobipanel/lobipanel.min.css" media="screen">
     <!-- ========== PAGE STYLES ========== -->
-    <link rel="stylesheet" href="css/prism/prism.css" media="screen">
-    <link rel="stylesheet" href="css/toastr/toastr.min.css" media="screen">
-    <link rel="stylesheet" href="css/icheck/skins/line/blue.css">
-    <link rel="stylesheet" href="css/icheck/skins/line/red.css">
-    <link rel="stylesheet" href="css/icheck/skins/line/green.css">
-    <link rel="stylesheet" href="css/bootstrap-tour/bootstrap-tour.css">
+
     <!-- ========== THEME CSS ========== -->
     <link rel="stylesheet" href="css/main.css" media="screen">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css"/>
+
     <!-- ========== MODERNIZR ========== -->
     <script src="js/modernizr/modernizr.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -38,8 +32,73 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
-    <link rel="stylesheet" href="css/admin_module/admin_module_send_invites.css" media="screen">
+
+
+
 </head>
+<style>
+    .btn {
+
+        margin-left: 50px;
+
+    }
+    body {
+        font-size: 14px;;
+        font-family: "pt-sans-regular", sans-serif;
+        font-weight: initial;
+        background:#F6F8FA;
+    }
+    .card .card-body {
+        padding: 1.88rem 1.81rem;
+    }
+
+    .grid-margin {
+        margin-bottom: 1.875rem;
+    }
+    .col-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-radius: 0.3125rem;
+    }
+    .card-body {
+        flex: 1 1 auto;
+        padding: 1.25rem;
+    }
+
+    .card-title {
+        margin-bottom: 0.75rem;
+    }
+
+    form {
+        display: block;
+        margin-top: 0em;
+    }
+
+
+    #container {
+
+        animation: rotateStuff 1.5s steps(20) infinite;
+    }
+    .loading {
+        position: absolute;
+        align-self: center;
+        width: 3vh;
+        height: 3vh;
+        border-radius: 50%;
+    }
+
+
+</style>
 <body class="top-navbar-fixed">
 <%
     HttpSession details = request.getSession();
@@ -68,7 +127,7 @@
                     </button>
                 </div>
                 <!-- /.navbar-header -->
-                <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">Onboarding Tool-<%= project_name %>
+                <a class="navbar-brand" href="Project_List.jsp" id="sitetitle">
                 </a>
 
                 <div class="collapse navbar-collapse" id="navbar-collapse-1">
@@ -99,34 +158,40 @@
                     <div class="sidebar-content" id='jqxWidget'>
 
 
-                        <div class="sidebar-nav">
-                            <ul class="side-nav color-gray">
-                                <li class="nav-header">
-                                    <span class="">Main Category</span>
-                                </li>
-                                <li id='home' item-selected='true'>
-                                    <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
-                                </li>
+                        <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
+                            <div class="sidebar-content" id='jqxWidget'>
 
-                                <li class="nav-header">
-                                    <a><span class="">User Module</span></a>
-                                </li>
-                                <li>
-                                    <a href="Admin_UserConfiguration.jsp"><i class="fa fa-file-text"></i> <span>User Configuration</span>
-                                    </a>
-                                </li>
 
-                                <li>
-                                    <a href="Admin_Userslist.jsp"><i class="fa fa-paint-brush"></i>
-                                        <span>Users List</span> </a>
-                                </li>
+                                <div class="sidebar-nav">
+                                    <ul class="side-nav color-gray">
+                                        <li class="nav-header">
+                                            <br>
+                                            <span class="">Main Category</span>
+                                        </li>
+                                        <li id='home' item-selected='true'>
+                                            <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
+                                        </li>
 
-                                <li>
-                                    <a href="Admin_Role_Details.jsp"><i class="fa fa-map-signs"></i>
-                                        <span>Authorization </span> </a>
-                                </li>
-                            </ul>
+                                        <li class="nav-header">
+                                            <a><span class="">User Module</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="User_Configuration.jsp"><i class="fa fa-file-text"></i> <span>User Configuration</span> </a>
+                                        </li>
 
+                                        <li>
+                                            <a href="Admin_Userslist.jsp"><i class="fa fa-paint-brush"></i> <span>Users List</span> </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="Admin_Role_Details.jsp"><i class="fa fa-map-signs"></i> <span>Authorization </span> </a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                                <!-- /.sidebar-nav -->
+                            </div>
+                            <!-- /.sidebar-content -->
                         </div>
                         <!-- /.sidebar-nav -->
                     </div>
@@ -138,137 +203,179 @@
                 <!-- Projects List Start -->
 
                 <div class="main-page">
-                    <section>
+
+                    <div class="container-fluid">
+
+                        <div class="row page-title-div">
+                            <div class="col-sm-6">
+                                <h2 class="title">User Profile
+
+                                </h2>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                        <div class="row breadcrumb-div">
+                            <div class="col-sm-6">
+                                <ul class="breadcrumb">
+                                    <li><a href="Project_List.jsp"><i class="fa fa-home"></i>Home</a></li>
+                                    <li class="active">Admin</li>
+
+                                </ul>
+                            </div>
+
+
+
+                        </div>
+                        <!-- /.row -->
+                    </div>
+
+                    <section class="section">
                         <div class="row">
                             <div class="col-md-12">
 
-                                <div id="config" class="tabcontent">
-                                    <div class="container-fluid">
-                                        <br/>
-                                        <div class="col-sm-12">
-                                            <br/>
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <div class="row">
-                                                        <div class="col-sm-6 form-group">
 
-                                                            <label><b> First Name</b>
-                                                                <span
-                                                                        class="glyphicon glyphicon-asterisk"></span>
-                                                            </label>
-                                                            <input type="text" id="fname" name="fname"
-                                                                   class="form-control"/>
-                                                        </div>
-                                                        <div class="col-sm-6 form-group">
+                                <div class="container-fluid">
+                                    <div class="col-12 grid-margin">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h4 class="card-title"><b>Personal Info</b></h4>
+                                                <br>
+                                                <form class="form-sample">
+                                                    <p class="card-description">
 
-                                                            <label for="comment">Message</label>
-                                                            <textarea class="form-control" rows="5"
-                                                                      id="message"></textarea>
-                                                        </div>
-                                                    </div>
+                                                    </p>
                                                     <div class="row">
-                                                        <div class="col-sm-6 form-group">
-                                                            <label>Last Name<span
-                                                                    class="glyphicon glyphicon-asterisk"></span></label>
-                                                            <input type="text" class="form-control" id="lname">
-                                                        </div>
-                                                        <div class="col-sm-6 form-group">
-                                                            <label>Email<span
-                                                                    class="glyphicon glyphicon-asterisk"></span></label>
-                                                            <input type="email" class="form-control" id="email_val">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-sm-6 form-group">
-                                                            <label>Role Name<span
-                                                                    class="glyphicon glyphicon-asterisk"></span></label>
-                                                            <div class="col-lg-12">
-                                                                <select id="dates-field2"
-                                                                        class="selectpicker multiselect-ui form-control"
-                                                                        data-show-subtext="true"
-                                                                        data-live-search="true"
-                                                                        &lt;%&ndash;multiple="multiple" &ndash;%&gt;>
-                                                                    <option data-subtext="Archival Admin">
-                                                                        ArchivalAdmin
-                                                                    </option>
-                                                                    <option data-subtext="Legacy Technical SME">
-                                                                        LegacyTechnicalSME
-                                                                    </option>
-                                                                    <option data-subtext="Legacy Business SME">
-                                                                        LegacyBusinessSME
-                                                                    </option>
-                                                                    <option data-subtext="Archival Program Manager">
-                                                                        ArchivalProgramManager
-                                                                    </option>
-                                                                    <option data-subtext="Archival Project Manager">
-                                                                        ArchivalProjectManager
-                                                                    </option>
-                                                                    <option data-subtext="Legacy Program Manager">
-                                                                        LegacyProgramManager
-                                                                    </option>
-                                                                    <option data-subtext="Archival Business Analyst">
-                                                                        ArchivalBusinessAnalyst
-                                                                    </option>
-                                                                    <option data-subtext="Archival Technical Lead">
-                                                                        ArchivalTechnicalLead
-                                                                    </option>
-                                                                    <option data-subtext="Archival Developer">
-                                                                        ArchivalDeveloper
-                                                                    </option>
-                                                                    <option data-subtext="Test Lead">TestLead</option>
-                                                                </select>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-3 col-form-label"><div class="required_fie">First Name</div></label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" id="fname" name="fname" class="form-control">
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <script type="text/javascript">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-3 col-form-label"><div class="required_fie">Last Name</div></label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" id="lname" class="form-control">
+                                                                </div>
+                                                            </div>
 
-                                                    </script>
+                                                        </div>
+                                                    </div>
 
                                                     <div class="row">
-                                                        <div class="col-sm-6 form-group">
-
-                                                            <label>Project<span
-                                                                    class="glyphicon glyphicon-asterisk"></span></label>
-                                                            <div class="col-lg-12" id="project_id">
-                                                                <select class="selectpicker multiselect-ui form-control"
-                                                                        id="project_id_Select" name="project_id_Select"
-                                                                        data-live-search="true" multiple="multiple">
-                                                                </select>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-3 col-form-label"><div class="required_fie">Email</div></label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="email" class="form-control" id="email_val">
+                                                                </div>
                                                             </div>
                                                         </div>
 
 
-                                                        <div class="col-sm-6 form-group">
-                                                            <label>Applications<span
-                                                                    class="glyphicon glyphicon-asterisk"></span></label>
-                                                            <div class="col-lg-12">
-                                                                <select class="selectpicker multiselect-ui form-control"
-                                                                        id="projapp"
-                                                                        name="projapp" data-live-search="true"
-                                                                        multiple="multiple">
-                                                                </select>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-3 col-form-label"><div class="required_fie">Role Name</div></label>
+                                                                <div class="col-sm-9">
+                                                                    <select id="dates-field2"
+                                                                            class="selectpicker multiselect-ui form-control"
+                                                                            data-show-subtext="true"
+                                                                            data-live-search="true"
+                                                                            &lt;%&ndash;multiple="multiple" &ndash;%&gt;>
+                                                                        <option data-subtext="Archival Admin">
+                                                                            ArchivalAdmin
+                                                                        </option>
+                                                                        <option data-subtext="Legacy Technical SME">
+                                                                            LegacyTechnicalSME
+                                                                        </option>
+                                                                        <option data-subtext="Legacy Business SME">
+                                                                            LegacyBusinessSME
+                                                                        </option>
+                                                                        <option data-subtext="Archival Program Manager">
+                                                                            ArchivalProgramManager
+                                                                        </option>
+                                                                        <option data-subtext="Archival Project Manager">
+                                                                            ArchivalProjectManager
+                                                                        </option>
+                                                                        <option data-subtext="Legacy Program Manager">
+                                                                            LegacyProgramManager
+                                                                        </option>
+                                                                        <option data-subtext="Archival Business Analyst">
+                                                                            ArchivalBusinessAnalyst
+                                                                        </option>
+                                                                        <option data-subtext="Archival Technical Lead">
+                                                                            ArchivalTechnicalLead
+                                                                        </option>
+                                                                        <option data-subtext="Archival Developer">
+                                                                            ArchivalDeveloper
+                                                                        </option>
+                                                                        <option data-subtext="Test Lead">TestLead</option>
+                                                                    </select>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-3 col-form-label"><div class="required_fie">Project</div></label>
+                                                                <div class="col-sm-9">
+                                                                    <select class="selectpicker multiselect-ui form-control"
+                                                                            id="project_id_Select" name="project_id_Select"
+                                                                            data-live-search="true" multiple="multiple">
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-3 col-form-label"><div class="required_fie">Applications</div></label>
+                                                                <div class="col-sm-9">
+                                                                    <select class="selectpicker multiselect-ui form-control"
+                                                                            id="projapp" name="projapp"
+                                                                            data-live-search="true" multiple="multiple">
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-3 col-form-label">Message</label>
+                                                                <div class="col-sm-9">
+                        <textarea class="form-control" rows="5"
+                                  id="message"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1">
+                                                            <input type="hidden" id="send_invites_id" value="<%= info %>"
+                                                                   hidden>
 
-                                                    <br/>
-                                                    <input type="hidden" id="send_invites_id" value="<%= info %>"
-                                                           hidden>
-                                                    <button type="button" class="btn btn-primary" id="send_btn"
-                                                            onclick="send_email();">Send Invites
-                                                    </button>
-                                                    <br/>
-                                                    <hr/>
+                                                        </div>
+                                                        <div class="col-md-3">
 
-                                                </div>
+                                                            <button type="button" class="btn btn-primary" id="send_btn"
+                                                                    onclick="send_email();">Send Invites
+                                                            </button><div id="container"></div>
+                                                        </div>
+                                                    </div>
 
+
+
+                                                </form>
                                             </div>
-
                                         </div>
                                     </div>
 
                                 </div>
+
+
 
 
                             </div>
