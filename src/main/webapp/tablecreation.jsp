@@ -20,7 +20,7 @@
         statement = connection.createStatement();
 
 
-        String query1 = "CREATE TABLE `AppEmphazize_ApplicationInfo` ( `appname` varchar(255) DEFAULT NULL, `complexity` varchar(255) DEFAULT NULL, `est_db_size` varchar(255) DEFAULT NULL, `est_cst` varchar(255) DEFAULT NULL, `prjname` varchar(255) DEFAULT NULL, est_scrn varchar(255) DEFAULT NULL )";
+        String query1 = "CREATE TABLE `AppEmphazize_ApplicationInfo` ( `appname` varchar(255) DEFAULT NULL, `complexity` varchar(255) DEFAULT NULL, `est_db_size` varchar(255) DEFAULT NULL, `est_cst` varchar(255) DEFAULT NULL, `prjname` varchar(255) DEFAULT NULL, est_scrn varchar(255) DEFAULT NULL,`id` int(11) NOT NULL AUTO_INCREMENT, PRIMARY KEY (`id`))";
         statement.executeUpdate(query1);
 
         String query2 = "CREATE TABLE `ArchiveExecution_Defaultvalues` ( `seq_num` int(11) DEFAULT NULL, `level` int(11) DEFAULT NULL, `name` varchar(255) DEFAULT NULL, `mem_ass` varchar(255) DEFAULT NULL, `act_srt_date` varchar(255) DEFAULT NULL, `act_end_date` varchar(255) DEFAULT NULL, `pln_srt_date` varchar(255) DEFAULT NULL, `pln_end_date` varchar(255) DEFAULT NULL, `hours` varchar(255) DEFAULT NULL, `id` varchar(255) DEFAULT NULL, `ref_id` varchar(255) DEFAULT NULL, `stats` varchar(255) DEFAULT NULL, `planned_hrs` varchar(255) DEFAULT NULL )";

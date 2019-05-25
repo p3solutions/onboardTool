@@ -103,7 +103,7 @@
 	function qq()
 	{				 var f=document.loginForm;
 				    f.method="post";
-				    f.action="sendMail?roless="+arr+"&mailid="+email;
+				    f.action="Admin_Module_Send_Invites_Mail?roless="+arr+"&mailid="+email;
 				    f.submit();
 			
 	}
@@ -245,7 +245,7 @@ ResultSet rs=s.executeQuery(query);
                                         <a><span class="">User Module</span></a>
                                     </li>
                                     <li>
-                                        <a href="Admin_UserConfiguration.jsp"><i class="fa fa-file-text"></i> <span>User Configuration</span> </a>
+                                        <a href="User_Configuration.jsp"><i class="fa fa-file-text"></i> <span>User Configuration</span> </a>
                                     </li>
 
                                     <li>
@@ -253,7 +253,7 @@ ResultSet rs=s.executeQuery(query);
                                     </li>
 
                                     <li>
-                                        <a href="Admin_RoleDetails.jsp"><i class="fa fa-map-signs"></i> <span>Authorization </span> </a>
+                                        <a href="Admin_Role_Details.jsp"><i class="fa fa-map-signs"></i> <span>Authorization </span> </a>
                                     </li>
                                 </ul>
 										

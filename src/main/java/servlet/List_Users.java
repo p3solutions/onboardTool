@@ -2,6 +2,7 @@ package servlet;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import org.apache.log4j.Logger;
 import service.IntakeInformationService;
 import service.ListUserService;
 
@@ -20,13 +21,15 @@ import java.sql.Statement;
 @WebServlet("/List_Users")
 public class List_Users extends HttpServlet {
 
+    final static Logger logger = Logger.getLogger(List_Users.class);
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("hello");
+        logger.info("Testing------>");
         try {
-           //String uname=request.getParameter("uname");
+            //String uname=request.getParameter("uname");
             JsonObject infojson = new ListUserService().getUserList();
             String json = new Gson().toJson(infojson);
-            System.out.println("json--->"+json);
+            logger.info("json--->" + json);
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(json);
@@ -37,9 +40,6 @@ public class List_Users extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-
 
 
     }

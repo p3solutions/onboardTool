@@ -22,12 +22,17 @@
          <style type="text/css">
             .breadcrumb-div {
                 background-color: #e7e7e7;
-                color: #010101; }
+                color: #0000B2; }
             h6 { line-height: 1.5em; }
             
             body{
             background:white;
             }
+             body{
+                 url(images/Role2.jpg);
+                 colour: #0000FF;
+             }
+
         </style>
         
         <!-- ========== COMMON JS FILES ========== -->
@@ -105,7 +110,7 @@ response.sendRedirect("Login.jsp");
                             <div class="row breadcrumb-div">
                                 <div class="col-sm-6">
                                     <ul class="breadcrumb">
-                                        <li><a href="login.jsp"><i class="fa fa-home"></i> Home</a></li>
+                                        <li><a href="Project_List.jsp"><i class="fa fa-home"></i> Home</a></li>
                                         <li class="active">Dashboard</li>
                                     </ul>
                                 </div>
@@ -124,7 +129,7 @@ response.sendRedirect("Login.jsp");
                 <div class="col-md-3 col-sm-3">
                   <a href="RoleDashboard.jsp">
                    <center>
-                   <img src="images/Role2.jpg" class="img-rounded" height="100" width="100" alt="Role">
+                   <img src="images/Role2.jpg" class="img-rounded" id="image" height="100" width="100" alt="Role" data-color="#494949">
                    <h6 class="mt-5">Roles</h6>
                    </center>
                   </a>

@@ -128,7 +128,7 @@ public class Templates {
 
     public static ComponentBuilder<?, ?> createTitleComponent(String realpath) throws IllegalAccessException, InstantiationException {
 
-        String strmwLogoImg = "D:\\shankar\\officeproject\\onboarding_gradle_project\\src\\main\\webapp\\images\\logo1.png";
+        String strmwLogoImg = "E:\\office project\\onboard_tool\\src\\main\\webapp\\images\\logo1.png";
 
 
         return cmp.horizontalList()

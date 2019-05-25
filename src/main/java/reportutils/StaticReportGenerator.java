@@ -34,6 +34,7 @@ public class StaticReportGenerator {
 
 
     /// for dms
+
     public static ByteArrayOutputStream build(List<ReportPojo> data, String exportType, String reportTitle,String realPath
     )
             throws InstantiationException, IllegalAccessException, DRException, IOException, JRException {

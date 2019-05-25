@@ -459,11 +459,11 @@ if(rs.next()){
               
             <div class="content-wrapper">
                 <div class="content-container">
-            
+
                     <!-- ========== LEFT SIDEBAR ========== -->
                     <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
                         <div class="sidebar-content" id='jqxWidget'>
-							
+
                             <div class="sidebar-nav">
                                 <ul class="side-nav color-gray">
                                     <li class="nav-header">
@@ -473,79 +473,114 @@ if(rs.next()){
                                         <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
                                     </li>
 
-                                    <li class="nav-header">
-                                        <a href="AppEmphasize_EditProject.jsp"><span class="">App Emphasize Module</span></a>
-                                    </li>
+                                    <%--   <li class="nav-header">
+                                           <a href="AppEmphasize_EditProject.jsp"><span class="">Plan and pirority</span></a>
+                                       </li>--%>
                                     <li class="has-children">
-                                        <a href="AppEmphasize_EditProject.jsp" ><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <a href=""><i class="fa fa-archive"></i> <span>Plan and pirority</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="AppEmphasize_EditProject.jsp" class="active-menu"> <span>Project Information</span></a></li>
+                                            <li><a href="AppEmphasize_Application.jsp" class="active-menu"> <span>Application Information</span></a></li>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp" > <span>Application Complexity</span></a></li>
+                                            <li><a href="AppEmphasize_PrioritizedApplications.jsp"> <span>Prioritized Applications</span></a></li>
+                                            <li><a href="AppEmphasize_Preview.jsp"> <span>Review Page</span></a></li>
+                                        </ul>
+                                    </li>
+                                    <%--<li class="has-children">
+                                        <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
                                             <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
                                         </ul>
-                                    </li>
+                                    </li>--%>
 
-                                  <li class="has-children">
+
+                                    <%--<li class="has-children">
                                         <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Application Complexity</span></a></li>
-                                             </ul>
-                                    </li>
+                                            <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Application Complexity </span></a></li>
+                                        </ul>
+                                    </li>--%>
 
-                                    <li>
+                                    <%--<li>
                                         <a href="AppEmphasize_PrioritizedApplications.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
-                                    </li>
+                                    </li>--%>
 
- <li class="nav-header">
-                                        <a href='Applications.jsp'><span class="">Intake Module</span></a>
-                                    </li>
+                                    <%-- <li class="nav-header">
+                                         <a href='Applications.jsp'><span class="">Intake Module</span></a>
+                                     </li>
 
-                                    <li class="has-children">
-                                        <a href="Applications.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
-                                        <ul class="child-nav">
-                                            <li><a href="Applications.jsp"> <span>Application Information</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Legacy Retention Information</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Archive Data Management</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>System Requirements</span></a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="has-children">
-                                        <a href="Applications.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
-                                        <ul class="child-nav">
-                                            <li><a href="Applications.jsp"> <span>Application Data Information</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Technical Information</span></a></li>
-                                        </ul>
-                                    </li>
                                      <li class="has-children">
-                                        <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                         <a href="Applications.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                         <ul class="child-nav">
+                                             <li><a href="Applications.jsp"> <span>Application Information</span></a></li>
+                                             <li><a href="Applications.jsp"> <span>Legacy Retention Information</span></a></li>
+                                             <li><a href="Applications.jsp"> <span>Archive Data Management</span></a></li>
+                                             <li><a href="Applications.jsp"> <span>System Requirements</span></a></li>
+                                         </ul>
+                                     </li>
+
+                                     <li class="has-children">
+                                         <a href="Applications.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                         <ul class="child-nav">
+                                             <li><a href="Applications.jsp"> <span>Application Data Information</span></a></li>
+                                             <li><a href="Applications.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                             <li><a href="Applications.jsp"> <span>Technical Information</span></a></li>
+                                         </ul>
+                                     </li>
+                                     <li class="has-children">
+                                         <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                         <ul class="child-nav">
+                                             <li><a href="Applications.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                             <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
+                                         </ul>
+                                     </li>--%>
+                                    <li class="has-children">
+                                        <a href=""><i class="fa fa-file-text"></i> <span>Intake Module</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
-                                            <li><a href="Applications.jsp"> <span>Screen/Report Requirements</span></a></li>
-                                            <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
+                                            <li><a href="Applications.jsp" class="active-menu"> <span>Application Details</span></a></li>
+                                            <li><a href="Intake_Business.jsp" > <span>Business Details</span></a></li>
+                                            <li><a href="Intake_TechnicalDetails.jsp"> <span>Technical Details</span></a></li>
+                                            <li><a href="Intake_ArchiveRequirements.jsp"> <span>Archive Requirements</span></a></li>
+                                            <li><a href="Intake_ReviewPage.jsp"> <span>Review Page</span></a></li>
                                         </ul>
                                     </li>
-   <li class="has-children"><a href="Archive_Execution.jsp"><i class="fa fa-suitcase"></i> <span>Archive Execution Module</span></a>
-               </li> 
-               <li class="nav-header">
-                                        <a href='Applications.jsp'><span class="">Report Module</span></a>
+                                    <%--<li class="nav-header">
+                                        <a href='Archive_Execution.jsp'><span class="">Archive Execution Module</span></a>
+                                    </li>--%>
+                                    <li class="has-children">
+                                        <a href=""><i class="fa fa-map-signs"></i> <span>Archive Execution Module</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="Archive_Execution.jsp" class="active-menu"> <span>Archive Execution</span></a></li>
+                                            <li><a href="archivesummary.jsp" > <span>Archive summary</span></a></li>
+
+                                        </ul>
                                     </li>
-                                      <li class="has-children">
-                                        <a href=""><i class="fa fa-archive"></i> <span>Dashboards</span> <i class="fa fa-angle-right arrow"></i></a>
-                                         <ul class="child-nav">
+                                    <%--   <li class="nav-header">
+                                           <a href='RoleUIDashboard.jsp'><span class="">Report Module</span></a>
+                                       </li>--%>
+                                    <li class="has-children">
+                                        <a href=""><i class="fa fa-paint-brush"></i> <span>Report Module</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="RoleUIDashboard.jsp" class="active-menu"> <span>Reports Dashboard</span></a></li>
                                             <li><a href="RoleDashboard.jsp" class="active-menu"> <span>Role Dashboard</span></a></li>
                                             <li><a href="ProjectDashboard.jsp" > <span>Project Dashboard</span></a></li>
                                             <li><a href="ApplicationDashboard.jsp"> <span>Application Dashboard</span></a></li>
-                                          </ul>
+                                        </ul>
                                     </li>
                                 </ul>
-										
+
                             </div>
                             <!-- /.sidebar-nav -->
                         </div>
                         <!-- /.sidebar-content -->
                     </div>
                     <!-- /.left-sidebar -->
-        <%
+
+
+
+
+                    <%
 String initiate=(String)session.getAttribute("Ideation and Initiate");
 String plan=(String)session.getAttribute("Plan");
 String execute=(String)session.getAttribute("Execute");
@@ -921,13 +956,13 @@ return;
 
 var element = document.getElementById(positionId);
 
-var pagerHtml = '<span onclick="' + pagerName + '.prev();" class="pg-normal"> « Prev </span>&nbsp;';
+var pagerHtml = '<span onclick="' + pagerName + '.prev();" class="pg-normal"> ï¿½ Prev </span>&nbsp;';
 
 for (var page = 1; page <= this.pages; page++)
 
 pagerHtml += '<span id="pg' + page + '" class="pg-normal" onclick="' + pagerName + '.showPage(' + page + ');">' + page + '</span> ';
 
-pagerHtml += '<span onclick="'+pagerName+'.next();" class="pg-normal"> Next »</span>';
+pagerHtml += '<span onclick="'+pagerName+'.next();" class="pg-normal"> Next ï¿½</span>';
 
 element.innerHTML = pagerHtml;
 

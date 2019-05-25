@@ -27,7 +27,7 @@ import java.util.List;
  */
 @WebServlet("/Intake_Review_Data")
 public class Intake_Review_Data extends HttpServlet {
-    final static Logger LOGGER = Logger.getLogger(Intake_Review_Data.class);
+    final static Logger logger = Logger.getLogger(Intake_Review_Data.class);
 
     private static final long serialVersionUID = 1L;
 
@@ -58,7 +58,7 @@ public class Intake_Review_Data extends HttpServlet {
 
         final int ARBITARY_SIZE = 1048;
         String data_submit = request.getParameter("data_submit");
-        LOGGER.info("Testing");
+        logger.info("data_submit");
 
         HttpSession details = request.getSession();
         HttpSession session = request.getSession();
@@ -99,7 +99,7 @@ public class Intake_Review_Data extends HttpServlet {
         } else {
             String json = new Gson().toJson(infojson);
             /* System.out.println("json--->" + json);*/
-            LOGGER.info("json--->" + json);
+            logger.info("json--->" + json);
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(json);

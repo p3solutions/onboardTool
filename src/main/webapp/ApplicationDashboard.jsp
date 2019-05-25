@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
+
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <!-- ========== COMMON STYLES ========== -->
@@ -33,12 +34,73 @@
     <script type="text/javascript" src="js/paging.js"></script>
 
 
+
     <script type="text/javascript" src="js_in_pages/tree.js"></script>
     <!-- graph -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
+<style>
+    /* =================piechart pop-up table row line================= */
+    .border-bottom {
+        border-bottom: solid 1px lightgrey;
+    }
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
 
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        width: 50%; /* Full width */
+        height: 70%; /* Full height */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 46%;
+    }
+    /* Modal Header */
+    .modal-header
+    {
+        height:50px;
+    }
+    /* Modal Body */
+    #modalpopup
+    {
+        overflow-y:scroll;
+        overflow-x:hidden;
+        height:80%;
+        width:100%;
+    }
+    /* The Close Button */
+    .close {
+        height:5px;
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
 
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+<style>
+
+</style>
 <style>
     .breadcrumb-div {
         background-color: #e7e7e7;
@@ -83,6 +145,7 @@
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="java.util.Date" %>
 <%@page import="java.util.Calendar" %>
+<%@page import="onboard.Application_dashboard_pie_chart" %>
 <%
     //daterange dt = new daterange();
 //dt.range_calc("5/1/2018","5/30/2018");
@@ -146,9 +209,8 @@
         if (rs.next()) {
 %>
 
-
 <div class="main-wrapper">
-
+    <!-- ========== hi ========== -->
     <!-- ========== TOP NAVBAR ========== -->
     <nav class="navbar top-navbar bg-white box-shadow">
         <div class="container-fluid">
@@ -216,6 +278,7 @@
             <!-- ========== LEFT SIDEBAR ========== -->
             <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
                 <div class="sidebar-content" id='jqxWidget'>
+
                     <div class="sidebar-nav">
                         <ul class="side-nav color-gray">
                             <li class="nav-header">
@@ -225,87 +288,103 @@
                                 <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
                             </li>
 
-                            <li class="nav-header">
-                                <a href="AppEmphasize_EditProject.jsp"><span class="">App Emphasize Module</span></a>
-                            </li>
+                            <%--   <li class="nav-header">
+                                   <a href="AppEmphasize_EditProject.jsp"><span class="">Plan and pirority</span></a>
+                               </li>--%>
                             <li class="has-children">
-                                <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span>
-                                    <i class="fa fa-angle-right arrow"></i></a>
+                                <a href=""><i class="fa fa-archive"></i> <span>Plan and pirority</span> <i class="fa fa-angle-right arrow"></i></a>
                                 <ul class="child-nav">
-                                    <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a>
-                                    </li>
-                                    <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a>
-                                    </li>
+                                    <li><a href="AppEmphasize_EditProject.jsp" class="active-menu"> <span>Project Information</span></a></li>
+                                    <li><a href="AppEmphasize_Application.jsp" class="active-menu"> <span>Application Information</span></a></li>
+                                    <li><a href="AppEmphasize_CostCalculation.jsp" > <span>Application Complexity</span></a></li>
+                                    <li><a href="AppEmphasize_PrioritizedApplications.jsp"> <span>Prioritized Applications</span></a></li>
+                                    <li><a href="AppEmphasize_Preview.jsp"> <span>Review Page</span></a></li>
                                 </ul>
                             </li>
-
-                            <li class="has-children">
-                                <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span>
-                                    <i class="fa fa-angle-right arrow"></i></a>
+                            <%--<li class="has-children">
+                                <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                 <ul class="child-nav">
-                                    <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Application Complexity</span></a>
-                                    </li>
+                                    <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
+                                    <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
+                                </ul>
+                            </li>--%>
+
+
+                            <%--<li class="has-children">
+                                <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
+                                <ul class="child-nav">
+                                    <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Application Complexity </span></a></li>
+                                </ul>
+                            </li>--%>
+
+                            <%--<li>
+                                <a href="AppEmphasize_PrioritizedApplications.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                            </li>--%>
+
+                            <%-- <li class="nav-header">
+                                 <a href='Applications.jsp'><span class="">Intake Module</span></a>
+                             </li>
+
+                             <li class="has-children">
+                                 <a href="Applications.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                 <ul class="child-nav">
+                                     <li><a href="Applications.jsp"> <span>Application Information</span></a></li>
+                                     <li><a href="Applications.jsp"> <span>Legacy Retention Information</span></a></li>
+                                     <li><a href="Applications.jsp"> <span>Archive Data Management</span></a></li>
+                                     <li><a href="Applications.jsp"> <span>System Requirements</span></a></li>
+                                 </ul>
+                             </li>
+
+                             <li class="has-children">
+                                 <a href="Applications.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                 <ul class="child-nav">
+                                     <li><a href="Applications.jsp"> <span>Application Data Information</span></a></li>
+                                     <li><a href="Applications.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                     <li><a href="Applications.jsp"> <span>Technical Information</span></a></li>
+                                 </ul>
+                             </li>
+                             <li class="has-children">
+                                 <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                 <ul class="child-nav">
+                                     <li><a href="Applications.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                     <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
+                                 </ul>
+                             </li>--%>
+                            <li class="has-children">
+                                <a href=""><i class="fa fa-file-text"></i> <span>Intake Module</span> <i class="fa fa-angle-right arrow"></i></a>
+                                <ul class="child-nav">
+                                    <li><a href="Applications.jsp" class="active-menu"> <span>Application Details</span></a></li>
+                                    <li><a href="Intake_Business.jsp" > <span>Business Details</span></a></li>
+                                    <li><a href="Intake_TechnicalDetails.jsp"> <span>Technical Details</span></a></li>
+                                    <li><a href="Intake_ArchiveRequirements.jsp"> <span>Archive Requirements</span></a></li>
+                                    <li><a href="Intake_ReviewPage.jsp"> <span>Review Page</span></a></li>
                                 </ul>
                             </li>
-
-                            <li>
-                                <a href="AppEmphasize_PrioritizedApplications.jsp"><i class="fa fa-map-signs"></i>
-                                    <span>Application Prioritized</span> </a>
-                            </li>
-
-                            <li class="nav-header">
-                                <a href='Applications.jsp'><span class="">Intake Module</span></a>
-                            </li>
-
+                            <%--<li class="nav-header">
+                                <a href='Archive_Execution.jsp'><span class="">Archive Execution Module</span></a>
+                            </li>--%>
                             <li class="has-children">
-                                <a href="Applications.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i
-                                        class="fa fa-angle-right arrow"></i></a>
+                                <a href=""><i class="fa fa-map-signs"></i> <span>Archive Execution Module</span> <i class="fa fa-angle-right arrow"></i></a>
                                 <ul class="child-nav">
-                                    <li><a href="Applications.jsp"> <span>Application Information</span></a></li>
-                                    <li><a href="Applications.jsp"> <span>Legacy Retention Information</span></a></li>
-                                    <li><a href="Applications.jsp"> <span>Archive Data Management</span></a></li>
-                                    <li><a href="Applications.jsp"> <span>System Requirements</span></a></li>
+                                    <li><a href="Archive_Execution.jsp" class="active-menu"> <span>Archive Execution</span></a></li>
+                                    <li><a href="archivesummary.jsp" > <span>Archive summary</span></a></li>
+
                                 </ul>
                             </li>
-
+                            <%--   <li class="nav-header">
+                                   <a href='RoleUIDashboard.jsp'><span class="">Report Module</span></a>
+                               </li>--%>
                             <li class="has-children">
-                                <a href="Applications.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i
-                                        class="fa fa-angle-right arrow"></i></a>
+                                <a href=""><i class="fa fa-paint-brush"></i> <span>Report Module</span> <i class="fa fa-angle-right arrow"></i></a>
                                 <ul class="child-nav">
-                                    <li><a href="Applications.jsp"> <span>Application Data Information</span></a></li>
-                                    <li><a href="Applications.jsp">
-                                        <span>Infrastructure & Environment Inforamation</span></a></li>
-                                    <li><a href="Applications.jsp"> <span>Technical Information</span></a></li>
-                                </ul>
-                            </li>
-                            <li class="has-children">
-                                <a href="Applications.jsp"><i class="fa fa-archive"></i>
-                                    <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
-                                <ul class="child-nav">
-                                    <li><a href="Applications.jsp"> <span>Screen/Report Requirements</span></a></li>
-                                    <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
-                                </ul>
-                            </li>
-                            <li class="has-children"><a href="Archive_Execution.jsp"><i class="fa fa-suitcase"></i>
-                                <span>Archive Execution Module</span></a>
-                            </li>
-
-                            <li class="has-children">
-                                <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Dashboards</span> <i
-                                        class="fa fa-angle-right arrow"></i></a>
-                                <ul class="child-nav">
-
-                                    <ul class="child-nav">
-                                        <li><a href="RoleDashboard.jsp" class="active-menu"> <span>Role Dashboard</span></a>
-                                        </li>
-                                        <li><a href="ProjectDashboard.jsp"> <span>Project Dashboard</span></a></li>
-                                        <li><a href="ApplicationDashboard.jsp"> <span>Application Dashboard</span></a>
-                                        </li>
-                                    </ul>
-
+                                    <li><a href="RoleUIDashboard.jsp" class="active-menu"> <span>Reports Dashboard</span></a></li>
+                                    <li><a href="RoleDashboard.jsp" class="active-menu"> <span>Role Dashboard</span></a></li>
+                                    <li><a href="ProjectDashboard.jsp" > <span>Project Dashboard</span></a></li>
+                                    <li><a href="ApplicationDashboard.jsp"> <span>Application Dashboard</span></a></li>
                                 </ul>
                             </li>
                         </ul>
+
                     </div>
                     <!-- /.sidebar-nav -->
                 </div>
@@ -503,7 +582,7 @@
                                                 <div>
                                                 </div>
                                             </div>
-                                            <div id="curve_chart" style="height: 250px; width:800px;"></div>
+                                            <div id="bar_chart" style="height:384px; width:800px;"></div>
 
                                         </div>
                                     </div>
@@ -526,10 +605,28 @@
                                             </div>
 
                                             <br>
-                                            <div id="container11" onload=""
-                                                 style="width: 550px; height: 400px; margin: 0 auto">
+                                            <div id="container11" style="width: 550px; height: 400px; margin: 0 auto">
                                             </div>
+                                            <div id="myModal" class="modal">
+
+                                                <!-- Modal content -->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title"><b>Application Details</b></h4>
+                                                    </div>
+                                                    <div class="modal-body" id="modalpopup">
+                                                    </div>
+                                                    <div class="modal-footer" style="height:20px;">
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
                                             <script language="JavaScript">
+                                                google.charts.load('current', {'packages':['corechart']});
+                                                google.charts.setOnLoadCallback(drawChart1);
                                                 function drawChart1() {
 
                                                     // Define the chart to be drawn.
@@ -545,38 +642,9 @@
                                                         System.out.println("uname-----------"+uname);
                                                         String query8;
                                                         System.out.println("projets--------------- "+Projets);
-                                                        String apps="";
-                                                        if(Projets.equals("all"))
-                                                        {
-                                                        query8="select appname from AppEmphazize_ApplicationInfo where prjname='"+selprj+"';";
-                                                        Statement st8 = conn.createStatement();
-                                                            ResultSet rs8 = st8.executeQuery(query8);
-                                                            while(rs8.next())
-                                                            {
-                                                            apps+=rs8.getString(1)+",";
-                                                            }
-                                                        }
-                                                        else
-                                                        {
-                                                        query8="select application from admin_userdetails where uname='"+uname+"';";
-                                                        Statement st8 = conn.createStatement();
-                                                            ResultSet rs8 = st8.executeQuery(query8);
-                                                            String app3="";
-                                                            while(rs8.next())
-                                                            {
-
-                                                            app3=rs8.getString("application")+",";
-                                                            }
-                                                            String[] sapp=app3.substring(0,app3.length()-1).split(",");
-                                                            for(int var=0;var<sapp.length;var++)
-                                                            {
-                                                            String[] word1=sapp[var].split("-");
-                                                            if(word1[0].equals(selprj))
-                                                            {
-                                                            apps+=word1[1]+",";
-                                                            }
-                                                            }
-                                                        }
+                                                        Application_dashboard_pie_chart appobj=new Application_dashboard_pie_chart();
+                                                        String apps=appobj.applications(Projets,selprj,uname);
+                                                        //Application name for admin
                                                         System.out.println("apps-------------------"+apps);
                                                         String[] app=apps.substring(0,apps.length()-1).split(",");
 
@@ -593,7 +661,7 @@
                                                             ResultSet rs10= st10.executeQuery(query10);
                                                             String user=""; */
                                                             //System.out.println("bala "+user);
-                                                              String appprgbar="";
+
                                                               //String[] user2=new String[app.length];
                                                           /*  while(rs10.next())
                                                             {
@@ -627,43 +695,14 @@
                                                               } */
                                                             //System.out.println("user-------"+user);hi
                                                             //String[] users=user.substring(0,user.length()-1).split(",");
-                                                            String query12="select * from archiveexecution_details where level=1 and projects='"+selprj+"'";
-                                                            Statement st12 = conn.createStatement();
-                                                            ResultSet rs12= st12.executeQuery(query12);
-                                                            String stats="";
-                                                            String stats1="";
-                                                            int progbar=0;
-                                                            String cstartdate="";
-                                                            String cenddate="";
-                                                                 String pstartdate="";
-                                                                 String penddate="";
-                                                                 String strtdate="";
-                                                                 String endate="";
-                                                            while(rs12.next())
-                                                            {
-                                                            int progressbar=Integer.parseInt(rs12.getString("progressbar"));
-                                                            if(progressbar<100)
-                                                            {
-                                                            progbar=progressbar;
-                                                            stats1=rs12.getString("name");
-                                                            if(!stats1.equals("Ideation and Initiate"))
-                                                            {
-                                                            pstartdate=strtdate;
-                                                            penddate=endate;
-                                                            }
-                                                            cstartdate=rs12.getString("act_srt_date");
-                                                            cenddate=rs12.getString("act_end_date");
-                                                            System.out.println("pstart date------------penddate----------"+pstartdate+penddate);
-                                                            System.out.println("cstartdate---------"+cstartdate+"cenddate--------------"+cenddate);
 
-                                                            break;
-                                                            }
-                                                            stats=rs12.getString("name");
-                                                            strtdate=rs12.getString("act_srt_date");
-                                                        endate=rs12.getString("act_end_date");
-                                                        System.out.println("actsrtdate-------------enddate------------"+strtdate+endate);
-                                                            }
-                                                            System.out.println("progressbar------"+progbar+"stats----------"+stats);
+
+                                                       String[] ans=appobj.progressbar_and_state(selprj).split(",");
+                                                       String progbar=ans[0];
+                                                       String stats1=ans[1];
+                                                       String cstartdate=ans[2];
+                                                       String cenddate=ans[3];
+                                                       System.out.println("progressbar------"+progbar+"stats----------"+stats1);
 
 
 
@@ -672,6 +711,7 @@
                                                             String appprgbar1[]=appprgbar.split(",");
                                                             System.out.println("appprgbar-------------"+appprgbar);
                                                             System.out.println(""); */
+                                                            //application stages
                                                             String[] stages={"Requirements","Build and Test","Gate 3 Approval to Deploy"};
                                                           /*  String query13="select appname from AppEmphazize_ApplicationInfo where prjname='"+selprj+"';";
                                                            Statement st13 = conn.createStatement();
@@ -681,7 +721,7 @@
                                                       {
                                                       apps+=rs13.getString("appname")+",";
                                                       } */
-                                                      System.out.println("appname--------"+apps);
+                                                      //System.out.println("appname--------"+apps);
 
 
                                                       String query14="select * from archiveexecution_details where name= 'Execute' and projects='"+selprj+"';";
@@ -711,15 +751,15 @@
                                                     int k;
                                                     int ind=start;
                                                       int ai=0;
-                                                       String[] stagesdt={"Configuration","Cycle 1 (Dev)","Cycle 2 (Stage)","UAT setup (Stage)","UAT"};
-                                                String query17="select count(appname) from AppEmphazize_ApplicationInfo where prjname='"+selprj+"'";
+                                                       //String[] stagesdt={"Configuration","Cycle 1 (Dev)","Cycle 2 (Stage)","UAT setup (Stage)","UAT"};
+                                                /* String query17="select count(appname) from AppEmphazize_ApplicationInfo where prjname='"+selprj+"'";
                                                             Statement st17 = conn.createStatement();
                                                         ResultSet rs17= st17.executeQuery(query17);
                                                       String countapp="";
                                                         while(rs17.next())
                                                         {
                                                         countapp=rs17.getString(1);
-                                                        }
+                                                        } */
                                                         //System.out.println("countapp------ "+countapp);
                                                       String query18="select * from archiveexecution_details where name='Build and Test' and projects='"+selprj+"'";;
                                                       Statement st18 = conn.createStatement();
@@ -762,11 +802,11 @@
                                                         {
                                                         check=word;
                                                         }
-
+														//System.out.println("app2----------"+app2);
                                                         if(apps.contains(check))
                                                         {
-                                                          // System.out.println("checking in.........."+word);
-                                                        if(rs16.getString("name").equals("Build and Test"))
+                                                           //System.out.println("checking in.........."+word);
+                                                        if(rs16.getString("name").equals("Build and Test"))//caculating percentage only for build and test
                                                 {
                                                 String devtes="";
                                                 int dev=0;
@@ -798,7 +838,7 @@
                                                         }
                                                         }
                                                         }
-                                                      devtes+=dev/3+","+tes/2;
+                                                      devtes+=dev/3+"!"+tes/2;//calculating the development and testing percentage
                                                       percent+=devtes+",";
                                                       System.out.println("devtest--------------------- "+devtes);
                                                 }
@@ -806,7 +846,6 @@
                                                 {
                                                         for(int i=0;i<stages.length;i++)
                                                         {
-
                                                            if(rs16.getString("name").equals(stages[i]))
                                                         {
                                                         percent+=rs16.getString("progressbar")+",";
@@ -816,7 +855,7 @@
                                                         }
                                                         }
                                                         }
-                                                       }
+                                                         }
                                                         }
                                                         }
                                                        ind++;
@@ -830,47 +869,76 @@
                                                         String[] stages1={"Requirements","Development","Testing","Gate 3 Approval to Deploy"};
                                                         for(int pi=0;pi<percentage.length;pi++)
                                                         {
-
                                                         String[] ina=percentage[pi].split(",");
                                                         for(int innp=0;innp<ina.length;innp++)
                                                         {
                                                         String prg1=ina[innp];
-                                                        /* if(stages[innp].equals("Build and Test"))
+                                                       /*  if(stages1[innp].equals("Development")||stages1[innp].equals("Testing")) */
+                                                        if(stages1[innp].contains("Development")||stages1[innp].contains("Testing"))
                                                         {
-
+                                                    	   System.out.println("development testing----------"+prg1);
+                                                          String[] prg2=prg1.split("!");
+                                                          if(Integer.parseInt(prg2[0])<100&&stages1[innp].contains("Development"))
+                                                          {
+                                                        	  System.out.println("prg2------------"+prg2[0]);
+                                                        	  prg+=prg2[0]+",";
+                                                        	  stage+=stages1[innp]+",";
+                                                        	  break;
+                                                          }
+                                                          else if(Integer.parseInt(prg2[1])<100&&stages1[innp].contains("Testing"))
+                                                          {
+                                                        	  System.out.println("prg2------------"+prg2[1]);
+                                                        	  prg+=prg2[1]+",";
+                                                        	  stage+=stages1[innp]+",";
+                                                        	  break;
+                                                          }
                                                         }
-                                                        else */ if(Integer.parseInt(prg1)<100)
+                                                        else {
+
+                                                     if(Integer.parseInt(prg1)<100)
                                                         {
                                                         prg+=ina[innp]+",";
                                                         stage+=stages1[innp]+",";
                                                         break;
                                                         }
-
                                                         }
                                                         }
-                                                        prg=prg.substring(0,prg.length()-1);
+                                                        }
+                                                        /* prg=prg.substring(0,prg.length()-1); */
                                                         System.out.println("percentage app-------------- "+prg+"stages---------------"+stage);
-                                                        String[] prgb=prg.split(",");
+                                                        String[] prgb=prg.substring(0,prg.length()-1).split(",");
                                                         String[] stg=stage.substring(0,stage.length()-1).split(",");
+                                                        System.out.println("prgb--------------"+prgb[prgb.length-1]+"stages----------------"+stg[stg.length-1]);
                                                         int i=0;
                                                         int len=0;
                                                         int applen=prgb.length;
-                                                       // System.out.println("checking--------"+applen+" user "+users.length);
+                                                       System.out.println("checking--------"+applen+" app"+app.length);
                                                        int appindex=0;
-                                                          while(appindex<app.length||len<applen)
+                                                       String application_percentage="";
+                                                       application_percentage=appobj.Applicationpercentage(app,selprj);
+                                                       String pieperc=appobj.percentage_conversion(apps,selprj);
+                                                       String[] pie_perc=pieperc.substring(0,pieperc.length()-1).split(",");
+                                                       String[] respercentage=application_percentage.substring(0,application_percentage.length()-1).split("_");
+                                                       String currentmaintask="";
+                                                       currentmaintask=appobj.currentmain_task(app,selprj);
+                                                       System.out.println("res---------------- "+currentmaintask);
+                                                       String[] main_task=currentmaintask.substring(0,currentmaintask.length()-1).split(",");
+                                                       String subtask="";
+                                                       subtask=appobj.current_subtask(app,selprj,main_task);
+                                                       System.out.println("subtask------------"+subtask);
+                                                       String completedmaintask=appobj.completedmain_task(app,selprj);
+                                                       String[] sub_task=subtask.substring(0,subtask.length()-1).split(",");
+                                                       while(appindex<app.length)
                                                               {
-                                                          System.out.println("testing............ "+"app-------- "+app[appindex]+"progbar----------- "+progbar+"statement------ "+stats1+"current start datea and end date----------- "+cstartdate+cenddate+"application percentage--------- "+prgb[len]+"statement------ "+stg[len]);
+                                                          System.out.println("testing............ "+"app-------- "+app[appindex]+" progbar----------- "+progbar+" statement------ "+stats1+" current start date and end date----------- "+cstartdate+" "+cenddate+" application percentage--------- "+respercentage[appindex]);
                                                               %>
-                                                        ['<%=app[appindex]%>', 33, "application:<%=app[appindex]%> % of completion:<%=progbar%>%  statement:<%=stats1%>\n currenttask startdate:<%=cstartdate%> currenttask enddate:<%=cenddate%>\n application % :<%=prgb[len]%>% Statement:<%=stg[len]%>"],
-
+                                                        ['<%=app[appindex]%>',<%=pie_perc[appindex]%>,"Application:<%=app[appindex]%>,\nProject Completion:<%=progbar%>%,\nState:<%=stats1%>,\nTask Startdate:<%=cstartdate%>,\nTask Enddate:<%=cenddate%>,\nApplication%:<%=respercentage[appindex]%>"],
                                                         <%
                                                         //System.out.println("user----------"+users[i]);
-                                                          len++;
-                                                        i++;
                                                         appindex++;
-                                                          }
+                                                              }
+                                                              %>
 
-                                                  %>
                                                     ]);
                                                     var options = {
                                                         'title': 'Applications',
@@ -879,14 +947,211 @@
                                                         is3D: true
                                                     };
 
+                                                    // Load the Visualization API and the piechart package.
+                                                    //google.charts.load('current', {'packages':['corechart']});
+
                                                     // Instantiate and draw the chart.
                                                     var chart = new google.visualization.PieChart(document.getElementById('container11'));
+                                                    function selectHandler() {
+                                                        var selectedItem = chart.getSelection()[0];
+
+                                                        // console.log(selectedItem.row);
+                                                        if (selectedItem) {
+
+                                                            var value = data.getValue(selectedItem.row,0);
+                                                            //console.log(selectedItem);
+                                                            //console.log(value);
+                                                            popuphandler(value);
+                                                            var modal = document.getElementById('myModal');
+                                                            var span = document.getElementsByClassName("close")[0];
+                                                            modal.style.display = "block";
+                                                            span.onclick = function() {
+                                                                modal.style.display = "none";
+                                                            }
+                                                            window.onclick = function(event) {
+
+                                                                if (event.target == modal) {
+                                                                    modal.style.display = "none";
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    google.visualization.events.addListener(chart, 'select', selectHandler);
+
+                                                    chart.draw(data, options);
+
+                                                }
+                                                function popuphandler(app)
+                                                {
+                                                    var app1="";
+
+                                                    <%
+                                                    String[] words=apps.substring(0,apps.length()-1).split(",");
+                                                         int indexx=0;
+                                                         System.out.println("words length--------------"+words.length);
+                                                         while(indexx<words.length)
+                                                         {%>
+
+                                                    app1+="<%=words[indexx]%>"+",";
+
+                                                    <%
+                                                    indexx++;
+                                                    }%>
+                                                    //alert("Resulstring-----------"+app1.substring(-1,app1.length-1));
+                                                    var apparray=app1.substring(-1,app1.length-1).split(",");
+                                                    var selecetedapp="";
+                                                    var selindex1=0;
+                                                    //alert("length---------"+apparray.length+"apppppppppp--------"+apparray[0]);
+                                                    //alert(apparray.length);
+                                                    for(var index=0;index<apparray.length;index++)
+                                                    {
+                                                        if(apparray[index]==app)
+                                                        {
+                                                            selectedapp=apparray[index];
+                                                            selindex1=index;
+                                                        }
+                                                    }
+                                                    // alert(selectedapp);
+                                                    var progbar1="<%=progbar%>";
+                                                    var application_percent="<%=application_percentage%>";
+                                                    //alert("appperc   "+application_percent)
+                                                    var app_perc_arr=application_percent.substring(-1,application_percent.length-1).split("_");
+                                                    var sub_app_perc=app_perc_arr[selindex1].split(",");
+                                                    var startdate="<%=cstartdate%>";
+                                                    var enddate="<%=cenddate%>";
+                                                    var currentproject="<%=selprj%>";
+                                                    var project_stat="<%=stats1%>";
+                                                    var currentmain="<%=currentmaintask%>";
+                                                    console.log(currentmain);
+                                                    var currentsub="<%=subtask%>";
+                                                    var completed_main="<%=completedmaintask%>";
+
+                                                    console.log(currentsub);
+                                                    //alert("current main "+currentmain+"current subtask"+currentsub);
+                                                    $('#modalpopup').html('');
+                                                    $('#modalpopup').append(popup_content(selectedapp,app_perc_arr,currentproject,project_stat,progbar1,startdate,enddate,selindex1,completed_main,currentmain,currentsub));
+                                                    //alert("selected app:"+selectedapp+"selected index"+selindex1);
+                                                }
+                                                /* ======popup_content(Application name,Application percentage,ProjectName,Project state,Project percentage,start date,end date,selected index)====== */
+                                                function popup_content(selectedapp,app_perc_arr,currentproject,project_stat,progbar1,startdate,enddate,selindex1,completed_main,currentmain,currentsub)
+                                                {
+                                                    var sub_app_perc=app_perc_arr[selindex1].split(",");
+                                                    var currentmain_arr=currentmain.substring(-1,currentmain.length-1).split("_");
+                                                    var currentsub_arr=currentsub.substring(-1,currentsub.length-1).split("_");
+                                                    var completedmain_arr=completed_main.substring(-1,completed_main.length-1).split("_");
+                                                    var popup_content1="<table ><thead><tr class='border-bottom'><th>Name</th><th>Value</th></tr></thead><tbody>"+
+                                                        "<tr class='border-bottom'><td><b>Application Name:</b></td><td>"+selectedapp+"</td></tr>"+
+                                                        "<tr class='border-bottom'><td><b>Application Percentage:</b></td><td>"+sub_app_perc[0]+"</td></tr>"+
+                                                        "<tr class='border-bottom'><td><b>Application State:</b></td><td>"+sub_app_perc[1]+"</td></tr>"+
+                                                        "<tr class='border-bottom'><td><b>Project Name:</b></td><td>"+currentproject+"</td></tr>"+
+                                                        "<tr class='border-bottom'><td><b>Project State:</b></td><td>"+project_stat+"</td></tr>"+
+                                                        "<tr class='border-bottom'><td><b>Project Percentage:</b></td><td>"+progbar1+"%</td></tr>"+
+                                                        "<tr class='border-bottom'><td><b>Start Date:</b></td><td>"+startdate+"</td></tr>"+
+                                                        "<tr class='border-bottom'><td><b>End Date:</b></td><td>"+enddate+"</td></tr>"+
+                                                        "<tr class='border-bottom'><td valign='top'><b>Completed Main Task:</b></td><td><ul>"+completedmain_arr[selindex1]+"</ul></td></tr>"+
+                                                        "<tr class='border-bottom'><td valign='top'><b>Current Main Task:</b></td><td><ul>"+currentmain_arr[selindex1]+"</ul></td></tr>"+
+                                                        //"<tr class='border-bottom'><td valign='top'><b>Current Sub-Task:</b></td><td><ul>"+currentsub_arr[selindex1]+"</ul></td></tr>"+
+                                                        "</tbody></table>";
+                                                    console.log(popup_content1);
+                                                    return popup_content1;
+                                                }
+                                                // google.charts.setOnLoadCallback(drawChart);
+                                                /* function reload() {
+                                                location.reload();
+                                                } */
+                                            </script>
+                                            <!-- ===============Line-Chart=================== -->
+                                            <%int last_10 = 10, last_30 = 20, last_50 = 50, last_20 = 20;%>
+                                            <script type="text/javascript">
+                                                google.charts.load('current', {'packages': ['corechart']});
+                                                google.charts.setOnLoadCallback(drawChart);
+
+                                                function drawChart() {
+
+                                                    var data = google.visualization.arrayToDataTable([
+
+                                                        ['day', 'Applications'],
+                                                        ['Last 10 days', <%= last_10 %>],
+                                                        ['Last 20 days', <%= last_20 %>],
+                                                        ['Last 30 days', <%= last_30 %>],
+                                                        ['Last 50 days', <%= last_50 %>]
+                                                    ]);
+
+                                                    var options = {
+                                                        title: '',
+                                                        curveType: 'function',
+                                                        legend: {position: 'bottom'}
+                                                    };
+
+                                                    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
                                                     chart.draw(data, options);
                                                 }
-
-                                                google.charts.setOnLoadCallback(drawChart);
                                             </script>
+                                            <!-- ====================Bar-Chart======================= -->
+                                            <script type="text/javascript">
+                                                google.charts.load("current", {packages:['corechart']});
+                                                google.charts.setOnLoadCallback(drawChart);
+                                                function drawChart() {
+                                                    var data = google.visualization.arrayToDataTable([
+                                                        ["Application", "percentage", { role: "style" } ],
+                                                        <%
+                                                        for(int barindex=0;barindex<app.length;barindex++)
+                                                        {
+                                                         int barperc=Integer.parseInt(respercentage[barindex].substring(0,2));
+                                                        %>
+                                                        ["<%=app[barindex]%>",<%=barperc%>, "blue"],
+                                                        <%
+                                                        }
+                                                        %>
+                                                    ]);
 
+                                                    var view = new google.visualization.DataView(data);
+                                                    view.setColumns([0, 1,
+                                                        { calc: "stringify",
+                                                            sourceColumn: 1,
+                                                            type: "string",
+                                                            role: "annotation" },
+                                                        2]);
+
+                                                    var options = {
+                                                        title: "Application completion in percentage",
+                                                        bar: {groupWidth: "44%"},
+                                                        vAxis: { gridlines: { count: 4 } },
+                                                        legend: { position: "none" },
+                                                    };
+
+                                                    var chart = new google.visualization.ColumnChart(document.getElementById("bar_chart"));
+                                                    function selectHandler(e) {
+                                                        var selectedItem = chart.getSelection()[0];
+
+                                                        // console.log(selectedItem.row);
+                                                        if (selectedItem) {
+
+                                                            var value = data.getValue(selectedItem.row,0);
+                                                            //console.log(selectedItem);
+                                                            //console.log(value);
+                                                            popuphandler(value);
+                                                            var modal = document.getElementById('myModal');
+                                                            var span = document.getElementsByClassName("close")[0];
+                                                            modal.style.display = "block";
+                                                            span.onclick = function() {
+                                                                modal.style.display = "none";
+                                                            }
+                                                            window.onclick = function(event) {
+
+                                                                if (event.target == modal) {
+                                                                    modal.style.display = "none";
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    google.visualization.events.addListener(chart, 'select', selectHandler);
+                                                    chart.draw(view, options);
+
+
+                                                }
+                                            </script>
                                         </div>
                                     </div>
                                 </div>
@@ -898,479 +1163,6 @@
 
                     </div>
 
-
-                    <!-- FromDate and todate Picker -->
-                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
-                    </script>
-                    <script type="text/javascript">
-                        google.charts.load('current', {packages: ['corechart']});
-                    </script>
-                    <script type="text/javascript">
-
-                        function getDateValue() {
-
-                            var fromD = document.getElementById("fromDate").value;
-                            var toD = document.getElementById("toDate").value;
-
-                            console.log("FROMDATE : " + fromD + " TODATE " + toD);
-
-                            $.ajax({
-                                url: '/onboard/daterange',
-                                data: {fromD: fromD, toD: toD},
-                                type: 'POST',
-                                cache: false,
-                                success: function (value) {
-                                    console.log("data", value);
-                                    var num = value.split(",");
-                                    var select = document.getElementById("projectvaluepie");
-                                    //append the project list in to dropdown
-                                    select.innerHTML = "<select> <option value='' disabled selected>--ProjectList--</option>";
-                                    var myarray = value.split(',');
-
-                                    for (var i = 0; i < num.length; i++) {
-                                        var opt = num[i];
-                                        select.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
-                                    }
-
-                                    select.innerHTML += "</select>";
-                                    demo(num);
-                                },
-                                error: function () {
-                                    console.log('error');
-                                }
-                            });
-
-                        }
-                    </script>
-                    <script type="text/javascript">
-
-                        function application_bar(x, name) {
-                            window.alert("project dropdown " + x);
-                            $.ajax({
-                                url: '/onboard/application_graph',
-                                data: {projects: x},
-                                type: 'POST',
-                                cache: false,
-                                success: function (value) {
-                                    console.log("data", value);
-                                    var num = value.split("/");
-                                    var cnt0 = 0, cnt1 = 0, cnt2 = 0, cnt3 = 0;
-                                    alert(num[0]);
-                                    alert(num[1]);
-                                    alert(num[2]);
-                                    alert(num[3]);
-                                    if (num[0] === undefined)
-                                        cnt0 = 0;
-                                    else if (num[0] != "")
-                                        cnt0 = num[0].split(',').length - 1;
-
-                                    if (num[1] === undefined)
-                                        cnt1 = 0;
-                                    else if (num[1] != "")
-                                        cnt1 = num[1].split(',').length - 1;
-
-                                    if (num[2] === undefined)
-                                        cnt2 = 0;
-                                    else if (num[2] != "")
-                                        cnt2 = num[2].split(',').length - 1;
-
-                                    if (num[3] === undefined)
-                                        cnt3 = 0;
-                                    else if (num[3] != "")
-                                        cnt3 = num[3].split(',').length - 1;
-                                    alert(cnt0 + " " + cnt1 + " " + cnt2 + " " + cnt3);
-                                    if (name == "barchart") {
-                                        alert("barchart");
-                                        var dataTable = new google.visualization.DataTable();
-                                        dataTable.addColumn('string', 'Status');
-                                        dataTable.addColumn('number', 'Visits');
-                                        // A column for custom tooltip content
-                                        dataTable.addColumn({type: 'string', role: 'tooltip'});
-                                        dataTable.addRows([
-                                            ['Requirements', cnt0, "Applications:'" + num[0] + "'"],
-                                            ['Development', cnt1, "Applications:'" + num[1] + "'"],
-                                            ['Testing', cnt2, "Applications:'" + num[2] + "'"],
-                                            ['Deployment', cnt3, "Applications:'" + num[3] + "'"]
-
-                                        ]);
-
-                                        var options = {legend: 'none'};
-                                        var chart = new google.visualization.ColumnChart(document.getElementById('tooltip_action'));
-                                        chart.draw(dataTable, options);
-                                    }
-                                    else {
-                                        var dataTable = new google.visualization.DataTable();
-                                        dataTable.addColumn('string', 'Status');
-                                        dataTable.addColumn('number', 'Visits');
-                                        // A column for custom tooltip content
-                                        dataTable.addColumn({type: 'string', role: 'tooltip'});
-                                        dataTable.addRows([
-                                            ['Requirements', cnt0, "Applications:'" + num[0] + "'"],
-                                            ['Development', cnt1, "Applications:'" + num[1] + "'"],
-                                            ['Testing', cnt2, "Applications:'" + num[2] + "'"],
-                                            ['Deployment', cnt3, "Applications:'" + num[3] + "'"]
-
-                                        ]);
-
-                                        var options = {
-                                            legend: 'bottom',
-                                            is3D: true
-                                        }
-                                        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-                                        chart.draw(dataTable, options);
-                                    }
-                                },
-                                error: function () {
-                                    console.log('error');
-                                }
-                            });
-
-                        }
-                    </script>
-                    <!-- get Piechart value -->
-
-
-                    <script type="text/javascript">
-
-                        function getDateValuepie() {
-                            var piefrom = document.getElementById("fromDatepie").value;
-                            var pieto = document.getElementById("toDatepie").value;
-//console.log("Piechartfromdate : " +piefrom + "Piecharttodate :" + pieto );
-                            $.ajax({
-                                    url: '/onboard/piedaterange',
-                                    data: {piefrom: piefrom, pieto: pieto},
-                                    type: 'POST',
-                                    cache: false,
-                                    success: function (value) {
-                                        console.log("project data : ", value);
-                                        var num = value.split(",");
-                                        var select = document.getElementById("projectvaluepiechart");
-                                        //append the project list in to dropdown
-                                        select.innerHTML = "<select> <option value='' disabled selected>--ProjectList--</option>";
-                                        var myarray = value.split(',');
-
-                                        for (var i = 0; i < myarray.length; i++) {
-                                            var opt = myarray[i];
-                                            select.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
-                                        }
-
-                                        select.innerHTML += "</select>";
-
-                                        dateRange(num);
-
-                                    },
-                                    error: function () {
-                                        console.log('error');
-                                    }
-                                }
-                            );
-                        }
-
-                    </script>
-
-                    <script>
-                        var projectname1 = [];
-                        var projectname2 = [];
-                        var projectname3 = [];
-                        var projectname4 = [];
-                        var level1 = [];
-                        var progressbar = [];
-                        var status = [];
-                        var mem_ass = [];
-                        var num_ass = [];
-                        var count1 = 0, count2 = 0, count3 = 0, count4 = 0;
-                        <%
-                        String Project_names[]=new String[20];
-                        String dbquery="select projectname from AppEmphazize_ProjectDetails";
-                        Statement dst = conn.createStatement();
-                        ResultSet drs = dst.executeQuery(dbquery);
-                        int ttl_cnt=0;
-                        while(drs.next()){
-                       Project_names[ttl_cnt]=drs.getString("projectname");
-                        %>
-                        <%
-                        String db_query="select * from ArchiveExecution_Details where level=1 and projects='"+drs.getString("projectname")+"'";
-                        Statement db_st = conn.createStatement();
-                        ResultSet db_rs = db_st.executeQuery(db_query);
-                        String db_query1="select count(*) from ArchiveExecution_Details where projects='"+drs.getString("projectname")+"' and mem_ass!=''";
-                        Statement db_st1 = conn.createStatement();
-                        ResultSet db_rs1 = db_st1.executeQuery(db_query1);
-                        if(db_rs1.next()){%>
-                        num_ass.push("<%=db_rs1.getString(1)%>");
-                        <%}
-                       while(db_rs.next())
-                       {
-                        if(db_rs.getString("name").equals("Ideation and Initiate") && !db_rs.getString("progressbar").equals("100")){ %>
-                        count1++;
-                        projectname1.push("<%=drs.getString(1)%>");
-                        progressbar.push("<%=db_rs.getString("progressbar")%>");
-
-                        <% break;
-                        }
-                        else if(db_rs.getString("name").equals("Plan") && !db_rs.getString("progressbar").equals("100"))
-                        { %>
-                        count2++;
-                        projectname2.push("<%=drs.getString(1)%>");
-                        progressbar.push(<%=db_rs.getString("progressbar")%>);
-
-                        <% break;
-                        }
-                        else if(db_rs.getString("name").equals("Execute") && !db_rs.getString("progressbar").equals("100"))
-                        { %>
-                        count3++;
-                        projectname3.push("<%=drs.getString(1)%>");
-                        progressbar.push("<%=db_rs.getString("progressbar")%>");
-
-                        <% break;
-                        }
-                        else if(db_rs.getString("name").equals("Closure") && !db_rs.getString("progressbar").equals("100"))
-                        { %>
-                        count4++;
-                        projectname4.push("<%=drs.getString(1)%>");
-                        progressbar.push("<%=db_rs.getString("progressbar")%>");
-
-                        <% break;
-                        }
-
-                       }
-
-                       ttl_cnt++;
-                       }
-                    %>
-
-                        google.charts.load('current', {'packages': ['corechart']});
-                        google.charts.setOnLoadCallback(draw_Chart);
-
-                        function draw_Chart() {
-                            var dataTable = new google.visualization.DataTable();
-                            dataTable.addColumn('string', 'Status');
-                            dataTable.addColumn('number', 'Visits');
-                            // A column for custom tooltip content
-                            dataTable.addColumn({type: 'string', role: 'tooltip'});
-                            dataTable.addRows([
-                                ['Ideation and Initiate', count1, "Projects:'" + projectname1 + "'"],
-                                ['Plan', count2, "Projects:'" + projectname2 + "'"],
-                                ['Execute', count3, "Projects:'" + projectname3 + "'"],
-                                ['Hypercare', count4, "Projects:'" + projectname4 + "'"]
-
-                            ]);
-
-                            var options = {legend: 'none'};
-                            var chart = new google.visualization.ColumnChart(document.getElementById('tooltip_action'));
-                            chart.draw(dataTable, options);
-                        }
-
-                        function demo(num) {
-                            var project_Name1 = [];
-                            var project_Name2 = [];
-                            var project_Name3 = [];
-                            var project_Name4 = [];
-                            var cnt1 = 0, cnt2 = 0, cnt3 = 0, cnt4 = 0;
-                            for (var i = 0; i < num.length; i += 1) {
-                                for (var j = 0; j < count1; j += 1) {
-                                    if (num[i] == projectname1[j]) {
-                                        project_Name1.push(projectname1[j]);
-                                        cnt1++;
-                                    }
-                                }
-                                for (var j = 0; j < count2; j += 1) {
-                                    if (num[i] == projectname2[j]) {
-                                        project_Name2.push(projectname2[j]);
-                                        cnt2++;
-                                    }
-                                }
-                                for (var j = 0; j < count3; j += 1) {
-                                    if (num[i] == projectname3[j]) {
-                                        project_Name3.push(projectname3[j]);
-                                        cnt3++;
-                                    }
-                                }
-                                for (var j = 0; j < count4; j += 1) {
-                                    if (num[i] == projectname4[j]) {
-                                        project_Name4.push(projectname4[j]);
-                                        cnt4++;
-                                    }
-                                }
-                            }
-                            var dataTable = new google.visualization.DataTable();
-                            dataTable.addColumn('string', 'Status');
-                            dataTable.addColumn('number', 'Visits');
-                            // A column for custom tooltip content
-                            dataTable.addColumn({type: 'string', role: 'tooltip'});
-                            dataTable.addRows([
-                                ['Ideation and Initiate', cnt1, "Projects:'" + project_Name1 + "'"],
-                                ['Plan', cnt2, "Projects:'" + project_Name2 + "'"],
-                                ['Execute', cnt3, "Projects:'" + project_Name3 + "'"],
-                                ['Hypercare', cnt4, "Projects:'" + project_Name4 + "'"]
-
-                            ]);
-
-                            var options = {legend: 'none'};
-                            var chart = new google.visualization.ColumnChart(document.getElementById('tooltip_action'));
-                            chart.draw(dataTable, options);
-
-                            //alert("num is "+num);
-                        }
-                    </script>
-
-
-                    <!-- Piechart -->
-
-                    <script type="text/javascript">
-                        var projectName1 = [];
-                        var projectName2 = [];
-                        var projectName3 = [];
-                        var projectName4 = [];
-                        var level2 = [];
-                        var progressBar = [];
-                        var status1 = [];
-                        var mem_Ass = [];
-                        var num_Ass = [];
-                        var count1p = 0, count2p = 0, count3p = 0, count4p = 0;
-                        <%
-                        String Project_Names[]=new String[20];
-                        String dbQuery="select projectname from AppEmphazize_ProjectDetails";
-                        Statement dstp = conn.createStatement();
-                        ResultSet drsp = dst.executeQuery(dbquery);
-                        int ttl_cntp=0;
-                        while(drsp.next()){
-                        Project_Names[ttl_cntp]=drsp.getString("projectname");
-
-                        %>
-                        <%
-                        String db_query="select * from ArchiveExecution_Details where level=1 and projects='"+drsp.getString("projectname")+"'";
-                        Statement db_st = conn.createStatement();
-                        ResultSet db_rs = db_st.executeQuery(db_query);
-                        String db_query1="select count(*) from ArchiveExecution_Details where projects='"+drsp.getString("projectname")+"' and mem_Ass!=''";
-                        Statement db_st1 = conn.createStatement();
-                        ResultSet db_rs1 = db_st1.executeQuery(db_query1);
-                        if(db_rs1.next()){%>
-                        num_Ass.push("<%=db_rs1.getString(1)%>");
-                        <%}
-                        while(db_rs.next())
-                        {
-                        if(db_rs.getString("name").equals("Ideation and Initiate") && !db_rs.getString("progressbar").equals("100")){ %>
-                        count1p++;
-                        projectName1.push("<%=drsp.getString(1)%>");
-                        progressbar.push("<%=db_rs.getString("progressbar")%>");
-                        <% break;
-                          }
-                          else if(db_rs.getString("name").equals("Plan") && !db_rs.getString("progressbar").equals("100"))
-                          { %>
-                        count2p++;
-                        projectName2.push("<%=drsp.getString(1)%>");
-                        progressbar.push(<%=db_rs.getString("progressbar")%>);
-
-                        <% break;
-                        }
-                        else if(db_rs.getString("name").equals("Execute") && !db_rs.getString("progressbar").equals("100"))
-                        { %>
-                        count3p++;
-                        projectName3.push("<%=drsp.getString(1)%>");
-                        progressbar.push("<%=db_rs.getString("progressbar")%>");
-
-                        <% break;
-                        }
-                        else if(db_rs.getString("name").equals("Closure") && !db_rs.getString("progressbar").equals("100"))
-                        { %>
-                        count4p++;
-                        projectName4.push("<%=drsp.getString(1)%>");
-                        progressbar.push("<%=db_rs.getString("progressbar")%>");
-
-                        <% break;
-                          }
-
-                         }
-
-                         ttl_cntp++;
-                         }
-                      %>
-
-
-                        google.charts.load('current', {'packages': ['corechart']});
-                        google.charts.setOnLoadCallback(draw_Chart);
-
-                        function draw_Chart() {
-                            var dataTable = new google.visualization.DataTable();
-                            dataTable.addColumn('string', 'Status');
-                            dataTable.addColumn('number', 'Visits');
-                            // A column for custom tooltip content
-                            dataTable.addColumn({type: 'string', role: 'tooltip'});
-                            dataTable.addRows([
-                                ['Ideation and Initiate', count1p, "Projects:'" + projectName1 + "'"],
-                                ['Plan', count2p, "Projects:'" + projectName2 + "'"],
-                                ['Execute', count3p, "Projects:'" + projectName3 + "'"],
-                                ['Hypercare', count4p, "Projects:'" + projectName4 + "'"]
-                            ]);
-
-                            var options = {
-                                legend: 'bottom',
-                                is3D: true,
-
-                            };
-                            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-                            chart.draw(dataTable, options);
-                        }
-
-
-                        function dateRange(num) {
-
-                            var project_Name1 = [];
-                            var project_Name2 = [];
-                            var project_Name3 = [];
-                            var project_Name4 = [];
-                            var cnt1 = 0, cnt2 = 0, cnt3 = 0, cnt4 = 0;
-                            for (var i = 0; i < num.length; i += 1) {
-                                for (var j = 0; j < count1; j += 1) {
-                                    if (num[i] == projectname1[j]) {
-                                        project_Name1.push(projectname1[j]);
-                                        cnt1++;
-                                    }
-                                }
-                                for (var j = 0; j < count2; j += 1) {
-                                    if (num[i] == projectname2[j]) {
-                                        project_Name2.push(projectname2[j]);
-                                        cnt2++;
-                                    }
-                                }
-                                for (var j = 0; j < count3; j += 1) {
-                                    if (num[i] == projectname3[j]) {
-                                        project_Name3.push(projectname3[j]);
-                                        cnt3++;
-                                    }
-                                }
-                                for (var j = 0; j < count4; j += 1) {
-                                    if (num[i] == projectname4[j]) {
-                                        project_Name4.push(projectname4[j]);
-                                        cnt4++;
-                                    }
-                                }
-                            }
-                            var dataTable = new google.visualization.DataTable();
-                            dataTable.addColumn('string', 'Status');
-                            dataTable.addColumn('number', 'Visits');
-
-                            // A column for custom tooltip content
-                            dataTable.addColumn({type: 'string', role: 'tooltip'});
-                            dataTable.addRows([
-                                ['Ideation and Initiate', cnt1, "Projects:'" + project_Name1 + "'"],
-                                ['Plan', cnt2, "Projects:'" + project_Name2 + "'"],
-                                ['Execute', cnt3, "Projects:'" + project_Name3 + "'"],
-                                ['Hypercare', cnt4, "Projects:'" + project_Name4 + "'"]
-
-                            ]);
-
-                            var options = {
-                                legend: 'bottom',
-                                is3D: true
-                            }
-                            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-                            chart.draw(dataTable, options);
-
-
-                        }
-
-                    </script>
 
 
                     <%
@@ -1433,81 +1225,6 @@
 <script type="text/javascript" src="js/date-picker/jquery.timepicker.js"></script>
 <script type="text/javascript" src="js/date-picker/datepair.js"></script>
 <script type="text/javascript" src="js/date-picker/moment.js"></script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-
-<!-- ========== THEME JS ========== -->
-<script>
-    $(function ($) {
-
-        // 1st  datepicker
-        $('#basicExample .time').timepicker({
-            'showDuration': true,
-            'timeFormat': 'g:ia'
-        });
-
-        $('#basicExample .date').datepicker({
-            'format': 'd/m/yyyy',
-            'autoclose': true
-        });
-
-        var basicExampleEl = document.getElementById('basicExample');
-        var datepair = new Datepair(basicExampleEl);
-
-        // 2nd  datepicker
-        $('#datetimepicker1').datetimepicker({
-            debug: true
-        });
-
-        // 3rd  datepicker
-        $('#datetimepicker9').datetimepicker({
-            viewMode: 'years'
-        });
-
-        // 4th  datepicker
-        $('#datetimepicker10').datetimepicker({
-            viewMode: 'years',
-            format: 'MM/YYYY'
-        });
-
-        // 5th  datepicker
-        $('#datetimepicker11').datetimepicker({
-            daysOfWeekDisabled: [0, 6]
-        });
-
-        // 6th  datepicker
-        $('#datetimepicker12').datetimepicker({
-            inline: true,
-            sideBySide: true
-        });
-    });
-</script>
-<%int last_10 = 10, last_30 = 20, last_50 = 50, last_20 = 20;%>
-<script type="text/javascript">
-    google.charts.load('current', {'packages': ['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-
-            ['day', 'Applications'],
-            ['Last 10 days', <%= last_10 %>],
-            ['Last 20 days', <%= last_20 %>],
-            ['Last 30 days', <%= last_30 %>],
-            ['Last 50 days', <%= last_50 %>]
-        ]);
-
-        var options = {
-            title: '',
-            curveType: 'function',
-            legend: {position: 'bottom'}
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
-    }
-</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 </body>
 </html>

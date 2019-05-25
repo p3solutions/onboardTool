@@ -2,6 +2,7 @@ package service;
 
 import com.google.gson.JsonObject;
 import onboard.DBconnection;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,6 +11,8 @@ import java.sql.Statement;
 
 
 public class IntakeInformationService {
+    final static Logger logger = Logger.getLogger(IntakeInformationService.class);
+
     public JsonObject getInformation(String appName) {
         JsonObject infoJson = new JsonObject();
         try {
@@ -25,10 +28,10 @@ public class IntakeInformationService {
                 ResultSet businessdetailsResultSet = businessdetailsStaement.executeQuery(businessdetailsQuery);
                 if (businessdetailsResultSet.next()) {
                     String businessvalue = businessdetailsResultSet.getString(1) + "/" + businesscustomizationResultSet.getString(10);
-                    infoJson.addProperty(businesskey,businessvalue);
+                    infoJson.addProperty(businesskey, businessvalue);
                 }
 
-                System.out.println();
+
             }
 
             String technicalcustomizationQuery = "select * from intake_technicalcustomization where appname ='" + appName + "'";
@@ -47,7 +50,7 @@ public class IntakeInformationService {
                     infoJson.addProperty(technicalkey, technicalvalue);
                 }
 
-                System.out.println();
+
             }
 
             String archivalrequirementcustomizationQuery = "select * from intake_archivalrequirementcustomization where appname ='" + appName + "'";
@@ -66,7 +69,7 @@ public class IntakeInformationService {
                     infoJson.addProperty(archivalrequirementkey, archivalrequirementvalue);
                 }
 
-                System.out.println();
+
             }
 
 

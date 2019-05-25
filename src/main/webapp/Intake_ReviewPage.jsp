@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="css/font-awesome.min.css" media="screen">
 <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen">
 <link rel="stylesheet" href="css/lobipanel/lobipanel.min.css" media="screen">
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- ========== PAGE STYLES ========== -->
 <link rel="stylesheet" href="css/prism/prism.css" media="screen">
 <link rel="stylesheet" href="css/toastr/toastr.min.css" media="screen">
@@ -195,19 +195,36 @@
 
     }
 
+    .bootstrap-dialog-message {
+        width: 250px;
+        border: 3px;
+        padding: 0px;
+        margin: auto;
+    }
+
+    .searchbox {
+        float: right;
+
+    }
+    .checkbox
+    {
+        height: 130px;
+        width: 700px;
+        overflow-y: scroll;
+    }
+
+
+
 </style>
-<script>
+<script type="application/javascript">
     function ExportPdf() {
-        $("#loginForm").attr('action', '/Intake_Review_Data');
+        $("#loginForm").attr('action', 'Intake_Review_Data');
         $("#loginForm").attr('target', '_blank');
         $("#data_submit").val("true");
         $("#loginForm").submit();
     }
-</script>
-<script type="application/javascript">
 
     $(document).ready(function () {
-        console.log("regdvf")
         $.ajax({
             url: "Intake_Review_Data",
             type: 'post',
@@ -305,6 +322,7 @@
         });
     });
 
+
     function createTable(rows) {
         return '<table width=\'0\' border=\'0\' align=\'left\'\n' +
             'cellpadding=\'0\'\n' +
@@ -314,26 +332,33 @@
             '</table>';
     }
 
-    var result;
+
     $(document).ready(function () {
         var value;
-        $('#mymodal').click(function () {
+        $('#button_id').click(function () {
+            $('#myModal').modal('show');
             $.ajax({
-                url: '/List_Users',
+                url: 'List_Users',
                 type: 'post',
                 dataType: 'json',
                 success: function (response) {
-                    var userlistdiv = $('#user_list_div_id')
+                    var userlistdiv = $('#user_list_div_id_name')
                     console.log("Request:", response);
                     userlistdiv.empty();
+                    var usersList = '<div class="checkbox"> <ul id="sortable" style="cursor: pointer">';
+                    console.log('1->', usersList)
                     $.each(response, function (key, value) {
-                        //userlistdiv.append('<input type="checkbox"   value="' + key + '">' + value)
                         //userlistdiv.append('<input  type="checkbox"   value="' + key + '">' + value)
-                        userlistdiv.append('<div class="checkbox">\n' +
-                            '      <label><input  type="checkbox"   value="' + key + '">' + value + '</label>\n' + '</div>')
-                        userlistdiv.append('')
+                        usersList += '<li><input type="checkbox" value="' + key + '" >' + value + '</li>';
                     });
+                    usersList += '</ul>' + '</div>';
+                    console.log('->', usersList)
+                    userlistdiv.append(usersList)
+                    userlistdiv.append('')
+                    $("#sortable").sortable({
 
+                    });
+                    $("#sortable").sortable("disable");
                 }
             });
 
@@ -344,30 +369,93 @@
 
         $('#email_id').click(function () {
             var selectedEmail = [];
-            $('#user_list_div_id input:checked').each(function () {
-                selectedEmail.push($(this).attr('value'));
-            });
+                $('#user_list_div_id_name input:checked').each(function () {
+                    selectedEmail.push($(this).attr('value'));
+                });
+            console.log("hm", selectedEmail);
+            if (selectedEmail.length == 0) {
+                BootstrapDialog.show({
+                    title: 'INFORMATION',
+                    message: 'Please Select any User',
+                    buttons: [{
+                        id: 'btn-ok',
+                        icon: 'glyphicon glyphicon-check',
+                        label: 'OK',
+                        cssClass: 'btn-primary',
+                        data: {
+                            js: 'btn-confirm',
+                            'user-id': '3'
+                        },
+                        autospin: false,
+                        action: function (dialogRef) {
+                            dialogRef.close();
+                        }
+                    }]
+
+
+                });
+                return false;
+            }
+            else {
+                BootstrapDialog.alert(selectedEmail.length + " User selected");
+            }
+
             console.log("emails", selectedEmail);
             $.ajax({
-                url: '/Send_Email',
+                url: 'Intake_Review_Email',
                 type: 'post',
                 contentType: 'application/json; charset=utf-8',
+                headers: {"signorder": $('#signorder').is(':checked')},
                 dataType: 'json',
                 data: JSON.stringify(selectedEmail),
                 success: function (data) {
 
-                    console.log(data);
                 }
             });
 
 
         });
     });
+    $(document).ready(function () {
 
-    function openPage(pageURL) {
-        window.location.href = pageURL;
+        $('#signorder').click(function () {
+          var flag = $('#signorder').is(':checked');
+            if (flag)
+            {
+                $("#sortable").sortable("enable");
+            }
+            else {
+                $("#sortable").sortable("disable");
+
+            }
+        })
+    });
+   /* function disableDraggable(elements){
+        for (var i = 0; i < elements.length; i++) {
+            $("#" + elements[i]).addClass("disable-sort");
+            $("#" + elements[i]).fadeTo("fast", 0.5);
+        }
+    }*/
+    $(document).ready(function () {
+        $('#search_bar').keyup(function () {
+            filter(this);
+        });
+    });
+
+    function filter(element) {
+        var value = $(element).val();
+        $("#sortable > li").each(function () {
+            if ($(this).text().indexOf(value) > -1) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
     }
+
 </script>
+
+
 <body class="top-navbar-fixed">
 
 <form class="form-signin" name="loginForm" id="loginForm" onsubmit="ExportPdf()" method="post">
@@ -421,9 +509,9 @@
 
             <div class="content-container">
 
+                <!-- ========== LEFT SIDEBAR ========== -->
                 <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
                     <div class="sidebar-content" id='jqxWidget'>
-
 
                         <div class="sidebar-nav">
                             <ul class="side-nav color-gray">
@@ -434,74 +522,100 @@
                                     <a href="Project_List.jsp"><i class="fa fa-home"></i> <span>Home</span> </a>
                                 </li>
 
-                                <li class="nav-header">
-                                    <a href="AppEmphasize_EditProject.jsp"><span
-                                            class="">App Emphasize Module</span></a>
-                                </li>
+                                <%--   <li class="nav-header">
+                                       <a href="AppEmphasize_EditProject.jsp"><span class="">Plan and pirority</span></a>
+                                   </li>--%>
                                 <li class="has-children">
-                                    <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span>
-                                        <i class="fa fa-angle-right arrow"></i></a>
+                                    <a href=""><i class="fa fa-archive"></i> <span>Plan and pirority</span> <i class="fa fa-angle-right arrow"></i></a>
                                     <ul class="child-nav">
-                                        <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a>
-                                        </li>
-                                        <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a>
-                                        </li>
+                                        <li><a href="AppEmphasize_EditProject.jsp" class="active-menu"> <span>Project Information</span></a></li>
+                                        <li><a href="AppEmphasize_Application.jsp" class="active-menu"> <span>Application Information</span></a></li>
+                                        <li><a href="AppEmphasize_CostCalculation.jsp" > <span>Application Complexity</span></a></li>
+                                        <li><a href="AppEmphasize_PrioritizedApplications.jsp"> <span>Prioritized Applications</span></a></li>
+                                        <li><a href="AppEmphasize_Preview.jsp"> <span>Review Page</span></a></li>
                                     </ul>
                                 </li>
-
-                                <li class="has-children">
-                                    <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span>
-                                        <i class="fa fa-angle-right arrow"></i></a>
+                                <%--<li class="has-children">
+                                    <a href="AppEmphasize_EditProject.jsp"><i class="fa fa-file-text"></i> <span>Project Details</span> <i class="fa fa-angle-right arrow"></i></a>
                                     <ul class="child-nav">
-                                        <li><a href="AppEmphasize_CostCalculation.jsp">
-                                            <span>Application Complexity</span></a>
-                                        </li>
+                                        <li><a href="AppEmphasize_EditProject.jsp"> <span>Project Information</span></a></li>
+                                        <li><a href="AppEmphasize_Application.jsp"> <span>Application Details</span></a></li>
+                                    </ul>
+                                </li>--%>
+
+
+                                <%--<li class="has-children">
+                                    <a href="AppEmphasize_CostCalculation.jsp"><i class="fa fa-paint-brush"></i> <span>Application Prioritization</span> <i class="fa fa-angle-right arrow"></i></a>
+                                    <ul class="child-nav">
+                                        <li><a href="AppEmphasize_CostCalculation.jsp"> <span>Application Complexity </span></a></li>
+                                    </ul>
+                                </li>--%>
+
+                                <%--<li>
+                                    <a href="AppEmphasize_PrioritizedApplications.jsp"><i class="fa fa-map-signs"></i> <span>Application Prioritized</span> </a>
+                                </li>--%>
+
+                                <%-- <li class="nav-header">
+                                     <a href='Applications.jsp'><span class="">Intake Module</span></a>
+                                 </li>
+
+                                 <li class="has-children">
+                                     <a href="Applications.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i class="fa fa-angle-right arrow"></i></a>
+                                     <ul class="child-nav">
+                                         <li><a href="Applications.jsp"> <span>Application Information</span></a></li>
+                                         <li><a href="Applications.jsp"> <span>Legacy Retention Information</span></a></li>
+                                         <li><a href="Applications.jsp"> <span>Archive Data Management</span></a></li>
+                                         <li><a href="Applications.jsp"> <span>System Requirements</span></a></li>
+                                     </ul>
+                                 </li>
+
+                                 <li class="has-children">
+                                     <a href="Applications.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i class="fa fa-angle-right arrow"></i></a>
+                                     <ul class="child-nav">
+                                         <li><a href="Applications.jsp"> <span>Application Data Information</span></a></li>
+                                         <li><a href="Applications.jsp"> <span>Infrastructure & Environment Inforamation</span></a></li>
+                                         <li><a href="Applications.jsp"> <span>Technical Information</span></a></li>
+                                     </ul>
+                                 </li>
+                                 <li class="has-children">
+                                     <a href="Applications.jsp"><i class="fa fa-archive"></i> <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
+                                     <ul class="child-nav">
+                                         <li><a href="Applications.jsp"> <span>Screen/Report Requirements</span></a></li>
+                                         <li><a href="Applications.jsp"> <span>Archive Requirements</span></a></li>
+                                     </ul>
+                                 </li>--%>
+                                <li class="has-children">
+                                    <a href=""><i class="fa fa-file-text"></i> <span>Intake Module</span> <i class="fa fa-angle-right arrow"></i></a>
+                                    <ul class="child-nav">
+                                        <li><a href="Applications.jsp" class="active-menu"> <span>Application Details</span></a></li>
+                                        <li><a href="Intake_Business.jsp" > <span>Business Details</span></a></li>
+                                        <li><a href="Intake_TechnicalDetails.jsp"> <span>Technical Details</span></a></li>
+                                        <li><a href="Intake_ArchiveRequirements.jsp"> <span>Archive Requirements</span></a></li>
+                                        <li><a href="Intake_ReviewPage.jsp"> <span>Review Page</span></a></li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href="AppEmphasize_PrioritizedApplications.jsp"><i class="fa fa-map-signs"></i>
-                                        <span>Application Prioritized</span> </a>
-                                </li>
-
-
-                                <li class="nav-header">
-                                    <a href='Applications.jsp'><span class="">Intake Module</span></a>
-                                </li>
-
+                                <%--<li class="nav-header">
+                                    <a href='Archive_Execution.jsp'><span class="">Archive Execution Module</span></a>
+                                </li>--%>
                                 <li class="has-children">
-                                    <a href="Applications.jsp"><i class="fa fa-magic"></i> <span>Business</span> <i
-                                            class="fa fa-angle-right arrow"></i></a>
+                                    <a href=""><i class="fa fa-map-signs"></i> <span>Archive Execution Module</span> <i class="fa fa-angle-right arrow"></i></a>
                                     <ul class="child-nav">
-                                        <li><a href="Applications.jsp"> <span>Application Information</span></a></li>
-                                        <li><a href="Applications.jsp"> <span>Legacy Retention Information</span></a>
-                                        </li>
-                                        <li><a href="Applications.jsp"> <span>Archive Data Management</span></a></li>
-                                        <li><a href="Applications.jsp"> <span>System Requirements</span></a></li>
+                                        <li><a href="Archive_Execution.jsp" class="active-menu"> <span>Archive Execution</span></a></li>
+                                        <li><a href="archivesummary.jsp" > <span>Archive summary</span></a></li>
+
                                     </ul>
                                 </li>
-
+                                <%--   <li class="nav-header">
+                                       <a href='RoleUIDashboard.jsp'><span class="">Report Module</span></a>
+                                   </li>--%>
                                 <li class="has-children">
-                                    <a href="Applications.jsp"><i class="fa fa-bars"></i> <span>Technical</span> <i
-                                            class="fa fa-angle-right arrow"></i></a>
+                                    <a href=""><i class="fa fa-paint-brush"></i> <span>Report Module</span> <i class="fa fa-angle-right arrow"></i></a>
                                     <ul class="child-nav">
-                                        <li><a href="Applications.jsp"> <span>Application Data Information</span></a>
-                                        </li>
-                                        <li><a href="Applications.jsp">
-                                            <span>Infrastructure & Environment Inforamation</span></a></li>
-                                        <li><a href="Applications.jsp"> <span>Technical Information</span></a></li>
+                                        <li><a href="RoleUIDashboard.jsp" class="active-menu"> <span>Reports Dashboard</span></a></li>
+                                        <li><a href="RoleDashboard.jsp" class="active-menu"> <span>Role Dashboard</span></a></li>
+                                        <li><a href="ProjectDashboard.jsp" > <span>Project Dashboard</span></a></li>
+                                        <li><a href="ApplicationDashboard.jsp"> <span>Application Dashboard</span></a></li>
                                     </ul>
-                                </li>
-                                <li class="has-children">
-                                    <a href="Applications.jsp"><i class="fa fa-archive"></i>
-                                        <span>Archival Requirements</span> <i class="fa fa-angle-right arrow"></i></a>
-                                    <ul class="child-nav">
-                                        <li><a href="Intake_ArchiveRequirements.jsp">
-                                            <span>Screen/Report Requirements</span></a></li>
-                                        <li><a href="Intake_ArchiveRequirements.jsp"> <span>Archive Requirements</span></a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a href="Archive_Execution.jsp"><i class="fa fa-suitcase"></i> <span>Archive Execution Module</span></a>
                                 </li>
                             </ul>
 
@@ -511,6 +625,7 @@
                     <!-- /.sidebar-content -->
                 </div>
                 <!-- /.left-sidebar -->
+
 
 
                 <div class="main-page">
@@ -567,16 +682,10 @@
                                         <div class="container">
                                             <a href="Intake_Business.jsp"
                                                class="btn btn-default btn pull-left">Edit</a>
-                                            <%--<button id="intake_module" class="btn btn-primary pull-right">Servlet
-                                            </button>--%>
-                                            <%--<button id="cmd" class="btn btn-primary pull-right"><span
-                                                    class="glyphicon glyphicon-download-alt"></span> Export PDF
-                                            </button>--%>
+
                                             <button id="intake_module" class="btn btn-primary pull-right"><span
-                                                    class="glyphicon glyphicon-download-alt"></span> <%--<a href="/Intake_Export_PDF">--%>Export
-                                                Pdf<%--</a>--%>
+                                                    class="glyphicon glyphicon-download-alt"></span> Export Pdf
                                             </button>
-                                            <%-- <a href="/Intake_Export_PDF">Export Pdf</a>--%>
                                             <button class="btn btn-primary pull-left"
                                                     onclick="location.href='Applications.jsp'">HOME
                                             </button>
@@ -702,77 +811,65 @@
 
                             </div>
 
+                            <%--</div>
+
+                    </div>--%>
+
                         </div>
 
-
+                        <%--</section>--%>
                 </div>
-            </div>
 
-            <%--</section>--%>
-        </div>
+                <!-- /.row -->
+                <div class="container">
 
-        <!-- /.row -->
-        <div class="container">
+                    <!-- Button trigger modal -->
+                    <button type="button" id="button_id" name="button_id" class="btn btn-primary btn-lg pull-right">
+                        Request Sign
+                    </button>
 
-            <!-- Trigger the modal with a button -->
-            <button type="button" id="mymodal" name="mymodal"
-                    class="btn btn-primary btn-lg pull-right"
-                    data-toggle="modal" data-target="#myModal"><span
-                    class="pull-right">Request Sign</span>
-            </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog" style="width:1000px">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel" style="text-align: center"><b>List of
+                                        Users</b></h4>
+                                    <input type="checkbox" name="signorder" id="signorder" style="margin-left: 245px;"> <b>Set signing order</b>
+                                    <input class="searchbox" id="search_bar" type="text" placeholder="Search User"
+                                           name="search" style="font-size: 15px"/>
+                                </div>
+                                <div class="modal-body" style="width: 500px" id="user_list_div_id_name">
 
-            <%--<button type="button" id="" name="mymodal"
-                    class="btn btn-primary btn-lg pull-right"
-                    data-toggle="modal" data-target="#myModal"><span
-                    class="pull-right" onclick="openPage('Intake_View_Page.jsp')">Intake Pageview</span>
-            </button>--%>
-
-
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">
-                                &times
-                            </button>
-                            <h4 class="modal-title" align="center">List Of Users</h4>
-                        </div>
-
-                        <div class="modal-body" id="user_list_div_id">
-
-                        </div>
-                        <div class="modal-footer">
-                            <button id="email_id" name="email_id" type="button" class="btn btn-default"
-                                    data-dismiss="modal">Send mail
-                            </button>
-                            <input type="hidden" name="email_id" id="email_id" value=""/>
-                            <button type="button" class="btn btn-default"
-                                    data-dismiss="modal">Close
-                            </button>
-
+                                </div>
+                                <div class="modal-footer" style="height: 80px;padding: 20px">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" name="email_id" id="email_id"
+                                            data-dismiss="modal">Send Email
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
+
                 </div>
+
+
+                </section>
+
+
             </div>
+
+
+            <!-- /.main-page -->
 
         </div>
 
-
-        </section>
-
-
-    </div>
-
-
-    <!-- /.main-page -->
-
-    </div>
-
-    <!-- /.content-container -->
+        <!-- /.content-container -->
 
     </div>
     <!-- /.content-wrapper -->
@@ -794,6 +891,13 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css">
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
+<script src="validation.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $(".lis").click(function () {
