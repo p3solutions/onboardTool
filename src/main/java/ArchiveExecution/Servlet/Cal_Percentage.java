@@ -1,4 +1,8 @@
+package ArchiveExecution.Servlet;
+
+import ArchiveExecution.Service.Archive_execution_db_update;
 import com.google.gson.JsonObject;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,17 +14,16 @@ import java.io.IOException;
 
 @WebServlet("/Cal_Percentage")
 public class Cal_Percentage extends HttpServlet {
+    final static Logger logger = Logger.getLogger(Cal_Percentage.class);
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //System.out.println("test in servlet");
-        int sequence=Integer.parseInt(request.getParameter("sequence"));
-        String selectedproject=request.getParameter("ProjectName");
-        String percent=Float.toString(Archive_execution_db_update.percent(sequence,selectedproject));
-        //System.out.println("percentage :"+percent);
+        int sequence = Integer.parseInt(request.getParameter("sequence"));
+        String selectedproject = request.getParameter("ProjectName");
+        String percent = Float.toString(Archive_execution_db_update.progress_bar_percent(sequence, selectedproject));
         response.setContentType(MediaType.APPLICATION_JSON);
         response.setCharacterEncoding("UTF-8");
-        JsonObject result=new JsonObject();
-        result.addProperty("value",percent);
-
+        JsonObject result = new JsonObject();
+        result.addProperty("value", percent);
         response.getWriter().write(result.toString());
     }
 

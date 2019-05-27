@@ -1,105 +1,72 @@
+package ArchiveExecution.Service;
+
+import ArchiveExecution.consturctor.Add;
+import onboard.DBconnection;
+import org.apache.log4j.Logger;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.sql.PreparedStatement;
 import java.util.Collections;
 import java.util.Date;
 
-import static java.util.Collections.max;
 import static org.apache.commons.collections.CollectionUtils.isEmpty;
+
 public class Archive_Execution_Pop_Up_Operation {
-    public static void AddingTaskName(int seqno,String taskname,String selected_project,boolean typeofnode)
-    {
+    final static Logger logger = Logger.getLogger(Archive_Execution_Pop_Up_Operation.class);
 
-        try
-        {
+    public static void Adding_Task_Name(int seqno, String taskname, String selected_project, boolean typeofnode) {
 
-            System.out.println("in function");
-            System.out.println("task name"+taskname);
+        try {
+            logger.info("task name" + taskname);
             //db connection
-            String myDriver = "org.gjt.mm.mysql.Driver";
-
-            String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
-
-            Class.forName(myDriver);
-
-            Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
-            //Collections for storing the existing table for selected project
+            DBconnection dBconnection = new DBconnection();
+            Connection connection = (Connection) dBconnection.getConnection();
+            //Collections for storing the existing table for selected project//
             ArrayList<Integer> seq_num = new ArrayList<Integer>();
-
             ArrayList<Integer> level_num = new ArrayList<Integer>();
-
             ArrayList<String> task_name = new ArrayList<String>();
-
             ArrayList<String> member_ass = new ArrayList<String>();
-
             ArrayList<String> plan_startdate = new ArrayList<String>();
-
             ArrayList<String> plan_enddate = new ArrayList<String>();
-
             ArrayList<String> actual_startdate = new ArrayList<String>();
-
             ArrayList<String> actual_enddate = new ArrayList<String>();
-
             ArrayList<String> planned_hours = new ArrayList<String>();
-
             ArrayList<String> actual_hours = new ArrayList<String>();
-
             ArrayList<String> progressbar = new ArrayList<String>();
-
             ArrayList<Integer> id = new ArrayList<Integer>();
-
             ArrayList<Integer> Ref_Id = new ArrayList<Integer>();
-
             ArrayList<String> stats_date = new ArrayList<String>();
-
-            ArrayList<String> comments=new ArrayList<String>();
+            ArrayList<String> comments = new ArrayList<String>();
 
             //collections for storing the results (with added node)
-
             ArrayList<Integer> res_seq_num = new ArrayList<Integer>();
-
             ArrayList<Integer> res_level_num = new ArrayList<Integer>();
-
             ArrayList<String> res_task_name = new ArrayList<String>();
-
             ArrayList<String> res_member_ass = new ArrayList<String>();
-
             ArrayList<String> res_plan_startdate = new ArrayList<String>();
-
             ArrayList<String> res_plan_enddate = new ArrayList<String>();
-
             ArrayList<String> res_actual_startdate = new ArrayList<String>();
-
             ArrayList<String> res_actual_enddate = new ArrayList<String>();
-
             ArrayList<String> res_planned_hours = new ArrayList<String>();
-
             ArrayList<String> res_actual_hours = new ArrayList<String>();
-
             ArrayList<String> res_progressbar = new ArrayList<String>();
-
             ArrayList<Integer> res_id = new ArrayList<Integer>();
-
             ArrayList<Integer> res_Ref_Id = new ArrayList<Integer>();
-
             ArrayList<String> res_stats_date = new ArrayList<String>();
-
-            ArrayList<String> res_comments=new ArrayList<String>();
-
-            ArrayList<String> res_stats=new ArrayList<String>();
+            ArrayList<String> res_comments = new ArrayList<String>();
+            ArrayList<String> res_stats = new ArrayList<String>();
             //total_db_index
-            int db_count=0;
+            int db_count = 0;
 
             //query for getting a selected project table
-            String selected_project_table="select * from archiveexecution_details where projects='"+selected_project+"' order by seq_num;";
-            Statement st1=conn.createStatement();
-            ResultSet rs1=st1.executeQuery(selected_project_table);
-            while(rs1.next())
-            {
+            String selected_project_table = "select * from archiveexecution_details where projects='" + selected_project + "' order by seq_num;";
+            Statement st1 = connection.createStatement();
+            ResultSet rs1 = st1.executeQuery(selected_project_table);
+            while (rs1.next()) {
                 seq_num.add(rs1.getInt(1));
 
                 level_num.add(rs1.getInt(2));
@@ -132,11 +99,10 @@ public class Archive_Execution_Pop_Up_Operation {
                 db_count++;
             }
             //index for the selected seq_num
-            int index_seq_num=CalculatingSequenceNumber(seqno,seq_num,level_num);
+            int index_seq_num = CalculatingSequenceNumber(seqno, seq_num, level_num);
 
             //Table get Stored in and before the index number
-            for(int i=0;i<=index_seq_num;i++)
-            {
+            for (int i = 0; i <= index_seq_num; i++) {
                 res_seq_num.add(seq_num.get(i));
 
                 res_level_num.add(level_num.get(i));
@@ -168,36 +134,33 @@ public class Archive_Execution_Pop_Up_Operation {
                 res_comments.add(comments.get(i));
             }
             //id for new node
-            int new_id=0;
-            String query2="select max(id) from archiveexecution_details where projects='"+selected_project+"';";
-            Statement st2=conn.createStatement();
-            ResultSet rs2=st2.executeQuery(query2);
-            if(rs2.next())
-                new_id=rs2.getInt(1)+1;
+            int new_id = 0;
+            String query2 = "select max(id) from archiveexecution_details where projects='" + selected_project + "';";
+            Statement st2 = connection.createStatement();
+            ResultSet rs2 = st2.executeQuery(query2);
+            if (rs2.next())
+                new_id = rs2.getInt(1) + 1;
             //Ref_Id for new node
-            System.out.println("testing------");
             int new_ref_id;
             //level for new node
             int new_level;
             //for creating children if part get execute
-            if(typeofnode)
-            {
-                new_ref_id=id.get(seqno);
-                new_level=level_num.get(seqno)+1;
+            if (typeofnode) {
+                new_ref_id = id.get(seqno);
+                new_level = level_num.get(seqno) + 1;
             }
             //for creating the similar node else part get execute
-            else
-            {
-                new_ref_id=Ref_Id.get(seqno);
-                new_level=level_num.get(seqno);
+            else {
+                new_ref_id = Ref_Id.get(seqno);
+                new_level = level_num.get(seqno);
             }
             //seq_num for new node
-            int new_seq_no=index_seq_num+2;
+            int new_seq_no = index_seq_num + 2;
 
             //new node details get stored in collections (below code)
             res_seq_num.add(new_seq_no);
             res_level_num.add(new_level);
-            System.out.println("task name at current seq"+taskname);
+            logger.info("task name at current seq" + taskname);
             res_task_name.add(taskname);
             res_member_ass.add("");
             res_plan_startdate.add("");
@@ -212,9 +175,8 @@ public class Archive_Execution_Pop_Up_Operation {
             res_stats_date.add(null);
             res_comments.add("");
             //Table get stored after the index_seq_num after adding the new node
-            for(int j=index_seq_num+1;j<db_count;j++)
-            {
-                res_seq_num.add(seq_num.get(j)+1);
+            for (int j = index_seq_num + 1; j < db_count; j++) {
+                res_seq_num.add(seq_num.get(j) + 1);
 
                 res_level_num.add(level_num.get(j));
 
@@ -247,21 +209,19 @@ public class Archive_Execution_Pop_Up_Operation {
             }
             //deleting the rows for the selected project
 
-            String query3="delete from archiveexecution_details where projects='"+selected_project+"';";
-            Statement st3=conn.createStatement();
+            String query3 = "delete from archiveexecution_details where projects='" + selected_project + "';";
+            Statement st3 = connection.createStatement();
             st3.executeUpdate(query3);
 
             //Inserting the new table(old table added with new node)
-            Add add1[]=new Add[res_seq_num.size()];
-            for(int k=0;k<res_seq_num.size();k++)
-            {
-                add1[k]=new Add(res_seq_num.get(k),res_level_num.get(k),res_task_name.get(k),res_member_ass.get(k),res_actual_startdate.get(k),res_actual_enddate.get(k),res_plan_startdate.get(k),res_plan_enddate.get(k),res_actual_hours.get(k),res_id.get(k),res_Ref_Id.get(k),null,res_planned_hours.get(k),selected_project,res_progressbar.get(k),res_stats_date.get(k),res_comments.get(k));
+            Add add1[] = new Add[res_seq_num.size()];
+            for (int k = 0; k < res_seq_num.size(); k++) {
+                add1[k] = new Add(res_seq_num.get(k), res_level_num.get(k), res_task_name.get(k), res_member_ass.get(k), res_actual_startdate.get(k), res_actual_enddate.get(k), res_plan_startdate.get(k), res_plan_enddate.get(k), res_actual_hours.get(k), res_id.get(k), res_Ref_Id.get(k), null, res_planned_hours.get(k), selected_project, res_progressbar.get(k), res_stats_date.get(k), res_comments.get(k));
             }
-            for(int l=0;l<res_seq_num.size();l++)
-            {
-                String query4="INSERT INTO archiveexecution_details(seq_num, level, name, mem_ass, act_srt_date, act_end_date, pln_srt_date, pln_end_date, hours, id, ref_id, stats, planned_hrs, projects, progressbar, stats_date, comments)"
+            for (int l = 0; l < res_seq_num.size(); l++) {
+                String query4 = "INSERT INTO archiveexecution_details(seq_num, level, name, mem_ass, act_srt_date, act_end_date, pln_srt_date, pln_end_date, hours, id, ref_id, stats, planned_hrs, projects, progressbar, stats_date, comments)"
                         + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-                PreparedStatement prepare=conn.prepareStatement(query4);
+                PreparedStatement prepare = connection.prepareStatement(query4);
                 prepare.setInt(1, add1[l].seq_num);
                 prepare.setInt(2, add1[l].level);
                 prepare.setString(3, add1[l].name);
@@ -282,72 +242,60 @@ public class Archive_Execution_Pop_Up_Operation {
 
                 prepare.execute();
             }
-            int index=new_seq_no-1;
-            int currentlevel=res_level_num.get(index);
-
-            DateUpdateForAddTask(res_seq_num,res_level_num,res_plan_startdate,res_plan_enddate,res_actual_startdate,res_actual_enddate,res_progressbar,selected_project,index,currentlevel);
-            System.out.println("Execute :" );
-        }
-        catch(Exception e)
-        {
-            System.out.println("---------------Exception-----------[Info]-------------"+e);
+            int index = new_seq_no - 1;
+            int currentlevel = res_level_num.get(index);
+            Date_Update_AddTask(res_seq_num, res_level_num, res_plan_startdate, res_plan_enddate, res_actual_startdate, res_actual_enddate, res_progressbar, selected_project, index, currentlevel);
+            connection.close();
+            st1.close();
+            st2.close();
+            st3.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-    public static int CalculatingSequenceNumber(int seq,ArrayList<Integer> seq_num,ArrayList<Integer> level_num)
-    {
-        int current_level=level_num.get(seq);
-        int seqno=0;
-        int seqnum=0;
-        boolean check=false;
+
+    public static int CalculatingSequenceNumber(int seq, ArrayList<Integer> seq_num, ArrayList<Integer> level_num) {
+        int current_level = level_num.get(seq);
+        int seqno = 0;
+        int seqnum = 0;
+        boolean check = false;
         //to check the node is not the last node of table
-        if(seq_num.get(seq)!=seq_num.size()) {
+        if (seq_num.get(seq) != seq_num.size()) {
             //if it is not the last node then we have to check the node whether it has children
-            if (level_num.get(seq+1)==current_level+1) {
-                int identification_level=current_level+1;
+            if (level_num.get(seq + 1) == current_level + 1) {
+                int identification_level = current_level + 1;
                 //traversing from the current node the current node
-                for (int i = seq+1; i < seq_num.size(); i++) {
-                    seqnum=i;
-                 if(level_num.get(i)<=current_level)
-                 {
-                     seqno=i;
-                     check=true;
-                     break;
-                 }
-                }
-                if(check) {
-                    return seqno-1;
-                }
-                else
-                    {
-                        return seqnum;
+                for (int i = seq + 1; i < seq_num.size(); i++) {
+                    seqnum = i;
+                    if (level_num.get(i) <= current_level) {
+                        seqno = i;
+                        check = true;
+                        break;
                     }
+                }
+                if (check) {
+                    return seqno - 1;
+                } else {
+                    return seqnum;
+                }
             }
             //the node has no children
-            else
-            {
+            else {
                 return seq;
             }
         }
         //'else' the node is last node
-        else
-        {
+        else {
             return seq;
         }
 
     }
-    public static void DeleteTaskName(int seq,String selected_project)
-    {
-        try
-        {
+
+    public static void Delete_Task_Name(int seq, String selected_project) {
+        try {
             //db connection
-            String myDriver = "org.gjt.mm.mysql.Driver";
-
-            String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
-
-            Class.forName(myDriver);
-
-            Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
-
+            DBconnection dBconnection = new DBconnection();
+            Connection connection = (Connection) dBconnection.getConnection();
             //Collections for storing the existing table for selected project
             ArrayList<Integer> seq_num = new ArrayList<Integer>();
 
@@ -377,7 +325,7 @@ public class Archive_Execution_Pop_Up_Operation {
 
             ArrayList<String> stats_date = new ArrayList<String>();
 
-            ArrayList<String> comments=new ArrayList<String>();
+            ArrayList<String> comments = new ArrayList<String>();
 
             //collections for storing the results (with added node)
 
@@ -409,18 +357,17 @@ public class Archive_Execution_Pop_Up_Operation {
 
             ArrayList<String> res_stats_date = new ArrayList<String>();
 
-            ArrayList<String> res_comments=new ArrayList<String>();
+            ArrayList<String> res_comments = new ArrayList<String>();
 
-            ArrayList<String> res_stats=new ArrayList<String>();
+            ArrayList<String> res_stats = new ArrayList<String>();
             //total_db_index
-            int db_count=0;
+            int db_count = 0;
 
             //query for getting a selected project table
-            String selected_project_table="select * from archiveexecution_details where projects='"+selected_project+"' order by seq_num;";
-            Statement st1=conn.createStatement();
-            ResultSet rs1=st1.executeQuery(selected_project_table);
-            while(rs1.next())
-            {
+            String selected_project_table = "select * from archiveexecution_details where projects='" + selected_project + "' order by seq_num;";
+            Statement st1 = connection.createStatement();
+            ResultSet rs1 = st1.executeQuery(selected_project_table);
+            while (rs1.next()) {
                 seq_num.add(rs1.getInt(1));
 
                 level_num.add(rs1.getInt(2));
@@ -452,15 +399,14 @@ public class Archive_Execution_Pop_Up_Operation {
                 comments.add(rs1.getString(17));
                 db_count++;
             }
-            String[] fromandtoseq=FromAndToDeleteSequenceNumber(seq,db_count,seq_num,level_num).split(",");
+            String[] fromandtoseq = FromAndToDeleteSequenceNumber(seq, db_count, seq_num, level_num).split(",");
             //from_seq and to_seq are not actually seq_num they are index of seq_num
-            int from_seq=Integer.parseInt(fromandtoseq[0]);
-            int to_seq=Integer.parseInt(fromandtoseq[1]);
+            int from_seq = Integer.parseInt(fromandtoseq[0]);
+            int to_seq = Integer.parseInt(fromandtoseq[1]);
 
 
             //Table get Stored in and before the index number
-            for(int i=0;i<from_seq-1 ;i++)
-            {
+            for (int i = 0; i < from_seq - 1; i++) {
                 res_seq_num.add(seq_num.get(i));
 
                 res_level_num.add(level_num.get(i));
@@ -492,13 +438,12 @@ public class Archive_Execution_Pop_Up_Operation {
                 res_comments.add(comments.get(i));
             }
 
-            String delete_query="delete from archiveexecution_details where projects='"+selected_project+"' and seq_num>='"+from_seq+"' and seq_num<'"+to_seq+"'";
-            Statement st=conn.createStatement();
+            String delete_query = "delete from archiveexecution_details where projects='" + selected_project + "' and seq_num>='" + from_seq + "' and seq_num<'" + to_seq + "'";
+            Statement st = connection.createStatement();
             st.executeUpdate(delete_query);
-            int new_sequence=from_seq;
+            int new_sequence = from_seq;
 
-            for(int j=to_seq-1;j<db_count ;j++)
-            {
+            for (int j = to_seq - 1; j < db_count; j++) {
                 res_seq_num.add(new_sequence++);
 
                 res_level_num.add(level_num.get(j));
@@ -530,20 +475,18 @@ public class Archive_Execution_Pop_Up_Operation {
                 res_comments.add(comments.get(j));
             }
             //deleting the rows for the selected project
-            String query3="delete from archiveexecution_details where projects='"+selected_project+"';";
-            Statement st3=conn.createStatement();
+            String query3 = "delete from archiveexecution_details where projects='" + selected_project + "';";
+            Statement st3 = connection.createStatement();
             st3.executeUpdate(query3);
             //Inserting the new table(old table added with new node)
-            Add add1[]=new Add[res_seq_num.size()];
-            for(int k=0;k<res_seq_num.size();k++)
-            {
-                add1[k]=new Add(res_seq_num.get(k),res_level_num.get(k),res_task_name.get(k),res_member_ass.get(k),res_actual_startdate.get(k),res_actual_enddate.get(k),res_plan_startdate.get(k),res_plan_enddate.get(k),res_actual_hours.get(k),res_id.get(k),res_Ref_Id.get(k),null,res_planned_hours.get(k),selected_project,res_progressbar.get(k),res_stats_date.get(k),res_comments.get(k));
+            Add add1[] = new Add[res_seq_num.size()];
+            for (int k = 0; k < res_seq_num.size(); k++) {
+                add1[k] = new Add(res_seq_num.get(k), res_level_num.get(k), res_task_name.get(k), res_member_ass.get(k), res_actual_startdate.get(k), res_actual_enddate.get(k), res_plan_startdate.get(k), res_plan_enddate.get(k), res_actual_hours.get(k), res_id.get(k), res_Ref_Id.get(k), null, res_planned_hours.get(k), selected_project, res_progressbar.get(k), res_stats_date.get(k), res_comments.get(k));
             }
-            for(int l=0;l<res_seq_num.size();l++)
-            {
-                String query4="INSERT INTO archiveexecution_details(seq_num, level, name, mem_ass, act_srt_date, act_end_date, pln_srt_date, pln_end_date, hours, id, ref_id, stats, planned_hrs, projects, progressbar, stats_date, comments)"
+            for (int l = 0; l < res_seq_num.size(); l++) {
+                String query4 = "INSERT INTO archiveexecution_details(seq_num, level, name, mem_ass, act_srt_date, act_end_date, pln_srt_date, pln_end_date, hours, id, ref_id, stats, planned_hrs, projects, progressbar, stats_date, comments)"
                         + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-                PreparedStatement prepare=conn.prepareStatement(query4);
+                PreparedStatement prepare = connection.prepareStatement(query4);
                 prepare.setInt(1, add1[l].seq_num);
                 prepare.setInt(2, add1[l].level);
                 prepare.setString(3, add1[l].name);
@@ -564,23 +507,24 @@ public class Archive_Execution_Pop_Up_Operation {
 
                 prepare.execute();
             }
-            int index=seq;
-            int currentlevel=level_num.get(index);
+            int index = seq;
+            int currentlevel = level_num.get(index);
             //Archive_execution_db_update.progress_bar_delete_task(level_num,actual_enddate,progressbar,selected_project,index,currentlevel);
-            DateUpdateForDeleteTask(seq_num,level_num,plan_startdate,plan_enddate,actual_startdate,actual_enddate,progressbar,selected_project,index,currentlevel);
-            System.out.println("delete :" );
-        }
-        catch(Exception e)
-        {
-           System.out.println("----------[info]--------------[Exception]----------"+e);
+            Date_Update_DeleteTask(seq_num, level_num, plan_startdate, plan_enddate, actual_startdate, actual_enddate, progressbar, selected_project, index, currentlevel);
+            connection.close();
+            st1.close();
+            st.close();
+            st3.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-    public static String FromAndToDeleteSequenceNumber(int seq,int db_count,ArrayList<Integer> seq_num,ArrayList<Integer> level_num)
-    {
-        int fromsequence=seq_num.get(seq);
-        int current_level=level_num.get(seq);
-        int tosequence=0;
-        if(db_count!=fromsequence) {
+
+    public static String FromAndToDeleteSequenceNumber(int seq, int db_count, ArrayList<Integer> seq_num, ArrayList<Integer> level_num) {
+        int fromsequence = seq_num.get(seq);
+        int current_level = level_num.get(seq);
+        int tosequence = 0;
+        if (db_count != fromsequence) {
             for (int i = seq + 1; i < db_count; i++) {
                 if (level_num.get(i) <= current_level) {
                     tosequence = seq_num.get(i);
@@ -590,97 +534,74 @@ public class Archive_Execution_Pop_Up_Operation {
                     break;
                 }
             }
+        } else {
+            tosequence = db_count + 1;
         }
-        else
-        {
-          tosequence=db_count+1;
+        String result = fromsequence + "," + tosequence;
+       logger.info("result from and to sequence number:" + result);
+        return result;
+    }
+
+    public static void Edit_Task_Name(int seq, String projectname, String taskname) {
+        try {
+            //DB Connection//
+            DBconnection dBconnection = new DBconnection();
+            Connection connection = (Connection) dBconnection.getConnection();
+            int seqno = seq + 1;
+
+            String query1 = "update archiveexecution_details set name='" + taskname + "' where projects='" + projectname + "' and seq_num='" + seqno + "'";
+
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(query1);
+            connection.close();
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-String result=fromsequence+","+tosequence;
-        System.out.println("result from and to sequence number:"+result);
-     return result;
     }
-    public static void EditTaskName(int seq,String projectname,String taskname)
-    {
-      try
-      {
-          //db connection
-          String myDriver = "org.gjt.mm.mysql.Driver";
 
-          String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
-
-          Class.forName(myDriver);
-
-          Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
-
-          int seqno=seq+1;
-
-          String query1="update archiveexecution_details set name='"+taskname+"' where projects='"+projectname+"' and seq_num='"+seqno+"'";
-
-          Statement st=conn.createStatement();
-
-          st.executeUpdate(query1);
-
-      }
-      catch(Exception e)
-      {
-          System.out.println("----------[info]--------------[Exception]----------"+e);
-      }
-    }
-    public static void DateUpdateForAddTask(ArrayList<Integer> seq_num,ArrayList<Integer> level_num,ArrayList<String> plan_startdate,ArrayList<String> plan_enddate,ArrayList<String> actual_startdate,ArrayList<String> actual_enddate,ArrayList<String> progressbar,String projectname,int selectedindex,int currentlevel)
-    {
-        int selected_level=currentlevel;
-        int selected_index=selectedindex;
+    public static void Date_Update_AddTask(ArrayList<Integer> seq_num, ArrayList<Integer> level_num, ArrayList<String> plan_startdate, ArrayList<String> plan_enddate, ArrayList<String> actual_startdate, ArrayList<String> actual_enddate, ArrayList<String> progressbar, String projectname, int selectedindex, int currentlevel) {
+        int selected_level = currentlevel;
+        int selected_index = selectedindex;
         try {
             ArrayList<Integer> checkindex = new ArrayList<Integer>();
-            String myDriver = "org.gjt.mm.mysql.Driver";
-
-            String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
-
-            Class.forName(myDriver);
-
-            Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
-
-            Statement sr = conn.createStatement();
-
+            DBconnection dBconnection = new DBconnection();
+            Connection connection = (Connection) dBconnection.getConnection();
+            Statement statement = connection.createStatement();
             SimpleDateFormat fmt = new SimpleDateFormat("MM/dd/yyyy");
             while (currentlevel != 0) {
-                int totalcount=0;
+                int totalcount = 0;
                 int node_count = 0;
-                ArrayList<Date> plan_start=new ArrayList<Date>();
-                ArrayList<Date> plan_end=new ArrayList<Date>();
-                ArrayList<Date> act_start=new ArrayList<Date>();
-                ArrayList<Date> act_end=new ArrayList<Date>();
+                ArrayList<Date> plan_start = new ArrayList<Date>();
+                ArrayList<Date> plan_end = new ArrayList<Date>();
+                ArrayList<Date> act_start = new ArrayList<Date>();
+                ArrayList<Date> act_end = new ArrayList<Date>();
 
-                System.out.println("current level " + currentlevel);
+                logger.info("current level " + currentlevel);
                 boolean check = true;
-                boolean check_planstart=true;
-                boolean check_planend=true;
-                boolean check_actstart=true;
-                boolean check_actend=true;
+                boolean check_planstart = true;
+                boolean check_planend = true;
+                boolean check_actstart = true;
+                boolean check_actend = true;
                 ArrayList<Integer> date = new ArrayList<Integer>();
                 //checking plan start,plan end,actual start,actual end date before the current index
                 for (int l = selectedindex - 1; l >= 0; l--) {
                     if (level_num.get(l) == 1 || level_num.get(l) == currentlevel - 1) {
                         break;
                     } else if (currentlevel == level_num.get(l)) {
-                        if(!plan_startdate.get(l).equals(""))
-                        {
+                        if (!plan_startdate.get(l).equals("")) {
                             plan_start.add(fmt.parse(plan_startdate.get(l)));
                         }
-                        if(!plan_enddate.get(l).equals(""))
-                        {
+                        if (!plan_enddate.get(l).equals("")) {
                             plan_end.add(fmt.parse(plan_enddate.get(l)));
                         }
-                        if(!actual_startdate.get(l).equals(""))
-                        {
+                        if (!actual_startdate.get(l).equals("")) {
                             act_start.add(fmt.parse(actual_startdate.get(l)));
                         }
-                        if(actual_enddate.get(l).equals(""))
-                        {
-                            check_actend=false;
-                        }
-                        else
-                        {
+                        if (actual_enddate.get(l).equals("")) {
+                            check_actend = false;
+                        } else {
                             act_end.add(fmt.parse(actual_enddate.get(l)));
                         }
                     }
@@ -690,24 +611,18 @@ String result=fromsequence+","+tosequence;
                     if (level_num.get(m) == 1 || level_num.get(m) == currentlevel - 1) {
                         break;
                     } else if (currentlevel == level_num.get(m)) {
-                        if(!plan_startdate.get(m).equals(""))
-                        {
+                        if (!plan_startdate.get(m).equals("")) {
                             plan_start.add(fmt.parse(plan_startdate.get(m)));
                         }
-                        if(!plan_enddate.get(m).equals(""))
-                        {
+                        if (!plan_enddate.get(m).equals("")) {
                             plan_end.add(fmt.parse(plan_enddate.get(m)));
                         }
-                        if(!actual_startdate.get(m).equals(""))
-                        {
+                        if (!actual_startdate.get(m).equals("")) {
                             act_start.add(fmt.parse(actual_startdate.get(m)));
                         }
-                        if(actual_enddate.get(m).equals(""))
-                        {
-                            check_actend=false;
-                        }
-                        else
-                        {
+                        if (actual_enddate.get(m).equals("")) {
+                            check_actend = false;
+                        } else {
                             act_end.add(fmt.parse(actual_enddate.get(m)));
                         }
                     }
@@ -715,7 +630,7 @@ String result=fromsequence+","+tosequence;
                 for (int n = selectedindex; n >= 0; n--) {
                     if (currentlevel - 1 == level_num.get(n)) {
                         String plnsrt = "", plnend = "", actsrt = "", actend = "";
-                        int pln_hrs=0,act_hrs=0;
+                        int pln_hrs = 0, act_hrs = 0;
                         if (isEmpty(plan_start) == false) {
                             Date Plan_Start_Min_Date = Collections.min(plan_start);
                             plnsrt = fmt.format(Plan_Start_Min_Date);
@@ -726,33 +641,31 @@ String result=fromsequence+","+tosequence;
                         }
                         if (isEmpty(act_start) == false) {
                             Date Actual_Start_Min_Date = Collections.min(act_start);
-                        actsrt = fmt.format(Actual_Start_Min_Date);
+                            actsrt = fmt.format(Actual_Start_Min_Date);
                         }
-                        if(isEmpty(act_end)==false) {
+                        if (isEmpty(act_end) == false) {
                             Date Actual_End_Max_Date = Collections.max(act_end);
                             actend = fmt.format(Actual_End_Max_Date);
                         }
-                        if(!plnsrt.equals("")&&!plnend.equals(""))
-                        {
-                            pln_hrs=Weekday.splittingoperation(plnsrt,plnend)*8;
+                        if (!plnsrt.equals("") && !plnend.equals("")) {
+                            pln_hrs = Weekday.splittingoperation(plnsrt, plnend) * 8;
                         }
-                        if(!actsrt.equals("")&&!actend.equals(""))
-                        {
-                           act_hrs=Weekday.splittingoperation(actsrt,actend)*8;
+                        if (!actsrt.equals("") && !actend.equals("")) {
+                            act_hrs = Weekday.splittingoperation(actsrt, actend) * 8;
                         }
-                        sr.executeUpdate("update archiveexecution_details set pln_srt_date ='"+plnsrt+"',pln_end_date='"+plnend+"',act_srt_date='"+actsrt+"',hours='"+act_hrs+"',planned_hrs='"+pln_hrs+"' where projects='"+projectname+"' and seq_num='"+seq_num.get(n)+"';");
-                        plan_startdate.set(n,plnsrt);
-                        plan_enddate.set(n,plnend);
-                        actual_startdate.set(n,actsrt);
+                        statement.executeUpdate("update archiveexecution_details set pln_srt_date ='" + plnsrt + "',pln_end_date='" + plnend + "',act_srt_date='" + actsrt + "',hours='" + act_hrs + "',planned_hrs='" + pln_hrs + "' where projects='" + projectname + "' and seq_num='" + seq_num.get(n) + "';");
+                        plan_startdate.set(n, plnsrt);
+                        plan_enddate.set(n, plnend);
+                        actual_startdate.set(n, actsrt);
                         if (check_actend == true) {
-                            sr.executeUpdate("update archiveexecution_details set act_end_date='"+actend+"' where projects='"+projectname+"' and seq_num='"+seq_num.get(n)+"';");
-                            actual_enddate.set(n,actend);
+                            statement.executeUpdate("update archiveexecution_details set act_end_date='" + actend + "' where projects='" + projectname + "' and seq_num='" + seq_num.get(n) + "';");
+                            actual_enddate.set(n, actend);
                             int index = n;
                             selectedindex = index;
                             break;
                         } else {
-                            sr.executeUpdate("update archiveexecution_details set act_end_date='',hours=0 where projects='"+projectname+"' and seq_num='"+seq_num.get(n)+"';");
-                            actual_enddate.set(n,"");
+                            statement.executeUpdate("update archiveexecution_details set act_end_date='',hours=0 where projects='" + projectname + "' and seq_num='" + seq_num.get(n) + "';");
+                            actual_enddate.set(n, "");
                             int index = n;
                             selectedindex = index;
                             break;
@@ -760,7 +673,7 @@ String result=fromsequence+","+tosequence;
 
                     }
                 }
-                //System.out.println("current index "+current_index+" number"+current_level);
+
                 currentlevel--;
             }
             /*int fromseq=0;
@@ -800,77 +713,65 @@ String result=fromsequence+","+tosequence;
             {
                 System.out.println("atual end date:"+o);
             }*/
-            Archive_execution_db_update.progress_bar_current_stage(level_num,actual_enddate,progressbar,projectname,selected_index,selected_level);
-        }
-        catch(Exception e)
-        {
-            System.out.println("----------[Exception:"+e+"]------------");
+            Archive_execution_db_update.progress_bar_current_stage(level_num, actual_enddate, progressbar, projectname, selected_index, selected_level);
+            connection.close();
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
-    public static void DateUpdateForDeleteTask(ArrayList<Integer> seq_num,ArrayList<Integer> level_num,ArrayList<String> plan_startdate,ArrayList<String> plan_enddate,ArrayList<String> actual_startdate,ArrayList<String> actual_enddate,ArrayList<String> progressbar,String projectname,int selectedindex,int currentlevel)
-    {
-        int selected_index=selectedindex;
-        int selected_level=currentlevel;
+
+    public static void Date_Update_DeleteTask(ArrayList<Integer> seq_num, ArrayList<Integer> level_num, ArrayList<String> plan_startdate, ArrayList<String> plan_enddate, ArrayList<String> actual_startdate, ArrayList<String> actual_enddate, ArrayList<String> progressbar, String projectname, int selectedindex, int currentlevel) {
+        int selected_index = selectedindex;
+        int selected_level = currentlevel;
         try {
             ArrayList<Integer> checkindex = new ArrayList<Integer>();
-            int deleteindex=selectedindex;
-            String myDriver = "org.gjt.mm.mysql.Driver";
-
-            String myUrl = "jdbc:mysql://localhost:3306/Onboarding";
-
-            Class.forName(myDriver);
-
-            Connection conn = DriverManager.getConnection(myUrl, "root", "password123");
-
-            Statement sr = conn.createStatement();
+            int deleteindex = selectedindex;
+            DBconnection dBconnection = new DBconnection();
+            Connection connection = (Connection) dBconnection.getConnection();
+            Statement statement = connection.createStatement();
 
             SimpleDateFormat fmt = new SimpleDateFormat("MM/dd/yyyy");
             while (currentlevel != 0) {
-                int totalcount=0;
+                int totalcount = 0;
                 int node_count = 0;
-                ArrayList<Date> plan_start=new ArrayList<Date>();
-                ArrayList<Date> plan_end=new ArrayList<Date>();
-                ArrayList<Date> act_start=new ArrayList<Date>();
-                ArrayList<Date> act_end=new ArrayList<Date>();
+                ArrayList<Date> plan_start = new ArrayList<Date>();
+                ArrayList<Date> plan_end = new ArrayList<Date>();
+                ArrayList<Date> act_start = new ArrayList<Date>();
+                ArrayList<Date> act_end = new ArrayList<Date>();
 
-                System.out.println("current level " + currentlevel);
+                logger.info("current level " + currentlevel);
                 boolean check = true;
-                boolean check_planstart=true;
-                boolean check_planend=true;
-                boolean check_actstart=true;
-                boolean check_actend=true;
+                boolean check_planstart = true;
+                boolean check_planend = true;
+                boolean check_actstart = true;
+                boolean check_actend = true;
                 ArrayList<Integer> date = new ArrayList<Integer>();
                 //checking plan start,plan end,actual start,actual end date before the current index
                 for (int l = selectedindex - 1; l >= 0; l--) {
                     if (level_num.get(l) == 1 || level_num.get(l) == currentlevel - 1) {
                         break;
                     } else if (currentlevel == level_num.get(l)) {
-                        if(!plan_startdate.get(l).equals(""))
-                        {
+                        if (!plan_startdate.get(l).equals("")) {
                             plan_start.add(fmt.parse(plan_startdate.get(l)));
                         }
-                        if(!plan_enddate.get(l).equals(""))
-                        {
+                        if (!plan_enddate.get(l).equals("")) {
                             plan_end.add(fmt.parse(plan_enddate.get(l)));
                         }
-                        if(!actual_startdate.get(l).equals(""))
-                        {
+                        if (!actual_startdate.get(l).equals("")) {
                             act_start.add(fmt.parse(actual_startdate.get(l)));
                         }
-                        if(actual_enddate.get(l).equals(""))
-                        {
-                            check_actend=false;
-                        }
-                        else
-                        {
+                        if (actual_enddate.get(l).equals("")) {
+                            check_actend = false;
+                        } else {
                             act_end.add(fmt.parse(actual_enddate.get(l)));
                         }
                     }
                 }
                 //checking the plan start,plan end,actual start and actual end date after the current index
-                for (int m = selectedindex; m < seq_num.size();m++) {
-                     if(m!=deleteindex) {
+                for (int m = selectedindex; m < seq_num.size(); m++) {
+                    if (m != deleteindex) {
                         if (level_num.get(m) == 1 || level_num.get(m) == currentlevel - 1) {
                             break;
                         } else if (currentlevel == level_num.get(m)) {
@@ -889,10 +790,10 @@ String result=fromsequence+","+tosequence;
                                 act_end.add(fmt.parse(actual_enddate.get(m)));
                             }
                         }
-                }
+                    }
                 }
                 for (int n = selectedindex; n >= 0; n--) {
-                    if(deleteindex!=n) {
+                    if (deleteindex != n) {
                         if (currentlevel - 1 == level_num.get(n)) {
                             int pln_hrs = 0, act_hrs = 0;
                             String plnsrt = "", plnend = "", actsrt = "", actend = "";
@@ -913,24 +814,24 @@ String result=fromsequence+","+tosequence;
                                 actend = fmt.format(Actual_End_Max_Date);
                             }
                             if (!plnsrt.equals("") && !plnend.equals("")) {
-                                pln_hrs = Weekday.splittingoperation(plnsrt, plnend)*8;
+                                pln_hrs = Weekday.splittingoperation(plnsrt, plnend) * 8;
                             }
                             if (!actsrt.equals("") && !actend.equals("")) {
-                                act_hrs = Weekday.splittingoperation(actsrt, actend)*8;
+                                act_hrs = Weekday.splittingoperation(actsrt, actend) * 8;
                             }
-                            sr.executeUpdate("update archiveexecution_details set pln_srt_date ='" + plnsrt + "',pln_end_date='" + plnend + "',act_srt_date='" + actsrt + "',hours='" + act_hrs + "',planned_hrs='" + pln_hrs + "' where projects='" + projectname + "' and seq_num='" + seq_num.get(n) + "';");
+                            statement.executeUpdate("update archiveexecution_details set pln_srt_date ='" + plnsrt + "',pln_end_date='" + plnend + "',act_srt_date='" + actsrt + "',hours='" + act_hrs + "',planned_hrs='" + pln_hrs + "' where projects='" + projectname + "' and seq_num='" + seq_num.get(n) + "';");
                             plan_startdate.set(n, plnsrt);
                             plan_enddate.set(n, plnend);
                             actual_startdate.set(n, actsrt);
                             actual_enddate.set(n, actend);
                             if (check_actend == true) {
-                                sr.executeUpdate("update archiveexecution_details set act_end_date='" + actend + "' where projects='" + projectname + "' and seq_num='" + seq_num.get(n) + "';");
+                                statement.executeUpdate("update archiveexecution_details set act_end_date='" + actend + "' where projects='" + projectname + "' and seq_num='" + seq_num.get(n) + "';");
                                 actual_enddate.set(n, actend);
                                 int index = n;
                                 selectedindex = index;
                                 break;
                             } else {
-                                sr.executeUpdate("update archiveexecution_details set act_end_date='',hours='0' where projects='" + projectname + "' and seq_num='" + seq_num.get(n) + "';");
+                                statement.executeUpdate("update archiveexecution_details set act_end_date='',hours='0' where projects='" + projectname + "' and seq_num='" + seq_num.get(n) + "';");
                                 actual_enddate.set(n, "");
                                 int index = n;
                                 selectedindex = index;
@@ -940,14 +841,13 @@ String result=fromsequence+","+tosequence;
                         }
                     }
                 }
-                //System.out.println("current index "+current_index+" number"+current_level);
                 currentlevel--;
             }
-            Archive_execution_db_update.progress_bar_delete_task(level_num,actual_enddate,progressbar,projectname,selected_index,selected_level);
-        }
-        catch(Exception e)
-        {
-            System.out.println("----------[Exception:"+e+"]------------");
+            Archive_execution_db_update.progress_bar_delete_task(level_num, actual_enddate, progressbar, projectname, selected_index, selected_level);
+            connection.close();
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

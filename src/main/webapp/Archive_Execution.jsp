@@ -184,19 +184,16 @@
             margin: auto;
         }
 
-        .but11 {
-            border: none;
-            outline: none;
-            padding: 3px 14px;
-            background-color: #3697e8;
-            cursor: pointer;
+        /*tbody tr {
+            display : none;
+        }*/
+        .parent {
+            display : table-row;
+        }
+        .open {
+            display : table-row;
+        }
 
-        }
-        .activ-pro{font-size: 16px;
-            margin-left: -17px;}
-        .active, .btn:hover {
-            color: white;
-        }
     </style>
 
 </head>
@@ -273,7 +270,6 @@
 
         <div class="content-wrapper">
             <div class="content-container">
-
 
                 <!-- ========== LEFT SIDEBAR ========== -->
                 <div class="left-sidebar fixed-sidebar bg-primary box-shadow tour-three">
@@ -363,10 +359,10 @@
                                 <%--<li class="nav-header">
                                     <a href='Archive_Execution.jsp'><span class="">Archive Execution Module</span></a>
                                 </li>--%>
-                                <li class="has-children" id="myDIV">
+                                <li class="has-children">
                                     <a href=""><i class="fa fa-map-signs"></i> <span>Archive Execution Module</span> <i class="fa fa-angle-right arrow"></i></a>
-                                    <ul class="child-nav" >
-                                        <li class="but11" style="padding-right: 0px;"><a href="Archive_Execution.jsp" > <span class="activ-pro">Archive Execution</span></a></li>
+                                    <ul class="child-nav" id="myDIV">
+                                        <li class="1btn"><a href="Archive_Execution.jsp" > <span class="activ-pro">Archive Execution</span></a></li>
                                         <li><a href="archivesummary.jsp" > <span>Archive summary</span></a></li>
 
                                     </ul>
@@ -400,10 +396,6 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="container-fluid">
-                                    <h1 class="page-header">Projects</h1>
-
-
-
                                     <div class="row">
 
                                         <div class="col-md-3">
@@ -470,7 +462,7 @@
                                         <table class="table table-bordered" style="align:center" id="table1">
                                             <thead style="background-color: #3498db;">
                                             <tr>
-                                                <th style="width:70%;color: white;">Tasks</th>
+                                                <th style="width:20%;color: white;">Tasks</th>
                                                 <th style="color: white;">Resource Assigned</th>
                                                 <th style="color: white;">Plan start date</th>
                                                 <th style="color: white;">Plan End date</th>
@@ -479,7 +471,7 @@
                                                 <th style="color: white;">Planned Hours</th>
                                                 <th style="color: white;">Actual Hours</th>
                                                 <th style="color: white;">Progress %</th>
-                                                <th style="width:20%;color: white;">Status</th>
+                                                <th style="color: white;">Status</th>
                                                 <th style="color: white;">Comments</th>
                                                 <th style="color: white;">Action</th>
                                             </tr>
@@ -669,18 +661,7 @@
         $('.table-responsive').doubleScroll();
     });
 </script>
-<script>
-    // Add active class to the current button (highlight it)
-    var header = document.getElementById("myDIV");
-    var btns = header.getElementsByClassName("btn");
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function() {
-            var current = document.getElementsByClassName("active");
-            current[0].className = current[0].className.replace(" active", "");
-            this.className += " active";
-        });
-    }
-</script>
+
 <script>
     var username_dropdown="";
     $(document).ready(function () {
@@ -866,7 +847,7 @@
                     if(data[i].level==1)
                     {
                         //alert("level1 :"+data[i].name);
-                        var level1="<tr style='text-align:center;' data-tt-id=\""+data[i].id+"\">\n" +
+                        var level1="<tr class='parent' id='2479' style='text-align:center;' data-tt-id=\""+data[i].id+"\">\n" +
                             "<td style='width:200px;'>\n" +
                             "<b>\n" +
                             "<span style='color:#3071a9;font-size:150%; position:relative; left:5px;'>\n" +
@@ -892,11 +873,17 @@
                             "getDetID(document.getElementById('phours"+i+"'),document.getElementById('hours"+i+"'),document.getElementById('progressbar"+i+"'),document.getElementById('status"+i+"'),document.getElementById('act_end_date"+i+"').value,'"+data[i].comments+"',"+i+",'"+data[data.length-2].projectname+"','"+data[i].name+"');" +
                             "<\/script>\n" +
                             "</tr>";
+                      /*  $("#table1").on("click","a",function(e) {
+                            alert("ewfwsd");
+                            e.preventDefault();
+                            $(this).closest("tr").nextUntil(".parent").toggleClass("open");
+                        });*/
+
                         tboady_id.append(level1);
                     }
                     else {
 
-                        var child="<tr style='text-align:center;' data-tt-id='"+data[i].id+"'\n" +
+                        var child="<tr class='child-2479' style='text-align:center;' data-tt-id='"+data[i].id+"'\n" +
                             "data-tt-parent-id='"+data[i].ref_id+"'>\n" +
                             "&nbsp;&nbsp;\n" +
                             "<td style='width:230px;'>\n" +
@@ -944,7 +931,7 @@
                             "\n" +
                             "\n" +
                             "        $(\"#mem_ass\"+"+i+").igCombo({\n" +
-                            "            width: 300,\n" +
+                            "            width: 250,\n" +
                             "            dataSource: colors,\n" +
                             "            textKey: \"Name\",\n" +
                             "            valueKey: \"Name\",\n" +
@@ -961,6 +948,14 @@
                         tboady_id.append(child);
 
                     }
+                    $(function() {
+                        $('tr.parent td span.btn')
+                            .on("click", function(){
+                                var idOfParent = $(this).parents('tr').attr('id');
+                                $('tr.child-'+idOfParent).toggle();
+                            });
+                        $('tr[class^=child-]').hide().children('td');
+                    });
                 }
                 var scriptfortree="<script type='text/javascript'>\n" +
                     "com_github_culmat_jsTreeTable.register(this)\n" +
