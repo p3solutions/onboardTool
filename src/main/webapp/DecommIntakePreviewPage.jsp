@@ -455,9 +455,12 @@
                                             </div>
                                         </div>
                                         <div class="container">
-                                            <a href="Intake_Business.jsp"
-                                               class="btn btn-default btn pull-left">Edit</a>
-
+                                            <!-- <a href="Intake_Business.jsp"
+                                               class="btn btn-default btn pull-left">Edit</a> -->
+											<button class="btn btn-primary pull-left" onclick="EditFunctionality();"
+                                                    >Edit
+                                            </button>
+                                            <button id="EditAction" style="display:none;"/>
                                             <button id="intake_module" class="btn btn-primary pull-right"><span
                                                     class="glyphicon glyphicon-download-alt"></span> Export Pdf
                                             </button>
@@ -555,7 +558,7 @@
                                                 <td style='color:#404041;font-size:12px;line-height:16px;padding:10px 16px 20px 18px'>
                                                         <div id="ContactInfoLegacy">
                                                                             <h3>Legacy Retention Information</h3>
-                                                                            <pre style="font-family:verdana;font-size:100%;" id = "retention_code">Retention Code : </pre>
+                                                                            <!-- <pre style="font-family:verdana;font-size:100%;" id = "retention_code">Retention Code : </pre>
                                                                             <pre style="font-family:verdana;font-size:100%;" id = "trigger_date">Trigger Date Field  : </pre>
                                                                             <pre style="font-family:verdana;font-size:100%;" id = "period_of_retention">Period Of Retention : </pre>
                                                                             <pre style="font-family:verdana;font-size:100%;" id = "table_name">Table Name/Is Retention need to apply  : </pre>
@@ -563,7 +566,7 @@
                                                                             <pre style="font-family:verdana;font-size:100%;" id = "legal_hold_tax">Does any Records Have Legal Holds/Tax Holds or Any Indication  : </pre>
                                                                             <pre style="font-family:verdana;font-size:100%;" id = "legal_hold_identification">Who or What entity provided legal or tax hold identification : </pre>
                                                                             <pre style="font-family:verdana;font-size:100%;" id = "data_archived">should this application's data to be archived? : </pre>
-                                                                            <pre style="font-family:verdana;font-size:100%;" id = "brief_explain">Brief Explanation : </pre>
+                                                                            <pre style="font-family:verdana;font-size:100%;" id = "brief_explain">Brief Explanation : </pre> -->
                                                                         </div>
                                                     <%--<table width='0' border='0' align='left'--%>
                                         </div>
@@ -675,6 +678,11 @@
     var appname = url.searchParams.get("appname");
     var projname=url.searchParams.get("projname");
     console.log("Application:",appname,"Project:",projname);
+    function EditFunctionality()
+    {
+    	window.location.href ='AppDecommInfo.jsp?appname='+appname+'&projectname='+projname;
+    	return false;
+    }
     $(document).ready(function(){
         $.ajax({
             url: "DecommIntakePreviewServlet",
@@ -716,7 +724,7 @@
                         +"</tr>";
                     $('#SiteLocation').append(tr);
                 }
-                if(data[4].CheckExistance==true) {
+                /* if(data[2][0].CheckExistance==true) {
                     $('#retention_code').append(data[4].Retention_Code);
                     $('#trigger_date').append(data[4].Tigger_Date);
                     $('#period_of_retention').append(data[4].Period_Retention);
@@ -737,7 +745,7 @@
                     $('#legal_hold_identification').append("");
                     $('#data_archived').append("");
                     $('#brief_explain').append("");
-                }
+                } */
                 for (var i=0; i<data[3].length; i++){
                     console.log("Role name loose", data[3][i][0].CheckExistance);
                     if(data[3][i][0].CheckExistance==true)
@@ -772,12 +780,20 @@
                         $('#'+rolename).append(tr);
                     }
                     }
+                    
 
+                }
+                for(var j=0;j<data[4].length;j++)
+                {
+                   	var preTag ="<pre style='font-family:verdana;font-size:100%;' class = 'LegacyRetention'><b>"+data[4][j].LabelName+"</b> : "+data[4][j].Value+" </pre>";
+                   	$("#ContactInfoLegacy").append(preTag);
                 }
                 },
 
         });
     });
+    
+    $('#')
     </script>
 
 <!-- ========== PAGE JS FILES ========== -->

@@ -292,32 +292,32 @@
                                     <form name="Decomm_Intake_Requirements">
                                         <div id="collapse2" class="panel-collapse">
                                             <div class="panel-body text-left">
-                                                <div class="form-group">
+                                                <div class="form-group LegacyRetentionFields">
                                                     <label class="control-label" for="formInput198"> Application Name</label>
                                                     <input type="text" class="form-control" id="app_name" placeholder="Application Name" name="appname" readonly >
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group LegacyRetentionFields">
                                                     <label class="control-label" for="formInput198"><div class="required_fie"> Legacy Application Name</div></label>
                                                     <input type="text" class="form-control" id="legacyappname" placeholder="Legacy Application Name" name="legacyappname" required >
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group LegacyRetentionFields">
                                                     <label class="control-label" for="formInput198"> Enterprise Team Decomm Project Number</label>
                                                     <input type="text" class="form-control" id="projectnumber" placeholder="Project Number" name="projectnumber" >
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group LegacyRetentionFields">
                                                     <label class="control-label" for="formInput198"><div class="required_fie"> Application Identification Number</div></label>
                                                     <input type="text" class="form-control" id="ain" placeholder="Tracking ID/Unique Application Id from Service Now or any relevant source" name="ain" >
                                                 </div>
 
                                                 <!--End of Table Info -->
-                                                <div class="form-group">
+                                                <div class="form-group LegacyRetentionFields">
                                                     <label class="control-label" for="formInput198"> Infrastructure Project Number</label>
                                                     <input type="text" class="form-control" id="infraprojectnumber" placeholder="Infrastructure Project Number" name="infraprojectnumber" >
                                                 </div>
 
                                                 <!--End of Table Info -->
 
-                                                <div class="form-group">
+                                                <div class="form-group LegacyRetentionFields">
                                                     <label class="control-label" for="formInput664"><div class="required_fie">Read Only Date</div></label>
                                                     <input placeholder="mm/dd/yyyy" type="text" class="form-control ember-text-field zf-date-picker date-picker ember-view date start" id="RO_DATE"  name="read_date" onChange="updatesum()" readonly>
                                                 </div>
@@ -409,6 +409,7 @@
 
 
         <script>
+        
             /*if(document.getElementById('Role_info').value=="R")
                 checkk();*/
         </script>
@@ -521,21 +522,7 @@
 
             });
 
-            function submit()
-            {
-                var url_string=window.location.href;
-                var url = new URL(url_string);
-                var appname = url.searchParams.get("appname");
-                var projname=url.searchParams.get("projectname");
-                var classlength=$('.BusinessUnit').length;
-                var site_classlength=$('.Country').length;
-                console.log("class length",classlength,projname);
-                console.log("Site class length",site_classlength,projname);
-                var f=document.Decomm_Intake_Requirements;
-                f.method = "post";
-                f.action="DecommIntakeRequirements_db_update?appnames="+appname+"&projectname="+projname+'&BULUClassLength='+classlength+'&SLAClassLength='+site_classlength;
-                f.submit();
-            }
+           
 
         </script>
 
@@ -604,7 +591,92 @@
             });
 
 
-
+            function submit()
+            {
+            	var checkMandatory = true;
+            	console.log("length",$(".LegacyRetentionFields").length);
+            	$(".LegacyRetentionFields").each(function(j) {
+            		var req=$(this).find(".required_fie").length;  
+            		console.log("requied field check: ",req);
+            		//required field
+            		        if(req)
+            			   {
+            			   console.log("input console",$(this).find("input").length);
+            			   //input field
+            			   if($(this).find("input").length)
+            				   {
+            				     var val1 =$(this).find("input").val();
+            				     var type = $(this).find("input").attr("type");
+            				     //radio box
+            				     if(type == 'radio')
+          		        		{
+          		        			var nameRadio = $(this).find("input").attr("name");
+          		        			var radioValue = $("input[name='"+nameRadio+"']:checked").val();
+          		        			if(radioValue==""||radioValue==undefined)
+          		        				{
+          		        				checkMandatory = false;
+          		        				}
+          		        			
+          		        		}
+            				     //checkbox
+          		        	else if(type == 'checkbox'){
+          		        		var nameCheckbox = $(this).find("input").attr("name");
+        		        			var CheckboxValue = "";
+        		        			$.each($("input[name='"+nameCheckbox+"']:checked"), function(){
+        		        				CheckboxValue += $(this).val()+",";
+        		                    });
+        		        			CheckboxValue = CheckboxValue.substring(0,CheckboxValue.length-1);
+        		        			if(CheckboxValue=="")
+        		        				{
+        		        				checkMandatory = false;
+        		        				}
+          		        	}
+            				// other than radio or check
+          		        	else if (val1 == ""){
+         				    	 checkMandatory = false;
+         				     }
+            				   }
+            			   //select 
+            			   else if($(this).find("select").length)
+            				   {
+            				     var val2 =$(this).find("select").val();
+            				     if (val2 == ""){
+            				    	 checkMandatory = false;
+            				     }
+            				     console.log("value in select : ",val2);
+            				   }
+            			   }   		        
+            		});
+            	var arr_table_class =['BusinessUnit','OperationUnit','LocationUnit','Department','Country','City','State','OfficeDesignation'];
+            	for(var i=0;i<arr_table_class.length;i++)
+            	{
+            		$("."+arr_table_class[i]).each(function(e) {
+     				     var val1 =$(this).val();
+     				   if(val1 == "" || val1 == undefined || val1 == "undefined")
+     					checkMandatory = false;
+            		});
+            	  	
+            	}
+            	if(checkMandatory)
+                {
+                var url_string=window.location.href;
+                var url = new URL(url_string);
+                var appname = url.searchParams.get("appname");
+                var projname=url.searchParams.get("projectname");
+                var classlength=$('.BusinessUnit').length;
+                var site_classlength=$('.Country').length;
+                console.log("class length",classlength,projname);
+                console.log("Site class length",site_classlength,projname);
+                var f=document.Decomm_Intake_Requirements;
+                f.method = "post";
+                f.action="DecommIntakeRequirements_db_update?appnames="+appname+"&projectname="+projname+'&BULUClassLength='+classlength+'&SLAClassLength='+site_classlength;
+                f.submit();
+                }
+            	else
+                {
+            	  alert("Please fill the Mandatory fields.")	
+            	}
+            }
 
 
 

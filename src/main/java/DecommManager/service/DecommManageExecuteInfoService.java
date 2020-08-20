@@ -53,7 +53,7 @@ public class DecommManageExecuteInfoService {
         }
         return jsonArray;
     }
-    public static void DecommManagerAddOperationService(String projectname,String applicationname,String label_name,String column_name,String mandatory,String type,int NumberofInputfields,String options)
+    public static void DecommManagerAddOperationService(String projectname,String applicationname,String label_name,String mandatory,String type,int NumberofInputfields,String options)
     {
         try {
             DBconnection dBconnection = new DBconnection();
@@ -598,7 +598,7 @@ public class DecommManageExecuteInfoService {
         System.out.println("Decomm Execution Data Retrieve  Json Array---->"+jsonArray);
             return jsonArray;
     }
-    public static void DecommManageServiceCategoriesAddService(String projectname,String applicationname,String label_name,String column_name,String mandatory,String type,int NumberofInputfields,String options) {
+    public static void DecommManageServiceCategoriesAddService(String projectname,String applicationname,String label_name,String mandatory,String type,int NumberofInputfields,String options) {
         try {
             DBconnection dBconnection = new DBconnection();
             Connection connection = (Connection) dBconnection.getConnection();

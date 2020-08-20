@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class DecommIntakeServices {
-    public static void DecommIntakeAddOperation(String projectname,String applicationname,String label_name,String column_name,String mandatory,String type,int NumberofInputfields,String options)
+    public static void DecommIntakeAddOperation(String projectname,String applicationname,String label_name,String mandatory,String type,int NumberofInputfields,String options)
     {
         try {
             DBconnection dBconnection = new DBconnection();

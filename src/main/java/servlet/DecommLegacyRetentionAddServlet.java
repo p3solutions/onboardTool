@@ -25,7 +25,6 @@ public class DecommLegacyRetentionAddServlet extends HttpServlet {
             String applicationname = request.getParameter("ApplicationName");
             String projectname = request.getParameter("ProjectName");
             String label_name = request.getParameter("LabelName");
-            String column_name = request.getParameter("ColumnName");
             String mandatory = request.getParameter("Mandatory");
             String type = request.getParameter("Type");
             String option=request.getParameter("Options");
@@ -68,23 +67,16 @@ public class DecommLegacyRetentionAddServlet extends HttpServlet {
             String select_lab = "select * from decomm_legacy_add_table where prj_name='"+projectname+"' and app_name='"+applicationname+"' and label_name = '"+label_name+"' ";
             Statement st1=connection.createStatement();
             ResultSet rs1=st1.executeQuery(select_lab);
-            String select_col = "select * from decomm_legacy_add_table where prj_name='"+projectname+"' and app_name='"+applicationname+"' and column_name = '"+column_name+"' ";
-            Statement st2=connection.createStatement();
-            ResultSet rs2=st2.executeQuery(select_col);
             boolean labelcheck=false;
-            boolean columncheck=false;
             if(rs1.next()){
                 labelcheck = true;
             }
-            if(rs2.next()){
-                columncheck = true;
-            }
-            if(labelcheck&&columncheck){
+            if(labelcheck){
                 jsonobject.addProperty("CheckExistance", true);
             }
             else{
                 jsonobject.addProperty("CheckExistance", false);
-                DecommIntakeServices.DecommIntakeAddOperation(projectname, applicationname, label_name, column_name, mandatory, type, NumberofInputfields, option);
+                DecommIntakeServices.DecommIntakeAddOperation(projectname, applicationname, label_name, mandatory, type, NumberofInputfields, option);
             }
 
         }

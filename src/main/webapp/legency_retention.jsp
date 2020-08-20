@@ -398,14 +398,7 @@
             <input type="text" id="servlet_name" name="servlet_name" value="" style="display:none;">
 
 
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-lg-8">
-                        <label class="control-label" for="formInput526">Column name:</label>
-                        <input type="text" class="form-control" id="idname"  name="idname" required>
-                    </div>
-                </div>
-            </div><br/>
+            
             <div class="row">
                 <div class="form-group">
                     <div class="col-lg-8">
@@ -488,7 +481,7 @@
     </div>
 </form>
         <button type="button" id="submit" class="btn btn-primary" >Submit</button>
-        <button type="button" onclick="window.location.href=''" class="btn btn-default">Cancel</button>
+        <button type="button" id="AddClose" class="btn btn-default">Close</button>
 </div>
 </div>
     <div id="myModal1" class="modal">
@@ -695,13 +688,16 @@
     span.onclick = function() {
         modal.style.display = "none";
     }
-
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
     }
+    $("#AddClose").click(function()
+    {
+      $("#myModal").hide();	
+    })
 </script>
 <script>
         if(document.getElementById('Role_info').value=="R")
@@ -740,7 +736,7 @@
                     }
                     if(Type=="Text box")
                     {
-                        var inputtext="<div class='form-group'>\n" +
+                        var inputtext="<div class='form-group LegacyRetentionFields'>\n" +
                             "<label class='control-label' for='formInput198'><div "+manadatory+">"+LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>\n" +
                             "<input type='text' class='form-control' id='"+ColumnName+"' placeholder='' name='"+ColumnName+"' value='"+Value+"'/>\n" +
                             "</div>";
@@ -748,7 +744,7 @@
                     }
                     else if(Type=="Datepicker")
                     {
-                        var inputdate="<div class='form-group'>" +
+                        var inputdate="<div class='form-group LegacyRetentionFields'>" +
                             "<label class='control-label' for= 'formInput198'><div "+manadatory+">"+LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;'  onclick=''></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>\n" +
                             "<input type='text' Class='form-control datepicker1' id='"+ColumnName+"' placeholder='mm/dd/yyyy' name='"+ColumnName+"' value='"+Value+"'/>" +
                         "</div>";
@@ -757,7 +753,7 @@
                     }
                     else if(Type=="Dropdown")
                     {
-                        var inputdrop= "<div class='form-group'><label class='control-label' for= 'formInput198'><div "+manadatory+">"+LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;'  onclick=''></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>"+
+                        var inputdrop= "<div class='form-group LegacyRetentionFields'><label class='control-label' for= 'formInput198'><div "+manadatory+">"+LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;'  onclick=''></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>"+
                             "<select style = 'width:100%;' name='"+ColumnName+"'>";
                         var Options=value.options;
                         var sub_option = Options.substring(0, Options.length - 1);
@@ -771,7 +767,7 @@
                     }
                     else if(Type=="Check box")
                     {
-                        var inputcheck= "<div class='form-group'>"+
+                        var inputcheck= "<div class='form-group LegacyRetentionFields'>"+
                             "<label class='control-label' for= 'formInput198'><div "+manadatory+">"+LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>";
                         var Options=value.options;
                         var sub_option = Options.substring(0, Options.length - 1);
@@ -787,7 +783,7 @@
                     }
                     else if(Type=="Radio box")
                     {
-                        var inputdrop= "<div class='form-group'>"+
+                        var inputdrop= "<div class='form-group LegacyRetentionFields'>"+
                             "<label class='control-label' for= 'formInput198'><div "+manadatory+">"+LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;'  onclick=''></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;' '></span></div></label>";
                         var Options=value.options;
                         var sub_option = Options.substring(0, Options.length - 1);
@@ -802,7 +798,7 @@
                     }
                     else if(Type=="file")
                     {
-                        inputfile="<div class='form-group'>\n" +
+                        inputfile="<div class='form-group LegacyRetentionFields'>\n" +
                             "<label class='control-label' for='formInput198'><div class='required_fie'>"+LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'' ></span></div></label>\n" +
                             "<input type='file' name='"+ColumnName+"' accept='image/!*' id ='choosen_file_name'>\n" +
                             "</div>";
@@ -832,42 +828,23 @@
                 console.log(e);
             }
         });
+        $(document).on('click','#submit2',function(){
+            var deleteseq=parseInt($('#sequence1').val())+1;
+            var f=document.DeleteForm;
+            f.method = "post";
+            f.action = "DecommIntakeDeleteOperationServlet?ApplicationName="+appname+"&ProjectName="+projname+"&DeleteNumber="+deleteseq;
+            f.submit();
+        });
     });
     $('#submit1').click(function() {
+    	
         var labelmodify = $('#Label_modify').val();
-        /*var Type = $('#types_modify').val();
-        var number = 0;
-        var options=[];
-        if (Type == "Check box") {
-            number = $('#CheckboxNumberModify').val();
-            var length=$('.checkclass1').length;
-            for(var i=0;i<length;i++)
-            {
-                options[i]=$('#LabelModify'+(i+1)).val();
-            }
-
-        } else if (Type == "Radio box") {
-            number = $('#RadioNumberModify').val();
-            var length=$('.radioclass1').length;
-            for(var i=0;i<length;i++)
-            {
-                options[i]=$('#RlabelModify'+(i+1)).val();
-            }
-        } else if (Type == "Dropdown") {
-            number = $('#OptionsNumberModify').val();
-            var length=$('.dropclass1').length;
-            for(var i=0;i<length;i++)
-            {
-                options[i]=$('#drp_labelModify'+(i+1)).val();
-            }
-        }
-        var mandatory = $('#Mandatory_modify').val();*/
         var seqnum = parseInt($('#seq_num').val())+1;
-
         var f=document.ModifyPopupForm;
         f.method="post";
         f.action="DecommIntakeEditOperationServlet?ProjectName="+projname+"&ApplicationName="+appname+"&Seq_num="+seqnum+"&Label="+labelmodify;
         f.submit();
+      
         /*$.ajax({
             url: "DecommIntakeEditOperationServlet",
             type: 'POST',
@@ -981,6 +958,8 @@
             }
             /*var number=$('#number1').val();
             alert('number--->'+number);*/
+            if(labelname!="")
+            {
             $.ajax({
                 url: "DecommLegacyRetentionAddServlet",
                 type: 'POST',
@@ -996,11 +975,11 @@
                     }
                     if (data.CheckExistance == true)
                     {
-                        alert("Alredey Label or Column name Existed ");
+                        alert("Alredey Label name Existed ");
                     }
                     else if(data.Type=="Text box")
                     {
-                        var inputtext="<div class='form-group'>"+
+                        var inputtext="<div class='form-group LegacyRetentionFields'>"+
                         "<label class='control-label' for='formInput198'><div "+required_field+">"+data.LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>"+
                     "<input type='text' class='form-control' id='"+data.LabelName+"' placeholder='"+data.LabelName+"' name='"+data.ColumnName+num+"'/>"+
                     "</div>";
@@ -1008,7 +987,7 @@
                     }
                     else if(data.Type=="Datepicker")
                     {
-                     var inputdate="<div class='form-group'>"+
+                     var inputdate="<div class='form-group LegacyRetentionFields'>"+
                          "<label class='control-label' for= 'formInput198'><div "+required_field+">"+data.LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>"+
                          "<input type='text' class='form-control datepicker1' id='"+data.LabelName+"' placeholder='"+data.LabelName+"' name='"+data.ColumnName+num+"'/>"+
                         "</div>";
@@ -1022,7 +1001,7 @@
                     else if(data.Type=="Radio box")
                     {
                         var input="";
-                        input+= "<div class='form-group'>"+
+                        input+= "<div class='form-group LegacyRetentionFields'>"+
                                     "<label class='control-label' for= 'formInput198'><div "+required_field+">"+data.LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>";
                         var Options=data.Options;
                         var sub_option = Options.substring(0, Options.length - 1);
@@ -1039,7 +1018,7 @@
                     else if(data.Type=="Check box")
                     {
                         var input="";
-                        input+= "<div class='form-group'>"+
+                        input+= "<div class='form-group LegacyRetentionFields'>"+
                             "<label class='control-label' for= 'formInput198'><div "+required_field+">"+data.LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>";
                         var Options=data.Options;
                         var sub_option = Options.substring(0, Options.length - 1);
@@ -1055,7 +1034,7 @@
                     else if(data.Type=="Dropdown")
                     {
                         var select="";
-                        select+= "<div class='form-group'><label class='control-label' for= 'formInput198'><div "+required_field+">"+data.LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>"+
+                        select+= "<div class='form-group LegacyRetentionFields'><label class='control-label' for= 'formInput198'><div "+required_field+">"+data.LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>"+
                             "<select style = 'width:100%;' name = "+data.ColumnName+num+">";
                         var Options=data.Options;
                         var sub_option = Options.substring(0, Options.length - 1);
@@ -1071,6 +1050,11 @@
                     console.log(e);
                 }
             });
+            }
+            else
+           {
+             alert("Label Name should not be empty");	
+           }
            /* var f=document.PopUpform;
             f.method="post";
             f.action="DecommLegacyRetentionAddServlet?ProjectName"+projname+"&ApplicationName="+appname+"&LabelName="+labelname+"&ColumnName="+columnname+"&type="+type+"&mandatory="+mandatory;
@@ -1080,28 +1064,73 @@
     </script>
 <script>
     function Submit(){
-        //alert("Hello");
+    	var checkMandatory = true; 
+        $(".LegacyRetentionFields").each(function(j) {
+    		var req=$(this).find(".required_fie").length;  
+    		console.log("requied field check: ",req);
+    		//required field
+    		        if(req)
+    			   {
+    			   console.log("input console",$(this).find("input").length);
+    			   //input field
+    			   if($(this).find("input").length)
+    				   {
+    				     var val1 =$(this).find("input").val();
+    				     var type = $(this).find("input").attr("type");
+    				     //radio box
+    				     if(type == 'radio')
+  		        		{
+  		        			var nameRadio = $(this).find("input").attr("name");
+  		        			var radioValue = $("input[name='"+nameRadio+"']:checked").val();
+  		        			if(radioValue==""||radioValue==undefined)
+  		        				{
+  		        				checkMandatory = false;
+  		        				}
+  		        			
+  		        		}
+    				     //checkbox
+  		        	else if(type == 'checkbox'){
+  		        		var nameCheckbox = $(this).find("input").attr("name");
+		        			var CheckboxValue = "";
+		        			$.each($("input[name='"+nameCheckbox+"']:checked"), function(){
+		        				CheckboxValue += $(this).val()+",";
+		                    });
+		        			CheckboxValue = CheckboxValue.substring(0,CheckboxValue.length-1);
+		        			if(CheckboxValue=="")
+		        				{
+		        				checkMandatory = false;
+		        				}
+  		        	}
+    				// other than radio or check
+  		        	else if (val1 == ""){
+ 				    	 checkMandatory = false;
+ 				     }
+    				   }
+    			   //select 
+    			   else if($(this).find("select").length)
+    				   {
+    				     var val2 =$(this).find("select").val();
+    				     if (val2 == ""){
+    				    	 checkMandatory = false;
+    				     }
+    				     console.log("value in select : ",val2);
+    				   }
+    			   }   		        
+    		});
+        if(checkMandatory)
+       {
+        
         var classlength = $('.editpopup').length;
         var f = document.LegacyForm;
         f.method = "post";
         f.action = "LegacyRetentionDbUpdataServlet?appname="+appname+"&prjname="+projname+"&classlength="+classlength;
         f.submit();
+       }
+        else{
+        	alert("Please Fill the mandatory fields.");
+        }
     }
     </script>
-
-    <script>
-        $('#submit2').click(function(){
-            var deleteseq=parseInt($('#sequence1').val())+1;
-            var f=document.DeleteForm;
-            f.method = "post";
-            f.action = "DecommIntakeDeleteOperationServlet?ApplicationName="+appname+"&ProjectName="+projname+"&DeleteNumber="+deleteseq;
-            f.submit();
-        });
-    </script>
-
-
-
-
     <script src="js/prism/prism.js"></script>
     <script src="js/waypoint/waypoints.min.js"></script>
     <script src="js/counterUp/jquery.counterup.min.js"></script>

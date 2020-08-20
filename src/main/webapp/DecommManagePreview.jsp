@@ -417,8 +417,9 @@
                                             </div>
                                         </div>
                                         <div class="container">
-                                            <a href="Intake_Business.jsp"
-                                               class="btn btn-default btn pull-left">Edit</a>
+                                           <button class="btn btn-primary pull-left" onclick="EditFunctionality();"
+                                                    >Edit
+                                            </button>
 
                                             <button id="intake_module" class="btn btn-primary pull-right"><span
                                                     class="glyphicon glyphicon-download-alt"></span> Export Pdf
@@ -717,6 +718,11 @@
     var appname = url.searchParams.get("appname");
     var projname=url.searchParams.get("projectname");
     console.log("Application:",appname,"Project:",projname);
+    function EditFunctionality()
+    	    {
+    	    	window.location.href ='DecommManageExecutionInfo.jsp?appname='+appname+'&projectname='+projname;
+    	        return false;
+    	    }
     $(document).ready(function(){
         $.ajax({
             url: "DecommManagePreviewServlet",
@@ -1075,8 +1081,8 @@
                         var inputcheck= "<div class='form-group'>"+
                             "<label class='control-label deletepopup editpopup' for= 'formInput198'><div "+manadatory+">"+LabelName+"<span class='glyphicon glyphicon-pencil' style='float:right;display:none;'></span></div></label><br>";
                         var Options=value.options;
-                        var sub_option = Options.substring(0, Options.length - 1);
-                        var option=sub_option.split(",");
+                        //var sub_option = Options.substring(0, Options.length - 1);
+                        var option=Options.split(",");
                         console.log("Testing:",value.Value);
                         //var value_arr = Value.split(",");
                         var Mainframe_check = "style = 'display:none;'";
@@ -1203,7 +1209,7 @@
                                         Citrix_value_No = "checked";
                                 }
 
-                                if (element_others == "Final Backups") {
+                                if (element_others == "Final Backup") {
                                     if (element_value == "Yes")
                                         Final_Backups_value_Yes = "checked";
                                     else if (element_value == "No")
@@ -1258,7 +1264,7 @@
                         if (Value.includes("Application Security")){
                             Application_Security_check = "";
                         }
-                        if (Value.includes("Final Backups")){
+                        if (Value.includes("Final Backup")){
                             Final_Backups_check = "";
                         }
 

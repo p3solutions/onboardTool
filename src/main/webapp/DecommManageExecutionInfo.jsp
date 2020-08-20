@@ -410,16 +410,6 @@
 
                 <input type="text" id="appln_name" name="appln_name" value="" style="display:none;">
                 <input type="text" id="servlet_name" name="servlet_name" value="" style="display:none;">
-
-
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-lg-8">
-                            <label class="control-label" for="formInput526">Column name:</label>
-                            <input type="text" class="form-control" id="idname"  name="idname" required>
-                        </div>
-                    </div>
-                </div><br/>
                 <div class="row">
                     <div class="form-group">
                         <div class="col-lg-8">
@@ -736,7 +726,6 @@
 
     $('#submit').click(function() {
         var labelname = $('#label').val();
-        var columnname = $('#idname').val();
         var type = $('#types').val();
         var mandatory = $('#mandatory').val();
         var num = 1;
@@ -765,14 +754,17 @@
             }
 
         }
-        var f=document.PopUpform;
+        if(labelname!="")
+        {
+        /* var f=document.PopUpform;
         f.method="post";
-        f.action="DecommManagerAddServlet?ProjectName="+projname+"&ApplicationName="+appname+"&LabelName="+labelname+"&ColumnName="+columnname+"&Type="+type+"&Mandatory="+mandatory+"&Number="+num+"&Options="+options;
-        f.submit();
-        /*$.ajax({
+        f.action="DecommManagerAddServlet?ProjectName="+projname+"&ApplicationName="+appname+"&LabelName="+labelname+"&Type="+type+"&Mandatory="+mandatory+"&Number="+num+"&Options="+options;
+        f.submit(); */
+        
+        $.ajax({
             url: "DecommManagerAddServlet",
             type: 'POST',
-            data: {ApplicationName:appname,ProjectName: projname,LabelName:labelname,ColumnName:columnname,Type:type,Mandatory:mandatory,Number:num,Options:options},
+            data: {ApplicationName:appname,ProjectName: projname,LabelName:labelname,Type:type,Mandatory:mandatory,Number:num,Options:options},
             dataType: "json",
             success: function (data) {
                 var required = "";
@@ -784,7 +776,7 @@
                 }
                 if (data.CheckExistance == true)
                 {
-                    alert("Alredey Label or Column name Existed ");
+                    alert("Label Name aready Exist.");
                 }
                 else if(data.Type=="Text box")
                 {
@@ -858,7 +850,12 @@
             error: function (e) {
                 console.log(e);
             }
-        });*/
+        });
+        }
+        else
+        {
+        	alert("Label name should not be empty.");
+        }
         /* var f=document.PopUpform;
          f.method="post";
          f.action="DecommLegacyRetentionAddServlet?ProjectName"+projname+"&ApplicationName="+appname+"&LabelName="+labelname+"&ColumnName="+columnname+"&type="+type+"&mandatory="+mandatory;
@@ -1000,7 +997,7 @@
                     }
                     if(Type=="Text box")
                     {
-                        var inputtext="<div class='form-group'>\n" +
+                        var inputtext="<div class='form-group DecommExecutionInfo'>\n" +
                             "<label class='control-label' for='formInput198'><div "+manadatory+">"+LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>\n" +
                             "<input type='text' class='form-control' id='"+ColumnName+"' placeholder='' name='"+ColumnName+"' value='"+Value+"'/>\n" +
                             "</div>";
@@ -1008,7 +1005,7 @@
                     }
                     else if(Type=="Datepicker")
                     {
-                        var inputdate="<div class='form-group'>" +
+                        var inputdate="<div class='form-group DecommExecutionInfo'>" +
                             "<label class='control-label' for= 'formInput198'><div "+manadatory+">"+LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;'  onclick=''></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>\n" +
                             "<input type='text' Class='form-control datepicker1' id='"+ColumnName+"' placeholder='mm/dd/yyyy' name='"+ColumnName+"' value='"+Value+"'/>" +
                             "</div>";
@@ -1017,7 +1014,7 @@
                     }
                     else if(Type=="Dropdown")
                     {
-                        var inputdrop= "<div class='form-group'><label class='control-label' for= 'formInput198'><div "+manadatory+">"+LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;'  onclick=''></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>"+
+                        var inputdrop= "<div class='form-group DecommExecutionInfo'><label class='control-label' for= 'formInput198'><div "+manadatory+">"+LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;'  onclick=''></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>"+
                             "<select style = 'width:100%;' name='"+ColumnName+"'>";
                         var Options=value.options;
                         var sub_option = Options.substring(0, Options.length - 1);
@@ -1035,7 +1032,7 @@
                     }
                     else if(Type=="Check box")
                     {
-                        var inputcheck= "<div class='form-group'>"+
+                        var inputcheck= "<div class='form-group DecommExecutionInfo'>"+
                             "<label class='control-label' for= 'formInput198'><div "+manadatory+">"+LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>";
                         var Options=value.options;
                         var sub_option = Options.substring(0, Options.length - 1);
@@ -1056,7 +1053,7 @@
                     }
                     else if(Type=="Radio box")
                     {
-                        var inputdrop= "<div class='form-group'>"+
+                        var inputdrop= "<div class='form-group DecommExecutionInfo'>"+
                             "<label class='control-label' for= 'formInput198'><div "+manadatory+">"+LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;'  onclick=''></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;' '></span></div></label>";
                         var Options=value.options;
                         var sub_option = Options.substring(0, Options.length - 1);
@@ -1075,7 +1072,7 @@
                     }
                     else if(Type=="file")
                     {
-                        inputfile="<div class='form-group'>\n" +
+                        inputfile="<div class='form-group DecommExecutionInfo'>\n" +
                             "<label class='control-label' for='formInput198'><div class='required_fie'>"+LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'' ></span></div></label>\n" +
                             "<input type='file' name='"+ColumnName+"' accept='image/!*' id ='choosen_file_name'>\n" +
                             "</div>";
@@ -1084,7 +1081,7 @@
                     }
                     else if(Type=="Text area")
                     {
-                        var inputtext="<div class='form-group'>\n" +
+                        var inputtext="<div class='form-group DecommExecutionInfo'>\n" +
                             "<label class='control-label' for='formInput198'><div "+manadatory+">"+LabelName+"<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>\n" +
                             /*"<input type='text' class='form-control' id='"+ColumnName+"' placeholder='' name='"+ColumnName+"' value='"+Value+"'/>\n" +*/
                              "<textarea class='form-control' name='"+ColumnName+"' id='"+ColumnName+"'>"+Value+"</textarea>"+
@@ -1118,12 +1115,71 @@
         });
     });
     function Submit(){
-        //alert("Hello");
+    	var checkMandatory =  true;
+    	$(".DecommExecutionInfo").each(function(j) {
+    		var req=$(this).find(".required_fie").length;  
+    		console.log("requied field check: ",req);
+    		//required field
+    		        if(req)
+    			   {
+    			   console.log("input console",$(this).find("input").length);
+    			   //input field
+    			   if($(this).find("input").length)
+    				   {
+    				     var val1 =$(this).find("input").val();
+    				     var type = $(this).find("input").attr("type");
+    				     //radio box
+    				     if(type == 'radio')
+  		        		{
+  		        			var nameRadio = $(this).find("input").attr("name");
+  		        			var radioValue = $("input[name='"+nameRadio+"']:checked").val();
+  		        			if(radioValue==""||radioValue==undefined)
+  		        				{
+  		        				checkMandatory = false;
+  		        				}
+  		        			
+  		        		}
+    				     //checkbox
+  		        	else if(type == 'checkbox'){
+  		        		var nameCheckbox = $(this).find("input").attr("name");
+		        			var CheckboxValue = "";
+		        			$.each($("input[name='"+nameCheckbox+"']:checked"), function(){
+		        				CheckboxValue += $(this).val()+",";
+		                    });
+		        			CheckboxValue = CheckboxValue.substring(0,CheckboxValue.length-1);
+		        			if(CheckboxValue=="")
+		        				{
+		        				checkMandatory = false;
+		        				}
+  		        	}
+    				// other than radio or check
+  		        	else if (val1 == ""){
+ 				    	 checkMandatory = false;
+ 				     }
+    				   }
+    			   //select 
+    			   else if($(this).find("select").length)
+    				   {
+    				     var val2 =$(this).find("select").val();
+    				     if (val2 == ""){
+    				    	 checkMandatory = false;
+    				     }
+    				     console.log("value in select : ",val2);
+    				   }
+    			   }   		        
+    		});
+    	if(checkMandatory){
+    		
+    	
         var classlength = $('.editpopup').length;
         var f = document.DecommManageExecuteForm;
         f.method = "post";
         f.action = "DecommManageExecuteDbUpdateServlet?appname="+appname+"&prjname="+projname+"&classlength="+classlength;
         f.submit();
+    	}
+    	else{
+    		 alert("Please fill the Mandatory fields.")
+    	}
     }
 </script>
 

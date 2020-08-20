@@ -536,7 +536,7 @@ $(".add_question").hide();
 
     <!-- Modal content -->
     <div id="modal-content">
-        <span class="close">&times;</span>
+        <span class="close" id ='CloseId'>&times;</span>
         <form name="PopUpform">
             <div id="scrollbar">
                 <div class="row">
@@ -551,16 +551,6 @@ $(".add_question").hide();
 
                 <input type="text" id="appln_name" name="appln_name" value="" style="display:none;">
                 <input type="text" id="servlet_name" name="servlet_name" value="" style="display:none;">
-
-
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-lg-8">
-                            <label class="control-label" for="formInput526">Column name:</label>
-                            <input type="text" class="form-control" id="idname"  name="idname" required>
-                        </div>
-                    </div>
-                </div><br/>
                 <div class="row">
                     <div class="form-group">
                         <div class="col-lg-8">
@@ -643,7 +633,7 @@ $(".add_question").hide();
             </div>
         </form>
         <button type="button" id="submit" class="btn btn-primary" >Submit</button>
-        <button type="button" onclick="window.location.href=''" class="btn btn-default">Cancel</button>
+        <button type="button" id ="CancelBtn" class="btn btn-default">Close</button>
     </div>
 </div>
 <div id="myModaldelete" class="modal">
@@ -748,6 +738,12 @@ $(".add_question").hide();
             modal.style.display = "none";
         }
     }
+    
+    $("#CancelBtn").click(function()
+    {
+    	$("#CloseId").click();
+    });
+    
     $(document).ready(function(){
         $.ajax({
             url: "DecommManageServiceCategoriesDataRetrieveServlet",
@@ -989,8 +985,8 @@ $(".add_question").hide();
                         var inputcheck= "<div class='form-group'>"+
                             "<label class='control-label deletepopup editpopup' for= 'formInput198'><div "+manadatory+">"+LabelName+"<span class='glyphicon glyphicon-pencil' style='float:right;display:none;'></span></div></label><br>";
                         var Options=value.options;
-                        var sub_option = Options.substring(0, Options.length - 1);
-                        var option=sub_option.split(",");
+                        //var sub_option = Options.substring(0, Options.length - 1);
+                        var option=Options.split(",");
                         console.log("Testing:",value.Value);
                         //var value_arr = Value.split(",");
                         var Mainframe_check = "style = 'display:none;'";
@@ -1117,7 +1113,7 @@ $(".add_question").hide();
                                         Citrix_value_No = "checked";
                                 }
 
-                                if (element_others == "Final Backups") {
+                                if (element_others == "Final Backup") {
                                     if (element_value == "Yes")
                                         Final_Backups_value_Yes = "checked";
                                     else if (element_value == "No")
@@ -1172,7 +1168,7 @@ $(".add_question").hide();
                         if (Value.includes("Application Security")){
                             Application_Security_check = "";
                         }
-                        if (Value.includes("Final Backups")){
+                        if (Value.includes("Final Backup")){
                             Final_Backups_check = "";
                         }
 
@@ -1289,15 +1285,15 @@ $(".add_question").hide();
                                 "</td>\n" +
                                 "</tr>\n" +
                                 "</table>\n" +
-                                "<table class='Final_Backups hidetable' "+Final_Backups_check+">\n" +
+                                "<table class='Final_Backup hidetable' "+Final_Backups_check+">\n" +
                                 "<tr>\n" +
                                 "<td><b>FINAL BACKUPS</b></td>\n" +
                                 "</tr>\n" +
                                 "<tr>\n" +
                                 "<td><font color='blue';> Are Final Backups Required?     </font></td>\n" +
                                 "<td>\n" +
-                                "<input type='radio' name='FinalBackups' class='backup' value='Yes'"+Final_Backups_value_Yes+">yes\n" +
-                                "<input type='radio' name='FinalBackups' class='backup' value='No'"+Final_Backups_value_No+">No\n" +
+                                "<input type='radio' name='FinalBackup' class='backup' value='Yes'"+Final_Backups_value_Yes+">yes\n" +
+                                "<input type='radio' name='FinalBackup' class='backup' value='No'"+Final_Backups_value_No+">No\n" +
                                 "</td>\n" +
                                 "</tr>\n" +
                                 "</table>\n" +
@@ -1348,8 +1344,8 @@ $(".add_question").hide();
                     "$('.add_question_2').hide();" +
                     "}" +
                     "});<\/script>";
-                script+="<script>$('.selectpicker').multiselect();<\/script>";
-                /*script+="<script>var mainframe_dropdown = [{Name:'CICS Regions'},{Name:'DB2'},{Name:'Endevor Flows'},{Name:'HLQ\\'s (high level qualifiers) to be eliminated'},{Name:'IMS Regions'},{Name:'Mainframe  Storage'},{Name:'Mainframe Batch Processing'},{Name:'Mainframe Capacity'},{Name:'Tape Media'},{Name:'VSAM'}, ];\n"+
+                //script+="<script>$('.selectpicker').multiselect();<\/script>";
+                script+="<script>var mainframe_dropdown = [{Name:'CICS Regions'},{Name:'DB2'},{Name:'Endevor Flows'},{Name:'HLQ\\'s (high level qualifiers) to be eliminated'},{Name:'IMS Regions'},{Name:'Mainframe  Storage'},{Name:'Mainframe Batch Processing'},{Name:'Mainframe Capacity'},{Name:'Tape Media'},{Name:'VSAM'}, ];\n"+
                     "$('#mainframe').igCombo({\n" +
                     "width: 250," +
                     "dataSource: mainframe_dropdown," +
@@ -1368,7 +1364,7 @@ $(".add_question").hide();
                     "multiSelection: {" +
                     "enabled: true," +
                     "showCheckboxes: true" +
-                    "},dropDownOrientation: 'bottom'});*/
+                    "},dropDownOrientation: 'bottom'});<\/script>";
                 $('#scripttag').append(script);
                 },
             error: function (e) {
@@ -1379,7 +1375,7 @@ $(".add_question").hide();
     });
     $(document).ready(function(){
         for(var i=0;i<mainframe_val.length;i++) {
-            $('#mainframe').igCombo("values", mainframe_val[i]);
+            //$('#mainframe').igCombo("values", mainframe_val[i]);
         }
     $.ajax({
         url: "DecommManageServiceCategoriesDataRetrieveOthersServlet",
@@ -1430,7 +1426,6 @@ $(".add_question").hide();
 
     $('#submit').click(function() {
         var labelname = $('#label').val();
-        var columnname = $('#idname').val();
         var type = $('#types').val();
         var mandatory = $('#mandatory').val();
         var num = 1;
@@ -1460,10 +1455,12 @@ $(".add_question").hide();
 
         }
         options=options.substring(0,options.length-1);
+        if(labelname!="")
+        {
     $.ajax({
         url: "DecommManageServiceCategoriesAddServlet",
         type: 'POST',
-        data: {ApplicationName:appname,ProjectName: projname,LabelName:labelname,ColumnName:columnname,Type:type,Mandatory:mandatory,Number:num,Options:options},
+        data: {ApplicationName:appname,ProjectName: projname,LabelName:labelname,Type:type,Mandatory:mandatory,Number:num,Options:options},
         dataType: "json",
         success: function (data) {
             var required = "";
@@ -1475,7 +1472,7 @@ $(".add_question").hide();
             }
             if (data.CheckExistance == true)
             {
-                alert("Alredey Label or Column name Existed ");
+                alert("Label name already exist.");
             }
             else if(data.Type=="Text box")
             {
@@ -1550,6 +1547,12 @@ $(".add_question").hide();
             console.log(e);
         }
     });
+   }
+  else
+   {
+     alert("Label Name field Should not be empty.")     	
+   }
+        $("#CloseId").click();
     });
     $('#submit2').click(function(){
         var deleteseq=parseInt($('#sequence1').val())+1;

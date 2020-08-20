@@ -32,7 +32,7 @@ public class DecommManageServiceCategotiesDynamicTableServlet extends HttpServle
             tableupdate[2]=new DecommManageExecutionInfoTableUpdate(3,ProjectName,ApplicationName,"Storage - SAN,Storage - NAS,Storage - NAS Mounts","Storage","ServiceCategories3","Dropdown","No","");
             tableupdate[3]=new DecommManageExecutionInfoTableUpdate(4,ProjectName,ApplicationName,"AWS,Azure,Backups,Citrix,DataStage (ETL),Desktop Software","Products","ServiceCategories4","Dropdown","No","");
             tableupdate[4]=new DecommManageExecutionInfoTableUpdate(5,ProjectName,ApplicationName,"DNS Entries,ECG - Electronic Customer Gateway (File Transfer),F5 / Load Balancing,Firewall Rules,HA (High Availability),IIS,Job Control,SharePoint,SQL Analysis Services,SQL Reporting Services  (SRS),SQL Server Integration Services  (SSIS),SSL Certificates,Team Foundation Server (TFS),URLs,Vignette (Web Content Management),Web Analytics,WebSphere,WMB,WMQ","Services","ServiceCategories5","Dropdown","No","");
-            tableupdate[5]=new DecommManageExecutionInfoTableUpdate(6,ProjectName,ApplicationName,"Mainframe,Support Readiness,Desktop Software,Disaster Recovery,Citrix,Application Security,Final Backups","Others","ServiceCategories6","Others","No","");
+            tableupdate[5]=new DecommManageExecutionInfoTableUpdate(6,ProjectName,ApplicationName,"Mainframe,Support Readiness,Desktop Software,Disaster Recovery,Citrix,Application Security,Final Backup","Others","ServiceCategories6","Others","No","");
 
             String CheckQuery="select * from decomm_manage_service_categories_checklist where prj_name = '"+ProjectName+"' and app_name = '"+ApplicationName+"'";
             Statement st=connection.createStatement();
@@ -79,7 +79,7 @@ public class DecommManageServiceCategotiesDynamicTableServlet extends HttpServle
             tableupdate1[5]=new DecommManageExecutionInfoTableUpdate(ProjectName,ApplicationName,"Application Security","Does the application utilize Global Groups?","Radio box","",1,1);
             tableupdate1[6]=new DecommManageExecutionInfoTableUpdate(ProjectName,ApplicationName,"Application Security","Is the application in SECURE?","Radio box","",2,2);
             tableupdate1[7]=new DecommManageExecutionInfoTableUpdate(ProjectName,ApplicationName,"Application Security","Does the application have an Internally supported access mechanism or other not listed above ( e.g., your own directory)?","Radio box","",3,3);
-            tableupdate1[8]=new DecommManageExecutionInfoTableUpdate(ProjectName,ApplicationName,"Final Backups","Are Final Backups Required?","Radio box","",1,0);
+            tableupdate1[8]=new DecommManageExecutionInfoTableUpdate(ProjectName,ApplicationName,"Final Backup","Are Final Backups Required?","Radio box","",1,0);
 
 
             String CheckQuery="select * from decomm_manage_service_categories_checklist_others where prj_name = '"+ProjectName+"' and app_name = '"+ApplicationName+"'";

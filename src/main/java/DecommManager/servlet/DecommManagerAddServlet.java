@@ -26,7 +26,6 @@ public class DecommManagerAddServlet extends HttpServlet {
             DBconnection dBconnection = new DBconnection();
             Connection connection = (Connection) dBconnection.getConnection();
             String label_name = request.getParameter("LabelName");
-            String column_name = request.getParameter("ColumnName");
             String mandatory = request.getParameter("Mandatory");
             String type = request.getParameter("Type");
             String option=request.getParameter("Options");
@@ -69,24 +68,17 @@ public class DecommManagerAddServlet extends HttpServlet {
             String select_lab = "select * from decomm_manage_execution_info where prj_name='"+projectname+"' and app_name='"+applicationname+"' and label_name = '"+label_name+"' ";
             Statement st1=connection.createStatement();
             ResultSet rs1=st1.executeQuery(select_lab);
-            String select_col = "select * from decomm_manage_execution_info where prj_name='"+projectname+"' and app_name='"+applicationname+"' and column_name = '"+column_name+"' ";
-            Statement st2=connection.createStatement();
-            ResultSet rs2=st2.executeQuery(select_col);
             boolean labelcheck=false;
-            boolean columncheck=false;
             if(rs1.next()){
                 labelcheck = true;
             }
-            if(rs2.next()){
-                columncheck = true;
-            }
-            if(labelcheck&&columncheck){
+            if(labelcheck){
                 jsonobject.addProperty("CheckExistance", true);
             }
             else{
                 jsonobject.addProperty("CheckExistance", false);
                 //DecommIntakeServices.DecommIntakeAddOperation(projectname, applicationname, label_name, column_name, mandatory, type, NumberofInputfields, option);
-            DecommManageExecuteInfoService.DecommManagerAddOperationService(projectname, applicationname, label_name, column_name, mandatory, type, NumberofInputfields, option);
+            DecommManageExecuteInfoService.DecommManagerAddOperationService(projectname, applicationname, label_name, mandatory, type, NumberofInputfields, option);
             }
 
         }
@@ -95,10 +87,9 @@ public class DecommManagerAddServlet extends HttpServlet {
             System.out.println("Exception----------[info]-----"+e);
         }
         String json = new Gson().toJson(jsonobject);
-        /*response.setContentType("application/json");
+        response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(json);*/
-        response.sendRedirect("DecommManageExecutionInfo.jsp?appname="+applicationname+"&projectname="+projectname);
+        response.getWriter().write(json);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

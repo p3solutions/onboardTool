@@ -45,7 +45,7 @@ public class DecommManageSerivceCategoriesDBUpdateServlet extends HttpServlet {
                 if(type.equals("Others"))
                 {
                    checkbox_value=request.getParameterValues("ServiceCategories"+i);
-                   System.out.println("check box values : "+checkbox_value[1]);
+                   //System.out.println("check box values : "+checkbox_value[1]);
                    String checkbox_values="";
                     HashMap<String,String> others_table_name_attribute=new HashMap<String, String>();
                     others_table_name_attribute.put("Mainframe","Mainframe");
@@ -54,7 +54,7 @@ public class DecommManageSerivceCategoriesDBUpdateServlet extends HttpServlet {
                     others_table_name_attribute.put("Disaster Recovery","DisasterRecovery");
                     others_table_name_attribute.put("Citrix","Citrix");
                     others_table_name_attribute.put("Application Security","ApplicationSecurity");
-                    others_table_name_attribute.put("Final Backups","FinalBackups");
+                    others_table_name_attribute.put("Final Backup","FinalBackup");
                     for(int j=0;j<checkbox_value.length;j++)
                    {
                        String CheckBoxvalue=checkbox_value[j];
@@ -134,6 +134,7 @@ public class DecommManageSerivceCategoriesDBUpdateServlet extends HttpServlet {
 
         }
         catch(Exception e){
+        	e.printStackTrace();
             System.out.println("Exception....."+e);
         }
                 /*String retention_code = request.getParameter("retention_code");

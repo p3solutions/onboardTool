@@ -569,12 +569,12 @@ public class IntakeInformationService {
             JsonArray jsonArray_Site = new IntakeInformationService().DecommSiteLocationDataRetrieve(projectname,applicationname);
             JsonObject jsonObject_intake_req = new IntakeInformationService().DecommIntakeRequirementDataRetrieve(projectname,applicationname);
             JsonArray jsonArray_Contact_info_preview = new IntakeInformationService().DecommContactInfoPreviewPageDataRetrieve(projectname,applicationname);
-            //JsonObject jsonObject_legacy_retention =  new IntakeInformationService().DecommLegacyRetentionDataRetrieve(projectname,applicationname);
+            JsonArray jsonObject_legacy_retention =  new IntakeInformationService().DecommLegacyRetentionDataRetrieve(projectname,applicationname);
             jsonArray.add(jsonArray_Business);
             jsonArray.add(jsonArray_Site);
             jsonArray.add(jsonObject_intake_req);
             jsonArray.add(jsonArray_Contact_info_preview);
-            //jsonArray.add(jsonObject_legacy_retention);
+            jsonArray.add(jsonObject_legacy_retention);
 
         }
         catch(Exception e){
@@ -597,6 +597,10 @@ public static JsonArray DecommContactInfoPreviewPageDataRetrieve(String projectn
                 Statement statementforcheck = connection.createStatement();
                 ResultSet Resultset = statementforcheck.executeQuery(Query);
                 if (Resultset.next()){
+					/*
+					 * JsonObject json1 = new JsonObject();
+					 * json1.addProperty("CheckExistance",true); jsonArray.add(json1);
+					 */
                     jsonObject.addProperty("RoleName",arr[i]);
                     jsonObject.addProperty("CheckExistance",true);
                     jsonArray1.add(jsonObject);
