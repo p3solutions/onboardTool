@@ -1,0 +1,10 @@
+$('#DeleteAssess').click(function()
+    {
+        $(".hidepencilAssessment").hide();
+        $(".hidedeleteAssessment").toggle();
+    });
+    $('#EditAssess').click(function()
+    {
+        $(".hidedeleteAssessment").hide();
+        $(".hidepencilAssessment").toggle();
+    });

@@ -1,0 +1,67 @@
+.breadcrumb-div {
+    background-color: #e7e7e7;
+    color: #010101;
+}
+
+.selectBox {
+    position: static;
+}
+
+.overSelect {
+    position: static;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+
+#checkboxes {
+    width: auto;
+    height: auto;
+    overflow: scroll;
+    display: none;
+    border: 1px #dadada solid;
+}
+
+#checkboxes label {
+    display: block;
+}
+
+#checkboxes label:hover {
+    background-color: #eff5f5;
+}
+
+#checkboxes {
+    background-color: white;
+}
+
+#app {
+    width: auto;
+    height: auto;
+    overflow: scroll;
+    display: none;
+    border: 1px #dadada solid;
+}
+
+#app label {
+    display: block;
+}
+
+#app label:hover {
+    background-color: #eff5f5;
+}
+
+#app {
+    background-color: white;
+}
+
+
+.glyphicon.glyphicon-asterisk {
+    color: red;
+    font-size: 6px;
+}
+
+.bootstrap-dialog-message {
+    margin-left: 180px;
+}
