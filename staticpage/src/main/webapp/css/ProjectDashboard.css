@@ -1,0 +1,197 @@
+          body
+    {
+    background-color:#eaf3fd;
+      font-family: "Poppins", sans-serif;
+    margin: 0;
+    font-weight: 300;
+    }
+              .row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.cardo {
+    -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    background-color:white;
+}
+
+.card-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    
+}   
+
+.card-primary {
+    background: #17a2b8;
+    border-color: #17a2b8;
+    color:white;
+}
+
+.card-second {
+    background: #e83e8c;
+    border-color: #e83e8c;
+    color:white;
+}
+
+.card-orange {
+    background: #fd7e14;
+    border-color: #fd7e14;
+    color:white;
+}
+
+.card-title {
+    margin-bottom: .75rem;
+    color:white;
+}
+h4 {
+    line-height: 22px;
+    font-size: 18px;
+    color:white;
+}
+.card-primary{
+    background: #17a2b8;
+    border-color: #17a2b8;
+    color:white;
+}
+.card-orange {
+    background: #fd7e14;
+    border-color: #fd7e14;
+    color:white;
+}
+
+.portlet {
+  background: #ffffff;
+  border-radius: 3px;
+  margin-bottom: 30px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+  background-clip: padding-box;
+}
+
+.portlet .portlet-heading {
+  border-radius: 3px 3px 0 0;
+  color: black;
+  padding: 12px 20px;
+}
+
+.portlet .portlet-heading .portlet-title {
+  color: black;
+  float: left;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.portlet .portlet-heading .portlet-widgets {
+  display: inline-block;
+  float: right;
+  font-size: 15px;
+  line-height: 30px;
+  padding-left: 15px;
+  position: relative;
+  text-align: right;
+}
+
+.portlet .portlet-heading .portlet-widgets .divider {
+  margin: 0 5px;
+}
+
+.portlet .portlet-heading .portlet-widgets .collapsed .ion-minus-round:before {
+  content: "\f217" !important;
+}
+
+.portlet .portlet-heading a {
+  color: #999999;
+}
+
+.portlet .portlet-body {
+  -moz-border-radius-bottomleft: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  background: #ffffff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 15px;
+}
+
+.portlet-default .portlet-title {
+  color: #797979 !important;
+}
+
+.portlet .portlet-heading.bg-custom a, .portlet .portlet-heading.bg-purple a, .portlet .portlet-heading.bg-info a, .portlet .portlet-heading.bg-success a, .portlet .portlet-heading.bg-primary a, .portlet .portlet-heading.bg-danger a, .portlet .portlet-heading.bg-warning a, .portlet .portlet-heading.bg-inverse a, .portlet .portlet-heading.bg-pink a {
+  color: #ffffff;
+}
+
+.panel-disabled {
+  background: rgba(243, 242, 241, 0.5);
+  bottom: 15px;
+  left: 0;
+  position: absolute;
+  right: -5px;
+  top: 0;
+}
+
+.loader-1 {
+  -moz-animation: loaderAnimate 1000ms linear infinite;
+  -o-animation: loaderAnimate 1000ms linear infinite;
+  -webkit-animation: loaderAnimate 1000ms linear infinite;
+  animation: loaderAnimate 1000ms linear infinite;
+  clip: rect(0, 30px, 30px, 15px);
+  height: 30px;
+  left: 50%;
+  margin-left: -15px;
+  margin-top: -15px;
+  position: absolute;
+  top: 50%;
+  width: 30px;
+}
+
+.loader-1:after {
+  -moz-animation: loaderAnimate2 1000ms ease-in-out infinite;
+  -o-animation: loaderAnimate2 1000ms ease-in-out infinite;
+  -webkit-animation: loaderAnimate2 1000ms ease-in-out infinite;
+  animation: loaderAnimate2 1000ms ease-in-out infinite;
+  border-radius: 50%;
+  clip: rect(0, 30px, 30px, 15px);
+  content: '';
+  height: 30px;
+  position: absolute;
+  width: 30px;
+}
+
+#page-wrapper {
+    margin: 0 0 0 260px;
+    padding: 15px 30px;
+    min-height: 1200px;
+}
+.text-dark {
+    color: #797979 !important;
+}
+.m-b-30 {
+    margin-bottom: 30px !important;
+}
+.m-t-0 {
+    margin-top: 0 !important;
+}
+.header-title {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 16px;
+    margin-bottom: 8px;
+    padding: 15px 30px;
+}
+h4 {
+    color: #36404a;
+    margin: 10px 0;
+}
+.ui-values{
+	
+	color:white;
+}

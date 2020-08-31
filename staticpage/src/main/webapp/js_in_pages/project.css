@@ -1,0 +1,122 @@
+
+   body
+    {
+     margin:0; padding:0; 
+   
+    font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
+    }
+    .navbar-brand {
+    
+    padding: 0 15px !important;
+  border: 0px;
+  border-radius: 1px;
+   font-size: 1.15em;
+  font-weight: 400;
+      height: 60px;
+    }
+    .
+    
+   .navbar-brand {
+  color: black;
+}
+
+.navbar-brand:hover {
+  color: #ffffff;
+  text-shadow: 1px -1px 8px #b3e9ff;
+}
+    
+    
+    #sitetitle{
+    
+    font-size: 22px;
+    margin:auto;
+}
+
+.navbar-fixed-top {
+    background: #9e9e9e4d;
+    height: auto;
+}
+
+#navbar ul li { padding: 0 10px; }
+
+.navbar-nav.navbar-right:last-child {
+    margin-right: 0px !important; 
+}
+
+.bg-primary {
+    background: linear-gradient(to top, #1f99fd, #1186e8);
+    border-color: #3498db;
+    color: #fff !important;
+}
+
+   #sidemenu
+   {
+   
+   background:#3276B1 ;
+   position: fixed;
+top: 45px;
+left: -1%;
+padding-left:0px;
+width:300px !important;
+bottom: 0px;
+overflow: auto;
+color:white;
+text-size:30%;
+} 
+ 
+
+
+#sidemenu a:hover {
+    background-color: #ddd;
+    color: black;
+    }
+
+  
+  .sidebar{
+  
+  position:relative;
+  left:5px;
+  width:22%;
+  
+  background:#F7F7F7 ;
+  }
+  
+  
+  #panels1
+  {
+ 
+    width: 110%;
+    
+    display: inline-block;
+    background: white;
+    right:10%;
+    border: 1px solid #E6E9ED;
+   
+    opacity: 1;
+    transition: all .2s ease;
+}
+  
+  
+  
+  .form-control{
+  
+  height:40px;
+  }
+  
+  
+ #descr{
+  height:40px;
+  }
+  
+  #projectname{
+    height:40px;
+  
+  }
+  #pid{
+  height:40px;
+  }
+  
+  
+	@media (min-width: 450px) {
+	.hid { display:none; }
+	}

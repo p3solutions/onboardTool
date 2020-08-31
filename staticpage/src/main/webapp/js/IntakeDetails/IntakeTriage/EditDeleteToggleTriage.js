@@ -1,0 +1,10 @@
+$('#DeleteTriage').click(function()
+    {
+        $(".hidepen").hide();
+        $(".hidedel").toggle();
+    });
+    $('#EditTriage').click(function()
+    {
+        $(".hidedel").hide();
+        $(".hidepen").toggle();
+    });

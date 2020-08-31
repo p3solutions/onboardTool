@@ -1,0 +1,45 @@
+/* Progress bar container */
+element.style {
+    height: 20px;
+}
+.progressbar
+{
+	border : 1px solid .d3d3d3;
+	width : 255px;
+	height : 20px;
+	position : relative;
+	color : #294b76;;
+	border-radius: 1px;
+}
+
+/* Color bar */
+.progressbar div.progress
+{
+	position : absolute;
+	height : 100%;
+	overflow : hidden;
+	background : lightblue;
+	border-radius: 15px;
+}
+
+/* Text on bar */
+.progressbar div.progress .text
+{
+	position : absolute;
+	text-align : center;
+	color : black;
+	margin-top : 2px;
+	width : 100%;
+	height : 100%;
+}
+
+/* Text off bar */
+.progressbar div.text
+{
+	position : absolute;
+	text-align : center;
+	color:black;
+	margin-top : 2px;
+	width : 100%;
+	height : 100%;
+}

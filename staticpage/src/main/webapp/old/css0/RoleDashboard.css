@@ -1,0 +1,143 @@
+
+    body
+    {
+     margin:0; padding:0; 
+   
+    font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
+    }
+    .dark-row{
+    background:#AEC5E8;
+    
+}
+.light-row{
+    
+    background:#F1F3F0;
+}
+
+.movie-table-head{
+    
+    background: ;
+}
+    .navbar-brand {
+    
+    padding: 10px;
+  border: 0px;
+  border-radius: 1px;
+   font-size: 1.15em;
+  font-weight: 400;
+    }
+    .
+    
+   .navbar-brand {
+  color: black;
+}
+
+.navbar-brand:hover {
+  color: #ffffff;
+  text-shadow: 1px -1px 8px #b3e9ff;
+}
+    
+    
+    #sitetitle{
+    
+    font-size: 22px;
+    margin:auto;
+}
+
+.container{
+position:absolute;
+}
+    
+    
+
+   #sidemenu
+   {
+   
+   background:#3276B1 ;
+   position: fixed;
+top: 45px;
+left: -1%;
+padding-left:0px;
+width:300px !important;
+bottom: 0px;
+overflow: auto;
+color:white;
+text-size:30%;
+} 
+ 
+
+
+
+body { text-align:center }
+.ui-widget { position:relative; display:inline-block; width:160px; height:160px; margin:30px; border:15px solid #00aeef; border-radius:150px; text-align:center; font-family: Arial, sans-serif; box-shadow:inset 0 1px 0 rgba(255,255,255,.8), inset 0 3px 5px rgba(0,0,0,.25); box-sizing:border-box; border-bottom-color:#fff }
+.ui-widget .ui-value { position:absolute; left:0; right:0; top:15px; font-size:40px; }
+.ui-widget .ui-label { position:absolute; left:0; bottom:-10px; width:100%; font-size:14px; text-transform:uppercase; color:#888; font-weight:700 }
+.container{padding:20px;}
+#slct1{color:black}
+#username{color:black}
+.pagetitle{font-size: 22px;
+    font-weight: 500;
+    display: block;
+    float:left ;
+    vertical-align: baseline;
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    }
+
+  .panel panel-primary{
+  
+  position:fixed;
+  }
+  .sidebar{
+  
+  position:relative;
+  left:5px;
+  width:22%;
+  
+  background:#F7F7F7 ;
+  }
+  
+  
+  #panels1
+  {
+ 
+    width: 110%;
+    
+    display: inline-block;
+    background: white;
+    right:10%;
+    border: 1px solid #E6E9ED;
+   
+    opacity: 1;
+    transition: all .2s ease;
+}
+  
+  
+  
+  .form-control{
+  
+  height:40px;
+  }
+  
+  
+ #descr{
+  height:40px;
+  }
+  
+  #projectname{
+    height:40px;
+  
+  }
+  #pid{
+  height:40px;
+  }
+ 
+}
+#jqxTree{
+background:green;
+}
+  
