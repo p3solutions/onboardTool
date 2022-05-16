@@ -614,10 +614,14 @@ e.printStackTrace();
 											</form>
 											</div>
 											</div>
+										<button type="button" id="add_btn" class="btn btn-primary"
+															href="#" data-bs-toggle="modal" data-bs-target="#Legacy_ScrPopUp"
+															style="margin: 5px">View Uploaded Files</button>
 											    </div>
 										 		</div>
                                             </div>
                                        </div>
+                                       
                                        <div class="col-md-12">
                                         	<br/>
                                         <div class="col-md-4"> 
@@ -879,6 +883,53 @@ e.printStackTrace();
   </div>
 </div>
 
+<div class="modal" id="Legacy_ScrPopUp" tabindex="-1" 
+											aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header" style="background-color:#1565c0;">
+														<h5 class="modal-title" id="exampleModalLabel" style="color:white;">Legacy Application Screenshots</h5>
+														<button type="button" class="btn-close"
+															data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
+													<div class="modal-body" data-bs-target="">
+														<table class="table table-bordered table-striped"
+																id="legacy_datatable">
+																
+																<thead>
+
+																<tr>	
+																	<th style="text-align:center;">File Name</th>
+																	<th style="text-align:center;">Action</th>
+																</tr>
+																</thead>
+															
+																<tbody id ="Legacy_Scr_List">
+      												    											
+      												</tbody></table>
+      												<div class="modal-footer">
+														
+														<button type="button" class="btn btn-secondary"
+															data-bs-dismiss="modal">Close</button>
+														
+													</div>
+							          			</div>
+							          		</div>
+							          	</div>
+							          	<form action="legacy_scr_download.jsp" method="post">
+      												<input type="hidden" id="File_Name" name="File_Name">
+      												<input type="submit" id="scr_submit" style="display:none;">
+      												
+											    </form>
+											 		<input type="submit" id="deletegrid_update" style="display:none;">												
+																											
+													</div>
+													
+												</div>
+											</div>
+										</div>
+									
+
 <!-- Environment Server Delete PopUp -->  
   <div class="modal" id="EnvmntServerDeletePopUp" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -982,6 +1033,7 @@ $(document).on('mouseenter','.active1', function(){
 <script type="text/javascript" src="js/Requirements/ArchiveRequirements/LegacyApplicationInfo/archiveReqLegacyEditDeleteAjaxCall.js"></script>
 <script type="text/javascript" src="js/Requirements/ArchiveRequirements/LegacyApplicationInfo/archiveLegacyAppInfoSaveAjaxCall.js"></script>
 
+
 <!-- Archive Environment Info  -->
 
 <script type="text/javascript" src="js/Requirements/ArchiveRequirements/LegacyAppInfo/ArchiveEnvironmentInfo/archiveEnvironmentInfoSaveAjaxCall.js"></script>
@@ -989,7 +1041,9 @@ $(document).on('mouseenter','.active1', function(){
 <!-- Legacy Application Screenshot -->
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <script type="text/javascript" src="js/Requirements/ArchiveRequirements/LegacyAppInfo/legacyAppScreenshot/legacyApplicationScreenshotsUploadAjaxCall.js"></script>
-
+<script type="text/javascript" src="js/Requirements/ArchiveRequirements/LegacyAppInfo/legacyAppScreenshot/legacy_scr_retrieve.js"></script>
+<script type="text/javascript" src="js/Requirements/ArchiveRequirements/LegacyAppInfo/legacyAppScreenshot/legacy_scr_download.js"></script>
+<script type="text/javascript" src="js/Requirements/ArchiveRequirements/LegacyAppInfo/legacyAppScreenshot/legacy_scr_delete.js"></script>
 <script type="text/javascript" src="js/Requirements/ArchiveRequirements/LegacyAppInfo/legacyAppScreenshot/legacyAppInfoFileUpload.js"></script>
 <script src="js/navigation/navigation.js"></script>
 <!-- ========== Toastr ========== -->

@@ -31,6 +31,8 @@
 <script src ="js/pdf/downloadPDF_AjaxCall.js"></script>
 <script src ="js/pdf/deletePDF_AjaxCall.js"></script>
 <script src ="js/IntakeDetails/IntakePreviewDetails/IntakePreviewDataRetrieve.js"></script>
+<script src="js/IntakeDetails/IntakeAssessment/Common/Intake_Scr_Retrieve_Review.js"></script>
+<script src="js/IntakeDetails/IntakeAssessment/Common/Intake_Scr_Download.js"></script>
 <!-- ========== BootstrapV5 ========== -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -445,6 +447,9 @@ font-size:12px;
 	  
 	  
 	}
+	.intake_scr_deletepopup{
+	display:none;
+	}
 </style>
 </style>
 </head>
@@ -631,11 +636,10 @@ e.printStackTrace();
                                          <div class="card-container card">
                                             <div  class="card-header" id="cd-header">
                                                 Intake Summary
-                                                <button id="exportPdf" class="btn btn-primary align-right" style="margin-top: -4px;" ><span
+                                                 <button id="exportPdf" class="btn btn-primary align-right" style="margin-top: -4px;" ><span
                                                     class="glyphicon glyphicon-download-alt"></span> Export Pdf
                                                  </button>
-                                            </div>
-                                            <div class="panel-collapse"
+                                            </div>                                    <div class="panel-collapse"
                                                 name="collapse">
                                                 <div class="panel-body">
                                                       
@@ -671,7 +675,23 @@ e.printStackTrace();
                                                         <div id="AssessInfoPreview"> <h2 class="panel-title">Assessment Information</h2> <br>
                                                         <h3 class="panel-title">Application Information</h3><br>
                                                          <div id="ApplicationInformationPreview">  </div>
-                                                         <h3 class="panel-title">Data Characteristics</h3><br>
+                                                         <h4 class="panel-title">Application Information Screenshots</h4><br>
+                                                         	<table class="table table-bordered table-striped"
+																id="datatable">
+																<thead>
+
+																	
+																	<th style="text-align:center;">File Name</th>
+																	<th style="text-align:center;">Action</th>
+																
+																</thead>
+																<tbody id ="Legacy_Scr_List">
+      												    											
+      												</tbody></table>
+							          			</div>
+							          		</div>
+							          	</div>
+							          	                                                         <h3 class="panel-title">Data Characteristics</h3><br>
                                                           <div id="DataCharacteristicsPreview">  </div>
                                                           <h3 class="panel-title">Compliance Characteristics</h3><br>
                                                            <div id="ComplianceCharacteristicsPreview">  </div>
@@ -767,6 +787,11 @@ e.printStackTrace();
  
 </div>
 </div>
+<form action="Intakescrdownload.jsp" method="post">
+      												<input type="hidden" name="File_Name" id="File_Name">
+      												<input type="submit" id="scr_submit" style="display:none;">
+											    </form>
+
     <!-- Date picker --> 
     
        <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"  

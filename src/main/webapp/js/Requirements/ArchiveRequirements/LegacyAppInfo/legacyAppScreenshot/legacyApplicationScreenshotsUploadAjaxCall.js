@@ -13,8 +13,11 @@ $.each($('#fileUpload')[0].files, function(k, value)
       async:false,
       type: 'POST',
       success: function(data){
-    	  if(data.checkFilesUpload)
+    	  if(data.checkFilesUpload){
+    		  $('#deletegrid_update').click();    
+    		  $('#FileList').hide();
     		  notification("success","File uploaded successfully.","Note:");
+    		    }
     	  else
     		  notification("error","Problem occured while file uploading.","Error:");
       }

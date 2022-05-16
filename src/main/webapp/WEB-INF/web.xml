@@ -57,6 +57,41 @@
   	<servlet-name>update_license_servlet</servlet-name>
   	<servlet-class>license.servlet.update_license_servlet</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>Legacy_App_Scr_Retrieve_Servlet</display-name>
+  	<servlet-name>Legacy_App_Scr_Retrieve_Servlet</servlet-name>
+  	<servlet-class>NewArchiveRequirements.LegacyApplicationInfo.legacyAppScreenshot.servlet.Legacy_App_Scr_Retrieve_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>Legacy_App_Scr_Download_Servlet</display-name>
+  	<servlet-name>Legacy_App_Scr_Download_Servlet</servlet-name>
+  	<servlet-class>NewArchiveRequirements.LegacyApplicationInfo.legacyAppScreenshot.servlet.Legacy_App_Scr_Download_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>IntakeAssessmentScrRetrieveServlet</display-name>
+  	<servlet-name>IntakeAssessmentScrRetrieveServlet</servlet-name>
+  	<servlet-class>IntakeDetails.IntakeAssessment.servlet.IntakeAssessmentScrRetrieveServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>Legacy_App_Scr_DeleteServlet</display-name>
+  	<servlet-name>Legacy_App_Scr_DeleteServlet</servlet-name>
+  	<servlet-class>NewArchiveRequirements.LegacyApplicationInfo.legacyAppScreenshot.servlet.Legacy_App_Scr_DeleteServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>IntakeAssessmentScrDeleteServlet</display-name>
+  	<servlet-name>IntakeAssessmentScrDeleteServlet</servlet-name>
+  	<servlet-class>IntakeDetails.IntakeAssessment.servlet.IntakeAssessmentScrDeleteServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Login</servlet-name>
   	<url-pattern>/Login</url-pattern>
@@ -89,6 +124,26 @@
   	<servlet-name>update_license_servlet</servlet-name>
   	<url-pattern>/update_license_servlet</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Legacy_App_Scr_Retrieve_Servlet</servlet-name>
+  	<url-pattern>/Legacy_App_Scr_Retrieve_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Legacy_App_Scr_Download_Servlet</servlet-name>
+  	<url-pattern>/Legacy_App_Scr_Download_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>IntakeAssessmentScrRetrieveServlet</servlet-name>
+  	<url-pattern>/IntakeAssessmentScrRetrieveServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Legacy_App_Scr_DeleteServlet</servlet-name>
+  	<url-pattern>/Legacy_App_Scr_DeleteServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>IntakeAssessmentScrDeleteServlet</servlet-name>
+  	<url-pattern>/IntakeAssessmentScrDeleteServlet</url-pattern>
+  </servlet-mapping>
   
   <welcome-file-list>
     <welcome-file>Home.jsp</welcome-file>
@@ -104,7 +159,7 @@
     <param-name>log4j-config-location</param-name>
     <param-value>WEB-INF/log4j.properties</param-value>
   </context-param>
-  <!-- <security-constraint>
+    <!-- <security-constraint>
     <web-resource-collection>
         <web-resource-name>onboardTool</web-resource-name>
         <url-pattern>/*</url-pattern>

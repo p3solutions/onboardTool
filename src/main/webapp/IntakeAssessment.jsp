@@ -304,9 +304,15 @@ e.printStackTrace();
 							          			data-bs-parent="#accordionPanelsStayOpenExample">
 							          			<div class="accordion-body">
 							          		 		<div id="inputFieldsAppInfo"></div> 
+							          		 		<button type="button"
+																		class="btn btn-primary" id="editpopup_btn"
+																		data-bs-toggle="modal" data-bs-target="#EditPopUp"
+																		style="display: block;">View Uploaded Files</button>
+							          		 		
 							          			</div>
 							          		</div>
 							          	</div>
+							          											    
 							          <!-- ========== Data Characteristics ========== -->
 							          <div class="accordion-item">
 							          		<h2 class="accordion-header" id="panelsStayOpen-headingTwo">
@@ -1005,7 +1011,52 @@ e.printStackTrace();
                 </div>
 		</div>
 		</div>
-		</div>                                     
+		</div>
+		<div class="modal" id="EditPopUp" tabindex="-1"
+											aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header" style="background-color:#1565c0;">
+														<h5 class="modal-title" id="exampleModalLabel" style="color:white;">Application Information Screenshots</h5>
+														<button type="button" class="btn-close"
+															data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
+													<div class="modal-body" data-bs-target="">
+														<table class="table table-bordered table-striped"
+																id="datatable">
+																
+																<thead>
+
+																<tr>	
+																	<th style="text-align:center;">File Name</th>
+																	<th style="text-align:center;">Action</th>
+																</tr>
+																</thead>
+															
+																<tbody id ="Legacy_Scr_List">
+      												    											
+      												</tbody></table>
+      												<div class="modal-footer">
+														
+														<button type="button" class="btn btn-secondary"
+															data-bs-dismiss="modal">Close</button>
+														
+													</div>
+							          			</div>
+							          		</div>
+							          	</div>
+							          	<form action="Intakescrdownload.jsp" method="post">
+      												<input type="hidden" id="File_Name" name="File_Name">
+      												<input type="submit" id="scr_submit" style="display:none;">
+											    </form>
+											 		<input type="submit" id="deletegrid_update" style="display:none;">												
+																											
+													</div>
+													
+												</div>
+											</div>
+										</div>
+	                                     
 <!-------Oppurtunity Add popup---------->
     <div class="modal" id="AddPopUp" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -1849,6 +1900,7 @@ e.printStackTrace();
      <script src="js/IntakeDetails/IntakeAssessment/Common/EditDeleteToggle.js"></script>
      <script src="js/IntakeDetails/IntakeAssessment/Common/AssessEditDeleteAjaxCall.js"></script>
      <script src="js/IntakeDetails/IntakeAssessment/Common/IntakeAssessmentSave.js"></script>
+     
      <script src="js/documentUpload/documentUploadAjaxCall.js"></script>
 
      
@@ -1906,6 +1958,9 @@ e.printStackTrace();
 <script src="js/pace/pace.min.js"></script>
 <script src="js/lobipanel/lobipanel.min.js"></script>
 <script src="js/iscroll/iscroll.js"></script>
+<script src="js/IntakeDetails/IntakeAssessment/Common/Intake_Scr_Retrieve.js"></script>
+<script src="js/IntakeDetails/IntakeAssessment/Common/Intake_Scr_Download.js"></script>
+<script src="js/IntakeDetails/IntakeAssessment/Common/Intake_Scr_Delete.js"></script>
 
 <!-- ========== PAGE JS FILES ========== -->
 <script src="js/prism/prism.js"></script>

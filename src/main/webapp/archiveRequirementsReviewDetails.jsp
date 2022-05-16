@@ -34,6 +34,7 @@
 <script src ="js/pdf/downloadPDF_AjaxCall.js"></script>
 <script src ="js/pdf/deletePDF_AjaxCall.js"></script>
 <script src ="js/IntakeDetails/IntakePreviewDetails/IntakePreviewDataRetrieve.js"></script>
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
 <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <script src="js/jquery/jquery-2.2.4.min.js"></script>
@@ -716,8 +717,22 @@ e.printStackTrace();
                                                         	<tbody id="ArchiveEnvServerInfoPreview">  </tbody>
                                                         	</table> 
                                                         <h3 class="panel-title">2.3 Legacy Application Screenshots</h3> <br>
-                                                        <div id="legacyAppInfoReview"></div>
-                                                        </td> </tr>
+                                                  <div class="content table-responsive" id="leg_scr">
+															<table class='table-bordered'
+																id="datatable">
+																<thead>
+
+																	
+																	
+																	<th style="text-align:center;">File Name</th>
+																	<th style="text-align:center;">Action</th>
+																
+																</thead>
+																<tbody id ="Legacy_Scr_List">
+      												    											
+      												</tbody></table></div>
+      												
+																					   
                                                         <tr align='left'><td style='color:#404041;font-size:12px;line-height:16px;padding:10px 16px 20px 18px'>
                                                        <h3 class="panel-title">3 Retention Details</h3> <br></form>
                                                         <div id="RetentionDetailsInfoPreview">  </div> 
@@ -970,8 +985,8 @@ e.printStackTrace();
 
  <script src="js/toastr/toastr.min.js"></script>
      <script src="js/notification/notification.js"></script>
-     <script src="js/Requirements/ArchiveRequirements/archiveRequirementReview/archiveReqReviewDataRetrieveAjaxCall.js"></script>
 
+	
     </body>
     <!-- ========== COMMON JS FILES ========== -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
@@ -1016,6 +1031,11 @@ $(document).on('mouseenter','.active1', function(){
 	 });
 	
 </script>
+<form action="legacy_scr_download.jsp" method="post">
+      												<input type="hidden" name="File_Name" id="File_Name">
+      												<input type="submit" id="scr_submit" style="display:none;">
+											    </form>
+											   <input type="submit" id="delete_icon_none" style="display:none;">
 <script>
 var myVar;
 function myFunction() {
@@ -1029,5 +1049,8 @@ document.getElementById("overlay").style.display = "none";
 <script src="js/navigation/navigation.js"></script>
 <!-- ========== Toastr ========== -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+     <script type="text/javascript" src="js/Requirements/ArchiveRequirements/LegacyAppInfo/legacyAppScreenshot/legacy_scr_retrieve_review.js"></script>
+	<script type="text/javascript" src="js/Requirements/ArchiveRequirements/LegacyAppInfo/legacyAppScreenshot/legacy_scr_download.js"></script>
+     <script src="js/Requirements/ArchiveRequirements/archiveRequirementReview/archiveReqReviewDataRetrieveAjaxCall.js"></script>
 <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 </html>
