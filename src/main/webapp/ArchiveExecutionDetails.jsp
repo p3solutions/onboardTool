@@ -892,6 +892,10 @@ background:#1565c0 important;
                 <div class="row">
                     <div class="form-group">
                         <div class="col-lg-8">
+                        <label class="control-label" for="ArchiveExecution">Select Child or Sub Child</label>
+                             <input class="form-check-input" type="radio" class = "radioOption" name="ArchcExecRadio" id="inlineRadio1" value="Child">&nbsp;Child Row
+                             <input class="form-check-input" type="radio" class = "radioOption" name="ArchcExecRadio" id="inlineRadio2" value="SubChild">&nbsp;Sub Child Row 
+                   
                             <label class="control-label" for="ArchiveExecution">Task Group Label:</label>
                             <input type="text" class="form-control" id="ArchiveChildGrpLabel"  name="ArchiveChildGrpLabel" required>
                         </div>

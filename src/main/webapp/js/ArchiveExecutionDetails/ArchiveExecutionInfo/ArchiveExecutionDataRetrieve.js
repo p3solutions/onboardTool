@@ -2,6 +2,8 @@
 var taskTypeArr = [];
 $(document).ready(function()
 {
+	var levl=$('.archiveLevel').val();
+        
     users=[];
     taskTypeArr = [];
     $('.collapse.in').prev('.card-header').addClass('active');
@@ -143,6 +145,8 @@ function appendRowFunction(data){
         var AssignedToOptions = userAppendFunction(data[0].user,assingedTo);
         var taskTypeOptions = Options(taskTypeArr,taskType);
         var status1=arcstatuscolor(completion);
+        var displayflag=levlflag(level);
+               
         if (level == 1){        
             collapse = "collapse"+seqNo;
         var row = "<tr class='ArchiveList' role='button' data-toggle='collapse' data-parent='#accordion' href='."+collapse+"' aria-expanded='false' aria-controls='"+collapse+"'>"+
@@ -202,6 +206,7 @@ function appendRowFunction(data){
                   $("#ArchiveExecutionList").append(row);
         }
         else {
+	 
             var row = "<tr class='ArchiveList panel-collapse collapse out "+collapse+"' role='tabpanel' aria-labelledby='headingOne'>"+
             "<td style='text-align:center;vertical-align: middle;'><label class='control-label taskId' for='ArchiveExection'>"+taskId+"</label>" +
             "<input type = 'hidden' class = 'archiveLevel' value = '"+level+"'/>"+      
@@ -247,16 +252,20 @@ function appendRowFunction(data){
               "<td style='text-align:center;vertical-align: middle;'><i class='fas fa-comment-alt fa-2x remarksIcon' style='color:#87CEEB;' role='button'></i><input type='hidden' class ='remark changeText' value='"+remark+"'></td>"+
           "<td><div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>"+
           "<ul class='dropdown-menu'>"+
-          "<li><a  class='fa fa-plus AddRow' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Add</a></li>"+
+          "<li><a  class='fa fa-plus AddRow' style='font-size: 19px; color: black; "+displayflag+"'>&nbsp;&nbsp;&nbsp;Add</a></li>"+
+            
           "<li><a  class='fa fa-edit EditRow' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>"+
           "<li><a  class='fa fa-trash DeleteRow' style='font-size: 18px; color: black'>&nbsp;&nbsp;&nbsp;Delete</a></li>"+
           "</ul>"+
           "</div>"+
           "</td>"+
               "</tr>";
+             
               $("#ArchiveExecutionList").append(row);
         }
+        
         }
+        
         else {
            /* users =[];*/
             taskTypeArr = ['','Activity','Deliverable'];
@@ -310,3 +319,19 @@ function arcstatuscolor(completion){
               colorClass = "statusGreen";
            return colorClass;
       }
+      
+function levlflag(level){
+	var lvl=level;
+	var displayflag="";
+	if(lvl==3)
+        {
+		var displayflag="display:none;";
+		console.log("METHOD INVOKES in 3rd Level");
+		}
+		else
+		{
+			var displayflag="display:block;";	
+			console.log("METHOD INVOKES in 1st & 2nd Level");
+		}
+	return displayflag;
+}

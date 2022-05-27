@@ -387,15 +387,32 @@ function updateGovArchiveExec(seqNo,columnName,value){
 function updateParentDate(seqNum, columnName, value){
 	
 	var currentIndex = parseInt(seqNum-1);
-
+	var curlevel=$('.archiveLevel').eq(currentIndex).val();
 	var parentClassName = columnNameToClassName(columnName)
-	for(var i = currentIndex; i >= 0; i--){
+	if(curlevel=="3"){
+		var subchildflag=false;
+		for(var i = currentIndex; i >= 0; i--){ 
+		var level = $('.archiveLevel').eq(i).val();
+			if(level == "2" && subchildflag==false){
+				$('.'+parentClassName).eq(i).val(value); 
+				subchildflag=true;
+			}
+			else if(level == "1"){
+				$('.'+parentClassName).eq(i).val(value); 
+				break;
+			}
+	}
+								
+	}
+	else{
+	for(var i = currentIndex; i >= 0; i--){ 
 		var level = $('.archiveLevel').eq(i).val();
 			if(level == "1"){
 				$('.'+parentClassName).eq(i).val(value); 
 				break;
 			}
 	}
+}
 }
 
 function getPreviousValue(valuePrev, columnName, fieldName, index){

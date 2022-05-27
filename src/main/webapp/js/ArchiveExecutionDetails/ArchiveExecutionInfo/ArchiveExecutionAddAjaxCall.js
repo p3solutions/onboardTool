@@ -27,6 +27,7 @@ $(document).on('click','.AddRow',function(){
 			$('#ArchExecChildId').click();
 			
 		}
+		
 	});
 
 $(document).on('click','#ArchiveParentSubmit', function(){
@@ -77,7 +78,7 @@ $(document).on('click','#ArchiveParentSubmit', function(){
 $(document).on('click','#ArchiveChildSubmit', function(){
 	
 	$('.submitDisable').attr('disabled',true);
-	var rowType = 'Child';
+	var rowType = $('input[name="ArchcExecRadio"]:checked').val();
 	var taskGroup = $('#ArchiveChildGrpLabel').val();
 	var taskName = $('#ArchiveChildNameLabel').val();
 	var planSrtDate = $('#planSrtDate1').val();
@@ -98,6 +99,8 @@ $(document).on('click','#ArchiveChildSubmit', function(){
 });
 
 });
+
+
 
 $(document).on('change', 'input[name="ArchExecRadio"]', function(){
 	
@@ -122,6 +125,7 @@ function addFunction(seq, taskName, taskGroup, rowType, planSrtDate){
         	console.log("Add Details : ",data);
         	$('#ArchiveExecutionList').html('');
         	$('#closeIdChild').click();
+        	$('#closeIdSubChild').click();
         	$('#closeIdParent').click();
         	$('#spinner').show();
         	appendRowFunction(data);
@@ -183,6 +187,31 @@ function checkForPlanStartDate(currentIndex)
 }
 
 function checkForChildPlanStartDate(currentIndex)
+{
+ var PlnSrtDateFlag = false;
+  var previousLevel = $(".archiveLevel").eq(currentIndex).val();
+  if(previousLevel=="1")
+  {
+	  PlnSrtDateFlag=false;
+  }
+  else
+	  {
+	   var PlnSrtDateFlag1 = checkFieldValues(currentIndex);
+	   var nextNodeLevel=$(".archiveLevel").eq(currentIndex+1).val();
+	   PlnSrtDateFlag=PlnSrtDateFlag1;
+	   if(currentIndex+1<$(".archiveLevel").length&&nextNodeLevel=="2")
+		   {
+	         var PlnSrtDateFlag2 = checkFieldValues(currentIndex+1);
+	         if(PlnSrtDateFlag1&&PlnSrtDateFlag2)
+	        	 PlnSrtDateFlag=true;
+	         else
+	        	 PlnSrtDateFlag=false;
+		   }
+	  }
+
+return PlnSrtDateFlag;
+}
+function checkForSubChildPlanStartDate(currentIndex)
 {
   var PlnSrtDateFlag = false;
   var previousLevel = $(".archiveLevel").eq(currentIndex).val();
