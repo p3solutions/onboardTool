@@ -852,7 +852,7 @@ background:#1565c0 important;
                     </div>
                 </div>
                 <br/>
-                <div class="row"> 
+                <div class="row" style = "display:none;"> 
                                 <div class="col-md-8"> <label class="control-label hidePlanSrt" style = "display:none;" for="ArchiveExecution">Plan Start Date</label> 
                                 <input type="text" class="form-control datepicker2 hidePlanSrt" style = "display:none;" size="35" id="planSrtDate" placeholder="mm/dd/yyyy" name="planSrtDateName" /> 
                             </div></div>
@@ -908,8 +908,8 @@ background:#1565c0 important;
                         </div>
                     </div>
                 </div><br/>
-                 <div class="row"> 
-                                <div class="col-md-8"> <label class="control-label hidePlanSrt1"  for="ArchiveExecution">Plan Start Date</label> 
+                 <div class="row" style="display:none;"> 
+                                <div class="col-md-8"> <label class="control-label hidePlanSrt1"  for="ArchiveExecution" >Plan Start Date</label> 
                                 <input type="text" class="form-control datepicker2 hidePlanSrt1"  size="35" id="planSrtDate1" placeholder="mm/dd/yyyy" name="planSrtDateName1" /> 
                             </div> </div><br/>
                  <input type="hidden" id="checkChildPlanStartDate" value=""/>           

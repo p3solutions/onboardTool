@@ -49,7 +49,7 @@ $(document).on('click','#ArchiveParentSubmit', function(){
 	else if(rowType == 'Child'){
 		if(planSrtDateFlag=='false')
 			checkRow = true;
-		else if(taskName!=''&&taskName!=undefined&&taskName!=null && planSrtDate!=''&&planSrtDate!=undefined&&planSrtDate!=null)
+		else if(taskName!=''&&taskName!=undefined&&taskName!=null && planSrtDate!=''&&planSrtDate!=undefined&&planSrtDate!=null || planSrtDate==''||planSrtDate==undefined||planSrtDate==null )
 			checkRow = true;
 		else
 			checkRow = false;
@@ -85,7 +85,7 @@ $(document).on('click','#ArchiveChildSubmit', function(){
 	var planSrtDateFlag = $("#checkChildPlanStartDate").val();
 	if(planSrtDateFlag=="false")
 		planSrtDate="";
-	if(taskName!=''&&taskName!=undefined&&taskName!=null && ((planSrtDate!=''&&planSrtDate!=undefined&&planSrtDate!=null&&planSrtDateFlag=='true')||planSrtDateFlag=='false'))
+	if(taskName!=''&&taskName!=undefined&&taskName!=null && ((planSrtDate!=''&&planSrtDate!=undefined&&planSrtDate!=null&&planSrtDateFlag=='true')||planSrtDateFlag=='false'|| planSrtDate==''||planSrtDate==undefined||planSrtDate==null))
 		addFunction(seq, taskName, taskGroup, rowType, planSrtDate);
 	
 	else if(taskName ==''||taskName==undefined||taskName==null)
