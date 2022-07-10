@@ -608,7 +608,7 @@ display:none;
 									style="font-size: 13.6px; height: 123px !important;">
 									<a class="dashboard-stat col-md-12 col-sm-12 col-lg-12"
 										style="background: linear-gradient(to left, rgba(134, 221, 212, 0.2) 70%, #439f95 30%);"
-										href="OpportunityList.jsp">
+										href="OpportunityList.jsp?category=Apps">
 										<div class="col-sm-4 col-md-4 col-lg-4"
 											style="height: 100%; margin-left: -17px;">
 											<p class="totcounter"

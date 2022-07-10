@@ -586,6 +586,7 @@ full width */
 								<option class='options' value='ArchiveExecution'>Archive
 									Execution</option>
 								<option class='options' value='Closure'>Closure</option>
+								<option class='options app' value='Apps' style='display:none;'>Apps</option>
 							</select>
 						</div>
 					</div>
