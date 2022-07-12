@@ -129,8 +129,14 @@ $(document).on('click', '#saveApplicationList', function(e) {
 		console.log("JsonArray Retrieve--->", JsonArray);
 		applicationListSaveAjaxcall(JsonArray);
 		notification("success", "Updated successfully.", "Note:");
-		/*window.setTimeout(function() { location.reload() }, 1000);*/
+		$('#applicationList').empty();
+		$("#phase-list" + number).empty();
+		$("#wave-list" + number).empty();
+		number = 0;
+		getDataWithPhaseAndWave();
+		
 	} else {
+		
 		notification("warning", "No data available", "Warning");
 	}
 	e.preventDefault();
