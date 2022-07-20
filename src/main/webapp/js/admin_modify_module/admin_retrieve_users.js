@@ -4,7 +4,12 @@ $(document).ready(function()
         url: "Retrieve_users_servlet",
         type: 'POST',
         dataType: "json",
-        success: function (data) {
+        beforeSend : function(){
+         $('#overlay').show();
+  },
+        success: function(data) {
+		$('#overlay').hide();
+        
             console.log("Users List Retrieve",data);
             if (!$.isArray(data)) {
                 data = [data];
@@ -36,11 +41,12 @@ function appendRowFunction(data){
                  "</td>"+
                   "<td style='text-align:center;vertical-align: middle;display:none;'><label class='control-label ' for=''>"+random_id+"</label>" +
                  "</td>"+
-                  "<td class='useraction' style='text-align:center;vertical-align: middle;display:none;'><span class='glyphicon glyphicon-pencil editpopup'id='editpopup"+random_id+"'style='display:block;'></span><span class='glyphicon glyphicon-trash deletepopup' style='float:right;display:block;margin-top:-13px;'></span>"+
+                  "<td class='useraction' style='text-align:center;vertical-align: middle;display:none;'><span class='glyphicon glyphicon-pencil editpopup'id='editpopup"+random_id+"'style='display:block;margin-left:-22px;'></span><span class='glyphicon glyphicon-trash deletepopup' style='float:right;display:block;margin-top:-13px;'></span>"+
                   "</td>"+
                   "</tr>";
                  
                   $("#Userslist").append(row);
                  usertablehide();
+                 getPagination('#admin_userslist');
     });
 }

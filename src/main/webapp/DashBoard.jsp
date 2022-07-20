@@ -897,7 +897,7 @@ display:none;
 	</div>
 	<!-- end of main wrapper -->
 	
-	<%@include file="Footer.jspf"%>
+	
 
 	<!-- ========== COMMON JS FILES ========== -->
 	<script src="js/jquery/jquery-2.2.4.min.js"></script>

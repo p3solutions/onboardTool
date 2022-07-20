@@ -9,7 +9,7 @@ $('#change_PWD').click(function(){
 			notification("warning","New Password and Confirm New Password Does not Match","Note");
 			 setTimeout(function() {
 				location.reload();
-				}, 1000);
+				},2000);
 		}
 		
 		if($("#new_pwd").val().length<8 && $('#conf_new_pwd').val().length<8)
@@ -30,14 +30,14 @@ $('#change_PWD').click(function(){
 			notification("error", "Current Password is Incorrect", "Error");
            setTimeout(function() {
 				location.reload();
-				}, 1000);
+				}, 2000);
       	  } 
       	  if(data.Prev_Pwd=="True")
            {
 			notification("success", "Password is Updated Successfully", "Note");
            setTimeout(function() {
-				location.reload();
-				}, 1000);
+				location.href = "logout.jsp";
+				}, 2000);
       	  } 
       	  }
         });

@@ -2506,7 +2506,7 @@ e.printStackTrace();
 		<!-- content-wrapper -->
 
 	</div>
-	<%@include file="Footer.jspf"%>
+	
 	<!-- main-wrapper -->
 
 	<!-- <script src ="js/IntakeDetails/StakeHolder/StakeHolderDataRetrieve.js"></script> -->

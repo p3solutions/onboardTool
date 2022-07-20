@@ -21,6 +21,6 @@ $('#update_submit').click(function(){
             }
         });
         notification("success","User Details Updated Successfully.","User Update");
-  window.setTimeout(function(){location.reload()},220)
+  window.setTimeout(function(){location.reload()},1500)
  });	
       

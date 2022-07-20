@@ -10,5 +10,5 @@ $('#delete_submit').click(function(){
                 
             }
         });
-        notification("warning","User is Deleted Successfully","Delete User");
-        window.setTimeout(function(){location.reload()},220)});
+        notification("error","User is Deleted Successfully","Delete User");
+        window.setTimeout(function(){location.reload()},1500)});

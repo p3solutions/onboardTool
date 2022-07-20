@@ -1253,7 +1253,6 @@ e.printStackTrace();
 
 </div> <!-- main-wrapper -->
 
-<%@include file="Footer.jspf"%>
 
 <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"  
          rel = "stylesheet"><!-- newly added code by parthiban -->

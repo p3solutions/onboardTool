@@ -17,7 +17,7 @@ function usertablehide()
     		if(data.User_Role=="DECOM_SUPER_ADMIN")
     		{
 			 $(".useraction").show();
-			 $("#add_btn").show();
+			 $("#add_user_btn").show();
 			 $("#update_license_btn").show();
 			 $(".useractionheader").show();
 			 

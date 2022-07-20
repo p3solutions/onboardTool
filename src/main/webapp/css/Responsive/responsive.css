@@ -741,6 +741,49 @@ body {
     }
 }
 
+/* <!-- ========== Users.jsp ========== --> */
+
+@media only screen and (min-width:992px) and (max-width: 1399px) {
+   .phase-btn1{
+		
+        margin-left:-33px;
+
+    }
+}
+
+@media only screen and (min-width:1400px) and (max-width: 1499px) {
+    .phase-btn1{
+		
+        margin-left:-25px;
+
+    }
+}
+
+@media only screen and (min-width:1500px) and (max-width: 1600px) {
+    .phase-btn1{
+		
+        margin-left:-18px;
+
+    }
+}
+
+@media only screen and (min-width:1601px) and (max-width: 1800px) {
+     .phase-btn1{
+		
+        margin-left:-10px;
+
+    }
+}
+
+@media only screen and (min-width:1801px) and (max-width: 2000px) {
+     .phase-btn1{
+		
+        margin-left:-3px;
+
+    }
+}
+
+
 /* <!-- ========== OpportunityGrid.jsp ========== --> */
 @media only screen and (min-width:992px) and (max-width: 1399px) {
 	.flow-container {

@@ -823,7 +823,7 @@ e.printStackTrace();
  
 </div>
 </div>
-<%@include file="Footer.jspf"%>
+
 <form action="Intake_scr_Download" method="post">
       												<input type="hidden" name="File_Name" id="File_Name">
       												<input type="submit" id="scr_submit" style="display:none;">

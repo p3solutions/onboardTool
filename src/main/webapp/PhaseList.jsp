@@ -1010,7 +1010,6 @@ pointer-events:all;
 </div> 
 </div>
 
-<%@include file="Footer.jspf"%>
 <!-- ========== COMMON JS FILES ========== -->
 <script src="js/jquery/jquery-2.2.4.min.js"></script>
 <script src="js/jquery-ui/jquery-ui.min.js"></script>

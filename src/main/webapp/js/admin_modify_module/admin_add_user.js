@@ -23,7 +23,7 @@ $('#add_usersubmit').click(function(){
            
         });
        notification("success","User is Added Successfully.","Note");
-       window.setTimeout(function(){location.reload()},220) });
+       window.setTimeout(function(){location.reload()},1500) });
        
        
         $(document).on('click', '.editpopup', function () {

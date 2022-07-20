@@ -650,7 +650,7 @@ background:#1565c0 important;
 		<div class="container-fluid">
 			<div class="col-sm-12" id="d3s-mt-20">
 				<ul class="nav navbar-nav">
-					<li class=" nav-link-2 active-2"><a class="link"
+					<li class="nav-link-2 active-2"><a class="link"
 						href="ArchiveExecutionDetails.jsp"
 						style="color: #fff; padding: 7px 10px; height: 35px;">Project
 							Plan</a></li>
