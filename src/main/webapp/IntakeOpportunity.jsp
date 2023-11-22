@@ -257,11 +257,7 @@ body {
 																	id="Json_sample_id" placeholder='' name="Json_Sample"
 																	value="" />
 															</div>
-															<div class="row">
-																<div class="col-4">
-																	<button type="button" class="btn btn-secondary"
-																		onclick="location.href='OpportunityList.jsp';">Back</button>
-																</div>
+															
 																<div class="col-8" align="end">
 																	<button type="button" class="btn btn-secondary"
 																		id="template" data-bs-toggle="modal"
@@ -289,7 +285,7 @@ body {
 																		</ul>
 																	</div>
 																	<button type="submit" class="btn btn-primary"
-																		id="create">Save</button>
+																		id="create">Complete</button>
 																	<!-- <a href="javascript:;" class="form-wizard-next-btn float-right btn-info btn btn-info" onclick="location.href='IntakeTriage.jsp';">Next</a> -->
 																	<!-- <button
 																		class="form-wizard-next-btn float-right btn-info btn btn-info"

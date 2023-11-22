@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 
-<title>D3Sixty - Archive Requirements</title>
+<title>D3Sixty - Finance Requirements</title>
 <!-- ========== PAGE STYLES ========== -->
 <link rel="stylesheet" href="css/prism/prism.css" media="screen">
 <!-- USED FOR DEMO HELP - YOU CAN REMOVE IT -->
@@ -41,11 +41,8 @@
 
 <!-- LegacyApplicationInfo -->
 <script type="text/javascript"
-	src="js/Requirements/ArchiveRequirements/LegacyApplicationInfo/archiveLegacyDataRetrieveAjaxCall.js"></script>
+	src="js/Finance/FinanceDataRetrieve.js"></script>
 
-<!-- Archive Environment Info  -->
-<script type="text/javascript"
-	src="js/Requirements/ArchiveRequirements/LegacyAppInfo/ArchiveEnvironmentInfo/archiveEnvironmentInfoDataRetrieve.js"></script>
 
 
 <script src="js/jquery/jquery-2.2.4.min.js"></script>
@@ -256,100 +253,6 @@ table.table td .add {
 
 <body class="top-navbar-fixed">
 
-	<%@ page import="java.text.SimpleDateFormat"%>
-	<%@ page import="java.util.Date"%>
-	<%
-SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-Date date = new Date();
-System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Grid JSP PAGE-----[INFO]"); %>
-	<%@page language="java"%>
-	<%@page import="java.sql.*"%>
-	<%@page import="java.text.DateFormat"%>
-	<%@page import="java.text.SimpleDateFormat"%>
-	<%@page import="java.util.Date"%>
-	<%@page import="onboard.DBconnection"%>
-	<%@page import="java.util.Calendar"%>
-	<%@page import="org.owasp.encoder.Encode"%>
-	<%
-response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
-response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-response.setHeader("Expires", "0"); // Proxies.
-DBconnection dBconnection = new DBconnection();
-
-
-
-if (session.getAttribute("username")==null)
-{
-response.sendRedirect("Login.jsp");
-
-
-
-}
-else{
-String name=(String)session.getAttribute("ID");
-HttpSession details=request.getSession();
-Connection con = null;
-session.setAttribute("theName", name);
-String roles=(String)details.getAttribute("role");
-String OpportunityName = (String)details.getAttribute("SelectedOpportunity");
-String s=OpportunityName;
-System.out.println("Welcome"+OpportunityName);
-
-int sumcount=0;
-Statement st,st2;
-try{
-
-con=dBconnection.getConnection();
-Statement st1;
-
-%>
-	<form class="form-signin" name="loginForm" method="post">
-
-		<div class="main-wrapper">
-
-			<!-- <nav class="navbar top-navbar bg-white box-shadow">
-        <div class="container-fluid">
-            <div class="row">
- 				<div class="navbar-header no-padding" style = "height : 100px;">
-                    <a class="navbar-brand" href="OpportunityList.jsp" id="sitetitle">
-                        <img src="images/D3Sixty_logo.png" alt="D3Sixty" class="logo" style = "margin-top : 50px;">
-                    </a>
-                </div>
-                /.navbar-header
-                <div class="tabs-content">
-                  <ul class="nav navbar-nav headerTab navAlign">
-		              <li class="active1"><a href="OpportunityList.jsp" style= "color:#fff;"><i class="fad fa-folders fa-2x iconAlign activeIcon"></i>Applications</a></li>
-		              <li><a href="Admin_Module_Send_Invites.jsp"><i class="fad fa-user-cog iconAlign iconColor fa-2x"></i>Administration</a></li>
-		              <li><a href="PhaseList.jsp"><i class="fad fa-desktop iconAlign iconColor fa-2x"></i>Governance</a></li>
-		              <li><a href="#"><i class="fad fa-wallet iconAlign iconColor fa-2x"></i>Finance</a></li>
-		              <li ><a href="DashBoard.jsp"><i class="fad fa-chart-pie iconAlign iconColor fa-2x"></i>Dashboards</a></li>
-		              <li><a href="#"><i class="fad fa-comment-lines iconAlign iconColor fa-2x"></i>Compliance</a></li>
-		          </ul>
-		         <ul class="nav navbar-nav navbar-right" style = "margin-top:45px;">
-                      <li><a href="#"><span id="nav_userid">admin &nbsp;</span>logged in as &nbsp;<span id='nav_role'> admin </span></a></li>
-                        <li><a href="Logout" class="text-center"> Logout</a> </li>
-                    </ul>
-                </div>
-      </div>
-      <nav class="navbar navbar-down">
-				  <div class="container-fluid fixed-top">
-                    <div class="row page-title-div">
-                             <div class="col-sm-6">
-                        
-                            
-                         <p class="sub-title" style="color:#fff"> <a  href="OpportunityList.jsp" id="sitetitle1" style="color:#fff"><span class="glyphicon glyphicon-home"></span> Home</a> >> 
-                         <a  href="ArchiveRequirementsIntroDetails.jsp" id="sitetitle1" style="color:#fff">
-                           Introduction</a> >> Legacy Application Information</a></p>
-                     
-                    
-
-                    </div>
-
-                </div>
-			</nav>
-      
-        </div>
-        /.container-fluid
     </nav> -->
 			<%@include file="Nav-Bar.jspf"%>
 			<nav class="nav nav-height-70 nav-font" id="bg-color"
@@ -360,13 +263,9 @@ Statement st1;
 							<div class="sub-title" style="color: #fff">
 								<a href="OpportunityList.jsp" id="sitetitle1"
 									style="color: #fff"><span class="glyphicon glyphicon-home"></span>
-									Home</a> >> <a href="OpportunityGrid.jsp" id="sitetitle1"
-									style="color: #fff"><%=Encode.forHtml(OpportunityName)%></a> >>
-								<a href="ArchiveDecommPage.jsp" id="sitetitle1"
-									style="color: #fff">Requirements</a> >> <a
-									href="ArchiveRequirementsIntroDetails.jsp" id="sitetitle1"
-									style="color: #fff">Introduction</a> >> <a id="sitetitle1"
-									style="color: #fff">Legacy Application Info</a>
+									Home</a> >> <a href="Finance.jsp" id="sitetitle1" style="color: #fff">Finance</a>
+									>>
+									<a href="FinanceInput.jsp" id="sitetitle1" style="color: #fff">Finance Input</a>
 							</div>
 						</div>
 					</div>
@@ -374,89 +273,17 @@ Statement st1;
 			</nav>
 
 
-			<%
-}
-catch(Exception e){
-e.printStackTrace();
-}
+			
 
-
-
-} %>
-
-			<div class="content-wrapper">
-				<div class="col-md-12">
-					<div style="margin-bottom: -138px;" class="form-wizard">
-						<div class="form-wizard-header">
-
-							<ul class="list-unstyled form-wizard-steps clearfix nav-font"
-								style="margin-left: 23px;">
-								<!-- <p class="nav-font" style="margin-bottom: -52px;">Fill all the required fields to go next step</p> -->
-								<li class="activated"
-									onclick="location.href='ArchiveRequirementsIntroDetails.jsp;'"><span>1</span><i>Introduction</i></li>
-								<li class="active"
-									onclick="location.href='archiveRequirementsLegacyDetails.jsp;'"><span>2</span><i>Legacy
-										Application Info</i></li>
-								<li
-									onclick="location.href='archiveRequirementsRetentionDetails.jsp;'"><span>3</span><i>Retention
-										Details</i></li>
-								<li onclick="location.href='ArchiveBusinessRequirements.jsp';"><span>4</span><i>Business
-										requirements</i></li>
-								<li onclick="location.href='archiveReqAbbrevation.jsp;'"><span>5</span><i>Abbreviations</i></li>
-								<li
-									onclick="location.href='archiveRequirementsDocumentRevisions.jsp;'"><span>6</span><i>Revisions</i></li>
-								<li onclick="location.href='archiveRequirementsAddendum.jsp;'"><span>7</span><i>Addendum</i></li>
-								<li
-									onclick="location.href='archiveRequirementsReviewDetails.jsp;'"><span>8</span><i>Review</i></li>
-								<li
-									onclick="location.href='archiveRequirementsApprovalDetails.jsp;'"><span>9</span><i>Approval</i></li>
-
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="content-container">
-
-
-					<!-- Projects List Start -->
-
-					<div class="main-page">
-
-						<section class="wizard-section">
-
-							<div class="row">
-								<div class="container" id="module_header">
-
-
-
-									<%
-                                        String initiate = (String) session.getAttribute("Ideation and Initiate");
-                                        String plan = (String) session.getAttribute("Plan");
-                                        String execute = (String) session.getAttribute("Execute");
-                                        String hypercare = (String) session.getAttribute("Closure");
-                                        if (initiate == null)
-                                            initiate = "0";
-                                        if (plan == null)
-                                            plan = "0";
-                                        if (execute == null)
-                                            execute = "0";
-                                        if (hypercare == null)
-                                            hypercare = "0";
-                                    %>
-									<br />
-									<br />
-									<br />
-
-
-
-
-
-									<div class="tab-pane" role="tabpanel" id="step4">
+</br>
+</br>			
+									
+<div class="tab-pane" role="tabpanel" id="step4">
 
 										<!-- Legacy Application Informations -->
 										<div class="card-container-2 card">
-											<div class="card-header" id="cd-header">Legacy
-												Application Information</div>
+											<div class="card-header" id="cd-header">Finance
+												 Information</div>
 
 											<div id="collapse4" class="panel-collapse ">
 
@@ -479,7 +306,6 @@ e.printStackTrace();
 																			<div class="panel-body">
 																				<div id="inputFieldsAppInfo"></div>
 																				<div class="col-md-12">
-
 																					<!--   <div class="col-md-6 dropup" style="padding-right: 10px; float: right;  width: 30%;">
                                                                 <div class = "btn-group dropup dropright">
                                                                 <button class="btn btn-primary dropdown-toggle " type="button" data-toggle="dropdown"> Actions <span class="caret"></span></button>
@@ -501,7 +327,59 @@ e.printStackTrace();
                                                                 <button type="button" class="btn btn-primary pull-right" id="deletepopup_btn" data-toggle="modal" data-target="#LegacyDeletePopUp" style="display: none;">Delete PopUp</button>
                                                                 <button type="button" class="btn btn-primary pull-right" id="TriageSummaryListbtn" onclick ="window.location.href='IntakeDetails.jsp';"style="display:none;"></button>
                                                             </div> -->
-																					<div class="col-12" align="end">
+																					
+																<div class="panel panel-default">
+																<div class="card-header" id="cd-header">
+																	<h4 class="panel-title">
+																		<a class="collapsed" data-bs-toggle="collapse"
+																			data-bs-parent="#panels1" href="">Finance Application
+																			Screenshot</a>
+																	</h4>
+																</div>
+																	<div id="collapse3" class="panel-collapse collapse">
+																		<div class="panel-body">
+																			<div id="collapse1"
+																				class="panel-collapse collapse show" name="collapse">
+																				<div class="panel-body">
+																					<div id="inputFieldsRoles">
+																						<!-- <form action="legacyApplicationScreenshotsUpload" method="post" enctype="multipart/form-data">                                                 			
+												 <input type="file" name="file" id = "fileUpload" value="D:/abc.png" multiple/>
+												 <input type="button" class="btn btn-success" id="UploadFiles" value="upload"/>
+												</form> -->
+																						<div class="container fileClass">
+																							<form action="" method="post"
+																								enctype="multipart/form-data">
+																								<div class="fileClass">
+																									<label for="upload"> <input type="file"
+																										id="fileUpload" multiple> Upload Files
+																									</label>
+																								</div>
+																								<div class="files fileClass">
+																									<h6>
+																										<b>Files Selected</b>
+																									</h6>
+																									<ul id="FileList"></ul>
+																								</div>
+																								<input type="button" value="Upload"
+																									class="btn btn-primary" name="submit"
+																									id="UploadFiles" />
+																							</form>
+																						</div>
+																					</div>
+																					<button type="button" id="add_btn"
+																						class="btn btn-primary" href="#"
+																						data-bs-toggle="modal"
+																						data-bs-target="#Legacy_ScrPopUp"
+																						style="margin: 5px">View Uploaded Files</button>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+
+																	<div class="col-md-12">
+																		<br />
+																						
+																						<div class="col-12" align="end">
 
 																						<div class="dropdown">
 																							<button type="button"
@@ -550,6 +428,18 @@ e.printStackTrace();
 																							data-bs-target="#LegacyDeletePopUp"
 																							style="display: none;">Delete PopUp</button>
 																						<!--  <button type="button" class="btn btn-primary pull-right" id="TriageSummaryListbtn" onclick ="window.location.href='IntakeDetails.jsp';"style="display:none;"></button> -->
+																					
+																					    <button class="btn btn-primary"
+																				      onclick="location.href='Finance.jsp';"
+																				      id="rolesNext">
+																				    <a href="javascript:;">Back</a>
+																			        </button>
+																					    
+																					
+																					
+																					
+																					
+																					
 																					</div>
 																				</div>
 
@@ -558,190 +448,12 @@ e.printStackTrace();
 																		</div>
 																	</div>
 																</div>
+																						
+																						
+																						
+																												
 
-																<!-- Archive Environment Information -->
-																<div class="panel panel-default">
-																	<div class="card-header" id="cd-header">
-																		<h4 class="panel-title">
-																			<a class="collapsed" data-bs-toggle="collapse"
-																				data-bs-parent="#panels1" href="#collapse6">Archive
-																				Environment Information</a>
-																		</h4>
-																	</div>
-																	<div id="collapse6" class="panel-collapse collapse">
-																		<div class="panel-body">
-																			<div id="collapse1"
-																				class="panel-collapse collapse show" name="collapse">
-																				<div class="panel-body">
-																					<div id="inputFieldsEnv">
-																						<div>
-																																														<table class="table-bordered"
-																								style="width: 100%;">
-																								<thead>
-																									<tr>
-																										<th
-																											style='text-align: center; vertical-align: middle;'>Dev DB Name</th>
-																										<th
-																											style='text-align: center; vertical-align: middle;'>Test DB 
-																											Name</th>
-																										<th
-																											style='text-align: center; vertical-align: middle;'>Stage DB 
-																											Name</th>
-																										<th
-																											style='text-align: center; vertical-align: middle;'>Production DB
-																											Name</th>
-																										<th
-																											style='text-align: center; vertical-align: middle;'>Action</th>
-																									</tr>
-																								</thead>
-																								<tbody id="EnvironmentName">
-
-																								</tbody>
-																								<button type="button"
-																									class="btn btn-primary pull-right"
-																									id="EnvmntNameDeleteId" data-bs-toggle="modal"
-																									data-bs-target="#EnvmntNameDeletePopUp"
-																									style="display: none;">Delete PopUp</button>
-																							</table>
-																							<div class="col-12" align="end">
-																								<button class="btn btn-secondary" type="button"
-																									id="AddEnvmntName">Add</button>
-																								<button type="submit" class="btn btn-primary"
-																									id="saveEnvmntName" disabled="true">Save</button>
-
-																								<button type="button"
-																									class="btn btn-primary pull-right"
-																									id="OpportunityListbtn"
-																									onclick="window.location.href='IntakeDetails.jsp';"
-																									style="display: none;"></button>
-																							</div>
-																							<br /> <br />
-																						</div>
-																						<br />
-																						<div>
-																							<table class="table-bordered"
-																								style="width: 100%;">
-																								<thead>
-																									<tr>
-																										<th
-																											style='text-align: center; vertical-align: middle;'>Dev DB 
-																											Server</th>
-																										<th
-																											style='text-align: center; vertical-align: middle;'>Test DB
-																											Server</th>
-																										<th
-																											style='text-align: center; vertical-align: middle;'>Stage DB
-																											Server</th>
-																										<th
-																											style='text-align: center; vertical-align: middle;'>Production DB
-																											Server</th>
-																										<th
-																											style='text-align: center; vertical-align: middle;'>Action</th>
-																									</tr>
-																								</thead>
-																								<tbody id="EnvironmentServer">
-
-																								</tbody>
-																								<button type="button"
-																									class="btn btn-primary pull-right"
-																									id="EnvmntServerDeleteId"
-																									data-bs-toggle="modal"
-																									data-bs-target="#EnvmntServerDeletePopUp"
-																									style="display: none;">Delete PopUp</button>
-																							</table>
-
-																							<div class="col-12" align="end">
-																								<button class="btn btn-secondary" type="button"
-																									id="AddEnvmntServer">Add</button>
-																								<button type="submit" class="btn btn-primary"
-																									id="saveEnvmntServer" disabled="true">Save</button>
-
-																								<button type="button"
-																									class="btn btn-primary pull-right"
-																									id="OpportunityListbtn"
-																									onclick="window.location.href='IntakeDetails.jsp';"
-																									style="display: none;"></button>
-																							</div>
-																						</div>
-
-
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-
-																</div>
-																<!-- Legacy Application Screenshot -->
-																<div class="panel panel-default">
-																	<div class="card-header" id="cd-header">
-																		<h4 class="panel-title">
-																			<a class="collapsed" data-bs-toggle="collapse"
-																				data-bs-parent="#panels1" href="#collapse3">Legacy
-																				Application Screenshots</a>
-																		</h4>
-																	</div>
-																	<div id="collapse3" class="panel-collapse collapse">
-																		<div class="panel-body">
-																			<div id="collapse1"
-																				class="panel-collapse collapse show" name="collapse">
-																				<div class="panel-body">
-																					<div id="inputFieldsRoles">
-																						<!-- <form action="legacyApplicationScreenshotsUpload" method="post" enctype="multipart/form-data">                                                 			
-												 <input type="file" name="file" id = "fileUpload" value="D:/abc.png" multiple/>
-												 <input type="button" class="btn btn-success" id="UploadFiles" value="upload"/>
-												</form> -->
-																						<div class="container fileClass">
-																							<form action="" method="post"
-																								enctype="multipart/form-data">
-																								<div class="fileClass">
-																									<label for="upload"> <input type="file"
-																										id="fileUpload" multiple> Upload Files
-																									</label>
-																								</div>
-																								<div class="files fileClass">
-																									<h6>
-																										<b>Files Selected</b>
-																									</h6>
-																									<ul id="FileList"></ul>
-																								</div>
-																								<input type="button" value="Upload"
-																									class="btn btn-primary" name="submit"
-																									id="UploadFiles" />
-																							</form>
-																						</div>
-																					</div>
-																					<button type="button" id="add_btn"
-																						class="btn btn-primary" href="#"
-																						data-bs-toggle="modal"
-																						data-bs-target="#Legacy_ScrPopUp"
-																						style="margin: 5px">View Uploaded Files</button>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-
-																	<div class="col-md-12">
-																		<br />
-																		<div class="col-md-4">
-
-																			<button type="button" class="btn btn-secondary"
-																				style="padding-top: 5px; padding-left: 10px; float: left;"
-																				onclick="location.href='ArchiveRequirementsIntroDetails.jsp';">Prev</button>
-																		</div>
-																		<div class="col-md-8 dropup" align="end">
-
-																			<button type="submit" class="btn btn-primary"
-																				id="edit">Edit</button>
-																			<button type="submit" class="btn btn-primary"
-																				id="complete" disabled="true">Complete</button>
-
-																			<button class="btn btn-primary"
-																				onclick="location.href='archiveRequirementsRetentionDetails.jsp';"
-																				id="rolesNext">
-																				<a href="javascript:;">Next</a>
-																			</button>
-
+																			
 																		</div>
 																	</div>
 																</div>
@@ -971,35 +683,7 @@ e.printStackTrace();
 		</div>
 	</div>
 
-	<!-- Environment Name Delete PopUp -->
-	<div class="modal" id="EnvmntNameDeletePopUp" tabindex="-1"
-		role="dialog">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Delete Field</h5>
-					<button type="button" id="EnvmntNameDeleteClose" class="btn-close"
-						data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<form name="DeleteForm">
-						<div class="modal-body">
-							<p>Do you want to delete this Row permanently?</p>
-							<input type="hidden" id="EnvmntNameDeleteSeq" />
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" id="EnvmntNameDeleteSubmit"
-						class="btn btn-primary submitDisableEnvmntName"
-						data-bs-dismiss="modal">Yes</button>
-					<button type="button" class="btn btn-secondary"
-						id="closeEnvmntNameIdDelete" data-bs-dismiss="modal"
-						aria-label="Close">No</button>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 
 	<div class="modal" id="Legacy_ScrPopUp" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1007,7 +691,7 @@ e.printStackTrace();
 			<div class="modal-content">
 				<div class="modal-header" style="background-color: #1565c0;">
 					<h5 class="modal-title" id="exampleModalLabel"
-						style="color: white;">Legacy Application Screenshots</h5>
+						style="color: white;">Finance Application Screenshots</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
@@ -1050,35 +734,8 @@ e.printStackTrace();
 	</div>
 
 
-	<!-- Environment Server Delete PopUp -->
-	<div class="modal" id="EnvmntServerDeletePopUp" tabindex="-1"
-		role="dialog">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Delete Field</h5>
-					<button type="button" id="EnvmntNameDeleteClose" class="btn-close"
-						data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<form name="DeleteForm">
-						<div class="modal-body">
-							<p>Do you want to delete this Row permanently?</p>
-							<input type="hidden" id="EnvmntServerDeleteSeq" />
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" id="EnvmntServerDeleteSubmit"
-						class="btn btn-primary submitDisableEnvmntServer"
-						data-bs-dismiss="modal">Yes</button>
-					<button type="button" class="btn btn-secondary"
-						id="closeEnvmntServerIdDelete" data-bs-dismiss="modal"
-						aria-label="Close">No</button>
-				</div>
-			</div>
-		</div>
-	</div>
+	
+				
 
 	<button type="button" class="btn btn-primary"
 		id="legacy_scr_delete_popup" data-bs-toggle="modal"
@@ -1196,25 +853,23 @@ $(document).on('mouseenter','.active1', function(){
 	<script type="text/javascript"
 		src="js/Requirements/ArchiveRequirements/LegacyApplicationInfo/archiveLegacyAddAjaxcall.js"></script>
 	<script type="text/javascript"
-		src="js/Requirements/ArchiveRequirements/LegacyApplicationInfo/archiveReqLegacyEditDeleteAjaxCall.js"></script>
-	<script type="text/javascript"
-		src="js/Requirements/ArchiveRequirements/LegacyApplicationInfo/archiveLegacyAppInfoSaveAjaxCall.js"></script>
-
-
-
-
+		src="js/Finance/FinanceEditDeleteAjaxCall.js"></script>
+	
+	
 	<!-- Legacy Application Screenshot -->
 	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 	<script type="text/javascript"
-		src="js/Requirements/ArchiveRequirements/LegacyAppInfo/legacyAppScreenshot/legacyApplicationScreenshotsUploadAjaxCall.js"></script>
+		src="js/FinanceScreenshot/FinanceAppInfofileUpload.js"></script>
 	<script type="text/javascript"
-		src="js/Requirements/ArchiveRequirements/LegacyAppInfo/legacyAppScreenshot/legacy_scr_retrieve.js"></script>
+		src="js/FinanceScreenshot/Finance_scr_retrieve.js"></script>
 	<script type="text/javascript"
-		src="js/Requirements/ArchiveRequirements/LegacyAppInfo/legacyAppScreenshot/legacy_scr_download.js"></script>
+		src="js/FinanceScreenshot/Finance_scr_retrieve_review.js"></script>
 	<script type="text/javascript"
-		src="js/Requirements/ArchiveRequirements/LegacyAppInfo/legacyAppScreenshot/legacy_scr_delete.js"></script>
+		src="js/FinanceScreenshot/Finance_scr_download.js"></script>
+	<script type="text/javascript" 
+		src="js/FinanceScreenshot/Finance_scr_delete.js"></script>
 	<script type="text/javascript"
-		src="js/Requirements/ArchiveRequirements/LegacyAppInfo/legacyAppScreenshot/legacyAppInfoFileUpload.js"></script>
+		src="js/FinanceScreenshot/FinanceScreenshotUpload.js"></script>
 	<script src="js/navigation/navigation.js"></script>
 	<!-- ========== Toastr ========== -->
 	<script

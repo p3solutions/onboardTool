@@ -396,7 +396,7 @@ transition: width 2s, height 2s, transform 2s;
 		              <li class="active"><a href="GovernanceList.jsp" style="color:#fff"><i class="fad fa-desktop iconAlign activeIcon fa-2x"></i>Governance</a></li>
 		              <li><a href="#"><i class="fad fa-wallet iconAlign iconColor fa-2x"></i>Finance</a></li>
 		              <li><a href="DashBoard.jsp"><i class="fad fa-chart-pie iconAlign iconColor fa-2x"></i>Dashboards</a></li>
-		              <li><a href="#"><i class="fad fa-comment-lines iconAlign iconColor fa-2x"></i>Compliance</a></li>
+		              <li><a href="IntakeReport.jsp"><i class="fad fa-comment-lines iconAlign iconColor fa-2x"></i>Compliance</a></li>
 		    </ul>
 		         <ul class="nav navbar-nav navbar-right">
                         <%

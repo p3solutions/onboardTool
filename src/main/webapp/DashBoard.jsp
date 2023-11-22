@@ -731,15 +731,20 @@ display:none;
 								</div>
 							</div>
 						</div>
-
+						
 						<div class="col-md-12 mt-3">
 							<div class="row">
 								<div class="col-md-8">
 									<div class="card ht-233">
 										<div class="card-header" id="card-header">Intake
-											Status</div>
+											Status
+                                      <button type="button" class="btn btn-primary pull-right" id="exportButton" onclick="exportToCSV();">Export</button>
+											</div>
+										
+											
 										<div class="card-body" style="padding: 0px;">
 											<div id="ApplicationStatusDash">
+											
 												<table id="example" class="table">
 													<thead>
 
@@ -1050,6 +1055,7 @@ $(document).ready(function() {
   }
     
   </script>
+    <script src="js/ComplianceModule/exportToCSV.js"></script>
 	<script src="js/navigation/navigation.js"></script>
 	<script type="text/javascript" src="js/chartjs/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/chartjs/Chart.js"></script>
