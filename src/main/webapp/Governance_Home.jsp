@@ -511,8 +511,8 @@ img.filtered {
 									<a id="ArchiveExecutionNavigation"
 										href="ArchiveExecutionDetails_Governance.jsp">
 										<center>
-											<img src="images/grid/archival-execution.png"
-												class="img-rounded" height="100" width="100" alt="Avatar">
+												<img src="images/grid/archival-execution.png"
+												class="img-rounded" height="100" width="auto" alt="Avatar">
 
 										</center>
 								</div>
@@ -524,41 +524,29 @@ img.filtered {
 						<div class="line"></div>
 						<div class="triangle"></div>
 					</div>
-					<!-- <div class="process assessment">
+				 <div class="process assessment">
         <div class="step">
     <div class="step-milestone2"/>
-    <a href="#">
+    <a href="ReportGenerationPage.jsp">
                                         <center>
-                                             <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
-
+                                             <img src="images/Export.png" class="img-rounded" height="100" width="auto" alt="Avatar">
                                         </center>
-
-                                    </a>
-    
-    
+                                    </a>    
     </div>
     <br>
      <span class="step-title">
-      Decommission Execution
+      Report Generation
     </span>
   </div>
     </div>
     <div class="arrow finalDecision">
         <div class="line"></div>
         <div class="triangle"></div>
-    </div> -->
+    </div>
 				</div>
 
-
-
-
-
-			</div>
+</div>
 			</section>
-			<!-- /.section -->
-
-
-
 			<%
 }
 else if(roles.equals("ArchivalDeveloper"))

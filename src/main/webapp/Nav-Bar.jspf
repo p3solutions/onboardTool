@@ -58,7 +58,33 @@ margin-left: 247px;
 </head>
 
 <body>
+<script>
+function adminrole() {
+    var user_Name = $("#user_Name").val();
+    var auth_Type = $("#auth_type").val();
 
+    $.ajax({
+        url: "Retrieve_pwd_servlet",
+        type: 'POST',
+        dataType: "json",
+        data: { user_Name: user_Name },
+        success: function (data) {
+            console.log("Users List Retrieve", data);
+
+            if (data.User_Role == "D3SIXTY_FINANCE_CONTRIBUTOR" || data.User_Role == "D3SIXTY_SUPER_ADMIN") {
+                console.log("Role: " + data.User_Role);
+                // User has the required roles, no need to show the tooltip, you can redirect to Finance.jsp here.
+                window.location.href = "Finance.jsp";
+            } else {
+                console.log("Role: " + data.User_Role);
+                // Show the tooltip since the user doesn't have the required roles
+                var element = document.getElementById("myElementwithTooltip");
+                var tooltip = new bootstrap.Tooltip(element);
+            }
+        },
+    });
+}
+</script>
 	<%@ page import="java.text.SimpleDateFormat"%>
 	<%@ page import="java.util.Date"%>
 	<%
@@ -173,20 +199,23 @@ margin-left: 247px;
 							aria-current="page" href="Governance_Home.jsp"><i
 								class="fas fa-desktop iconAlign iconColor fa-2x"></i>Governance</a></li>
 						<li class="nav-item moduleIcon" id="myElementwithTooltip"
-							data-bs-toggle="tooltip" data-bs-placement="bottom"
-							title="For Future Enhancement"><a class="nav-link active"
-							aria-current="page" href="#"><i
-								class="fas fa-wallet iconAlign iconColor fa-2x"></i>Finance</a></li>
+    						data-bs-toggle="tooltip" data-bs-placement="bottom"
+    						title="Finance module accessed only by D3SIXTY_FINANCE_CONTRIBUTOR and D3SIXTY_SUPER_ADMIN">
+						    <a class="nav-link active" aria-current="page" href="#" onclick="adminrole()">
+						        <i class="fas fa-wallet iconAlign iconColor fa-2x"></i>Finance
+						    </a>
+						</li>
 						<li class="nav-item moduleIcon"><a class="nav-link active"
 							aria-current="page" href="DashBoard.jsp"><i
 								class="fas fa-chart-pie iconAlign iconColor fa-2x"></i>Dashboards</a>
 						</li>
 						<li class="nav-item moduleIcon" id="myElementwithTooltip"
-							data-bs-toggle="tooltip" data-bs-placement="bottom"
+							data-bs-toggle="tooltip"data-bs-placement="bottom"
 							title="For Future Enhancement"><a class="nav-link active"
 							aria-current="page" href="#"><i
 								class="fas fa-comment-lines iconAlign iconColor fa-2x"></i>Compliance</a>
 						</li>
+						
 
 					</ul>
 
