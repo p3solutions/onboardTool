@@ -13,10 +13,10 @@ import com.google.gson.JsonArray;
 
 import FinanceDetails.Service.EditTableDetailsService;
 
-
 /**
- * Servlet implementation class IntakeOpportunityDataRetrieveServlet
+ * Servlet implementation class FinanceTableDetails
  */
+
 @WebServlet("/EditTableDetailServlet")
 public class EditTableDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

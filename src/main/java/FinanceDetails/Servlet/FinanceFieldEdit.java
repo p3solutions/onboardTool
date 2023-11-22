@@ -12,7 +12,9 @@ import com.google.gson.JsonObject;
 
 import FinanceDetails.Service.FinanceDetailRetrieveService;
 import Opportunity.Service.NewOpportunityService;
-
+/**
+ * Servlet implementation class FinanceTableDetails
+ */
 @WebServlet("/FinanceFieldEdit")
 public class FinanceFieldEdit extends HttpServlet {
 	private static final long serialVersionUID = 1L;

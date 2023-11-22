@@ -1,6 +1,6 @@
 
 
-var Id="D3SKH2H7T8HK7"; // Define a variable outside the click event handler
+var Id="D3S592T30BPGT"; // Define a variable outside the click event handler
 
 $(document).on('click', '.editpopup', function() {
     $('#editpopup_btn').click();
@@ -9,11 +9,16 @@ $(document).on('click', '.editpopup', function() {
     console.log("the id value",Id);
     window.location.href = 'FinanceUpdate.jsp';
 });
-
-// Now you can use the 'editPopupId' variable elsewhere in your code
-// for example, when the user clicks on 'editpopup_btn'
-
-
+ $(document).on('click', '.deletepopup', function () {
+    $('#deletepopup_btn').click();
+   
+    var currentRow=$(this).closest("tr");
+    var Id=currentRow.find("td:eq(13)").text();
+    $('#Id').val(Id);
+    console.log("The value of Function",Id)
+    $('#DeletePopUp').on('shown.bs.modal', function () {
+    });
+    });
 
 $(document).ready(function(){
 	console.log("The value of Function",Id)

@@ -12,9 +12,8 @@ import com.google.gson.JsonObject;
 
 import FinanceDetails.Service.FinanceDetailRetrieveService;
 import Opportunity.Service.NewOpportunityService;
-
 /**
- * Servlet implementation class NewOpportunityDeleteOperation
+ * Servlet implementation class FinanceTableDetails
  */
 @WebServlet("/FinanceLabelDelete")
 public class FinanceLabelDelete extends HttpServlet {

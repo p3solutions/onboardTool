@@ -17,7 +17,7 @@ import FinanceDetails.Service.FinanceDetailRetrieveService;
 import Opportunity.Service.NewOpportunityCreateService;
 
 /**
- * Servlet implementation class NewOpportunityCreateValidationAndUpdate
+ * Servlet implementation class FinanceTableDetails
  */
 @WebServlet("/FinanceDetailsValidation")
 public class FinanceDetailsValidation extends HttpServlet {

@@ -10,13 +10,16 @@ import com.google.gson.JsonObject;
 
 import Opportunity.OpportunityBean;
 import onboard.DBconnection;
+/**
+ * Servlet implementation class FinanceTableDetails
+ */
 public class FinanceDetailRetrieveService {
     public static JsonArray InputDetailsRetrieve() {
         JsonArray jsonArray = null;
         try {
             String randomNumber = RandomIdGenerator();
             OpportunityBean.setRecord_Number(randomNumber);
-            AddingOpportunityRecords(randomNumber);
+            
             jsonArray = InputDetailsRetrievalService(randomNumber);
         } catch (Exception e) {
             System.out.println("Exception e" + e);
@@ -393,13 +396,13 @@ public class FinanceDetailRetrieveService {
 			String SelectTableQuery = "select * from Finance_Informations_Details order by seq_no;";
 			st2 = connection.prepareStatement(SelectTableQuery);
             rs2 = st2.executeQuery();
-            int count =0;
             String id = null;
-            while(rs2.next()) {
-            	 if(count==14){
-                 	id=rs2.getString("Id");
-                     System.out.println("The value of id by vijay"+id);	 
-                 }
+            if(rs2.next()) {
+             	 id=rs2.getString("Id");
+              
+           }  
+            while(rs2.next())
+            {
             	System.out.println("The value of result set"+rs2);
             	String Finance_InsertQuery = "insert into Finance_Informations (seq_no,Id, prj_name, app_name, options, label_name, column_name, type, mandatory, value,usermandatoryflag)"
 						+ "value(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
@@ -417,8 +420,8 @@ public class FinanceDetailRetrieveService {
 				prestmt.setString(10, rs2.getString("value"));
 				prestmt.setString(11, rs2.getString("usermandatoryflag"));
 				prestmt.execute();
-			count++; 
-            }
+				  }
+            
            
         	String SelectId = "select value from Finance_Informations where column_name='AppName' and Id='"+id+"';";
 			PreparedStatement st3 = connection.prepareStatement(SelectId );
@@ -463,43 +466,5 @@ public class FinanceDetailRetrieveService {
 
 	
      
-	public static void AddingOpportunityRecords(String RecordNumber) {
-		PreparedStatement st=null,st1=null;
-		ResultSet rs=null;
-        try {
-            DBconnection dBconnection = new DBconnection();
-            Connection connection = (Connection) dBconnection.getConnection();
-            String Deletequery = "delete from Finance_Informations_details";
-			st = connection.prepareStatement(Deletequery);
-			st.executeUpdate();
-           
-            String SelectQuery = "select * from Finance_Info_Template_Details order by seq_no";
-			st1 = connection.prepareStatement(SelectQuery);
-			rs = st1.executeQuery();
-            while (rs.next()) {
-                if (rs.getInt(1) <= 16) {
-                    String Finance_InsertQuery = "insert into Finance_Informations_Details (seq_no,Id, prj_name, app_name, options, label_name, column_name, type, mandatory, value)"
-                            + "value(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                    PreparedStatement prestmt = connection.prepareStatement(Finance_InsertQuery);
-                    prestmt.setInt(1, rs.getInt(1));
-                    prestmt.setString(2, RecordNumber);
-                    prestmt.setString(3, rs.getString(2));
-                    prestmt.setString(4, rs.getString(3));
-                    prestmt.setString(5, rs.getString(4));
-                    prestmt.setString(6, rs.getString(5));
-                    prestmt.setString(7, rs.getString(6));
-                    prestmt.setString(8, rs.getString(7));
-                    prestmt.setString(9, rs.getString(8));
-                    prestmt.setString(10, rs.getString(9));
-                    prestmt.execute();
-                }
-            }
-		st.close();
-		rs.close();
-		st1.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Exception ---------[info]---------" + e);
-        }
-    }
+	
 }

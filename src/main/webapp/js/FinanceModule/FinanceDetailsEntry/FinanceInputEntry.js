@@ -109,18 +109,7 @@
         }
     });
 
-    function DbUpdate(checkMandatory, CheckAPPID, CheckAppname) {
-        if (checkMandatory == true && CheckAPPID == true && CheckAppname == true) {
-            var f = document.OpportunityForm;
-            f.method = "post";
-            f.action = "NewOpportunitySave?";
-            f.submit;
-        } else {
-            e.preventDefault();
-            notification("warning", "Please fill all Mandatory fields.", "Warning");
-            return false;
-        }
-    }
+
 
     function AjaxCallUpdate(AppName, JsonString, checkMandatory, CheckAPPID, checkAppname, e) {
         e.preventDefault();

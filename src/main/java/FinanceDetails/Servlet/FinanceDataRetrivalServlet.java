@@ -13,7 +13,9 @@ import com.google.gson.JsonArray;
 
 import FinanceDetails.Service.*;
 
-
+/**
+ * Servlet implementation class FinanceTableDetails
+ */
 @WebServlet("/FinanceDataRetrivalServlet")
 public class FinanceDataRetrivalServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

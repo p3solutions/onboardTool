@@ -15,11 +15,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import FinanceDetails.Service.FinanceDetailRetrieveService;
-import IntakeDetails.IntakeOpportunity.Service.IntakeOpportunityService;
-import Opportunity.Service.NewOpportunityCreateService;
 
 /**
- * Servlet implementation class IntakeDetailsOpportunityValidationAndUpdate
+ * Servlet implementation class FinanceTableDetails
  */
 @WebServlet("/FinanceDetailsUpdate")
 public class FinanceDetailsUpdate extends HttpServlet {

@@ -257,6 +257,7 @@ transform:rotate(360deg)
 	</div>
 	<br />
 	<div class="card-container-5 card d3s-mt-50">
+		
 		<div class="card-header d3s-pl-15" id="cd-header">Finance
 			Details</div>
 
@@ -401,7 +402,7 @@ transform:rotate(360deg)
 	<script src="js/FinanceModule/FinancePagination.js"></script>
 
 
-
+<script src="js/FinanceModule/Delete.js"></script>
 	<!-- ========== PAGE JS FILES ========== -->
 	<script src="js/prism/prism.js"></script>
 	<script type="text/javascript"
