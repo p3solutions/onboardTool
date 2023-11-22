@@ -172,21 +172,21 @@ margin-left: 247px;
 						<li class="nav-item moduleIcon"><a class="nav-link active"
 							aria-current="page" href="Governance_Home.jsp"><i
 								class="fas fa-desktop iconAlign iconColor fa-2x"></i>Governance</a></li>
-						<li class="nav-item moduleIcon" id="myElementwithTooltip"
-							data-bs-toggle="tooltip" data-bs-placement="bottom"
-							title="For Future Enhancement"><a class="nav-link active"
-							aria-current="page" href="#"><i
-								class="fas fa-wallet iconAlign iconColor fa-2x"></i>Finance</a></li>
+						<li class="nav-item moduleIcon selected" style="color: rgb(21,101,192);"><a class="nav-link active"
+							aria-current="page" href="Finance.jsp" style="color:rgb(255,255,255);" ><i
+								class="fas fa-comment-lines iconAlign iconColor fa-2x" style="color: rgb(255,255,255);" ></i>Finance</a>
+						</li>
+				
 						<li class="nav-item moduleIcon"><a class="nav-link active"
 							aria-current="page" href="DashBoard.jsp"><i
 								class="fas fa-chart-pie iconAlign iconColor fa-2x"></i>Dashboards</a>
 						</li>
-						<li class="nav-item moduleIcon" id="myElementwithTooltip"
-							data-bs-toggle="tooltip" data-bs-placement="bottom"
-							title="For Future Enhancement"><a class="nav-link active"
-							aria-current="page" href="#"><i
-								class="fas fa-comment-lines iconAlign iconColor fa-2x"></i>Compliance</a>
+				
+						<li class="nav-item moduleIcon selected" style="color: rgb(21,101,192);"><a class="nav-link active"
+							aria-current="page" href="IntakeReport.jsp" style="color:rgb(255,255,255);" ><i
+								class="fas fa-comment-lines iconAlign iconColor fa-2x" style="color: rgb(255,255,255);" ></i>Compliance</a>
 						</li>
+				
 
 					</ul>
 

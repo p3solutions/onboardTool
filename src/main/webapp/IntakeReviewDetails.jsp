@@ -727,7 +727,7 @@ e.printStackTrace();
 							          			</div>
 							          		</div>
 							          	</div>
-							          	                                                         <h3 class="panel-title">Data Characteristics</h3><br>
+							          	                  <h3 class="panel-title">Data Characteristics</h3><br>
                                                           <div id="DataCharacteristicsPreview">  </div>
                                                           <h3 class="panel-title">Compliance Characteristics</h3><br>
                                                            <div id="ComplianceCharacteristicsPreview">  </div>

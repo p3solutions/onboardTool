@@ -1,3 +1,4 @@
+@charset "ISO-8859-1";
 body {
 	margin: 0 auto;
 	width: 100%;
@@ -91,7 +92,7 @@ body {
 }
 
 .d3s-mr-50 {
-	margin-right: 100px;
+	margin-right: 50px;
 }
 
 .d3s-mr-60 {
@@ -223,7 +224,7 @@ body {
 }
 
 .d3s-pl-15 {
-	padding-left: 50px;
+	padding-left: 15px;
 }
 
 .d3s-ml-70 {

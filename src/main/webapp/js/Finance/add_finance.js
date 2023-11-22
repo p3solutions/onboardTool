@@ -1,32 +1,54 @@
-$('#add_usersubmit').click(function(){
-        var uname=$("#uname").val();
-        var ufname=$("#ufname").val();
-        var ulname=$('#ulname').val();
-        var u_email=$('#u_email').val();
-        var u_pwd=$('#u_pwd').val();
-        var conf_u_pwd=$('#conf_u_pwd').val();
-        var u_role=$('#u_role').val();
-        var uflag=true;
-        if(uname=="")
+$('#add_financesubmit').click(function(){
+        
+       var Project_Number=value.$("#ProjectNumber_modify").val
+	   var Application_Name=value.$("ApplicationName_modify").val;
+	   var Software_and_Licensing=value.$("Software_and_Licensing_modify").val;
+	   var Contract_possibly_terms_of_contract =$("Contract_Date_Modify").val;
+	   var scope_of_infrastructure =value.$("Scope_modify").val;
+	   var Cost_Avoidance=value.$("AvoidanceCost_modify").val;
+	   var Cost_of_Archive=value.$("ArchiveCost_modify").val;
+	   var CBA=value.$("CBA_modify").val;
+	   var  add attachments=value.$("")
+	   var Funding_approved=value.$("Approval_modify").val;
+       var Funding_type=value.$("Type_modify").val;
+
+
+        if(Project_Number=="")
         {
-		notification("error","Please Enter Username","Note");
+		notification("error","Please Enter Project_Number","Note");
 		}
-		 if(ufname=="")
+		 if(Application_Name=="")
         {
-		notification("error","Please Enter Firstname","Note");
+		notification("error","Please Enter Application_Name","Note");
 		}
-		 if(ulname=="")
+		 if(Software_and_Licensing=="")
         {
-		notification("error","Please Enter Lastname","Note");
+		notification("error","Please Enter details of Software_and_Licensing","Note");
+		}
+		if(Contract_possibly_terms_of_contract=="")
+		{
+		notification("error","Please Enter contract details","Note");
+		
+		}
+		if(scope_of_infrastructure=="")
+		{
+		notification("error","Please Enter the infrastructure details","Note");
+		
+		}
+		if(Cost_Avoidance=="")
+		{
+		notification("error","Please Enter the avoidance cost details","Note");
+		
+		}				
+        if(Cost_of_Archive=="")
+		{
+		notification("error","Please Enter the archive cost details","Note");
+		
 		}		
         
-        if(IsEmail(u_email)==false)
+		if(CBA=="")
         {
-		notification("error","Please Enter a Valid Email","Note");
-		}	
-		if(u_pwd=="")
-        {
-		notification("error","Please Enter Password","Note");
+		notification("error","Please Enter CBA","Note");
 		} 
 		 if(u_role=="")
          {
@@ -87,7 +109,7 @@ $('#add_usersubmit').click(function(){
        
         $(document).on('click', '.editpopup', function () {
     $('#editpopup_btn').click();
-     var seqnum=$(this).index('.editpopup');
+    var seqnum=$(this).index('.editpopup');
     var currentRow=$(this).closest("tr");
     var uname_modify=currentRow.find("td:eq(0)").text();
     var ufname_modify=currentRow.find("td:eq(1)").text();

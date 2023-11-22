@@ -49,8 +49,6 @@
 <script src="js/task-list.js"></script>
 <script src="js/main.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="js/admin_modify_module/admin_users_pagination.js"></script>
-
 <style>
         th {
             border: 10px solid #001;
@@ -60,7 +58,6 @@
         .table-container {
             width: 100%;
             overflow-x: auto;
-            
         }
         #overlay {
             position: fixed;
@@ -69,10 +66,6 @@
             width: 1400px;
             height: 100%;
             display: none;
-        }
-        label{
-          display: block; /* add this */
-          padding-top: 5px;
         }
         .cv-spinner {
             height: 62rem;
@@ -96,13 +89,6 @@
             border-radius: 50%;
             animation: sp-anime 0.8s infinite linear;
         }
-        #searchInput {
-      width: 200px;
-      padding: 5px;
-    }
-    .searchHighlight {
-      background-color: yellow;
-    }
         @-webkit-keyframes sp-anime {
             0% {
                 -webkit-transform: rotate(0deg);
@@ -172,151 +158,151 @@
             margin-top: 22px;
             margin-left: 289px;
         }
-        
 </style>
 </head>
 <body>
-<script src="js/ComplianceModule/exportToCSV.js"></script>
-<script src="js/ComplianceModule/SearchFunction.js"></script>
+<script>
+function redirectOnOptionSelect() {
+    var selectElement = document.getElementById("category");
+    var selectedOption = selectElement.options[selectElement.selectedIndex];
+    var link = selectedOption.getAttribute("data-link");
+    console.log("link",link);
 
+ 
 
+    if (link) {
+        window.location.href = link;
+    }
+}
+</script>
+<script>
+function exportToCSV() {
+    // Get the table element
+    var table = document.querySelector('.table');
 
+ 
 
+ 
+
+    // Create an empty array to store the data
+    var data = [];
+
+ 
+
+ 
+
+    // Iterate through the rows and cells of the table
+    for (var i = 0; i < table.rows.length; i++) {
+        var row = table.rows[i];
+        var rowData = [];
+        for (var j = 0; j < row.cells.length; j++) {
+            rowData.push(row.cells[j].textContent.trim());
+        }
+        data.push(rowData);
+    }
+
+ 
+
+ 
+
+    // Create a CSV string
+    var csvContent = "data:text/csv;charset=utf-8,";
+    data.forEach(function (rowArray) {
+        var row = rowArray.join(",");
+        csvContent += row + "\r\n";
+    });
+
+ 
+
+ 
+
+    // Create a data URI for the CSV content
+    var encodedUri = encodeURI(csvContent);
+
+ 
+
+ 
+
+    // Create a link element and trigger the download
+    var link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "table_data.csv");
+    document.body.appendChild(link);
+
+ 
+
+ 
+
+    // Simulate a click on the link to trigger the download
+    link.click();
+}
+</script>
 <%@include file="Nav-Bar.jspf"%>
 <nav class="nav nav-down-height" id="bg-color">
 <div class="container-fluid" id="container-fluid-margin">
 <div class="row" id="d3s-mt-20">
 <div class="col-lg-12 col-md-12">
-<h5 id="title">Compliance</h5>
+<h5 id="title">Report Generation</h5>
 </div>
 </div>
-<div class="row" id="d3s-mt-10">
-				<div class="col-lg-3 col-md-6">
-					<div class="row align-items-center">
-						<div class="col-auto">
-							<i class="fa fa-search search-icon" aria-hidden="true"></i>
-						</div>
-						<div class="col-auto">
-                        <input type="text" id="search" placeholder="Search the application..">
-                        
-                        
-                                                
-                                                
-                     
-							
-						</div>
-						<div id="results"></div>
-						
-						
-						
-					</div>
-</div>
 
-
-
-
-				<div class="col-lg-3 col-md-6">
-					<div class="row align-items-center">
-						<div class="col-auto">
-							<label class="col-form-label" id="title">Report Name</label>
-						</div>
-				
+<div class="col-lg-3 col-md-6">
+<div class="row align-items-center">
 <div class="col-auto">
-<select class="selectInput filter" id="category">
+<i class="fa fa-search search-icon" aria-hidden="true"></i>
+</div>
+<div class="col-auto">
+<input id="Search" type="text" placeholder="Search the application...">
+</div>
+</div>
+</div>
+<div class="row align-items-center">
+<div class="col-auto">
+<label class="col-form-label" id="title">Report Name</label>
+</div>
+<div class="col-auto">
+<select class="selectInput filter" id="category" onchange="redirectOnOptionSelect()">
 
-<option class='options' value='IntakeReport1'>IntakeReport 1</option>
-<option class='options' value='IntakeReport2'>IntakeReport 2</option>
-<option class='options' value='IntakeReport3'>IntakeReport 3</option>  
+<option class='options' value='IntakeReport1' data-link="IntakeReport1.jsp" >IntakeReport 1</option>
+<option class='options' value='IntakeReport2' data-link="IntakeReport2.jsp" >IntakeReport 2</option>
+<option class='options' value='IntakeReport3' data-link="Intakereport3.jsp">IntakeReport 3</option>
+<option class='options' value='IntakeReport4' data-link="">IntakeReport 4</option>
 </select>
-
-
-</div>
-
 </div>
 </div>
+</div>&nbsp &nbsp
+<div class="col-lg-6 right-side">
+<button type="button" class="btn btn-primary pull-right" id="exportButton" onclick="exportToCSV();">Export CSV</button>
+<button type="button" class="btn btn-primary pull-right" id="addWaveBtnId" style="color: DodgerBlue; display: none;" name="newpr" data-bs-toggle='modal' data-bs-target='#existWavePopUp'></button>
+<button type="button" class="btn btn-primary pull-right" id="deleteBtn" style="color: DodgerBlue; display: none;" name="newpr" data-bs-toggle='modal' data-bs-target='#deletePopUp'></button>
 </div>
-
-
-
 </nav>
-<br/>
+<br />
+<div class="card-header d3s-pl-16" id="cd-header">IntakeReport 3</div>
+<br />
+<div class="table-container">
+<table class="table table-bordered table-responsive" id="admin_userslist" style="width: 200%; font-size: 12px;">
+<thead>
+<tr>
+<th style='text-align: center; vertical-align: middle; width: 10%;' scope="col">LegacyApplicationName</th>
+<th style='text-align: center; vertical-align: middle; width: 10%;' scope="col">SourcePlatformDatabases</th>
+<th style='text-align: center; vertical-align: middle; width: 10%;' scope="col">LegacyApplicationDescription</th>
+<th style='text-align: center; vertical-align: middle; width: 10%;' scope="col">ReadOnlyDate</th>
+<th style='text-align: center; vertical-align: middle; width: 10%;' scope="col">Isthisapplicationtheonlysourceoftruthforthedata</th>
+<th style='text-align: center; vertical-align: middle; width: 10%;' scope="col">Isthelegacyapplicationhostedinternallyorwithanthirdpartyvendor</th>
+<th style='text-align: center; vertical-align: middle; width: 10%;' scope="col">totaldatasize</th>
+<th style='text-align: center; vertical-align: middle; width: 10%;' scope="col">RetentionPeriod</th>
 
-
-<div class="col-auto"  >
-
-<button type="button" class="btn btn-primary pull-right" id="exportButton" onclick="exportToCSV();">Export</button>
- </div>
-
-
-
-<div class="card-container-5 card d3s-mt-50">
-    <div class="card-header d3s-pl-15" id="cd-header">
-    </div>
-    <label style="margin-top: 20px ;margin-left: 8px;">Show </label>
-    <label style="margin-left: 130px;margin-top: -16px;"> Entries</label>
-    <select class="form-select align-left"
-            aria-label="Default select example" id="maxRows"
-            style="padding: 0.75 0 0 0.75rem; margin-bottom: 5px;  margin-top: -26px;margin-left: 55px; width: 70px;">
-        <option value="5000">Show All</option>
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
-        <option value="20">20</option>
-        <option value="50">50</option>
-        <option value="70">70</option>
-        <option value="100">100</option>
-    </select>
-
-    
-        <div class="table-container">
-        
-            </br>
-
-            <div id="overlay">
-                <div class="cv-spinner">
-                    <span class="spinner"></span>
-                </div>
-            </div>
-
-
-            <table id="dynamicHeader" class="table table-bordered table-responsive"
-                style="width: 200%; font-size: 12px;">
-            
-
-        </table>
-
-     </div>
-        <div class="row">
-            <div class="col-md-12" >
-                <div class='pagination-container' style="float: right;">
-                    <nav>
-                        <ul class="pagination">
-
-                            <li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>
-                            <!--    Here the JS Function Will Add the Rows -->
-                            <li data-page="next" ><span> >> <span
-                                    class="sr-only">(current)</span></span></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
-
-
-
-
-
-     
-            
-     
-
-
-
-
+</tr>
+</thead>
+<div id="overlay">
+<div class="cv-spinner">
+<span class="spinner"></span>
+</div>
+</div>
+<tbody id="IntakeReport3"></tbody>
+</table>
+</div>
  <script>
         const togglePassword10 = document
             .querySelector('#conf_u_pwd_togglePassword');
@@ -377,7 +363,6 @@
         });
 </script>
 
-
  
 
  
@@ -402,11 +387,8 @@
 <script src="js/admin_modify_module/admin_add_user.js"></script>
 <script src="js/admin_modify_module/DeleteAjaxCall.js"></script>
 <script src="js/admin_modify_module/EditAjaxCall.js"></script>
-
+<script src="js/admin_modify_module/admin_users_pagination.js"></script>
 <!-- ========== Pagination ========== -->
-<script src="js/paging/paging.js"></script>
-<script src="js/paging/pagination.js"></script>
-<script src="js/paging/bootstrap-table-pagination.js"></script>
 
  
 
@@ -444,8 +426,7 @@
 		href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
 		rel="stylesheet">
 <script src="js/notification/notification.js"></script>
-<script src="js/ComplianceModule/IntakeReport.js"></script>
-<script src="js/ComplianceModule/Report_pagination.js"></script>
+<script src="js/ComplianceModule/IntakeReport3.js"></script>
 <script src="js/Compliance/Search.js"></script>
 </body>
 </html>

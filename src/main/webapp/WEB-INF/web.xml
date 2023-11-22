@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee; http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>D3Sixty</display-name>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>SearchServlet</display-name>
+  	<servlet-name>SearchServlet</servlet-name>
+  	<servlet-class>compliance_module_servlet.SearchServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>FinanceTableRetrieveServlet</display-name>
+  	<servlet-name>FinanceTableRetrieveServlet</servlet-name>
+  	<servlet-class>Finance_module.servlet.FinanceTableRetrieveServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>Add_finance_servlet</display-name>
+  	<servlet-name>Add_finance_servlet</servlet-name>
+  	<servlet-class>Finance_module.servlet.Add_finance_servlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>FinanceAppDataRetrieveServlet</display-name>
+  	<servlet-name>FinanceAppDataRetrieveServlet</servlet-name>
+  	<servlet-class>finance_module_servlet.FinanceAppDataRetrieveServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>Retrieve_Finance_List_Servlet</display-name>
+  	<servlet-name>Retrieve_Finance_List_Servlet</servlet-name>
+  	<servlet-class>finance_module_servlet.Retrieve_Finance_List_Servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>FinanceAppDataRetrieveServlet</servlet-name>
+  	<url-pattern>/FinanceAppDataRetrieveServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Retrieve_Finance_List_Servlet</servlet-name>
+  	<url-pattern>/Retrieve_Finance_List_Servlet</url-pattern>
+  </servlet-mapping>
+  
+  	
+  
+  	
+  
+  
+  
   
   <welcome-file-list>
     <welcome-file>Home.jsp</welcome-file>

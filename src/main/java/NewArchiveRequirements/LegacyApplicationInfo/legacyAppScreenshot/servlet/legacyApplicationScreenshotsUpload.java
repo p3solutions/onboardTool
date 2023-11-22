@@ -57,13 +57,13 @@ public class legacyApplicationScreenshotsUpload extends HttpServlet {
 	 int lastrow_count=0;
 	 for(FileItem item : multiFiles)
 	 {
-		 String selectQuery3 ="SELECT COUNT(*) FROM decom3sixtytool.legacy_application_screenshot where AppId=? ";
+		 String selectQuery3 ="SELECT COUNT(*) FROM decom3sixtytool.finance_screenshot where AppId=? ";
 		 PreparedStatement st3 = con.prepareStatement(selectQuery3);
 		 st3.setString(1, Id);
 		 ResultSet rs3 = st3.executeQuery();
 		 rs3.next();
 	     lastrow_count = rs3.getInt(1);
-		 String selectQuery ="SELECT * FROM `Legacy_Application_Screenshot` WHERE appId=? ORDER BY seq_num;";
+		 String selectQuery ="SELECT * FROM finance_screenshot` WHERE AppId=? ORDER BY seq_num;";
 		 PreparedStatement st = con.prepareStatement(selectQuery);
 		 st.setString(1, Id);
 //		 st.setInt(2, lastrow_count);
@@ -71,7 +71,7 @@ public class legacyApplicationScreenshotsUpload extends HttpServlet {
 		 rs.next();
 	     
 		 if (lastrow_count > 0) {
-		 String insertQuery = "INSERT INTO `Legacy_Application_Screenshot` (doc, File_name, seq_num, appId) VALUES (?, ?, ?, ?);";
+		 String insertQuery = "INSERT INTO finance_screenshot` (doc, File_name, seq_num, appId) VALUES (?, ?, ?, ?);";
 		 InputStream is  = (InputStream) item.getInputStream();
 		 PreparedStatement pstmt = con.prepareStatement(insertQuery);
 		 pstmt.setBinaryStream(1, is);
@@ -83,7 +83,7 @@ public class legacyApplicationScreenshotsUpload extends HttpServlet {
 		 is.close();
 		 }else {
 			 lastrow_count=1;
-			 String insertQuery = "INSERT INTO `Legacy_Application_Screenshot` (doc, File_name, seq_num, appId) VALUES (?, ?, ?, ?);";
+			 String insertQuery = "INSERT INTO finance_screenshot` (doc, File_name, seq_num, appId) VALUES (?, ?, ?, ?);";
 			 InputStream is  = (InputStream) item.getInputStream();
 			 PreparedStatement pstmt = con.prepareStatement(insertQuery);
 			 pstmt.setBinaryStream(1, is);

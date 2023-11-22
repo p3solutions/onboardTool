@@ -546,7 +546,7 @@ font-family:sans-serif;
             <!-- Login Form -->
             <input type="text" id="uname" class="fadeIn second" name="usr" placeholder="Username">
             <input type="password" id="pwd" class="fadeIn third" name="pwd" placeholder="Password">
-            <input type="submit" id="burton" name="go" class="fadeIn fourth" value="Log In">
+            <input type="submit" id="button" name="go" class="fadeIn fourth" value="Log In">
             <!-- Remind Passowrd -->
             <div id="formFooter">
                 <!-- <a class="underlineHover" href="#" onclick="showuserform()">Forgot Username?/</a>

@@ -463,7 +463,7 @@ img.filtered {
 					<div class="col-lg-12 col-md-12">
 						<div class="sub-title" style="color: #fff">
 							<a href="DashBoard.jsp" id="sitetitle1" style="color: #fff"><span
-								class="glyphicon glyphicon-home"></span> Home</a> >> Governance
+								class="glyphicon glyphicon-home"></span> Home</a> >> Governance>>Report
 						</div>
 					</div>
 				</div>
@@ -524,12 +524,12 @@ img.filtered {
 						<div class="line"></div>
 						<div class="triangle"></div>
 					</div>
-					<!-- <div class="process assessment">
+					<div class="process assessment">
         <div class="step">
     <div class="step-milestone2"/>
-    <a href="#">
+    <a href="IntakeReport.jsp">
                                         <center>
-                                             <img src="images/grid/decommission-execution.png" class="img-rounded" height="100" width="100" alt="Avatar">
+                                             <img src="images/grid/Report.png" class="img-rounded" height="100" width="100" alt="Avatar">
 
                                         </center>
 
@@ -539,14 +539,14 @@ img.filtered {
     </div>
     <br>
      <span class="step-title">
-      Decommission Execution
+      Report
     </span>
   </div>
     </div>
     <div class="arrow finalDecision">
         <div class="line"></div>
         <div class="triangle"></div>
-    </div> -->
+    </div> 
 				</div>
 
 

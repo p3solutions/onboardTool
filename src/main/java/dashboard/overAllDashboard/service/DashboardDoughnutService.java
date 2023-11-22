@@ -70,9 +70,9 @@ public class DashboardDoughnutService {
                 {
                     System.out.println("Phase is :: "+phaseFilter);
                     String selectPhases = "select * from phase_info where phaseName like ?";
-				st=con.prepareStatement(selectPhases);
+				    st=con.prepareStatement(selectPhases);
                     st.setString(1,"%"+phaseFilter+"%");
-				rs = st.executeQuery();
+				    rs = st.executeQuery();
                     while (rs.next()) {
                         if (rs.getString("column_name").equals("waves")) {
                             if (rs.getString("value").isEmpty() == false) {
@@ -361,7 +361,7 @@ public class DashboardDoughnutService {
             DecimalFormat f = new DecimalFormat("##.##");
             if(totalCBA==0.0)
             {
-            	jsonObject.addProperty("sunmOfIntake", 0);
+            	jsonObject.addProperty("sumOfIntake", 0);
                 jsonObject.addProperty("sumOfInProgress", 0);
                 jsonObject.addProperty("sumOfRealised", 0);
             }

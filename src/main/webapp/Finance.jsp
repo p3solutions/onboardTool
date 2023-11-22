@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Users List</title>
+<title>Finance List</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -330,33 +330,38 @@ rotate
 	margin-left: 289px;
 }
 </style>
-<body>
+<body class="top-navbar-fixed">
 
+	
 	<%@include file="Nav-Bar.jspf"%>
 
-	<nav class="nav nav-height-70 nav-font" id="bg-color"
-		style="margin-top: -10px; height: 85px;">
-		<div class="container-fluid">
-			<div class="col-sm-12" id="d3s-mt-20">
-				<ul class="nav navbar-nav-1 mt-3">
-					<li class="nav-link-2 active-2" id="nav-link"
-						style="border-bottom: 4px solid rgba(255, 255, 255, .5) !important"><a
-						class="link" href="Admin_Userslist.jsp"
-						style="color: #fff; padding: 7px 7px; margin-top: -10px; height: 35px;">UserList</a></li>
-					<li id="nav-link"><a class="link" href="License_info.jsp"
-						style="color: #fff; padding: 7px 7px; margin-top: -10px; height: 35px;">License
-							Information</a></li>
-				</ul>
-
+	
+			
+				<nav class="nav nav-height-70" id="bg-color">
+			<div class="container-fluid" id="container-fluid-margin">
+					
+		
+				<!-- <p class="sub-title">Create and manage your Opportunities here</p>-->
+				<%--  <p class="sub-title" style="color:#fff"> <a  href="OpportunityList.jsp" id="sitetitle1" style="color:#fff"><span class="glyphicon glyphicon-home"></span> Home</a> >><%=waveName%></p> --%>
+				<div class="row">
+					<div class="col-lg-12 col-md-12">
+						<div class="sub-title" style="color: #fff">
+							<a href="DashBoard.jsp" id="sitetitle1" style="color: #fff"><span
+								class="glyphicon glyphicon-home"></span> Home</a> >><a href="Finance.jsp" id="sitetitle1" style="color: #fff">Finance</a> 
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-	</nav>
+			
+		</nav>
+
+			
 	<div class="col-lg-6 left-side phase-btn1" align="left">
 
 		<button type="button" id="add_user_btn" class="btn btn-primary"
-			href="#" data-bs-toggle="modal" data-bs-target="#adduserModal"
+			href="" data-bs-toggle="modal" data-bs-target="#adduserModal" onclick="location.href='FinanceInput.jsp';"
 			style="margin: 29px 0 0 83px; font-size: 14px; display: none;">Add
-			User</button>
+			 Details</button>
 		<button type="button" class="btn btn-primary pull-right"
 			id="editpopup_btn" data-bs-toggle="modal" data-bs-target="#EditPopUp"
 			style="display: none;">Edit PopUp</button>
@@ -368,11 +373,11 @@ rotate
 	</div>
 	<br />
 	<div class="card-container-5 card d3s-mt-50">
-    <div class="card-header d3s-pl-15" id="cd-header">
+    <div class="card-header d3s-pl-15" id="cd-header">Finance Details
     </div>
-    <div class="withoutPhase display" id="admin_userslist_div">
+    <div class="withoutPhase display" id="admin_userslist_div" style="overflow:auto;">
 			<table class="table table-bordered table-responsive"
-				id="admin_userslist" style="width: 85%; font-size: 12px;">
+				id="admin_userslist" style="width: 200%; font-size: 12px;">
     <br/>
     
     <label style="margin-top: 20px ;margin-left: 8px">Show </label>
@@ -380,7 +385,6 @@ rotate
     <select class="form-select align-left"
             aria-label="Default select example" id="maxRows"
             style="padding: 0.75 0 0 0.75rem; margin-bottom: 5px;  margin-top: -26px;margin-left: 55px; width: 70px;">
-        <option value="5000">Show All</option>
         <option value="5">5</option>
         <option value="10">10</option>
         <option value="15">15</option>
@@ -391,22 +395,38 @@ rotate
     </select>
 	
 				<thead>
+				<tr>
 
-					<th style='text-align: center; vertical-align: middle; width: 25%;'
-						scope="col">UserName</th>
-					<th style='text-align: center; vertical-align: middle; width: 25%;'
-						scope="col">FirstName</th>
-					<th style='text-align: center; vertical-align: middle; width: 25%;'
-						scope="col">LastName</th>
-					<th style='text-align: center; vertical-align: middle; width: 25%;'
-						scope="col">Email</th>
-					<th style='text-align: center; vertical-align: middle; width: 25%;'
-						scope="col">Role</th>
+					<th style='text-align: center; vertical-align: middle; width: 10%;'
+						scope="col">Project_Number</th>
+ 
+					<th style='text-align: center; vertical-align: middle; width: 10%;'
+						scope="col">Application_Name</th>
+ 
+					<th style='text-align: center; vertical-align: middle; width: 10%;'
+						scope="col">Software_and_Licensing</th>
+                    <th style='text-align: center; vertical-align: middle; width: 10%;'
+						scope="col">Contract_Date</th>
+                    <th style='text-align: center; vertical-align: middle; width: 10%;'
+						scope="col">scope_of_infrastructure</th>
+                   <th style='text-align: center; vertical-align: middle; width: 10%;'
+						scope="col">Cost_Avoidance</th>
+                   <th style='text-align: center; vertical-align: middle; width: 10%;'
+						scope="col">Cost_of_Archive</th>
+                  <th style='text-align: center; vertical-align: middle; width: 10%;'
+						scope="col">CBA</th>
+                  <th style='text-align: center; vertical-align: middle; width: 10%;'
+						scope="col">Funding_approval</th>
+                    <th style='text-align: center; vertical-align: middle; width: 10%;'
+						scope="col">Funding_type</th>
+					<th style='text-align: center; vertical-align: middle; width: 10%;'scope="col">Status</th>
+ 
 					<th
-						style='text-align: center; display: none; vertical-align: middle; width: 15%;'
+						style='text-align: center; display: none; vertical-align: middle; width: 10%;'
 						class="useractionheader" scope="col">Action</th>
-
-
+ 
+ 
+                </tr>
 				</thead>
 
 				<div id="overlay">
@@ -414,7 +434,7 @@ rotate
 						<span class="spinner"></span>
 					</div>
 				</div>
-				<tbody id="AdminUserslist">
+				<tbody id="Financedetails">
 
 				</tbody>
 
@@ -441,104 +461,29 @@ rotate
 
 	</div>
 
-	<div class="modal" id="adduserModal" tabindex="-1"
+	<div class="modal" id="addfinanceModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header" style="background-color: #1565c0;">
 					<h5 class="modal-title" id="exampleModalLabel"
-						style="color: white;">Add New User</h5>
+						style="color: white;">Add Finance</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
-				<div class="modal-body">
-					<form name="PopUpform">
-						<div class="row">
-							<div class="form-group">
-								<div class="col-lg-12">
-									<label class="control-label" for="formInput526">UserName:</label>
-									<input type="text" class="form-control" id="uname" name="uname"
-										required>
-								</div>
-								<div class="col-lg-12">
-									<label class="control-label" for="formInput526">FirstName:</label>
-									<input type="text" class="form-control" id="ufname"
-										name="fname" required>
-								</div>
-								<div class="col-lg-12">
-									<label class="control-label" for="formInput526">LastName:</label>
-									<input type="text" class="form-control" id="ulname"
-										name="lname" required>
-								</div>
-								<div class="col-lg-12">
-									<label class="control-label" for="formInput526">E-Mail:</label>
-									<input type="text" class="form-control" id="u_email"
-										name="u_email" required>
-								</div>
-								<div class="col-lg-12">
-									<label class="control-label" for="formInput526">Password:</label>
-									<i class="fa fa-eye-slash icon" aria-hidden="true"
-										id="u_pwd_togglePassword"></i> <input
-										type="password" class="form-control" id="u_pwd" name="u_pwd"
-										required>
-								</div>
-								<div class="col-lg-12">
-									<label class="control-label" for="formInput526">Confirm
-										Password:</label> <i class="fa fa-eye-slash icon" aria-hidden="true"
-										id="conf_u_pwd_togglePassword"></i> <input
-										type="password" class="form-control" id="conf_u_pwd"
-										name="conf_u_pwd" required>
-								</div>
-								<div class="col-lg-12">
-									<label class="control-label" for="formInput526">Role/Group:</label>
-									<!-- <input type="text" class="form-control" id="u_role"
-													name="u_role" required>  -->
-									<select class="form-select form-select-lg mb-3"
-										aria-label=".form-select-lg example" id="u_role" name="u_role"
-										style="font-size: 14px;" required>
-										<option value="">Select</option>
-										<option>D3SIXTY_SUPER_ADMIN</option>
-										<option>D3SIXTY_ADMIN</option>
-										<option>D3SIXTY_TECHNICAL_CONTRIBUTOR</option>
-										<option>D3SIXTY_ARCHIVE_CONTRIBUTOR</option>
-										<option>D3SIXTY_DECOMMISSION_CONTRIBUTOR</option>
-										<option>D3SIXTY_FINANCE_CONTRIBUTOR</option>
-									</select>
-								</div>
-
-							</div>
-						</div>
-
-
-					</form>
-				</div>
 				
-			</div>
-		</div>
-	</div>
 
 
 
 
-	</div>
-
-
-	</div>
-	</div>
-	</div>
-
-
-	</div>
-	</div>
-	</div>
-
+	
 	<div class="modal" id="EditPopUp" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header" style="background-color: #1565c0;">
 					<h5 class="modal-title" id="exampleModalLabel"
-						style="color: white;">Update User Details</h5>
+						style="color: white;">Update Details</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
@@ -547,31 +492,57 @@ rotate
 						<div class="row">
 							<div class="form-group">
 								<div class="col-lg-12">
-									<label class="control-label" for="formInput526">Username:</label>
-									<input type="text" class="form-control" id="uname_modify"
+									<label class="control-label" for="formInput526">Project Number:</label> <input type="text" class="form-control"
+										id="ProjectNumber_modify" name="ProjectNumber" required>
+<label class="control-label" for="formInput526">Application
+										Name:</label> <input type="text" class="form-control"
+										id="ApplicationName_modify" name="ApplicationName" required>
+ 
+									<label class="control-label" for="formInput526">Software
+										and Licensing</label> <input type="text" class="form-control"
+										id="Software_and_Licensing_modify" name="ulname" required>
+<label class="control-label" for="formInput526">Contract,
+										possibly terms of contract e.g., length, expiration:</label> <input
+										type="text" class="form-control" id="Contract_Date_Modify"
 										name="uname" required> <label class="control-label"
-										for="formInput526">Firstname:</label> <input type="text"
-										class="form-control" id="ufname_modify" name="ufname" required>
-									<label class="control-label" for="formInput526">Lastname:</label>
-									<input type="text" class="form-control" id="ulname_modify"
-										name="ulname" required> <label class="control-label"
-										for="formInput526">User E-Mail:</label> <input type="text"
-										class="form-control" id="u_email_modify" name="u_email"
+										for="formInput526">scope of infrastructure:</label> <input
+										type="text" class="form-control" id="Scope_modify"
+										name="uname" required> <label class="control-label"
+										for="formInput526">Cost Avoidance:</label> <input type="text"
+										class="form-control" id="AvoidanceCost_modify" name="uname"
 										required> <label class="control-label"
-										for="formInput526">User Role:</label> <select
-										class="form-select form-select-lg mb-3"
-										aria-label=".form-select-lg example" id="u_role_modify"
+										for="formInput526">Cost of Archive:</label> <input type="text"
+										class="form-control" id="ArchiveCost_modify" name="uname"
+										required> <label class="control-label"
+										for="formInput526">CBA:</label> <input type="text"
+										class="form-control" id="CBA_modify" name="uname" required>
+ 
+									<label class="control-label" for="formInput526">Funding
+										approved?:</label> <select class="form-select form-select-lg mb-3"
+										aria-label=".form-select-lg example" id="Approval_modify"
 										name="u_role" style="font-size: 14px;" required>
-										<option value="">Select</option>
-										<option>D3SIXTY_SUPER_ADMIN</option>
-										<option>D3SIXTY_ADMIN</option>
-										<option>D3SIXTY_TECHNICAL_CONTRIBUTOR</option>
-										<option>D3SIXTY_ARCHIVE_CONTRIBUTOR</option>
-										<option>D3SIXTY_DECOMMISSION_CONTRIBUTOR</option>
-										<option>D3SIXTY_FINANCE_CONTRIBUTOR</option>
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+ 
+									</select> <label class="control-label" for="formInput526">Funding
+										type:</label> <select class="form-select form-select-lg mb-3"
+										aria-label=".form-select-lg example" id="Type_modify"
+										name="u_role" style="font-size: 14px;" required>
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+ 
 									</select>
-
-
+ 
+ 
+								</div>
+</div>
+</div>
+<input type="text" id="random_id_modify" name="random_id" value=""
+							style="display: none;">
+</form>
+</div>
 
 								</div>
 							</div>
