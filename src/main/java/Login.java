@@ -144,6 +144,21 @@ public class Login extends HttpServlet {
                 this.value = value;
             }
         }
+        class FinanceDetails {
+            int seq_num;
+            String project, app_name, label, column, options, type, mandatory, value;
+            FinanceDetails(int seq_num, String project, String app_name, String options, String label, String column, String type, String mandatory, String value) {
+                this.seq_num = seq_num;
+                this.project = project;
+                this.app_name = app_name;
+                this.options = options;
+                this.label = label;
+                this.column = column;
+                this.type = type;
+                this.mandatory = mandatory;
+                this.value = value;
+            }
+        }
 
         class GovernanceDetails {
             int seq_num;
@@ -367,6 +382,52 @@ public class Login extends HttpServlet {
             }
             statement.close();
             rs_opportunity.close();
+            
+        
+            
+            String FinanceInsertQuery = "select * from finance_info_template_details";
+            PreparedStatement statement11 = con.prepareStatement(FinanceInsertQuery);
+            ResultSet Finance = statement11.executeQuery();
+
+            if (!Finance.next()) {
+            	 FinanceDetails[] FinanceInput = new  FinanceDetails[14];
+            	 FinanceInput[0] = new  FinanceDetails(1, "", "", "", "Project Number", "ProjectNumber", "Text box", "No", "");
+            	 FinanceInput[1] = new  FinanceDetails(2, "", "", "", "Phase", "Phase", "Text box", "No", "");
+            	 FinanceInput[2] = new FinanceDetails(3, "", "", "", "Application Name", "appName", "Text box", "Yes", "");
+            	 FinanceInput[3] = new  FinanceDetails(4, "", "", "", "Software and Licensing", "License", "Text box", "No", "");
+            	 FinanceInput[4] = new  FinanceDetails(5, "", "", "", "Contract, possibly terms of contract e.g., length, expiration", "Contract_Date", "Datepicker", "No", "");
+            	 FinanceInput[5] = new  FinanceDetails(6, "", "", "", "scope of infrastructure", "Scope", "Text box", "No", "");
+            	 FinanceInput[6] = new  FinanceDetails(7, "", "", "", "InfraStructure Cost Savings", "InfraCost", "Text box", "No", "");
+            	 FinanceInput[7] = new  FinanceDetails(8, "", "", "", "Cost Avoidance", "Avoidance_Cost", "Text box", "Yes", "");
+            	 FinanceInput[8] = new  FinanceDetails(9, "", "", "", "Cost of Archive", "Archive_Cost", "Text box", "Yes", "");
+            	 FinanceInput[9] = new  FinanceDetails(10, "", "", "", "CBA", "CBA", "Text box", "No", "");
+            	 FinanceInput[10] = new  FinanceDetails(11, "", "", ",Yes,No", "Funding approved?", "FundingDetails", "Dropdown", "Yes", "");
+            	 
+            	 FinanceInput[11] = new  FinanceDetails(12, "", "", "", "Funding type", "Fundings", "Text box", "No", "");
+            	 FinanceInput[12] = new  FinanceDetails(13, "", "", "", "Status", "Status", "Text box", "Yes", "");
+            	 FinanceInput[13] = new FinanceDetails(14, "", "", "", "Add Attachments", "Attachments", "TextAreaFile", "No", "");
+            	 
+                for (int index = 0; index < FinanceInput.length; index++) {
+                    String FinanceInsertQuery1 = "insert into finance_info_template_details (seq_no, prj_name, app_name, options, label_name, column_name, type, mandatory, value)" +
+                        "value(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+                    PreparedStatement prestmt1 = con.prepareStatement(FinanceInsertQuery1);
+                    prestmt1.setInt(1, FinanceInput[index].seq_num);
+                    prestmt1.setString(2, FinanceInput[index].project);
+                    prestmt1.setString(3, FinanceInput[index].app_name);
+                    prestmt1.setString(4, FinanceInput[index].options);
+                    prestmt1.setString(5, FinanceInput[index].label);
+                    prestmt1.setString(6, FinanceInput[index].column);
+                    prestmt1.setString(7, FinanceInput[index].type);
+                    prestmt1.setString(8, FinanceInput[index].mandatory);
+                    prestmt1.setString(9, FinanceInput[index].value);
+
+                    prestmt1.execute();
+
+                }
+            }
+            statement11.close();
+            Finance.close();
 
             //
             String NewGovernanceQuery = "select * from Governance_Info_Template_Details";
@@ -729,7 +790,7 @@ public class Login extends HttpServlet {
             if (!AssessAppInfoRs.next()) {
                 String AppInfo = "ApplicationInformation";
                 Assessment AssessmentDetails[] = new Assessment[19];
-                AssessmentDetails[0] = new Assessment(1, "", "", AppInfo, ",COTS - Commercial Off The Shelf,MOTS - Modified Off The Shelf,Custom - In-house Development", "Application Details", "AppDetails", "Dropdown", "No", "");
+                AssessmentDetails[0] = new Assessment(1, "", "", AppInfo, ",COTS - Commercial Off The Shelf,MOTS - Modified Off The Shelf,Custom - In-house Development", "Application Details", "AppDetails", "Dropdown", "Yes", "");
                 AssessmentDetails[1] = new Assessment(2, "", "", AppInfo, ",Currently supported,Nearing end of life,End of life with extended support/maintenance,unsupported", "Lifecycle", "Lifecycle", "Dropdown", "No", "");
                 AssessmentDetails[2] = new Assessment(3, "", "", AppInfo, "Yes,No", "Is this a currently supported application?", "SupportedApp", "RadioBoxDependencyNo", "No", "");
                 AssessmentDetails[3] = new Assessment(4, "", "", AppInfo, "", "If NO,who supports this Application?", "SupportApp", "TextBoxDependencyNo", "No", "");

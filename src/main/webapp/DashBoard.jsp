@@ -440,6 +440,25 @@ display:none;
 
 </head>
 <body class="top-navbar-fixed">
+<style>
+  /* Style the Export CSV button */
+  .card-header button {
+    float: right;
+    background-color: #0c7ef0; /* Set the button background color to blue */
+    color: white; /* Set the text color to white */
+    border-radius: 5px; /* Add curved corners */
+    padding: 3px 8px; /* Adjust the padding for a smaller size */
+    border: none; /* Remove the border */
+    font-size: 12px; /* Adjust the font size to make it smaller */
+    transition: background-color 0.3s, color 0.3s; /* Add transition for smooth animation */
+  }
+
+  /* Add hover effect */
+  .card-header button:hover {
+    background-color: #0056b3; /* Change the background color on hover */
+    color: #fff; /* Change the text color on hover */
+  }
+</style>
 	<%@ page import="java.text.SimpleDateFormat"%>
 	<%@ page import="java.util.Date"%>
 	<%
@@ -736,8 +755,8 @@ display:none;
 							<div class="row">
 								<div class="col-md-8">
 									<div class="card ht-233">
-										<div class="card-header" id="card-header">Intake
-											Status</div>
+										<div class="card-header" id="card-header">Intake Status 
+											 <button onclick = "exportToCSV()" > Export CSV </button></div>
 										<div class="card-body" style="padding: 0px;">
 											<div id="ApplicationStatusDash">
 												<table id="example" class="table">
@@ -779,8 +798,7 @@ display:none;
 							<div class="row">
 								<div class="col-md-8">
 									<div class="card ht-270">
-										<div class="card-header" id="card-header">Archive
-											Requirements</div>
+										<div class="card-header" id="card-header">Archive Requirements <button onclick = "exportToCSV()" > Export CSV </button></div>
 										<div class="card-body" style="padding: 0px;">
 											<div id="AppAchiveReqDash">
 												<table id="example1" class="table">
@@ -830,7 +848,7 @@ display:none;
 								<div class="col-md-8">
 									<div class="card ht-270">
 										<div class="card-header" id="card-header">Archive
-											Execution</div>
+											Execution<button onclick = "exportToCSV()" > Export CSV </button></div>
 										<div class="card-body" style="padding: 0px;">
 											<div id="AppArchiveExeDash">
 												<table id="example2" class="table">
@@ -906,6 +924,57 @@ display:none;
 	<script src="js/pace/pace.min.js"></script>
 	<script src="js/lobipanel/lobipanel.min.js"></script>
 	<script src="js/iscroll/iscroll.js"></script>
+	<script>
+	function exportToCSV() {
+
+		 
+
+		var table = document.querySelector('.table');
+
+	 
+
+		var data = [];
+
+	 
+
+		for (var i = 0; i < table.rows.length; i++) {
+			var row = table.rows[i];
+			var rowData = [];
+			for (var j = 0; j < row.cells.length; j++) {
+				rowData.push(row.cells[j].textContent.trim());
+			}
+			data.push(rowData);
+		}
+
+	 
+
+	 
+
+		var csvContent = "data:text/csv;charset=utf-8,";
+		data.forEach(function(rowArray) {
+			var row = rowArray.join(",");
+			csvContent += row + "\r\n";
+		});
+
+	 
+
+		var encodedUri = encodeURI(csvContent);
+
+	 
+
+	 
+
+		var link = document.createElement("a");
+		link.setAttribute("href", encodedUri);
+		link.setAttribute("download", "DasboardDetails.csv");
+		document.body.appendChild(link);
+
+	 
+
+		link.click();
+	}
+	
+	</script>
 
 
 	<script type="text/javascript">

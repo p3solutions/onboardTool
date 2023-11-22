@@ -51,9 +51,16 @@ function switchActiveModule() {
 		case "phaseEdit.jsp":
 		case "applicationList.jsp":
 		case "Governance_Home.jsp":
+		case "Compliance.jsp":
+		
 		case "ArchiveExecutionDetails_Governance.jsp":
 		
 			selectiveActiveIcon(2);
+			break;
+			case "Finance.jsp":
+			case "FinanceInput.jsp":
+			case "FinanceUpdate.jsp":
+			selectiveActiveIcon(3);
 			break;
 		case "DashBoard.jsp":
 			selectiveActiveIcon(4);
