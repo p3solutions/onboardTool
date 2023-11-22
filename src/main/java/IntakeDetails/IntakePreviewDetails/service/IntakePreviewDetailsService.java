@@ -1,24 +1,22 @@
 package IntakeDetails.IntakePreviewDetails.service;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
 import IntakeDetails.IntakeAssessment.service.IntakeAssessSectionDataRetrieveService;
 import IntakeDetails.IntakeAssessment.service.IntakeAssessmentService;
 import IntakeDetails.IntakeOpportunity.Service.IntakeOpportunityService;
 import IntakeDetails.IntakeStakeHolder.service.IntakeStakeHolderService;
 import IntakeDetails.IntakeTriage.Service.IntakeTriageService;
 import IntakeDetails.IntakeTriageSummary.service.IntakeTriageSummaryService;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import common.constant.APPLICATION_ROLES;
 import common.constant.MODULE_NAME;
 import common.email.service.EmailApprovalService;
 import onboard.DBconnection;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class IntakePreviewDetailsService {
 	
@@ -42,7 +40,7 @@ public class IntakePreviewDetailsService {
 				JsonObject jsonObj = new JsonObject();
 				
 			switch(role) {
-			
+
 			   case APPLICATION_ROLES.PROJECT_SPONSOR:
 				jsonArray.add(IntakeOpportunityService.IntakeOpportunityDataRetrieveService(Id));
 				jsonArray.add(new IntakeTriageService().DataRetrieve(Id));

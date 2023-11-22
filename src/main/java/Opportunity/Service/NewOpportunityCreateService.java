@@ -1,21 +1,16 @@
 package Opportunity.Service;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
-import javax.ws.rs.GET;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
 import ArchiveExecutionModule.ArchiveExecutionDetails.service.ArchiveExecutionTemplateService;
 import NewArchiveRequirements.AbbreviationList.service.Add_Abbreviation_Service;
 import NewArchiveRequirements.businessRequirementsDetails.functionalReqInfo.dataReq.Service.archiveFunctionDataRetrieveService;
 import Opportunity.OpportunityBean;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import onboard.DBconnection;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class NewOpportunityCreateService {
 

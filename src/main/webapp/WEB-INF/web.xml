@@ -16,13 +16,5 @@
     <param-name>log4j-config-location</param-name>
     <param-value>WEB-INF/log4j.properties</param-value>
   </context-param>
-  <!-- <security-constraint>
-    <web-resource-collection>
-        <web-resource-name>D3Sixty</web-resource-name>
-        <url-pattern>/*</url-pattern>
-    </web-resource-collection>
-    <user-data-constraint>
-        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-    </user-data-constraint>
-</security-constraint> -->
+
 </web-app>

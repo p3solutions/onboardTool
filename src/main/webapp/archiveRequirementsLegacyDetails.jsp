@@ -448,9 +448,6 @@ e.printStackTrace();
 									<br />
 
 
-
-
-
 									<div class="tab-pane" role="tabpanel" id="step4">
 
 										<!-- Legacy Application Informations -->

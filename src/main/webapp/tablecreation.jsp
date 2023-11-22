@@ -284,8 +284,12 @@
         
         String query102 = "CREATE TABLE IF NOT EXISTS `archive_req_addendum_fileupload` (`seq_num` int(11) NOT NULL,`section_no` int(11) DEFAULT NULL, `oppId` varchar(255) DEFAULT NULL,`File_Name` varchar(255) DEFAULT NULL,`doc` longblob);";
         statement.executeUpdate(query102);
-        
-               
+        String query103 = "CREATE TABLE IF NOT EXISTS `Finance_Info` (`seq_no` INTEGER (255),`Id` varchar(255),`prj_name` varchar(255), `app_name` varchar(255), `options` varchar(255),`label_name` varchar(255), `column_name` varchar(255),`type` varchar(255),`mandatory` varchar(255),`value` varchar(255),`usermandatoryflag` varchar(255))";
+        statement.executeUpdate(query103);
+        String query104 = "CREATE TABLE IF NOT EXISTS `Finance_Template_Details` (`seq_no` INTEGER (255), `options` varchar(255),`label_name` varchar(255), `column_name` varchar(255),`type` varchar(255),`mandatory` varchar(255),`value` varchar(255))";
+        statement.executeUpdate(query104);
+        String query105 ="CREATE TABLE IF NOT EXISTS `Finance_Application_Screenshot` ( seq_num INTEGER, AppId VARCHAR(255), File_Name VARCHAR(255), doc LONGBLOB);";
+        statement.executeUpdate(query105);
         
 %>
 <% } catch (Exception ex) {

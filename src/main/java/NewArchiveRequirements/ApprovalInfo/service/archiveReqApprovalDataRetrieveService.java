@@ -1,22 +1,19 @@
 package NewArchiveRequirements.ApprovalInfo.service;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.UUID;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.mysql.cj.Session;
-
-import java.sql.Connection;
 import common.constant.APPROVAL_CONSTANT;
 import common.constant.MODULE_NAME;
 import common.email.service.EmailApprovalService;
 import onboard.DBconnection;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.UUID;
 public class archiveReqApprovalDataRetrieveService {
     DBconnection dBconnection;
     Connection con;

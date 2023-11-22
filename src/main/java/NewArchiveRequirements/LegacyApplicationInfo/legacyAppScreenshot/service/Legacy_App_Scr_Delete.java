@@ -1,13 +1,12 @@
 package NewArchiveRequirements.LegacyApplicationInfo.legacyAppScreenshot.service;
 
+import com.google.gson.JsonObject;
+import onboard.DBconnection;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import com.google.gson.JsonObject;
-
-import onboard.DBconnection;
-
-public class Legacy_App_Scr_Delete {
+public class  Legacy_App_Scr_Delete {
 
 	 public static JsonObject delete_screenshots(String Id,String File_Name) {
 	        JsonObject jsonobj = new JsonObject();

@@ -1,23 +1,21 @@
 package admin_module_modify.servlet;
-import java.io.IOException;
-import java.sql.SQLException;
+
+import admin_module_modify.service.Retrieve_Pwd;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import ArchiveExecutionModule.ArchiveExecutionDetails.service.ArchiveExecutionDetailService;
-import admin_module_modify.service.Retrieve_Pwd;
-import admin_module_modify.service.Retrieve_users_service;
+import java.io.IOException;
 /**
  * Servlet implementation class Retrieve_users_servlet
  */
 @WebServlet("/Retrieve_pwd_servlet")
-public class Retrieve_pwd_servlet extends HttpServlet {
+public class  Retrieve_pwd_servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	/**
 	 * @see HttpServlet#HttpServlet()

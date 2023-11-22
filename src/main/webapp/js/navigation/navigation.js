@@ -52,11 +52,15 @@ function switchActiveModule() {
 		case "applicationList.jsp":
 		case "Governance_Home.jsp":
 		case "ArchiveExecutionDetails_Governance.jsp":
-		
 			selectiveActiveIcon(2);
 			break;
 		case "DashBoard.jsp":
 			selectiveActiveIcon(4);
+			break;
+		case "FinanceList.jsp":
+		case "Finance.jsp":
+		case "FinanceAdd.jsp":
+			selectiveActiveIcon(3);
 			break;
 	}
 }

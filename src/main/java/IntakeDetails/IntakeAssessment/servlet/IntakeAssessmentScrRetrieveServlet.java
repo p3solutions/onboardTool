@@ -1,25 +1,24 @@
 package IntakeDetails.IntakeAssessment.servlet;
 
-import java.io.IOException;
+import IntakeDetails.IntakeAssessment.service.IntakeAssessmentScrRetrieve;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-
-import IntakeDetails.IntakeAssessment.service.IntakeAssessmentScrRetrieve;
+import java.io.IOException;
 
 /**
  * Servlet implementation class IntakeAssessmentScrRetrieveServlet
  */
 @WebServlet("/IntakeAssessmentScrRetrieveServlet")
 public class IntakeAssessmentScrRetrieveServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+    private static final long serialVersionUID = 1L;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -28,24 +27,24 @@ public class IntakeAssessmentScrRetrieveServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        response.getWriter().append("Served at: ").append(request.getContextPath());
+    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		HttpSession details = request.getSession();
-	    String Id=(String)details.getAttribute("ID");
-	    JsonArray jsonArray = null;
-	    IntakeAssessmentScrRetrieve intake_scr_retrive=new IntakeAssessmentScrRetrieve();
-	    jsonArray=intake_scr_retrive.intake_screenshot_retrieve(Id);
+        HttpSession details = request.getSession();
+        String Id=(String)details.getAttribute("ID");
+        JsonArray jsonArray = null;
+        IntakeAssessmentScrRetrieve intake_scr_retrive=new IntakeAssessmentScrRetrieve();
+        jsonArray=intake_scr_retrive.intake_screenshot_retrieve(Id);
         intake_scr_retrive =null;
         //calling finalize method and garabage collector
         System.gc();
@@ -54,6 +53,6 @@ public class IntakeAssessmentScrRetrieveServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);
-	}
+    }
 
 }

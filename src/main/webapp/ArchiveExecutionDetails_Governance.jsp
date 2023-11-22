@@ -79,7 +79,7 @@
 
 
 <style>
-<
+
 style type ="text /css ">body {
 	background: #fff;
 }
@@ -95,7 +95,7 @@ style type ="text /css ">body {
 	padding-right: 0px;
 }
 
-<!--
+
 Wizard-->body {
 	background-color: #ffffff;
 	color: #444444;
@@ -340,30 +340,9 @@ keyframes click-radio-wave { 0% {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 %
 {
 width
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -804,167 +783,167 @@ input[type="text"] {
 
 </head>
 <body class="top-navbar-fixed">
-	<%@ page import="java.text.SimpleDateFormat"%>
-	<%@ page import="java.util.Date"%>
-	<%
-	SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-	Date newDate1 = new Date();
-	System.out.println("[INFO]-----" + formatter1.format(newDate1) + "-----Accessed OpportunityList JSP PAGE-----[INFO]");
-	%>
-	<%@page language="java"%>
-	<%@page import="java.text.DateFormat"%>
-	<%@page import="java.text.SimpleDateFormat"%>
-	<%@page import="java.util.Date"%>
-	<%@page import="java.sql.*"%>
-	<%@ page import="onboard.DBconnection"%>
-	<%@page import="org.owasp.encoder.Encode"%>
-	<%
-	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-	response.setHeader("Pragma", "no-cache");
-	response.setHeader("Expires", "0");
-	if (session.getAttribute("username") == null) {
-		response.sendRedirect("Login.jsp");
-	}
-	%>
-	<%
-	PreparedStatement visit_start = null;
-	ResultSet visit_reset = null;
-	HttpSession role_session = request.getSession();
-	String frole1 = (String) role_session.getAttribute("role");
-	//int sumcount1=0;
-	Statement sDate, sTime;
-	try {
-		//String query;
-		HttpSession sessionDetails = request.getSession();
-		String Projects = (String) sessionDetails.getAttribute("projects");
-		System.out.println("projects-------------" + Projects);
-		String rolesList = (String) sessionDetails.getAttribute("role");
-		DBconnection db = new DBconnection();
-		Connection connectCon = (Connection) db.getConnection();
-		String visit_query1 = "select * from visits";
-		visit_start = connectCon.prepareStatement(visit_query1);
-		visit_reset = visit_start.executeQuery();
-		int flag1 = 1, knt1 = 0;
-		Date newDate = new Date();
-		SimpleDateFormat fDate, fTime;
-		String userName = (String) sessionDetails.getAttribute("username");
+<%--	<%@ page import="java.text.SimpleDateFormat"%>--%>
+<%--	<%@ page import="java.util.Date"%>--%>
+<%--	<%--%>
+<%--	SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");--%>
+<%--	Date newDate1 = new Date();--%>
+<%--	System.out.println("[INFO]-----" + formatter1.format(newDate1) + "-----Accessed OpportunityList JSP PAGE-----[INFO]");--%>
+<%--	%>--%>
+<%--	<%@page language="java"%>--%>
+<%--	<%@page import="java.text.DateFormat"%>--%>
+<%--	<%@page import="java.text.SimpleDateFormat"%>--%>
+<%--	<%@page import="java.util.Date"%>--%>
+<%--	<%@page import="java.sql.*"%>--%>
+<%--	<%@ page import="onboard.DBconnection"%>--%>
+<%--	<%@page import="org.owasp.encoder.Encode"%>--%>
+<%--	<%--%>
+<%--	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");--%>
+<%--	response.setHeader("Pragma", "no-cache");--%>
+<%--	response.setHeader("Expires", "0");--%>
+<%--	if (session.getAttribute("username") == null) {--%>
+<%--		response.sendRedirect("Login.jsp");--%>
+<%--	}--%>
+<%--	%>--%>
+<%--	<%--%>
+<%--	PreparedStatement visit_start = null;--%>
+<%--	ResultSet visit_reset = null;--%>
+<%--	HttpSession role_session = request.getSession();--%>
+<%--	String frole1 = (String) role_session.getAttribute("role");--%>
+<%--	//int sumcount1=0;--%>
+<%--	Statement sDate, sTime;--%>
+<%--	try {--%>
+<%--		//String query;--%>
+<%--		HttpSession sessionDetails = request.getSession();--%>
+<%--		String Projects = (String) sessionDetails.getAttribute("projects");--%>
+<%--		System.out.println("projects-------------" + Projects);--%>
+<%--		String rolesList = (String) sessionDetails.getAttribute("role");--%>
+<%--		DBconnection db = new DBconnection();--%>
+<%--		Connection connectCon = (Connection) db.getConnection();--%>
+<%--		String visit_query1 = "select * from visits";--%>
+<%--		visit_start = connectCon.prepareStatement(visit_query1);--%>
+<%--		visit_reset = visit_start.executeQuery();--%>
+<%--		int flag1 = 1, knt1 = 0;--%>
+<%--		Date newDate = new Date();--%>
+<%--		SimpleDateFormat fDate, fTime;--%>
+<%--		String userName = (String) sessionDetails.getAttribute("username");--%>
 
-		fDate = new SimpleDateFormat("yyyy-MM-dd");
-		fTime = new SimpleDateFormat("hh:mm:ss");
-		String startDate = fDate.format(newDate);
-		String startTime = fTime.format(newDate);
-		while (visit_reset.next()) {
-			if (visit_reset.getString(6) != null) {
-		if (visit_reset.getString(1).equals(userName) && visit_reset.getString(2).equals(startDate)
-				&& visit_reset.getString(3).equals("Logged in")) {
-			String queryy = "update visits set count=count+1,time=? where uname=? and module='Logged in'  and date =?";
-			PreparedStatement stmtt = connectCon.prepareStatement(queryy);
-			stmtt.setString(1, startTime);
-			stmtt.setString(2, userName);
-			stmtt.setString(3, startDate);
-			int count = stmtt.executeUpdate();
-			flag1 = 0;
-			break;
-		}
-			}
+<%--		fDate = new SimpleDateFormat("yyyy-MM-dd");--%>
+<%--		fTime = new SimpleDateFormat("hh:mm:ss");--%>
+<%--		String startDate = fDate.format(newDate);--%>
+<%--		String startTime = fTime.format(newDate);--%>
+<%--		while (visit_reset.next()) {--%>
+<%--			if (visit_reset.getString(6) != null) {--%>
+<%--		if (visit_reset.getString(1).equals(userName) && visit_reset.getString(2).equals(startDate)--%>
+<%--				&& visit_reset.getString(3).equals("Logged in")) {--%>
+<%--			String queryy = "update visits set count=count+1,time=? where uname=? and module='Logged in'  and date =?";--%>
+<%--			PreparedStatement stmtt = connectCon.prepareStatement(queryy);--%>
+<%--			stmtt.setString(1, startTime);--%>
+<%--			stmtt.setString(2, userName);--%>
+<%--			stmtt.setString(3, startDate);--%>
+<%--			int count = stmtt.executeUpdate();--%>
+<%--			flag1 = 0;--%>
+<%--			break;--%>
+<%--		}--%>
+<%--			}--%>
 
-		}
-		//System.out.println("the flag value is "+flag);
-		if (flag1 == 1) {
-			String ins_query = " insert into visits (uname, date, module, count, time, Projects, Applications)"
-			+ " values (?, ?, ?, ?, ?, ?, ?)";
-			PreparedStatement preparedStmt = connectCon.prepareStatement(ins_query);
-			preparedStmt.setString(1, userName);
-			preparedStmt.setString(2, startDate);
-			preparedStmt.setString(3, "Logged in");
-			preparedStmt.setString(4, "1");
-			preparedStmt.setString(5, startTime);
-			preparedStmt.setString(6, "None");
-			preparedStmt.setString(7, "");
+<%--		}--%>
+<%--		//System.out.println("the flag value is "+flag);--%>
+<%--		if (flag1 == 1) {--%>
+<%--			String ins_query = " insert into visits (uname, date, module, count, time, Projects, Applications)"--%>
+<%--			+ " values (?, ?, ?, ?, ?, ?, ?)";--%>
+<%--			PreparedStatement preparedStmt = connectCon.prepareStatement(ins_query);--%>
+<%--			preparedStmt.setString(1, userName);--%>
+<%--			preparedStmt.setString(2, startDate);--%>
+<%--			preparedStmt.setString(3, "Logged in");--%>
+<%--			preparedStmt.setString(4, "1");--%>
+<%--			preparedStmt.setString(5, startTime);--%>
+<%--			preparedStmt.setString(6, "None");--%>
+<%--			preparedStmt.setString(7, "");--%>
 
-			// execute the preparedstatement
-			preparedStmt.execute();
-		}
-	%>
-	<%-- <%@include file="Nav-Bar.jspf"%> --%>
-	<nav
-		class="navbar navbar-expand-md navbar-light bg-white nav-height nav-font row">
-		<div class="container-fluid col-sm-12 col-md-12 col-lg-12">
-			<div class="col-sm-2 col-md-2 col-lg-2">
-				<a class="navbar-brand" href="OpportunityList.jsp"> <img
-					src="images/D3Sixty-logo.png" class="d3s-logo-1" alt="D3Sixty">
-				</a>
-			</div>
-			<div class="col-md-8 col-lg-8 col-sm-8">
-				<div class="collapse navbar-collapse">
-					<ul class="nav navbar-nav mr-auto d3s-ml-40">
-						<li class="nav-item moduleIcon"><a class="nav-link active"
-							aria-current="page" href="OpportunityList.jsp"><i
-								class="fas fa-folders fa-2x iconAlign iconColor"></i>Applications</a>
-						</li>
+<%--			// execute the preparedstatement--%>
+<%--			preparedStmt.execute();--%>
+<%--		}--%>
+<%--	%>--%>
+	 <%@include file="Nav-Bar.jspf"%>
+<%--	<nav--%>
+<%--		class="navbar navbar-expand-md navbar-light bg-white nav-height nav-font row">--%>
+<%--		<div class="container-fluid col-sm-12 col-md-12 col-lg-12">--%>
+<%--			<div class="col-sm-2 col-md-2 col-lg-2">--%>
+<%--				<a class="navbar-brand" href="OpportunityList.jsp"> <img--%>
+<%--					src="images/D3Sixty-logo.png" class="d3s-logo-1" alt="D3Sixty">--%>
+<%--				</a>--%>
+<%--			</div>--%>
+<%--			<div class="col-md-8 col-lg-8 col-sm-8">--%>
+<%--				<div class="collapse navbar-collapse">--%>
+<%--					<ul class="nav navbar-nav mr-auto d3s-ml-40">--%>
+<%--						<li class="nav-item moduleIcon"><a class="nav-link active"--%>
+<%--							aria-current="page" href="OpportunityList.jsp"><i--%>
+<%--								class="fas fa-folders fa-2x iconAlign iconColor"></i>Applications</a>--%>
+<%--						</li>--%>
 
-						<li class="nav-item moduleIcon"><a class="nav-link active"
-							aria-current="page" href="Admin_Userslist.jsp"><i
-								class="fas fa-user-cog iconAlign iconColor fa-2x"></i>Administration</a>
-						</li>
-						<li class="nav-item moduleIcon"><a class="nav-link active2"
-							aria-current="page" href="Governance_Home.jsp"><i
-								class="fas fa-desktop iconAlign iconColor fa-2x"></i>Governance</a></li>
-						<li class="nav-item moduleIcon" id="financeHint"
-							data-toggle="tooltip" title="For Future Enhancement"><a
-							class="nav-link active" aria-current="page" href="#"><i
-								class="fas fa-wallet iconAlign iconColor fa-2x"></i>Finance</a></li>
-						<li class="nav-item moduleIcon"><a class="nav-link active"
-							aria-current="page" href="DashBoard.jsp"><i
-								class="fas fa-chart-pie iconAlign iconColor fa-2x"></i>Dashboards</a>
-						</li>
-						<li class="nav-item moduleIcon" id="complianceHint"
-							data-toggle="tooltip" title="For Future Enhancement"><a
-							class="nav-link active" aria-current="page" href="#"><i
-								class="fas fa-comment-lines iconAlign iconColor fa-2x"></i>Compliance</a>
-						</li>
+<%--						<li class="nav-item moduleIcon"><a class="nav-link active"--%>
+<%--							aria-current="page" href="Admin_Userslist.jsp"><i--%>
+<%--								class="fas fa-user-cog iconAlign iconColor fa-2x"></i>Administration</a>--%>
+<%--						</li>--%>
+<%--						<li class="nav-item moduleIcon"><a class="nav-link active2"--%>
+<%--							aria-current="page" href="Governance_Home.jsp"><i--%>
+<%--								class="fas fa-desktop iconAlign iconColor fa-2x"></i>Governance</a></li>--%>
+<%--						<li class="nav-item moduleIcon" id="financeHint"--%>
+<%--							data-toggle="tooltip" title="For Future Enhancement"><a--%>
+<%--							class="nav-link active" aria-current="page" href="#"><i--%>
+<%--								class="fas fa-wallet iconAlign iconColor fa-2x"></i>Finance</a></li>--%>
+<%--						<li class="nav-item moduleIcon"><a class="nav-link active"--%>
+<%--							aria-current="page" href="DashBoard.jsp"><i--%>
+<%--								class="fas fa-chart-pie iconAlign iconColor fa-2x"></i>Dashboards</a>--%>
+<%--						</li>--%>
+<%--						<li class="nav-item moduleIcon" id="complianceHint"--%>
+<%--							data-toggle="tooltip" title="For Future Enhancement"><a--%>
+<%--							class="nav-link active" aria-current="page" href="#"><i--%>
+<%--								class="fas fa-comment-lines iconAlign iconColor fa-2x"></i>Compliance</a>--%>
+<%--						</li>--%>
 
-					</ul>
+<%--					</ul>--%>
 
-				</div>
-			</div>
-			<div class="col-sm-2 col-md-2 col-lg-2">
-				<div class="dropdown d3s-ml-80 mt-3" align="end">
-					<a class="dropdown-toggle" href="#" role="button"
-						data-toggle="dropdown" aria-expanded="false"><i
-						class="fas fa-user-circle iconAlign iconColor fa-3x"
-						style="margin-top: 25px;"></i><span class="caret"
-						style="position: absolute; top: 2rem; left: 5rem;"></span> </a>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#" id="textAlign"><i
-								class="fas fa-user-circle iconAlign iconColor fa-3x"></i><br />Signed
-								in as <br /> <b><%=Encode.forHtml(userName)%></b></a></li>
-						<hr style="margin-left: 0px;" />
-						<li><a class="dropdown-item li-align" href="#" id="textAlign"
-							onclick="location.href='Login.jsp';"><i
-								class="fa fa-sign-out fa-1x" style="color: #1565c0;"></i>Logout</a></li>
-					</ul>
-				</div>
-			</div>
+<%--				</div>--%>
+<%--			</div>--%>
+<%--			<div class="col-sm-2 col-md-2 col-lg-2">--%>
+<%--				<div class="dropdown d3s-ml-80 mt-3" align="end">--%>
+<%--					<a class="dropdown-toggle" href="#" role="button"--%>
+<%--						data-toggle="dropdown" aria-expanded="false"><i--%>
+<%--						class="fas fa-user-circle iconAlign iconColor fa-3x"--%>
+<%--						style="margin-top: 25px;"></i><span class="caret"--%>
+<%--						style="position: absolute; top: 2rem; left: 5rem;"></span> </a>--%>
+<%--					<ul class="dropdown-menu">--%>
+<%--						<li><a class="dropdown-item" href="#" id="textAlign"><i--%>
+<%--								class="fas fa-user-circle iconAlign iconColor fa-3x"></i><br />Signed--%>
+<%--								in as <br /> <b><%=Encode.forHtml(userName)%></b></a></li>--%>
+<%--						<hr style="margin-left: 0px;" />--%>
+<%--						<li><a class="dropdown-item li-align" href="#" id="textAlign"--%>
+<%--							onclick="location.href='Login.jsp';"><i--%>
+<%--								class="fa fa-sign-out fa-1x" style="color: #1565c0;"></i>Logout</a></li>--%>
+<%--					</ul>--%>
+<%--				</div>--%>
+<%--			</div>--%>
 
 
-		</div>
+<%--		</div>--%>
 
-	</nav>
+<%--	</nav>--%>
 
-	<%
-	connectCon.close();
+<%--	<%--%>
+<%--	connectCon.close();--%>
 
-	}
+<%--	}--%>
 
-	catch (Exception e) {
-	e.printStackTrace();
-	} finally {
+<%--	catch (Exception e) {--%>
+<%--	e.printStackTrace();--%>
+<%--	} finally {--%>
 
-	visit_start.close();
-	visit_reset.close();
-	}
-	%>
+<%--	visit_start.close();--%>
+<%--	visit_reset.close();--%>
+<%--	}--%>
+<%--	%>--%>
 
 	<nav class="nav nav-height nav-font" id="bg-color">
 		<div class="container-fluid" id="container-fluid-margin">

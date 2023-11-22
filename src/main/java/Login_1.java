@@ -1,29 +1,28 @@
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import ArchiveExecutionGovernanceModule.service.ArchiveExecutionGovernanceTemplateService;
+import ArchiveExecutionModule.ArchiveExecutionDetails.service.ArchiveExecutionTemplateService;
+import Finance.FinanceAppTemplateService;
+import NewArchiveRequirements.LegacyApplicationInfo.Service.archiveReqLegacyAppTemplateService;
+import NewArchiveRequirements.LegacyApplicationInfo.retentionDetails.Service.archiveRetentionTemplateDetailsService;
+import NewArchiveRequirements.businessRequirementsDetails.functionalReqInfo.dataReq.Service.archiveFunDataReqTemplate;
+import onboard.DBconnection;
 import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig;
 import org.json.JSONObject;
 
-import ArchiveExecutionGovernanceModule.service.ArchiveExecutionGovernanceTemplateService;
-import ArchiveExecutionModule.ArchiveExecutionDetails.service.ArchiveExecutionTemplateService;
-import NewArchiveRequirements.LegacyApplicationInfo.Service.archiveReqLegacyAppTemplateService;
-import NewArchiveRequirements.LegacyApplicationInfo.retentionDetails.Service.archiveRetentionTemplateDetailsService;
-import NewArchiveRequirements.businessRequirementsDetails.functionalReqInfo.dataReq.Service.archiveFunDataReqTemplate;
-import onboard.DBconnection;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Servlet implementation class Login_1
@@ -634,7 +633,7 @@ public class Login_1 extends HttpServlet {
 		{
 			String AppInfo = "ApplicationInformation";
 			Assessment AssessmentDetails[] = new Assessment[19];
-			AssessmentDetails[0] = new Assessment(1,"","",AppInfo,",COTS - Commercial Off The Shelf,MOTS - Modified Off The Shelf,Custom - In-house Development","Application Details","AppDetails","Dropdown","No","");
+			AssessmentDetails[0] = new Assessment(1,"","",AppInfo,",COTS - Commercial Off The Shelf,MOTS - Modified Off The Shelf,Custom - In-house Development","Application Details","AppDetails","Dropdown","Yes","");
 			AssessmentDetails[1] = new Assessment(2,"","",AppInfo,",Currently supported,Nearing end of life,End of life with extended support/maintenance,unsupported","Lifecycle","Lifecycle","Dropdown","No","");
 			AssessmentDetails[2] = new Assessment(3,"","",AppInfo,"Yes,No","Is this a currently supported application?","SupportedApp","RadioBoxDependencyNo","No","");
 			AssessmentDetails[3] = new Assessment(4,"","",AppInfo,"","If NO,who supports this Application?","SupportApp","TextBoxDependencyNo","No","");
@@ -736,6 +735,9 @@ public class Login_1 extends HttpServlet {
 		rs8.close();
 		AssDataCharst.close();
 		AssDataCharrs.close();
+		// Finance_Template_Details
+			FinanceAppTemplateService financeAppTemplateService = new FinanceAppTemplateService("");
+			financeAppTemplateService.financeAppTemplate();
 		//calling Archive Execution Template function 
 		ArchiveExecutionTemplateService archiveExecObj = new ArchiveExecutionTemplateService("");
 		archiveExecObj.archiveExecutionDefaultRecords();

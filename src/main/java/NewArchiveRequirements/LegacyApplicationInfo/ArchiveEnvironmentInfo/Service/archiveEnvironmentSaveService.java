@@ -1,14 +1,12 @@
 package NewArchiveRequirements.LegacyApplicationInfo.ArchiveEnvironmentInfo.Service;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import java.sql.Connection;
-
 import onboard.DBconnection;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class archiveEnvironmentSaveService {
 	DBconnection dBconnection;
@@ -54,6 +52,7 @@ public class archiveEnvironmentSaveService {
 		JsonObject jsonObject = new JsonObject();
 		boolean statusFlag = false;
 		try {
+
 			for (int i = 0; i < jsonArray.size(); i++) {
 				JsonObject jsonObj = jsonArray.get(i).getAsJsonObject();
 				String seqNum = jsonObj.get("seq_no").getAsString();

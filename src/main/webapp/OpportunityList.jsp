@@ -139,6 +139,7 @@ input[type=search]:focus {
 	list-style: none;
 	padding: 0;
 	margin: 0;
+
 }
 
 /* Clear eventual floats */
@@ -154,6 +155,8 @@ input[type=search]:focus {
 .cbp-vm-switcher ul li {
 	display: block;
 	position: relative;
+
+
 }
 
 .cbp-vm-image {

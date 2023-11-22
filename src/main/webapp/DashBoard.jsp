@@ -736,8 +736,9 @@ display:none;
 							<div class="row">
 								<div class="col-md-8">
 									<div class="card ht-233">
-										<div class="card-header" id="card-header">Intake
-											Status</div>
+										<div class="card-header" id="card-header">Intake Status
+											<button type="button" class="btn btn-primary pull-right" id="exportButton" onclick="dashboardExportToCSV('Intake Status','example');">Export CSV</button>
+										</div>
 										<div class="card-body" style="padding: 0px;">
 											<div id="ApplicationStatusDash">
 												<table id="example" class="table">
@@ -779,8 +780,9 @@ display:none;
 							<div class="row">
 								<div class="col-md-8">
 									<div class="card ht-270">
-										<div class="card-header" id="card-header">Archive
-											Requirements</div>
+										<div class="card-header" id="card-header">Archive Requirements
+											<button type="button" class="btn btn-primary pull-right" onclick="dashboardExportToCSV('Archive Requirements','example1');">Export CSV</button>
+										</div>
 										<div class="card-body" style="padding: 0px;">
 											<div id="AppAchiveReqDash">
 												<table id="example1" class="table">
@@ -829,8 +831,9 @@ display:none;
 							<div class="row">
 								<div class="col-md-8">
 									<div class="card ht-270">
-										<div class="card-header" id="card-header">Archive
-											Execution</div>
+										<div class="card-header" id="card-header">Archive Execution
+											<button type="button" class="btn btn-primary pull-right" onclick="dashboardExportToCSV('Archive Execution','example2');">Export CSV</button>
+										</div>
 										<div class="card-body" style="padding: 0px;">
 											<div id="AppArchiveExeDash">
 												<table id="example2" class="table">
@@ -1054,6 +1057,7 @@ $(document).ready(function() {
 	<script type="text/javascript" src="js/chartjs/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/chartjs/Chart.js"></script>
 	<script src="js/dashboard/dashboardAjaxCall.js"></script>
+	<script src = "js/reportJs/ExportToCSV.js"></script>
 	
 <!-- 	<script type="text/javascript"  src=" https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script> -->
 	<!-- <script src="https://cdnjs.com/libraries/Chart.js"></script> -->

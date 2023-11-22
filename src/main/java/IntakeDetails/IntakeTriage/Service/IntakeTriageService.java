@@ -1,21 +1,14 @@
 package IntakeDetails.IntakeTriage.Service;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
 import IntakeDetails.Common.DynamicFields;
 import IntakeDetails.IntakeAssessment.service.IntakeAssessmentService;
-import IntakeDetails.IntakeTriage.Service.IntakeTriageService;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import onboard.DBconnection;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class IntakeTriageService extends DynamicFields {
 
@@ -643,7 +636,7 @@ public class IntakeTriageService extends DynamicFields {
 		        		  }
 		        		  max_seq++; 
 		        	   }
-		        	   
+
 					
 				}
 		      }

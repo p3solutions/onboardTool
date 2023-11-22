@@ -1,15 +1,14 @@
 package IntakeDetails.IntakeAssessment.service;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import onboard.DBconnection;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
-import onboard.DBconnection;
-
-public class IntakeAssessmentScrRetrieve {
+public class  IntakeAssessmentScrRetrieve {
 public JsonArray intake_screenshot_retrieve(String Id) {
 		
         JsonArray jsonArray = new JsonArray();

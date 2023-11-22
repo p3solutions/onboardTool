@@ -631,8 +631,6 @@ catch(Exception e){
 e.printStackTrace();
 }
 
-
-
 } %>
             <div class="content-wrapper">
                 <div class="content-container" >
