@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="css/icheck/skins/line/green.css">
     <link rel="stylesheet" href="css/bootstrap-tour/bootstrap-tour.css">
     <link rel="stylesheet" href="css/UserInfo/userinfo.css">
+
     <!-- ========== THEME CSS ========== -->
     <link rel="stylesheet" href="css/main.css" media="screen">
 
@@ -40,7 +41,7 @@
 
     <link rel="stylesheet" href="css/Finance/Finance.css">
     <!-- Finance ApplicationInfo -->
-    <script type="text/javascript" src="js/Finance/FinanceAddDataRetrieveAjaxCall.js"></script>
+    <script type="text/javascript" src="js/Finance/try/Ftemplateretrive.js"></script>
 
 
 
@@ -58,20 +59,20 @@
 
 
 <style>
-    #suggestionDropdown{
-        margin-left: 25px;
-    }
-    .suggestionEnabled1{
-        max-height: 50px;
-        max-width: 200px ;
-        overflow-y: auto;
-        border: 1px solid #ccc;
-    }
+    /*#suggestionDropdown{*/
+    /*    margin-left: 25px;*/
+    /*}*/
+    /*.suggestionEnabled1{*/
+    /*    max-height: 50px;*/
+    /*    max-width: 200px ;*/
+    /*    overflow-y: auto;*/
+    /*    border: 1px solid #ccc;*/
+    /*}*/
 
-    .suggestionEnabled .suggestion:hover {
-        background-color: #1565c0 ;
-        color: white;
-    }
+    /*.suggestionEnabled .suggestion:hover {*/
+    /*    background-color: #1565c0 ;*/
+    /*    color: white;*/
+    /*}*/
     #nameInput{
         outline: none;
         border: none;
@@ -159,34 +160,12 @@
 
 
         <div class="content-wrapper">
-<%--            <div class="col-md-12">--%>
-<%--                <div style="margin-bottom: -138px;" class="form-wizard">--%>
-<%--                    <div class="form-wizard-header">--%>
-
-<%--                        <ul class="list-unstyled form-wizard-steps clearfix nav-font"--%>
-<%--                            style="margin-left: 23px;">--%>
-<%--                            <!-- <p class="nav-font" style="margin-bottom: -52px;">Fill all the required fields to go next step</p> -->--%>
-<%--                            <li class="active"--%>
-<%--                                onclick="location.href='Finance.jsp;'"><span>1</span><i>Finance details</i></li>--%>
-<%--                            <li--%>
-<%--&lt;%&ndash;                                    class="active"&ndash;%&gt;--%>
-<%--                                    onclick="location.href='Finance_Approval.jsp';"><span>2</span><i> Review </i></li>--%>
-<%--                        </ul>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
             <div class="content-container">
-
-
                 <!-- Projects List Start -->
-
                 <div class="main-page">
                     <section class="wizard-section">
                         <div class="row">
                             <div class="container" id="module_header">
-
-
-
                                 <%
                                     String initiate = (String) session.getAttribute("Ideation and Initiate");
                                     String plan = (String) session.getAttribute("Plan");
@@ -207,14 +186,13 @@
 
 
                                 <div class="tab-pane" role="tabpanel" id="step4">
-
                                     <!-- Application Informations -->
                                     <div class="card-container-2 card">
+
                                         <div class="card-header" id="cd-header"> Finance Information</div>
-                                        <label id="labelhead">Enter the name of the Application: </label>
-                                        <input type="text" id="nameInput" name = "appName" placeholder="Enter a name">
-                                        <button id="refreshButton">Refresh Page</button>
-                                        <div id="suggestionDropdown"></div>
+<%--                                        <label id="labelhead">Enter the name of the Application: </label>--%>
+<%--                                        <input type="text" id="nameInput" name = "appName" placeholder="Enter a name">--%>
+<%--                                        <button id="refreshButton">Refresh Page</button>--%>
 
                                         <div id="collapse4" class="panel-collapse ">
                                             <div id="collapse1" class="panel-collapse " name="collapse">
@@ -229,6 +207,7 @@
                                                                         Info</a>
                                                                 </h4>
                                                             </div>
+                                                            <div id="suggestionDropdown"></div>
                                                             <div id="collapse5" class="panel-collapse ">
                                                                 <div class="panel-body">
                                                                     <div id="collapse1"
@@ -763,12 +742,17 @@
 <script src="js/notification/notification.js"></script>
 
 <!-- Application Info  -->
-
-<script type="text/javascript" src="js/Finance/EditDeleteToggleFinance.js"></script>
-<script type="text/javascript" src="js/Finance/FinanceAddFeatureFunctionality.js"></script>
-<script type="text/javascript" src="js/Finance/FinanceAddAjaxcall.js"></script>
-<script type="text/javascript" src="js/Finance/FinanceEditDeleteAjaxCall.js"></script>
-<script type="text/javascript" src="js/Finance/FinanceAppInfoSaveAjaxCall.js"></script>
+<script type="text/javascript" src="js/Finance/try/Session_ID_Name&Retrive.js"></script>
+<script type="text/javascript" src="js/Finance/try/FinaceAddAppInfoSaveAjaxCall.js"></script>
+<script type="text/javascript" src="js/Finance/try/FinanceAddFieldEditDeleteAjaxCall.js"></script>
+<script type="text/javascript" src="js/Finance/try/FinanceAddAjaxcall.js"></script>
+<script type="text/javascript" src="js/Finance/try/FinanceAddFeatureFunctionality.js"></script>
+<script type="text/javascript" src="js/Finance/try/EditDeleteToggleFinanceAdd.js"></script>
+<%--<script type="text/javascript" src="js/Finance/EditDeleteToggleFinance.js"></script>--%>
+<%--<script type="text/javascript" src="js/Finance/FinanceAddFeatureFunctionality.js"></script>--%>
+<%--<script type="text/javascript" src="js/Finance/FinanceAddAjaxcall.js"></script>--%>
+<%--<script type="text/javascript" src="js/Finance/FinanceEditDeleteAjaxCall.js"></script>--%>
+<%--<script type="text/javascript" src="js/Finance/FinanceAppInfoSaveAjaxCall.js"></script>--%>
 
 
 <!-- Application Screenshot -->

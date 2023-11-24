@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/Report_Search_Servlet")
 public class Report_Search_Servlet  extends HttpServlet{
@@ -31,8 +32,12 @@ public class Report_Search_Servlet  extends HttpServlet{
         String selectedOption = request.getParameter("SelectedReport");
         JsonObject result = null;
         Report_Search_Service reportSearchService = new Report_Search_Service();
-        result = reportSearchService.searchView(column,searchTerm,maxRows,page,selectedOption);
-        reportSearchService=null;
+            try {
+                result = reportSearchService.searchView(column,searchTerm,maxRows,page,selectedOption);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            reportSearchService=null;
 
 
         System.gc();

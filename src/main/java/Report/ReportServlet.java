@@ -12,9 +12,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-/**
-     * Servlet implementation class Retrieve_users_servlet
-     */
     @WebServlet("/ReportServlet")
     public class ReportServlet extends HttpServlet {
         private static final long serialVersionUID = 1L;
@@ -43,7 +40,7 @@ import java.sql.SQLException;
             int maxRows = Integer.parseInt(request.getParameter("maxRows"));
 
             String selectedOption = request.getParameter("selectedOption");
-            IntakereportService intakeReportService = new IntakereportService();
+            IntakeReportService intakeReportService = new IntakeReportService();
             switch (selectedOption) {
                 case "intakeReport1":
                     try {

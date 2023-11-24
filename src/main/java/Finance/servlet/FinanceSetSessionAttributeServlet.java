@@ -23,7 +23,5 @@ public class FinanceSetSessionAttributeServlet extends HttpServlet {
         response.setHeader("Access-Control-Allow-Origin", origin);
         // Respond to the client if needed
         response.getWriter().write("Session attribute set successfully");
-
-
     }
 }
