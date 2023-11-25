@@ -52,7 +52,7 @@ function switchActiveModule() {
 		case "applicationList.jsp":
 		case "Governance_Home.jsp":
 		case "ArchiveExecutionDetails_Governance.jsp":
-		
+		case "ReportGenerationPage.jsp":
 			selectiveActiveIcon(2);
 			break;
 		case "DashBoard.jsp":

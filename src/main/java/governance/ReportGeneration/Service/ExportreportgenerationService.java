@@ -10,28 +10,20 @@ import com.google.gson.JsonObject;
 
 import onboard.DBconnection;
 
-public class GovernanceReportGenerationService {
+public class ExportreportgenerationService {
 
-	public JsonObject fetchDataForIntakeReport1(String page, String maxRows) throws SQLException {
-		PreparedStatement st = null, st1 =null;
-        ResultSet rs = null, rs1 = null;
-        int totalCount = 0;
-        int Page = Integer.parseInt(page);
-        int MaxRows = Integer.parseInt(maxRows);
+	public JsonArray fetchExportDataForIntakeReport1(String reportName) {
+		PreparedStatement st = null;
+        ResultSet rs = null;
         JsonArray jsonArray = new JsonArray();
-     
         try {
             DBconnection dBconnection = new DBconnection();
             Connection connection = (Connection) dBconnection.getConnection();
             System.out.println("Connected...");
             
-            int start = (Page - 1) * MaxRows;
-            
-            String query = "SELECT * FROM decom3sixtytool.Intake_Report_1 LIMIT ?, ?";
+            String query = "SELECT * FROM decom3sixtytool.Intake_Report_1;";
             st = connection.prepareStatement(query);
-            st.setInt(1, start);
-            st.setInt(2, MaxRows);
-
+           
             rs = st.executeQuery();
 
             while (rs.next()) {
@@ -61,51 +53,30 @@ public class GovernanceReportGenerationService {
                 jsonObj.addProperty("Phase_Status",rs.getString(23));
                 jsonArray.add(jsonObj);
             }
-          
-            String countQuery = "SELECT COUNT(*) AS total FROM decom3sixtytool.Intake_Report_1";
-            st1 = connection.prepareStatement(countQuery);
-            rs1 = st1.executeQuery();
-            if (rs1.next()) {
-                totalCount = rs1.getInt("total");
-            }
+            st.close();
+            rs.close();
+            
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        finally {
-                rs1.close();
-                st1.close();
-                rs.close();
-                st.close();
-            
-        }
-        JsonObject result = new JsonObject();
-        result.addProperty("total", totalCount);
-        result.add("data", jsonArray);
+       
 
-        System.out.println("JSON Service Pagination : " + result);
-        return result;
+        System.out.println("JSON Export Service Pagination : " + jsonArray);
+        return jsonArray;
 	}
 
-	public JsonObject fetchDataForIntakeReport2(String page, String maxRows) throws SQLException {
-		PreparedStatement st = null, st1 =null;
-        ResultSet rs = null, rs1 = null;
-        int totalCount = 0;
-        int Page = Integer.parseInt(page);
-        int MaxRows = Integer.parseInt(maxRows);
+	public JsonArray fetchExportDataForIntakeReport2(String reportName) {
+		PreparedStatement st = null;
+        ResultSet rs = null;
         JsonArray jsonArray = new JsonArray();
-     
         try {
             DBconnection dBconnection = new DBconnection();
             Connection connection = (Connection) dBconnection.getConnection();
             System.out.println("Connected...");
             
-            int start = (Page - 1) * MaxRows;
-            
-            String query = "SELECT * FROM decom3sixtytool.Intake_Report_2 LIMIT ?, ?";
+            String query = "SELECT * FROM decom3sixtytool.Intake_Report_2;";
             st = connection.prepareStatement(query);
-            st.setInt(1, start);
-            st.setInt(2, MaxRows);
-
+           
             rs = st.executeQuery();
 
             while (rs.next()) {
@@ -132,50 +103,31 @@ public class GovernanceReportGenerationService {
                 jsonObj.addProperty("Data_Masking",rs.getString(20));
                 jsonArray.add(jsonObj);
             }
-          
-            String countQuery = "SELECT COUNT(*) AS total FROM decom3sixtytool.Intake_Report_2";
-            st1 = connection.prepareStatement(countQuery);
-            rs1 = st1.executeQuery();
-            if (rs1.next()) {
-                totalCount = rs1.getInt("total");
-            }
+            st.close();
+            rs.close();
+            
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        finally {
-                rs1.close();
-                st1.close();
-                rs.close();
-                st.close();  
-        }
-        JsonObject result = new JsonObject();
-        result.addProperty("total", totalCount);
-        result.add("data", jsonArray);
+       
 
-        System.out.println("JSON Service Pagination : " + result);
-        return result;
+        System.out.println("JSON Export Service Pagination : " + jsonArray);
+        return jsonArray;
+		
 	}
 
-	public JsonObject fetchDataForIntakeReport3(String page, String maxRows) throws SQLException {
-		PreparedStatement st = null, st1 =null;
-        ResultSet rs = null, rs1 = null;
-        int totalCount = 0;
-        int Page = Integer.parseInt(page);
-        int MaxRows = Integer.parseInt(maxRows);
+	public JsonArray fetchExportDataForIntakeReport3(String reportName) {
+		PreparedStatement st = null;
+        ResultSet rs = null;
         JsonArray jsonArray = new JsonArray();
-     
         try {
             DBconnection dBconnection = new DBconnection();
             Connection connection = (Connection) dBconnection.getConnection();
             System.out.println("Connected...");
             
-            int start = (Page - 1) * MaxRows;
-            
-            String query = "SELECT * FROM decom3sixtytool.Intake_Report_3 LIMIT ?, ?";
+            String query = "SELECT * FROM decom3sixtytool.Intake_Report_3;";
             st = connection.prepareStatement(query);
-            st.setInt(1, start);
-            st.setInt(2, MaxRows);
-
+           
             rs = st.executeQuery();
 
             while (rs.next()) {
@@ -190,32 +142,22 @@ public class GovernanceReportGenerationService {
                 jsonObj.addProperty("Retention_Period", rs.getString(8));
                 jsonArray.add(jsonObj);
             }
-          
-            String countQuery = "SELECT COUNT(*) AS total FROM decom3sixtytool.Intake_Report_3";
-            st1 = connection.prepareStatement(countQuery);
-            rs1 = st1.executeQuery();
-            if (rs1.next()) {
-                totalCount = rs1.getInt("total");
-            }
+            st.close();
+            rs.close();
+            
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        finally {
-                rs1.close();
-                st1.close();
-                rs.close();
-                st.close();
-            
-        }
-        JsonObject result = new JsonObject();
-        result.addProperty("total", totalCount);
-        result.add("data", jsonArray);
+       
 
-        System.out.println("JSON Service Pagination : " + result);
-        return result;
+        System.out.println("JSON Export Service Pagination : " + jsonArray);
+        return jsonArray;
+		
 	}
 
+	
+
+	
+	
 
 }
-    
-

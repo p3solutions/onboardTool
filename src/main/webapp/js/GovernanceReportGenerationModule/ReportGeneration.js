@@ -38,7 +38,7 @@ $(document).ready(function () {
             },
             success: function (data) {
                 $('#overlay').hide();
-                getcategoryValue(category,page,maxRows);
+                getcategoryValue(category,page);
                 console.log("Users List Retrieve", data);
                 clearTable();
                 appendRowFunction(data.data);
@@ -51,29 +51,68 @@ $(document).ready(function () {
         $("#dynamicHeader").empty();
     }
  
-    function updatePagination(totalRecords, currentPage) {
-        var maxRows = parseInt($('#maxRows').val());
-        var totalPages = Math.ceil(totalRecords / maxRows);
- 
-        var paginationContainer = $('.pagination');
-        paginationContainer.empty();
- 
-        paginationContainer.append('<li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>');
- 
-        for (var i = 1; i <= totalPages; i++) {
-            paginationContainer.append(
-                '<li data-page="' + i + '">\
+/* function updatePagination(totalRecords, currentPage) {
+    var maxRows = parseInt($('#maxRows').val());
+    var totalPages = Math.ceil(totalRecords / maxRows);
+
+    var paginationContainer = $('.pagination');
+    paginationContainer.empty();
+      if (currentPage > 1) {
+	 paginationContainer.append('<li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>');
+	 
+	 }
+    for (var i = 1; i <= totalPages; i++) {
+        paginationContainer.append(
+            '<li data-page="' + i + '">\
 <span>' + i + '</span>\
 </li>'
-            );
-        }
- 
-        paginationContainer.append('<li data-page="next"><span> >> <span class="sr-only">(current)</span></span></li>');
- 
- 
-        paginationContainer.find('[data-page="' + currentPage + '"]').addClass('active');
+        );
     }
- 
+    if (currentPage < totalPages) {
+paginationContainer.append('<li data-page="next"><span> >> <span class="sr-only">(current)</span></span></li>');
+}
+ //   var nextButton = '<li data-page="next"><span> >> <span class="sr-only">(current)</span></span></li>';
+  //  var prevButton = '<li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>';
+
+    //paginationContainer.append(nextButton);
+   paginationContainer.find('[data-page="' + currentPage + '"]').addClass('active');
+    
+    // Manipulate the display property of Prev button based on current page
+    //if (currentPage === 1) {
+    //    prevButton.css('display', currentPage === 1 ? 'none' : 'block');
+   // } else {
+  //      paginationContainer.prepend(prevButton).find('[data-page="prev"]').show();
+  //}
+} */
+function updatePagination(totalRecords, currentPage) {
+    var maxRows = parseInt($('#maxRows').val());
+    var totalPages = Math.ceil(totalRecords / maxRows);
+
+    var paginationContainer = $('.pagination');
+    paginationContainer.empty();
+
+    if (currentPage > 1) {
+        paginationContainer.append('<li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>');
+    }
+
+    var startPage = Math.max(1, currentPage - 3); // Display up to 3 pages before the current page
+    var endPage = Math.min(totalPages, startPage + 6); // Display up to 6 pages in total
+
+    for (var i = startPage; i <= endPage; i++) {
+        paginationContainer.append(
+            '<li data-page="' + i + '">\
+<span>' + i + '</span>\
+</li>'
+        );
+    }
+
+    if (currentPage < totalPages) {
+        paginationContainer.append('<li data-page="next"><span> >> <span class="sr-only">(current)</span></span></li>');
+    }
+
+    paginationContainer.find('[data-page="' + currentPage + '"]').addClass('active');
+}
+
     function appendRowFunction(data) {
         if (data.length > 0) {
             var headers = Object.keys(data[0]);

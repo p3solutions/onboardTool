@@ -47,8 +47,10 @@ public class Search_servlet_Report_Generation extends HttpServlet {
 		String ReportName = request.getParameter("category");
 		System.out.println("ReportName 123 : "+ReportName);
 		String page = request.getParameter("page");
+//		String page="1";
 	     System.out.println("Page 123: "+page);
 	    String maxRows =request.getParameter("maxRows");
+	     //String maxRows = "50";
 	     System.out.println("maxRows 123 : "+maxRows);
 	     String ColumnName = request.getParameter("columnName");
 	     System.out.println("ColumnName : "+ColumnName);
@@ -56,16 +58,42 @@ public class Search_servlet_Report_Generation extends HttpServlet {
 	     System.out.println("SearchValue : "+SearchValue);
 	     
 	    
-	     JsonObject jsonArray = null;
+	     JsonObject jsonObj = null;
 		ReportGenerationSearchService reportGenerationSearchService = new ReportGenerationSearchService();
 		
-		 jsonArray = reportGenerationSearchService.reportcolumnname(ReportName);
-		 if((ColumnName != "") && (SearchValue != null) && (ReportName !="" )) {
+		 try {
+			 jsonObj = reportGenerationSearchService.reportcolumnname(ReportName);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 if((ColumnName != "") && (SearchValue != null)) {
 		    	System.out.println("Checkinggg-------------------------------===========");
-		    jsonArray = reportGenerationSearchService.searchdata(ReportName,page,maxRows,ColumnName,SearchValue);
+		    try {
+		    	 switch (ReportName.toLowerCase()) {
+	             case "intake_report_1":
+	            	 jsonObj = reportGenerationSearchService.fetchDataForIntakeReport1(page, maxRows,SearchValue,ColumnName);
+	                 break;
+
+	             case "intake_report_2":
+	            	 jsonObj = reportGenerationSearchService.fetchDataForIntakeReport2(page, maxRows,SearchValue,ColumnName);
+	                 break;
+
+	             case "intake_report_3":
+	            	 jsonObj = reportGenerationSearchService.fetchDataForIntakeReport3(page, maxRows,SearchValue,ColumnName);
+	                 break;
+
+	             default:
+	                 throw new IllegalArgumentException("Invalid report name: " + ReportName);
+	         }
+		        
+		     } catch (SQLException e) {
+		         // Handle the exception more gracefully, e.g., log it or send an error response
+		         e.printStackTrace();
+		     }
 		    }
-	     System.out.println("ReportGeneration Servlet : "+jsonArray);
-	     String json = new Gson().toJson(jsonArray);
+	     System.out.println("ReportGeneration Servlet : "+jsonObj);
+	     String json = new Gson().toJson(jsonObj);
 	     response.setContentType("application/json");
 	     response.setCharacterEncoding("UTF-8");
 	     response.getWriter().write(json);

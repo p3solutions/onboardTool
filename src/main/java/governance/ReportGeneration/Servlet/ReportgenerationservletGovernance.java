@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import governance.ReportGeneration.Service.GovernanceReportGenerationService;
@@ -39,22 +38,39 @@ public class ReportgenerationservletGovernance extends HttpServlet {
 	     String maxRows = request.getParameter("maxRows");
 	     System.out.println("maxRows : "+maxRows);
 
-	     JsonObject jsonArray = null;
+	     JsonObject jsonObj = null;
 	     GovernanceReportGenerationService governanceReportGenerationService = new GovernanceReportGenerationService();
 	     
 	     try {
-	         jsonArray = governanceReportGenerationService.reportfilterByReportName(ReportName, page, maxRows);
+	    	 switch (ReportName.toLowerCase()) {
+             case "intake_report_1":
+            	 jsonObj = governanceReportGenerationService.fetchDataForIntakeReport1(page, maxRows);
+                 break;
+
+             case "intake_report_2":
+            	 jsonObj = governanceReportGenerationService.fetchDataForIntakeReport2(page, maxRows);
+                 break;
+
+             case "intake_report_3":
+            	 jsonObj = governanceReportGenerationService.fetchDataForIntakeReport3(page, maxRows);
+                 break;
+
+             default:
+                 throw new IllegalArgumentException("Invalid report name: " + ReportName);
+         }
+	        
 	     } catch (SQLException e) {
 	         // Handle the exception more gracefully, e.g., log it or send an error response
 	         e.printStackTrace();
-	         response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-	         return;
 	     }
-	     System.out.println("ReportGeneration Servlet : "+jsonArray);
-	     String json = new Gson().toJson(jsonArray);
+	     System.out.println("ReportGeneration Servlet : "+jsonObj);
+	     String json = new Gson().toJson(jsonObj);
 	     response.setContentType("application/json");
 	     response.setCharacterEncoding("UTF-8");
 	     response.getWriter().write(json);
 	}
 
 }
+
+
+

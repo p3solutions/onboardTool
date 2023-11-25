@@ -120,54 +120,15 @@ th {
 -webkit-keyframes sp-anime { 0% {
 	-webkit-transform: rotate(0deg);
 }
-
 100
-
-
-
-
-
-
 %
 {
 -webkit-transform
-
-
-
-
-
-
 :
-
-
-
-
-
-
 rotate
-
-
-
-
 (
-
-
-
-
-
-
 360deg
-
-
-
-
-
-
 )
-
-
-
-
 ;
 }
 }
@@ -177,59 +138,20 @@ keyframes sp-anime { 0% {
 }
 
 100
-
-
-
-
-
-
 %
 {
 transform
-
-
-
-
-
-
 :
-
-
-
-
-
-
 rotate
-
-
-
-
 (
-
-
-
-
-
-
 360deg
-
-
-
-
-
-
 )
-
-
-
-
 ;
 }
 }
 .is-hide {
 	display: none;
 }
-
 #overlay1 {
 	position: fixed;
 	top: 0;
@@ -238,7 +160,6 @@ rotate
 	height: 100%;
 	display: none;
 }
-
 .cv-spinner1 {
 	height: 62rem;
 	display: flex;
@@ -263,52 +184,14 @@ rotate
 }
 
 100
-
-
-
-
-
-
 %
 {
 -webkit-transform
-
-
-
-
-
-
 :
-
-
-
-
-
-
 rotate
-
-
-
-
 (
-
-
-
-
-
-
 360deg
-
-
-
-
-
-
 )
-
-
-
-
 ;
 }
 }
@@ -316,54 +199,15 @@ rotate
 keyframes sp-anime1 { 0% {
 	transform: rotate(0deg);
 }
-
 100
-
-
-
-
-
-
 %
 {
 transform
-
-
-
-
-
-
 :
-
-
-
-
-
-
 rotate
-
-
-
-
 (
-
-
-
-
-
-
 360deg
-
-
-
-
-
-
 )
-
-
-
-
 ;
 }
 }
@@ -384,6 +228,9 @@ rotate
 .div-container {
 	display: flex;
 	justify-content: space-between;
+	text-overflow: ellipsis; 
+overflow: hidden; 
+white-space: nowrap;
 }
 
 .left-content {
@@ -391,6 +238,7 @@ rotate
 	margin-left: 20px;
 	margin-top: 5px;
 	margin-buttom: 2px;
+	padding: 10px;
 }
 
 .centered-content {
@@ -398,19 +246,21 @@ rotate
 	text-align: center;
 	margin-right: 200px;
 	margin-buttom: 2px;
+	padding: 10px;
 }
 .Search-content{
 	margin-top: 2px;
   	text-align: center;
   	margin-right: 100px;
   	margin-buttom: 2px;
-  	display: flex;
+  	padding: 10px;
 }
 .right-content {
 	margin-top: 7px;
 	text-align: right;
 	margin-right: 20px;
 	margin-buttom: 7px;
+	padding: 10px;
 }
 
 .custom-button {
@@ -424,7 +274,20 @@ rotate
 	transition: background-color 0.3s, transform 0.2s;
 	hight: 2px;
 }
-
+.custom-button-search{
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the content horizontally */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s;
+    height: 2px; 
+}
 .custom-button:hover {
 	background-color: #3498db;
 	transform: scale(1.05);
@@ -437,10 +300,10 @@ rotate
 
 .pagination li {
 	margin: 5px;
-	padding: 8px;
+	padding: 3px;
     background-color: #e0e0e0;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 1px;
 }
 .pagination li.active {
 	background-color: #007bff;
@@ -448,11 +311,11 @@ rotate
 }
 #prev, #next {
 	margin: 5px;
-    padding: 8px;
+    padding: 3px;
     background-color: #007bff;
     color: white;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 1px;
     }
 /* styles.css */
 body {
@@ -547,17 +410,57 @@ select {
 .hidden {
     display: none;
 }
-#warningMessage {
-    color: red;
-    background-color: white;
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    padding: 10px;
-    border: 1px solid red;
-    display: none;
-  }
 
+.form-container {
+    width: 300px; /* Adjust the width as needed */
+}
+
+.label-dropdown-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-label {
+    margin-right: 10px;
+    display: inline-block;
+    width: 100px;
+}
+
+.form-dropdown,
+.form-input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+.form-input {
+    display: inline-block;
+    width: calc(100% - 110px); /* Adjust the width as needed */
+    padding: 8px;
+    box-sizing: border-box;
+}
+.form-button:hover {
+    background-color: #0056b3;
+}
 </style>
 	<%@include file="Nav-Bar.jspf"%>
 	<nav class="nav" id="bg-color">
@@ -579,7 +482,7 @@ select {
 		<div class="withoutPhase display" id="admin_userslist_div">
 			<div class="div-container">
 				<div class="left-content">
-					<label>Show &nbsp;</label> <select id="maxRows"
+					<label>Show </label> <select id="maxRows"
 						style="color: black;">
 						<option value="5">5</option>
 						<option value="10">10</option>
@@ -588,12 +491,11 @@ select {
 						<option value="50">50</option>
 						<option value="70">70</option>
 						<option value="100">100</option>
-						<option value="5000">Show All</option>
 					</select>
 				</div>
 				<div class="centered-content">
 					<label class="col-form-label" id="title" style="color: black;">Report
-						Name &nbsp;</label> <select id="category" style="color: black;">
+						Name </label> <select id="category" style="color: black;">
 						<option class='options' value='Intake_Report_1'>Report 1</option>
 						<option class='options' value='Intake_Report_2'>Report 2</option>
 						<option class='options' value='Intake_Report_3'>Report 3</option>
@@ -626,31 +528,40 @@ select {
 				<div id="warningMessage" class="hidden"></div>
 				<div id="overlaySearch" class="overlaySearch"></div>
 
-    <button onclick="showSearchPopup()" class="custom-button" >Search</button>
+    <button onclick="showSearchPopup()" class="custom-button-search" >Search</button>
    
     <div id="searchPopup" class="popup">
         <div class="popupHeader">
             <span class="popupTitle">Search</span>
             
         </div>
-        <form id="searchForm" onsubmit="return validateForm(event)">
-            <label for="columnName">Column Name:</label>
-            <select id="columnName" onchange="toggleSearchValueField()">
-            	<option value="null">--Select--</option>
+        <br>
+        <div class="form-container">
+    <form id="searchForm" onsubmit="return validateForm(event)">
+        <div class="label-dropdown-container">
+            <label for="columnName" class="form-label">Column Name:</label> &nbsp;&nbsp;&nbsp;
+            <select id="columnName" onchange="toggleSearchValueField()" class="form-dropdown">
+                <option value="null">--Select--</option>
+                <option value="Application_Id">Application_Id</option>
+                <!-- Add other options as needed -->
             </select>
+        </div>
 
-           <label for="searchValue" id="searchValueLabel" class="hidden">Search Value:</label>
-            <input type="text" id="searchValue" class="hidden" >
-
-            <div class="buttonContainer">
-                <input type="submit" value="Search">
-                <button type="button" onclick="closeSearchPopup()">Cancel</button>
-            </div>
-        </form>
+        <div class="label-dropdown-container">
+    		<label for="searchValue" id="searchValueLabel" class="form-label">Search Value:</label>
+    		<input type="text" id="searchValue" class="form-input">
+		</div>
+	
+        <div class="button-container">
+            <input type="submit" value="Search" class="form-button">
+            <button type="button" onclick="closeSearchPopup()" class="form-button">Cancel</button>
+        </div>
+    </form>
+</div>
     </div>
    				</div> 
 					<div class="right-content">
-					<button onclick="exportToCSV()" class="custom-button">Export
+					<button id="exportbutton" class="custom-button">Export
 						CSV</button>
 				</div>
 			</div> 
@@ -675,11 +586,11 @@ select {
                     <nav>
                         <ul class="pagination">
 
-                            <li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>
-                            <!--    Here the JS Function Will Add the Rows -->
+                            <!--  <li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>
+                           
                             <li data-page="next" id="prev"><span> >> <span
-                                    class="sr-only">(current)</span></span></li>
-                        </ul>
+                                     class="sr-only">(current)</span></span></li> -->
+                         </ul>
                     </nav>
                 </div>
             </div>
@@ -752,8 +663,7 @@ select {
 	
 	<script src="js/notification/notification.js"></script>
 	<script src="js/GovernanceReportGenerationModule/ReportGeneration.js"></script>
-	<script src="js/Export.js"></script>
 	<script src="js/GovernanceReportGenerationModule/ReportGenerationSearch.js"></script>
-	<script src="js/ExportCSV.js"></script>
+	<script src="js/GovernanceReportGenerationModule/Exportcsv.js"></script>
 </body>
 </html>
