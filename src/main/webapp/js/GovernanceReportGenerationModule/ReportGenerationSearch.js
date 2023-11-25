@@ -146,7 +146,7 @@ function fetchsearchvalue(columnName,searchValue,globalreportname,pageNum){
                 console.log("Users List Retrieve", data);
                 clearTable();
                 appendRowFunction(data.data);
-                updatePagination(data.total, page);
+                updatePagination(data.total, pageNum);
             }
     });
 	
@@ -158,31 +158,35 @@ function clearTable() {
 function updatePagination(totalRecords, currentPage) {
     var maxRows = parseInt($('#maxRows').val());
     var totalPages = Math.ceil(totalRecords / maxRows);
-
-    var paginationContainer = $('.pagination');
+	var paginationContainer1 = $('.pagination');
+	 paginationContainer1.empty();
+    var paginationContainer = $('.Searchpagination');
     paginationContainer.empty();
 
-    if (currentPage > 1) {
-        paginationContainer.append('<li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>');
+    if (totalPages > 1) { // Only show pagination if there is more than one page
+        if (currentPage > 1) {
+            paginationContainer.append('<li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>');
+        }
+
+        var startPage = Math.max(1, currentPage - 3); // Display up to 3 pages before the current page
+        var endPage = Math.min(totalPages, startPage + 6); // Display up to 6 pages in total
+
+        for (var i = startPage; i <= endPage; i++) {
+            paginationContainer.append(
+                '<li data-page="' + i + '">\
+        <span>' + i + '</span>\
+        </li>'
+            );
+        }
+
+        if (currentPage < totalPages) {
+            paginationContainer.append('<li data-page="next"><span> >> <span class="sr-only">(current)</span></span></li>');
+        }
+
+        paginationContainer.find('[data-page="' + currentPage + '"]').addClass('active');
     }
-
-    var startPage = Math.max(1, currentPage - 3); // Display up to 3 pages before the current page
-    var endPage = Math.min(totalPages, startPage + 6); // Display up to 6 pages in total
-
-    for (var i = startPage; i <= endPage; i++) {
-        paginationContainer.append(
-            '<li data-page="' + i + '">\
-<span>' + i + '</span>\
-</li>'
-        );
-    }
-
-    if (currentPage < totalPages) {
-        paginationContainer.append('<li data-page="next"><span> >> <span class="sr-only">(current)</span></span></li>');
-    }
-
-    paginationContainer.find('[data-page="' + currentPage + '"]').addClass('active');
 }
+
 function appendRowFunction(data) {
         if (data.length > 0) {
             var headers = Object.keys(data[0]);
@@ -236,8 +240,8 @@ function toggleSearchValueField() {
     var columnNameSelect = document.getElementById("columnName");
     var searchValueLabel = document.getElementById("searchValueLabel");
     var searchValueInput = document.getElementById("searchValue");
-
-    if (columnNameSelect.value !== "null") {
+	console.log(columnNameSelect);
+    if (columnNameSelect.value !== null && columnNameSelect.value !== "null") {
         searchValueLabel.classList.remove("hidden");
         var columnType = getColumnType(columnNameSelect.value);
 
@@ -247,10 +251,7 @@ function toggleSearchValueField() {
             searchValueInput.setAttribute("pattern", "\\d{2}/\\d{2}/\\d{4}");
             searchValueInput.setAttribute("placeholder", "mm/dd/yyyy");
         } else {
-            // For other types, set back to the default text input
-            searchValueInput.setAttribute("type", "text");
-            searchValueInput.removeAttribute("pattern");
-            searchValueInput.removeAttribute("placeholder");
+            // Handle other column types if needed
         }
 
         searchValueInput.classList.remove("hidden");
