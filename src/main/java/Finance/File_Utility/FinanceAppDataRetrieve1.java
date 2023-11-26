@@ -61,9 +61,7 @@ public class FinanceAppDataRetrieve1 extends HttpServlet {
             Appinfo =null;
             //calling finalize method and garbage collector
             System.gc();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
 

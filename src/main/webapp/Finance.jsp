@@ -351,9 +351,7 @@
 
                 </div>
                 <!-- /.main-page -->
-
                 <!-- Project List End -->
-
             </div>
             <!-- /.content-container -->
 
@@ -606,35 +604,6 @@
 </div>
 
 
-<!-- Environment Server Delete PopUp -->
-<div class="modal" id="EnvmntServerDeletePopUp" tabindex="-1"
-     role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete Field</h5>
-                <button type="button" id="EnvmntNameDeleteClose" class="btn-close"
-                        data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form name="DeleteForm">
-                    <div class="modal-body">
-                        <p>Do you want to delete this Row permanently?</p>
-                        <input type="hidden" id="EnvmntServerDeleteSeq" />
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" id="EnvmntServerDeleteSubmit"
-                        class="btn btn-primary submitDisableEnvmntServer"
-                        data-bs-dismiss="modal">Yes</button>
-                <button type="button" class="btn btn-secondary"
-                        id="closeEnvmntServerIdDelete" data-bs-dismiss="modal"
-                        aria-label="Close">No</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <%--finance screenshot delete--%>
 

@@ -70,28 +70,6 @@ $(document).ready(function () {
         $("#admin_userslist").empty();
     }
 
-    // function updatePagination(totalRecords, currentPage) {
-    //     var maxRows = parseInt($('#maxRows').val());
-    //     var totalPages = Math.ceil(totalRecords / maxRows);
-    //
-    //     var paginationContainer = $('.pagination');
-    //     paginationContainer.empty();
-    //
-    //     paginationContainer.append('<li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>');
-    //
-    //     for (var i = 1; i <= totalPages; i++) {
-    //         paginationContainer.append(
-    //             '<li data-page="' + i + '">\
-    //             <span>' + i + '</span>\
-    //         </li>'
-    //         );
-    //     }
-    //
-    //     paginationContainer.append('<li data-page="next"><span> >> <span class="sr-only">(current)</span></span></li>');
-    //
-    //     paginationContainer.find('[data-page="' + currentPage + '"]').addClass('active');
-    // }
-
     function updatePagination(totalRecords, currentPage) {
         var maxRows = parseInt($('#maxRows').val());
         var totalPages = Math.ceil(totalRecords / maxRows);
@@ -177,11 +155,11 @@ $(document).ready(function () {
                 var finance = $(this).data("finance");
 
                 // Set the ID and app name in sessionStorage (you can use localStorage or cookies as well)
-                sessionStorage.setItem("editId", id);
-                sessionStorage.setItem("editFinance", finance);
+                sessionStorage.setItem("APPID", id);
+                sessionStorage.setItem("APPNAME", finance);
 
                 // Redirect to the edit page
-                window.location.href = "FinanceEdit.jsp";
+                window.location.href = "Finance.jsp";
             });
 
             // Add click event handler for the delete icon

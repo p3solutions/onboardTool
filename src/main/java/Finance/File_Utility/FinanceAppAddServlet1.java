@@ -87,7 +87,7 @@ public class FinanceAppAddServlet1 extends HttpServlet{
 
             if(!labelcheck)
             {
-                int seq_num = archiveReqlegacyAddFeatureService.ArchiveReqLegacyAddOperationService(Id, label_name, mandatory,umandatory, type, NumberofInputfields, option);
+                int seq_num = FinanceFieldAddFeatureService1.FinanceAddOperationService(Id, label_name, mandatory,umandatory, type, NumberofInputfields, option);
                 jsonobject.addProperty("Seq_Num",seq_num);
             }
 
