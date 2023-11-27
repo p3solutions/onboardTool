@@ -1,19 +1,32 @@
+var searchvalue=null;
+console.log("searchvalue : ",searchvalue);
+
+function sendsearchfunctionvalue(searchflag){
+	searchvalue = searchflag;
+	console.log("searchvalue function :",searchvalue);
+}
+
 $(document).ready(function () {
+	
 	fetchData(1);
 	var category = "Intake_Report_1";
     $("#category").change(function () {
          category = $(this).val();
         console.log("category : ", category);
         fetchData(1);
+        searchvalue=false;
     });  
-    // Event listener for the maxRows dropdown change
     $('#maxRows').on('change', function () {
-        fetchData(1); // Fetch data for the first page when the row count changes
+		if(searchvalue === true){
+        console.log("maxRows true")
+        fetchsearchvalue(gcolname,gsvalue,pageNum);
+        }
+        else{
+		fetchData(1); 
+		}
+        
     });
- 
-    // Event listener for pagination click
     $('.pagination').on('click', 'li', function () {
-        console.log('Pagination Clicked'); // Add this line
         var pageNum = $(this).attr('data-page');
         if (pageNum === 'prev' || pageNum === 'next') {
             var currentPage = parseInt($('.pagination li.active').attr('data-page'));
@@ -21,7 +34,15 @@ $(document).ready(function () {
         }
         fetchData(pageNum);
     });
- 
+    $('.Searchpagination').on('click', 'li', function () {
+        console.log('Pagination Clicked'); // Add this line
+        var pageNum = $(this).attr('data-page');
+        if (pageNum === 'prev' || pageNum === 'next') {
+            var currentPage = parseInt($('.Searchpagination li.active').attr('data-page'));
+            pageNum = (pageNum === 'prev') ? currentPage - 1 : currentPage + 1;
+        }
+        fetchsearchvalue(gcolname,gsvalue,pageNum);
+    });
     function fetchData(page) {
         console.log('Fetching data for page:', page); // Add this line
         var maxRows = parseInt($('#maxRows').val());
@@ -38,57 +59,22 @@ $(document).ready(function () {
             },
             success: function (data) {
                 $('#overlay').hide();
-                getcategoryValue(category,page);
                 console.log("Users List Retrieve", data);
-                clearTable();
+                $("#dynamicHeader").empty();
                 appendRowFunction(data.data);
                 updatePagination(data.total, page);
             },
         });
     }
  
-    function clearTable() {
-        $("#dynamicHeader").empty();
-    }
- 
-/* function updatePagination(totalRecords, currentPage) {
-    var maxRows = parseInt($('#maxRows').val());
-    var totalPages = Math.ceil(totalRecords / maxRows);
 
-    var paginationContainer = $('.pagination');
-    paginationContainer.empty();
-      if (currentPage > 1) {
-	 paginationContainer.append('<li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>');
-	 
-	 }
-    for (var i = 1; i <= totalPages; i++) {
-        paginationContainer.append(
-            '<li data-page="' + i + '">\
-<span>' + i + '</span>\
-</li>'
-        );
-    }
-    if (currentPage < totalPages) {
-paginationContainer.append('<li data-page="next"><span> >> <span class="sr-only">(current)</span></span></li>');
-}
- //   var nextButton = '<li data-page="next"><span> >> <span class="sr-only">(current)</span></span></li>';
-  //  var prevButton = '<li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>';
-
-    //paginationContainer.append(nextButton);
-   paginationContainer.find('[data-page="' + currentPage + '"]').addClass('active');
-    
-    // Manipulate the display property of Prev button based on current page
-    //if (currentPage === 1) {
-    //    prevButton.css('display', currentPage === 1 ? 'none' : 'block');
-   // } else {
-  //      paginationContainer.prepend(prevButton).find('[data-page="prev"]').show();
-  //}
-} */
 function updatePagination(totalRecords, currentPage) {
     var maxRows = parseInt($('#maxRows').val());
     var totalPages = Math.ceil(totalRecords / maxRows);
 
-    var paginationContainer = $('.pagination');
+    var paginationContainer = $('.Searchpagination');
+    paginationContainer.empty();
+     var paginationContainer = $('.pagination');
     paginationContainer.empty();
 
     if (currentPage > 1) {
@@ -178,7 +164,12 @@ function makeAjaxRequest(category) {
         },
     });
 }
-function constructTable(data) {
+
+
+//search Function
+
+
+/*function constructTable(data) {
     var tableHtml = "<thead>";
     if (data.length > 0) {
         tableHtml += "<tr>";
@@ -256,4 +247,4 @@ function constructTable123(data) {
     }
     tableHtml += "</tbody>";
     return tableHtml;
-}
+} */

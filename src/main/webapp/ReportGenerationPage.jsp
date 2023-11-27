@@ -246,16 +246,16 @@ rotate
 		<div class="withoutPhase display" id="admin_userslist_div">
 			<div class="div-container">
 				<div class="left-content">
-					<label>Show </label> <select id="maxRows"
-						style="color: black;">
-						<option value="5">5</option>
-						<option value="10">10</option>
-						<option value="15">15</option>
-						<option value="20">20</option>
-						<option value="50">50</option>
-						<option value="70">70</option>
-						<option value="100">100</option>
-					</select>
+    				<label>Show </label>
+    					<select id="maxRows" class="SearchmaxRows" style="color: black;">
+        					<option value="5">5</option>
+       						<option value="10">10</option>
+        					<option value="15">15</option>
+        					<option value="20">20</option>
+        					<option value="50">50</option>
+        					<option value="70">70</option>
+        					<option value="100">100</option>
+    					</select>
 				</div>
 				<div class="centered-content">
 					<label class="col-form-label" id="title" style="color: black;">Report
@@ -266,63 +266,37 @@ rotate
 					</select>
 					</div>
 				<div class="Search-content">
-				<!--  <button onclick="showSearchPopup()" class="custom-button">Search</button>
-    				<div id="searchPopup" class="popup">
-       				<div class="popupHeader">
-            		<span class="popupTitle">Search Function</span>
-            		<button onclick="closeSearchPopup()" class="closeButton">X</button>
-        			</div>
-        			<form id="searchForm" onsubmit="return validateForm()">
-            		<label for="columns">Select Column:</label>
-            		<select id="columns">
-                		<option value="	Application_Name">Application Name</option>
-                		<option value="	Requester">	Requester</option>
-                		<option value="Application_Status">Application_Status</option>
-                		<option value="Phase_Status">Phase_Status</option>
-                		<option value="Application_Owner	">Application_Owner</option>
-            		</select>
-
-            		<label for="searchValue">Search Value:</label>
-            		<input type="text" id="searchValue" required>
-            		<input type="submit" value="Search">
-        			</form>
-    			</div>
-    			
-				</div> -->
 				<div id="warningMessage" class="hidden"></div>
 				<div id="overlaySearch" class="overlaySearch"></div>
 
-    <button onclick="showSearchPopup()" class="custom-button-search" >Search</button>
+    			<button onclick="showSearchPopup()" class="custom-button-search" >Search</button>
    
-    <div id="searchPopup" class="popup">
-        <div class="popupHeader">
-            <span class="popupTitle">Search</span>
-            
-        </div>
-        <br>
-        <div class="form-container">
-    <form id="searchForm" onsubmit="return validateForm(event)">
-        <div class="label-dropdown-container">
-            <label for="columnName" class="form-label">Column Name:</label> &nbsp;&nbsp;&nbsp;
-            <select id="columnName" onchange="toggleSearchValueField()" class="form-dropdown">
-                <option value="null">--Select--</option>
-                <option value="Application_Id">Application_Id</option>
-                <!-- Add other options as needed -->
-            </select>
-        </div>
+    				<div id="searchPopup" class="popup">
+        				<div class="popupHeader">
+            				<span class="popupTitle">Search</span>
+        				</div>
+        			<br>
+        			<div class="form-container">
+    					<form id="searchForm" onsubmit="return validateForm(event)">
+       						 <div class="label-dropdown-container">
+            					<label for="columnName" class="form-label">Column Name:</label> &nbsp;&nbsp;&nbsp;
+            					<select id="columnName" onchange="toggleSearchValueField()" class="form-dropdown">
+                					<!-- Add other options as needed -->
+            					</select>
+        					</div>
 
-        <div class="label-dropdown-container">
-    		<label for="searchValue" id="searchValueLabel" class="form-label">Search Value:</label>
-    		<input type="text" id="searchValue" class="form-input">
-		</div>
+        			<div class="label-dropdown-container">
+    					<label for="searchValue" id="searchValueLabel" class="form-label">Search Value:</label>
+    						<input type="text" id="searchValue" class="form-input">
+					</div>
 	
-        <div class="button-container">
-            <input type="submit" value="Search" class="form-button">
-            <button type="button" onclick="closeSearchPopup()" class="form-button">Cancel</button>
-        </div>
-    </form>
-</div>
-    </div>
+        			<div class="button-container">
+            			<input type="submit" value="Search" class="form-button">
+            			<button type="button" onclick="closeSearchPopup()" class="form-button">Cancel</button>
+        			</div>
+    			</form>
+				</div>
+   				</div>
    				</div> 
 					<div class="right-content">
 					<button id="exportbutton" class="custom-button">Export
@@ -345,24 +319,31 @@ rotate
 			
 		</div>
 		<div class="row">
-    <div class="col-md-12" align="end">
-        <div class='pagination-container' style="float: right;">
-            <nav>
-                <ul class="pagination">
+    	<div class="col-md-12" align="end">
+        	<div class='pagination-container' style="float: right;">
+            	<nav>
+                	<ul class="pagination">
                     <!-- Your pagination items go here -->
-                </ul>
-            </nav>
-            <nav>
-                <ul class="Searchpagination">
+                	</ul>
+            	</nav>
+            	
+        	</div>
+    	</div>
+		</div>
+		<div class="row">
+    	<div class="col-md-12" align="end">
+        	<div class='pagination-container' style="float: right;">
+            	<nav>
+                	<ul class="Searchpagination">
                     <!-- Your Searchpagination items go here -->
-                </ul>
-            </nav>
-        </div>
-    </div>
-</div>
+                	</ul>
+            	</nav>
+        	</div>
+    	</div>
+		</div>
 
-	</div>
-	</div>
+		</div>
+		</div>
 
 <script>
     var select1 = document.getElementById("Report");

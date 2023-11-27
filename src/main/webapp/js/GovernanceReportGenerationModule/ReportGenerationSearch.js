@@ -1,32 +1,15 @@
-var globalreportname = null;
+var gcolname = null;
+var gsvalue = null;
+var searchflag=false;
 var pageNum = null;
-console.log("golbalPage : "+globalpage);
-$(document).ready(function () {
-	// Event listener for pagination click
-    $('.pagination').on('click', 'li', function () {
-        console.log('Pagination Clicked'); // Add this line
-         pageNum = $(this).attr('data-page');
-        globalpage = pageNum;
-        if (pageNum === 'prev' || pageNum === 'next') {
-            var currentPage = parseInt($('.pagination li.active').attr('data-page'));
-            pageNum = (pageNum === 'prev') ? currentPage - 1 : currentPage + 1;
-        }
-        fetchsearchvalue(columnName,searchValue,globalreportname,pageNum);
-    });
-});
-function getcategoryValue(category,page) {
-    globalreportname = category;
-    globalpage = page;
-}
 
 function showSearchPopup() {
     var popup = document.getElementById('searchPopup');
     var overlaySearch = document.getElementById('overlaySearch');
     popup.classList.add('active');
     overlaySearch.classList.add('active');
-
-    // Call the AJAX function when the popup is shown
-    fetchColumn(globalreportname); // Adjust category as needed
+     toggleSearchValueField();
+    fetchColumn(); // Adjust category as needed
 }
 
 function validateForm(event) {
@@ -68,14 +51,15 @@ function validateForm(event) {
     };
 
     if (isValid()) {
-        notification("success", "Search successfully.", "Note:");
-        fetchsearchvalue(columnName, searchValue, globalreportname, pageNum);
+		gcolname = columnName;
+		gsvalue = searchValue;
+        fetchsearchvalue(columnName, searchValue, pageNum);
         closeSearchPopup();
-
-        // Clear values
-        document.getElementById('columnName').value = 'null';
-        document.getElementById('searchValue').value = '';
-        globalreportname = null;
+        searchflag = true;
+		sendsearchfunctionvalue(searchflag);
+        notification("success", "Search successfully.", "Note:");
+		 document.getElementById('columnName').value = null;
+    	document.getElementById('searchValue').value = '';
     }
 }
 
@@ -97,17 +81,20 @@ function isValidDate(dateString) {
 function closeSearchPopup() {
     var popup = document.getElementById('searchPopup');
     var overlaySearch = document.getElementById('overlaySearch');
+    document.getElementById('columnName').value = null;
+    document.getElementById('searchValue').value = '';
     popup.classList.remove('active');
     overlaySearch.classList.remove('active');
+    
 }
 
 
-function fetchColumn(category) {
-	console.log("globalreportname : ",category);
+function fetchColumn() {
+	var reportname = document.getElementById('category').value;
     $.ajax({
         url: "Search_servlet_Report_Generation",
         type: 'POST',
-        data: { category: category }, // Convert data to JSON string
+        data: { category: reportname }, // Convert data to JSON string
         dataType: "json",
         beforeSend: function () {
             $('#overlay').show();
@@ -115,9 +102,7 @@ function fetchColumn(category) {
         success: function (data) {
             $('#overlay').hide();
             console.log("columnName", data);
-            cleardropdown();
-
-            // Populate the dropdown with column names
+            //cleardropdown();
             populateDropdown(data.data);
             
             // Add code to handle the data received from the server
@@ -125,44 +110,54 @@ function fetchColumn(category) {
     });
 }
 
-function fetchsearchvalue(columnName,searchValue,globalreportname,pageNum){
-	if(pageNum === null){
+function fetchsearchvalue(columnName,searchValue,pageNum){
+	console.log("columnName value in ajax : ",columnName);
+	console.log("searchValue value in ajax : ",searchValue);
+	console.log("pageNum : ",pageNum);
+	console.log("say Hi");
+	if(pageNum === null || pageNum === undefined){
 		pageNum=1;
 	}
-	console.log("fetchsearchvalue");
-	console.log("globalpage fetchsearchvalue: ",pageNum);
+	console.log("pageNum : ",pageNum);
+	var reportname = document.getElementById('category').value;
 	var maxRows = $('#maxRows').val();
 	    $.ajax({
         url: "Search_servlet_Report_Generation",
         type: 'POST',
-        data: { category: globalreportname,columnName:columnName,searchValue:searchValue,page :pageNum, maxRows:maxRows }, // Convert data to JSON string
+        data: { category: reportname,columnName:columnName,searchValue:searchValue,page :pageNum, maxRows:maxRows }, // Convert data to JSON string
         dataType: "json",
         beforeSend: function () {
             $('#overlay').show();
         },
         success: function (data) {
                 $('#overlay').hide();
-                getcategoryValue(category);
+                //getcategoryValue(category);
                 console.log("Users List Retrieve", data);
                 clearTable();
-                appendRowFunction(data.data);
-                updatePagination(data.total, pageNum);
+                searchappendRowFunction(data.data);
+                searchupdatePagination(data.total, pageNum);
             }
     });
 	
 }
+function goBack() {
+		searchflag = false;
+        window.location.href = 'ReportGenerationPage.jsp';
+    }
 function clearTable() {
         $("#dynamicHeader").empty();
     }
     
-function updatePagination(totalRecords, currentPage) {
+function searchupdatePagination(totalRecords, currentPage) {
     var maxRows = parseInt($('#maxRows').val());
     var totalPages = Math.ceil(totalRecords / maxRows);
 	var paginationContainer1 = $('.pagination');
-	 paginationContainer1.empty();
+	paginationContainer1.empty();
     var paginationContainer = $('.Searchpagination');
     paginationContainer.empty();
-
+    
+	 paginationContainer.append('<li onclick="goBack()"><span>Back<span class="sr-only">(current)</span></span></li>');
+	 
     if (totalPages > 1) { // Only show pagination if there is more than one page
         if (currentPage > 1) {
             paginationContainer.append('<li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>');
@@ -187,7 +182,7 @@ function updatePagination(totalRecords, currentPage) {
     }
 }
 
-function appendRowFunction(data) {
+function searchappendRowFunction(data) {
         if (data.length > 0) {
             var headers = Object.keys(data[0]);
  
@@ -228,6 +223,9 @@ function cleardropdown() {
 function populateDropdown(columnNames) {
     var dropdown = $('#columnName');
 
+    // Clear existing options
+    dropdown.empty();
+	dropdown.append('<option value="null" selected>--Select--</option>');
     // Populate the dropdown with column names
     for (var i = 0; i < columnNames.length; i++) {
         var option = $('<option></option>');
@@ -236,22 +234,35 @@ function populateDropdown(columnNames) {
         dropdown.append(option);
     }
 }
+
 function toggleSearchValueField() {
-    var columnNameSelect = document.getElementById("columnName");
+	console.log("toggle");
+	var columnNameSelect = null;
+	var searchValueInput = null;
+	var columnType = 'text';
+    columnNameSelect = document.getElementById("columnName");
+    searchValueInput = null;
     var searchValueLabel = document.getElementById("searchValueLabel");
-    var searchValueInput = document.getElementById("searchValue");
-	console.log(columnNameSelect);
+    searchValueInput = document.getElementById("searchValue");
+	
     if (columnNameSelect.value !== null && columnNameSelect.value !== "null") {
         searchValueLabel.classList.remove("hidden");
-        var columnType = getColumnType(columnNameSelect.value);
 
+        var columnType = getColumnType(columnNameSelect.value);
+		console.log("columnType Hi :",columnType);
         if (columnType === 'date') {
-            // If the column type is 'date', change the input type and set the pattern
             searchValueInput.setAttribute("type", "text");
             searchValueInput.setAttribute("pattern", "\\d{2}/\\d{2}/\\d{4}");
             searchValueInput.setAttribute("placeholder", "mm/dd/yyyy");
+        } else if (columnType === 'number') {
+            searchValueInput.setAttribute("type", "number");
+            searchValueInput.setAttribute("placeholder", "");
+            console.log("Placeholder in number");
+        } else if (columnType === 'text') {
+            searchValueInput.setAttribute("type", "text");
+            searchValueInput.setAttribute("placeholder", "");
+            console.log("Placeholder in Text");
         } else {
-            // Handle other column types if needed
         }
 
         searchValueInput.classList.remove("hidden");
@@ -260,6 +271,7 @@ function toggleSearchValueField() {
         searchValueInput.classList.add("hidden");
     }
 }
+
 
 function getColumnType(columnName) {
     // Mapping column names to data types\
@@ -289,6 +301,6 @@ function getColumnType(columnName) {
 
 // Optionally, you can add an event listener to the columnNameSelect
 // to update the visibility whenever the dropdown changes
-document.getElementById("columnName").addEventListener("change", toggleSearchValueField);
+document.getElementById("columnName").addEventListener("change", toggleSearchValueField());
 
 
