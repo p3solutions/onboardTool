@@ -140,22 +140,25 @@ public class FinanaceAppDataRetriveService {
     public LinkedHashMap<String, String> getAutoPopulateFields() {
         LinkedHashMap<String, String> columnDet = new LinkedHashMap<String, String>();
         try {
-            columnDet.put("legacyappname", "appName-opportunity_info");
+//            columnDet.put("legacyappname", "appName-opportunity_info");
+//            columnDet.put("srcdb", "AssessAppPlatform-assessment_application_info");
+//            columnDet.put("readonly", "ReadonlyData-assessment_data_char_info");
+//            columnDet.put("ifYesDate", "LastUpdateMade-assessment_data_char_info");
+//            columnDet.put("ifNoDate", "ExpectedDate-assessment_data_char_info");
+//            //columnDet.put("thirdpartyvendor","AppDetails-assessment_application_info");
+//            columnDet.put("AppDetails", "DataTypeCharacteristics-assessment_data_char_info");
+//            //columnDet.put("srcdb","AssessAppPlatform-assessment_application_info");
+//            columnDet.put("nooftables", "StrucNoofTables-assessment_data_char_info");
+//            columnDet.put("estimatestrucsize", "StrucDBsize-assessment_data_char_info");
+//            columnDet.put("totalsize", "StrucDBsize-assessment_data_char_info");
+//            columnDet.put("estimateunstrucsize", "UnstrucDataVolume-assessment_data_char_info");
+//            columnDet.put("estimatefile", "UnstrucNoofFiles-assessment_data_char_info");
+//            columnDet.put("datahold", "legalhold-assessment_compliance_char_info");
+//            columnDet.put("encreq", "enc-assessment_archival_consumption_info");
+//            columnDet.put("makreq", "datamask-assessment_archival_consumption_info");
+            columnDet.put("cba", "Preliminary_CBA-triage_info");
             columnDet.put("srcdb", "AssessAppPlatform-assessment_application_info");
             columnDet.put("readonly", "ReadonlyData-assessment_data_char_info");
-            columnDet.put("ifYesDate", "LastUpdateMade-assessment_data_char_info");
-            columnDet.put("ifNoDate", "ExpectedDate-assessment_data_char_info");
-            //columnDet.put("thirdpartyvendor","AppDetails-assessment_application_info");
-            columnDet.put("AppDetails", "DataTypeCharacteristics-assessment_data_char_info");
-            //columnDet.put("srcdb","AssessAppPlatform-assessment_application_info");
-            columnDet.put("nooftables", "StrucNoofTables-assessment_data_char_info");
-            columnDet.put("estimatestrucsize", "StrucDBsize-assessment_data_char_info");
-            columnDet.put("totalsize", "StrucDBsize-assessment_data_char_info");
-            columnDet.put("estimateunstrucsize", "UnstrucDataVolume-assessment_data_char_info");
-            columnDet.put("estimatefile", "UnstrucNoofFiles-assessment_data_char_info");
-            columnDet.put("datahold", "legalhold-assessment_compliance_char_info");
-            columnDet.put("encreq", "enc-assessment_archival_consumption_info");
-            columnDet.put("makreq", "datamask-assessment_archival_consumption_info");
         } catch (Exception e) {
             e.printStackTrace();
         }
