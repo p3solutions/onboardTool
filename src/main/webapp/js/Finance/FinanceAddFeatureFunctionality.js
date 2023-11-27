@@ -1,51 +1,49 @@
-$('#types').change(function()
+$('#Legacytypes').change(function()
 {
-    var type=$('#types').val();
+    var type=$('#Legacytypes').val();
     //alert('Type--> '+type);
-    $(".hidefield").hide();
+    $(".Legacyhidefield").hide();
     if(type=="Check box")
     {
-        $('#check').show();
+        $('#Legacycheck').show();
 
 
     }
     else if(type=="Radio box")
     {
-        $('#rdo').show();
+        $('#Legacyradio').show();
 
     }
     else if(type=="Dropdown")
     {
-        $('#drop').show();
+        $('#Legacydrop').show();
     }
-    //alert('types--->'+type);
+
 });
-$('#radio_number').change(function(){
-    var count=$('#radio_number').val();
+$('#Legacyradio_number').change(function(){
+    var count=$('#Legacyradio_number').val();
     var s="";
     for(var i=1;i<=count;i++) {
-        s += '<label class="hidefield">Radiobox Label' + i + ':</label><input type="text" class="form-control hidefield radioclass" id="Rlabel'+i+'" name="Rlabel' + i + '"><br/>'; //Create one textbox as HTML
+        s += '<label class="Legacyhidefield">Radiobox Label' + i + ':</label><input type="text" class="form-control Legacyhidefield LegacyRadioClass" id="LegacyRadioLabel'+i+'" name="LegacyRadioLabel' + i + '"><br/>';
     }
-    $('#options').html(s);
+    $('#Legacyoptions').html(s);
 });
-$('#number').change(function()
+$('#Legacycheck_number').change(function()
 {
-    var count=$('#number').val();
+    var count=$('#Legacycheck_number').val();
     var s="";
     for(var i = 1; i <=count; i++) {
-        s+= '<label class="hidefield">Checkbox Label'+i +':</label><input type="text" class="form-control hidefield checkclass" id="label'+i+'" name="label'+i+'"><br/>'; //Create one textbox as HTML
+        s+= '<label class="Legacyhidefield">Checkbox Label'+i +':</label><input type="text" class="form-control Legacyhidefield LegacyCheckClass" id="LegacyCheckBoxLabel'+i+'" name="LegacyCheckBoxLabel'+i+'"><br/>';
     }
-    $('#options').html(s);
+    $('#Legacyoptions').html(s);
 });
-$('#drop_number').change(function()
+$('#Legacydrop_number').change(function()
 {
-    var drop=$('#drop_number').val();
-    /*console.log('drop---> '+drop);
-    alert('drop---> '+drop);*/
+    var drop=$('#Legacydrop_number').val();
     var s="";
     for(var i=1;i<=drop;i++)
     {
-        s+='<label class="hidefield">Options Label'+i +':</label><input type="text" class="form-control hidefield dropclass" id="drp_label'+i+'" name="drp_label'+i+'"><br/>';
+        s+='<label class="Legacyhidefield">Options Label'+i +':</label><input type="text" class="form-control Legacyhidefield LegacyDropClass" id="LegacyDropdownLabel'+i+'" name="LegacyDropdownLabel'+i+'"><br/>';
     }
-    $('#options').html(s);
+    $('#Legacyoptions').html(s);
 });

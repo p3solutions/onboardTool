@@ -59,7 +59,6 @@ function switchActiveModule() {
 			break;
 		case "FinanceList.jsp":
 		case "Finance.jsp":
-		case "FinanceAdd.jsp":
 			selectiveActiveIcon(3);
 			break;
 	}

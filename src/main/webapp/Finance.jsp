@@ -41,7 +41,7 @@
 
     <link rel="stylesheet" href="css/Finance/Finance.css">
     <!-- Finance ApplicationInfo -->
-    <script type="text/javascript" src="js/Finance/try/Ftemplateretrive.js"></script>
+    <script type="text/javascript" src="js/Finance/Ftemplateretrive.js"></script>
 
 
 
@@ -711,12 +711,12 @@
 <script src="js/notification/notification.js"></script>
 
 <!-- Application Info  -->
-<script type="text/javascript" src="js/Finance/try/Session_ID_Name&Retrive.js"></script>
-<script type="text/javascript" src="js/Finance/try/FinaceAddAppInfoSaveAjaxCall.js"></script>
-<script type="text/javascript" src="js/Finance/try/FinanceAddFieldEditDeleteAjaxCall.js"></script>
-<script type="text/javascript" src="js/Finance/try/FinanceAddAjaxcall.js"></script>
-<script type="text/javascript" src="js/Finance/try/FinanceAddFeatureFunctionality.js"></script>
-<script type="text/javascript" src="js/Finance/try/EditDeleteToggleFinanceAdd.js"></script>
+<script type="text/javascript" src="js/Finance/Session_ID_Name&Retrive.js"></script>
+<script type="text/javascript" src="js/Finance/FinaceAddAppInfoSaveAjaxCall.js"></script>
+<script type="text/javascript" src="js/Finance/FinanceAddFieldEditDeleteAjaxCall.js"></script>
+<script type="text/javascript" src="js/Finance/FinanceAddAjaxcall.js"></script>
+<script type="text/javascript" src="js/Finance/FinanceAddFeatureFunctionality.js"></script>
+<script type="text/javascript" src="js/Finance/EditDeleteToggleFinanceAdd.js"></script>
 
 <!-- Application Screenshot -->
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
