@@ -15,6 +15,17 @@ $(document).ready(function () {
         ajaxTemplateCall("hello");
     }
 });
+function header(Name){
+    var cardHeader = document.getElementById('cd-header');
+    if (cardHeader) {
+        var additionalContent = document.createElement('span');
+        additionalContent.textContent = Name+" ";
+
+        cardHeader.insertBefore(additionalContent, cardHeader.firstChild);
+    } else {
+        console.error('Element with id "cd-header" not found');
+    }
+}
 function financeSetSessionAttribute(selectedId,selectedName) {
     // Add an AJAX call to send data to the server
     $.ajax({
@@ -281,12 +292,14 @@ function dateChangeFunction(val) {
     }
 }
 function ajaxTemplateCall(status , Id , AppName){
+    header(AppName);
     $.ajax({
         url: "FinanceAppDataRetrieve",
         type: 'POST',
         data:{Current: status, ID: Id, Opportunity:AppName},
         dataType: "json",
         success: function (data) {
+
             console.log("Data Retrieve json array----->",data);
             AddTemplateData = data;
             if (!$.isArray(data)) {

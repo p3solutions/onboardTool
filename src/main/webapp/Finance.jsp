@@ -148,7 +148,7 @@
 
 <% } %>
         <input type="hidden" name="selectedId" id="selectedId" value="">
-        <input type="hidden" name="selectedName" id="select  bnedName" value="">
+        <input type="hidden" name="selectedName" id="selectedName" value="">
         <%
             String Opportunity = request.getParameter("selectedName");
             String ID = request.getParameter("selectedId");
@@ -633,6 +633,17 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        // Find the link with id "sitetitle1" and text "Add Finance"
+        var addFinanceLink = $('a#sitetitle1:contains("Add Finance")');
+
+        // Append the "hello" text after the link
+        addFinanceLink.after(" >> hello");
+    });
+
+</script>
+
 <%--session attribute issue--%>
 <script>
     function clearSessionItem() {
