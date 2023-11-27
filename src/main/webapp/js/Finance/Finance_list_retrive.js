@@ -1,27 +1,56 @@
 $(document).ready(function () {
-    // Initial data fetch
-    fetchData(1);
+    var isSearching = false;
+    var currentSearchColumn;
+    var currentSearchTerm;
+    var currentPage = 1; // Default page number
+
+    var appId = sessionStorage.getItem("APPID");
+    var appName = sessionStorage.getItem("APPNAME");
+    // Check if data exists
+    if (appId && appName) {
+        // Remove the specific item from sessionStorage
+        sessionStorage.removeItem('APPID');
+        sessionStorage.removeItem('APPNAME');
+        fetchData(1);
+    }
+    else {
+        fetchData(currentPage);
+    }
+
+    // Other code...
 
     // Event listener for the maxRows dropdown change
     $('#maxRows').on('change', function () {
-        fetchData(1); // Fetch data for the first page when the row count changes
+        var maxRow = $(this).val();
+
+        if (isSearching) {
+            currentPage = 1;
+            searchData(currentSearchColumn, currentSearchTerm, maxRow, currentPage);
+        } else {
+            fetchData(1); // Fetch data for the first page when the row count changes
+        }
     });
 
     // Event listener for pagination click
     $('.pagination').on('click', 'li', function () {
         console.log('Pagination Clicked');
         var pageNum = $(this).attr('data-page');
+
         if (pageNum === 'prev' || pageNum === 'next') {
-            var currentPage = parseInt($('.pagination li.active').attr('data-page'));
-            pageNum = (pageNum === 'prev') ? currentPage - 1 : currentPage + 1;
+            currentPage = (pageNum === 'prev') ? currentPage - 1 : currentPage + 1;
+        } else {
+            currentPage = parseInt(pageNum);
         }
-        fetchData(pageNum);
+
+        if (isSearching) {
+            searchData(currentSearchColumn, currentSearchTerm, $('#maxRows').val(), currentPage);
+        } else {
+            fetchData(currentPage);
+        }
     });
 
-    // to store the search column name temporarily
-    var activeSearchColumn;
     // Event listener for search icon click
-    $('body').on('click', '.search-Icon', function () {
+    $('#admin_userslist').on('click', '.search-Icon', function () {
         console.log('Search icon clicked');
         var column = $(this).data('column');
         var placeholder = $(this).data('placeholder');
@@ -31,16 +60,17 @@ $(document).ready(function () {
         $('#AppFilter').attr('placeholder', placeholder);
         $('#title2').text(title);
 
-        activeSearchColumn = column;
-
+        currentSearchColumn = column;
+        isSearching = true;
     });
+
     $("#AppFilter").on("input", function () {
-        var column = activeSearchColumn;
+        var column = currentSearchColumn;
         console.log(column);
         var searchTerm = $(this).val().toLowerCase();
-        console.log(activeSearchColumn);
-        console.log(searchTerm)
-        searchData(column, searchTerm);
+        console.log(searchTerm);
+        currentSearchTerm = searchTerm;
+        searchData(column, searchTerm, $('#maxRows').val(), currentPage);
     });
 
     function fetchData(page) {
@@ -66,10 +96,83 @@ $(document).ready(function () {
         });
     }
 
+    function searchData(column, searchTerm, maxRows, page) {
+        $.ajax({
+            url: "Finance_List_Search_Servlet",
+            type: 'POST',
+            data: { column: column, searchTerm: searchTerm, maxRows: maxRows, page: page },
+            dataType: "json",
+            beforeSend: function () {
+                $('#overlay').show();
+            },
+            success: function (data) {
+                $('#overlay').hide();
+                isSearching = true;
+                console.log("Search Results", data);
+                clearTable();
+                appendRowFunction(data.data);
+                updatePagination(data.total, page);
+            },
+        });
+    }
     function clearTable() {
         $("#admin_userslist").empty();
     }
+    function appendRowFunction(data) {
+        if (data.length > 0) {
+            var headers = Object.keys(data[0]);
 
+            // Add table headers
+            var headerRow = "<thead>" + "<tr>";
+            $.each(headers, function (index, header) {
+                headerRow += "<th>";
+                headerRow += header;
+                headerRow += `<i class="fa fa-search search-Icon" data-column="${header}" data-placeholder="Search ${header}" data-title="${header}"></i>`;
+                headerRow += "</th>";
+            });
+            headerRow += "<th>Action</th>";
+            headerRow += "</tr>" + "</thead>";
+            $("#admin_userslist").append(headerRow);
+
+            $.each(data, function (key, value) {
+                var row = "<tbody>" + "<tr>";
+                $.each(headers, function (index, header) {
+                    row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for=''>" + value[header] + "</label></td>";
+                });
+                row += "<td style='text-align:center;vertical-align: middle;'><i class='fa fa-edit edit-icon' data-id='" + value.ID + "' data-finance='" + value.FinanceAppName + "'></i> <i class='fa fa-trash delete-icon' data-id='" + value.ID + "' data-finance='" + value.FinanceAppName + "'></i></td>";
+                row += "</tr>" + "</tbody>";
+
+                $("#admin_userslist").append(row);
+            });
+
+            // Add click event handler for the edit icon
+            $(".edit-icon").on("click", function () {
+                var id = $(this).data("id");
+                var finance = $(this).data("finance");
+
+                // Set the ID and app name in sessionStorage (you can use localStorage or cookies as well)
+                sessionStorage.setItem("APPID", id);
+                sessionStorage.setItem("APPNAME", finance);
+
+                // Redirect to the edit page
+                window.location.href = "Finance.jsp";
+
+            });
+
+            // Add click event handler for the delete icon
+            $(".delete-icon").on("click", function () {
+                var id = $(this).data("id");
+
+                // Set data for the delete confirmation modal
+                $("#random_id").val(id);
+                var checkID= $("#random_id").val();
+                console.log(checkID);
+
+                // Trigger the click event of the hidden deletepopup_btn
+                $("#deletepopup_btn").trigger("click");
+            });
+        }
+    }
     function updatePagination(totalRecords, currentPage) {
         var maxRows = parseInt($('#maxRows').val());
         var totalPages = Math.ceil(totalRecords / maxRows);
@@ -120,84 +223,5 @@ $(document).ready(function () {
         }
     }
 
-
-
-    function appendRowFunction(data) {
-        if (data.length > 0) {
-            var headers = Object.keys(data[0]);
-
-            // Add table headers
-            var headerRow = "<thead>" + "<tr>";
-            $.each(headers, function (index, header) {
-                headerRow += "<th>";
-                headerRow += header;
-                headerRow += `<i class="fa fa-search search-Icon" data-column="${header}" data-placeholder="Search ${header}" data-title="${header}"></i>`;
-                headerRow += "</th>";
-            });
-            headerRow += "<th>Action</th>";
-            headerRow += "</tr>" + "</thead>";
-            $("#admin_userslist").append(headerRow);
-
-            $.each(data, function (key, value) {
-                var row = "<tbody>" + "<tr>";
-                $.each(headers, function (index, header) {
-                    row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for=''>" + value[header] + "</label></td>";
-                });
-                row += "<td style='text-align:center;vertical-align: middle;'><i class='fa fa-edit edit-icon' data-id='" + value.ID + "' data-finance='" + value.FinanceAppName + "'></i> <i class='fa fa-trash delete-icon' data-id='" + value.ID + "' data-finance='" + value.FinanceAppName + "'></i></td>";
-                row += "</tr>" + "</tbody>";
-
-                $("#admin_userslist").append(row);
-            });
-
-            // Add click event handler for the edit icon
-            $(".edit-icon").on("click", function () {
-                var id = $(this).data("id");
-                var finance = $(this).data("finance");
-
-                // Set the ID and app name in sessionStorage (you can use localStorage or cookies as well)
-                sessionStorage.setItem("APPID", id);
-                sessionStorage.setItem("APPNAME", finance);
-
-                // Redirect to the edit page
-                window.location.href = "Finance.jsp";
-            });
-
-            // Add click event handler for the delete icon
-            $(".delete-icon").on("click", function () {
-                var id = $(this).data("id");
-
-                // Set data for the delete confirmation modal
-                $("#random_id").val(id);
-                var checkID= $("#random_id").val();
-                console.log(checkID);
-
-                // Trigger the click event of the hidden deletepopup_btn
-                $("#deletepopup_btn").trigger("click");
-            });
-        }
-    }
-
-    function searchData(column, searchTerm) {
-        var maxRows = parseInt($('#maxRows').val());
-        var page = 1;
-        $.ajax({
-            url: "Finance_List_Search_Servlet",
-            type: 'POST',
-            data: { column: column, searchTerm: searchTerm, maxRows: maxRows, page: page },
-            dataType: "json",
-            beforeSend: function () {
-                $('#overlay').show();
-            },
-            success: function (data) {
-                $('#overlay').hide();
-
-                console.log("Search Results", data);
-                clearTable();
-                appendRowFunction(data.data);
-                updatePagination(data.total, page);
-            },
-        });
-    }
     $("#add_user_btn").show();
 });
-

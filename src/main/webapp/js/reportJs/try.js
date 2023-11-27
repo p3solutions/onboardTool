@@ -1,42 +1,29 @@
-var currentReport = "intakeReport1";
-var isSearching = false;
+var currentReport = "intakeReport1" ;
 $(document).ready(function () {
-    var currentPage = 1;
 
     ajaxcall(currentReport,1);
     $("#cd-header").text("Intake Report 1");
+
 
     $("#Report").change(function () {
         currentReport = $(this).val();
     });
 
+
     // default max row
     $('#maxRows').on('change', function () {
-        if (isSearching) {
-            var maxRow = $(this).val();
-            currentPage = 1;
-            searchData(activeSearchColumn, $("#appFilter").val().toLowerCase(), currentReport, currentPage, maxRow);
-        } else {
-            currentPage = 1;
-            ajaxcall(currentReport, currentPage);
-        }
+        ajaxcall(currentReport,1); // Fetch data for the first page when the row count changes
     });
 
     // Event listener for pagination click
     $('.pagination').on('click', 'li', function () {
+        console.log('Pagination Clicked');
         var pageNum = $(this).attr('data-page');
         if (pageNum === 'prev' || pageNum === 'next') {
-            currentPage = (pageNum === 'prev') ? currentPage - 1 : currentPage + 1;
-        } else {
-            currentPage = parseInt(pageNum);
+            var currentPage = parseInt($('.pagination li.active').attr('data-page'));
+            pageNum = (pageNum === 'prev') ? currentPage - 1 : currentPage + 1;
         }
-
-        if (isSearching) {
-            searchData(activeSearchColumn, $("#appFilter").val().toLowerCase(), currentReport, currentPage, $('#maxRows').val());
-        } else {
-            ajaxcall(currentReport,currentPage);
-        }
-
+        ajaxcall(currentReport,pageNum);
     });
 
     function clearTable() {
@@ -73,21 +60,25 @@ $(document).ready(function () {
         // Update the placeholder and title
         $('#appFilter').attr('placeholder', placeholder);
         $('#title2').text(title);
+
         activeSearchColumn = column;
+
     });
     $("#appFilter").on("input", function () {
         var column = activeSearchColumn;
+        console.log(column);
         var searchTerm = $(this).val().toLowerCase();
-        isSearching = true;
-        searchData(column, searchTerm, currentReport, 1, $('#maxRows').val());
+        console.log(activeSearchColumn);
+        console.log(searchTerm)
+        searchData(column, searchTerm, currentReport);
     });
 
 
-function ajaxcall(selectedOption,page) {
-    console.log('Fetching data for page:', page);
-    var maxRows = parseInt($('#maxRows').val());
+    function ajaxcall(selectedOption,page) {
+        console.log('Fetching data for page:', page);
+        var maxRows = parseInt($('#maxRows').val());
 
-    $.ajax({
+        $.ajax({
             url: "ReportServlet",
             type: 'POST',
             data: {selectedOption: selectedOption,  page: page, maxRows: maxRows },
@@ -103,7 +94,7 @@ function ajaxcall(selectedOption,page) {
                     // Handle the error
                     $("#admin_userslist").html("Error: " + data.error);
                 } else {
-                   clearTable();
+                    clearTable();
                     if (selectedOption === "intakeReport1") {
                         RecordAppendRowFunction(data.data);
                         updatePaginationReport(data.total, page);
@@ -121,38 +112,38 @@ function ajaxcall(selectedOption,page) {
                 }
             },
         });
-}
-
-function updatePaginationReport(totalRecords, currentPage,) {
-    var maxRows = parseInt($('#maxRows').val());
-    var totalPages = Math.ceil(totalRecords / maxRows);
-    var startRecord = (currentPage - 1) * maxRows + 1;
-    var endRecord = Math.min(currentPage * maxRows, totalRecords);
-
-    var paginationContainer = $('.pagination');
-    paginationContainer.empty();
-    if(currentPage > 1){
-        paginationContainer.append('<li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>');
     }
-    for (var i = 1; i <= totalPages; i++) {
-        paginationContainer.append(
-            '<li data-page="' + i + '">\
+
+    function updatePaginationReport(totalRecords, currentPage) {
+        var maxRows = parseInt($('#maxRows').val());
+        var totalPages = Math.ceil(totalRecords / maxRows);
+        var startRecord = (currentPage - 1) * maxRows + 1;
+        var endRecord = Math.min(currentPage * maxRows, totalRecords);
+
+        var paginationContainer = $('.pagination');
+        paginationContainer.empty();
+        if(currentPage > 1){
+            paginationContainer.append('<li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>');
+        }
+        for (var i = 1; i <= totalPages; i++) {
+            paginationContainer.append(
+                '<li data-page="' + i + '">\
             <span>' + i + '</span>\
         </li>'
-        );
+            );
+        }
+        if(currentPage < totalPages){
+            paginationContainer.append('<li data-page="next"><span> >> <span class="sr-only">(current)</span></span></li>');
+        }
+
+        paginationContainer.find('[data-page="' + currentPage + '"]').addClass('active');
+
+        // Display record information
+        var recordInfo = $('#recordInfo');
+        recordInfo.html('Showing ' + startRecord + ' to ' + endRecord + ' of ' + totalRecords + ' records');
+
+        limitPagging();
     }
-    if(currentPage < totalPages){
-        paginationContainer.append('<li data-page="next"><span> >> <span class="sr-only">(current)</span></span></li>');
-    }
-
-    paginationContainer.find('[data-page="' + currentPage + '"]').addClass('active');
-
-    // Display record information
-    var recordInfo = $('#recordInfo');
-    recordInfo.html('Showing ' + startRecord + ' to ' + endRecord + ' of ' + totalRecords + ' records');
-
-    limitPagging();
-}
 
 
     function limitPagging(){
@@ -176,55 +167,56 @@ function updatePaginationReport(totalRecords, currentPage,) {
     }
 
 
-function RecordAppendRowFunction(data) {
-    if (data.length > 0) {
-        var headers = Object.keys(data[0]);
+    function RecordAppendRowFunction(data) {
+        if (data.length > 0) {
+            var headers = Object.keys(data[0]);
 
-        // Add table headers
-        var headerRow = "<thead>" + "<tr>";
-        $.each(headers, function (index, header) {
-            headerRow += "<th>";
-            headerRow += header;
-            headerRow += `<i class="fa fa-search search-Icon" data-column="${header}" data-placeholder="Search ${header}" data-title="${header}"></i>`;
-            headerRow += "</th>";
-        });
-        headerRow += "</tr>" + "</thead>";
-        $("#admin_userslist").append(headerRow);
-
-        $.each(data, function (key, value) {
-            var row = "<tbody>" + "<tr>";
+            // Add table headers
+            var headerRow = "<thead>" + "<tr>";
             $.each(headers, function (index, header) {
-                row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for=''>" + value[header] + "</label></td>";
+                headerRow += "<th>";
+                headerRow += header;
+                headerRow += `<i class="fa fa-search search-Icon" data-column="${header}" data-placeholder="Search ${header}" data-title="${header}"></i>`;
+                headerRow += "</th>";
             });
-            //row += "<td style='text-align:center;vertical-align: middle;'><i class='fa fa-edit edit-icon' data-id='" + value.ID + "' data-finance='" + value.FinanceAppName + "'></i> <i class='fa fa-trash delete-icon' data-id='" + value.ID + "' data-finance='" + value.FinanceAppName + "'></i></td>";
-            row += "</tr>" + "</tbody>";
+            headerRow += "</tr>" + "</thead>";
+            $("#admin_userslist").append(headerRow);
 
-            $("#admin_userslist").append(row);
-        });
+            $.each(data, function (key, value) {
+                var row = "<tbody>" + "<tr>";
+                $.each(headers, function (index, header) {
+                    row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for=''>" + value[header] + "</label></td>";
+                });
+                //row += "<td style='text-align:center;vertical-align: middle;'><i class='fa fa-edit edit-icon' data-id='" + value.ID + "' data-finance='" + value.FinanceAppName + "'></i> <i class='fa fa-trash delete-icon' data-id='" + value.ID + "' data-finance='" + value.FinanceAppName + "'></i></td>";
+                row += "</tr>" + "</tbody>";
 
+                $("#admin_userslist").append(row);
+            });
+
+        }
     }
-}
 
-function searchData(column, searchTerm, selectedReport, page, maxRows) {
-    $.ajax({
-        url: "Report_Search_Servlet",
-        type: 'POST',
-        data: { column: column, searchTerm: searchTerm, maxRows: maxRows, page: page, SelectedReport: selectedReport},
-        dataType: "json",
-        beforeSend: function () {
-            $('#overlay').show();
-        },
-        success: function (data) {
-            $('#overlay').hide();
-            isSearching = true;
+    function searchData(column, searchTerm , selectedReport) {
+        var maxRows = parseInt($('#maxRows').val());
+        var page = 1;
+        $.ajax({
+            url: "Report_Search_Servlet",
+            type: 'POST',
+            data: { column: column, searchTerm: searchTerm, maxRows: maxRows, page: page, SelectedReport: selectedReport},
+            dataType: "json",
+            beforeSend: function () {
+                $('#overlay').show();
+            },
+            success: function (data) {
+                $('#overlay').hide();
 
-            console.log("Search Results", data);
-            clearTable();
-            RecordAppendRowFunction(data.data);
-            updatePaginationReport(data.total, page);
-        },
-    });
-}
+                console.log("Search Results", data);
+                clearTable();
+                RecordAppendRowFunction(data.data);
+                updatePaginationReport(data.total, page);
+            },
+        });
+    }
 });
 
 
