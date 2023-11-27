@@ -17,8 +17,6 @@ $(document).ready(function () {
         fetchData(currentPage);
     }
 
-    // Other code...
-
     // Event listener for the maxRows dropdown change
     $('#maxRows').on('change', function () {
         var maxRow = $(this).val();
