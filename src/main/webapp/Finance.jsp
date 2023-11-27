@@ -14,7 +14,7 @@
     <title>D3Sixty - Finance </title>
     <!-- ========== PAGE STYLES ========== -->
     <link rel="stylesheet" href="css/prism/prism.css" media="screen">
-    <!-- USED FOR DEMO HELP - YOU CAN REMOVE IT -->
+
     <link rel="stylesheet" href="css/toastr/toastr.min.css" media="screen">
     <link rel="stylesheet" href="css/icheck/skins/line/blue.css">
     <link rel="stylesheet" href="css/icheck/skins/line/red.css">
@@ -717,12 +717,6 @@
 <script type="text/javascript" src="js/Finance/try/FinanceAddAjaxcall.js"></script>
 <script type="text/javascript" src="js/Finance/try/FinanceAddFeatureFunctionality.js"></script>
 <script type="text/javascript" src="js/Finance/try/EditDeleteToggleFinanceAdd.js"></script>
-<%--<script type="text/javascript" src="js/Finance/EditDeleteToggleFinance.js"></script>--%>
-<%--<script type="text/javascript" src="js/Finance/FinanceAddFeatureFunctionality.js"></script>--%>
-<%--<script type="text/javascript" src="js/Finance/FinanceAddAjaxcall.js"></script>--%>
-<%--<script type="text/javascript" src="js/Finance/FinanceEditDeleteAjaxCall.js"></script>--%>
-<%--<script type="text/javascript" src="js/Finance/FinanceAppInfoSaveAjaxCall.js"></script>--%>
-
 
 <!-- Application Screenshot -->
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->

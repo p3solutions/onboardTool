@@ -108,7 +108,7 @@ ReportMapping reportMapping =new ReportMapping();
         System.out.println("JSON" + result);
         return result;
     }
-    public JsonObject getIntakeReport3(int page, int maxRows) throws SQLException {
+    public JsonObject getIntakeReport3(int page, int maxRows) throws SQLException, ClassNotFoundException {
 
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -120,9 +120,6 @@ ReportMapping reportMapping =new ReportMapping();
         int start = (page - 1) * maxRows;
 
         JsonArray jsonArray = new JsonArray();
-        availabilityOfView availabilityOfView = new availabilityOfView();
-        boolean viewAvaliable = availabilityOfView.Report3View();
-        if (viewAvaliable) {
             try {
 
 
@@ -152,8 +149,6 @@ ReportMapping reportMapping =new ReportMapping();
                 assert rs != null;
                 rs.close();
             }
-
-        }
         JsonObject result = new JsonObject();
         result.addProperty("total", totalCount);
         result.add("data", jsonArray);

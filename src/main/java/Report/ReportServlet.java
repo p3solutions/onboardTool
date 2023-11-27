@@ -59,7 +59,7 @@ import java.sql.SQLException;
                 case "intakeReport3":
                     try {
                         result = intakeReportService.getIntakeReport3(page, maxRows);
-                    } catch (SQLException e) {
+                    } catch (SQLException | ClassNotFoundException e) {
                         throw new RuntimeException(e);
                     }
                     break;
