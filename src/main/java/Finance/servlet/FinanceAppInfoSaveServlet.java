@@ -1,6 +1,6 @@
-package Finance.File_Utility;
+package Finance.servlet;
 
-import NewArchiveRequirements.LegacyApplicationInfo.Service.archiveLegacyAppInfoSaveService;
+import Finance.service.FinanceAppInfoSaveService;
 import com.google.gson.*;
 
 import javax.servlet.ServletException;
@@ -11,14 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
-    @WebServlet("/FinanceAppInfoSaveServlet1")
-    public class FinanceAppInfoSaveServlet1 extends HttpServlet {
+    @WebServlet("/FinanceAppInfoSaveServlet")
+    public class FinanceAppInfoSaveServlet extends HttpServlet {
         private static final long serialVersionUID = 1L;
 
         /**
          * @see HttpServlet#HttpServlet()
          */
-        public FinanceAppInfoSaveServlet1() {
+        public FinanceAppInfoSaveServlet() {
             super();
             // TODO Auto-generated constructor stub
         }
@@ -44,7 +44,7 @@ import java.sql.SQLException;
             JsonArray jsonArray = tradeElement.getAsJsonArray();
             JsonObject jsonObject = new JsonObject();
             try {
-                FinanceAppInfoSaveService1 AppInfo = new FinanceAppInfoSaveService1(id, jsonArray, oppName);
+                FinanceAppInfoSaveService AppInfo = new FinanceAppInfoSaveService(id, jsonArray, oppName);
                 boolean statusFlag = AppInfo.save();
                 jsonObject.addProperty("checkSaveStatus", statusFlag);
                 AppInfo = null;

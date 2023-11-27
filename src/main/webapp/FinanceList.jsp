@@ -278,8 +278,8 @@
          </div>
 
 <div class="col-lg-6 left-side phase-btn1" align="left">
-    <a href="Finance.jsp"> <button type="button" id="add_user_btn" class="btn btn-primary" data-bs-toggle="modal"
-            style="margin: 29px 0 0 83px; font-size: 14px; display: none;"> Add Finance</button></a>
+    <a href="Finance.jsp" > <button type="button" id="add_user_btn" class="btn btn-primary" data-bs-toggle="modal"
+            style="margin: 29px 0 0 83px; font-size: 14px; display: none;" > Add Finance</button></a>
 
     <button type="button" class="btn btn-primary pull-right"
             id="editpopup_btn" data-bs-toggle="modal" data-bs-target="#EditPopUp" style="display: none;">Edit PopUp

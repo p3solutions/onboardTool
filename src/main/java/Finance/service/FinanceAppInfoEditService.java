@@ -1,4 +1,4 @@
-package Finance.File_Utility;
+package Finance.service;
 
 import onboard.DBconnection;
 
@@ -7,13 +7,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class FinanceAppInfoEditService1 {
+public class FinanceAppInfoEditService {
     DBconnection dBconnection;
     Connection con;
     public String Id = null;
     public int seqNum ;
     public String labelName = null;
-    public FinanceAppInfoEditService1(String Id,int seqNum,String labelName) throws ClassNotFoundException, SQLException {
+    public FinanceAppInfoEditService(String Id, int seqNum, String labelName) throws ClassNotFoundException, SQLException {
         dBconnection = new DBconnection();
         con = (Connection) dBconnection.getConnection();
         this.Id = Id;

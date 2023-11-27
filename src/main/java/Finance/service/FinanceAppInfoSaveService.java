@@ -1,4 +1,4 @@
-package Finance.File_Utility;
+package Finance.service;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -9,13 +9,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class FinanceAppInfoSaveService1 {
+public class FinanceAppInfoSaveService {
     public JsonArray jsonArray = new JsonArray();
     DBconnection dBconnection;
     Connection con;
     public String Id = null;
     public String oppName = null;
-    public FinanceAppInfoSaveService1(String Id,JsonArray jsonArray, String oppName) throws ClassNotFoundException, SQLException {
+    public FinanceAppInfoSaveService(String Id, JsonArray jsonArray, String oppName) throws ClassNotFoundException, SQLException {
         dBconnection = new DBconnection();
         con = (Connection) dBconnection.getConnection();
         this.Id = Id;

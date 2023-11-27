@@ -51,7 +51,7 @@ function addAjaxCall(app_name,proj_name,label_name,type,mandatory,num,options,um
 {
     var checkNotify = true;
     $.ajax({
-        url: "FinanceAppAddServlet1",
+        url: "FinanceAppAddServlet",
         type: 'post',
         async: false,
         data: {ApplicationName:app_name,ProjectName: proj_name,LabelName:label_name,Type:type,Mandatory:mandatory,Number:num,Options:options,umandatory:umandatory},

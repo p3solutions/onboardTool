@@ -41,39 +41,30 @@ import java.sql.SQLException;
 
             String selectedOption = request.getParameter("selectedOption");
             IntakeReportService intakeReportService = new IntakeReportService();
+            try {
             switch (selectedOption) {
-                case "intakeReport1":
-                    try {
+
+                    case "intakeReport1":
                         result = intakeReportService.getIntakeReport1(page, maxRows);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                    break;
+                break;
                 case "intakeReport2":
-                    try {
                         result = intakeReportService.getIntakeReport2(page, maxRows);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
                     break;
                 case "intakeReport3":
-                    try {
                         result = intakeReportService.getIntakeReport3(page, maxRows);
-                    } catch (SQLException | ClassNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
                     break;
                 case "intakeReport4":
-                    try {
                         result = intakeReportService.getIntakeReport4(page, maxRows);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
                     break;
                 default:
                     // Handle the default case or return an error message
                     intakeReportService = null;
                     break;
+
+            }
+            }
+            catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
             }
 
             System.gc();

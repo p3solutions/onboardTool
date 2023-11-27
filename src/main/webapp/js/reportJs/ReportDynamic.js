@@ -48,11 +48,10 @@ $(document).ready(function () {
 
     });
 
-//search function on report
 // to store the search column name temporarily
     var activeSearchColumn;
 // Event listener for search icon click
-    $('body').on('click', '.search-Icon', function () {
+    $('#admin_userslist').on('click', '.search-Icon', function () {
         console.log('Search icon clicked');
         var column = $(this).data('column');
         var placeholder = $(this).data('placeholder');

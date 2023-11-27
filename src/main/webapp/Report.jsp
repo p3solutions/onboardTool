@@ -287,7 +287,7 @@
                 </div>
                 <div class="col-lg-6 right-side" style="padding-top: 100px; background-color: transparent">
                     <button type="button" class="btn btn-primary pull-right" id="exportButton"
-                            name="exportView" onclick="exportToCSV()">
+                            name="exportView" >
                         <img src="images/Export.png" alt="ExportOption" class="" height="40" width="45" />
                     </button>
 
@@ -403,7 +403,7 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 <script src="js/notification/notification.js"></script>
 <script type="text/javascript" src="js/reportJs/ReportDynamic.js"></script>
-<script type="text/javascript" src="js/reportJs/ExportToCSV.js"></script>
+<script type="text/javascript" src="js/reportJs/Download.js"></script>
 
 <!-- ========== Pagination ========== -->
 

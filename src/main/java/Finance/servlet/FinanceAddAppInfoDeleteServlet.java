@@ -1,6 +1,6 @@
 package Finance.servlet;
 
-import Finance.service.financeFieldDeleteService;
+import Finance.service.FinanceAddAppInfoDeleteService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -13,34 +13,38 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/FinanceFieldDeleteServlet")
-public class FinanceFieldDeleteServlet extends HttpServlet{
+@WebServlet("/FinanceAddAppInfoDeleteServlet")
+public class FinanceAddAppInfoDeleteServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FinanceFieldDeleteServlet() {
+    public FinanceAddAppInfoDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
         response.getWriter().append("Served at: ").append(request.getContextPath());
     }
 
-
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         JsonObject jsonobj = new JsonObject();
         HttpSession details = request.getSession();
-        String Id=(String)details.getAttribute("ID");
+        String Id=(String)details.getAttribute("APPID");
         System.out.println("Opportunity Id "+Id);
         int seq_num = Integer.parseInt(request.getParameter("seq_num"))+1;
 
         try {
-            financeFieldDeleteService AppInfo = new financeFieldDeleteService(Id, seq_num);
+            FinanceAddAppInfoDeleteService AppInfo = new FinanceAddAppInfoDeleteService(Id, seq_num);
             jsonobj = AppInfo.Delete();
             jsonobj.addProperty("index",seq_num-1);
             AppInfo =null;

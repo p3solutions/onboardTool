@@ -10,13 +10,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-public class financeFieldDeleteService {
+public class FinanceAddAppInfoDeleteService {
     DBconnection dBconnection;
     Connection con;
     public String Id = null;
     public int seqNum ;
     JsonObject jsonObj = null;
-    public financeFieldDeleteService(String Id,int seqNum) throws ClassNotFoundException, SQLException {
+    public FinanceAddAppInfoDeleteService(String Id, int seqNum) throws ClassNotFoundException, SQLException {
         dBconnection = new DBconnection();
         con = (Connection) dBconnection.getConnection();
         this.Id = Id;
@@ -53,7 +53,7 @@ public class financeFieldDeleteService {
             ArrayList<String> arr_value_split = new ArrayList<String>();
             ArrayList<String> arr_umandatory_split = new ArrayList<String>();
 
-            String select_query = "select max(seq_no) from finance_Info where Id = ? order by seq_no;";
+            String select_query = "select max(seq_no) from decom3sixtytool.finance_info where Id = ? order by seq_no;";
             PreparedStatement st = con.prepareStatement(select_query);
             st.setString(1, Id);
             ResultSet rs = st.executeQuery();
@@ -63,7 +63,7 @@ public class financeFieldDeleteService {
             }
             st.close();
             rs.close();
-            String query = "select * from finance_Info where Id = ? order by seq_no;";
+            String query = "select * from decom3sixtytool.finance_info where Id = ? order by seq_no;";
             PreparedStatement st1 = con.prepareStatement(query);
             st1.setString(1, Id);
             ResultSet rs1 = st1.executeQuery();
@@ -113,14 +113,14 @@ public class financeFieldDeleteService {
                 }
             }
 
-            String delete_query = "delete from finance_Info where id=?;";
+            String delete_query = "delete from decom3sixtytool.finance_info where id=?;";
             PreparedStatement st2 = con.prepareStatement(delete_query);
             st2.setString(1,Id);
             st2.executeUpdate();
             st2.close();
 
             for (int j = 0; j < seqmax - 1; j++) {
-                String insert_query = "insert into finance_Info (seq_no,id,prj_name,app_name,options,label_name,column_name,type,mandatory,value,usermandatoryflag) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?);";
+                String insert_query = "insert into decom3sixtytool.finance_info (seq_no,id,prj_name,app_name,options,label_name,column_name,type,mandatory,value,usermandatoryflag) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?);";
                 PreparedStatement preparedStatement1 = con.prepareStatement(insert_query);
                 preparedStatement1.setInt(1, arr_seqmax_split.get(j));
                 preparedStatement1.setString(2, arr_id_split.get(j));
@@ -168,7 +168,7 @@ public class financeFieldDeleteService {
         String column = "";
 
         try {
-            String selectQuery ="select * from finance_Info where id=? and seq_no =?;";
+            String selectQuery ="select * from decom3sixtytool.finance_info where id=? and seq_no =?;";
             PreparedStatement st1 = con.prepareStatement(selectQuery);
             st1.setString(1, Id);
             st1.setInt(2, seqNum);
@@ -200,7 +200,7 @@ public class financeFieldDeleteService {
 
         try {
 
-            String SelectQuery ="Select * from finance_Info where id=? order by seq_no";
+            String SelectQuery ="Select * from decom3sixtytool.finance_info where id=? order by seq_no";
             PreparedStatement st = con.prepareStatement(SelectQuery);
             st.setString(1, Id);
             ResultSet rs = st.executeQuery();
@@ -216,7 +216,7 @@ public class financeFieldDeleteService {
                     if(!seqnum.equals(append_seq_num))
                     {
                         String updateColumnName = startStr+seqnum;
-                        String UpdateQuery = "Update finance_Info set column_name =? where id = ? and seq_no=?;";
+                        String UpdateQuery = "Update decom3sixtytool.finance_info set column_name =? where id = ? and seq_no=?;";
                         PreparedStatement st1 = con.prepareStatement(UpdateQuery);
                         st1.setString(1, updateColumnName);
                         st1.setString(2, Id);

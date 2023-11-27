@@ -4,7 +4,6 @@ var page = path.split("/").pop();
 $(document).ready(function() {
 
 	switchActiveModule();
-
 });
 
 function switchActiveModule() {

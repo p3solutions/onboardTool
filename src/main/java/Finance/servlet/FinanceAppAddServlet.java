@@ -17,7 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 @WebServlet("/FinanceAppAddServlet")
-public class FinanceAppAddServlet  extends HttpServlet{
+public class FinanceAppAddServlet extends HttpServlet{
     private static final long serialVersionUID = 1L;
 
     /**
@@ -28,23 +28,21 @@ public class FinanceAppAddServlet  extends HttpServlet{
         // TODO Auto-generated constructor stub
     }
 
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
         response.getWriter().append("Served at: ").append(request.getContextPath());
     }
 
-
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession details = request.getSession();
-        String Id;
-        String sessionId = (String) details.getAttribute("seId");
-        String sessionOppName = (String) details.getAttribute("seName");
-        if (sessionId != null && sessionOppName!=null){
-            Id =sessionId;
-        }
-        else {
-            Id=request.getParameter("ID");
-        }
+        String Id = (String) details.getAttribute("APPID");
         JsonObject jsonobject = new JsonObject();
 
         try {
@@ -59,7 +57,7 @@ public class FinanceAppAddServlet  extends HttpServlet{
             System.out.println("UMANDATORY : "+umandatory);
             int NumberofInputfields=Integer.parseInt(request.getParameter("Number"));
             jsonobject.addProperty("LabelName", label_name);
-            jsonobject.addProperty("ColumnName","FinanceAddInfo");
+            jsonobject.addProperty("ColumnName","LegacyAddInfo");
             jsonobject.addProperty("Mandatory", mandatory);
             jsonobject.addProperty("UMandatory", umandatory);
             jsonobject.addProperty("Type", type);
@@ -74,7 +72,7 @@ public class FinanceAppAddServlet  extends HttpServlet{
                 jsonobject.addProperty("OptionCheckExistance", true);
             }
 
-            String select_lab = "select * from finance_Info where Id = ? and  label_name = ? ";
+            String select_lab = "select * from decom3sixtytool.finance_info where Id = ? and  label_name = ? ";
             PreparedStatement st1 = connection.prepareStatement(select_lab);
             st1.setString(1, Id);
             st1.setString(2, label_name);
@@ -89,7 +87,7 @@ public class FinanceAppAddServlet  extends HttpServlet{
 
             if(!labelcheck)
             {
-                int seq_num = FinanceFieldAddFeatureService.financeFieldAddOperationService(Id, label_name, mandatory,umandatory, type, NumberofInputfields, option);
+                int seq_num = FinanceFieldAddFeatureService.FinanceAddOperationService(Id, label_name, mandatory,umandatory, type, NumberofInputfields, option);
                 jsonobject.addProperty("Seq_Num",seq_num);
             }
 

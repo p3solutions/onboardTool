@@ -1,7 +1,7 @@
-package Finance.File_Utility;
+package Report;
 
-import NewArchiveRequirements.LegacyApplicationInfo.Service.archiveLegacyAppInfoDeleteService;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import javax.servlet.ServletException;
@@ -13,18 +13,16 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/FinanceAddAppInfoDeleteServlet1")
-public class FinanceAddAppInfoDeleteServlet1 extends HttpServlet {
+@WebServlet("/ReportExport")
+public class ReportExport extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FinanceAddAppInfoDeleteServlet1() {
+    public ReportExport() {
         super();
         // TODO Auto-generated constructor stub
     }
-
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
@@ -32,32 +30,45 @@ public class FinanceAddAppInfoDeleteServlet1 extends HttpServlet {
         // TODO Auto-generated method stub
         response.getWriter().append("Served at: ").append(request.getContextPath());
     }
-
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        JsonObject jsonobj = new JsonObject();
+        // TODO Auto-generated method stub
         HttpSession details = request.getSession();
-        String Id=(String)details.getAttribute("APPID");
-        System.out.println("Opportunity Id "+Id);
-        int seq_num = Integer.parseInt(request.getParameter("seq_num"))+1;
-
+        JsonArray jsonArray = new JsonArray();
+        String selectedOption = request.getParameter("selectedOption");
+        ReportExportService reportExportServiceService = new ReportExportService();
         try {
-            FinanceAddAppInfoDeleteService1 AppInfo = new FinanceAddAppInfoDeleteService1(Id, seq_num);
-            jsonobj = AppInfo.Delete();
-            jsonobj.addProperty("index",seq_num-1);
-            AppInfo =null;
-            System.gc();
-        } catch (ClassNotFoundException | SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            switch (selectedOption) {
+
+                case "intakeReport1":
+                    jsonArray = reportExportServiceService.getIntakeReport1();
+                    break;
+                case "intakeReport2":
+                    jsonArray = reportExportServiceService.getIntakeReport2();
+                    break;
+                case "intakeReport3":
+                    jsonArray = reportExportServiceService.getIntakeReport3();
+                    break;
+                default:
+                    // Handle the default case or return an error message
+                    reportExportServiceService = null;
+                    jsonArray = null;
+                    break;
+
+            }
+        }
+        catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
 
-        String json = new Gson().toJson(jsonobj);
+        System.gc();
+        String json = new Gson().toJson(jsonArray);
+        System.out.println("JSON OBJECT "+json);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
+
         response.getWriter().write(json);
     }
-
 }

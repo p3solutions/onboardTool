@@ -5,7 +5,7 @@ $('#LegacyEditSubmit').click(function(){
     {
 
         $.ajax({
-            url: "FinanceAppInfoEditServlet1",
+            url: "FinanceAppInfoEditServlet",
             type: 'POST',
             data : {seq_num:Seq_Num,label:Label},
             dataType: "json",
@@ -54,7 +54,7 @@ $('#LegacyDeleteSubmit').click(function(){
 function ArchiveLegacyDeleteAjax(Seq_Num)
 {
     $.ajax({
-        url: "FinanceAddAppInfoDeleteServlet1",
+        url: "FinanceAddAppInfoDeleteServlet",
         type: 'POST',
         async: false,
         data : {seq_num:Seq_Num},

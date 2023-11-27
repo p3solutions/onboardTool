@@ -1,6 +1,6 @@
 package Finance.servlet;
 
-import Finance.service.FinanceFieldEditService;
+import Finance.service.FinanceAppInfoEditService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -13,33 +13,39 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-
-@WebServlet("/FinanceFieldEditServlet")
-public class FinanceFieldEditServlet extends HttpServlet{
+@WebServlet("/FinanceAppInfoEditServlet")
+public class FinanceAppInfoEditServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FinanceFieldEditServlet() {
+    public FinanceAppInfoEditServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
         response.getWriter().append("Served at: ").append(request.getContextPath());
     }
 
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession details = request.getSession();
-        String Id=(String)details.getAttribute("ID");
+        String Id=(String)details.getAttribute("APPID");
         System.out.println("Opportunity Id "+Id);
         String label_name = request.getParameter("label");
         int sequencenumber = Integer.parseInt(request.getParameter("seq_num"))+1;
         JsonObject jsonObj = new JsonObject();
         try {
 
-            FinanceFieldEditService AppInfo = new FinanceFieldEditService(Id, sequencenumber, label_name);
+            FinanceAppInfoEditService AppInfo = new FinanceAppInfoEditService(Id, sequencenumber, label_name);
             boolean checkDuplicate = AppInfo.checkDuplicateLabelName();
             boolean statusFlag =false;
             jsonObj.addProperty("checkDuplicate",checkDuplicate);
@@ -65,5 +71,6 @@ public class FinanceFieldEditServlet extends HttpServlet{
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);
     }
+
 
 }

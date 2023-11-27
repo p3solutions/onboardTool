@@ -41,7 +41,7 @@
 
     <link rel="stylesheet" href="css/Finance/Finance.css">
     <!-- Finance ApplicationInfo -->
-    <script type="text/javascript" src="js/Finance/Ftemplateretrive.js"></script>
+    <script type="text/javascript" src="js/Finance/FinanceTemplateRetrive.js"></script>
 
 
 
@@ -314,19 +314,13 @@
                                                                 <div class="col-md-12">
                                                                     <br />
                                                                     <div class="col-md-4">
-
                                                                         <button type="button" class="btn btn-secondary"
                                                                                 style="padding-top: 5px; padding-left: 10px; float: left;"
-                                                                                onclick="location.href='FinanceList.jsp';">Back</button>
+                                                                                onclick="clearSessionItem()">Back</button>
                                                                     </div>
                                                                     <div class="col-md-8 dropup" align="end">
-
                                                                         <button type="submit" class="btn btn-primary"
-                                                                                id="edit">Edit</button>
-                                                                        <button type="submit" class="btn btn-primary"
-                                                                                id="complete" disabled="true">Complete</button>
-
-
+                                                                                id="complete" onclick="clearSessionItem()">Submit</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -639,17 +633,23 @@
         </div>
     </div>
 </div>
-
-<%--refresh page script--%>
+<%--session attribute issue--%>
 <script>
-    // Get a reference to the button element
-    var refreshButton = document.getElementById('refreshButton');
+    function clearSessionItem() {
+        // Specify the key of the item you want to remove
+        var itemKey = "APPID";
+        var  itemKey1 = "APPNAME";
 
-    // Add a click event listener to the button
-    refreshButton.addEventListener('click', function() {
-        // Use the location.reload() method to refresh the page
-        location.reload();
-    });
+        // Remove the specific item from sessionStorage
+        sessionStorage.removeItem(itemKey);
+        sessionStorage.removeItem(itemKey1);
+
+        // Optionally, you can perform additional actions after removing the item
+        console.log("Item with key '" + itemKey + "' removed from sessionStorage.");
+
+        // Refresh the page or navigate to another page if needed
+        location.href='FinanceList.jsp';
+    }
 </script>
 
 <!-- Active Icon Color changes  -->

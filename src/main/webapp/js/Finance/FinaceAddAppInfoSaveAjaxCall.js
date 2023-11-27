@@ -116,7 +116,7 @@ function archiveLegacyAppInfoAjaxCallUpdate(JsonString,checkMandatory,e)
     var JsonObject=[];
     var checkAjax =false;
     $.ajax({
-        url: "FinanceAppInfoSaveServlet1",
+        url: "FinanceAppInfoSaveServlet",
         type: 'POST',
         data : {JsonString : JsonString, checkMandatory : checkMandatory},
         async: false,
