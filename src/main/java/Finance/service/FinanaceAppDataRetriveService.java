@@ -196,57 +196,11 @@ public class FinanaceAppDataRetriveService {
                 st2.close();
                 rs2.close();
             }
-            if (key.equals("totalsize")) {
-                value = getTotalSize(value, tableName);
-            }
-            if (!checkValue && columnName.equals("AssessAppPlatform")) {
-                tableName = "triage_info";
-                columnName = "appPlatfrm";
-                String selectQuery1 = "select * from " + tableName + " where column_name = ? and Id = ?";
-                PreparedStatement st1 = con.prepareStatement(selectQuery1);
-                st1.setString(1, columnName);
-                st1.setString(2, Id);
-                ResultSet rs1 = st1.executeQuery();
-
-                if (rs1.next()) {
-                    checkValue = true;
-                    value = rs1.getString("value");
-                }
-                rs1.close();
-                st1.close();
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
         System.out.println();
         return value;
-    }
-
-    private String getTotalSize(String structDbSize, String tableName) {
-        String totalSize = "";
-        try {
-            boolean checkValue = false;
-            String value = "";
-            int structureDataSize = !structDbSize.equals("") ? Integer.parseInt(structDbSize) : 0;
-            String selectQueryDate = "select * from " + tableName + " where column_name = 'UnstrucDataVolume' and Id = ?;";
-            PreparedStatement st2 = con.prepareStatement(selectQueryDate);
-            st2.setString(1, Id);
-            ResultSet rs2 = st2.executeQuery();
-
-
-            if (rs2.next()) {
-                checkValue = true;
-                value = rs2.getString("value");
-            }
-            st2.close();
-            rs2.close();
-            int unstructureDataSize = !value.equals("") ? Integer.parseInt(value) : 0;
-            totalSize = String.valueOf(structureDataSize + unstructureDataSize);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return totalSize;
     }
 
     protected void finalize() throws Throwable {
