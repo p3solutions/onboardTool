@@ -140,25 +140,10 @@ public class FinanaceAppDataRetriveService {
     public LinkedHashMap<String, String> getAutoPopulateFields() {
         LinkedHashMap<String, String> columnDet = new LinkedHashMap<String, String>();
         try {
-//            columnDet.put("legacyappname", "appName-opportunity_info");
-//            columnDet.put("srcdb", "AssessAppPlatform-assessment_application_info");
-//            columnDet.put("readonly", "ReadonlyData-assessment_data_char_info");
-//            columnDet.put("ifYesDate", "LastUpdateMade-assessment_data_char_info");
-//            columnDet.put("ifNoDate", "ExpectedDate-assessment_data_char_info");
-//            //columnDet.put("thirdpartyvendor","AppDetails-assessment_application_info");
-//            columnDet.put("AppDetails", "DataTypeCharacteristics-assessment_data_char_info");
-//            //columnDet.put("srcdb","AssessAppPlatform-assessment_application_info");
-//            columnDet.put("nooftables", "StrucNoofTables-assessment_data_char_info");
-//            columnDet.put("estimatestrucsize", "StrucDBsize-assessment_data_char_info");
-//            columnDet.put("totalsize", "StrucDBsize-assessment_data_char_info");
-//            columnDet.put("estimateunstrucsize", "UnstrucDataVolume-assessment_data_char_info");
-//            columnDet.put("estimatefile", "UnstrucNoofFiles-assessment_data_char_info");
-//            columnDet.put("datahold", "legalhold-assessment_compliance_char_info");
-//            columnDet.put("encreq", "enc-assessment_archival_consumption_info");
-//            columnDet.put("makreq", "datamask-assessment_archival_consumption_info");
             columnDet.put("cba", "Preliminary_CBA-triage_info");
-            columnDet.put("srcdb", "AssessAppPlatform-assessment_application_info");
-            columnDet.put("readonly", "ReadonlyData-assessment_data_char_info");
+            columnDet.put("phase", "Phase-phase");
+            columnDet.put("projnum", "PrjNumber-triage_summary_info");
+            columnDet.put("fundtype", "Status-triage_info");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -184,34 +169,29 @@ public class FinanaceAppDataRetriveService {
             }
             rs.close();
             st.close();
-            if (columnName.equals("AssessAppPlatform")) {
-                columnName = "DatabaseType";
-                tableName = "assessment_data_char_info";
-                String selectQueryDB = "select * from " + tableName + " where column_name = ? and Id = ?";
+            if (checkValue && columnName.equals("Phase")) {
+                tableName = "decom3sixtytool.phase";
+                String selectQueryDB = "select * from " + tableName + " where Id = ?";
                 PreparedStatement stDb = con.prepareStatement(selectQueryDB);
-                stDb.setString(1, columnName);
-                stDb.setString(2, Id);
+                stDb.setString(1, Id);
                 ResultSet rsDb = stDb.executeQuery();
                 if (rsDb.next()) {
-                    value = value.equals("") ? rsDb.getString("value") : value + "," + rsDb.getString("value");
+                    checkValue = true;
+                    value = value.equals("") ? rsDb.getString("Phase_Status") : value + "," + rsDb.getString("Phase_Status");
                 }
                 stDb.close();
                 rsDb.close();
 
             }
-            if (checkValue && columnName.equals("ReadonlyData")) {
-                if (value.equals("Yes"))
-                    columnName = "LastUpdateMade";
-                else if (value.equals("No"))
-                    columnName = "ExpectedDate";
-                String selectQueryDate = "select * from " + tableName + " where column_name = ? and Id = ?";
-                PreparedStatement st2 = con.prepareStatement(selectQueryDate);
-                st2.setString(1, columnName);
-                st2.setString(2, Id);
+            if (checkValue && columnName.equals("Status")) {
+                tableName ="decom3sixtytool.phase";
+                String selectQueryNumber = "select * from " + tableName + " where Id = ?";
+                PreparedStatement st2 = con.prepareStatement(selectQueryNumber);
+                st2.setString(1, Id);
                 ResultSet rs2 = st2.executeQuery();
                 if (rs2.next()) {
                     checkValue = true;
-                    value = rs2.getString("value");
+                    value = rs2.getString("Application_Status");
                 }
                 st2.close();
                 rs2.close();

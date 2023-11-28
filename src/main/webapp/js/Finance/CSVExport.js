@@ -12,10 +12,8 @@ $(document).ready(function () {
                 success: function (data) {
                     // Convert JSON data to CSV format
                     var csvContent = convertJsonToCsv(data);
-
                     // Create a Blob from the CSV data
                     var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-
                     // Create a download link for the Blob
                     var a = document.createElement("a");
                     a.href = URL.createObjectURL(blob);

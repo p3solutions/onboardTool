@@ -276,6 +276,11 @@
         Export
     </button>
 </div>
+<div class="col-lg-6 left-side" style="padding-top: 100px; background-color: transparent">
+    <button type="button" class="btn btn-primary pull-left" id="searchToggleButton" data-bs-toggle="modal" data-bs-target="#searchModal">
+        Export
+    </button>
+</div>
 
          <div class="container-fluid "  id="bg-color">
             <h5 id="title2">Finance Filter</h5>
@@ -405,6 +410,38 @@
 </div>
 
 
+<%--Search pop up--%>
+<div class="modal" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchModalLabel">Export Options</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Add your export options here -->
+                <label for="SearchOptions">Select Export view:</label>
+                <select class="form-control" id="SearchOptions">
+                    <option value="">----------------Select------------------</option>
+                    <option value="currentView">Current View</option>
+                    <option value="totalRecords">Total Records</option>
+                    <!-- Add more options as needed -->
+                </select>
+                <input type="radio" id="and" name="condition" value="AND">
+                <label for="AND">AND</label>
+                <input type="radio" id="or" name="condition" value="OR" />
+                <label for="OR">OR</label>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary pull-left" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="submitSearch" >Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!-- ========== PAGE JS FILES ========== -->
 <script src="js/prism/prism.js"></script>
 <script type="text/javascript"
@@ -419,6 +456,7 @@
 <script src="js/navigation/navigation.js"></script>
 <script src="js/Finance/Finance_list_retrive.js"></script>
 <script src="js/Finance/FinanceListDeleteAjax.js"></script>
+<script src="js/Finance/AdvanceSearch.js"></script>
 
 <!-- ========== Export ========== -->
 <script src="js/Finance/CSVExport.js"></script>
