@@ -266,7 +266,6 @@ rotate
 					</select>
 					</div>
 				<div class="Search-content">
-				<div id="warningMessage" class="hidden"></div>
 				<div id="overlaySearch" class="overlaySearch"></div>
 
     			<button onclick="showSearchPopup()" class="custom-button-search" >Search</button>
@@ -299,8 +298,24 @@ rotate
    				</div>
    				</div> 
 					<div class="right-content">
-					<button id="exportbutton" class="custom-button">Export
+					<div id="overlaySearch" class="overlaySearch"></div>
+					<button id="exportbutton" onclick="showexportPopup()" class="custom-button">Export
 						CSV</button>
+						<div id="myModal" class="popup">
+							<div class="popupHeader">
+            					<span class="popupTitle">Export CSV</span>
+        					</div>
+   							 <div class="modal-content">
+   							 <br>
+   							 <br>
+        						<button type="button" onclick="exportdatatocsv()"class="custom-button">View Data</button>
+        						<br>
+        						<button id="Exportwholedata" class="custom-button">All Data</button>
+        						<br>
+        						<button type="button" onclick="closeexportPopup()" class="form-button">Cancel</button>
+    					</div>
+						</div>
+						
 				</div>
 			</div> 
 		

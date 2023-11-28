@@ -68,15 +68,12 @@ public class GovernanceReportGenerationService {
             if (rs1.next()) {
                 totalCount = rs1.getInt("total");
             }
+            rs1.close();
+            st1.close();
+            rs.close();
+            st.close();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-        }
-        finally {
-                rs1.close();
-                st1.close();
-                rs.close();
-                st.close();
-            
         }
         JsonObject result = new JsonObject();
         result.addProperty("total", totalCount);
@@ -139,14 +136,12 @@ public class GovernanceReportGenerationService {
             if (rs1.next()) {
                 totalCount = rs1.getInt("total");
             }
+            rs1.close();
+            st1.close();
+            rs.close();
+            st.close();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-        }
-        finally {
-                rs1.close();
-                st1.close();
-                rs.close();
-                st.close();  
         }
         JsonObject result = new JsonObject();
         result.addProperty("total", totalCount);
@@ -197,16 +192,14 @@ public class GovernanceReportGenerationService {
             if (rs1.next()) {
                 totalCount = rs1.getInt("total");
             }
+            rs1.close();
+            st1.close();
+            rs.close();
+            st.close();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        finally {
-                rs1.close();
-                st1.close();
-                rs.close();
-                st.close();
-            
-        }
+        
         JsonObject result = new JsonObject();
         result.addProperty("total", totalCount);
         result.add("data", jsonArray);

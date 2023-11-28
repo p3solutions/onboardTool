@@ -122,13 +122,12 @@ function updatePagination(totalRecords, currentPage) {
  
                 $("#dynamicHeader").append(row);
             });
- 
-            // Add click event handler for the edit icon
-            
- 
-            // Add click event handler for the delete icon
-           
         }
+        else if(data.length <= 0){
+			console.log("data Less :",data.length);
+            var Nodata = '<div style="text-align: center; font-weight: bold;">No Record Found</div>';
+    		$("#dynamicHeader").html(Nodata);
+		}
     }
 });
 
