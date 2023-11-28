@@ -15,7 +15,7 @@ public class Retrieve_FinanceList_service {
         ResultSet rs = null;
         JsonArray jsonArray = new JsonArray();
         int totalCount = 0;
-
+        FinanceListMapping financeListMapping = new FinanceListMapping();
         try {
             DBconnection dBconnection = new DBconnection();
             Connection connection = (Connection) dBconnection.getConnection();
@@ -31,23 +31,25 @@ public class Retrieve_FinanceList_service {
             st.setInt(2, maxRows);
 
             rs = st.executeQuery();
-            while (rs.next()) {
-                JsonObject jsonObj = new JsonObject();
-                jsonObj.addProperty("ID", rs.getString(1));
-                jsonObj.addProperty("FinanceAppName", rs.getString(2));
-                jsonObj.addProperty("SoftLicense",rs.getString(3));
-                jsonObj.addProperty("ContractDate",rs.getString(4));
-                jsonObj.addProperty("ScopeInfra",rs.getString(5));
-                jsonObj.addProperty("CostAvoidance",rs.getString(6));
-                jsonObj.addProperty("CostArchive",rs.getString(7));
-                jsonObj.addProperty("CBA",rs.getString(8));
-                jsonObj.addProperty("ArchiveTarget",rs.getString(9));
-                jsonObj.addProperty("FundApprove",rs.getString(10));
-                jsonObj.addProperty("FundType",rs.getString(11));
-                jsonObj.addProperty("ProjectNumber",rs.getString(12));
-                jsonObj.addProperty("ScreenShot",rs.getString(13));
-                jsonArray.add(jsonObj);
-            }
+            financeListMapping.FinanceMapping(rs,jsonArray);
+
+//            while (rs.next()) {
+//                JsonObject jsonObj = new JsonObject();
+//                jsonObj.addProperty("ID", rs.getString(1));
+//                jsonObj.addProperty("FinanceAppName", rs.getString(2));
+//                jsonObj.addProperty("SoftLicense",rs.getString(3));
+//                jsonObj.addProperty("ContractDate",rs.getString(4));
+//                jsonObj.addProperty("ScopeInfra",rs.getString(5));
+//                jsonObj.addProperty("CostAvoidance",rs.getString(6));
+//                jsonObj.addProperty("CostArchive",rs.getString(7));
+//                jsonObj.addProperty("CBA",rs.getString(8));
+//                jsonObj.addProperty("ArchiveTarget",rs.getString(9));
+//                jsonObj.addProperty("FundApprove",rs.getString(10));
+//                jsonObj.addProperty("FundType",rs.getString(11));
+//                jsonObj.addProperty("ProjectNumber",rs.getString(12));
+//                jsonObj.addProperty("ScreenShot",rs.getString(13));
+//                jsonArray.add(jsonObj);
+//            }
 
             // Query to get the total count of records
             String countQuery = "SELECT COUNT(*) AS total FROM FinanceList";

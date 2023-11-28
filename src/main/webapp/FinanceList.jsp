@@ -271,6 +271,11 @@
     </div>
 </nav>
 <br>
+<div class="col-lg-6 right-side" style="padding-top: 100px; background-color: transparent">
+    <button type="button" class="btn btn-primary pull-right" id="exportButton" data-bs-toggle="modal" data-bs-target="#exportModal">
+        Export
+    </button>
+</div>
 
          <div class="container-fluid "  id="bg-color">
             <h5 id="title2">Finance Filter</h5>
@@ -374,6 +379,31 @@
     </div>
 </div>
 
+<%--Export--%>
+<div class="modal" id="exportModal" tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exportModalLabel">Export Options</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Add your export options here -->
+                <label for="exportFormat">Select Export view:</label>
+                <select class="form-control" id="exportFormat">
+                    <option value="currentView">Current View</option>
+                    <option value="totalRecords">Total Records</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="submitExport" >Export</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- ========== PAGE JS FILES ========== -->
 <script src="js/prism/prism.js"></script>
@@ -389,6 +419,11 @@
 <script src="js/navigation/navigation.js"></script>
 <script src="js/Finance/Finance_list_retrive.js"></script>
 <script src="js/Finance/FinanceListDeleteAjax.js"></script>
+
+<!-- ========== Export ========== -->
+<script src="js/Finance/CSVExport.js"></script>
+<script src="js/Finance/ExportCSVView.js"></script>
+
 <!-- ========== Pagination ========== -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">

@@ -52,6 +52,15 @@
     <script src="js/multiplepages.js"></script>
 
     <!-- ========== COMMON JS FILES ========== -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="...">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Bootstrap JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="..." crossorigin="anonymous"></script>
+
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <script src="js/jquery-ui/jquery-ui.min.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
@@ -81,8 +90,7 @@
     <!-- ========== THEME JS ========== -->
     <script src="js/main.js"></script>
 
-    <script
-            src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <style>
@@ -286,11 +294,13 @@
 
                 </div>
                 <div class="col-lg-6 right-side" style="padding-top: 100px; background-color: transparent">
-                    <button type="button" class="btn btn-primary pull-right" id="exportButton"
-                            name="exportView" >
-                        <img src="images/Export.png" alt="ExportOption" class="" height="40" width="45" />
+<%--                    <button type="button" class="btn btn-primary pull-right" id="exportBtton" data-bs-toggle="modal" data-bs-target="#exportModal">--%>
+<%--                        <img src="images/Export.png" alt="ExportOption" class="" height="40" width="45" />--%>
+<%--                    </button>--%>
+                    <!-- Button to trigger the modal -->
+                    <button type="button" class="btn btn-primary pull-right" id="exportButton" data-bs-toggle="modal" data-bs-target="#exportModal">
+                        Export
                     </button>
-
                 </div>
             </div>
 
@@ -340,11 +350,7 @@
                 <div class='pagination-container' style="float: right;">
                     <nav>
                         <ul class="pagination">
-
-<%--                            <li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>--%>
-<%--                            <!--	Here the JS Function Will Add the Rows -->--%>
-<%--                            <li data-page="next" id="prev"><span> >> <span--%>
-<%--                                    class="sr-only">(current)</span></span></li>--%>
+                               <%--pagenation append inside--%>
                         </ul>
                     </nav>
                 </div>
@@ -368,6 +374,32 @@
 </div>
 </div>
 </div>
+<%--Export--%>
+<div class="modal" id="exportModal" tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exportModalLabel">Export Options</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Add your export options here -->
+                <label for="exportFormat">Select Export view:</label>
+                <select class="form-control" id="exportFormat">
+                    <option value="currentView">Current View</option>
+                    <option value="totalRecords">Total Records</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="submitExport" >Export</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
         <%--Show select tag dynamic --%>
 <script>
     var select1 = document.getElementById("Report");
@@ -404,6 +436,7 @@
 <script src="js/notification/notification.js"></script>
 <script type="text/javascript" src="js/reportJs/ReportDynamic.js"></script>
 <script type="text/javascript" src="js/reportJs/Download.js"></script>
+<script type="text/javascript" src="js/reportJs/ExportToCSV.js"></script>
 
 <!-- ========== Pagination ========== -->
 

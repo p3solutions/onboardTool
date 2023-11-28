@@ -2,33 +2,32 @@ $(document).ready(function () {
     // Event listener for the download button
     $('#submitExport').on('click', function () {
         var decision = $('#exportFormat').val();
-        var dynamicFileName =$('#Report').val();
+        var FileName = "Finance Module"
         if (decision==="totalRecords"){
             console.log("The Export on total records is in progress");
-        $.ajax({
-            url: "ReportExport",
-            type: 'POST',
-            data: { selectedOption: dynamicFileName}, // Adjust parameters as needed
-            dataType: "json",
-            success: function (data) {
-                // Convert JSON data to CSV format
-                var csvContent = convertJsonToCsv(data);
+            $.ajax({
+                url: "FinanceExport",
+                type: 'POST',
+                dataType: "json",
+                success: function (data) {
+                    // Convert JSON data to CSV format
+                    var csvContent = convertJsonToCsv(data);
 
-                // Create a Blob from the CSV data
-                var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                    // Create a Blob from the CSV data
+                    var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
 
-                // Create a download link for the Blob
-                var a = document.createElement("a");
-                a.href = URL.createObjectURL(blob);
-                a.download = dynamicFileName + ".csv"; // Use the dynamic filename
+                    // Create a download link for the Blob
+                    var a = document.createElement("a");
+                    a.href = URL.createObjectURL(blob);
+                    a.download = FileName + ".csv"; // Use the dynamic filename
 
-                // Trigger a click event on the link to start the download
-                a.click();
-            }
-        });
+                    // Trigger a click event on the link to start the download
+                    a.click();
+                }
+            });
         }
         else if(decision==="currentView"){
-            exportToCSV();
+            exportToCSVFinance();
             console.log("The Export on Current View is in progress");
         }
         else {
