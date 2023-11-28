@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
+import java.util.Objects;
 
 
 public class FinanaceAppDataRetriveService {
@@ -157,21 +158,23 @@ public class FinanaceAppDataRetriveService {
             boolean checkValue = false;
             String columnName = columnTablePair.split("-")[0];
             String tableName = columnTablePair.split("-")[1];
-
-            String selectQuery = "select * from " + tableName + " where column_name = ? and Id = ?";
-            PreparedStatement st = con.prepareStatement(selectQuery);
-            st.setString(1, columnName);
-            st.setString(2, Id);
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                checkValue = true;
-                value = rs.getString("value");
+            if(!Objects.equals(columnName, "Phase") && !Objects.equals(columnName, "Status")){
+                String selectQuery = "select * from " + tableName + " where column_name = ? and Id = ?";
+                PreparedStatement st = con.prepareStatement(selectQuery);
+                st.setString(1, columnName);
+                st.setString(2, Id);
+                ResultSet rs = st.executeQuery();
+                if (rs.next()) {
+                    checkValue = true;
+                    value = rs.getString("value");
+                }
+                rs.close();
+                st.close();
             }
-            rs.close();
-            st.close();
-            if (checkValue && columnName.equals("Phase")) {
+
+            if (!checkValue && columnName.equals("Phase")) {
                 tableName = "decom3sixtytool.phase";
-                String selectQueryDB = "select * from " + tableName + " where Id = ?";
+                String selectQueryDB = "select * from " + tableName + " where Application_Id = ?";
                 PreparedStatement stDb = con.prepareStatement(selectQueryDB);
                 stDb.setString(1, Id);
                 ResultSet rsDb = stDb.executeQuery();
@@ -183,9 +186,9 @@ public class FinanaceAppDataRetriveService {
                 rsDb.close();
 
             }
-            if (checkValue && columnName.equals("Status")) {
+            if (!checkValue && columnName.equals("Status")) {
                 tableName ="decom3sixtytool.phase";
-                String selectQueryNumber = "select * from " + tableName + " where Id = ?";
+                String selectQueryNumber = "select * from " + tableName + " where Application_Id = ?";
                 PreparedStatement st2 = con.prepareStatement(selectQueryNumber);
                 st2.setString(1, Id);
                 ResultSet rs2 = st2.executeQuery();
@@ -196,6 +199,7 @@ public class FinanaceAppDataRetriveService {
                 st2.close();
                 rs2.close();
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
