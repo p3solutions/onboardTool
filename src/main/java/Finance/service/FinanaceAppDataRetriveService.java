@@ -144,7 +144,7 @@ public class FinanaceAppDataRetriveService {
             columnDet.put("cba", "Preliminary_CBA-triage_info");
             columnDet.put("phase", "Phase-phase");
             columnDet.put("projnum", "PrjNumber-triage_summary_info");
-            columnDet.put("fundtype", "Status-triage_info");
+            columnDet.put("status", "status-triage_info");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -186,7 +186,7 @@ public class FinanaceAppDataRetriveService {
                 rsDb.close();
 
             }
-            if (!checkValue && columnName.equals("Status")) {
+            if (!checkValue && columnName.equals("status")) {
                 tableName ="decom3sixtytool.phase";
                 String selectQueryNumber = "select * from " + tableName + " where Application_Id = ?";
                 PreparedStatement st2 = con.prepareStatement(selectQueryNumber);

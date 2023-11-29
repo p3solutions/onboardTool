@@ -44,7 +44,7 @@ public class FinanceAppTemplateService {
                 finance[10] = new FinanceTemplateInfo(12,"","Project Number", "projnum", "Text box", "No", "");
                 finance[11] = new FinanceTemplateInfo(13,"","Phase", "phase", "Text box", "No", "");
                 finance[12] = new FinanceTemplateInfo(14,"","Infrastructure Cost Savings", "infrastructurecostsavings", "Text box", "No", "");
-                finance[13] = new FinanceTemplateInfo(13,"","Status", "status", "Text box", "Yes", "");
+                finance[13] = new FinanceTemplateInfo(15,"","Status", "status", "Text box", "Yes", "");
                 for (int index = 0; index<finance.length; index++)
                 {
                     String finance_InsertQuery = "insert into finance_Template_Details (seq_no, options, label_name, column_name, type, mandatory, value)"

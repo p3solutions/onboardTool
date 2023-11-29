@@ -108,7 +108,7 @@ public class availabilityOfView {
                 "    LEFT JOIN `decom3sixtytool`.`Intake_Stake_Holder_Info` `i` ON `o`.`Id` = `i`.`OppId`" +
                 "    LEFT JOIN `decom3sixtytool`.`archivereq_roles_info` `a` ON `i`.`OppId` = `a`.`OppId`" +
                 "    GROUP BY `o`.`Id`" +
-                ")," +
+                "), " +
                 "`PhaseStatus` AS (" +
                 "   WITH `SeparatedValues` AS (" +
                 "    SELECT " +
@@ -126,7 +126,7 @@ public class availabilityOfView {
                 "    `o`.`Id`," +
                 "    `sv`.`separatedValue`," +
                 "    `sv`.`waveName`," +
-                "    `p`.`phaseName`" +
+                "    `p`.`phaseName` " +
                 "FROM " +
                 "    `decom3sixtytool`.`opportunity_info` `o`" +
                 "JOIN " +
@@ -138,7 +138,7 @@ public class availabilityOfView {
                 "    AND `p`.`column_name` = 'waves'" +
                 ")" +
                 "SELECT" +
-                "    COALESCE(`o`.`Id`, '') AS `Application_Id_Gen`," +
+                "  COALESCE(`o`.`Id`, '') AS `Application_Id_Gen`," +
                 "    COALESCE(`subquery`.`Application_Id`, '') AS `Application_Id`," +
                 "    COALESCE(`o`.`Application_Name`, '') AS `Application_Name`," +
                 "    COALESCE(`s`.`Status`, '') AS `Application_Status`," +
@@ -160,10 +160,29 @@ public class availabilityOfView {
                 "    COALESCE(`triage_subquery`.`Archival_Solution`, '') AS `Archival_Solution`," +
                 "    COALESCE(`triage_subquery`.`Status_Notes`, '') AS `Status_Notes`," +
                 "    COALESCE(`triage_subquery`.`EDR_Analyst`, '') AS `EDR_Analyst`," +
-                "    COALESCE(`triage_subquery1`.`Big_Rock`, '') AS `Big_Rock`" +
-                "FROM `OpportunityInfo` `o`" +
+                "    COALESCE(`triage_subquery1`.`Big_Rock`, '') AS `Big_Rock`," +
+                "    COALESCE(`Readonlydate`.`Data_Read_only_State`, '') AS `Readonlydate`" +
+                "FROM `OpportunityInfo` `o` " +
                 "LEFT JOIN `ApplicationStatus` `s` ON `o`.`Id` = `s`.`Id`" +
                 "LEFT JOIN `PhaseStatus` `phs` ON `o`.`Id` = `phs`.`Id`" +
+                "LEFT JOIN (" +
+                "  SELECT " +
+                "        `assessment_data_char_info`.`Id` AS `Id`," +
+                "        MAX(CASE " +
+                "            WHEN `assessment_data_char_info`.`column_name` = 'ReadonlyData' THEN `assessment_data_char_info`.`value`" +
+                "        END) AS `ReadonlyData`," +
+                "        CASE " +
+                "            WHEN MAX(CASE WHEN `assessment_data_char_info`.`column_name` = 'ReadonlyData' AND `assessment_data_char_info`.`value` = 'Yes' THEN 1 ELSE 0 END) = 1 " +
+                "                THEN MAX(CASE WHEN `assessment_data_char_info`.`column_name` = 'LastUpdateMade' THEN `assessment_data_char_info`.`value` END)" +
+                "            ELSE MAX(CASE WHEN `assessment_data_char_info`.`column_name` = 'ExpectedDate' THEN `assessment_data_char_info`.`value` END)" +
+                "        END AS `Data_Read_only_State`" +
+                "    FROM " +
+                "        `assessment_data_char_info`" +
+                "    WHERE " +
+                "        (`assessment_data_char_info`.`column_name` IN ('ReadonlyData', 'ExpectedDate', 'LastUpdateMade'))" +
+                "    GROUP BY " +
+                "        `Id`" +
+                ") AS `Readonlydate` ON `o`.`Id` = `Readonlydate`.`Id`" +
                 "LEFT JOIN (" +
                 "    SELECT" +
                 "        `Id`," +

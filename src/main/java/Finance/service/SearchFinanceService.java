@@ -15,6 +15,7 @@ public class SearchFinanceService {
         ResultSet rs = null;
         JsonArray jsonArray = new JsonArray();
         int totalCount = 0;
+        FinanceListMapping financeListMapping =new FinanceListMapping();
 
         try {
             DBconnection dBconnection = new DBconnection();
@@ -29,24 +30,7 @@ public class SearchFinanceService {
             st.setInt(3, maxRows);
 
             rs = st.executeQuery();
-            while (rs.next()) {
-                totalCount++;
-                JsonObject jsonObj = new JsonObject();
-                jsonObj.addProperty("ID", rs.getString(1));
-                jsonObj.addProperty("FinanceAppName", rs.getString(2));
-                jsonObj.addProperty("SoftLicense",rs.getString(3));
-                jsonObj.addProperty("ContractDate",rs.getString(4));
-                jsonObj.addProperty("ScopeInfra",rs.getString(5));
-                jsonObj.addProperty("CostAvoidance",rs.getString(6));
-                jsonObj.addProperty("CostArchive",rs.getString(7));
-                jsonObj.addProperty("CBA",rs.getString(8));
-                jsonObj.addProperty("ArchiveTarget",rs.getString(9));
-                jsonObj.addProperty("FundApprove",rs.getString(10));
-                jsonObj.addProperty("FundType",rs.getString(11));
-                jsonObj.addProperty("ProjectNumber",rs.getString(12));
-                jsonObj.addProperty("ScreenShot",rs.getString(13));
-                jsonArray.add(jsonObj);
-            }
+            financeListMapping.FinanceMapping(rs,jsonArray);
             String countQuery = "SELECT COUNT(" + column + ") AS total FROM FinanceList WHERE " + column + " LIKE ?";
             st = connection.prepareStatement(countQuery);
             st.setString(1, "%" + searchTerm + "%");

@@ -10,26 +10,29 @@ public class ReportMapping {
      protected void reportMapping1(ResultSet rs, JsonArray jsonArray) throws SQLException {
         while(rs.next()) {
             JsonObject jsonObj = new JsonObject();
-            jsonObj.addProperty("Application_Id",rs.getString(1));
-            jsonObj.addProperty("Application_Name",rs.getString(2));
-            jsonObj.addProperty("Creation_Date",rs.getString(3));
-            jsonObj.addProperty("Status",rs.getString(4));
-            jsonObj.addProperty("Request_Type",rs.getString(5));
-            jsonObj.addProperty("Requester",rs.getString(6));
-            jsonObj.addProperty("Application_Owner",rs.getString(7));
-            jsonObj.addProperty("Business_Segment",rs.getString(8));
-            jsonObj.addProperty("Business_Unit",rs.getString(9));
-            jsonObj.addProperty("Preliminary_CBA",rs.getString(10));
-            jsonObj.addProperty("Funding_Available",rs.getString(11));
-            jsonObj.addProperty("Program_Funder",rs.getString(12));
-            jsonObj.addProperty("Project_Portfolio_Information",rs.getString(13));
-            jsonObj.addProperty("Project_Decomission_Date",rs.getString(14));
-            jsonObj.addProperty("Infrastructure_Impact",rs.getString(15));
-            jsonObj.addProperty("Number_of_Infrastructure_Components",rs.getString(16));
-            jsonObj.addProperty("Archival_Solution",rs.getString(17));
-            jsonObj.addProperty("Status_Notes",rs.getString(18));
-            jsonObj.addProperty("EDR_Analyst",rs.getString(19));
-            jsonObj.addProperty("Big_Rock",rs.getString(20));
+            jsonObj.addProperty("Application_Id",rs.getString(2));
+            jsonObj.addProperty("Application_Name",rs.getString(3));
+            jsonObj.addProperty("Application_Status",rs.getString(4));
+            jsonObj.addProperty("Phase_Status",rs.getString(5));
+            jsonObj.addProperty("Creation_Date",rs.getString(6));
+            jsonObj.addProperty("Status",rs.getString(7));
+            jsonObj.addProperty("Request_Type",rs.getString(8));
+            jsonObj.addProperty("Requester",rs.getString(9));
+            jsonObj.addProperty("Application_Owner",rs.getString(10));
+            jsonObj.addProperty("Business_Segment",rs.getString(11));
+            jsonObj.addProperty("Business_Unit",rs.getString(12));
+            jsonObj.addProperty("Preliminary_CBA",rs.getString(13));
+            jsonObj.addProperty("Funding_Available",rs.getString(14));
+            jsonObj.addProperty("Program_Funder",rs.getString(15));
+            jsonObj.addProperty("Project_Portfolio_Information",rs.getString(16));
+            jsonObj.addProperty("Project_Decommission_Date",rs.getString(17));
+            jsonObj.addProperty("Infrastructure_Impact",rs.getString(18));
+            jsonObj.addProperty("Number_of_Infrastructure_Components",rs.getString(19));
+            jsonObj.addProperty("Archival_Solution",rs.getString(20));
+            jsonObj.addProperty("Status_Notes",rs.getString(21));
+            jsonObj.addProperty("EDR_Analyst",rs.getString(22));
+            jsonObj.addProperty("Big_Rock",rs.getString(23));
+            jsonObj.addProperty("Readonlydate",rs.getString(24));
 
             jsonArray.add(jsonObj);
         }
