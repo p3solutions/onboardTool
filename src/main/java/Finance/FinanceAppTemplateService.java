@@ -30,7 +30,7 @@ public class FinanceAppTemplateService {
 
             if(!rs_finance.next())
             {
-                FinanceTemplateInfo finance[] = new FinanceTemplateInfo[13];
+                FinanceTemplateInfo finance[] = new FinanceTemplateInfo[14];
                 finance[0] = new FinanceTemplateInfo(1,"","finance Application Name", "financeappname", "Text box","Yes", "");
                 finance[1] = new FinanceTemplateInfo(2,"","Software and Licensing", "softlicense", "Text box", "Yes", "");
                 finance[2] = new FinanceTemplateInfo(3,"","Contract, possibly terms of contract e.g: length, expiration", "contractDate", "Datepicker", "Yes", "");
@@ -44,6 +44,7 @@ public class FinanceAppTemplateService {
                 finance[10] = new FinanceTemplateInfo(12,"","Project Number", "projnum", "Text box", "No", "");
                 finance[11] = new FinanceTemplateInfo(13,"","Phase", "phase", "Text box", "No", "");
                 finance[12] = new FinanceTemplateInfo(14,"","Infrastructure Cost Savings", "infrastructurecostsavings", "Text box", "No", "");
+                finance[13] = new FinanceTemplateInfo(13,"","Status", "status", "Text box", "Yes", "");
                 for (int index = 0; index<finance.length; index++)
                 {
                     String finance_InsertQuery = "insert into finance_Template_Details (seq_no, options, label_name, column_name, type, mandatory, value)"

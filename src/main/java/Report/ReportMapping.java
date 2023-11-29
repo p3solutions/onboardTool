@@ -56,6 +56,8 @@ public class ReportMapping {
             jsonObj.addProperty("Database_Name",rs.getString(17));
             jsonObj.addProperty("Table_Names",rs.getString(18));
             jsonObj.addProperty("DBA_Contact",rs.getString(19));
+            jsonObj.addProperty("Encryption",rs.getString(20));
+            jsonObj.addProperty("Data_Masking",rs.getString(21));
 
             jsonArray.add(jsonObj);
         }

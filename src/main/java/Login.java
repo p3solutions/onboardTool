@@ -4,6 +4,7 @@ import Finance.FinanceAppTemplateService;
 import NewArchiveRequirements.LegacyApplicationInfo.Service.archiveReqLegacyAppTemplateService;
 import NewArchiveRequirements.LegacyApplicationInfo.retentionDetails.Service.archiveRetentionTemplateDetailsService;
 import NewArchiveRequirements.businessRequirementsDetails.functionalReqInfo.dataReq.Service.archiveFunDataReqTemplate;
+import Report.availabilityOfView;
 import onboard.DBconnection;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
@@ -824,9 +825,16 @@ public class Login extends HttpServlet {
             }
             stBusReqInScope.close();
             RsBusReqInScope.close();
+            //View creation
+            availabilityOfView availability = new availabilityOfView();
+            availability.checkAvailabilityOfView();
+            availability=null;
+            System.gc();
             // Finance_Template_Details
             FinanceAppTemplateService financeAppTemplateService = new FinanceAppTemplateService("");
             financeAppTemplateService.financeAppTemplate();
+            financeAppTemplateService =null;
+            System.gc();
             //calling Archive Execution Template function 
             ArchiveExecutionTemplateService archiveExecObj = new ArchiveExecutionTemplateService("");
             archiveExecObj.archiveExecutionDefaultRecords();
