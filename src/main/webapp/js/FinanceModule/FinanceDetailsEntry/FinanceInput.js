@@ -206,10 +206,10 @@ $(document).ready(function(){
               else  if ( Type == "TextAreaFile") {
     var inputHtml = "<div class='form-group'>\n" +
         "<label class='control-label' for='" + ColumnName + "'><div " + manadatory + ">" + LabelName + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'' ></span></div></label>\n";
-    
+    inputHtml += "<input type='file' name='" + ColumnName + "_file' accept='image/*' id='choosen_file_name' multiple>\n";
   
-        inputHtml += "<textarea class='form-control' name='" + ColumnName + "_text' id='" + ColumnName + "'>" + Value + "</textarea>\n" +
-            "<input type='file' name='" + ColumnName + "_file' accept='image/*' id='choosen_file_name'>\n";
+  /*      inputHtml += "<textarea class='form-control' name='" + ColumnName + "_text' id='" + ColumnName + "'>" + Value + "</textarea>\n" +
+            "<input type='file' name='" + ColumnName + "_file' accept='image/*' id='choosen_file_name'>\n"; */
                 
                     inputHtml += "</div>";
     

@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import FinanceDetails.Service.FinanceDetailRetrieveService;
+import FinanceDetails.Service.FinanceDetailsValidateAndSave;
+import FinanceDetails.Service.FinanceInputLabelEdit;
 import Opportunity.Service.NewOpportunityService;
 /**
  * Servlet implementation class FinanceTableDetails
@@ -42,7 +43,7 @@ public class FinanceFieldEdit extends HttpServlet {
 		// TODO Auto-generated method stub
 		String label_name = request.getParameter("label");
 		int sequencenumber = Integer.parseInt(request.getParameter("seq_num"))+1;
-		JsonObject jsonObj =FinanceDetailRetrieveService.FinanceLabelEdit(label_name, sequencenumber);
+		JsonObject jsonObj =FinanceInputLabelEdit.FinanceLabelEdit(label_name, sequencenumber);
 		 String json = new Gson().toJson(jsonObj);
 	        response.setContentType("application/json");
 	        response.setCharacterEncoding("UTF-8");

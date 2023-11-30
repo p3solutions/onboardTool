@@ -13,11 +13,11 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import FinanceDetails.Service.FinanceDetailRetrieveService;
-import Opportunity.Service.NewOpportunityCreateService;
+import FinanceDetails.Service.FinanceDetailsValidateAndSave;
+
 
 /**
- * Servlet implementation class FinanceTableDetails
+ * Servlet implementation class FinanceInputSave
  */
 @WebServlet("/FinanceDetailsValidation")
 public class FinanceDetailsValidation extends HttpServlet {
@@ -52,7 +52,7 @@ public class FinanceDetailsValidation extends HttpServlet {
 		JsonElement tradeElement = parser.parse(JsonString);
 		JsonArray jsonArray = tradeElement.getAsJsonArray();
 		System.out.println("The values of the form"+jsonArray);
-		JsonObject jsonObject = FinanceDetailRetrieveService.InputDetailsValidation(AppName,jsonArray,checkMandatory);
+		JsonObject jsonObject = FinanceDetailsValidateAndSave.InputDetailsValidation(AppName,jsonArray,checkMandatory);
 		String json = new Gson().toJson(jsonObject);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

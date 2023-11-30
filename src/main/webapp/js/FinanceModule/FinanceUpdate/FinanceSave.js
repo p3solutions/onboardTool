@@ -1,11 +1,12 @@
 
     $("#Submit").click(function (e) {
         e.preventDefault();
+        console.log("The Function is Called")
         var AppName = $("#appName").val();
         console.log("Application Name", AppName);
 
-        // Declare variables
-        var CheckExistance;
+       
+       
         var CheckAppname;
         var checkMandatory = true;
         var nameAttr = [];
@@ -71,17 +72,11 @@
             $('#Json_sample_id').val(JSON.stringify(jsonObj));
 
             var checkAjax;
-            var validationCheck_json = AjaxCallUpdate(AppName, JsonString, checkMandatory, CheckExistance, CheckAppname, e);
-            var checkExistance = validationCheck_json.Details_VALIDATION;
+            var validationCheck_json = AjaxCallUpdate(AppName, JsonString, checkMandatory, CheckAppname, e);
+           
             var checkAppName = validationCheck_json.AppName_VALIDATION;
 
-            if (checkExistance == true) {
-                checkAjax1 = true;
-                console.log("The details Are Inside the", checkAjax1);
-                notification("warning", "Finance Details Already Exist For the Entered Application Name", "Warning");
-            } else {
-                checkAjax1 = false;
-            }
+           
 
             if (checkAppName == false) {
                 checkAjax = false;
@@ -109,25 +104,13 @@
         }
     });
 
-    function DbUpdate(checkMandatory, CheckAPPID, CheckAppname) {
-        if (checkMandatory == true && CheckAPPID == true && CheckAppname == true) {
-            var f = document.OpportunityForm;
-            f.method = "post";
-            f.action = "NewOpportunitySave?";
-            f.submit;
-        } else {
-            e.preventDefault();
-            notification("warning", "Please fill all Mandatory fields.", "Warning");
-            return false;
-        }
-    }
-
-    function AjaxCallUpdate(AppName, JsonString, checkMandatory, CheckAPPID, checkAppname, e) {
-        e.preventDefault();
+   
+    function AjaxCallUpdate(AppName, JsonString, checkMandatory, e) {
+        
         var JsonObject = [];
         var checkAjax = false;
         $.ajax({
-            url: "FinanceDetailsUpdate",
+            url: "FinanceDetailsValidation",
             type: 'POST',
             data: { AppName: AppName, JsonString: JsonString, checkMandatory: checkMandatory },
             async: false,

@@ -14,7 +14,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import FinanceDetails.Service.FinanceDetailRetrieveService;
+import FinanceDetails.Service.FinanceDetailsValidateAndSave;
 
 /**
  * Servlet implementation class FinanceTableDetails
@@ -52,7 +52,7 @@ public class FinanceDetailsUpdate extends HttpServlet {
         JsonParser parser = new JsonParser();
 		JsonElement tradeElement = parser.parse(JsonString);
 		JsonArray jsonArray = tradeElement.getAsJsonArray();
-		JsonObject jsonObject = FinanceDetailRetrieveService.InputDetailsValidation(AppName, jsonArray, checkMandatory);
+		JsonObject jsonObject = FinanceDetailsValidateAndSave.InputDetailsValidation(AppName, jsonArray, checkMandatory);
 		String json = new Gson().toJson(jsonObject);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

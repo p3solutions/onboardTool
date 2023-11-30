@@ -1,27 +1,11 @@
-//var Id="D3S592T30BPGT"; // Define a variable outside the click event handler
-
-  
 $(document).on('click', '.editpopup', function() {
     $('#editpopup_btn').click();
     var currentRow = $(this).closest("tr");
     var Id = currentRow.find("td:eq(13)").text(); // Store the Id value
-    sessionStorage.setItem('storedId', Id);
     console.log("the id value",Id);
-    window.location.href = 'FinanceUpdate.jsp';
-});
- $(document).on('click', '.deletepopup', function () {
-    $('#deletepopup_btn').click();
-   
-    var currentRow=$(this).closest("tr");
-    var Id=currentRow.find("td:eq(13)").text();
-    $('#Id').val(Id);
-    console.log("The value of Function",Id)
-    $('#DeletePopUp').on('shown.bs.modal', function () {
-    });
-    });
+  SendIdToJsPage(Id);
 
-$(document).ready(function(){
-	var Id = sessionStorage.getItem('storedId');
+function SendIdToJsPage(Id){
 	console.log("The value of Function",Id)
     $.ajax({
         url: "EditTableDetailServlet",
@@ -47,7 +31,10 @@ $(document).ready(function(){
                 var delete_icon="<div class='deletepopup' style='display:none;'></div>";
                // var delete_edit_icon="<div class='editpopup deletepopup' style='display:none;'></div>";
                 var Value=value.Value;
-               
+                if(LabelName=="APM ID")
+            	{
+                	
+            	}
             	 if(value.Mandatory=="Yes" && value.UMandatory=="Yes")
                 {
 				  
@@ -78,6 +65,7 @@ $(document).ready(function(){
                         "<label class='control-label' for='opportunity'>"+LabelName+"<span "+manadatory+"></span></label>"+delete_icon+"<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>\n" +
                         "<input type='text' class='form-control' size='35' id='"+ColumnName+"' placeholder='' name='"+ColumnName+"' value='"+Value+"'/>\n" +
                         "</div>";
+                        console.log("validation")
                     $('#FinanceInput1').append(inputtext);
                   }
                 else if(Type=="Datepicker")
@@ -159,18 +147,16 @@ $(document).ready(function(){
                     $('#FinanceInput1').append(inputfile);
 
                 }
-               else  if ( Type == "TextAreaFile") {
-    var inputHtml = "<div class='form-group'>\n" +
-        "<label class='control-label' for='" + ColumnName + "'><div " + manadatory + ">" + LabelName + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'' ></span></div></label>\n";
-    inputHtml += "<input type='file' name='" + ColumnName + "_file' accept='image/*' id='choosen_file_name' multiple>\n";
-  
-  /*      inputHtml += "<textarea class='form-control' name='" + ColumnName + "_text' id='" + ColumnName + "'>" + Value + "</textarea>\n" +
-            "<input type='file' name='" + ColumnName + "_file' accept='image/*' id='choosen_file_name'>\n"; */
-                
-                    inputHtml += "</div>";
-    
-    $('#FinanceInput1').append(inputHtml);
-}
+                else if(Type=="TextAreaFile")
+                {
+                    var inputtext="<div class='form-group'>\n" +
+                        "<label class='control-label' for='formInput198'>"+LabelName+"<span "+manadatory+"></span></label>"+delete_icon+"<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div>\n" +
+                        /*"<input type='text' class='form-control' id='"+ColumnName+"' placeholder='' name='"+ColumnName+"' value='"+Value+"'/>\n" +*/
+                         "<textarea class='form-control' name='"+ColumnName+"' id='"+ColumnName+"'>"+Value+"</textarea>"+
+                        "</div>";
+                    $('#FinanceInput1').append(inputtext);
+                }
+
             });
             var script="<script>$('.datepicker1').datepicker({\n" +
                 "format: \"mm/dd/yyyy\",\n"+
@@ -186,10 +172,23 @@ $(document).ready(function(){
 
     });
   
-});
+};
 
 function dateChangeFunction(val) {
 	if (!val.match('^((0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01])[- /.](19|20)?[0-9]{2})*$')) {
 		notification("warning", "Date field should be in mm/dd/yyyy format", "Note:");
 	}
 }
+
+
+});
+ $(document).on('click', '.deletepopup', function () {
+    $('#deletepopup_btn').click();
+   
+    var currentRow=$(this).closest("tr");
+    var Id=currentRow.find("td:eq(13)").text();
+    $('#Id').val(Id);
+    console.log("The value of Function",Id)
+    $('#DeletePopUp').on('shown.bs.modal', function () {
+    });
+    });

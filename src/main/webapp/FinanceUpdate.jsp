@@ -8,7 +8,9 @@
 <script src="js/jquery/jquery-2.2.4.min.js"></script>
 <!-- ========== MODERNIZR ========== -->
 <script src="js/modernizr/modernizr.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- ========== COMMON STYLES ========== -->
 <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
 <link rel="stylesheet" href="css/font-awesome.min.css" media="screen">
@@ -433,7 +435,9 @@
 	<script src="js/FinanceModule/FinanceDetailsEntry/DeleteField.js"></script>
 	<script src="js/FinanceModule/FinanceDetailsEntry/DeleteAlert.js"></script>
 	<script src="js/FinanceModule/FinanceUpdate/EditDetails.js"></script>
-<script src="js/FinanceModule/FinanceUpdate/FinanceSave.js"></script>
+	<script src="js/FinanceModule/FinanceEditDelete.js"></script>
+<script src="js/FinanceModule/FinanceEditDelete.js"></script>
+	<script src="js/FinanceModule/FinanceUpdate/FinanceSave.js"></script>
 	<script src="js/jquery/jquery-2.2.4.min.js"></script>
 	<!-- ========== Toastr ========== -->
 	<script

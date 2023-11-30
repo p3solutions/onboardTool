@@ -41,7 +41,7 @@ public class FinanceDataRetrivalServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Connected to the FinanceServlet");
-        JsonArray jsonArray=new FinanceDetailRetrieveService().InputDetailsRetrieve();
+        JsonArray jsonArray=new FinanceInputTemplate().InputDetailsRetrieve();
         String json = new Gson().toJson(jsonArray);
         System.out.println("json From Finance"+json);
         response.setContentType("application/json");

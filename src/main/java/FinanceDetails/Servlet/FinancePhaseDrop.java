@@ -12,6 +12,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import FinanceDetails.Service.FinanceDropService;
+import FinanceDetails.Service.FinancePhaseDropService;
 
 /**
  * Servlet implementation class FinanceTableDetails
@@ -40,11 +41,11 @@ public class FinancePhaseDrop extends HttpServlet {
         // TODO Auto-generated method stub
         HttpSession details = request.getSession();
        String Id=request.getParameter("filteredId");
-       String value="Intelliji";
+      String value=request.getParameter(" selectedValue");
        System.out.println("the value of Id from js"+Id);
        System.out.println("the value of App from js"+value);
         JsonArray jsonArray = null;
-        FinanceDropService Details =  new  FinanceDropService();
+FinancePhaseDropService Details =  new  FinancePhaseDropService();
         System.out.println("Connected to Application");
     		jsonArray = Details.FinanceDropDownStatus( Id,value);
         Details =null;

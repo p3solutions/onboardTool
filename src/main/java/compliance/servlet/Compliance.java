@@ -23,7 +23,7 @@ import com.google.gson.JsonObject;
 import compliance.service.IntakeReportService;
 
 /**
-* Servlet implementation class Retrieve_users_servlet
+* Servlet implementation class Compliance
 */
 @WebServlet("/Compliance")
 public class Compliance extends HttpServlet {
@@ -47,7 +47,7 @@ public class Compliance extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-        HttpSession details = request.getSession();
+       
         System.out.println("Connected in intake 2 Servlet");
         String Page=request.getParameter("maxRows");
         String ReportName=request.getParameter("category");
@@ -93,9 +93,9 @@ public class Compliance extends HttpServlet {
 
         
         JsonArray jsonArray = null;
-        JsonArray jsonArray1=null;
+       
         IntakeReportService ReportDetails =  new IntakeReportService();
-        IntakeReportService Totalcount =  new IntakeReportService();
+        
 
  
 
@@ -105,7 +105,7 @@ public class Compliance extends HttpServlet {
 
     try {
 		jsonArray = ReportDetails.ReportDetails(ReportName, Limit, Offset);
-		jsonArray1 = Totalcount.ReportDetails(ReportName, Limit, Offset);
+		
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

@@ -34,17 +34,8 @@ public class IntakeReportService {
         	
         	   System.out.println("I am in intake report2");
         	
-        		    // Execute a query to get the total count
-        		    String countQuery = "SELECT COUNT(*) AS total_count FROM decom3sixtytool.IntakeReport2";
-        		    st = connection.prepareStatement(countQuery);
-        		    ResultSet countResult = st.executeQuery();
-        		    int totalCount = 0;
+        		   
 
-        		    if (countResult.next()) {
-        		        totalCount = countResult.getInt("total_count");
-        		    }
-
-        		    // Execute the original query to fetch paginated data
         		    String selectQuery = "SELECT * FROM decom3sixtytool.IntakeReport2 ORDER BY Application_Name LIMIT " + limit + " OFFSET " + offset;
         		    st = connection.prepareStatement(selectQuery);
         		    rs = st.executeQuery();
@@ -52,7 +43,7 @@ public class IntakeReportService {
         		   
         		    while (rs.next()) {
         		        JsonObject jsonObj = new JsonObject();
-        		        // Your existing code to populate jsonObj goes here
+        		      
         		        jsonObj.addProperty("Application_Name", rs.getString(1));
         		        jsonObj.addProperty("Application_Owner", rs.getString(2));
         		        jsonObj.addProperty("status", rs.getString(3));
@@ -78,8 +69,7 @@ public class IntakeReportService {
 
         		    // Now you can include the total count in your response
         		    JsonObject response = new JsonObject();
-        		    System.out.println("the total count"+totalCount);
-        		    response.addProperty("total_count", totalCount);
+        		   
         		    response.add("data", jsonArray);
         		  
         		    st.close();

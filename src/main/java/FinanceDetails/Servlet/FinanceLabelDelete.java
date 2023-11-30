@@ -10,14 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import FinanceDetails.Service.FinanceDetailRetrieveService;
-import Opportunity.Service.NewOpportunityService;
+import FinanceDetails.Service.FinanceInputLabelDelete;
+
+
 /**
  * Servlet implementation class FinanceTableDetails
  */
 @WebServlet("/FinanceLabelDelete")
 public class FinanceLabelDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -44,7 +46,7 @@ public class FinanceLabelDelete extends HttpServlet {
 		JsonObject jsonobj = new JsonObject();
 		int seq_num = Integer.parseInt(request.getParameter("seq_num"))+1;
 		jsonobj.addProperty("index",seq_num-1);
-		FinanceDetailRetrieveService.FinanceLabelDelete(seq_num);
+		FinanceInputLabelDelete.FinanceLabelDelete(seq_num );
 		String json = new Gson().toJson(jsonobj);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

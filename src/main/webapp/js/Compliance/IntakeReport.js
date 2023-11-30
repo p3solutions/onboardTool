@@ -81,7 +81,8 @@ if(section==0){
       beforeSend: function () {
         $('#overlay').show();
       },
-      success: function (data) {
+      success: function (data,total_count) {
+	console.log("total_count",total_count)
         $('#overlay').hide();
 		filterfunction(data,category);
         console.log("MaxRows Value 2:", maxRows);
@@ -94,6 +95,7 @@ if(section==0){
           console.log("Navigating to the previous page");
         }
 console.log("data",data);
+console.log("total_count",total_count)
         if (data && data.length > 0) {
           
           var tableHtml = constructTable(data);

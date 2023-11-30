@@ -122,14 +122,15 @@
 	-webkit-transform: rotate(0deg);
 }
 
-100%
+100
+%
 {
 -webkit-transform
-
-
 :
 rotate
 (
+
+
 360deg
 )
 ;
@@ -141,14 +142,28 @@ keyframes sp-anime { 0% {
 }
 
 100
+
+
 %
 {
 transform
+
+
 :
+
+
 rotate
+
+
 (
+
+
 360deg
+
+
 )
+
+
 ;
 }
 }
@@ -190,11 +205,23 @@ rotate
 }
 
 100
+
+
 %
 {
--webkit-transform:
-rotate(
-360deg);
+-webkit-transform
+:
+
+
+rotate
+(
+
+
+360deg
+)
+;
+
+
 }
 }
 @
@@ -202,9 +229,14 @@ keyframes sp-anime1 { 0% {
 	transform: rotate(0deg);
 }
 
-100%
+100
+%
 {
-transform:rotate(360deg)
+transform
+:
+rotate(
+360deg
+)
 ;
 }
 }
@@ -213,29 +245,92 @@ transform:rotate(360deg)
 	display: none;
 }
 
+.pagination {
+	display: flex;
+	list-style: none;
+	padding: 0;
+}
 
+.pagination li {
+	margin: 5px;
+	padding: 3px;
+	background-color: #e0e0e0;
+	cursor: pointer;
+	border-radius: 1px;
+}
+
+.pagination li.active {
+	background-color: #007bff;
+	color: white;
+}
+
+#prev, #next {
+	margin: 5px;
+	padding: 3px;
+	background-color: #007bff;
+	color: white;
+	cursor: pointer;
+	border-radius: 1px;
+}
+/* Add this style to your existing styles */
+.div-container {
+	display: flex;
+	justify-content: space-between;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.left-content {
+	text-align: left;
+	margin-left: 20px;
+	margin-top: 5px;
+	margin-buttom: 2px;
+	padding: 10px;
+}
+
+.table-container {
+	overflow-x: auto;
+	max-width: 100%; /* Adjust the max-width as needed */
+	border: 1px solid #ddd; /* Add border for better visualization */
+	margin-bottom: 20px;
+}
 </style>
 <body>
 
 	<%@include file="Nav-Bar.jspf"%>
 
-	<nav class="nav nav-height-70 nav-font" id="bg-color"
+	<!--  <nav class="nav nav-height-70 nav-font" id="bg-color"
 		style="margin-top: -10px; height: 100px;">
-		<div class="container-fluid">
-			<div class="col-sm-12" id="d3s-mt-20">
-				<ul class="nav navbar-nav-1 mt-3">
-					<li class="nav-link-2 active-2" id="nav-link"
+<div class="container-fluid">
+<div class="col-sm-12" id="d3s-mt-20">
+<ul class="nav navbar-nav-1 mt-3">
+<li class="nav-link-2 active-2" id="nav-link"
 						style="border-bottom: 4px solid rgba(255, 255, 255, .5) !important"></li>
-
+ 
 				</ul>
-				<div class="row" id="d3s-mt-20"></div>
-				<div class="sub-title" style="color: #fff">
-					<a href="DashBoard.jsp" id="sitetitle1" style="color: #fff"><span
+<div class="row" id="d3s-mt-20"></div>
+<div class="sub-title" style="color: #fff">
+<a href="DashBoard.jsp" id="sitetitle1" style="color: #fff"><span
 						class="glyphicon glyphicon-home"></span> Home</a> >> Finance
+</div>
+ 
+			</div>
+</div>
+</nav> -->
+	<nav class="nav" id="bg-color">
+		<div class="container-fluid" id="container-fluid-margin">
+			<div class="row">
+				<div class="col-lg-12 col-md-12">
+					<div class="sub-title" style="color: #fff">
+						<br> <a href="DashBoard.jsp" id="sitetitle1"
+							style="color: #fff"><span class="glyphicon glyphicon-home"></span>
+							Home</a> >> Finance Module
+					</div>
 				</div>
-
 			</div>
 		</div>
+		<br>
 	</nav>
 
 	<div class="col-lg-6 left-side phase-btn1" align="left">
@@ -245,9 +340,9 @@ transform:rotate(360deg)
 			style="margin: 29px 0 0 83px; font-size: 14px; display: none;">Add
 			Details</button>
 		<button type="button" class="btn btn-primary pull-right"
-        id="editpopup_btn" data-bs-toggle="modal"
-        onclick="window.location.href='FinanceUpdate.jsp';"
-        style="display: none;">Edit PopUp</button>
+			id="editpopup_btn" data-bs-toggle="modal"
+			onclick="window.location.href='FinanceUpdate.jsp';"
+			style="display: none;">Edit PopUp</button>
 
 		<button type="button" class="btn btn-primary pull-right"
 			id="deletepopup_btn" data-bs-toggle="modal"
@@ -257,95 +352,106 @@ transform:rotate(360deg)
 	</div>
 	<br />
 	<div class="card-container-5 card d3s-mt-50">
-		
 		<div class="card-header d3s-pl-15" id="cd-header">Finance
 			Details</div>
 
 		<div class="withoutPhase display" id="admin_userslist_div">
-			<table class="table table-bordered table-responsive" id="FinanceDetails"
-				style="width: 200%; font-size: 10px;">
-				</br>
-				<label>&nbsp;Show </label>
-				<label style="margin-left: 110px;"> Entries</label>
-				<select class="form-select align-left"
-					aria-label="Default select example" id="maxRows"
-					style="padding: 0.75 0 0 0.75rem; margin-bottom: 5px; margin-top: -28px; margin-left: 45px; width: auto;">
-					<option value="5000">Show All</option>
-					<option value="5">5</option>
-					<option value="10">10</option>
-					<option value="15">15</option>
-					<option value="20">20</option>
-					<option value="50">50</option>
-					<option value="70">70</option>
-					<option value="100">100</option>
-				</select>
-
-				<thead>
-					<th style='text-align: center; vertical-align: middle; width: 20%;'
-						scope="col">ProjectNumber</th>
-						<th style='text-align: center; vertical-align: middle; width: 20%;'
-						scope="col">Phase</th>
-
-					<th style='text-align: center; vertical-align: middle; width: 20%;'
-						scope="col">ApplicationName</th>
-
-					<th style='text-align: center; vertical-align: middle; width: 20%;'
-						scope="col">Licensing</th>
-					<th style='text-align: center; vertical-align: middle; width: 20%;'
-						scope="col">Contract_Date</th>
-					<th style='text-align: center; vertical-align: middle; width: 20%;'
-						scope="col">InfraScope</th>
-						<th style='text-align: center; vertical-align: middle; width: 20%;'
-						scope="col">InfraSavings</th>
-					<th style='text-align: center; vertical-align: middle; width: 20%;'
-						scope="col">CostAvoidance</th>
-					<th style='text-align: center; vertical-align: middle; width: 20%;'
-						scope="col">Cost_Archive</th>
-					<th style='text-align: center; vertical-align: middle; width: 20%;'
-						scope="col">CBA</th>
-					<th style='text-align: center; vertical-align: middle; width: 20%;'
-						scope="col">Funding_Approval</th>
-					<th style='text-align: center; vertical-align: middle; width: 20%;'
-						scope="col">FundingType</th>
-						<th style='text-align: center; vertical-align: middle; width: 20%;'
-						scope="col">Status</th>
+			<div class="div-container">
+				<div class="left-content">
+					<label>Show </label> 
+					
+					<select id="maxRows" style="color: black;">
+							
 						
-
-					<th
-						style='text-align: center; display: none; vertical-align: middle; width: 15%;'
-						class="useractionheader" scope="col">Action</th>
-
-
-
-
-
-
-
-
-
-
-				</thead>
-
-				<div id="overlay">
-					<div class="cv-spinner">
-						<span class="spinner"></span>
-					</div>
+						<option value="1">1</option>
+						<option value="5">5</option>
+						<option value="10">10</option>
+						<option value="15">15</option>
+						<option value="20">20</option>
+						<option value="50">50</option>
+						<option value="70">70</option>
+						<option value="100">100</option>
+						<option value="5000">Show All</option>
+					</select>
+					<label style="margin-left: 5px;"> Entries</label>
 				</div>
-				<tbody id="FinanceDetails">
+			</div>
+			<!--  <div class="Search-content">
+<div id="warningMessage" class="hidden"></div>
+<div id="overlaySearch" class="overlaySearch"></div>
+ 
+    			<button onclick="showSearchPopup()" class="custom-button-search" >Search</button>
+<div id="searchPopup" class="popup">
+<div class="popupHeader">
+<span class="popupTitle">Search</span>
+</div>
+<br>
+<div class="form-container">
+<form id="searchForm" onsubmit="return validateForm(event)">
+<div class="label-dropdown-container">
+<label for="columnName" class="form-label">Column Name:</label> &nbsp;&nbsp;&nbsp;
+<select id="columnName" onchange="toggleSearchValueField()" class="form-dropdown">
+<option value="null">--Select--</option>
+<option value="Application_Id">Application_Id</option>
+<!-- Add other options as needed 
+</select>
+</div>
+ 
+        <div class="label-dropdown-container">
+<label for="searchValue" id="searchValueLabel" class="form-label">Search Value:</label>
+<input type="text" id="searchValue" class="form-input">
+</div>
+<div class="button-container">
+<input type="submit" value="Search" class="form-button">
+<button type="button" onclick="closeSearchPopup()" class="form-button">Cancel</button>
+</div>
+</form>
+</div>
+</div>
+</div>  -->
 
-				</tbody>
+			<!--  <thead>
+<tr>
+<th style='text-align: center; vertical-align: middle; width: 20%;'>ProjectNumber</th>
+<th style='text-align: center; vertical-align: middle; width: 20%;'>Phase</th>
+<th style='text-align: center; vertical-align: middle; width: 20%;'>ApplicationName</th>
+<th style='text-align: center; vertical-align: middle; width: 20%;'>Licensing</th>
+<th style='text-align: center; vertical-align: middle; width: 20%;'>Contract_Date</th>
+<th style='text-align: center; vertical-align: middle; width: 20%;'>InfraScope</th>
+<th style='text-align: center; vertical-align: middle; width: 20%;'>InfraSavings</th>
+<th style='text-align: center; vertical-align: middle; width: 20%;'>CostAvoidance</th>
+<th style='text-align: center; vertical-align: middle; width: 20%;'>Cost_Archive</th>
+<th style='text-align: center; vertical-align: middle; width: 20%;'>CBA</th>
+<th style='text-align: center; vertical-align: middle; width: 20%;'>Funding_Approval</th>
+<th style='text-align: center; vertical-align: middle; width: 20%;'>FundingType</th>
+<th style='text-align: center; vertical-align: middle; width: 20%;'>Status</th>
+<th style='text-align: center; display: none; vertical-align: middle; width: 15%;' class="useractionheader">Action</th>
+</tr>
+</thead> -->
 
-			</table>
+			<div class="table-container">
+				<table class="table table-bordered table-responsive"
+					id="FinanceDetails" style="width: 200%; font-size: 10px;">
+
+					<div id="overlay">
+						<div class="cv-spinner">
+							<span class="spinner"></span>
+						</div>
+					</div>
+					<tbody id="FinanceDetails">
+
+					</tbody>
+				</table>
+			</div>
 			<div class="row">
 				<div class="col-md-12" align="end">
 					<div class='pagination-container' style="float: right;">
 						<nav>
 							<ul class="pagination">
 
-								<li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>
-								<!--	Here the JS Function Will Add the Rows -->
-								<li data-page="next" id="prev"><span> >> <span
-										class="sr-only">(current)</span></span></li>
+								<!--  	<li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>
+<li data-page="next" id="prev"><span> >> <span
+										class="sr-only">(current)</span></span></li> -->
 							</ul>
 						</nav>
 					</div>
@@ -360,9 +466,6 @@ transform:rotate(360deg)
 
 
 
-
-
-	
 	<div class="modal" id="DeletePopUp" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -391,18 +494,17 @@ transform:rotate(360deg)
 			</div>
 		</div>
 	</div>
-<!-- ---------------------------------------------------- -->
+	<!-- ---------------------------------------------------- -->
 
 
 
-
-	<script src="js/FinanceModule/FinanceTableDetails.js"></script>
-	<script src="js/FinanceModule/FinanceAcess.js"></script>
+	<script src="js/FinanceModule/FinanceTable/FinanceTableDetails.js"></script>
+	<script src="js/FinanceModule/FinanceTable/FinanceAcess.js"></script>
 	<script src="js/FinanceModule/FinanceUpdate/EditDetails.js"></script>
-	<script src="js/FinanceModule/FinancePagination.js"></script>
+	
 
 
-<script src="js/FinanceModule/Delete.js"></script>
+	<script src="js/FinanceModule/FinanceTable/Delete.js"></script>
 	<!-- ========== PAGE JS FILES ========== -->
 	<script src="js/prism/prism.js"></script>
 	<script type="text/javascript"
