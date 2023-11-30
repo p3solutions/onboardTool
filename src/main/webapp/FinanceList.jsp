@@ -427,38 +427,22 @@
                 </select>
                 <br>
                 <input class="form-control" type="text" id="advanceSearch" placeholder="Search Value">
-                <input type="radio" id="and" name="condition" value="AND" onclick="checkRadioButton()">
+                <input type="radio" id="and" name="condition" value="AND" onclick="toggleRadioButton('and')">
                 <label for="AND">AND</label>
-                <input type="radio" id="or" name="condition" value="OR" onclick="checkRadioButton()"/>
+                <input type="radio" id="or" name="condition" value="OR" onclick="toggleRadioButton('or')"/>
                 <label for="OR">OR</label>
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary pull-left" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" id="submitSearch" data-bs-dismiss="modal">Search</button>
+                <button type="button" class="btn btn-secondary pull-left" id="resetButton">Reset</button>
+
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    // Radio button unselect
-    function checkRadioButton() {
-        // Get the radio button elements
-        var radio1 = document.getElementById("and");
-        var radio2 = document.getElementById("or");
-
-        // Check if the radio buttons are selected
-        if (radio1.checked) {
-            console.log("Option 1 is and selected");
-        } else if (radio2.checked) {
-            console.log("Option 2 or is selected");
-            radio.checked = false;
-        } else {
-            console.log("No option is selected");
-        }
-    }
-</script>
 <!-- ========== PAGE JS FILES ========== -->
 <script src="js/prism/prism.js"></script>
 <script type="text/javascript"
