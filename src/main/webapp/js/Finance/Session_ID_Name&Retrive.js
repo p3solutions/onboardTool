@@ -55,7 +55,7 @@ $(document).on('keyup focus', '#financeappname', function () {
                     if (selectedName === nameIn) {
                         // ajaxCall(selectedId,selectedName); // to fetch the phase and other details
                         financeSetSessionAttribute(selectedId,selectedName);
-                        ajaxTemplateCall("Retrieve");
+                        ajaxTemplateCallNoData("Retrieve");
                         ajaxscrcall(selectedId);
                         $("#financeappname").prop('disabled', true);
                         $('#financeappname').disable();
@@ -66,8 +66,19 @@ $(document).on('keyup focus', '#financeappname', function () {
             suggestionDropdown.append(ul);
         //    enableDropdownStyles();
         }
+        $("#phase").prop('disabled', true);
+        $('#phase').disable();
     }
-
+function disableFields(){
+    $("#financeappname").prop('disabled', true);
+    $('#financeappname').disable();
+    $("#phase").prop('disabled', true);
+    $('#phase').disable();
+    $("#cba").prop('disabled', true);
+    $('#cba').disable();
+    $("#status").prop('disabled', true);
+    $('#status').disable();
+}
 
     function financeSetSessionAttribute(selectedId,selectedName) {
         // Add an AJAX call to send data to the server
@@ -86,9 +97,7 @@ $(document).on('keyup focus', '#financeappname', function () {
     }
 
     function enableDropdownStyles() {
-            //  dropdown.classList.add('suggestionEnabled');
-            // dropdown.classList.add('suggestionEnabled1');
-            // Set position and styling for the suggestion dropdown container
+
             $('#suggestionDropdown').show();
             var inputPosition = $("#financeappname").position();
             $('#suggestionDropdown').css({

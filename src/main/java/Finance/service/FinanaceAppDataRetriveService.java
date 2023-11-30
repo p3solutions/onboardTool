@@ -94,12 +94,11 @@ public class FinanaceAppDataRetriveService {
             }
 
             jsonArray = FinanceDataRetrieve();
+            System.out.println("Data Retrive "+ jsonArray);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
         return jsonArray;
     }
 
@@ -107,7 +106,6 @@ public class FinanaceAppDataRetriveService {
 
         JsonArray jsonArray = new JsonArray();
         try {
-
             String selectQuery = "select * from finance_Info where Id = ? AND seq_no > 1 order by seq_no  ;";
             PreparedStatement st = con.prepareStatement(selectQuery);
             st.setString(1, Id);
@@ -158,7 +156,7 @@ public class FinanaceAppDataRetriveService {
             boolean checkValue = false;
             String columnName = columnTablePair.split("-")[0];
             String tableName = columnTablePair.split("-")[1];
-            if(!Objects.equals(columnName, "Phase") && !Objects.equals(columnName, "Status")){
+            if(!Objects.equals(columnName, "Phase") && !Objects.equals(columnName, "status")){
                 String selectQuery = "select * from " + tableName + " where column_name = ? and Id = ?";
                 PreparedStatement st = con.prepareStatement(selectQuery);
                 st.setString(1, columnName);
@@ -186,18 +184,19 @@ public class FinanaceAppDataRetriveService {
                 rsDb.close();
 
             }
-            if (!checkValue && columnName.equals("status")) {
-                tableName ="decom3sixtytool.phase";
-                String selectQueryNumber = "select * from " + tableName + " where Application_Id = ?";
-                PreparedStatement st2 = con.prepareStatement(selectQueryNumber);
-                st2.setString(1, Id);
-                ResultSet rs2 = st2.executeQuery();
-                if (rs2.next()) {
+            else if (!checkValue && columnName.equals("status")) {
+                tableName = "decom3sixtytool.phase";
+                String selectQueryDB = "select * from " + tableName + " where Application_Id = ?";
+                PreparedStatement stDb = con.prepareStatement(selectQueryDB);
+                stDb.setString(1, Id);
+                ResultSet rsDb = stDb.executeQuery();
+                if (rsDb.next()) {
                     checkValue = true;
-                    value = rs2.getString("Application_Status");
+                    value = value.equals("") ? rsDb.getString("Application_Status") : value + "," + rsDb.getString("Application_Status");
                 }
-                st2.close();
-                rs2.close();
+                stDb.close();
+                rsDb.close();
+
             }
 
         } catch (Exception e) {

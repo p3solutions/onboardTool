@@ -415,21 +415,21 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="searchModalLabel">Export Options</h5>
+                <h5 class="modal-title" id="searchModalLabel">Search Options</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <!-- Add your export options here -->
-                <label for="SearchOptions">Select Export view:</label>
+                <label for="SearchOptions">Select Search Column:</label>
                 <select class="form-control" id="SearchOptions">
                     <option value="">----------------Select------------------</option>
-                    <option value="currentView">Current View</option>
-                    <option value="totalRecords">Total Records</option>
                     <!-- Add more options as needed -->
                 </select>
-                <input type="radio" id="and" name="condition" value="AND">
+                <br>
+                <input class="form-control" type="text" id="advanceSearch" placeholder="Search Value">
+                <input type="radio" id="and" name="condition" value="AND" onclick="checkRadioButton()">
                 <label for="AND">AND</label>
-                <input type="radio" id="or" name="condition" value="OR" />
+                <input type="radio" id="or" name="condition" value="OR" onclick="checkRadioButton()"/>
                 <label for="OR">OR</label>
 
             </div>
@@ -441,7 +441,24 @@
     </div>
 </div>
 
+<script>
+    // Radio button unselect
+    function checkRadioButton() {
+        // Get the radio button elements
+        var radio1 = document.getElementById("and");
+        var radio2 = document.getElementById("or");
 
+        // Check if the radio buttons are selected
+        if (radio1.checked) {
+            console.log("Option 1 is and selected");
+        } else if (radio2.checked) {
+            console.log("Option 2 or is selected");
+            radio.checked = false;
+        } else {
+            console.log("No option is selected");
+        }
+    }
+</script>
 <!-- ========== PAGE JS FILES ========== -->
 <script src="js/prism/prism.js"></script>
 <script type="text/javascript"

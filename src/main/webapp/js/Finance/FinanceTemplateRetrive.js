@@ -8,11 +8,11 @@ $(document).ready(function () {
         console.log("Retrieved APPID:", appId);
         console.log("Retrieved APPNAME:", appName);
         ajaxTemplateCall("Retrieve" , appId , appName);
-        financeSetSessionAttribute(appId,appName);
+        financeSetSessionAttribute1(appId,appName);
 
     } else {
         console.log("APPID or APPNAME not found in sessionStorage.");
-        ajaxTemplateCall("hello");
+        ajaxTemplateCallNoData("hello");
     }
 });
 function header(Name){
@@ -26,7 +26,7 @@ function header(Name){
         console.error('Element with id "cd-header" not found');
     }
 }
-function financeSetSessionAttribute(selectedId,selectedName) {
+function financeSetSessionAttribute1(selectedId,selectedName) {
     // Add an AJAX call to send data to the server
     $.ajax({
         url: "FinanceSetSessionAttributeServlet", // Replace with your server-side endpoint
@@ -83,7 +83,7 @@ $(document).ready(function(){
 });
 
 
-function ajaxTemplateCall(status){
+function ajaxTemplateCallNoData(status){
     $.ajax({
         url: "FinanceAppDataRetrieve",
         type: 'POST',

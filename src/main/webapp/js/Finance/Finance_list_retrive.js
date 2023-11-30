@@ -1,5 +1,7 @@
+var isSearching = false;
+var pageGlobal =1;
 $(document).ready(function () {
-    var isSearching = false;
+
     var currentSearchColumn;
     var currentSearchTerm;
     var currentPage = 1; // Default page number
@@ -24,6 +26,7 @@ $(document).ready(function () {
         if (isSearching) {
             currentPage = 1;
             searchData(currentSearchColumn, currentSearchTerm, maxRow, currentPage);
+            pageGlobal =1;
         } else {
             fetchData(1); // Fetch data for the first page when the row count changes
         }
