@@ -25,5 +25,30 @@ public class FinanceListMapping {
             jsonObj.addProperty("ScreenShot",rs.getString(13));
             jsonArray.add(jsonObj);
         }
+        int arraySize = jsonArray.size();
+        // Check if the array size is 0 and print a message accordingly
+        if (arraySize == 0) {
+            System.out.println("The JSON array is empty.");
+            FinanceMappingHeader(jsonArray);
+        } else {
+            System.out.println("Array size: " + arraySize);
+        }
+    }
+    protected void FinanceMappingHeader(JsonArray jsonArray) throws SQLException {
+            JsonObject jsonObj = new JsonObject();
+            jsonObj.addProperty("ID","");
+            jsonObj.addProperty("FinanceAppName", "");
+            jsonObj.addProperty("SoftLicense","");
+            jsonObj.addProperty("ContractDate","");
+            jsonObj.addProperty("ScopeInfra","");
+            jsonObj.addProperty("CostAvoidance","");
+            jsonObj.addProperty("CostArchive","");
+            jsonObj.addProperty("CBA","");
+            jsonObj.addProperty("ArchiveTarget","");
+            jsonObj.addProperty("FundApprove","");
+            jsonObj.addProperty("FundType","");
+            jsonObj.addProperty("ProjectNumber","");
+            jsonObj.addProperty("ScreenShot","");
+            jsonArray.add(jsonObj);
     }
 }

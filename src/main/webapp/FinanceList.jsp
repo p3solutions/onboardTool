@@ -435,7 +435,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary pull-left" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="submitSearch" >Search</button>
+                <button type="button" class="btn btn-primary" id="submitSearch" data-bs-dismiss="modal">Search</button>
             </div>
         </div>
     </div>
@@ -473,7 +473,7 @@
 <script src="js/navigation/navigation.js"></script>
 <script src="js/Finance/Finance_list_retrive.js"></script>
 <script src="js/Finance/FinanceListDeleteAjax.js"></script>
-<script src="js/Finance/AdvanceSearch.js"></script>
+<%--<script src="js/Finance/AdvanceSearch.js"></script>--%>
 
 <!-- ========== Export ========== -->
 <script src="js/Finance/CSVExport.js"></script>

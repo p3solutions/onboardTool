@@ -37,6 +37,7 @@ public class Finance_Advance_Search {
                 JsonArray jsonArray = new JsonArray();
                 financeListMapping.FinanceMapping(rs,jsonArray);
 
+
         String countQuery = buildCountQuery(tableName, selectedColumns, condition, searchTerm);
         st1 = connection.prepareStatement(countQuery);
         for (int i = 0; i < selectedColumns.size(); i++) {
