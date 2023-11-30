@@ -3,6 +3,7 @@
     $(document).ready(function () {
         SearchValidation();
         FinanceSearchDropdown();
+
         var isSearching = false;
         var selectedColumns;
         var currentSearchColumn;
@@ -102,6 +103,7 @@
             // Add selected columns to the array
             selectedColumns = [selectedColumn, secondSelectedColumn];
             advanceSearchData(selectedColumns,searchValue,condition,$('#maxRows').val(),1)
+            resetForm();
         });
         function fetchData(page) {
             console.log('Fetching data for page:', page);
@@ -185,6 +187,7 @@
         function FinanceSearchDropdown(){
             var selectedColumns = [];
             $('#searchModal').on('show.bs.modal', function (e) {
+
                 var headers = [];
     // Extract headers from the table
                 $("#admin_userslist thead th").each(function () {
