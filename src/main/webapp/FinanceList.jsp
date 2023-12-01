@@ -269,23 +269,24 @@
             </div>
         </div>
     </div>
+
+
 </nav>
-<br>
-<div class="col-lg-6 right-side" style="padding-top: 100px; background-color: transparent">
-    <button type="button" class="btn btn-primary pull-right" id="exportButton" data-bs-toggle="modal" data-bs-target="#exportModal">
+<div class="col-lg-12 col-md-12 left-side" style="padding-top: 10px; background-color: transparent">
+    <button type="button" class="btn btn-primary pull-right " id="exportButton" data-bs-toggle="modal" data-bs-target="#exportModal">
         Export
     </button>
-</div>
-<div class="col-lg-6 left-side" style="padding-top: 100px; background-color: transparent">
     <button type="button" class="btn btn-primary pull-left" id="searchToggleButton" data-bs-toggle="modal" data-bs-target="#searchModal">
-        Export
+        Search
     </button>
 </div>
 
-         <div class="container-fluid "  id="bg-color">
-            <h5 id="title2">Finance Filter</h5>
-             <i class="fa fa-search search-Icon"></i><input id="AppFilter" type="text" >
-         </div>
+
+
+<%--         <div class="container-fluid "  id="bg-color">--%>
+<%--            <h5 id="title2">Finance Filter</h5>--%>
+<%--             <i class="fa fa-search search-Icon"></i><input id="AppFilter" type="text" >--%>
+<%--         </div>--%>
 
 <div class="col-lg-6 left-side phase-btn1" align="left">
     <a href="Finance.jsp" > <button type="button" id="add_user_btn" class="btn btn-primary" data-bs-toggle="modal"

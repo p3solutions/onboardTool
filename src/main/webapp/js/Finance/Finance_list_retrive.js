@@ -65,28 +65,28 @@
         });
 
         // Event listener for search icon click
-        $('#admin_userslist').on('click', '.search-Icon', function () {
-            console.log('Search icon clicked');
-            var column = $(this).data('column');
-            var placeholder = $(this).data('placeholder');
-            var title = $(this).data('title');
+        // $('#admin_userslist').on('click', '.search-Icon', function () {
+        //     console.log('Search icon clicked');
+        //     var column = $(this).data('column');
+        //     var placeholder = $(this).data('placeholder');
+        //     var title = $(this).data('title');
+        //
+        //     // Update the placeholder and title
+        //     $('#AppFilter').attr('placeholder', placeholder);
+        //     $('#title2').text(title);
+        //
+        //     currentSearchColumn = column;
+        //     isSearching = true;
+        // });
 
-            // Update the placeholder and title
-            $('#AppFilter').attr('placeholder', placeholder);
-            $('#title2').text(title);
-
-            currentSearchColumn = column;
-            isSearching = true;
-        });
-
-        $("#AppFilter").on("input", function () {
-            var column = currentSearchColumn;
-            console.log(column);
-            var searchTerm = $(this).val().toLowerCase();
-            console.log(searchTerm);
-            currentSearchTerm = searchTerm;
-            searchData(column, searchTerm, $('#maxRows').val(), currentPage);
-        });
+        // $("#AppFilter").on("input", function () {
+        //     var column = currentSearchColumn;
+        //     console.log(column);
+        //     var searchTerm = $(this).val().toLowerCase();
+        //     console.log(searchTerm);
+        //     currentSearchTerm = searchTerm;
+        //     searchData(column, searchTerm, $('#maxRows').val(), currentPage);
+        // });
         $("#submitSearch").on("click", function () {
 
             // Get the selected values from the first dropdown, second dropdown, and input field
@@ -160,28 +160,28 @@
                 selectElement.append('<option value="' + option + '">' + option + '</option>');
             });
         }
-        function searchData(column, searchTerm, maxRows, page) {
-            $.ajax({
-                url: "Finance_List_Search_Servlet",
-                type: 'POST',
-                data: { column: column, searchTerm: searchTerm, maxRows: maxRows, page: page },
-                dataType: "json",
-                beforeSend: function () {
-                    $('#overlay').show();
-                },
-                success: function (data) {
-                    $('#overlay').hide();
-                    isSearching = true;
-                    console.log("Search Results", data);
-                    clearTable();
-                    appendRowFunction(data.data);
-                    updatePagination(data.total, page);
-                    selectedColumns = [];
-                    tempSelectedColumn = selectedColumns;
-                },
-
-            });
-        }
+        // function searchData(column, searchTerm, maxRows, page) {
+        //     $.ajax({
+        //         url: "Finance_List_Search_Servlet",
+        //         type: 'POST',
+        //         data: { column: column, searchTerm: searchTerm, maxRows: maxRows, page: page },
+        //         dataType: "json",
+        //         beforeSend: function () {
+        //             $('#overlay').show();
+        //         },
+        //         success: function (data) {
+        //             $('#overlay').hide();
+        //             isSearching = true;
+        //             console.log("Search Results", data);
+        //             clearTable();
+        //             appendRowFunction(data.data);
+        //             updatePagination(data.total, page);
+        //             selectedColumns = [];
+        //             tempSelectedColumn = selectedColumns;
+        //         },
+        //
+        //     });
+        // }
 
 
         function FinanceSearchDropdown(){

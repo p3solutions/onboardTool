@@ -33,9 +33,16 @@ public class ReportMapping {
             jsonObj.addProperty("EDR_Analyst",rs.getString(22));
             jsonObj.addProperty("Big_Rock",rs.getString(23));
             jsonObj.addProperty("Readonlydate",rs.getString(24));
-
             jsonArray.add(jsonObj);
         }
+         int arraySize = jsonArray.size();
+         // Check if the array size is 0 and print a message accordingly
+         if (arraySize == 0) {
+             System.out.println("The JSON array is empty.");
+             reportHeaderMapping1(jsonArray);
+         } else {
+             System.out.println("Array size: " + arraySize);
+         }
     }
     protected void reportMapping2(ResultSet rs, JsonArray jsonArray) throws SQLException {
         while(rs.next()) {
@@ -64,6 +71,14 @@ public class ReportMapping {
 
             jsonArray.add(jsonObj);
         }
+        int arraySize = jsonArray.size();
+        // Check if the array size is 0 and print a message accordingly
+        if (arraySize == 0) {
+            System.out.println("The JSON array is empty.");
+            reportHeaderMapping2(jsonArray);
+        } else {
+            System.out.println("Array size: " + arraySize);
+        }
     }
 
     protected void reportMapping3(ResultSet rs, JsonArray jsonArray) throws SQLException {
@@ -81,6 +96,82 @@ public class ReportMapping {
 
             jsonArray.add(reportObj);
         }
+        int arraySize = jsonArray.size();
+        // Check if the array size is 0 and print a message accordingly
+        if (arraySize == 0) {
+            System.out.println("The JSON array is empty.");
+            reportHeaderMapping3(jsonArray);
+        } else {
+            System.out.println("Array size: " + arraySize);
+        }
     }
 
+    protected void reportHeaderMapping1(JsonArray jsonArray)  {
+
+            JsonObject jsonObj = new JsonObject();
+            jsonObj.addProperty("Application_Id","");
+            jsonObj.addProperty("Application_Name","");
+            jsonObj.addProperty("Application_Status","");
+            jsonObj.addProperty("Phase_Status","");
+            jsonObj.addProperty("Creation_Date","");
+            jsonObj.addProperty("Status","");
+            jsonObj.addProperty("Request_Type","");
+            jsonObj.addProperty("Requester","");
+            jsonObj.addProperty("Application_Owner","");
+            jsonObj.addProperty("Business_Segment","");
+            jsonObj.addProperty("Business_Unit","");
+            jsonObj.addProperty("Preliminary_CBA","");
+            jsonObj.addProperty("Funding_Available","");
+            jsonObj.addProperty("Program_Funder","");
+            jsonObj.addProperty("Project_Portfolio_Information","");
+            jsonObj.addProperty("Project_Decommission_Date","");
+            jsonObj.addProperty("Infrastructure_Impact","");
+            jsonObj.addProperty("Number_of_Infrastructure_Components","");
+            jsonObj.addProperty("Archival_Solution","");
+            jsonObj.addProperty("Status_Notes","");
+            jsonObj.addProperty("EDR_Analyst","");
+            jsonObj.addProperty("Big_Rock","");
+            jsonObj.addProperty("Readonlydate","");
+            jsonArray.add(jsonObj);
+        }
+    protected void reportHeaderMapping2(JsonArray jsonArray) {
+            JsonObject jsonObj = new JsonObject();
+            jsonObj.addProperty("ID","");
+            jsonObj.addProperty("Application_Name","");
+            jsonObj.addProperty("Application_Owner","");
+            jsonObj.addProperty("status","");
+            jsonObj.addProperty("Project_Portfolio_Information","");
+            jsonObj.addProperty("Funding_Available","");
+            jsonObj.addProperty("Application_Details","");
+            jsonObj.addProperty("Target_Date","");
+            jsonObj.addProperty("Readonly_Date","");
+            jsonObj.addProperty("Database_type","");
+            jsonObj.addProperty("Data_Type_Characteristics","");
+            jsonObj.addProperty("Structured_Data_In_GB","");
+            jsonObj.addProperty("Structured_Data_Number_of_tables","");
+            jsonObj.addProperty("Unstructured_Data_In_GB","");
+            jsonObj.addProperty("Unstructured_Data_files","");
+            jsonObj.addProperty("Database_Server_Name","");
+            jsonObj.addProperty("Database_Name","");
+            jsonObj.addProperty("Table_Names","");
+            jsonObj.addProperty("DBA_Contact","");
+            jsonObj.addProperty("Encryption","");
+            jsonObj.addProperty("Data_Masking","");
+
+            jsonArray.add(jsonObj);
+        }
+    protected void reportHeaderMapping3(JsonArray jsonArray) throws SQLException {
+
+            JsonObject reportObj = new JsonObject();
+            reportObj.addProperty("Id", "");
+            reportObj.addProperty("Legacy_Appliction_Name","");
+            reportObj.addProperty("Source_Platform_Databases","");
+            reportObj.addProperty("Legacy_App_Description","");
+            reportObj.addProperty("Read_Only_Date","");
+            reportObj.addProperty("Is_Application_The_Only_Source_Of_Truth_For_The_Data","");
+            reportObj.addProperty("Legacy_Application_Hosted_Internally_Or_With_Third_Party_Vendor","");
+            reportObj.addProperty("Total_Data_Size","");
+            reportObj.addProperty("Retention_Period","");
+            jsonArray.add(reportObj);
+        }
 }
