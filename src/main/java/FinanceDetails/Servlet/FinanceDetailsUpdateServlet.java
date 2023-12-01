@@ -6,25 +6,27 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
-import FinanceDetails.Service.FinanceInputLabelDelete;
-
+import FinanceDetails.Service.FinanceDetailsUpdateService;
 
 /**
- * Servlet implementation class FinanceTableDetails
+ * Servlet implementation class FinanceUpdateDetails
  */
-@WebServlet("/FinanceLabelDelete")
-public class FinanceLabelDelete extends HttpServlet {
+@WebServlet("/FinanceDetailsUpdateServlet")
+public class FinanceDetailsUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FinanceLabelDelete() {
+    public FinanceDetailsUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,13 +43,18 @@ public class FinanceLabelDelete extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
-		JsonObject jsonobj = new JsonObject();
-		int seq_num = Integer.parseInt(request.getParameter("seq_num"))+1;
-		jsonobj.addProperty("index",seq_num-1);
-		FinanceInputLabelDelete.FinanceLabelDelete(seq_num );
-		String json = new Gson().toJson(jsonobj);
+		
+        String JsonString= (String)request.getParameter("JsonString");
+        System.out.println("The values"+JsonString);
+        boolean checkMandatory =Boolean.parseBoolean(request.getParameter("checkMandatory"));
+        String id = request.getParameter("Id");
+    	
+		System.out.println("The Server is hit"+id);
+        JsonParser parser = new JsonParser();
+		JsonElement tradeElement = parser.parse(JsonString);
+		JsonArray jsonArray = tradeElement.getAsJsonArray();
+		JsonObject jsonObject = FinanceDetailsUpdateService.UpdateDetails(id, jsonArray, checkMandatory);
+		String json = new Gson().toJson(jsonObject);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);

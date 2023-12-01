@@ -9,18 +9,18 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import FinanceDetails.Service.DeleteService;
+import FinanceDetails.Service.TableDetailDeleteService;
 
 /**
  * Servlet implementation class FinanceTableDetails
  */
-@WebServlet("/DeleteDetails")
-public class DeleteDetails extends HttpServlet {
+@WebServlet("/TableDetailDeleteServlet")
+public class TableDetailDeleteServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteDetails() {
+    public TableDetailDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,7 +40,7 @@ public class DeleteDetails extends HttpServlet {
         //int seq_num = Integer.parseInt(request.getParameter("seq_num"))+1;
         String Id=request.getParameter("Id");
         System.out.println("Random ID : "+Id);
-        JsonObject jsonObj =DeleteService.DeleteDetais(Id);
+        JsonObject jsonObj =TableDetailDeleteService.DeleteDetais(Id);
          String json = new Gson().toJson(jsonObj);
          System.out.println("JSON"+json);
             response.setContentType("application/json");

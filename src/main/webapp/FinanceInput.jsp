@@ -152,7 +152,7 @@
 
 								</ul>
 							</div>
-							<button type="button" class="btn btn-primary" id="Submit" onclick="location.href='Finance.jsp';">Submit</button>
+							<button type="button" class="btn btn-primary" id="Submit">Submit</button>
 							
 							<button type="button" class="btn btn-primary " id="editpopup_btn"
 								data-bs-toggle="modal" data-bs-target="#EditPopUp"

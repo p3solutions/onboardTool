@@ -14,7 +14,7 @@ public class FinanceInputTemplate {
 	        try {
 	            String randomNumber = RandomIdGenerator();
 	           
-	           
+	            FinanceRecords(randomNumber);
 	            jsonArray = InputDetailsRetrievalService(randomNumber);
 	        } catch (Exception e) {
 	            System.out.println("Exception e" + e);
@@ -105,4 +105,42 @@ public static JsonArray InputDetailsRetrievalService(String randomNumber) {
         }
         System.out.println("Json array from retrival"+jsonArray);
         return jsonArray;
-    }}
+    } public static void FinanceRecords(String RecordNumber) {
+		PreparedStatement st=null,st1=null;
+		ResultSet rs=null;
+        try {
+            DBconnection dBconnection = new DBconnection();
+            Connection connection = (Connection) dBconnection.getConnection();
+            String Deletequery = "delete from Finance_Informations_details";
+			st = connection.prepareStatement(Deletequery);
+			st.executeUpdate();
+            String SelectQuery = "select * from Finance_Info_Template_Details order by seq_no";
+			st1 = connection.prepareStatement(SelectQuery);
+			rs = st1.executeQuery();
+            while (rs.next()) {
+                if (rs.getInt(1) <= 16) {
+                    String Finance_InsertQuery = "insert into Finance_Informations_Details (seq_no,Id, prj_name, app_name, options, label_name, column_name, type, mandatory, value)"
+                            + "value(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    PreparedStatement prestmt = connection.prepareStatement(Finance_InsertQuery);
+                    prestmt.setInt(1, rs.getInt(1));
+                    prestmt.setString(2, RecordNumber);
+                    prestmt.setString(3, rs.getString(2));
+                    prestmt.setString(4, rs.getString(3));
+                    prestmt.setString(5, rs.getString(4));
+                    prestmt.setString(6, rs.getString(5));
+                    prestmt.setString(7, rs.getString(6));
+                    prestmt.setString(8, rs.getString(7));
+                    prestmt.setString(9, rs.getString(8));
+                    prestmt.setString(10, rs.getString(9));
+                    prestmt.execute();
+                }
+            }
+		st.close();
+		rs.close();
+		st1.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Exception ---------[info]---------" + e);
+        }
+    }
+}

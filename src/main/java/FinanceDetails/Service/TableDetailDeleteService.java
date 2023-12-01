@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import com.google.gson.JsonObject;
 import onboard.DBconnection;
-public class DeleteService {
+public class TableDetailDeleteService {
     public static JsonObject DeleteDetais(String Id) {
         JsonObject jsonobj = new JsonObject();
     try {

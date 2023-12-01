@@ -6,7 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -14,19 +13,20 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import FinanceDetails.Service.FinanceDetailsValidateAndSave;
+import FinanceDetails.Service.FinanceInputValidationService;
+
 
 /**
- * Servlet implementation class FinanceTableDetails
+ * Servlet implementation class FinanceInputSave
  */
-@WebServlet("/FinanceDetailsUpdate")
-public class FinanceDetailsUpdate extends HttpServlet {
+@WebServlet("/FinanceInputValidationServlet")
+public class FinanceInputValidationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FinanceDetailsUpdate() {
+    public FinanceInputValidationServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,16 +43,16 @@ public class FinanceDetailsUpdate extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession details = request.getSession();
-		String id = (String)details.getAttribute("ID");
-		System.out.println("The Server is hit");
 		String AppName =request.getParameter("AppName");
+		System.out.println("Application Name in the Servlet"+AppName);
         String JsonString= (String)request.getParameter("JsonString");
+        System.out.println("Connected to validation Servlet");
         boolean checkMandatory =Boolean.parseBoolean(request.getParameter("checkMandatory"));
         JsonParser parser = new JsonParser();
 		JsonElement tradeElement = parser.parse(JsonString);
 		JsonArray jsonArray = tradeElement.getAsJsonArray();
-		JsonObject jsonObject = FinanceDetailsValidateAndSave.InputDetailsValidation(AppName, jsonArray, checkMandatory);
+		System.out.println("The values of the form"+jsonArray);
+		JsonObject jsonObject = FinanceInputValidationService.InputDetailsValidation(AppName,jsonArray,checkMandatory);
 		String json = new Gson().toJson(jsonObject);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

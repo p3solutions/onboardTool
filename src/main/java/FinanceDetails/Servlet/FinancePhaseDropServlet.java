@@ -12,17 +12,18 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import FinanceDetails.Service.FinanceDropService;
-import FinanceDetails.Service.FinanceTableDetails;
+import FinanceDetails.Service.FinancePhaseDropService;
+
 /**
  * Servlet implementation class FinanceTableDetails
  */
-@WebServlet("/FinanceDropdown")
-public class FinanceDropdown extends HttpServlet {
+@WebServlet("/FinancePhaseDropServlet")
+public class FinancePhaseDropServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FinanceDropdown() {
+    public FinancePhaseDropServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,19 +40,19 @@ public class FinanceDropdown extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
         HttpSession details = request.getSession();
-       String name=request.getParameter("appName");
-       String id=request.getParameter("Id");
-     System.out.println("The values Of Drop"+name);
+       String Id=request.getParameter("filteredId");
+      String value=request.getParameter(" selectedValue");
+       System.out.println("the value of Id from js"+Id);
+       System.out.println("the value of App from js"+value);
         JsonArray jsonArray = null;
-        FinanceDropService Details =  new  FinanceDropService();
+FinancePhaseDropService Details =  new  FinancePhaseDropService();
         System.out.println("Connected to Application");
-    		jsonArray = Details.FinanceDropdown(name);
+    		jsonArray = Details.FinanceDropDownStatus( Id,value);
         Details =null;
         //calling finalize method and garabage collector
         System.gc();
 //        System.out.println("JSON ARRAY"+jsonArray);
         String json = new Gson().toJson(jsonArray);
-        System.out.println("The value from servlet"+json);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);

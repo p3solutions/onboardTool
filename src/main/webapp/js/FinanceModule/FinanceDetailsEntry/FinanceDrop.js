@@ -53,7 +53,7 @@ console.log("The selected value now",selectedValue);
 
     function sendAppNameToBackend(appNameValue) {
         $.ajax({
-            url: "FinanceDropdown", // Replace with your actual backend endpoint
+            url: "FinanceAppNameDropdownServlet", // Replace with your actual backend endpoint
             type: 'POST',
             data: { appName: appNameValue },
             dataType: "json",
@@ -129,7 +129,7 @@ console.log("The selected value now",selectedValue);
 function sendFilteredIdToBackend(filteredId, selectedValue) {
    console.log("The value inside backend function",selectedValue)
     $.ajax({
-        url: "FinancePhaseDrop", // Replace with your actual backend endpoint
+        url: "FinancePhaseDropServlet", // Replace with your actual backend endpoint
         type: 'POST',
         data: {  selectedValue: selectedValue,filteredId: filteredId },
         dataType: "json",

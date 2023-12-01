@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import onboard.DBconnection;
-public class FinanceTableDetails {
+public class FinanceTableDetailsService {
     public JsonObject FinanceDetails(String page, String maxRows) {
     	PreparedStatement st = null;
         ResultSet rs = null;

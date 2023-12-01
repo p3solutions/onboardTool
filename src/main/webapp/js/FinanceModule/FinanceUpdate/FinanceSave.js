@@ -4,15 +4,15 @@
         console.log("The Function is Called")
         var AppName = $("#appName").val();
         console.log("Application Name", AppName);
-
-       
-       
-        var CheckAppname;
+	var Id = sessionStorage.getItem('storedId');
+	console.log("The value of Function",Id)
+        // Declare variables
+      
+     
         var checkMandatory = true;
         var nameAttr = [];
         var jsonObj = [];
-        var checkAjax1;
-
+       
         if (AppName != "") {
             $(".InputField").each(function (i) {
                 var inputs = {};
@@ -71,29 +71,26 @@
             var JsonString = JSON.stringify(jsonObj);
             $('#Json_sample_id').val(JSON.stringify(jsonObj));
 
-            var checkAjax;
-            var validationCheck_json = AjaxCallUpdate(AppName, JsonString, checkMandatory, CheckAppname, e);
-           
-            var checkAppName = validationCheck_json.AppName_VALIDATION;
+            
+            var validationCheck_json = AjaxCallUpdate(Id, JsonString, checkMandatory );
+          
+             var checkMandatory= validationCheck_json.Mandatory_Validation;
 
            
 
-            if (checkAppName == false) {
-                checkAjax = false;
-                notification("warning", "Application Name Does Not Exist.", "Warning");
-            } else {
-                checkAjax = true;
-            }
+            
 
             if (checkMandatory == false) {
                 checkAjax = false;
                 notification("warning", "Please fill all the mandatory fields.", "Warning");
             }
 
-         if (checkMandatory == true && checkAjax1 == false && checkAjax == true) {
-    notification("success", "Finance Details Are Entered successfully.", "Note");
+         if (checkMandatory == true ) {
+	 notification("success", "Finance Details Are Entered successfully.", "Note");
+	console.log("Hi bro any body is there")
+    
     $("#Submit").click(function () {
-       
+      
         window.location.href = "Finance.jsp";
     });
 }
@@ -105,14 +102,14 @@
     });
 
    
-    function AjaxCallUpdate(AppName, JsonString, checkMandatory, e) {
+    function AjaxCallUpdate(Id, JsonString, checkMandatory ) {
         
         var JsonObject = [];
         var checkAjax = false;
         $.ajax({
-            url: "FinanceDetailsValidation",
+            url: "FinanceDetailsUpdateServlet",
             type: 'POST',
-            data: { AppName: AppName, JsonString: JsonString, checkMandatory: checkMandatory },
+            data: { Id:Id, JsonString: JsonString, checkMandatory: checkMandatory },
             async: false,
             dataType: "json",
             success: function (data) {

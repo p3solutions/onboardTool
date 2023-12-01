@@ -1,7 +1,7 @@
 $('#delete_submit').click(function(){
         var Id=$('#Id').val();
         $.ajax({
-            url: "DeleteDetails",
+            url: "TableDetailDeleteServlet",
             type: 'POST',
             data : {Id:Id},
             dataType: "json",

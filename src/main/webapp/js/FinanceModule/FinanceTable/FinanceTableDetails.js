@@ -58,63 +58,20 @@ function clearTable() {
         $("#FinanceDetails").empty();
     }
 function appendRowFunctionfinance(data){
-    /*$.each(data, function(key, value){
-	    var Project_Number = value.Project_Number;
-        var Phase = value.Phase;
-        var Application_Name = value.Application_Name;
-        var Software_and_Licensing = value.Software_and_Licensing;
-        var Contract_Date = value.Contract_Date;
-        var scope_of_infrastructure = value.scope_of_infrastructure;
-        var infrastructure_Cost_Savings = value.infrastructure_Cost_Savings;
-        var Cost_Avoidance = value.Cost_Avoidance;   
-        var Cost_of_Archive = value.Cost_of_Archive;
-        var CBA = value.CBA;
-        var Funding_approval = value.Funding_approval;
-        var Funding_type = value.Funding_type;
-        var Status = value.Status;
-        var Id = value.Id;
-        var row = "<tr>"+
-                "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for=''>"+Project_Number+"</label>" +
-                 "</td>"+
-                 "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+Phase+"</label>" +
-                 "</td>"+
-                 "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+Application_Name+"</label>" +
-                 "</td>"+
-                 "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+Software_and_Licensing+"</label>" +
-                 "</td>"+
-                 "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+Contract_Date+"</label>" +
-                 "</td>"+
-                 "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+scope_of_infrastructure+"</label>" +
-                 "</td>"+
-                 "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+infrastructure_Cost_Savings+"</label>" +
-                 "</td>"+
-                 "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+Cost_Avoidance+"</label>" +
-                 "</td>"+
-                 "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+Cost_of_Archive+"</label>" +
-                 "</td>"+
-                 "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+CBA+"</label>" +
-                 "</td>"+
-                 "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+Funding_approval+"</label>" +
-                 "</td>"+
-                 "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+Funding_type+"</label>" +
-                 "</td>"+
-                 "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+Status+"</label>" +
-                 "</td>"+
-                  "<td style='text-align:center;vertical-align: middle;display:none;'><label class='control-label ' for=''>"+Id+"</label>" +
-                 "</td>"+
-                  "<td class='useraction' style='text-align:center;vertical-align: middle;display:none;'><span class='glyphicon glyphicon-pencil editpopup'id='editpopup"+ Id +"'style='display:block;margin-left:-22px;'></span><span class='glyphicon glyphicon-trash deletepopup' style='float:right;display:block;margin-top:-13px;'></span>"+
-                  "</td>"+
-                  "</tr>";
-                 console.log("row :  ",row);
-                  $("#FinanceDetails").append(row);
-
-    }); */
+  
     if (data.length > 0) {
             var headers = Object.keys(data[0]);
             // Add table headers
             var headerRow = "<thead>" + "<tr>";
             $.each(headers, function (index, header) {
-                headerRow += "<th>" + header + "</th>";
+               if (header === "Id") {
+            		headerRow += "<th style='text-align:center;vertical-align: middle;display:none;'><label class='control-label' for=''>" + header + "</th>";
+        		}
+        		else{
+					headerRow +="<th style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+ header + "</th>";
+				}
+	
+              
             });
             headerRow += "<th style='text-align: center; display: none; vertical-align: middle; width: 15%;' class='useractionheader'>Action</th>";
             headerRow += "</tr>" + "</thead>";
@@ -123,7 +80,12 @@ function appendRowFunctionfinance(data){
             $.each(data, function (key, value) {
                 var row = "<tbody>" + "<tr>";
                 $.each(headers, function (index, header) {
-                    row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for=''>" + value[header] + "</label></td>";
+                   if (header === "Id") {
+                    row += "<td style='text-align:center;vertical-align: middle;display:none;'><label class='control-label' for=''>" + value[header] + "</label></td>";
+                	}
+                	else{
+					row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for=''>" + value[header] + "</label></td>";
+					}
                 });
                 row+= "<td class='useraction' style='text-align:center;vertical-align: middle;display:none;'><span class='glyphicon glyphicon-pencil editpopup'id='editpopup"+ Id +"'style='display:block;margin-left:-22px;'></span><span class='glyphicon glyphicon-trash deletepopup' style='float:right;display:block;margin-top:-13px;'></span>"+
                   "</td>";

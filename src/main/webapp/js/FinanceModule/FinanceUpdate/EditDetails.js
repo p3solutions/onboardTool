@@ -24,7 +24,7 @@ $(document).ready(function(){
 	var Id = sessionStorage.getItem('storedId');
 	console.log("The value of Function",Id)
     $.ajax({
-        url: "EditTableDetailServlet",
+        url: "TableDetailEditServlet",
         type: 'POST',
         data: { Id: Id },
         dataType: "json",
@@ -36,16 +36,20 @@ $(document).ready(function(){
             }
             var template_fields=['ProjectNumber',];
             $.each(data, function(key, value){
-                /*console.log("FULL NAME " + value.Type);*/
+             
                 var manadatory="class='required_fie'";
-                var disable_property = "disabled='disabled'";
-                var seq_num =value.seq_num;
+              
                 var Type=value.Type;
                 var ColumnName=value.ColumnName;
                 var LabelName=value.LabelName;
-                var CheckTemplateField =false;
+             
                 var delete_icon="<div class='deletepopup' style='display:none;'></div>";
                // var delete_edit_icon="<div class='editpopup deletepopup' style='display:none;'></div>";
+             
+               $("#appName").prop("disabled", true);
+                $("#Status").prop("disabled", true);
+            $("#Phase").prop("disabled", true);
+                
                 var Value=value.Value;
                
             	 if(value.Mandatory=="Yes" && value.UMandatory=="Yes")
@@ -171,6 +175,7 @@ $(document).ready(function(){
     
     $('#FinanceInput1').append(inputHtml);
 }
+
             });
             var script="<script>$('.datepicker1').datepicker({\n" +
                 "format: \"mm/dd/yyyy\",\n"+
@@ -185,6 +190,8 @@ $(document).ready(function(){
         }
 
     });
+    
+    
   
 });
 

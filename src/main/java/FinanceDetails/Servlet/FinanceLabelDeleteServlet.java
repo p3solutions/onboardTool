@@ -10,20 +10,21 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import FinanceDetails.Service.FinanceDetailsValidateAndSave;
-import FinanceDetails.Service.FinanceInputLabelEdit;
-import Opportunity.Service.NewOpportunityService;
+import FinanceDetails.Service.FinanceLabelDeleteService;
+
+
 /**
  * Servlet implementation class FinanceTableDetails
  */
-@WebServlet("/FinanceFieldEdit")
-public class FinanceFieldEdit extends HttpServlet {
+@WebServlet("/FinanceLabelDeleteServlet")
+public class FinanceLabelDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FinanceFieldEdit() {
+    public FinanceLabelDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,13 +42,15 @@ public class FinanceFieldEdit extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String label_name = request.getParameter("label");
-		int sequencenumber = Integer.parseInt(request.getParameter("seq_num"))+1;
-		JsonObject jsonObj =FinanceInputLabelEdit.FinanceLabelEdit(label_name, sequencenumber);
-		 String json = new Gson().toJson(jsonObj);
-	        response.setContentType("application/json");
-	        response.setCharacterEncoding("UTF-8");
-	        response.getWriter().write(json);
+		//doGet(request, response);
+		JsonObject jsonobj = new JsonObject();
+		int seq_num = Integer.parseInt(request.getParameter("seq_num"))+1;
+		jsonobj.addProperty("index",seq_num-1);
+		FinanceLabelDeleteService.FinanceLabelDelete(seq_num );
+		String json = new Gson().toJson(jsonobj);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
 	}
 
 }

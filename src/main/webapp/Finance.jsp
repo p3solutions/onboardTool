@@ -31,6 +31,8 @@
 <!-- ========== THEME CSS ========== -->
 <link rel="stylesheet" href="css/main.css" media="screen">
 <link rel="stylesheet" href="css/UserInfo/userinfo.css">
+<link rel="stylesheet" href="css/FinanceModule/Search.css"
+	media="screen">
 
 <!-- ========== Header Icon ========== -->
 <link rel="stylesheet"
@@ -300,24 +302,7 @@ rotate(
 
 	<%@include file="Nav-Bar.jspf"%>
 
-	<!--  <nav class="nav nav-height-70 nav-font" id="bg-color"
-		style="margin-top: -10px; height: 100px;">
-<div class="container-fluid">
-<div class="col-sm-12" id="d3s-mt-20">
-<ul class="nav navbar-nav-1 mt-3">
-<li class="nav-link-2 active-2" id="nav-link"
-						style="border-bottom: 4px solid rgba(255, 255, 255, .5) !important"></li>
- 
-				</ul>
-<div class="row" id="d3s-mt-20"></div>
-<div class="sub-title" style="color: #fff">
-<a href="DashBoard.jsp" id="sitetitle1" style="color: #fff"><span
-						class="glyphicon glyphicon-home"></span> Home</a> >> Finance
-</div>
- 
-			</div>
-</div>
-</nav> -->
+
 	<nav class="nav" id="bg-color">
 		<div class="container-fluid" id="container-fluid-margin">
 			<div class="row">
@@ -334,22 +319,23 @@ rotate(
 	</nav>
 
 	<div class="col-lg-6 left-side phase-btn1" align="left">
+    <button type="button" id="add_user_btn" class="btn btn-primary"
+            data-bs-toggle="modal" onclick="location.href='FinanceInput.jsp';"
+            style="margin: 29px 0 0 83px; font-size: 14px; display: none;">Add Details
+    </button>
+</div>
 
-		<button type="button" id="add_user_btn" class="btn btn-primary"
-			data-bs-toggle="modal" onclick="location.href='FinanceInput.jsp';"
-			style="margin: 29px 0 0 83px; font-size: 14px; display: none;">Add
-			Details</button>
-		<button type="button" class="btn btn-primary pull-right"
-			id="editpopup_btn" data-bs-toggle="modal"
-			onclick="window.location.href='FinanceUpdate.jsp';"
-			style="display: none;">Edit PopUp</button>
-
-		<button type="button" class="btn btn-primary pull-right"
-			id="deletepopup_btn" data-bs-toggle="modal"
-			data-bs-target="#DeletePopUp" style="display: none;">Delete
-			PopUp</button>
-
-	</div>
+<div class="col-lg-6 left-side phase-btn1" align="left">
+    <button type="button" class="btn btn-primary pull-right"
+            id="editpopup_btn" data-bs-toggle="modal"
+            onclick="window.location.href='FinanceUpdate.jsp';"
+            style="display: none;">Edit PopUp
+    </button>
+    <button type="button" class="btn btn-primary pull-right"
+            id="deletepopup_btn" data-bs-toggle="modal"
+            data-bs-target="#DeletePopUp" style="display: none;">Delete PopUp
+    </button>
+</div>
 	<br />
 	<div class="card-container-5 card d3s-mt-50">
 		<div class="card-header d3s-pl-15" id="cd-header">Finance
@@ -375,60 +361,40 @@ rotate(
 					</select>
 					<label style="margin-left: 5px;"> Entries</label>
 				</div>
-			</div>
-			<!--  <div class="Search-content">
-<div id="warningMessage" class="hidden"></div>
-<div id="overlaySearch" class="overlaySearch"></div>
- 
+				<div class="Search-content">
+				<div id="overlaySearch" class="overlaySearch"></div>
+
     			<button onclick="showSearchPopup()" class="custom-button-search" >Search</button>
-<div id="searchPopup" class="popup">
-<div class="popupHeader">
-<span class="popupTitle">Search</span>
-</div>
-<br>
-<div class="form-container">
-<form id="searchForm" onsubmit="return validateForm(event)">
-<div class="label-dropdown-container">
-<label for="columnName" class="form-label">Column Name:</label> &nbsp;&nbsp;&nbsp;
-<select id="columnName" onchange="toggleSearchValueField()" class="form-dropdown">
-<option value="null">--Select--</option>
-<option value="Application_Id">Application_Id</option>
-<!-- Add other options as needed 
-</select>
-</div>
- 
-        <div class="label-dropdown-container">
-<label for="searchValue" id="searchValueLabel" class="form-label">Search Value:</label>
-<input type="text" id="searchValue" class="form-input">
-</div>
-<div class="button-container">
-<input type="submit" value="Search" class="form-button">
-<button type="button" onclick="closeSearchPopup()" class="form-button">Cancel</button>
-</div>
-</form>
-</div>
-</div>
-</div>  -->
+   
+    				<div id="searchPopup" class="popup">
+        				<div class="popupHeader">
+            				<span class="popupTitle">Search</span>
+        				</div>
+        			<br>
+        			<div class="form-container">
+    					<form id="searchForm" onsubmit="return validateForm(event)">
+       						 <div class="label-dropdown-container">
+            					<label for="columnName" class="form-label">Column Name:</label> &nbsp;&nbsp;&nbsp;
+            					<select id="columnName" onchange="toggleSearchValueField()" class="form-dropdown">
+            					</select>
+        					</div>
 
-			<!--  <thead>
-<tr>
-<th style='text-align: center; vertical-align: middle; width: 20%;'>ProjectNumber</th>
-<th style='text-align: center; vertical-align: middle; width: 20%;'>Phase</th>
-<th style='text-align: center; vertical-align: middle; width: 20%;'>ApplicationName</th>
-<th style='text-align: center; vertical-align: middle; width: 20%;'>Licensing</th>
-<th style='text-align: center; vertical-align: middle; width: 20%;'>Contract_Date</th>
-<th style='text-align: center; vertical-align: middle; width: 20%;'>InfraScope</th>
-<th style='text-align: center; vertical-align: middle; width: 20%;'>InfraSavings</th>
-<th style='text-align: center; vertical-align: middle; width: 20%;'>CostAvoidance</th>
-<th style='text-align: center; vertical-align: middle; width: 20%;'>Cost_Archive</th>
-<th style='text-align: center; vertical-align: middle; width: 20%;'>CBA</th>
-<th style='text-align: center; vertical-align: middle; width: 20%;'>Funding_Approval</th>
-<th style='text-align: center; vertical-align: middle; width: 20%;'>FundingType</th>
-<th style='text-align: center; vertical-align: middle; width: 20%;'>Status</th>
-<th style='text-align: center; display: none; vertical-align: middle; width: 15%;' class="useractionheader">Action</th>
-</tr>
-</thead> -->
-
+        			<div class="label-dropdown-container">
+    					<label for="searchValue" id="searchValueLabel" class="form-label">Search Value:</label>
+    						<input type="text" id="searchValue" class="form-input">
+					</div>
+	<INPUT TYPE="radio"  id="Operator"value="And">And &nbsp;<INPUT TYPE="radio" id="Operator" VALUE="OR">Or<BR>
+        			<div class="button-container">
+            			<input type="submit" value="Search" class="form-button">
+            			<button type="button" onclick="closeSearchPopup()" class="form-button">Cancel</button>
+        			</div>
+    			</form>
+				</div>
+   				</div>
+   				</div> 
+			</div>
+  
+			
 			<div class="table-container">
 				<table class="table table-bordered table-responsive"
 					id="FinanceDetails" style="width: 200%; font-size: 10px;">
@@ -497,7 +463,7 @@ rotate(
 	<!-- ---------------------------------------------------- -->
 
 
-
+	<script src="js/FinanceModule/FinanceTable/Search.js"></script>
 	<script src="js/FinanceModule/FinanceTable/FinanceTableDetails.js"></script>
 	<script src="js/FinanceModule/FinanceTable/FinanceAcess.js"></script>
 	<script src="js/FinanceModule/FinanceUpdate/EditDetails.js"></script>
@@ -551,6 +517,10 @@ rotate(
 		href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
 		rel="stylesheet">
 	<script src="js/notification/notification.js"></script>
+	<!-- Add an event listener for the form submission -->
+<script>
+   
+
 
 </body>
 </html>

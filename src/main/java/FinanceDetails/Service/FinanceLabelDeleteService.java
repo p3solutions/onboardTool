@@ -2,15 +2,15 @@ package FinanceDetails.Service;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import onboard.DBconnection;
+public class FinanceLabelDeleteService {
 
-public class FinanceLabelDelete {
-
-    
-    public static void FinanceLabelDelete(int delete_seqnum) {
+public static void FinanceLabelDelete(int delete_seqnum) {
 		PreparedStatement st=null,st1=null,st2=null;
 		ResultSet rs=null,rs1=null;
         try {
@@ -160,4 +160,3 @@ public class FinanceLabelDelete {
             System.out.println("Exception-----------[info]-------"+e);
         }
     }}
-    

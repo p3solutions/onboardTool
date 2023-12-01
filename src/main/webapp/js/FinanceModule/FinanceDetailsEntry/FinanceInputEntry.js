@@ -96,12 +96,9 @@
             }
 
          if (checkMandatory == true && checkAjax1 == false && checkAjax == true) {
-    notification("success", "Finance Details Are Entered successfully.", "Note");
-    $("#Submit").click(function () {
-       
-        window.location.href = "Finance.jsp";
-    });
-}
+				window.location.href = "Finance.jsp";
+    			notification("success", "Finance application details added successfully.", "Note");
+			}
 
         } else {
             notification("warning", "Please fill the application name field.", "Warning");
@@ -116,7 +113,7 @@
         var JsonObject = [];
         var checkAjax = false;
         $.ajax({
-            url: "FinanceDetailsValidation",
+            url: "FinanceInputValidationServlet",
             type: 'POST',
             data: { AppName: AppName, JsonString: JsonString, checkMandatory: checkMandatory },
             async: false,

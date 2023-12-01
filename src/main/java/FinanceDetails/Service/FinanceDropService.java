@@ -21,7 +21,7 @@ public class FinanceDropService {
 	    ResultSet rs2 = null;
 	    JsonArray jsonArray = new JsonArray();
 	    List<String> valuesFromQuery1 = new ArrayList<>(); // List for values from the first query
-boolean checkExistance=true;
+
 	    try {
 	        String app = name;
 	        DBconnection dBconnection = new DBconnection();
@@ -58,10 +58,7 @@ boolean checkExistance=true;
 	               
 
 	        else   {
-//	        	checkExistance=false;
-//	        	JsonObject jsonObj = new JsonObject();
-//	        	jsonObj.addProperty("Details_VALIDATION",checkExistance);
-//	        	jsonArray.add(jsonObj);
+
 	        }   
 	           
 

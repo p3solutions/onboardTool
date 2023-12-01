@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
  
-import FinanceDetails.Service.FinanceTableDetails;
+import FinanceDetails.Service.FinanceTableDetailsService;
 /**
 * Servlet implementation class FinanceTableDetails
 */
@@ -37,21 +37,21 @@ public class FinanceTableDetailsServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-        HttpSession details = request.getSession();
+       
        String name=request.getParameter("appName");
        System.out.println("the value from from js"+name);
        String page = request.getParameter("page");
-	     System.out.println("Page 123: "+page);
+	     
 	    String maxRows =request.getParameter("maxRows");
-	     System.out.println("maxRows 123 : "+maxRows);
+	    
         JsonObject jsonArray = null;
-        FinanceTableDetails Details =  new FinanceTableDetails();
-        System.out.println("Connected to TableDetails");
+        FinanceTableDetailsService Details =  new FinanceTableDetailsService();
+        
     		jsonArray = Details.FinanceDetails(page,maxRows);
         Details =null;
-        //calling finalize method and garabage collector
+        
         System.gc();
-//        System.out.println("JSON ARRAY"+jsonArray);
+
         String json = new Gson().toJson(jsonArray);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

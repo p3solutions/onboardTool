@@ -11,20 +11,20 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
-import FinanceDetails.Service.EditTableDetailsService;
+import FinanceDetails.Service.TableDetailEditService;
 
 /**
  * Servlet implementation class FinanceTableDetails
  */
 
-@WebServlet("/EditTableDetailServlet")
-public class EditTableDetailServlet extends HttpServlet {
+@WebServlet("/TableDetailEditServlet")
+public class TableDetailEditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EditTableDetailServlet() {
+    public TableDetailEditServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,7 +46,7 @@ public class EditTableDetailServlet extends HttpServlet {
 		
         
        System.out.println("Finance App Id "+id);
-		JsonArray jsonArray = EditTableDetailsService.FinanceTableEdit(id);
+		JsonArray jsonArray = TableDetailEditService.FinanceTableEdit(id);
 		System.out.println("JSON ARRAY from Update"+jsonArray);
 		 String json = new Gson().toJson(jsonArray);
 	        response.setContentType("application/json");

@@ -7,7 +7,7 @@ import java.sql.Statement;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import onboard.DBconnection;
-public class EditTableDetailsService {
+public class TableDetailEditService {
 	public static JsonArray FinanceTableEdit(String Id) {
 		JsonArray jsonArray = new JsonArray();
 		try {
@@ -40,6 +40,9 @@ public class EditTableDetailsService {
 		catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("Exception-------[info]--------" +e);
+		
 		}
+		System.out.println("Exception-------[info]--------" +jsonArray);
 		return jsonArray;
+		
 	}}

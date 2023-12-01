@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import onboard.DBconnection;
-public class FinanceInputLabelEdit {
+public class FinanceFieldEditService {
 
 public static JsonObject FinanceLabelEdit(String label_name, int sequencenumber) {
 		PreparedStatement st=null,st1=null;

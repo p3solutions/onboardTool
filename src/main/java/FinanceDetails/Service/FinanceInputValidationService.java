@@ -10,7 +10,7 @@ import com.google.gson.JsonObject;
 
 
 import onboard.DBconnection;
-public class FinanceDetailsValidateAndSave {
+public class FinanceInputValidationService {
    
     
     
@@ -24,7 +24,8 @@ public class FinanceDetailsValidateAndSave {
 	    PreparedStatement st = null, st1 = null;
 	    ResultSet rs = null, rs1 = null;
 	    JsonObject jsonObject = new JsonObject();
-
+String App=AppName;
+System.out.println("The value of app");
 	    try {
 	        boolean checkExistance = false;
 	        boolean checkAppName = false;
@@ -34,15 +35,16 @@ public class FinanceDetailsValidateAndSave {
 	        connection = (Connection) dBconnection.getConnection();
 
 	        // Check existence in Finance_Informations table
-	        String CheckQueryExist = "SELECT * FROM Finance_Informations WHERE COLUMN_NAME = 'appName';";
+	        String CheckQueryExist = "SELECT * FROM Finance_Informations WHERE COLUMN_NAME = 'appName'and value='"+App+"';";
 	        try {
 	            st = connection.prepareStatement(CheckQueryExist);
 	            rs = st.executeQuery();
 	            while (rs.next()) {
-	                if (rs.getString("value").equals(AppName)) {
+	               System.out.println("The Details Entered");
 	                    checkExistance = true;
 	                }
-	            }
+	            System.out.println("The value of Check Existance"+checkExistance);
+	            
 	        } catch (SQLException existException) {
 	            // Handle existence check exception
 	            existException.printStackTrace();
@@ -59,15 +61,16 @@ public class FinanceDetailsValidateAndSave {
 	        }
 
 	        // Check appName in Opportunity_info table
-	        String CheckQueryAppName = "SELECT * FROM Opportunity_info WHERE COLUMN_NAME = 'appName';";
+	        String CheckQueryAppName = "SELECT * FROM Opportunity_info WHERE COLUMN_NAME = 'appName' and value='"+App+"';";
 	        try {
 	            st1 = connection.prepareStatement(CheckQueryAppName);
 	            rs1 = st1.executeQuery();
 	            while (rs1.next()) {
-	                if (rs1.getString("value").equals(AppName)) {
+	               
 	                    checkAppName = true;
 	                }
-	            }
+	            System.out.println("The value of appname"+checkAppName);
+	            
 	        } catch (SQLException appNameException) {
 	            // Handle appName check exception
 	            appNameException.printStackTrace();
@@ -87,7 +90,7 @@ public class FinanceDetailsValidateAndSave {
 	        jsonObject.addProperty("AppName_VALIDATION", checkAppName);
 
 	        if (checkMandatory && !checkExistance && checkAppName) {
-	            FinanceDetailsValidateAndSave.FinanceDetailsSave(jsonArray);
+	            FinanceInputValidationService.FinanceDetailsSave(jsonArray);
 	        }
 
 	    } catch (Exception mainException) {
