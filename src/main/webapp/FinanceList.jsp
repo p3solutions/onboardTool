@@ -281,8 +281,6 @@
     </button>
 </div>
 
-
-
 <%--         <div class="container-fluid "  id="bg-color">--%>
 <%--            <h5 id="title2">Finance Filter</h5>--%>
 <%--             <i class="fa fa-search search-Icon"></i><input id="AppFilter" type="text" >--%>

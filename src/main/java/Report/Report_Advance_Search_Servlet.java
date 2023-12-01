@@ -1,6 +1,5 @@
 package Report;
 
-import Finance.service.Finance_Advance_Search;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -11,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 
 @WebServlet("/Report_Advance_Search_Servlet")
 public class Report_Advance_Search_Servlet extends HttpServlet {
@@ -25,7 +26,10 @@ public class Report_Advance_Search_Servlet extends HttpServlet {
         response.getWriter().append("Served at: ").append(request.getContextPath());
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String column = request.getParameter("column");
+        String[] selectedColumnsArray = request.getParameterValues("column[]");
+
+// Check if the array is null before converting to a List
+        List<String> selectedColumnsList = Arrays.asList(selectedColumnsArray);
         String condition = request.getParameter("condition");
         String searchTerm = request.getParameter("searchTerm");
         int page = Integer.parseInt(request.getParameter("page"));
@@ -35,7 +39,7 @@ public class Report_Advance_Search_Servlet extends HttpServlet {
         JsonObject result = null;
         try {
             Report_Advance_Search reportAdvanceSearch =new Report_Advance_Search();
-            //result =reportAdvanceSearch.getDataBasedOnFilter();
+            result =reportAdvanceSearch.getDataBasedOnFilter(tableName,selectedColumnsList,condition,searchTerm,maxRows,page);
             reportAdvanceSearch =null;
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
