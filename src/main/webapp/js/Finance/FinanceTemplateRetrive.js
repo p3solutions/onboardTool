@@ -1,9 +1,16 @@
+
+
 $(document).ready(function () {
+
+    function disableStatusElement() {
+        $("#status").prop("disabled", true);
+    }
     // Retrieve data from sessionStorage
     var appId = sessionStorage.getItem("APPID");
     var appName = sessionStorage.getItem("APPNAME");
-    // Check if data exists
+    var Title;
     if (appId && appName) {
+        Title = "Edit Finance";
         // Use the retrieved data as needed, e.g., make an AJAX call to fetch additional data
         console.log("Retrieved APPID:", appId);
         console.log("Retrieved APPNAME:", appName);
@@ -11,9 +18,11 @@ $(document).ready(function () {
         financeSetSessionAttribute1(appId,appName);
 
     } else {
+        Title = "ADD Finance";
         console.log("APPID or APPNAME not found in sessionStorage.");
-        ajaxTemplateCallNoData("hello");
+        ajaxTemplateCallNoData("hello")
     }
+    $("#sitetitle3").text(Title);
 });
 function header(Name){
     var cardHeader = document.getElementById('cd-header');
@@ -35,14 +44,26 @@ function financeSetSessionAttribute1(selectedId,selectedName) {
         success: function (data) {
             // Handle success if needed
             $("#UploadFiles").attr('disabled',false);
+
         },
         error: function (error) {
             // Handle error if needed
         }
     });
 }
+function disableFields(){
+    $("#financeappname").prop('disabled', true);
+    $('#financeappname').disable();
+    $("#phase").prop('disabled', true);
+    $('#phase').disable();
+    $("#cba").prop('disabled', true);
+    $('#cba').disable();
+    $("#status").prop('disabled', true);
+    $('#status').disable();
+}
 
 $(document).ready(function(){
+
 
 
     $(document).on('click', '.editpopup', function () {
@@ -52,6 +73,7 @@ $(document).ready(function(){
         $("#LegacyLabelModify").val(prevLabel);
         //alert('seq_num in js file '+seqnum);
         $('#LegacySeqNum').val(seqnum);
+
 
         //alert('seq num field in js file'+$('#LegacySeqNum').val());
 
@@ -460,7 +482,6 @@ function ajaxTemplateCall(status , Id , AppName){
                 }
 
             });
-
             /*var script="<script>$('.datepicker1').datepicker({\n" +
                 "format: \"mm/dd/yyyy\",\n"+
                 "autoclose: true\n"+
@@ -493,5 +514,6 @@ function ajaxTemplateCall(status , Id , AppName){
         error: function (e) {
             console.log(e);
         }
+
     });
 }

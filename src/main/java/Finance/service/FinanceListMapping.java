@@ -22,7 +22,8 @@ public class FinanceListMapping {
             jsonObj.addProperty("FundApprove",rs.getString(10));
             jsonObj.addProperty("FundType",rs.getString(11));
             jsonObj.addProperty("ProjectNumber",rs.getString(12));
-            jsonObj.addProperty("ScreenShot",rs.getString(13));
+            jsonObj.addProperty("Status",rs.getString(13));
+            jsonObj.addProperty("ScreenShot",rs.getString(14));
             jsonArray.add(jsonObj);
         }
         int arraySize = jsonArray.size();
@@ -48,6 +49,7 @@ public class FinanceListMapping {
             jsonObj.addProperty("FundApprove","");
             jsonObj.addProperty("FundType","");
             jsonObj.addProperty("ProjectNumber","");
+            jsonObj.addProperty("Status","");
             jsonObj.addProperty("ScreenShot","");
             jsonArray.add(jsonObj);
     }

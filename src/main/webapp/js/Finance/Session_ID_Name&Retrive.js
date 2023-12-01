@@ -59,6 +59,9 @@ $(document).on('keyup focus', '#financeappname', function () {
                         ajaxscrcall(selectedId);
                         $("#financeappname").prop('disabled', true);
                         $('#financeappname').disable();
+                        setTimeout(function () {
+                            disableFields(); // Call the disableFields function after a delay
+                        }, 2000);
                     }
                 });
                 ul.append(li);
@@ -66,8 +69,7 @@ $(document).on('keyup focus', '#financeappname', function () {
             suggestionDropdown.append(ul);
         //    enableDropdownStyles();
         }
-        $("#phase").prop('disabled', true);
-        $('#phase').disable();
+
     }
 function disableFields(){
     $("#financeappname").prop('disabled', true);

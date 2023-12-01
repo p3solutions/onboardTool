@@ -1,8 +1,10 @@
 $(document).ready(function() {
     document.getElementById("legacyAppInfoSave").disabled = false;
+    document.getElementById("complete").disabled = true;
 });
 $("#legacyAppInfoSave").click(function(e)
 {
+
     //e.stopPropagation();
     var checkMandatory = true;
     var nameAttr = [];
@@ -122,6 +124,7 @@ function archiveLegacyAppInfoAjaxCallUpdate(JsonString,checkMandatory,e)
         async: false,
         dataType: "json",
         success: function (data) {
+            document.getElementById("complete").disabled = false;
             console.log("CREATE VALIDATION",data);
             if(data.checkSaveStatus){
                 notification("success","Saved Successfully in Archive Application Info.","Note : ");

@@ -92,9 +92,9 @@ public class FinanaceAppDataRetriveService {
                     st1.close();
                 }
             }
-
-            jsonArray = FinanceDataRetrieve();
-            System.out.println("Data Retrive "+ jsonArray);
+           Thread.sleep(500);
+           jsonArray = FinanceDataRetrieve();
+          System.out.println("Data Retrive "+ jsonArray);
 
         } catch (Exception e) {
             e.printStackTrace();

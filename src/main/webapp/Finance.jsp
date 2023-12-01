@@ -137,9 +137,9 @@
                         <div class="sub-title" style="color: #fff">
                             <a href="OpportunityList.jsp" id="sitetitle1"
                                style="color: #fff"><span class="glyphicon glyphicon-home"></span>
-                                Home</a> >> <a href="FinanceList.jsp" id="sitetitle1"
-                                               style="color: #fff">Finance</a> >> <a href="#" id="sitetitle1"
-                                               style="color: #fff">Add Finance</a>
+                                Home</a> >> <a href="FinanceList.jsp" id="sitetitle2"
+                                               style="color: #fff">Finance</a> >> <a href="#" id="sitetitle3"
+                                               style="color: #fff"></a>
                         </div>
                     </div>
                 </div>
@@ -662,6 +662,13 @@
         location.href='FinanceList.jsp';
     }
 </script>
+<script>
+    document.getElementById('complete').addEventListener('click', function() {
+        // Trigger the click events for button 1 and button 2
+        document.getElementById('legacyAppInfoSave').click();
+        document.getElementById('UploadFiles').click();
+    });
+</script>
 
 <!-- Active Icon Color changes  -->
 <script>
@@ -676,6 +683,7 @@
         $('.activeIcon').css('color','#fff');
 
     });
+    $("#status").prop("disabled", true);
 </script>
 <%@include file="Footer.jspf"%>
 <!-- ========== COMMON JS FILES ========== -->

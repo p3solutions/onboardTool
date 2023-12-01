@@ -13,10 +13,11 @@
         var secondSelectedColumn ; // Add this line
         var searchValue ;
         var condition ;
-        var tempSelectedColumn = selectedColumn;
-        var tempSecondSelectedColumn = secondSelectedColumn;
-        var tempSearchValue = searchValue;
-        var tempCondition = condition;
+        var tempColumnsArray;
+        var tempSelectedColumn;
+        var tempSecondSelectedColumn;
+        var tempSearchValue;
+        var tempCondition;
 
         var appId = sessionStorage.getItem("APPID");
         var appName = sessionStorage.getItem("APPNAME");
@@ -34,11 +35,11 @@
         // Event listener for the maxRows dropdown change
         $('#maxRows').on('change', function () {
             var maxRow = $(this).val();
-
+            console.log(isSearching);
             if (isSearching) {
                 currentPage = 1;
               //  searchData(currentSearchColumn, currentSearchTerm, maxRow, currentPage);
-                advanceSearchData(tempSelectedColumn,tempSearchValue,tempCondition,maxRow,currentPage);
+               advanceSearchData(tempColumnsArray,tempSearchValue,tempCondition,maxRow,currentPage);
 
             } else {
                 fetchData(1); // Fetch data for the first page when the row count changes
@@ -57,39 +58,13 @@
             }
 
             if (isSearching) {
-              //  searchData(currentSearchColumn, currentSearchTerm, $('#maxRows').val(), currentPage);
-                advanceSearchData(tempSelectedColumn,tempSearchValue,tempCondition,$('#maxRows').val(),currentPage);
+                advanceSearchData(tempColumnsArray,tempSearchValue,tempCondition,$('#maxRows').val(),currentPage);
             } else {
                 fetchData(currentPage);
             }
         });
-
-        // Event listener for search icon click
-        // $('#admin_userslist').on('click', '.search-Icon', function () {
-        //     console.log('Search icon clicked');
-        //     var column = $(this).data('column');
-        //     var placeholder = $(this).data('placeholder');
-        //     var title = $(this).data('title');
-        //
-        //     // Update the placeholder and title
-        //     $('#AppFilter').attr('placeholder', placeholder);
-        //     $('#title2').text(title);
-        //
-        //     currentSearchColumn = column;
-        //     isSearching = true;
-        // });
-
-        // $("#AppFilter").on("input", function () {
-        //     var column = currentSearchColumn;
-        //     console.log(column);
-        //     var searchTerm = $(this).val().toLowerCase();
-        //     console.log(searchTerm);
-        //     currentSearchTerm = searchTerm;
-        //     searchData(column, searchTerm, $('#maxRows').val(), currentPage);
-        // });
         $("#submitSearch").on("click", function () {
 
-            // Get the selected values from the first dropdown, second dropdown, and input field
              selectedColumn = $("#SearchOptions").val();
              secondSelectedColumn = $("#SecondSearchOptions").val(); // Add this line
              searchValue = $("#advanceSearch").val();
@@ -103,7 +78,18 @@
             // Add selected columns to the array
             selectedColumns = [selectedColumn, secondSelectedColumn];
             advanceSearchData(selectedColumns,searchValue,condition,$('#maxRows').val(),1)
-            resetForm();
+            tempColumnsArray = selectedColumns;
+            tempSelectedColumn = selectedColumn;
+            tempSecondSelectedColumn = secondSelectedColumn;
+            tempSearchValue = searchValue;
+            tempCondition = condition;
+
+            console.log(tempSelectedColumn);
+            console.log(tempSearchValue);
+            console.log(tempCondition);
+            console.log(tempColumnsArray);
+           resetForm();
+
         });
         function fetchData(page) {
             console.log('Fetching data for page:', page);
@@ -160,40 +146,16 @@
                 selectElement.append('<option value="' + option + '">' + option + '</option>');
             });
         }
-        // function searchData(column, searchTerm, maxRows, page) {
-        //     $.ajax({
-        //         url: "Finance_List_Search_Servlet",
-        //         type: 'POST',
-        //         data: { column: column, searchTerm: searchTerm, maxRows: maxRows, page: page },
-        //         dataType: "json",
-        //         beforeSend: function () {
-        //             $('#overlay').show();
-        //         },
-        //         success: function (data) {
-        //             $('#overlay').hide();
-        //             isSearching = true;
-        //             console.log("Search Results", data);
-        //             clearTable();
-        //             appendRowFunction(data.data);
-        //             updatePagination(data.total, page);
-        //             selectedColumns = [];
-        //             tempSelectedColumn = selectedColumns;
-        //         },
-        //
-        //     });
-        // }
-
-
         function FinanceSearchDropdown(){
             var selectedColumns = [];
             $('#searchModal').on('show.bs.modal', function (e) {
 
                 var headers = [];
-    // Extract headers from the table
+
                 $("#admin_userslist thead th").each(function () {
                     headers.push($(this).text());
                 });
-    // Populate the select dropdown in the modal
+
                 var selectOptions = $("#SearchOptions");
                 selectOptions.empty(); // Clear existing options
                 selectOptions.append('<option value="">----------------Select------------------</option>');
@@ -201,7 +163,7 @@
                     selectOptions.append('<option value="' + header + '">' + header + '</option>');
                 });
 
-    // Event handler for radio button click
+
                 $('input[name="condition"]').change(function () {
                     var selectedValue = $('input[name="condition"]:checked').val();
                     $("#SecondSearchOptions, #SecondSearchOptionsLabel").remove();
@@ -242,7 +204,7 @@
                 $.each(headers, function (index, header) {
                     headerRow += "<th>";
                     headerRow += header;
-                    headerRow += `<i class="fa fa-search search-Icon" data-column="${header}" data-placeholder="Search ${header}" data-title="${header}"></i>`;
+                    // headerRow += `<i class="fa fa-search search-Icon" data-column="${header}" data-placeholder="Search ${header}" data-title="${header}"></i>`;
                     headerRow += "</th>";
                 });
                 headerRow += "<th>Action</th>";
@@ -396,7 +358,7 @@
 
 
         $("#resetButton").on("click", function () {
-            resetForm();
+            //resetForm();
         });
 
     });
