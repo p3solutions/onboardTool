@@ -36,7 +36,7 @@
     <link rel="stylesheet"
           href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-          crossorigin="anonymous" />
+          crossorigin="anonymous"/>
     <link rel="stylesheet"
           href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <link rel="stylesheet" href="css/headerIcon/headerIcon.css"
@@ -53,13 +53,15 @@
 
     <!-- ========== COMMON JS FILES ========== -->
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="...">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="...">
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Bootstrap JavaScript Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="..." crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="..."
+            crossorigin="anonymous"></script>
 
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <script src="js/jquery-ui/jquery-ui.min.js"></script>
@@ -179,6 +181,7 @@
         justify-content: center;
         align-items: center;
     }
+
     .spinner1 {
         width: 60px;
         height: 60px;
@@ -189,15 +192,20 @@
         border-radius: 50%;
         animation: sp-anime1 0.8s infinite linear;
     }
-    @  -webkit-keyframes sp-anime1 {
+
+    @
+    -webkit-keyframes sp-anime1 {
         0% {
             -webkit-transform: rotate(0deg);
         }
+
         100% {
             -webkit-transform: rotate(360deg);
         }
     }
-    @  keyframes sp-anime1 {
+
+    @
+    keyframes sp-anime1 {
         0% {
             transform: rotate(0deg);
         }
@@ -223,13 +231,16 @@
         margin-top: 22px;
         margin-left: 289px;
     }
-    #bg-color{
+
+    #bg-color {
         height: 200px;
     }
+
     #input-align-top {
         margin-left: 20px;
         margin-top: -60px !important;
     }
+
     .img-rounded {
         padding-top: 20px;
         transition: width 2s, height 2s, transform 2s;
@@ -253,7 +264,9 @@
             <div class="col-lg-12 col-md-12">
                 <div class="sub-title" style="color: #fff">
                     <a href="DashBoard.jsp" id="sitetitle1" style="color: #fff"><span
-                            class="glyphicon glyphicon-home"></span> Home</a> >> <a href="Governance_Home.jsp" id="sitetitle2" style="color: #fff"> Governance </a> >> <a href="Report.jsp" id="sitetitle3" style="color: #fff">Report </a>
+                            class="glyphicon glyphicon-home"></span> Home</a> >> <a href="Governance_Home.jsp"
+                                                                                    id="sitetitle2" style="color: #fff">
+                    Governance </a> >> <a href="Report.jsp" id="sitetitle3" style="color: #fff">Report </a>
                 </div>
             </div>
         </div>
@@ -263,29 +276,30 @@
 
     <div class="container-fluid" id="container-fluid-margin">
         <div class="row" id="d3s-mt-20">
-            <div class="col-lg-12 col-md-12">
-                <h5 id="title2"></h5>
-            </div>
+            <%--            <div class="col-lg-12 col-md-12">--%>
+            <%--                <h5 id="title2"></h5>--%>
+            <%--            </div>--%>
             <div class="col">
-                <div class="col-lg-3 col-md-6">
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <i class="fa fa-search search-icon" aria-hidden="true"></i>
-                        </div>
-                        <div class="col-auto">
-                            <input id="appFilter" type="text" placeholder="Search the application...">
-                        </div>
-                    </div>
+                <%--                <div class="col-lg-3 col-md-6">--%>
+                <%--                    <div class="row align-items-center">--%>
+                <%--                        <div class="col-auto">--%>
+                <%--                            <i class="fa fa-search search-icon" aria-hidden="true"></i>--%>
+                <%--                        </div>--%>
+                <%--                        <div class="col-auto">--%>
+                <%--                            <input id="appFilter" type="text" placeholder="Search the application...">--%>
+                <%--                        </div>--%>
+                <%--                    </div>--%>
 
-                </div>
-                <br>
+                <%--                </div>--%>
+                <%--                <br>--%>
 
-                <div class="row align-items-center" >
+                <div class="row align-items-center">
                     <div class="col-auto" id="input-align-top">
                         <label class="col-form-label" id="title">Report</label>
                         <select class="form-select align-right selectInput filter"
                                 aria-label="Default select example" id="Report">
-                            style="padding: 0.75 0 0 0.75rem; margin-bottom: 5px; margin-top: -28px; margin-left: 68px; width: auto;">
+                            style="padding: 0.75 0 0 0.75rem; margin-bottom: 5px; margin-top: -28px; margin-left: 68px;
+                            width: auto;">
                             <option class='options' value="intakeReport1">Intake Report 1</option>
                             <option class='options' value="intakeReport2">Intake Report 2</option>
                             <option class='options' value="intakeReport3">Intake Report 3</option>
@@ -293,15 +307,25 @@
                     </div>
 
                 </div>
-                <div class="col-lg-6 right-side" style="padding-top: 100px; background-color: transparent">
-<%--                    <button type="button" class="btn btn-primary pull-right" id="exportBtton" data-bs-toggle="modal" data-bs-target="#exportModal">--%>
-<%--                        <img src="images/Export.png" alt="ExportOption" class="" height="40" width="45" />--%>
-<%--                    </button>--%>
-                    <!-- Button to trigger the modal -->
-                    <button type="button" class="btn btn-primary pull-right" id="exportButton" data-bs-toggle="modal" data-bs-target="#exportModal">
+                <div class="col-lg-12 col-md-12 left-side" style="padding-top: 10px; background-color: transparent">
+                    <button type="button" class="btn btn-primary pull-right " id="exportButton" data-bs-toggle="modal"
+                            data-bs-target="#exportModal">
                         Export
                     </button>
+                    <button type="button" class="btn btn-primary pull-left" id="searchToggleButton"
+                            data-bs-toggle="modal" data-bs-target="#searchModal">
+                        Search
+                    </button>
                 </div>
+                <%--                <div class="col-lg-6 right-side" style="padding-top: 100px; background-color: transparent">--%>
+                <%--                    <button type="button" class="btn btn-primary pull-right" id="exportBtton" data-bs-toggle="modal" data-bs-target="#exportModal">--%>
+                <%--                        <img src="images/Export.png" alt="ExportOption" class="" height="40" width="45" />--%>
+                <%--                    </button>--%>
+                <!-- Button to trigger the modal -->
+                <%--                    <button type="button" class="btn btn-primary pull-right" id="exportButton" data-bs-toggle="modal" data-bs-target="#exportModal">--%>
+                <%--                        Export--%>
+                <%--                    </button>--%>
+                <%--                </div>--%>
             </div>
 
         </div>
@@ -310,7 +334,6 @@
 
 
 </nav>
-
 
 
 <br/>
@@ -350,7 +373,7 @@
                 <div class='pagination-container' style="float: right;">
                     <nav>
                         <ul class="pagination">
-                               <%--pagenation append inside--%>
+                            <%--pagenation append inside--%>
                         </ul>
                     </nav>
                 </div>
@@ -360,20 +383,20 @@
     </div>
 </div>
 
-</div>
+<%--</div>--%>
 
 
-</div>
+<%--</div>--%>
 
 
-</div>
-</div>
-</div>
+<%--</div>--%>
+<%--</div>--%>
+<%--</div>--%>
 
 
-</div>
-</div>
-</div>
+<%--</div>--%>
+<%--</div>--%>
+<%--</div>--%>
 <%--Export--%>
 <div class="modal" id="exportModal" tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -393,20 +416,53 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="submitExport" >Export</button>
+                <button type="button" class="btn btn-primary" id="submitExport">Export</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--Search pop up--%>
+<div class="modal" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchModalLabel">Search Options</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Add your export options here -->
+                <label for="SearchOptions">Select Search Column:</label>
+                <select class="form-control" id="SearchOptions">
+                    <option value="">----------------Select------------------</option>
+                    <!-- Add more options as needed -->
+                </select>
+                <br>
+                <input class="form-control" type="text" id="advanceSearch" placeholder="Search Value">
+                <input type="radio" id="and" name="condition" value="AND" onclick="toggleRadioButton('and')">
+                <label for="AND">AND</label>
+                <input type="radio" id="or" name="condition" value="OR" onclick="toggleRadioButton('or')"/>
+                <label for="OR">OR</label>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary pull-left" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="submitSearch" data-bs-dismiss="modal">Search</button>
+                <button type="button" class="btn btn-secondary pull-left" id="resetButton">Reset</button>
+
             </div>
         </div>
     </div>
 </div>
 
 
-        <%--Show select tag dynamic --%>
+<%--Show select tag dynamic --%>
 <script>
     var select1 = document.getElementById("Report");
     var select2 = document.getElementById("maxRows");
 
     // Add an event listener to select1
-    select1.addEventListener("change", function() {
+    select1.addEventListener("change", function () {
         // Set the selected option in select2 to match select1
         select2.value = "5000";
     });
@@ -417,7 +473,7 @@
     var inputElement = document.getElementById("appFilter");
 
     // Add an event listener to the select element to detect changes
-    selectElement.addEventListener("change", function() {
+    selectElement.addEventListener("change", function () {
         // Clear the value of the input element when the select option changes
         inputElement.value = "";
     });

@@ -1,7 +1,20 @@
-var currentReport = "intakeReport1";
-var isSearching = false;
+
 $(document).ready(function () {
+    SearchValidation();
+    ReportSearchDropdown();
+    var currentReport = "intakeReport1";
+    var isSearching = false;
     var currentPage = 1;
+    var selectedColumns;
+    var selectedColumn ;
+    var secondSelectedColumn ; // Add this line
+    var searchValue ;
+    var condition ;
+    var tempColumnArray;
+    var tempSelectedColumn;
+    var tempSecondSelectedColumn;
+    var tempSearchValue;
+    var tempCondition;
 
     ajaxcall(currentReport,1);
     $("#cd-header").text("Intake Report 1");
@@ -15,7 +28,7 @@ $(document).ready(function () {
         if (isSearching) {
             var maxRow = $(this).val();
             currentPage = 1;
-            searchData(activeSearchColumn, $("#appFilter").val().toLowerCase(), currentReport, currentPage, maxRow);
+            reportAdvanceSearchData(currentReport,tempColumnArray,tempSearchValue,tempCondition,maxRow,currentPage);
         } else {
             currentPage = 1;
             ajaxcall(currentReport, currentPage);
@@ -32,7 +45,7 @@ $(document).ready(function () {
         }
 
         if (isSearching) {
-            searchData(activeSearchColumn, $("#appFilter").val().toLowerCase(), currentReport, currentPage, $('#maxRows').val());
+           reportAdvanceSearchData(currentReport,tempColumnArray,tempSearchValue,tempCondition,$('#maxRows').val(),currentPage);
         } else {
             ajaxcall(currentReport,currentPage);
         }
@@ -61,27 +74,29 @@ $(document).ready(function () {
 
     });
 
-// to store the search column name temporarily
-    var activeSearchColumn;
-// Event listener for search icon click
-    $('#admin_userslist').on('click', '.search-Icon', function () {
-        console.log('Search icon clicked');
-        var column = $(this).data('column');
-        var placeholder = $(this).data('placeholder');
-        var title = $(this).data('title');
+    $("#submitSearch").on("click", function () {
 
-        // Update the placeholder and title
-        $('#appFilter').attr('placeholder', placeholder);
-        $('#title2').text(title);
-        activeSearchColumn = column;
-    });
-    $("#appFilter").on("input", function () {
-        var column = activeSearchColumn;
-        var searchTerm = $(this).val().toLowerCase();
-        isSearching = true;
-        searchData(column, searchTerm, currentReport, 1, $('#maxRows').val());
-    });
+        // Get the selected values from the first dropdown, second dropdown, and input field
+        selectedColumn = $("#SearchOptions").val();
+        secondSelectedColumn = $("#SecondSearchOptions").val(); // Add this line
+        searchValue = $("#advanceSearch").val();
+        condition = $('input[name="condition"]:checked').val();
 
+        // Validate the selected values (customize as needed)
+        if (selectedColumn === "" || searchValue === "") {
+            alert("Please select a column, enter a search value, and choose a condition.");
+            return;
+        }
+        // Add selected columns to the array
+        selectedColumns = [selectedColumn, secondSelectedColumn];
+        reportAdvanceSearchData(currentReport,selectedColumns,searchValue,condition,$('#maxRows').val(),1)
+         tempColumnArray= selectedColumns;
+         tempSelectedColumn = selectedColumn;
+         tempSecondSelectedColumn = secondSelectedColumn;
+         tempSearchValue = searchValue;
+         tempCondition = condition;
+        SearchResetForm();
+    });
 
 function ajaxcall(selectedOption,page) {
     console.log('Fetching data for page:', page);
@@ -97,6 +112,7 @@ function ajaxcall(selectedOption,page) {
             },
             success: function (data) {
                 $('#overlay').hide();
+                ReportSearchDropdown();
                 console.log("Data retrieved:", data);
 
                 if (data.error) {
@@ -123,7 +139,7 @@ function ajaxcall(selectedOption,page) {
         });
 }
 
-function updatePaginationReport(totalRecords, currentPage,) {
+function updatePaginationReport(totalRecords, currentPage) {
     var maxRows = parseInt($('#maxRows').val());
     var totalPages = Math.ceil(totalRecords / maxRows);
     var startRecord = (currentPage - 1) * maxRows + 1;
@@ -183,9 +199,9 @@ function RecordAppendRowFunction(data) {
         // Add table headers
         var headerRow = "<thead>" + "<tr>";
         $.each(headers, function (index, header) {
-            headerRow += "<th>";
+            headerRow += "<th style='color: black; font-weight: bold;'>";
             headerRow += header;
-            headerRow += `<i class="fa fa-search search-Icon" data-column="${header}" data-placeholder="Search ${header}" data-title="${header}"></i>`;
+          //  headerRow += `<i class="fa fa-search search-Icon" data-column="${header}" data-placeholder="Search ${header}" data-title="${header}"></i>`;
             headerRow += "</th>";
         });
         headerRow += "</tr>" + "</thead>";
@@ -194,9 +210,8 @@ function RecordAppendRowFunction(data) {
         $.each(data, function (key, value) {
             var row = "<tbody>" + "<tr>";
             $.each(headers, function (index, header) {
-                row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for=''>" + value[header] + "</label></td>";
+                row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for='' style='color: dimgrey;'>" + value[header] + "</label></td>";
             });
-            //row += "<td style='text-align:center;vertical-align: middle;'><i class='fa fa-edit edit-icon' data-id='" + value.ID + "' data-finance='" + value.FinanceAppName + "'></i> <i class='fa fa-trash delete-icon' data-id='" + value.ID + "' data-finance='" + value.FinanceAppName + "'></i></td>";
             row += "</tr>" + "</tbody>";
 
             $("#admin_userslist").append(row);
@@ -205,26 +220,142 @@ function RecordAppendRowFunction(data) {
     }
 }
 
-function searchData(column, searchTerm, selectedReport, page, maxRows) {
-    $.ajax({
-        url: "Report_Search_Servlet",
-        type: 'POST',
-        data: { column: column, searchTerm: searchTerm, maxRows: maxRows, page: page, SelectedReport: selectedReport},
-        dataType: "json",
-        beforeSend: function () {
-            $('#overlay').show();
-        },
-        success: function (data) {
-            $('#overlay').hide();
-            isSearching = true;
+    function reportAdvanceSearchData(selectedReport,selectedColumns,searchValue,condition,maxRows,page){
+        $.ajax({
+            url: "Report_Advance_Search_Servlet",
+            method: "POST",
+            data: {
+                SelectedReport: selectedReport,
+                column: selectedColumns,
+                searchTerm: searchValue,
+                condition: condition,
+                maxRows: maxRows,
+                page: page
+            },
+            dataType: "json",
+            beforeSend: function () {
+                $('#overlay').show();
+            },
+            success: function (data) {
+                $('#overlay').hide();
+                isSearching = true;
+                console.log("Search Results", data);
+                clearTable();
+                RecordAppendRowFunction(data.data);
+                updatePaginationReport(data.total, page);
+            },
+        });
+        selectedColumns = [];
+    }
+    function SearchResetForm() {
+        // Reset the form elements
+        document.getElementById('SearchOptions').value = '';
+        document.getElementById('SecondSearchOptions').value = '';
+        document.getElementById('advanceSearch').value = '';
+        document.getElementById('and').checked = false;
+        document.getElementById('or').checked = false;
 
-            console.log("Search Results", data);
-            clearTable();
-            RecordAppendRowFunction(data.data);
-            updatePaginationReport(data.total, page);
-        },
+        // Remove SecondSearchOptions and its label
+        $('#SecondSearchOptions, #SecondSearchOptionsLabel').remove();
+    }
+
+
+    $("#resetButton").on("click", function () {
+        SearchResetForm();
     });
-}
+    function populateDropdown(selectElement, options) {
+        selectElement.empty();
+        selectElement.append('<option value="">----------------Select------------------</option>');
+        $.each(options, function (index, option) {
+            selectElement.append('<option value="' + option + '">' + option + '</option>');
+        });
+    }
+    function ReportSearchDropdown(){
+        var selectedColumns = [];
+        $('#searchModal').on('show.bs.modal', function (e) {
+
+            var headers = [];
+            // Extract headers from the table
+            $("#admin_userslist thead th").each(function () {
+                headers.push($(this).text());
+            });
+            // Populate the select dropdown in the modal
+            var selectOptions = $("#SearchOptions");
+            selectOptions.empty(); // Clear existing options
+            selectOptions.append('<option value="">----------------Select------------------</option>');
+            $.each(headers, function (index, header) {
+                selectOptions.append('<option value="' + header + '">' + header + '</option>');
+            });
+
+            // Event handler for radio button click
+            $('input[name="condition"]').change(function () {
+                var selectedValue = $('input[name="condition"]:checked').val();
+                $("#SecondSearchOptions, #SecondSearchOptionsLabel").remove();
+                if (selectedValue === "OR" || selectedValue === "AND") {
+                    // Create a new select dropdown with options excluding the selected option
+                    var secondSelectOptions = headers.filter(function (header) {
+                        return header !== $("#SearchOptions").val();
+                    });
+
+                    // Create a new select dropdown element
+                    var secondSelect = $('<select class="form-control" id="SecondSearchOptions"></select>');
+
+                    // Create a new label for the second dropdown
+                    var secondSelectLabel = $('<label for="SecondSearchOptions" id="SecondSearchOptionsLabel">Select Second Search Column:</label>');
+
+                    // Append the new label and select dropdown to the modal body
+                    $("#searchModal .modal-body").append(secondSelectLabel);
+                    $("#searchModal .modal-body").append(secondSelect);
+
+                    // Populate the new select dropdown with options
+                    populateDropdown(secondSelect, secondSelectOptions);
+                }
+            });
+        });
+    }
+    function SearchValidation(){
+        var searchTerm = $("#advanceSearch").val();
+        var radioSelectedValue = $('input[name="condition"]:checked').val();
+
+        // Initial validation
+        $('#submitSearch').hide();
+
+        $('#SearchOptions, #advanceSearch, #SecondSearchOptions').on('change input change', function () {
+            var selectedOption = $('#SearchOptions').val();
+            var selectedOption2 = $('#SecondSearchOptions').val();
+            if (radioSelectedValue === ""){
+                if (selectedOption !== "" && searchTerm !== "") {
+                    $('#submitSearch').show();
+
+                } else {
+                    $('#submitSearch').hide();
+                }
+            }
+            else if (selectedOption !== "" && searchTerm !== "" && selectedOption2 !== ""){
+                $('#submitSearch').show();
+            }
+            else{
+                $('#submitSearch').hide();
+            }
+
+        });
+
+        // Advance search input change event
+        $('#advanceSearch').on('input', function () {
+            searchTerm = $(this).val();
+
+            // Trigger change event for SearchOptions
+            $('#SearchOptions').trigger('change');
+        });
+
+        $('input[name="condition"]').change(function () {
+            radioSelectedValue = $(this).val();
+
+            // Trigger change event for SearchOptions
+            $('#SearchOptions').trigger('change');
+        });
+    }
+
 });
 
 

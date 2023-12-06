@@ -59,6 +59,11 @@
 
 
 <style>
+    #suggestionDropdown {
+        z-index: 1000; /* Adjust the value based on your layout */
+        position: absolute;
+    }
+
     /*#suggestionDropdown{*/
     /*    margin-left: 25px;*/
     /*}*/

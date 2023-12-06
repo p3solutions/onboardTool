@@ -92,7 +92,7 @@ public class FinanaceAppDataRetriveService {
                     st1.close();
                 }
             }
-           Thread.sleep(500);
+           Thread.sleep(800);
            jsonArray = FinanceDataRetrieve();
           System.out.println("Data Retrive "+ jsonArray);
 

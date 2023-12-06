@@ -202,10 +202,9 @@
                 // Add table headers
                 var headerRow = "<thead>" + "<tr>";
                 $.each(headers, function (index, header) {
-                    headerRow += "<th>";
+                    headerRow += "<th style='color: black; font-weight: bold;'>";
                     headerRow += header;
-                    // headerRow += `<i class="fa fa-search search-Icon" data-column="${header}" data-placeholder="Search ${header}" data-title="${header}"></i>`;
-                    headerRow += "</th>";
+                   headerRow += "</th>";
                 });
                 headerRow += "<th>Action</th>";
                 headerRow += "</tr>" + "</thead>";

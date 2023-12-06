@@ -20,7 +20,7 @@ $(document).ready(function () {
     } else {
         Title = "ADD Finance";
         console.log("APPID or APPNAME not found in sessionStorage.");
-        ajaxTemplateCallNoData("hello")
+        ajaxTemplateCallNoData("Initial")
     }
     $("#sitetitle3").text(Title);
 });
@@ -53,7 +53,7 @@ function financeSetSessionAttribute1(selectedId,selectedName) {
 }
 function disableFields(){
     $("#financeappname").prop('disabled', true);
-    $('#financeappname').disable();
+ //   $('#financeappname').disable();
     $("#phase").prop('disabled', true);
     $('#phase').disable();
     $("#cba").prop('disabled', true);
@@ -152,8 +152,13 @@ function ajaxTemplateCallNoData(status){
                     var template_check = "";
                     var inputtext = "<div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
                         "<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil ' style='float:right;display:none;'></span>\n";
-                    if (ColumnName == "totalsize") {
-                        inputtext = inputtext + "<input type='number' min='0' onkeypress='return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
+                    if (ColumnName === 'cba'||ColumnName === 'softlicensecost'||ColumnName === 'infrastructurecostsavings'||ColumnName === 'costavoidance'||ColumnName === 'costarchive') {
+                        var formatter = new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                        });
+                        Value = formatter.format(Value)
+                        inputtext = inputtext+"<input type='text' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "' onkeypress='return isNumber(event)'" +
                             "</div>";
                     }
                     else if (ColumnName == "estimatestrucsize") {
@@ -362,8 +367,13 @@ function ajaxTemplateCall(status , Id , AppName){
                     var template_check = "";
                     var inputtext = "<div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
                         "<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil ' style='float:right;display:none;'></span>\n";
-                    if (ColumnName == "totalsize") {
-                        inputtext = inputtext + "<input type='number' min='0' onkeypress='return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
+                    if (ColumnName === 'cba'||ColumnName === 'softlicensecost'||ColumnName === 'infrastructurecostsavings'||ColumnName === 'costavoidance'||ColumnName === 'costarchive') {
+                        var formatter = new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                        });
+                        Value = formatter.format(Value)
+                        inputtext = inputtext+"<input type='text' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "' onkeypress='return isNumber(event)'" +
                             "</div>";
                     }
                     else if (ColumnName == "estimatestrucsize") {
