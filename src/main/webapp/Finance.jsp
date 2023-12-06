@@ -56,50 +56,6 @@
           media="screen">
     <link rel="stylesheet" href="css/Responsive/responsive.css"
           media="screen">
-
-
-<style>
-    #suggestionDropdown {
-        z-index: 1000; /* Adjust the value based on your layout */
-        position: absolute;
-    }
-
-    /*#suggestionDropdown{*/
-    /*    margin-left: 25px;*/
-    /*}*/
-    /*.suggestionEnabled1{*/
-    /*    max-height: 50px;*/
-    /*    max-width: 200px ;*/
-    /*    overflow-y: auto;*/
-    /*    border: 1px solid #ccc;*/
-    /*}*/
-
-    /*.suggestionEnabled .suggestion:hover {*/
-    /*    background-color: #1565c0 ;*/
-    /*    color: white;*/
-    /*}*/
-    #nameInput{
-        outline: none;
-        border: none;
-        border-bottom: 1px solid #959595;
-        -o-border-image: initial;
-        border-image: initial;
-        border-radius: 0;
-        color: black !important;
-        text-indent: 12px;
-        background-color: transparent !important;
-        box-shadow: none  !important;
-        height: 28px;
-        padding-bottom: 3px;
-        width: 240px;
-        margin-left: 25px;
-    }
-    #labelhead{
-        margin-left: 20px;
-    }
-    #til
-
-</style>
 </head>
 
 <body class="top-navbar-fixed">
@@ -191,8 +147,10 @@
 
 
                                 <div class="tab-pane" role="tabpanel" id="step4">
+
                                     <!-- Application Informations -->
                                     <div class="card-container-2 card">
+                                        <div id="suggestionDropdown"></div>
 
                                         <div class="card-header" id="cd-header"> Finance Information</div>
 <%--                                        <label id="labelhead">Enter the name of the Application: </label>--%>
@@ -205,6 +163,7 @@
                                                     <div id="inputFieldsAssessment">
                                                         <!-- Application Info -->
                                                         <div class="panel panel-default">
+<%--                                                            <div id="suggestionDropdown"></div>--%>
                                                             <div class="card-header" id="cd-header">
                                                                 <h4 class="panel-title">
                                                                     <a class="collapsed" data-bs-toggle="collapse"
@@ -212,7 +171,7 @@
                                                                         Info</a>
                                                                 </h4>
                                                             </div>
-                                                            <div id="suggestionDropdown"></div>
+<%--                                                            <div id="suggestionDropdown"></div>--%>
                                                             <div id="collapse5" class="panel-collapse ">
                                                                 <div class="panel-body">
                                                                     <div id="collapse1"

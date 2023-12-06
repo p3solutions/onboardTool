@@ -26,14 +26,15 @@ $(document).on('keyup focus', '#financeappname', function () {
     }
 
     function displaySuggestions(suggestions) {
-        enableDropdownStyles();
+    //    enableDropdownStyles();
         var suggestionDropdown = $("#suggestionDropdown");
         suggestionDropdown.empty();
 
         if (suggestions.length > 0) {
-            var ul = $("<ul class='dropdown suggestionEnabled'></ul>");
+            var ul = $("<ul>");
 
             for (var i = 0; i < suggestions.length; i++) {
+                (function (suggestion) {
                 var suggestion = suggestions[i];
                 var li = $("<li class='suggestion'>" + suggestion.Application_Name + "</li>");
 
@@ -49,7 +50,7 @@ $(document).on('keyup focus', '#financeappname', function () {
                     // end of setting session attribute
                     $("#financeappname").val(selectedName);
                     var nameIn = $("#financeappname").val();
-                    suggestionDropdown
+                    // suggestionDropdown
                     suggestionDropdown.empty();
                     clearDropdownStyles();
                     if (selectedName === nameIn) {
@@ -59,28 +60,19 @@ $(document).on('keyup focus', '#financeappname', function () {
                         ajaxscrcall(selectedId);
                         $("#financeappname").prop('disabled', true);
                         $('#financeappname').disable();
-                        setTimeout(function () {
-                            disableFields(); // Call the disableFields function after a delay
-                        }, 2000);
+
                     }
                 });
                 ul.append(li);
+                })(suggestions[i]);
             }
+            enableDropdownStyles();
             suggestionDropdown.append(ul);
-        //    enableDropdownStyles();
+
         }
 
     }
-function disableFields(){
-    $("#financeappname").prop('disabled', true);
-    $('#financeappname').disable();
-    $("#phase").prop('disabled', true);
-    $('#phase').disable();
-    $("#cba").prop('disabled', true);
-    $('#cba').disable();
-    $("#status").prop('disabled', true);
-    $('#status').disable();
-}
+
 
     function financeSetSessionAttribute(selectedId,selectedName) {
         // Add an AJAX call to send data to the server
@@ -99,17 +91,20 @@ function disableFields(){
     }
 
     function enableDropdownStyles() {
+        var suggestionDropdown = $('#suggestionDropdown');
+        suggestionDropdown.show();
 
-            $('#suggestionDropdown').show();
-            var inputPosition = $("#financeappname").position();
-            $('#suggestionDropdown').css({
-                position: "absolute",
-                top: inputPosition.top + $("#financeappname").outerHeight(),
-                left: inputPosition.left,
-                background: "white", // Set plain white background
-            });
+        var inputPosition = $("#financeappname").position();
 
+        suggestionDropdown.css({
+            position: "absolute",
+            top: inputPosition.top + $("#financeappname").outerHeight(),
+            left: inputPosition.left,
+            background: "white", // Set plain white background
+            zIndex: 1000 // Adjust the z-index value as needed to overlay above other content
+        });
     }
+
     function clearDropdownStyles() {
         var dropdown = document.getElementById('suggestionDropdown');
       //  dropdown.classList.remove('suggestionEnabled');
