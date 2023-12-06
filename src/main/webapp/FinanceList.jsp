@@ -427,10 +427,10 @@
                 </select>
                 <br>
                 <input class="form-control" type="text" id="advanceSearch" placeholder="Search Value">
-                <input type="radio" id="and" name="condition" value="AND" onclick="toggleRadioButton('and')">
-                <label for="AND">AND</label>
-                <input type="radio" id="or" name="condition" value="OR" onclick="toggleRadioButton('or')"/>
-                <label for="OR">OR</label>
+<%--                <input type="radio" id="and" name="condition" value="AND" onclick="toggleRadioButton('and')">--%>
+<%--                <label for="AND">AND</label>--%>
+<%--                <input type="radio" id="or" name="condition" value="OR" onclick="toggleRadioButton('or')"/>--%>
+<%--                <label for="OR">OR</label>--%>
 
             </div>
             <div class="modal-footer">

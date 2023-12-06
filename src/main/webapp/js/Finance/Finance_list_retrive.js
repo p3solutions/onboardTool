@@ -214,9 +214,11 @@
                 $.each(data, function (key, value) {
                     var row = "<tbody>" + "<tr>";
                     $.each(headers, function (index, header) {
-                        row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for=''>" + value[header] + "</label></td>";
+                       row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for=''>" + value[header] + "</label></td>";
                     });
-                    row += "<td style='text-align:center;vertical-align: middle;'><i class='fa fa-edit edit-icon' data-id='" + value.ID + "' data-finance='" + value.FinanceAppName + "'></i> <i class='fa fa-trash delete-icon' data-id='" + value.ID + "' data-finance='" + value.FinanceAppName + "'></i></td>";
+                    //    The below line is for view button
+                    row += "<td style='text-align:center;vertical-align: middle;'><i class='fa fa-edit edit-icon' data-id='" + value.ID + "' data-finance='" + value.FinanceAppName + "'></i> <i class='fa fa-trash delete-icon' data-id='" + value.ID + "' data-finance='" + value.FinanceAppName + "'></i> <button class='btn btn-info view-button' data-id='" + value.ID + "'>View</button></td>";
+                  //  row += "<span class='glyphicon glyphicon-pencil editpopup' data-id='" + value.ID + "' data-finance='" + value.FinanceAppName + "' style='display:block;margin-left:-22px;'></span><span class='glyphicon glyphicon-trash deletepopup' data-id='" + value.ID + "' data-finance='" + value.FinanceAppName + "' style='float:right;display:block;margin-top:-13px;'></span>";
                     row += "</tr>" + "</tbody>";
 
                     $("#admin_userslist").append(row);
