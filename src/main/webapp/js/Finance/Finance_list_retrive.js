@@ -1,6 +1,7 @@
 
 
     $(document).ready(function () {
+        $("#ExitSearch").hide();
         SearchValidation();
         FinanceSearchDropdown();
 
@@ -64,7 +65,7 @@
             }
         });
         $("#submitSearch").on("click", function () {
-
+            $("#ExitSearch").show();
              selectedColumn = $("#SearchOptions").val();
              secondSelectedColumn = $("#SecondSearchOptions").val(); // Add this line
              searchValue = $("#advanceSearch").val();
@@ -204,7 +205,7 @@
                 $.each(headers, function (index, header) {
                     headerRow += "<th style='color: black; font-weight: bold;'>";
                     headerRow += header;
-                   headerRow += "</th>";
+                    headerRow += "</th>";
                 });
                 headerRow += "<th>Action</th>";
                 headerRow += "</tr>" + "</thead>";

@@ -1,5 +1,6 @@
 
 $(document).ready(function () {
+    $("#ExitSearch").hide();
     SearchValidation();
     ReportSearchDropdown();
     var currentReport = "intakeReport1";
@@ -75,7 +76,7 @@ $(document).ready(function () {
     });
 
     $("#submitSearch").on("click", function () {
-
+        $("#ExitSearch").show();
         // Get the selected values from the first dropdown, second dropdown, and input field
         selectedColumn = $("#SearchOptions").val();
         secondSelectedColumn = $("#SecondSearchOptions").val(); // Add this line

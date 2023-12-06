@@ -144,7 +144,7 @@ public class availabilityOfView {
                 "    COALESCE(`s`.`Status`, '') AS `Application_Status`," +
                 "    COALESCE(`phs`.`phaseName`, '') AS `Phase_Status`," +
                 "    COALESCE(`subquery`.`Creation_Date`, '') AS `Creation_Date`," +
-                "    COALESCE(`subquery`.`Status`, '') AS `Status_Subquery`," +
+                "    COALESCE(`subquery`.`Status`, '') AS `Status`," +
                 "    COALESCE(`subquery`.`Request_Type`, '') AS `Request_Type`," +
                 "    COALESCE(`subquery`.`Requester`, '') AS `Requester`," +
                 "    COALESCE(`subquery`.`Application_Owner`, '') AS `Application_Owner`," +

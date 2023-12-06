@@ -347,7 +347,7 @@
             style="padding: 0.75 0 0 0.75rem; margin-bottom: 5px;  margin-top: -28px;margin-left: 55px; width: 80px;">
         <option value="5000">Show All</option>
         <option value="5">5</option>
-        <option value="1">10</option>
+        <option value="10">10</option>
         <option value="15">15</option>
         <option value="20">20</option>
         <option value="50">50</option>
@@ -377,6 +377,7 @@
                         </ul>
                     </nav>
                 </div>
+                <a href="FinanceList.jsp" > <button type="button" id="ExitSearch" class="btn btn-primary pull-left" style="margin: 29px 0 0 9px; font-size: 14px;" > Exit Search</button></a>
             </div>
             <div class="col-md-12" align="end" id="recordInfo"></div>
         </div>
