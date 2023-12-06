@@ -4,7 +4,7 @@
 $(document).on('click', '.editpopup', function() {
     $('#editpopup_btn').click();
     var currentRow = $(this).closest("tr");
-    var Id = currentRow.find("td:eq(13)").text(); // Store the Id value
+    var Id = currentRow.find("td:eq(15)").text(); // Store the Id value
     sessionStorage.setItem('storedId', Id);
     console.log("the id value",Id);
     window.location.href = 'FinanceUpdate.jsp';
@@ -13,7 +13,7 @@ $(document).on('click', '.editpopup', function() {
     $('#deletepopup_btn').click();
    
     var currentRow=$(this).closest("tr");
-    var Id=currentRow.find("td:eq(13)").text();
+    var Id=currentRow.find("td:eq(15)").text();
     $('#Id').val(Id);
     console.log("The value of Function",Id)
     $('#DeletePopUp').on('shown.bs.modal', function () {
@@ -49,7 +49,8 @@ $(document).ready(function(){
                $("#appName").prop("disabled", true);
                 $("#Status").prop("disabled", true);
             $("#Phase").prop("disabled", true);
-                
+                             $("#ProjectNumber").prop("disabled", true);
+   
                 var Value=value.Value;
                
             	 if(value.Mandatory=="Yes" && value.UMandatory=="Yes")

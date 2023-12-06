@@ -1,8 +1,8 @@
-// Declare global variables
+
 var selectedData = null;
-var data = null; // Declare data in a higher scope
+var data = null; 
 var Id = null;
-var filteredId = null; // Declare a global variable for filteredId
+var filteredId = null; 
 var selectedValue=null;
 $(document).on('keyup', '#appName', function () {
     var typingTimer;
@@ -53,12 +53,12 @@ console.log("The selected value now",selectedValue);
 
     function sendAppNameToBackend(appNameValue) {
         $.ajax({
-            url: "FinanceAppNameDropdownServlet", // Replace with your actual backend endpoint
+            url: "FinanceAppNameDropdownServlet", 
             type: 'POST',
             data: { appName: appNameValue },
             dataType: "json",
             success: function (responseData) {
-                // Assign the received data to the global variable
+              
                 data = responseData;
                 handleBackendResponse();
             },
@@ -81,39 +81,39 @@ console.log("The selected value now",selectedValue);
         if (data && data.length > 0) {
             var ul = $("<ul>");
             data.forEach(function (obj) {
-                // Assuming the object has a property named "value" and "id"
+              
                 var li = $("<li>").html("<strong>" + obj.value + "</strong>").data("id", obj.id);
                 ul.append(li);
             });
 
-            // Position the suggestions container below the input field
+           
             var inputPosition = $("#appName").position();
             suggestionsContainer.css({
                 position: "absolute",
                 top: inputPosition.top + $("#appName").outerHeight(),
                 left: inputPosition.left,
-                background: "white", // Set plain white background
+                background: "white", 
             });
 
             suggestionsContainer.append(ul);
         }
     }
 
-    // Function to filter the ID based on the selected value
+   
     function getFilteredId(selectedValue, data) {
-        // Ensure data is defined before trying to use it
+      
         if (data) {
             console.log("the value inside filter", data)
             console.log("the value inside filter", selectedValue)
-            // Assuming 'data' is an array of objects with 'value' and 'id' properties
+           
             var matchingObject = data.find(function (obj) {
                 return obj.value === selectedValue;
             });
 
-            // Store the filtered ID globally
+          
             filteredId = matchingObject ? matchingObject.Id : null;
             console.log("It comes to if", filteredId );
-
+            sessionStorage.setItem('filteredId', filteredId);
             return filteredId;
 
         } else {
@@ -125,32 +125,34 @@ console.log("The selected value now",selectedValue);
         }
     }
     $("#SelectedId").val(filteredId)
+    
 });
 function sendFilteredIdToBackend(filteredId, selectedValue) {
    console.log("The value inside backend function",selectedValue)
     $.ajax({
-        url: "FinancePhaseDropServlet", // Replace with your actual backend endpoint
+        url: "FinancePhaseDropServlet", 
         type: 'POST',
         data: {  selectedValue: selectedValue,filteredId: filteredId },
         dataType: "json",
         success: function (responseData) {
-            // Handle the response from the backend
+           
             console.log("responseData", responseData);
 			
 			
  		
  			
- 			
+ 			 var ProjectNumber = responseData[0].Project_Number;
           var applicationStatus =responseData[0].Application_Status;
 		  var phaseStatus = responseData[0].Phase_Status;
 
-            // Log the values to the console for debugging
+           
             console.log("applicationStatus", applicationStatus);
             console.log("phaseStatus", phaseStatus);
 
-            // Set the values in the input fields
+           
             $("#Status").val(applicationStatus).prop("disabled", true);
-            $("#Phase").val(phaseStatus).prop("disabled", true);
+           $("#ProjectNumber").val(ProjectNumber).prop("disabled", true);
+ $("#Phase").val(phaseStatus).prop("disabled", true);
         },
         error: function (error) {
             console.error("Error:", error);

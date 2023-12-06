@@ -390,22 +390,25 @@ public class Login extends HttpServlet {
             ResultSet Finance = statement11.executeQuery();
 
             if (!Finance.next()) {
-            	 FinanceDetails[] FinanceInput = new  FinanceDetails[14];
+            	 FinanceDetails[] FinanceInput = new  FinanceDetails[16];
             	 FinanceInput[0] = new  FinanceDetails(1, "", "", "", "Project Number", "ProjectNumber", "Text box", "No", "");
             	 FinanceInput[1] = new  FinanceDetails(2, "", "", "", "Phase", "Phase", "Text box", "No", "");
             	 FinanceInput[2] = new FinanceDetails(3, "", "", "", "Application Name", "appName", "Text box", "Yes", "");
-            	 FinanceInput[3] = new  FinanceDetails(4, "", "", "", "Software and Licensing", "License", "Text box", "No", "");
-            	 FinanceInput[4] = new  FinanceDetails(5, "", "", "", "Contract, possibly terms of contract e.g., length, expiration", "Contract_Date", "Datepicker", "No", "");
-            	 FinanceInput[5] = new  FinanceDetails(6, "", "", "", "scope of infrastructure", "Scope", "Text box", "No", "");
-            	 FinanceInput[6] = new  FinanceDetails(7, "", "", "", "InfraStructure Cost Savings", "InfraCost", "Text box", "No", "");
-            	 FinanceInput[7] = new  FinanceDetails(8, "", "", "", "Cost Avoidance", "Avoidance_Cost", "Text box", "Yes", "");
-            	 FinanceInput[8] = new  FinanceDetails(9, "", "", "", "Cost of Archive", "Archive_Cost", "Text box", "Yes", "");
-            	 FinanceInput[9] = new  FinanceDetails(10, "", "", "", "CBA", "CBA", "Text box", "No", "");
-            	 FinanceInput[10] = new  FinanceDetails(11, "", "", ",Yes,No", "Funding approved?", "FundingDetails", "Dropdown", "Yes", "");
+            	 FinanceInput[3] = new  FinanceDetails(4, "", "", ",Yes,No", "Software and Licensing", "License", "Dropdown", "No", "");
+            	 FinanceInput[4] = new  FinanceDetails(5, "", "", "", "Software and Licensing(Cost Savigs)", "License Cost", "Text box", "No", "");
+            	 FinanceInput[5] = new  FinanceDetails(6, "", "", "", "Contract End Date", "Contract_Date", "Datepicker", "No", "");
+            	 FinanceInput[6] = new  FinanceDetails(7, "", "", "", "Contract End Date-Comments", "Contract_Date_Text", "Text box", "No", "");
+            	 FinanceInput[7] = new  FinanceDetails(8, "", "", "", "scope of infrastructure", "Scope", "Text box", "No", "");
+            	 FinanceInput[8] = new  FinanceDetails(9, "", "", "", "InfraStructure Cost Savings", "InfraCost", "Text box", "No", "");
+            	 FinanceInput[9] = new  FinanceDetails(10, "", "", "", "Cost Avoidance", "Avoidance_Cost", "Text box", "Yes", "");
+            	 FinanceInput[10] = new  FinanceDetails(11, "", "", "", "Cost of Archive", "Archive_Cost", "Text box", "Yes", "");
+            	 FinanceInput[11] = new  FinanceDetails(12, "", "", "", "Total CBA", "CBA", "Text box", "No", "");
+            	 FinanceInput[12] = new  FinanceDetails(13, "", "", ",Yes,No", "Funding approved?", "FundingDetails", "Dropdown", "Yes", "");
             	 
-            	 FinanceInput[11] = new  FinanceDetails(12, "", "", "", "Funding type", "Fundings", "Text box", "No", "");
-            	 FinanceInput[12] = new  FinanceDetails(13, "", "", "", "Status", "Status", "Text box", "Yes", "");
-            	 FinanceInput[13] = new FinanceDetails(14, "", "", "", "Add Attachments", "Attachments", "TextAreaFile", "No", "");
+            	 FinanceInput[13] = new  FinanceDetails(14, "", "", "", "Funding type", "Fundings", "Text box", "No", "");
+            	 FinanceInput[14] = new  FinanceDetails(15, "", "", "", "Status", "Status", "Text box", "Yes", "");
+            	 FinanceInput[15] = new FinanceDetails(16, "", "", "", "Add Attachments", "Attachments", "TextAreaFile", "No", "");
+            	 
             	 
                 for (int index = 0; index < FinanceInput.length; index++) {
                     String FinanceInsertQuery1 = "insert into finance_info_template_details (seq_no, prj_name, app_name, options, label_name, column_name, type, mandatory, value)" +

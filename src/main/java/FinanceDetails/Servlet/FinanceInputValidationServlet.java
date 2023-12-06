@@ -44,15 +44,17 @@ public class FinanceInputValidationServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String AppName =request.getParameter("AppName");
-		System.out.println("Application Name in the Servlet"+AppName);
+	
+		String Id =request.getParameter("Id");
+		System.out.println("Id Value in the Servlet"+Id);
         String JsonString= (String)request.getParameter("JsonString");
         System.out.println("Connected to validation Servlet");
         boolean checkMandatory =Boolean.parseBoolean(request.getParameter("checkMandatory"));
         JsonParser parser = new JsonParser();
 		JsonElement tradeElement = parser.parse(JsonString);
 		JsonArray jsonArray = tradeElement.getAsJsonArray();
-		System.out.println("The values of the form"+jsonArray);
-		JsonObject jsonObject = FinanceInputValidationService.InputDetailsValidation(AppName,jsonArray,checkMandatory);
+	
+		JsonObject jsonObject = FinanceInputValidationService.InputDetailsValidation(Id,AppName,jsonArray,checkMandatory);
 		String json = new Gson().toJson(jsonObject);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

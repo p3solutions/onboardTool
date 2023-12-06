@@ -24,7 +24,7 @@ public JsonArray FinanceDropDownStatus(String Id, String value) {
 	        connection = (Connection) dBconnection.getConnection();
 
 	       
-	        String selectQuery = "SELECT Application_Status, Phase_Status FROM decom3sixtytool.dropdown WHERE Application_ID =  ?";
+	        String selectQuery = "SELECT Application_Status, Phase_Status,Project_Number FROM decom3sixtytool.dropdown WHERE Application_ID =  ?";
 	        st = connection.prepareStatement(selectQuery);
 	        st.setString(1, AppId);
 	        rs = st.executeQuery();
@@ -33,6 +33,7 @@ public JsonArray FinanceDropDownStatus(String Id, String value) {
 	            JsonObject jsonObj = new JsonObject();
 	            jsonObj.addProperty("Application_Status", rs.getString(1));
 	            jsonObj.addProperty("Phase_Status", rs.getString(2));
+	            jsonObj.addProperty("Project_Number", rs.getString(3));
 	            jsonArray.add(jsonObj);
 	        }
 
