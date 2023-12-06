@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="ISO-8859-1">
-    <title>Users List</title>
+    <title>Finance Module</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -224,13 +224,6 @@
         margin-top: 22px;
         margin-left: 289px;
     }
-    /*.search-Icon {*/
-    /*    position: relative;*/
-    /*    left: 8px;*/
-    /*    bottom: -23px;*/
-    /*    color: #fff;*/
-    /*}*/
-
     #AppFilter {
         position: relative;
         top: 1px;
@@ -300,7 +293,7 @@
 </div>
 <br/>
 <div class="card-container-5 card d3s-mt-50">
-    <div class="card-header d3s-pl-15" id="cd-header">Finance Module</div>
+    <div class="card-header d3s-pl-15" id="cd-header">Finance Module <span class="glyphicon glyphicon-filter" id="ExitSearch"></span></div>
     <label style="margin-top: 20px ;margin-left: 8px;">Show </label>
     <label style="margin-left: 140px;margin-top: -16px;"> Entries</label>
     <select class="form-select align-left"
@@ -338,7 +331,7 @@
                         </ul>
                     </nav>
                 </div>
-                <a href="FinanceList.jsp" > <button type="button" id="ExitSearch" class="btn btn-primary pull-left" style="margin: 29px 0 0 9px; font-size: 14px; display: none;" > Exit Search</button></a>
+<%--                <a href="FinanceList.jsp" > <button type="button" id="ExitSearch" class="btn btn-primary pull-left" style="margin: 29px 0 0 9px; font-size: 14px; display: none;" > Exit Search</button></a>--%>
             </div>
             <div class="col-md-12" align="end" id="recordInfo"></div>
         </div>

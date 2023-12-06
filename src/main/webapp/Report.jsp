@@ -377,7 +377,7 @@
                         </ul>
                     </nav>
                 </div>
-                <a href="FinanceList.jsp" > <button type="button" id="ExitSearch" class="btn btn-primary pull-left" style="margin: 29px 0 0 9px; font-size: 14px;" > Exit Search</button></a>
+<%--                <a href="FinanceList.jsp" > <button type="button" id="ExitSearch" class="btn btn-primary pull-left" style="margin: 29px 0 0 9px; font-size: 14px;" > Exit Search</button></a>--%>
             </div>
             <div class="col-md-12" align="end" id="recordInfo"></div>
         </div>
@@ -440,10 +440,10 @@
                 </select>
                 <br>
                 <input class="form-control" type="text" id="advanceSearch" placeholder="Search Value">
-                <input type="radio" id="and" name="condition" value="AND" onclick="toggleRadioButton('and')">
-                <label for="AND">AND</label>
-                <input type="radio" id="or" name="condition" value="OR" onclick="toggleRadioButton('or')"/>
-                <label for="OR">OR</label>
+<%--                <input type="radio" id="and" name="condition" value="AND" onclick="toggleRadioButton('and')">--%>
+<%--                <label for="AND">AND</label>--%>
+<%--                <input type="radio" id="or" name="condition" value="OR" onclick="toggleRadioButton('or')"/>--%>
+<%--                <label for="OR">OR</label>--%>
 
             </div>
             <div class="modal-footer">

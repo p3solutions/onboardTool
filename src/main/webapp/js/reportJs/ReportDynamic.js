@@ -1,8 +1,11 @@
 
 $(document).ready(function () {
-    $("#ExitSearch").hide();
     SearchValidation();
     ReportSearchDropdown();
+    var filterIcon = $('<span>').addClass('glyphicon glyphicon-filter').attr('id', 'ExitSearch');
+    filterIcon.css('display', 'none');
+
+    var selectedOption = "intakeReport1";
     var currentReport = "intakeReport1";
     var isSearching = false;
     var currentPage = 1;
@@ -19,6 +22,7 @@ $(document).ready(function () {
 
     ajaxcall(currentReport,1);
     $("#cd-header").text("Intake Report 1");
+    $('#cd-header').append(filterIcon);
 
     $("#Report").change(function () {
         currentReport = $(this).val();
@@ -57,7 +61,8 @@ $(document).ready(function () {
         $("#admin_userslist").empty();
     }
     $("#Report").change(function () {
-        var selectedOption = $(this).val();
+        filterIcon.hide();
+        selectedOption = $(this).val();
         var reportTitle;
         // To show the name in the jsp report name
         if (selectedOption === "intakeReport1") {
@@ -70,13 +75,13 @@ $(document).ready(function () {
             reportTitle = "Report "
         }
         $("#cd-header").text(reportTitle);
+        $('#cd-header').append(filterIcon);
         clearTable();
         ajaxcall(selectedOption,1);
-
     });
 
     $("#submitSearch").on("click", function () {
-        $("#ExitSearch").show();
+        filterIcon.show();
         // Get the selected values from the first dropdown, second dropdown, and input field
         selectedColumn = $("#SearchOptions").val();
         secondSelectedColumn = $("#SecondSearchOptions").val(); // Add this line
@@ -192,34 +197,62 @@ function updatePaginationReport(totalRecords, currentPage) {
         }
     }
 
+//
+// function RecordAppendRowFunction(data) {
+//     if (data.length > 0) {
+//         var headers = Object.keys(data[0]);
+//
+//         // Add table headers
+//         var headerRow = "<thead>" + "<tr>";
+//         $.each(headers, function (index, header) {
+//             headerRow += "<th style='color: black; font-weight: bold;'>";
+//             headerRow += header;
+//           //  headerRow += `<i class="fa fa-search search-Icon" data-column="${header}" data-placeholder="Search ${header}" data-title="${header}"></i>`;
+//             headerRow += "</th>";
+//         });
+//         headerRow += "</tr>" + "</thead>";
+//         $("#admin_userslist").append(headerRow);
+//
+//         $.each(data, function (key, value) {
+//             var row = "<tbody>" + "<tr>";
+//             $.each(headers, function (index, header) {
+//                 row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for='' style='color: dimgrey;'>" + value[header] + "</label></td>";
+//             });
+//             row += "</tr>" + "</tbody>";
+//
+//             $("#admin_userslist").append(row);
+//         });
+//
+//     }
+// }
 
-function RecordAppendRowFunction(data) {
-    if (data.length > 0) {
-        var headers = Object.keys(data[0]);
+    function RecordAppendRowFunction(data) {
+        if (data.length > 0) {
+            var headers = Object.keys(data[0]);
 
-        // Add table headers
-        var headerRow = "<thead>" + "<tr>";
-        $.each(headers, function (index, header) {
-            headerRow += "<th style='color: black; font-weight: bold;'>";
-            headerRow += header;
-          //  headerRow += `<i class="fa fa-search search-Icon" data-column="${header}" data-placeholder="Search ${header}" data-title="${header}"></i>`;
-            headerRow += "</th>";
-        });
-        headerRow += "</tr>" + "</thead>";
-        $("#admin_userslist").append(headerRow);
-
-        $.each(data, function (key, value) {
-            var row = "<tbody>" + "<tr>";
+            // Add table headers
+            var headerRow = "<thead>" + "<tr>";
             $.each(headers, function (index, header) {
-                row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for='' style='color: dimgrey;'>" + value[header] + "</label></td>";
+                headerRow += "<th style='color: black; font-weight: bold;'>";
+                headerRow += header;
+                headerRow += "</th>";
             });
-            row += "</tr>" + "</tbody>";
+            headerRow += "</tr>" + "</thead>";
+            $("#admin_userslist").append(headerRow);
 
-            $("#admin_userslist").append(row);
-        });
+            $.each(data, function (key, value) {
+                var row = "<tbody>" + "<tr>";
+                $.each(headers, function (index, header) {
+                    // Check if the value is undefined, replace it with an empty string
+                    var cellValue = value[header] !== undefined ? value[header] : '';
+                    row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for='' style='color: dimgrey;'>" + cellValue + "</label></td>";
+                });
+                row += "</tr>" + "</tbody>";
 
+                $("#admin_userslist").append(row);
+            });
+        }
     }
-}
 
     function reportAdvanceSearchData(selectedReport,selectedColumns,searchValue,condition,maxRows,page){
         $.ajax({
@@ -356,6 +389,23 @@ function RecordAppendRowFunction(data) {
             $('#SearchOptions').trigger('change');
         });
     }
+    // $("#ExitSearch").click(function() {
+    //     console.log("trigredd")
+    //     // Redirect to another page when the icon is clicked
+    //        ajaxcall(selectedOption,1)
+    // });
+    $("#ExitSearch").click(function() {
+        // Reset back to the same report by making an AJAX call
+        ajaxcall("intakeReport2", currentPage);
+
+        // Optionally, you can also reset other search-related variables if needed
+        isSearching = false;
+        selectedColumns = [];
+        // Reset any other variables as needed
+
+        // Hide the filter icon again if needed
+        filterIcon.hide();
+    });
 
 });
 
