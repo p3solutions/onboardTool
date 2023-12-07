@@ -392,12 +392,13 @@ function updatePaginationReport(totalRecords, currentPage) {
 
     $("#ExitSearch").click(function() {
         // Reset back to the same report by making an AJAX call
-        ajaxcall("intakeReport2", currentPage);
+        console.log("exit search button clicked");
+        ajaxcall(currentReport, currentPage);
 
         // Optionally, you can also reset other search-related variables if needed
         isSearching = false;
         selectedColumns = [];
-        selectedOption =
+        selectedOption = currentReport;
 
         filterIcon.hide();
     });
