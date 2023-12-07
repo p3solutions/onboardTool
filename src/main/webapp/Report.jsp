@@ -245,12 +245,13 @@
         padding-top: 20px;
         transition: width 2s, height 2s, transform 2s;
     }
+
 </style>
 <body>
 
 
 <%@include file="Nav-Bar.jspf" %>
-<nav class="nav nav-down" id="bg-color">
+<nav id="bg-color" style=" height: 90px;">
     <div class="container-fluid" id="container-fluid">
         <div class="row" id="d3s-mt-20">
             <div class="col-lg-12 col-md-12">
@@ -265,8 +266,8 @@
             </div>
                 <div class="row col-sm-2" style="margin-left: 30% ; width: auto;">
                     <div class="col-lg-12" id="input-align-top"  style=" width: auto;">
-                        <label class="col-form-label" id="title">Report</label>
-                        <select class="form-select align-right selectInput filter" aria-label="Default select example" id="Report" style=" width: auto;margin-top: 28px;" >
+                        <label class="col-form-label" id="title" style="margin-top: 28px">Report</label>
+                        <select class="form-select align-right selectInput filter" aria-label="Default select example" id="Report" style=" width: auto;margin-top: 28px; margin-left: 10px" >
                             <option class='options' value="intakeReport1">Intake Report 1</option>
                             <option class='options' value="intakeReport2">Intake Report 2</option>
                             <option class='options' value="intakeReport3">Intake Report 3</option>

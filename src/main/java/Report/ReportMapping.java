@@ -10,7 +10,7 @@ public class ReportMapping {
      protected void reportMapping1(ResultSet rs, JsonArray jsonArray) throws SQLException {
         while(rs.next()) {
             JsonObject jsonObj = new JsonObject();
-          //  jsonObj.addProperty("Application_Id",rs.getString(2));
+            jsonObj.addProperty("Application_Id",rs.getString(2));
             jsonObj.addProperty("Application_Name",rs.getString(3));
             jsonObj.addProperty("Application_Status",rs.getString(4));
             jsonObj.addProperty("Phase_Status",rs.getString(5));
@@ -109,7 +109,7 @@ public class ReportMapping {
     protected void reportHeaderMapping1(JsonArray jsonArray)  {
 
             JsonObject jsonObj = new JsonObject();
-         //   jsonObj.addProperty("Application_Id","");
+            jsonObj.addProperty("Application_Id","");
             jsonObj.addProperty("Application_Name","");
             jsonObj.addProperty("Application_Status","");
             jsonObj.addProperty("Phase_Status","");

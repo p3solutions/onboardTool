@@ -72,7 +72,7 @@ $(document).ready(function () {
         } else if (selectedOption === "intakeReport3") {
             reportTitle = "Intake Report 3"
         } else {
-            reportTitle = "Report "
+            reportTitle = "Report"
         }
         $("#cd-header").text(reportTitle);
         $('#cd-header').append(filterIcon);
@@ -389,11 +389,7 @@ function updatePaginationReport(totalRecords, currentPage) {
             $('#SearchOptions').trigger('change');
         });
     }
-    // $("#ExitSearch").click(function() {
-    //     console.log("trigredd")
-    //     // Redirect to another page when the icon is clicked
-    //        ajaxcall(selectedOption,1)
-    // });
+
     $("#ExitSearch").click(function() {
         // Reset back to the same report by making an AJAX call
         ajaxcall("intakeReport2", currentPage);
@@ -401,9 +397,8 @@ function updatePaginationReport(totalRecords, currentPage) {
         // Optionally, you can also reset other search-related variables if needed
         isSearching = false;
         selectedColumns = [];
-        // Reset any other variables as needed
+        selectedOption =
 
-        // Hide the filter icon again if needed
         filterIcon.hide();
     });
 

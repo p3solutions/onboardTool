@@ -320,24 +320,26 @@ public class availabilityOfView {
 
     private void Report3() throws SQLException {
             String sqlViewCreation =
-                    "CREATE VIEW ApplicationDataView3 AS " +
-                            "SELECT " +
-                            "    t1.Id, " +
-                            "    MAX(CASE WHEN t1.column_name = 'legacyappname' THEN t1.value END) AS Application_Name, " +
-                            "    MAX(CASE WHEN t1.column_name = 'srcdb' THEN t1.value END) AS Source_Platform_Databases, " +
-                            "    MAX(CASE WHEN t1.column_name = 'legacyappdesc' THEN t1.value END) AS Legacy_App_Description, " +
-                            "    MAX(CASE WHEN t1.column_name = 'readonly' THEN t1.value END) AS Read_Only_Date, " +
-                            "    MAX(CASE WHEN t1.column_name = 'onlysrcdata' THEN t1.value END) AS Is_Application_The_Only_Source_Of_Truth_For_The_Data, " +
-                            "    MAX(CASE WHEN t1.column_name = 'thirdpartyvendor' THEN t1.value END) AS Legacy_Application_Hosted_Internally_Or_With_Third_Party_Vendor, " +
-                            "    MAX(CASE WHEN t1.column_name = 'totalsize' THEN t1.value END) AS Total_Data_Size, " +
-                            "    MAX(CASE WHEN t2.column_name = 'retentionperiod' THEN t2.value END) AS Retention_Period " +
-                            "FROM " +
-                            "    (SELECT Id, label_name, column_name, value FROM decom3sixtytool.archivereq_legacyapp_info) AS t1 " +
-                            "    LEFT JOIN " +
-                            "    decom3sixtytool.assessment_compliance_char_info t2 ON " +
-                            "    t1.Id = t2.Id " +
-                            "GROUP BY " +
-                            "    t1.Id;";
+                   "CREATE VIEW ApplicationDataView3 AS " +
+                           "SELECT " +
+                           "    t1.Id, " +
+                           "    MAX(CASE WHEN t1.column_name = 'legacyappname' THEN t1.value END) AS Application_Name," +
+                           "    MAX(CASE WHEN t1.column_name = 'srcdb' THEN t1.value END) AS Source_Platform_Databases," +
+                           "    MAX(CASE WHEN t1.column_name = 'legacyappdesc' THEN t1.value END) AS Legacy_App_Description," +
+                           "    MAX(CASE WHEN t1.column_name = 'readonly' THEN t1.value END) AS Read_Only_Date," +
+                           "    MAX(CASE WHEN t1.column_name = 'onlysrcdata' THEN t1.value END) AS Is_Application_The_Only_Source_Of_Truth_For_The_Data," +
+                           "    MAX(CASE WHEN t1.column_name = 'thirdpartyvendor' THEN t1.value END) AS Legacy_Application_Hosted_Internally_Or_With_Third_Party_Vendor," +
+                           "    MAX(CASE WHEN t1.column_name = 'totalsize' THEN t1.value END) AS Total_Data_Size," +
+                           "    MAX(CASE WHEN t2.column_name = 'retentionperiod' THEN t2.value END) AS Retention_Period " +
+                           "FROM " +
+                           "    (SELECT Id, label_name, column_name, value FROM decom3sixtytool.archivereq_legacyapp_info) AS t1 " +
+                           "LEFT JOIN " +
+                           "    decom3sixtytool.assessment_compliance_char_info t2 ON " +
+                           "    t1.Id = t2.Id " +
+                           "WHERE " +
+                           "    t1.Id IS NOT NULL " +
+                           "GROUP BY" +
+                           "    t1.Id;";
 
 
             Statement viewStatement = connection.createStatement();
