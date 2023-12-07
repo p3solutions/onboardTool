@@ -10,9 +10,42 @@ import com.google.gson.JsonObject;
 
 import onboard.DBconnection;
 
-public class IntakeReportService {
+public class ReportSearchService {
 
-	public JsonObject fetchDataForIntakeReport1(String page, String maxRows) throws SQLException {
+    public JsonObject reportcolumnname(String reportName) throws SQLException{
+        JsonArray jsonArray = new JsonArray();
+
+        try {
+        	DBconnection dBconnection = new DBconnection();
+            Connection connection = (Connection) dBconnection.getConnection();
+            System.out.println("Connected...");
+
+            String query = "DESC " + reportName.toLowerCase() + ";";
+            
+            try (PreparedStatement st = connection.prepareStatement(query);
+                 ResultSet rs = st.executeQuery()) {
+
+                while (rs.next()) {
+                    JsonObject jsonObj = new JsonObject();
+                    jsonObj.addProperty("Field", rs.getString(1));
+                    jsonArray.add(jsonObj);
+                }
+                rs.close();
+                st.close();
+            } 
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        JsonObject result = new JsonObject();
+        result.add("data", jsonArray);
+
+        System.out.println("JSON Service Pagination: " + result);
+        return result;
+    }
+
+	public JsonObject fetchDataForIntakeReport1(String page, String maxRows, String searchValue, String columnName) throws SQLException {
 		PreparedStatement st = null, st1 =null;
         ResultSet rs = null, rs1 = null;
         int totalCount = 0;
@@ -27,11 +60,11 @@ public class IntakeReportService {
             
             int start = (Page - 1) * MaxRows;
             
-            String query = "SELECT * FROM decom3sixtytool.IntakeReport1 LIMIT ?, ?";
+            String query = "SELECT * FROM decom3sixtytool.IntakeReport1 where "+columnName+" like ? LIMIT ?,?;";
             st = connection.prepareStatement(query);
-            st.setInt(1, start);
-            st.setInt(2, MaxRows);
-
+            st.setString(1, "%"+searchValue+"%");
+            st.setInt(2, start);
+            st.setInt(3, MaxRows);
             rs = st.executeQuery();
 
             while (rs.next()) {
@@ -62,8 +95,9 @@ public class IntakeReportService {
                 jsonArray.add(jsonObj);
             }
           
-            String countQuery = "SELECT COUNT(*) AS total FROM decom3sixtytool.IntakeReport1";
+            String countQuery = "SELECT COUNT("+columnName+") AS total FROM decom3sixtytool.IntakeReport1 Where "+columnName+" Like ?";
             st1 = connection.prepareStatement(countQuery);
+            st1.setString(1, "%"+searchValue+"%");
             rs1 = st1.executeQuery();
             if (rs1.next()) {
                 totalCount = rs1.getInt("total");
@@ -79,11 +113,11 @@ public class IntakeReportService {
         result.addProperty("total", totalCount);
         result.add("data", jsonArray);
 
-        System.out.println("JSON Service Pagination : " + result);
+        System.out.println("JSON Search Service Pagination : " + result);
         return result;
 	}
 
-	public JsonObject fetchDataForIntakeReport2(String page, String maxRows) throws SQLException {
+	public JsonObject fetchDataForIntakeReport2(String page, String maxRows, String searchValue, String columnName) throws SQLException {
 		PreparedStatement st = null, st1 =null;
         ResultSet rs = null, rs1 = null;
         int totalCount = 0;
@@ -98,11 +132,11 @@ public class IntakeReportService {
             
             int start = (Page - 1) * MaxRows;
             
-            String query = "SELECT * FROM decom3sixtytool.IntakeReport2 LIMIT ?, ?";
+            String query = "SELECT * FROM decom3sixtytool.IntakeReport2 where "+columnName+" like ? LIMIT ?,?;";
             st = connection.prepareStatement(query);
-            st.setInt(1, start);
-            st.setInt(2, MaxRows);
-
+            st.setString(1, "%"+searchValue+"%");
+            st.setInt(2, start);
+            st.setInt(3, MaxRows);
             rs = st.executeQuery();
 
             while (rs.next()) {
@@ -130,8 +164,9 @@ public class IntakeReportService {
                 jsonArray.add(jsonObj);
             }
           
-            String countQuery = "SELECT COUNT(*) AS total FROM decom3sixtytool.IntakeReport2";
+            String countQuery = "SELECT COUNT("+columnName+") AS total FROM decom3sixtytool.IntakeReport2 Where "+columnName+" Like ?";
             st1 = connection.prepareStatement(countQuery);
+            st1.setString(1, "%"+searchValue+"%");
             rs1 = st1.executeQuery();
             if (rs1.next()) {
                 totalCount = rs1.getInt("total");
@@ -143,15 +178,16 @@ public class IntakeReportService {
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+       
         JsonObject result = new JsonObject();
         result.addProperty("total", totalCount);
         result.add("data", jsonArray);
 
-        System.out.println("JSON Service Pagination : " + result);
+        System.out.println("JSON Search Service Pagination : " + result);
         return result;
 	}
 
-	public JsonObject fetchDataForIntakeReport3(String page, String maxRows) throws SQLException {
+	public JsonObject fetchDataForIntakeReport3(String page, String maxRows, String searchValue, String columnName) throws SQLException {
 		PreparedStatement st = null, st1 =null;
         ResultSet rs = null, rs1 = null;
         int totalCount = 0;
@@ -166,11 +202,11 @@ public class IntakeReportService {
             
             int start = (Page - 1) * MaxRows;
             
-            String query = "SELECT * FROM decom3sixtytool.IntakeReport3 LIMIT ?, ?";
+            String query = "SELECT * FROM decom3sixtytool.IntakeReport3 where "+columnName+" like ? LIMIT ?,?;";
             st = connection.prepareStatement(query);
-            st.setInt(1, start);
-            st.setInt(2, MaxRows);
-
+            st.setString(1, "%"+searchValue+"%");
+            st.setInt(2, start);
+            st.setInt(3, MaxRows);
             rs = st.executeQuery();
 
             while (rs.next()) {
@@ -186,8 +222,9 @@ public class IntakeReportService {
                 jsonArray.add(jsonObj);
             }
           
-            String countQuery = "SELECT COUNT(*) AS total FROM decom3sixtytool.IntakeReport3";
+            String countQuery = "SELECT COUNT("+columnName+") AS total FROM decom3sixtytool.IntakeReport3 Where "+columnName+" Like ?";
             st1 = connection.prepareStatement(countQuery);
+            st1.setString(1, "%"+searchValue+"%");
             rs1 = st1.executeQuery();
             if (rs1.next()) {
                 totalCount = rs1.getInt("total");
@@ -199,15 +236,11 @@ public class IntakeReportService {
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        
         JsonObject result = new JsonObject();
         result.addProperty("total", totalCount);
         result.add("data", jsonArray);
 
-        System.out.println("JSON Service Pagination : " + result);
+        System.out.println("JSON Search Service Pagination : " + result);
         return result;
 	}
-
-
 }
-    

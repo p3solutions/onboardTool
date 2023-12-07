@@ -6,6 +6,14 @@ var pageNum = null;
 
 function showSearchPopup() {
 	console.log("The  values");
+	  var column = document.getElementById("Column");
+	column.classList.remove("hidden");
+	  var columnName = document.getElementById("columnName");
+	columnName.classList.remove("hidden");
+    var searchValueInput = document.getElementById("searchValue");
+    var searchValueLabel = document.getElementById("searchValueLabel");
+   searchValueLabel .classList.add("hidden");
+    searchValueInput.classList.add("hidden");
     var popup = document.getElementById('searchPopup');
     var overlaySearch = document.getElementById('overlaySearch');
     popup.classList.add('active');
@@ -20,7 +28,7 @@ function validateForm(event) {
     
     const columnName = document.getElementById('columnName').value;
     const searchValue = document.getElementById('searchValue').value;
-const Operator=document.getElementById('Operator').value;
+
     const showError = (message) => {
         notification("warning", message, "Warning:");
         return false;
@@ -51,7 +59,7 @@ const Operator=document.getElementById('Operator').value;
     if (isValid()) {
 		gcolname = columnName;
 		gsvalue = searchValue;
-        fetchsearchvalue(columnName,Operator, searchValue, pageNum);
+        fetchsearchvalue(columnName, searchValue, pageNum);
         closeSearchPopup();
         searchflag = true;
 		sendsearchfunctionvalue(searchflag);
@@ -121,7 +129,7 @@ function fetchsearchvalue(columnName,Operator,searchValue,pageNum){
 	    $.ajax({
         url: "TableDetailsSearchServlet",
         type: 'POST',
-        data: { columnName:columnName,Operator:Operator,searchValue:searchValue,page :pageNum, maxRows:maxRows }, // Convert data to JSON string
+        data: { columnName:columnName,searchValue:searchValue,page :pageNum, maxRows:maxRows }, // Convert data to JSON string
         dataType: "json",
         beforeSend: function () {
             $('#overlay').show();
@@ -227,7 +235,7 @@ function searchappendRowFunction(data) {
 function cleardropdown() {
     var dropdown = $('#columnName');
     dropdown.empty();
-    dropdown.append('<option value="null">--Select--</option>');
+    dropdown.append('<option value="null" selected>--Select--</option>');
 }
 
 
@@ -249,25 +257,25 @@ console.log("Dropdown ",dropdown)
 }
 
 function toggleSearchValueField() {
-    console.log("toggle");
-    var columnNameSelect = null;
-    var searchValueInput = null;
-    var columnType = 'text';
-    columnNameSelect = document.getElementById("columnName");
-    searchValueInput = null;
+	
+    var columnNameSelect = document.getElementById("columnName");
+    var searchValueInput = document.getElementById("searchValue");
     var searchValueLabel = document.getElementById("searchValueLabel");
-    searchValueInput = document.getElementById("searchValue");
 
     // Clear any existing date picker when the column is changed
     clearDatePicker(searchValueInput);
+
+    // Hide Add button, radio buttons, and search value fields initially
+    hideAddButton();
+    hideRadioButtons();
+    hideSearchValueField();
 
     if (columnNameSelect.value !== null && columnNameSelect.value !== "null") {
         searchValueLabel.classList.remove("hidden");
 
         var columnType = getColumnType(columnNameSelect.value);
-        console.log("columnType Hi :", columnType);
 
-        if (columnType === 'date' || columnNameSelect.value === 'Contract_Date') {
+        if (columnType === 'date' || columnNameSelect.value === 'Contract_End_Date') {
             // If the column type is 'date' or the column name is 'Contract_Date'
             searchValueInput.setAttribute("type", "text");
             searchValueInput.setAttribute("placeholder", "Select a date");
@@ -275,20 +283,89 @@ function toggleSearchValueField() {
         } else if (columnType === 'number') {
             searchValueInput.setAttribute("type", "number");
             searchValueInput.setAttribute("placeholder", "");
-            console.log("Placeholder in number");
         } else if (columnType === 'text') {
             searchValueInput.setAttribute("type", "text");
             searchValueInput.setAttribute("placeholder", "");
-            console.log("Placeholder in Text");
-        } else {
-            // Handle other types if needed
         }
 
         searchValueInput.classList.remove("hidden");
+
+      
+        toggleAddButton(columnType);
     } else {
         searchValueLabel.classList.add("hidden");
         searchValueInput.classList.add("hidden");
+
+       
+        hideRadioButtons();
+        hideAddButton();
     }
+}
+
+function toggleAddButton(columnType) {
+    console.log("Function called");
+    var addButton = document.getElementById("addButton");
+
+  
+    if (columnType === 'number' || columnType === 'date' || columnType === 'text') {
+        addButton.classList.remove("hidden");
+    } else {
+      
+        hideAddButton();
+    }
+
+   
+    addButton.addEventListener("click", function () {
+
+        toggleRadioButton(columnType);
+              
+      
+    });
+}
+
+function toggleRadioButton(columnType) {
+    var andRadio = document.getElementById("andRadio");
+    var  orRadio = document.getElementById("orRadio");
+   var andLabel= document.getElementById("andLabel");
+    var orLabel = document.getElementById("orLabel");
+ var column = document.getElementById("Column");
+	column.append();
+    if (columnType === 'number' || columnType === 'date'||columnType === 'text' ) {
+       andLabel.classList.remove("hidden");
+        andRadio.classList.remove("hidden");
+         orLabel.classList.remove("hidden");
+        orRadio.classList.remove("hidden");
+       
+    } else {
+        // Hide radio buttons and Add button if the column type is not 'number' or 'date'
+        hideRadioButtons();
+      
+    }
+}
+
+function hideAddButton() {
+    var addButton = document.getElementById("addButton");
+    addButton.classList.add("hidden");
+}
+
+function hideRadioButtons() {
+    var andRadio = document.getElementById("andRadio");
+    var orRadio = document.getElementById("orRadio");
+     var andLabel = document.getElementById("andLabel");
+    var orLabel = document.getElementById("orLabel");
+    
+    andRadio.classList.add("hidden");
+    orRadio.classList.add("hidden");
+     andLabel.classList.add("hidden");
+    orLabel.classList.add("hidden");
+}
+
+function hideSearchValueField() {
+    var searchValueLabel = document.getElementById("searchValueLabel");
+    var searchValueInput = document.getElementById("searchValue");
+
+    searchValueLabel.classList.add("hidden");
+    searchValueInput.classList.add("hidden");
 }
 
 function attachDatePicker(inputElement) {
@@ -307,13 +384,22 @@ function getColumnType(columnName) {
     // Mapping column names to data types\
 
     const columnTypeMap = {
+		'':'',
 	'Project_Number':'number',
-	'CBA':'number',
+	'Phase':'text',
+	'Application_Name':'text',
+	'Software_and_Licensing	':'text',
+	'Cost Savings($)':'number',
+	'Contract_Date':'date',
+	'Comments':'text',
+	'scope_of_infrastructure':'text',
+	'infrastructure_Cost_Savings	':'number',
+	'Cost_Avoidance':'number',
 	'Cost_of_Archive':'number',
-        'Contract_Date': 'date',
-        'Cost_Avoidance': 'number',
-        'infrastructure_Cost_Savings': 'number',
-        'Cost_Avoidance': 'date'
+	'Total CBA':'number',
+	'Funding_approval':'text',
+	'Funding_type':'text',
+	'Status':'number'
     };
 
     const trimmedColumnName = columnName.trim();

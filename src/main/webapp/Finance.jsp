@@ -373,9 +373,9 @@ rotate(
         			<br>
         			<div class="form-container">
     					<form id="searchForm" onsubmit="return validateForm(event)">
-       						 <div class="label-dropdown-container">
-            					<label for="columnName" class="form-label">Column Name:</label> &nbsp;&nbsp;&nbsp;
-            					<select id="columnName" onchange="toggleSearchValueField()" class="form-dropdown">
+       						 <div class= "label-dropdown-container">
+            					<label for="columnName"  id="Column" class="hidden" class="form-label">Column Name:</label> &nbsp;&nbsp;&nbsp;
+            					<select id="columnName" onchange="toggleSearchValueField()" class="form-dropdown" class="hidden">
             					</select>
         					</div>
 
@@ -383,15 +383,23 @@ rotate(
     					<label for="searchValue" id="searchValueLabel" class="form-label">Search Value:</label>
     						<input type="text" id="searchValue" class="form-input">
 					</div>
-	<INPUT TYPE="radio"  id="Operator"value="And">And &nbsp;<INPUT TYPE="radio" id="Operator" VALUE="OR">Or<BR>
+	<label id="andLabel" class="hidden">AND</label><INPUT TYPE="radio" id="andRadio" value="And"   class="hidden" And>
+<label id="orLabel" class="hidden">OR</label>
+<INPUT TYPE="radio" id="orRadio" value="OR" class="hidden">
+
+<BR>
         			<div class="button-container">
             			<input type="submit" value="Search" class="form-button">
+            			<button type="button" id="addButton" onclick="Add" class="hidden"class="form-button">Add</button>
             			<button type="button" onclick="closeSearchPopup()" class="form-button">Cancel</button>
         			</div>
     			</form>
 				</div>
    				</div>
-   				</div> 
+   				</div>
+   				
+   				
+   				 
 			</div>
   
 			

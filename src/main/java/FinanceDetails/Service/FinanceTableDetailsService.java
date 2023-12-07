@@ -28,20 +28,20 @@ public class FinanceTableDetailsService {
             while(rs.next())
             {
             JsonObject jsonObj = new JsonObject();
-            jsonObj.addProperty("Project_Number",rs.getString(1));
+            jsonObj.addProperty("Project Number",rs.getString(1));
             jsonObj.addProperty("Phase",rs.getString(2));
-            jsonObj.addProperty("Application_Name",rs.getString(3));
-            jsonObj.addProperty("Software_and_Licensing",rs.getString(4));
+            jsonObj.addProperty("Application Name",rs.getString(3));
+            jsonObj.addProperty("Software and Licensing",rs.getString(4));
             jsonObj.addProperty("Cost Savings($)",rs.getString(5));
-            jsonObj.addProperty("Contract_Date",rs.getString(6));
+            jsonObj.addProperty("Contract Date",rs.getString(6));
             jsonObj.addProperty("Comments",rs.getString(7));
-            jsonObj.addProperty("scope_of_infrastructure",rs.getString(8));
-            jsonObj.addProperty("infrastructure_Cost_Savings",rs.getString(9));
-            jsonObj.addProperty("Cost_Avoidance",rs.getString(10));
-            jsonObj.addProperty("Cost_of_Archive",rs.getString(11));
+            jsonObj.addProperty("scope of infrastructure",rs.getString(8));
+            jsonObj.addProperty("infrastructure Cost Savings",rs.getString(9));
+            jsonObj.addProperty("Cost Avoidance",rs.getString(10));
+            jsonObj.addProperty("Cost of Archive",rs.getString(11));
             jsonObj.addProperty("Total CBA",rs.getString(12));
-            jsonObj.addProperty("Funding_approval",rs.getString(13));
-            jsonObj.addProperty("Funding_type",rs.getString(14));
+            jsonObj.addProperty("Funding Approval",rs.getString(13));
+            jsonObj.addProperty("Funding type",rs.getString(14));
             jsonObj.addProperty("Status",rs.getString(15));
             jsonObj.addProperty("Id",rs.getString(16));
             jsonArray.add(jsonObj);
