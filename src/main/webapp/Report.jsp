@@ -280,7 +280,7 @@
 
 <div class="col-lg- left-side" style="margin: 29px 0 0 90px;">
     <button type="button" class="btn btn-primary pull-right "  style="margin-right: 100px;" id="exportButton" data-bs-toggle="modal" data-bs-target="#exportModal">Export</button>
-    <button type="button" class="btn btn-primary pull-left" id="searchToggleButton" data-bs-toggle="modal" data-bs-target="#searchModal" style="margin-left: 10px;">Search</button>
+    <button type="button" class="btn btn-primary pull-left" id="searchToggleButton" data-bs-toggle="modal" data-bs-target="#searchModal" style="margin-left: 10px;">Filter</button>
 </div>
 <div class="card-container-5 card d3s-mt-50">
     <div class="card-header d3s-pl-15" id="cd-header"></div>

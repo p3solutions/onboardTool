@@ -244,7 +244,7 @@ public class availabilityOfView {
                 "    assessment.Application_Details AS Application_Details," +
                 "    assessment.Target_Date AS Target_Date," +
                 "    assessment.Readonly_Date AS Readonly_Date," +
-                "    assessment_data.Database_Type AS  Database_type," +
+                "    assessment_data.Database_Type AS  Database_Type," +
                 "    assessment_data.Data_Type_Characteristics AS Data_Type_Characteristics," +
                 "    assessment_data.Structured_Data_Database_size_of_the_Application AS Structured_Data_In_GB," +
                 "    assessment_data.Structured_Data_Number_of_tables AS Structured_Data_Number_of_tables," +
@@ -323,14 +323,14 @@ public class availabilityOfView {
                     "CREATE VIEW ApplicationDataView3 AS " +
                             "SELECT " +
                             "    t1.Id, " +
-                            "    MAX(CASE WHEN t1.column_name = 'legacyappname' THEN t1.value END) AS LegacyAppName, " +
-                            "    MAX(CASE WHEN t1.column_name = 'srcdb' THEN t1.value END) AS SourcePlatformDatabases, " +
-                            "    MAX(CASE WHEN t1.column_name = 'legacyappdesc' THEN t1.value END) AS LegacyAppDescription, " +
-                            "    MAX(CASE WHEN t1.column_name = 'readonly' THEN t1.value END) AS readonlydate, " +
-                            "    MAX(CASE WHEN t1.column_name = 'onlysrcdata' THEN t1.value END) AS Isapplicationtheonlysourceoftruthforthedata, " +
-                            "    MAX(CASE WHEN t1.column_name = 'thirdpartyvendor' THEN t1.value END) AS Isthelegacyapplicationhostedinternallyorwithanthirdpartyvendor, " +
-                            "    MAX(CASE WHEN t1.column_name = 'totalsize' THEN t1.value END) AS totaldatasize, " +
-                            "    MAX(CASE WHEN t2.column_name = 'retentionperiod' THEN t2.value END) AS RetentionPeriod " +
+                            "    MAX(CASE WHEN t1.column_name = 'legacyappname' THEN t1.value END) AS Application_Name, " +
+                            "    MAX(CASE WHEN t1.column_name = 'srcdb' THEN t1.value END) AS Source_Platform_Databases, " +
+                            "    MAX(CASE WHEN t1.column_name = 'legacyappdesc' THEN t1.value END) AS Legacy_App_Description, " +
+                            "    MAX(CASE WHEN t1.column_name = 'readonly' THEN t1.value END) AS Read_Only_Date, " +
+                            "    MAX(CASE WHEN t1.column_name = 'onlysrcdata' THEN t1.value END) AS Is_Application_The_Only_Source_Of_Truth_For_The_Data, " +
+                            "    MAX(CASE WHEN t1.column_name = 'thirdpartyvendor' THEN t1.value END) AS Legacy_Application_Hosted_Internally_Or_With_Third_Party_Vendor, " +
+                            "    MAX(CASE WHEN t1.column_name = 'totalsize' THEN t1.value END) AS Total_Data_Size, " +
+                            "    MAX(CASE WHEN t2.column_name = 'retentionperiod' THEN t2.value END) AS Retention_Period " +
                             "FROM " +
                             "    (SELECT Id, label_name, column_name, value FROM decom3sixtytool.archivereq_legacyapp_info) AS t1 " +
                             "    LEFT JOIN " +
