@@ -434,7 +434,7 @@
 <script type="text/javascript" src="js/reportJs/ReportDynamic.js"></script>
 <script type="text/javascript" src="js/reportJs/Download.js"></script>
 <script type="text/javascript" src="js/reportJs/ExportToCSV.js"></script>
-
+<script src="js/navigation/navigation.js"></script>
 <!-- ========== Pagination ========== -->
 
 <!-- ========== BootstrapV5 ========== -->
