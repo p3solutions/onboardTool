@@ -160,9 +160,9 @@ function addAjaxCall(app_name,proj_name,label_name,type,mandatory,num,options,um
 
 
             if(checkNotify)
-                notification("success","Field is added successfully to Archive Requirements.","Note");
+                notification("success","Field is added successfully to Finance Requirements.","Note");
             else
-                notification("error","Field not added to Archive Requirements.","Error");
+                notification("error","Field not added to Finance Requirements.","Error");
         },
 
 

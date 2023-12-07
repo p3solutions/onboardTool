@@ -24,14 +24,14 @@ $('#LegacyEditSubmit').click(function(){
                     $("#LegacyLabelModify").val("");
                     $("#LegacyEditClose").click();
                     $('.hidepencil').hide();
-                    notification("success","Selected field is edited successfully in Archive Application Info.","Note : ");
+                    notification("success","Selected field is edited successfully in Finance Application Info.","Note : ");
                     //$('#Record_No').val(data.RandomNumber);
                 }
                 else{
                     if(!data.checkDuplicate)
-                        notification("warning","Label name already exist in Archive Application Info.","Warning : ");
+                        notification("warning","Label name already exist in Finance Application Info.","Warning : ");
                     else if(!data.checkEditStatus)
-                        notification("error","Problem occured while editing in Archive Application Info.","Error : ");
+                        notification("error","Problem occurred while editing in Finance Application Info.","Error : ");
                 }
             },
             error: function (e) {
@@ -88,11 +88,11 @@ function ArchiveLegacyDeleteAjax(Seq_Num)
                     }
 
                 }
-                notification("success","Selected field is deleted successfully in Archive Application Info.","Note : ");
+                notification("success","Selected field is deleted successfully in Finance Application Info.","Note : ");
 
             }
             else
-                notification("error","Problem occured while deleting in Archive Application Info.","Error : ");
+                notification("error","Problem occurred while deleting in Finance Application Info.","Error : ");
             $("#LegacyDeleteClose").click();
             $('.hidedelete').hide();
 

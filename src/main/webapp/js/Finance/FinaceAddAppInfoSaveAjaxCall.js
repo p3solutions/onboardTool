@@ -107,7 +107,7 @@ $("#legacyAppInfoSave").click(function(e)
         archiveLegacyAppInfoAjaxCallUpdate(JsonString,checkMandatory,e);
     }
     else{
-        notification("warning","Please fill the mandatory fields in Archive Application Info.","Warning : ");
+        notification("warning","Please fill the mandatory fields in Finance Application Info.","Warning : ");
         e.preventDefault();
     }
     document.getElementById("next").disabled = false;
@@ -127,11 +127,11 @@ function archiveLegacyAppInfoAjaxCallUpdate(JsonString,checkMandatory,e)
             document.getElementById("complete").disabled = false;
             console.log("CREATE VALIDATION",data);
             if(data.checkSaveStatus){
-                notification("success","Saved Successfully in Archive Application Info.","Note : ");
+                notification("success","Saved Successfully in Finance Application Info.","Note : ");
                 document.getElementById("saveEnvmntName").disabled = false;
             }
             else
-                notification("error","Problem occured while saving in Archive Application Info.","Error : ");
+                notification("error","Problem occurred while saving in Finance Application Info.","Error : ");
             JsonObject = data;
         },
         error: function (e) {

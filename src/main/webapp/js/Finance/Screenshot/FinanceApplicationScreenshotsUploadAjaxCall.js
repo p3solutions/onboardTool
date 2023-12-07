@@ -29,7 +29,7 @@ $("#UploadFiles").click(function(){
                 $("#UploadFiles").attr('disabled',true);
             }
             else
-                notification("error","Problem occured while file uploading.","Error:");
+                notification("error","Problem occurred while file uploading.","Error:");
         }
     });
 });
