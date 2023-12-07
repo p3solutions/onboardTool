@@ -60,6 +60,9 @@ function switchActiveModule() {
 		case "Finance.jsp":
 			selectiveActiveIcon(3);
 			break;
+		case "Report.jsp":
+			selectiveActiveIcon(2);
+			break;
 	}
 }
 

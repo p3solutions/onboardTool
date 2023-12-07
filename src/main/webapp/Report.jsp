@@ -282,6 +282,8 @@
 <div class="col-lg- left-side" style="margin: 29px 0 0 90px;">
     <button type="button" class="btn btn-primary pull-right "  style="margin-right: 100px;" id="exportButton" data-bs-toggle="modal" data-bs-target="#exportModal">Export</button>
     <button type="button" class="btn btn-primary pull-left" id="searchToggleButton" data-bs-toggle="modal" data-bs-target="#searchModal" style="margin-left: 10px;">Filter</button>
+    <a href="Report.jsp" > <button type="button" id="ExitSearch" class="btn btn-primary pull-left" style="margin-left: 10px; font-size: 14px;" > Exit Search</button></a>
+
 </div>
 <div class="card-container-5 card d3s-mt-50">
     <div class="card-header d3s-pl-15" id="cd-header"></div>
@@ -390,6 +392,12 @@
 
 
 <%--Show select tag dynamic --%>
+<script>
+    // $("#ExitSearch").click(function() {
+    //     // Reset back to the same report by making an AJAX call
+    //     window.location.href = "Report.jsp";
+    // });
+</script>
 <script>
     var select1 = document.getElementById("Report");
     var select2 = document.getElementById("maxRows");

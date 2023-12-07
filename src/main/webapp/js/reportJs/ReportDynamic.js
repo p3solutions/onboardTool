@@ -4,6 +4,7 @@ $(document).ready(function () {
     ReportSearchDropdown();
     var filterIcon = $('<span>').addClass('glyphicon glyphicon-filter').attr('id', 'ExitSearch');
     filterIcon.css('display', 'none');
+    $("#ExitSearch").hide();
 
     var selectedOption = "intakeReport1";
     var currentReport = "intakeReport1";
@@ -35,6 +36,7 @@ $(document).ready(function () {
             currentPage = 1;
             reportAdvanceSearchData(currentReport,tempColumnArray,tempSearchValue,tempCondition,maxRow,currentPage);
         } else {
+            $("#ExitSearch").hide();
             currentPage = 1;
             ajaxcall(currentReport, currentPage);
         }
@@ -52,6 +54,7 @@ $(document).ready(function () {
         if (isSearching) {
            reportAdvanceSearchData(currentReport,tempColumnArray,tempSearchValue,tempCondition,$('#maxRows').val(),currentPage);
         } else {
+            $("#ExitSearch").hide();
             ajaxcall(currentReport,currentPage);
         }
 
@@ -60,10 +63,35 @@ $(document).ready(function () {
     function clearTable() {
         $("#admin_userslist").empty();
     }
+    // $("#Report").change(function () {
+    //     filterIcon.hide();
+    //     selectedOption = $(this).val();
+    //     var reportTitle;
+    //     // To show the name in the jsp report name
+    //     if (selectedOption === "intakeReport1") {
+    //         reportTitle = "Intake Report 1"
+    //     } else if (selectedOption === "intakeReport2") {
+    //         reportTitle = "Intake Report 2"
+    //     } else if (selectedOption === "intakeReport3") {
+    //         reportTitle = "Intake Report 3"
+    //     } else {
+    //         reportTitle = "Report"
+    //     }
+    //     $("#cd-header").text(reportTitle);
+    //     $('#cd-header').append(filterIcon);
+    //     clearTable();
+    //     ajaxcall(selectedOption,1);
+    // });
+
     $("#Report").change(function () {
+        $("#ExitSearch").hide();
         filterIcon.hide();
         selectedOption = $(this).val();
         var reportTitle;
+
+        // Update currentReport variable
+        currentReport = selectedOption;
+
         // To show the name in the jsp report name
         if (selectedOption === "intakeReport1") {
             reportTitle = "Intake Report 1"
@@ -77,11 +105,13 @@ $(document).ready(function () {
         $("#cd-header").text(reportTitle);
         $('#cd-header').append(filterIcon);
         clearTable();
-        ajaxcall(selectedOption,1);
+        ajaxcall(selectedOption, 1);
     });
 
     $("#submitSearch").on("click", function () {
         filterIcon.show();
+        $("#ExitSearch").show();
+        currentReport =  $("#Report").val();
         // Get the selected values from the first dropdown, second dropdown, and input field
         selectedColumn = $("#SearchOptions").val();
         secondSelectedColumn = $("#SecondSearchOptions").val(); // Add this line
@@ -197,34 +227,6 @@ function updatePaginationReport(totalRecords, currentPage) {
         }
     }
 
-//
-// function RecordAppendRowFunction(data) {
-//     if (data.length > 0) {
-//         var headers = Object.keys(data[0]);
-//
-//         // Add table headers
-//         var headerRow = "<thead>" + "<tr>";
-//         $.each(headers, function (index, header) {
-//             headerRow += "<th style='color: black; font-weight: bold;'>";
-//             headerRow += header;
-//           //  headerRow += `<i class="fa fa-search search-Icon" data-column="${header}" data-placeholder="Search ${header}" data-title="${header}"></i>`;
-//             headerRow += "</th>";
-//         });
-//         headerRow += "</tr>" + "</thead>";
-//         $("#admin_userslist").append(headerRow);
-//
-//         $.each(data, function (key, value) {
-//             var row = "<tbody>" + "<tr>";
-//             $.each(headers, function (index, header) {
-//                 row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for='' style='color: dimgrey;'>" + value[header] + "</label></td>";
-//             });
-//             row += "</tr>" + "</tbody>";
-//
-//             $("#admin_userslist").append(row);
-//         });
-//
-//     }
-// }
 
     function RecordAppendRowFunction(data) {
         if (data.length > 0) {
@@ -281,7 +283,7 @@ function updatePaginationReport(totalRecords, currentPage) {
         });
         selectedColumns = [];
     }
-    function SearchResetForm() {
+    function    SearchResetForm() {
         // Reset the form elements
         document.getElementById('SearchOptions').value = '';
         document.getElementById('SecondSearchOptions').value = '';
@@ -390,18 +392,19 @@ function updatePaginationReport(totalRecords, currentPage) {
         });
     }
 
-    $("#ExitSearch").click(function() {
-        // Reset back to the same report by making an AJAX call
-        console.log("exit search button clicked");
-        ajaxcall(currentReport, currentPage);
+    // $("#ExitSearch").click(function() {
+    //     // Reset back to the same report by making an AJAX call
+    //     console.log("exit search button clicked");
+    //     ajaxcall(currentReport, currentPage);
+    //
+    //     // Optionally, you can also reset other search-related variables if needed
+    //     isSearching = false;
+    //     selectedColumns = [];
+    //     selectedOption = currentReport;
+    //
+    //     filterIcon.hide();
+    // });
 
-        // Optionally, you can also reset other search-related variables if needed
-        isSearching = false;
-        selectedColumns = [];
-        selectedOption = currentReport;
-
-        filterIcon.hide();
-    });
 
 });
 
