@@ -10,20 +10,23 @@ public class FinanceListMapping {
     protected void FinanceMapping(ResultSet rs, JsonArray jsonArray) throws SQLException {
         while (rs.next()) {
             JsonObject jsonObj = new JsonObject();
-            jsonObj.addProperty("ID", rs.getString(1));
-            jsonObj.addProperty("FinanceAppName", rs.getString(2));
-            jsonObj.addProperty("SoftLicense",rs.getString(3));
-            jsonObj.addProperty("ContractDate",rs.getString(4));
-            jsonObj.addProperty("ScopeInfra",rs.getString(5));
-            jsonObj.addProperty("CostAvoidance",rs.getString(6));
-            jsonObj.addProperty("CostArchive",rs.getString(7));
-            jsonObj.addProperty("CBA",rs.getString(8));
-            jsonObj.addProperty("ArchiveTarget",rs.getString(9));
-            jsonObj.addProperty("FundApprove",rs.getString(10));
-            jsonObj.addProperty("FundType",rs.getString(11));
-            jsonObj.addProperty("ProjectNumber",rs.getString(12));
-            jsonObj.addProperty("Status",rs.getString(13));
-            jsonObj.addProperty("ScreenShot",rs.getString(14));
+        //    jsonObj.addProperty("ID", rs.getString(1));
+            jsonObj.addProperty("Application Name", rs.getString(2));
+            jsonObj.addProperty("Project Number",rs.getString(3));
+            jsonObj.addProperty("Phase",rs.getString(4));
+            jsonObj.addProperty("Software and Licensing",rs.getString(5));
+            jsonObj.addProperty("Software and Licensing(cost Saving)",rs.getString(6));
+            jsonObj.addProperty("Contract end date",rs.getString(7));
+            jsonObj.addProperty("Contract end date -comments",rs.getString(8));
+            jsonObj.addProperty("Scope of infrastructure",rs.getString(9));
+            jsonObj.addProperty("Infrastructure Cost Savings",rs.getString(10));
+            jsonObj.addProperty("Cost Avoidance",rs.getString(11));
+            jsonObj.addProperty("Cost Archive",rs.getString(12));
+            jsonObj.addProperty("Total CBA",rs.getString(13));
+            jsonObj.addProperty("Funding approved",rs.getString(14));
+            jsonObj.addProperty("Funding Type",rs.getString(15));
+            jsonObj.addProperty("Status",rs.getString(16));
+            jsonObj.addProperty("ScreenshotFileName",rs.getString(17));
             jsonArray.add(jsonObj);
         }
         int arraySize = jsonArray.size();
@@ -37,20 +40,22 @@ public class FinanceListMapping {
     }
     protected void FinanceMappingHeader(JsonArray jsonArray) throws SQLException {
             JsonObject jsonObj = new JsonObject();
-            jsonObj.addProperty("ID","");
-            jsonObj.addProperty("FinanceAppName", "");
-            jsonObj.addProperty("SoftLicense","");
-            jsonObj.addProperty("ContractDate","");
-            jsonObj.addProperty("ScopeInfra","");
-            jsonObj.addProperty("CostAvoidance","");
-            jsonObj.addProperty("CostArchive","");
-            jsonObj.addProperty("CBA","");
-            jsonObj.addProperty("ArchiveTarget","");
-            jsonObj.addProperty("FundApprove","");
-            jsonObj.addProperty("FundType","");
-            jsonObj.addProperty("ProjectNumber","");
-            jsonObj.addProperty("Status","");
-            jsonObj.addProperty("ScreenShot","");
-            jsonArray.add(jsonObj);
+        jsonObj.addProperty("Application Name", "");
+        jsonObj.addProperty("Project Number","");
+        jsonObj.addProperty("Phase","");
+        jsonObj.addProperty("Software and Licensing","");
+        jsonObj.addProperty("Software and Licensing(cost Saving)","");
+        jsonObj.addProperty("Contract end date","");
+        jsonObj.addProperty("Contract end date -comments","");
+        jsonObj.addProperty("Scope of infrastructure","");
+        jsonObj.addProperty("Infrastructure Cost Savings","");
+        jsonObj.addProperty("Cost Avoidance","");
+        jsonObj.addProperty("Cost Archive","");
+        jsonObj.addProperty("Total CBA","");
+        jsonObj.addProperty("Funding approved","");
+        jsonObj.addProperty("Funding Type","");
+        jsonObj.addProperty("Status","");
+        jsonObj.addProperty("ScreenshotFileName","");
+        jsonArray.add(jsonObj);
     }
 }

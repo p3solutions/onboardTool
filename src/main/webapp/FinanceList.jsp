@@ -262,36 +262,20 @@
             </div>
         </div>
     </div>
-
-
 </nav>
-<div class="col-lg-12 col-md-12 left-side" style="padding-top: 10px; background-color: transparent">
-    <button type="button" class="btn btn-primary pull-right " id="exportButton" data-bs-toggle="modal" data-bs-target="#exportModal">
-        Export
-    </button>
-    <button type="button" class="btn btn-primary pull-left" id="searchToggleButton" data-bs-toggle="modal" data-bs-target="#searchModal">
-        Search
-    </button>
-</div>
 
 <%--         <div class="container-fluid "  id="bg-color">--%>
 <%--            <h5 id="title2">Finance Filter</h5>--%>
 <%--             <i class="fa fa-search search-Icon"></i><input id="AppFilter" type="text" >--%>
 <%--         </div>--%>
 
-<div class="col-lg-6 left-side phase-btn1" align="left">
-    <a href="Finance.jsp" > <button type="button" id="add_user_btn" class="btn btn-primary" data-bs-toggle="modal"
-            style="margin: 29px 0 0 83px; font-size: 14px; display: none;" > Add Finance</button></a>
-
-    <button type="button" class="btn btn-primary pull-right"
-            id="editpopup_btn" data-bs-toggle="modal" data-bs-target="#EditPopUp" style="display: none;">Edit PopUp
-    </button>
-    <button type="button" class="btn btn-primary pull-right" id="deletepopup_btn" data-bs-toggle="modal"
-            data-bs-target="#DeletePopUp" style="display: none;">Delete PopUp
-    </button>
-
+<div class="col-lg- left-side" style="margin: 29px 0 0 90px;">
+    <button type="button" class="btn btn-primary pull-right" style="margin-right: 100px;" id="exportButton" data-bs-toggle="modal" data-bs-target="#exportModal">Export</button>
+    <a href="Finance.jsp">
+        <button type="button" id="add_user_btn" class="btn btn-primary pull-left" data-bs-toggle="modal" style="font-size: 14px; display: none;">Add Finance</button>
+    </a>
+    <button type="button" class="btn btn-primary pull-left" id="searchToggleButton" data-bs-toggle="modal" data-bs-target="#searchModal" style="margin-left: 10px;">Filter</button>
 </div>
-<br/>
 <div class="card-container-5 card d3s-mt-50">
     <div class="card-header d3s-pl-15" id="cd-header">Finance Module <span class="glyphicon glyphicon-filter" id="ExitSearch"></span></div>
     <label style="margin-top: 20px ;margin-left: 8px;">Show </label>
@@ -317,10 +301,7 @@
             </div>
             <table class="table table-bordered table-responsive"
                    id="admin_userslist" style="width: 200%; font-size: 12px;">
-
-
             </table>
-
         </div>
         <div class="row">
             <div class="col-md-12" align="end">

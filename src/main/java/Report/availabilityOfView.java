@@ -348,17 +348,20 @@ public class availabilityOfView {
         String sqlViewCreation = "CREATE VIEW FinanceList AS " +
                 "SELECT" +
                 "    t1.Id," +
-                "    MAX(CASE WHEN t1.column_name = 'financeappname' THEN t1.value END) AS financeAppName," +
-                "    MAX(CASE WHEN t1.column_name = 'softlicense' THEN t1.value END) AS SoftLicense," +
-                "    MAX(CASE WHEN t1.column_name = 'contractDate' THEN t1.value END) AS ContractDate," +
-                "    MAX(CASE WHEN t1.column_name = 'scopeinfra' THEN t1.value END) AS ScopeInfra," +
-                "    MAX(CASE WHEN t1.column_name = 'costavoidance' THEN t1.value END) AS CostAvoidance," +
-                "    MAX(CASE WHEN t1.column_name = 'costarchive' THEN t1.value END) AS CostArchive," +
-                "    MAX(CASE WHEN t1.column_name = 'cba' THEN t1.value END) AS CBA," +
-                "    MAX(CASE WHEN t1.column_name = 'archivetarget' THEN t1.value END) AS ArchiveTarget," +
-                "    MAX(CASE WHEN t1.column_name = 'fundapprove' THEN t1.value END) AS FundApprove," +
-                "    MAX(CASE WHEN t1.column_name = 'fundtype' THEN t1.value END) AS FundType," +
-                "    MAX(CASE WHEN t1.column_name = 'projnum' THEN t1.value END) AS ProjectNumber," +
+                "    MAX(CASE WHEN t1.column_name = 'financeappname' THEN t1.value END) AS \"Application Name\"," +
+                "    MAX(CASE WHEN t1.column_name = 'projnum' THEN t1.value END) AS \"Project Number\"," +
+                "    MAX(CASE WHEN t1.column_name = 'phase' THEN t1.value END) AS Phase," +
+                "    MAX(CASE WHEN t1.column_name = 'softlicense' THEN t1.value END) AS \"Software and Licensing\"," +
+                "    MAX(CASE WHEN t1.column_name = 'softlicensecost' THEN t1.value END) AS \"Software and Licensing(cost Saving)\"," +
+                "    MAX(CASE WHEN t1.column_name = 'contractDate' THEN t1.value END) AS \"Contract end date\"," +
+                "    MAX(CASE WHEN t1.column_name = 'contractDateComment' THEN t1.value END) AS \"Contract end date -comments\"," +
+                "    MAX(CASE WHEN t1.column_name = 'scopeinfra' THEN t1.value END) AS \"Scope of infrastructure\"," +
+                "    MAX(CASE WHEN t1.column_name = 'infrastructurecostsavings' THEN t1.value END) AS \"Infrastructure Cost Savings\"," +
+                "    MAX(CASE WHEN t1.column_name = 'costavoidance' THEN t1.value END) AS \"Cost Avoidance\"," +
+                "    MAX(CASE WHEN t1.column_name = 'costarchive' THEN t1.value END) AS \"Cost Archive\"," +
+                "    MAX(CASE WHEN t1.column_name = 'cba' THEN t1.value END) AS \"Total CBA\"," +
+                "    MAX(CASE WHEN t1.column_name = 'fundapprove' THEN t1.value END) AS \"Funding approved\"," +
+                "    MAX(CASE WHEN t1.column_name = 'fundtype' THEN t1.value END) AS \"Funding Type\"," +
                 "    MAX(CASE WHEN t1.column_name = 'status' THEN t1.value END) AS Status," +
                 "    MAX(t2.File_Name) AS ScreenshotFileName " +
                 "FROM" +

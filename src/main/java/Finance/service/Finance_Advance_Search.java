@@ -55,14 +55,14 @@ public class Finance_Advance_Search {
 
 
     }
-    private String buildSqlQuery(String tableName, List<String> selectedColumns, String condition, int start , int maxRows) {
+    private String buildSqlQuery(String tableName, List<String> selectedColumns, String condition, int start, int maxRows) {
         StringBuilder sql = new StringBuilder("SELECT * FROM " + tableName + " WHERE ");
 
         for (int i = 0; i < selectedColumns.size(); i++) {
             if (i > 0) {
                 sql.append(" ").append(condition).append(" ");
             }
-            sql.append(selectedColumns.get(i)).append(" LIKE ?");
+            sql.append("`").append(selectedColumns.get(i)).append("` LIKE ?");  // Use backticks for column names
 
             if (i < selectedColumns.size() - 1) {
                 sql.append(" ");
@@ -84,8 +84,7 @@ public class Finance_Advance_Search {
             if (i > 0) {
                 countSql.append(" ").append(condition).append(" ");
             }
-            countSql.append(columns.get(i)).append(" LIKE ?");
-
+            countSql.append("`").append(columns.get(i)).append("` LIKE ?");
             // Add parameter placeholders for prepared statement
             if (i < columns.size() - 1) {
                 countSql.append(" ");
