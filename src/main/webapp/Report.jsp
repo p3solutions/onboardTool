@@ -250,94 +250,38 @@
 
 
 <%@include file="Nav-Bar.jspf" %>
-<nav class="nav nav-down-height" id="bg-color">
-
+<nav class="nav nav-down" id="bg-color">
     <div class="container-fluid" id="container-fluid">
         <div class="row" id="d3s-mt-20">
             <div class="col-lg-12 col-md-12">
                 <h5 class="title" style="color: #fff">Modules</h5>
             </div>
         </div>
-        <!-- <p class="sub-title">Create and manage your Opportunities here</p>-->
-        <%--  <p class="sub-title" style="color:#fff"> <a  href="OpportunityList.jsp" id="sitetitle1" style="color:#fff"><span class="glyphicon glyphicon-home"></span> Home</a> >><%=waveName%></p> --%>
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="sub-title" style="color: #fff">
-                    <a href="DashBoard.jsp" id="sitetitle1" style="color: #fff"><span
-                            class="glyphicon glyphicon-home"></span> Home</a> >> <a href="Governance_Home.jsp"
-                                                                                    id="sitetitle2" style="color: #fff">
-                    Governance </a> >> <a href="Report.jsp" id="sitetitle3" style="color: #fff">Report </a>
+                    <a href="DashBoard.jsp" id="sitetitle1" style="color: #fff"><span class="glyphicon glyphicon-home"></span> Home</a> >> <a href="Governance_Home.jsp" id="sitetitle2" style="color: #fff">Governance </a> >> <a href="Report.jsp" id="sitetitle3" style="color: #fff">Report </a>
                 </div>
             </div>
-        </div>
-
-    </div>
-
-
-    <div class="container-fluid" id="container-fluid-margin">
-        <div class="row" id="d3s-mt-20">
-            <%--            <div class="col-lg-12 col-md-12">--%>
-            <%--                <h5 id="title2"></h5>--%>
-            <%--            </div>--%>
-            <div class="col">
-                <%--                <div class="col-lg-3 col-md-6">--%>
-                <%--                    <div class="row align-items-center">--%>
-                <%--                        <div class="col-auto">--%>
-                <%--                            <i class="fa fa-search search-icon" aria-hidden="true"></i>--%>
-                <%--                        </div>--%>
-                <%--                        <div class="col-auto">--%>
-                <%--                            <input id="appFilter" type="text" placeholder="Search the application...">--%>
-                <%--                        </div>--%>
-                <%--                    </div>--%>
-
-                <%--                </div>--%>
-                <%--                <br>--%>
-
-                <div class="row align-items-center">
-                    <div class="col-auto" id="input-align-top">
+                <div class="row col-sm-2" style="margin-left: 30% ; width: auto;">
+                    <div class="col-lg-12" id="input-align-top"  style=" width: auto;">
                         <label class="col-form-label" id="title">Report</label>
-                        <select class="form-select align-right selectInput filter"
-                                aria-label="Default select example" id="Report">
-                            style="padding: 0.75 0 0 0.75rem; margin-bottom: 5px; margin-top: -28px; margin-left: 68px;
-                            width: auto;">
+                        <select class="form-select align-right selectInput filter" aria-label="Default select example" id="Report" style=" width: auto;margin-top: 28px;" >
                             <option class='options' value="intakeReport1">Intake Report 1</option>
                             <option class='options' value="intakeReport2">Intake Report 2</option>
                             <option class='options' value="intakeReport3">Intake Report 3</option>
                         </select>
                     </div>
-
                 </div>
-                <div class="col-lg-12 col-md-12 left-side" style="padding-top: 10px; background-color: transparent">
-                    <button type="button" class="btn btn-primary pull-right " id="exportButton" data-bs-toggle="modal"
-                            data-bs-target="#exportModal">
-                        Export
-                    </button>
-                    <button type="button" class="btn btn-primary pull-left" id="searchToggleButton"
-                            data-bs-toggle="modal" data-bs-target="#searchModal">
-                        Search
-                    </button>
-                </div>
-                <%--                <div class="col-lg-6 right-side" style="padding-top: 100px; background-color: transparent">--%>
-                <%--                    <button type="button" class="btn btn-primary pull-right" id="exportBtton" data-bs-toggle="modal" data-bs-target="#exportModal">--%>
-                <%--                        <img src="images/Export.png" alt="ExportOption" class="" height="40" width="45" />--%>
-                <%--                    </button>--%>
-                <!-- Button to trigger the modal -->
-                <%--                    <button type="button" class="btn btn-primary pull-right" id="exportButton" data-bs-toggle="modal" data-bs-target="#exportModal">--%>
-                <%--                        Export--%>
-                <%--                    </button>--%>
-                <%--                </div>--%>
-            </div>
-
-        </div>
-
     </div>
-
-
+    </div>
 </nav>
 
 
-<br/>
-
+<div class="col-lg- left-side" style="margin: 29px 0 0 90px;">
+    <button type="button" class="btn btn-primary pull-right "  style="margin-right: 100px;" id="exportButton" data-bs-toggle="modal" data-bs-target="#exportModal">Export</button>
+    <button type="button" class="btn btn-primary pull-left" id="searchToggleButton" data-bs-toggle="modal" data-bs-target="#searchModal" style="margin-left: 10px;">Search</button>
+</div>
 <div class="card-container-5 card d3s-mt-50">
     <div class="card-header d3s-pl-15" id="cd-header"></div>
     <label style="margin-top: 20px ;margin-left: 8px;">Show </label>
@@ -384,20 +328,7 @@
     </div>
 </div>
 
-<%--</div>--%>
 
-
-<%--</div>--%>
-
-
-<%--</div>--%>
-<%--</div>--%>
-<%--</div>--%>
-
-
-<%--</div>--%>
-<%--</div>--%>
-<%--</div>--%>
 <%--Export--%>
 <div class="modal" id="exportModal" tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true">
     <div class="modal-dialog">
