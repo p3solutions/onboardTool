@@ -263,7 +263,10 @@
         </div>
     </div>
 </nav>
-
+<button type="button" class="btn btn-primary pull-right"
+        id="deletepopup_btn" data-bs-toggle="modal"
+        data-bs-target="#DeletePopUp" style="display: none;">Delete
+    PopUp</button>
 <%--         <div class="container-fluid "  id="bg-color">--%>
 <%--            <h5 id="title2">Finance Filter</h5>--%>
 <%--             <i class="fa fa-search search-Icon"></i><input id="AppFilter" type="text" >--%>

@@ -10,7 +10,7 @@ public class FinanceListMapping {
     protected void FinanceMapping(ResultSet rs, JsonArray jsonArray) throws SQLException {
         while (rs.next()) {
             JsonObject jsonObj = new JsonObject();
-        //    jsonObj.addProperty("ID", rs.getString(1));
+            jsonObj.addProperty("ID", rs.getString(1));
             jsonObj.addProperty("Application Name", rs.getString(2));
             jsonObj.addProperty("Project Number",rs.getString(3));
             jsonObj.addProperty("Phase",rs.getString(4));
