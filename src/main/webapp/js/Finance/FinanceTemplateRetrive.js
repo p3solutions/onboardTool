@@ -152,6 +152,8 @@ function ajaxTemplateCallNoData(status){
                     var template_check = "";
                     var inputtext = "<div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
                         "<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil ' style='float:right;display:none;'></span>\n";
+
+
                     if (ColumnName === 'cba'||ColumnName === 'softlicensecost'||ColumnName === 'infrastructurecostsavings'||ColumnName === 'costavoidance'||ColumnName === 'costarchive') {
                         var formatter = new Intl.NumberFormat('en-US', {
                             style: 'currency',
@@ -159,6 +161,11 @@ function ajaxTemplateCallNoData(status){
                         });
                         Value = formatter.format(Value)
                         inputtext = inputtext+"<input type='text' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "' onkeypress='return isNumber(event)'" +
+                            "</div>";
+                    }
+                    else if (ColumnName === 'status') {
+                        disable_property = "disabled='disabled'";
+                        inputtext = inputtext + "<input type='text' " + disable_property + " class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
                             "</div>";
                     }
                     else if (ColumnName == "estimatestrucsize") {
