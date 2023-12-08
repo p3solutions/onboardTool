@@ -293,7 +293,7 @@ rotate(
 
 .table-container {
 	overflow-x: auto;
-	max-width: 100%; /* Adjust the max-width as needed */
+	max-width: 100%; 
 	border: 1px solid #ddd; /* Add border for better visualization */
 	margin-bottom: 20px;
 }
@@ -346,10 +346,10 @@ rotate(
 				<div class="left-content">
 					<label>Show </label> 
 					
-					<select id="maxRows" style="color: black;">
+					<select id="maxRows" style="color: black; width:auto">
 							
 						
-						<option value="1">1</option>
+				
 						<option value="5">5</option>
 						<option value="10">10</option>
 						<option value="15">15</option>
@@ -383,6 +383,7 @@ rotate(
     					<label for="searchValue" id="searchValueLabel" class="form-label">Search Value:</label>
     						<input type="text" id="searchValue" class="form-input">
 					</div>
+ 
 	<label id="andLabel" class="hidden">AND</label><INPUT TYPE="radio" id="andRadio" value="And"   class="hidden" And>
 <label id="orLabel" class="hidden">OR</label>
 <INPUT TYPE="radio" id="orRadio" value="OR" class="hidden">
@@ -397,11 +398,31 @@ rotate(
 				</div>
    				</div>
    				</div>
-   				
+   						
+   				<div class="right-content">
+					<div id="overlaySearch" class="overlaySearch"></div>
+					<button id="exportbutton" onclick="showexportPopup()" class="custom-button">Export
+						CSV</button>
+						<div id="myModal" class="popup">
+							<div class="popupHeader">
+            					<span class="popupTitle">Export CSV</span>
+        					</div>
+   							 <div class="modal-content">
+   							 <br>
+   							 <br>
+        						<button type="button" onclick="exportdatatocsv()"class="custom-button">View Data</button>
+        						<br>
+        						<button id="Exportwholedata" class="custom-button">All Data</button>
+        						<br>
+        						<button type="button" onclick="closeexportPopup()" class="form-button">Cancel</button>
+    					</div>
+						</div>
+						
+				</div>
    				
    				 
 			</div>
-  
+  	
 			
 			<div class="table-container">
 				<table class="table table-bordered table-responsive"
@@ -471,11 +492,11 @@ rotate(
 	<!-- ---------------------------------------------------- -->
 
 
-	<script src="js/FinanceModule/FinanceTable/Search.js"></script>
+	<script src="js/FinanceModule/FinanceTable/FinanceSearch.js"></script>
 	<script src="js/FinanceModule/FinanceTable/FinanceTableDetails.js"></script>
 	<script src="js/FinanceModule/FinanceTable/FinanceAcess.js"></script>
 	<script src="js/FinanceModule/FinanceUpdate/EditDetails.js"></script>
-	
+	<script src="js/FinanceModule/FinanceTable/Export.js"></script>
 
 
 	<script src="js/FinanceModule/FinanceTable/Delete.js"></script>

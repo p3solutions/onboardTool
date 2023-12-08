@@ -24,7 +24,7 @@ public class FinanceTableDetailsService {
             st.setInt(1, start);
             st.setInt(2, MaxRows);
  
-            rs = st.executeQuery();
+            rs = st.executeQuery();									
             while(rs.next())
             {
             JsonObject jsonObj = new JsonObject();

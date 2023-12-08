@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee; http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>D3Sixty</display-name>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>Finance_screenshot_upload_servlet</display-name>
+  	<servlet-name>Finance_screenshot_upload_servlet</servlet-name>
+  	<servlet-class>FinanceDetails.Servlet.Finance_screenshot_upload_servlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>Retrive_screenshot_finance_module</display-name>
+  	<servlet-name>Retrive_screenshot_finance_module</servlet-name>
+  	<servlet-class>FinanceDetails.Servlet.Retrive_screenshot_finance_module</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Finance_screenshot_upload_servlet</servlet-name>
+  	<url-pattern>/Finance_screenshot_upload_servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Retrive_screenshot_finance_module</servlet-name>
+  	<url-pattern>/Retrive_screenshot_finance_module</url-pattern>
+  </servlet-mapping>
   
   <welcome-file-list>
     <welcome-file>Home.jsp</welcome-file>

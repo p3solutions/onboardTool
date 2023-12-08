@@ -17,7 +17,7 @@ import FinanceDetails.Service.FinanceInputValidationService;
 
 
 /**
- * Servlet implementation class FinanceInputSave
+ * Servlet implementation class FinanceInputValidationServle
  */
 @WebServlet("/FinanceInputValidationServlet")
 public class FinanceInputValidationServlet extends HttpServlet {

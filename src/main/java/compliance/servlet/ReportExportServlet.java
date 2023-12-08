@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,8 +16,9 @@ import com.google.gson.JsonObject;
 import compliance.service.*;
 
 /**
- * Servlet implementation class ExportReportgenerationservletGovernance
+ * Servlet implementation class ReportExportservlet
  */
+@WebServlet("/ReportExportServlet")
 public class ReportExportServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -45,7 +47,7 @@ public class ReportExportServlet extends HttpServlet {
 		JsonArray jsonArray = null;
 		ReportExportService  exportreportgenerationService = new ReportExportService ();
 	     
-	     switch (ReportName.toLowerCase()) {
+	     switch (ReportName) {
 		 case "IntakeReport1":
 			 jsonArray = exportreportgenerationService.fetchExportDataForIntakeReport1(ReportName);
 		     break;

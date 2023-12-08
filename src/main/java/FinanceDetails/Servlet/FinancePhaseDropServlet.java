@@ -15,7 +15,7 @@ import FinanceDetails.Service.FinanceDropService;
 import FinanceDetails.Service.FinancePhaseDropService;
 
 /**
- * Servlet implementation class FinanceTableDetails
+ * Servlet implementation class FinancePhaseDropServlet
  */
 @WebServlet("/FinancePhaseDropServlet")
 public class FinancePhaseDropServlet extends HttpServlet {

@@ -395,14 +395,14 @@ public class Login extends HttpServlet {
             	 FinanceInput[1] = new  FinanceDetails(2, "", "", "", "Phase", "Phase", "Text box", "No", "");
             	 FinanceInput[2] = new FinanceDetails(3, "", "", "", "Application Name", "appName", "Text box", "Yes", "");
             	 FinanceInput[3] = new  FinanceDetails(4, "", "", ",Yes,No", "Software and Licensing", "License", "Dropdown", "No", "");
-            	 FinanceInput[4] = new  FinanceDetails(5, "", "", "", "Software and Licensing(Cost Savigs)", "License Cost", "Text box", "No", "");
+            	 FinanceInput[4] = new  FinanceDetails(5, "", "", "", "Software and Licensing(Cost Savigs($))", "License Cost", "Text box", "No", "");
             	 FinanceInput[5] = new  FinanceDetails(6, "", "", "", "Contract End Date", "Contract_Date", "Datepicker", "No", "");
             	 FinanceInput[6] = new  FinanceDetails(7, "", "", "", "Contract End Date-Comments", "Contract_Date_Text", "Text box", "No", "");
             	 FinanceInput[7] = new  FinanceDetails(8, "", "", "", "scope of infrastructure", "Scope", "Text box", "No", "");
-            	 FinanceInput[8] = new  FinanceDetails(9, "", "", "", "InfraStructure Cost Savings", "InfraCost", "Text box", "No", "");
-            	 FinanceInput[9] = new  FinanceDetails(10, "", "", "", "Cost Avoidance", "Avoidance_Cost", "Text box", "Yes", "");
-            	 FinanceInput[10] = new  FinanceDetails(11, "", "", "", "Cost of Archive", "Archive_Cost", "Text box", "Yes", "");
-            	 FinanceInput[11] = new  FinanceDetails(12, "", "", "", "Total CBA", "CBA", "Text box", "No", "");
+            	 FinanceInput[8] = new  FinanceDetails(9, "", "", "", "InfraStructure Cost Savings($)", "InfraCost", "Text box", "No", "");
+            	 FinanceInput[9] = new  FinanceDetails(10, "", "", "", "Cost Avoidance($)", "Avoidance_Cost", "Text box", "Yes", "");
+            	 FinanceInput[10] = new  FinanceDetails(11, "", "", "", "Cost of Archive($)", "Archive_Cost", "Text box", "Yes", "");
+            	 FinanceInput[11] = new  FinanceDetails(12, "", "", "", "Total CBA($)", "CBA", "Text box", "No", "");
             	 FinanceInput[12] = new  FinanceDetails(13, "", "", ",Yes,No", "Funding approved?", "FundingDetails", "Dropdown", "Yes", "");
             	 
             	 FinanceInput[13] = new  FinanceDetails(14, "", "", "", "Funding type", "Fundings", "Text box", "No", "");

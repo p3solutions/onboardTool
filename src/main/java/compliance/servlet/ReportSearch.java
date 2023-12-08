@@ -19,7 +19,7 @@ import compliance.service.*;
 @WebServlet("/ReportSearch")
 
 /**
- * Servlet implementation class ReportgenerationSearchservletGovernance
+ * Servlet implementation class ReportSearchservlet
  */
 public class ReportSearch extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -106,6 +106,7 @@ $("#Submit").click(function(e) {
 		}
 
 		if (checkMandatory == true && checkAjax1 == false && checkAjax == true) {
+			uploadScreenshots(Id);
 			window.location.href = "Finance.jsp";
 			notification("success", "Finance application details added successfully.", "Note");
 		}

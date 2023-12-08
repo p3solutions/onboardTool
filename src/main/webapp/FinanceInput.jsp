@@ -432,10 +432,12 @@
 	<script src="js/toastr/toastr.min.js"></script>
 
 	<script src="js/notification/notification.js"></script>
+	
 	<script src="js/FinanceModule/FinanceDetailsEntry/FinanceInput.js"></script>
 	<script src="js/FinanceModule/FinanceDetailsEntry/FinanceInputEntry.js"></script>
 	<script src="js/FinanceModule/FinanceDetailsEntry/FinanceLabelEdit.js"></script>
 	<script src="js/FinanceModule/FinanceDetailsEntry/LabelModify.js"></script>
+		<script src="js/FinanceModule/FinanceDetailsEntry/FinanceScreenshotUpload.js"></script>
 <script src="js/FinanceModule/FinanceDetailsEntry/FinanceScreenShotRetrieve.js"></script>
 <script src="js/FinanceModule/FinanceDetailsEntry/FinanceDrop.js"></script>
 

@@ -38,7 +38,7 @@ white-space: nowrap;
 }
 
 .custom-button {
-	background-color: #007bff;
+	background-color: rgb(44, 119, 211);
 	color: white;
 	border: none;
 	border-radius: 10px;
@@ -52,7 +52,7 @@ white-space: nowrap;
     display: flex;
     align-items: center;
     justify-content: center; /* Center the content horizontally */
-    background-color: #007bff;
+    background-color: rgb(44, 119, 211);
     color: white;
     border: none;
     border-radius: 10px;
@@ -63,7 +63,7 @@ white-space: nowrap;
     height: 2px; 
 }
 .custom-button:hover {
-	background-color: #3498db;
+	background-color: rgb(44, 119, 211);
 	transform: scale(1.05);
 }
 .pagination {
@@ -73,7 +73,7 @@ white-space: nowrap;
 }
 
 .pagination li {
-	margin: 5px;
+	margin: 1%;
 	padding: 3px;
     background-color: #e0e0e0;
     cursor: pointer;
@@ -90,7 +90,7 @@ white-space: nowrap;
 }
 
 .Searchpagination li {
-	margin: 5px;
+	margin: 3px;
 	padding: 3px;
     background-color: #e0e0e0;
     cursor: pointer;
@@ -101,7 +101,7 @@ white-space: nowrap;
     color: white;
 }
 #prev, #next {
-	margin: 5px;
+	margin: 1px;
     padding: 3px;
     background-color: #007bff;
     color: white;
@@ -136,17 +136,21 @@ body {
     transform: translate(-50%, -50%);
     background-color: #f9f9f9;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px  #ccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     border-radius: 10px; /* Adjust the value as needed */
+    margin: 5px; /* Adjust the value as needed */
     z-index: 2; /* Ensure the popup is on top */
 }
 
 .popupHeader {
-    background-color: blue;
+    background-color:  rgb(44, 119, 211);
     color: white;
     padding: 10px;
     text-align: center;
     position: relative;
+    border-radius: 10px; /* Adjust the value as needed */
+    margin: 5px; /* Adjust the value as needed */
 }
 
 .popupTitle {
@@ -234,7 +238,7 @@ select {
     margin-bottom: 15px;
 }
 .form-button {
-    background-color: #007bff;
+    background-color: rgb(44, 119, 211);
     color: white;
     border: none;
     border-radius: 5px;
@@ -250,5 +254,5 @@ select {
     box-sizing: border-box;
 }
 .form-button:hover {
-    background-color: #0056b3;
+    background-color: rgb(44, 119, 211);
 }

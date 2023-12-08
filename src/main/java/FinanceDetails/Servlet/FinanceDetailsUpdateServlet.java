@@ -17,7 +17,7 @@ import com.google.gson.JsonParser;
 import FinanceDetails.Service.FinanceDetailsUpdateService;
 
 /**
- * Servlet implementation class FinanceUpdateDetails
+ * Servlet implementation class FinanceDetailsUpdateServlet
  */
 @WebServlet("/FinanceDetailsUpdateServlet")
 public class FinanceDetailsUpdateServlet extends HttpServlet {

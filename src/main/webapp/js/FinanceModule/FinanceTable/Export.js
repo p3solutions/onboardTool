@@ -2,16 +2,16 @@ $(document).ready(function () {
     // Event listener for button click
   $(document).on('click', '#Exportwholedata', function () {
     console.log('Button Clicked');
-    var reportname = document.getElementById('category').value;
-    fetchexportdata(reportname);  
+    
+    fetchexportdata();  
 });
 
-    function fetchexportdata(reportname) {
-        console.log('Export data for page:', reportname);
+    function fetchexportdata() {
+        console.log('Export data for page:');
         $.ajax({
-            url: "ReportExportServlet",
+            url: "FinanceExportServlet",
+           
             type: 'POST',
-            data: { reportname: reportname },
             dataType: "json",
             beforeSend: function () {
                 console.log('Before sending AJAX request');
@@ -42,8 +42,6 @@ function closeexportPopup() {
 }
 
 function exportToCSV(jsonArray) {
-    var filename = document.getElementById('category').value; // Get the selected value from the dropdown
-
     var csvContent = "data:text/csv;charset=utf-8,";
 
     // Extract headers from the first object in the array
@@ -66,7 +64,7 @@ function exportToCSV(jsonArray) {
     var link = document.createElement("a");
 
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", filename + ".csv"); // Set the filename based on the dropdown value
+    link.setAttribute("download",  "FinanceDetails.csv"); // Set the filename based on the dropdown value
 
     document.body.appendChild(link);
     link.click();
@@ -75,8 +73,7 @@ function exportToCSV(jsonArray) {
 
 
 function exportdatatocsv() {
-	closeexportPopup();
-    var filename = document.getElementById('category').value; // Get the selected value from the dropdown
+   closeexportPopup();
 
     var table = document.querySelector('.table');
     var data = [];
@@ -103,7 +100,7 @@ function exportdatatocsv() {
     var link = document.createElement("a");
 
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", filename + ".csv"); // Set the filename based on the dropdown value
+    link.setAttribute("download", " FinanceDetails.csv"); // Set the filename based on the dropdown value
 
     document.body.appendChild(link);
     link.click();

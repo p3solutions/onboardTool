@@ -79,7 +79,7 @@ public class TableDetailsSearchServlet extends HttpServlet {
 		    }
 		        
 		     catch (SQLException e) {
-		         // Handle the exception more gracefully, e.g., log it or send an error response
+		        System.out.println("Error Happened");
 		         e.printStackTrace();
 		     
 		    }}

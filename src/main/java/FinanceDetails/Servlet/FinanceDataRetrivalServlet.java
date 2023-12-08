@@ -14,7 +14,7 @@ import com.google.gson.JsonArray;
 import FinanceDetails.Service.*;
 
 /**
- * Servlet implementation class FinanceTableDetails
+ * Servlet implementation class FinanceDataRetrivalServlet
  */
 @WebServlet("/FinanceDataRetrivalServlet")
 public class FinanceDataRetrivalServlet extends HttpServlet {

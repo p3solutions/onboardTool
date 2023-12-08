@@ -129,7 +129,7 @@
 						<div class="col-8" align="end">
 					
 
-							<button type="button" class="btn btn-secondary"
+						<!-- 	<button type="button" class="btn btn-secondary"
 								data-bs-toggle="modal" data-bs-target="#exampleModal">Template</button>
 							<div class="dropdown">
 								<button type="button" class="btn btn-secondary dropdown-toggle"
@@ -149,7 +149,7 @@
 										</i>Delete</a></li>
 
 								</ul>
-							</div>
+							</div> -->
 							<button type="button" class="btn btn-primary" id="Submit">Submit</button>
 							<button type="button" class="btn btn-primary " id="editpopup_btn"
 								data-bs-toggle="modal" data-bs-target="#EditPopUp"
@@ -426,7 +426,7 @@
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 	<script src="js/toastr/toastr.min.js"></script>
-
+<script src="js/toastr/toastr.js"></script>
 	<script src="js/notification/notification.js"></script>
 
 	
@@ -435,16 +435,16 @@
 	<script src="js/FinanceModule/FinanceDetailsEntry/DeleteField.js"></script>
 	<script src="js/FinanceModule/FinanceDetailsEntry/DeleteAlert.js"></script>
 	<script src="js/FinanceModule/FinanceUpdate/EditDetails.js"></script>
-	<script src="js/FinanceModule/FinanceEditDelete.js"></script>
-<script src="js/FinanceModule/FinanceEditDelete.js"></script>
+	
+<script src="js/FinanceModule/FinanceDetailsEntry/FinanceEditDelete.js"></script>
 	<script src="js/FinanceModule/FinanceUpdate/FinanceSave.js"></script>
 	<script src="js/jquery/jquery-2.2.4.min.js"></script>
 	<!-- ========== Toastr ========== -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<script 
+	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	
 
-
+<script src="js/notification/notification.js"></script>
 	<!-- Date Picker -->
 	
 

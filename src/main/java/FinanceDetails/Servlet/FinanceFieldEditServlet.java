@@ -14,7 +14,7 @@ import FinanceDetails.Service.FinanceInputValidationService;
 import FinanceDetails.Service.FinanceFieldEditService;
 import Opportunity.Service.NewOpportunityService;
 /**
- * Servlet implementation class FinanceTableDetails
+ * Servlet implementation class FinanceFieldEditServlet
  */
 @WebServlet("/FinanceFieldEditServlet")
 public class FinanceFieldEditServlet extends HttpServlet {

@@ -14,7 +14,7 @@ import FinanceDetails.Service.FinanceLabelDeleteService;
 
 
 /**
- * Servlet implementation class FinanceTableDetails
+ * Servlet implementation class FinanceLabelDeleteServlet
  */
 @WebServlet("/FinanceLabelDeleteServlet")
 public class FinanceLabelDeleteServlet extends HttpServlet {

@@ -14,7 +14,7 @@ import com.google.gson.JsonObject;
 import FinanceDetails.Service.FinanceDropService;
 import FinanceDetails.Service.FinanceTableDetailsService;
 /**
- * Servlet implementation class FinanceTableDetails
+ * Servlet implementation class FinanceAppNameDropdownServlet
  */
 @WebServlet("/FinanceAppNameDropdownServlet")
 public class FinanceAppNameDropdownServlet extends HttpServlet {

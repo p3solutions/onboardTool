@@ -14,7 +14,9 @@ import com.google.gson.JsonObject;
 
 import compliance.service.IntakeReportService;
 
-
+/**
+ * Servlet implementation class Compliance
+ */
 
 @WebServlet("/Compliance")
 public class Compliance extends HttpServlet {

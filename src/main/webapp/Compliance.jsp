@@ -247,7 +247,7 @@ rotate
 			<div class="div-container">
 				<div class="left-content">
     				<label>Show </label>
-    					<select id="maxRows" class="SearchmaxRows" style="color: black;">
+    					<select id="maxRows" class="SearchmaxRows" style="color: black;width:auto">
         					<option value="5">5</option>
        						<option value="10">10</option>
         					<option value="15">15</option>
@@ -255,24 +255,25 @@ rotate
         					<option value="50">50</option>
         					<option value="70">70</option>
         					<option value="100">100</option>
+        					<option value="5000">Show All</option>
     					</select>
 				</div>
 				<div class="centered-content">
 					<label class="col-form-label" id="title" style="color: black;">Report
-						Name </label> <select id="category" style="color: black;">
-						<option class='options' value='IntakeReport1'>Report 1</option>
-						<option class='options' value='IntakeReport2'>Report 2</option>
-						<option class='options' value='IntakeReport3'>Report 3</option>
+						Name </label> <select id="category" style="color: black;width:auto">
+						<option class='options' value='IntakeReport1'>Intake</option>
+						<option class='options' value='IntakeReport2'>Intake-Triage</option>
+						<option class='options' value='IntakeReport3'>Requirements</option>
 					</select>
 					</div>
 				<div class="Search-content">
 				<div id="overlaySearch" class="overlaySearch"></div>
 
-    			<button onclick="showSearchPopup()" class="custom-button-search" >Search</button>
+    			<button onclick="showSearchPopup()" class="custom-button-search" style="color: #fff" >Search</button>
    
     				<div id="searchPopup" class="popup">
-        				<div class="popupHeader">
-            				<span class="popupTitle">Search</span>
+        				<div class="popupHeader" style="color: #fff">
+            				<span class="popupTitle" style="color: #">Search</span>
         				</div>
         			<br>
         			<div class="form-container">
@@ -426,6 +427,6 @@ rotate
 	<script src="js/notification/notification.js"></script>
 	<script src="js/Compliance/IntakeReport.js"></script>
 	<script src="js/Compliance/Search.js"></script>
-	<script src="js/Compliance/Exportcsv.js"></script>
+	<script src="js/Compliance/ExportCSV.js"></script>
 </body>
 </html>

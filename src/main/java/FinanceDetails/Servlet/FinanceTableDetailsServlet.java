@@ -13,7 +13,7 @@ import com.google.gson.JsonObject;
  
 import FinanceDetails.Service.FinanceTableDetailsService;
 /**
-* Servlet implementation class FinanceTableDetails
+* Servlet implementation class FinanceTableDetailsServlet
 */
 @WebServlet("/FinanceTableDetailsServlet")
 public class FinanceTableDetailsServlet extends HttpServlet {

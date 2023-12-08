@@ -3,6 +3,8 @@ var opera=null;
 var gsvalue = null;
 var searchflag=false;
 var pageNum = null;
+    var Id = currentRow.find("td:eq(15)").text(); // Store the Id value
+    sessionStorage.setItem('storedId', Id);
 
 function showSearchPopup() {
 	console.log("The  values");
@@ -18,7 +20,7 @@ function showSearchPopup() {
     var overlaySearch = document.getElementById('overlaySearch');
     popup.classList.add('active');
     overlaySearch.classList.add('active');
-     toggleSearchValueField();
+     hideAddButton();
     fetchColumn(); 
    
 }
@@ -28,7 +30,7 @@ function validateForm(event) {
     
     const columnName = document.getElementById('columnName').value;
     const searchValue = document.getElementById('searchValue').value;
-
+console.log("The value of search",searchValue)
     const showError = (message) => {
         notification("warning", message, "Warning:");
         return false;
@@ -59,6 +61,7 @@ function validateForm(event) {
     if (isValid()) {
 		gcolname = columnName;
 		gsvalue = searchValue;
+		console.log("The value in valid",gsvalue)
         fetchsearchvalue(columnName, searchValue, pageNum);
         closeSearchPopup();
         searchflag = true;
@@ -115,7 +118,7 @@ function fetchColumn() {
     });
 }
 
-function fetchsearchvalue(columnName,Operator,searchValue,pageNum){
+function fetchsearchvalue(columnName,searchValue,pageNum){
 	console.log("columnName value in ajax : ",columnName);
 	console.log("searchValue value in ajax : ",searchValue);
 	console.log("pageNum : ",pageNum);
@@ -136,11 +139,14 @@ function fetchsearchvalue(columnName,Operator,searchValue,pageNum){
         },
         success: function (data) {
                 $('#overlay').hide();
-                //getcategoryValue(category);
-                console.log("Users List Retrieve", data);
+               
+               
+              
                 clearTable();
-                searchappendRowFunction(data.data);
-                searchupdatePagination(data.total, pageNum);
+                   AddAndEdit();
+                    FinancesearchupdatePagination(data.total, pageNum);
+               FinancesearchappendRowFunction(data.data);
+               
             }
     });
 	
@@ -152,8 +158,9 @@ function goBack() {
 function clearTable() {
         $("#FinanceDetails").empty();
     }
-    
-function searchupdatePagination(totalRecords, currentPage) {
+   
+function FinancesearchupdatePagination(totalRecords, currentPage) {
+   console.log("i AM CALLED")
     var maxRows = parseInt($('#maxRows').val());
     var totalPages = Math.ceil(totalRecords / maxRows);
 	var paginationContainer1 = $('.pagination');
@@ -187,7 +194,8 @@ function searchupdatePagination(totalRecords, currentPage) {
     }
 }
 
-function searchappendRowFunction(data) {
+function FinancesearchappendRowFunction(data) {
+       console.log("i AM CALLED inside append")
         if (data.length > 0) {
             var headers = Object.keys(data[0]);
  
@@ -195,16 +203,15 @@ function searchappendRowFunction(data) {
             var headerRow = "<thead>" + "<tr>";
             $.each(headers, function (index, header) {
 	if (header === "Id") {
-            		headerRow += "<th style='text-align:center;vertical-align: middle;display:none;'><label class='control-label' for=''>" + header + "</th>";
-        		}
+            		headerRow += "<th style='text-align:center;vertical-align: middle;display:none;width:auto'><label class='control-label' for=''>" + header + "</th>";}
         		else{
-					headerRow +="<th style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+ header + "</th>";
-				}
+					headerRow +="<th style='text-align:center;vertical-align: middle;width:auto'><label class='control-label ' for=''>"+ header + "</th>";
+					}
 	
               
             });
-            headerRow += "<th style='text-align: center; ; vertical-align: middle; width: 15%;' class='useractionheader'>Action</th>";
-            // Add two icons for the "Action" header
+            headerRow += "<th style='text-align: center; display: none; vertical-align: middle; width:auto;' class='useractionheader'>Action</th>";
+             // Add two icons for the "Action" header
             headerRow += "</tr>" + "</thead>";
             $("#FinanceDetails").append(headerRow);
  
@@ -213,14 +220,15 @@ function searchappendRowFunction(data) {
                 var row = "<tbody>" + "<tr>";
                 $.each(headers, function (index, header) {
                     if (header === "Id") {
-                    row += "<td style='text-align:center;vertical-align: middle;display:none;'><label class='control-label' for=''>" + value[header] + "</label></td>";
-                	}
+                    row += "<td style='text-align:center;vertical-align: middle;display:none;width:auto'><label class='control-label' for=''>" + value[header] + "</label></td>";
+                		}
                 	else{
-					row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for=''>" + value[header] + "</label></td>";
+					row += "<td style='text-align:center;vertical-align: middle;width:auto'><label class='control-label' for=''>" + value[header] + "</label></td>";
 					}
                 });
-                row+= "<td class='useraction' style='text-align:center;vertical-align: middle;display:;'><span class='glyphicon glyphicon-pencil editpopup'id='editpopup"+ Id +"'style='display:block;margin-left:-22px;'></span><span class='glyphicon glyphicon-trash deletepopup' style='float:right;display:block;margin-top:-13px;'></span>"+
+                                row+= "<td class='useraction' style='text-align:center;vertical-align: middle;display:none;width:auto'><span class='glyphicon glyphicon-pencil editpopup'id='editpopup"+ Id +"'style='display:block;margin-left:-22px;'></span><span class='glyphicon glyphicon-trash deletepopup' style='float:right;display:block;margin-top:-13px;'></span>"+
                   "</td>";
+
                 row += "</tr>" + "</tbody>";
  
                 $("#FinanceDetails").append(row);
@@ -385,20 +393,20 @@ function getColumnType(columnName) {
 
     const columnTypeMap = {
 		'':'',
-	'Project_Number':'number',
+	'Project Number':'number',
 	'Phase':'text',
-	'Application_Name':'text',
-	'Software_and_Licensing	':'text',
+	'Application Name':'text',
+	'Software and Licensing	':'text',
 	'Cost Savings($)':'number',
-	'Contract_Date':'date',
+	'Contract Date':'date',
 	'Comments':'text',
-	'scope_of_infrastructure':'text',
-	'infrastructure_Cost_Savings	':'number',
-	'Cost_Avoidance':'number',
-	'Cost_of_Archive':'number',
+	'scope of infrastructure':'text',
+	'infrastructure Cost Savings	':'number',
+	'Cost Avoidance':'number',
+	'Cost of Archive':'number',
 	'Total CBA':'number',
-	'Funding_approval':'text',
-	'Funding_type':'text',
+	'Funding approval':'text',
+	'Funding type':'text',
 	'Status':'number'
     };
 

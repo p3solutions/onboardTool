@@ -13,23 +13,7 @@ $(document).ready(function(){
         }
         fetchfinaceData(pageNum);
     });
-    /*$.ajax({
-        url: "FinanceTableDetailsServlet",
-        type: 'POST',
-        dataType: "json",
-        beforeSend : function(){
-         $('#overlay').show();
-  },
-        success: function(data) {
-		$('#overlay').hide();
-            console.log("FinanceDetails : ",data);
-            AddAndEdit()
-            if (!$.isArray(data)) {
-                data = [data];
-            }
-            appendRowFunction(data);
-            },
-    });*/
+
 });
 function fetchfinaceData(page) {
         console.log('Fetching data for page:', page); // Add this line
@@ -65,15 +49,15 @@ function appendRowFunctionfinance(data){
             var headerRow = "<thead>" + "<tr>";
             $.each(headers, function (index, header) {
                if (header === "Id") {
-            		headerRow += "<th style='text-align:center;vertical-align: middle;display:none;'><label class='control-label' for=''>" + header + "</th>";
+            		headerRow += "<th style='text-align:center;vertical-align: middle;display:none;width:auto'><label class='control-label' for=''>" + header + "</th>";
         		}
         		else{
-					headerRow +="<th style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+ header + "</th>";
+					headerRow +="<th style='text-align:center;vertical-align: middle;width:auto'><label class='control-label ' for=''>"+ header + "</th>";
 				}
 	
               
             });
-            headerRow += "<th style='text-align: center; display: none; vertical-align: middle; width: 15%;' class='useractionheader'>Action</th>";
+            headerRow += "<th style='text-align: center; display: none; vertical-align: middle; width:auto;' class='useractionheader'>Action</th>";
             headerRow += "</tr>" + "</thead>";
             $("#FinanceDetails").append(headerRow);
             // Add table rows
@@ -81,13 +65,13 @@ function appendRowFunctionfinance(data){
                 var row = "<tbody>" + "<tr>";
                 $.each(headers, function (index, header) {
                    if (header === "Id") {
-                    row += "<td style='text-align:center;vertical-align: middle;display:none;'><label class='control-label' for=''>" + value[header] + "</label></td>";
+                    row += "<td style='text-align:center;vertical-align: middle;display:none;width:auto'><label class='control-label' for=''>" + value[header] + "</label></td>";
                 	}
                 	else{
-					row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for=''>" + value[header] + "</label></td>";
+					row += "<td style='text-align:center;vertical-align: middle;width:auto'><label class='control-label' for=''>" + value[header] + "</label></td>";
 					}
                 });
-                row+= "<td class='useraction' style='text-align:center;vertical-align: middle;display:none;'><span class='glyphicon glyphicon-pencil editpopup'id='editpopup"+ Id +"'style='display:block;margin-left:-22px;'></span><span class='glyphicon glyphicon-trash deletepopup' style='float:right;display:block;margin-top:-13px;'></span>"+
+                row+= "<td class='useraction' style='text-align:center;vertical-align: middle;display:none;width:auto'><span class='glyphicon glyphicon-pencil editpopup'id='editpopup"+ Id +"'style='display:block;margin-left:-22px;'></span><span class='glyphicon glyphicon-trash deletepopup' style='float:right;display:block;margin-top:-13px;'></span>"+
                   "</td>";
                 row += "</tr>" + "</tbody>";
                 $("#FinanceDetails").append(row);

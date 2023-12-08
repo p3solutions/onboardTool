@@ -47,8 +47,9 @@ $(document).ready(function(){
                // var delete_edit_icon="<div class='editpopup deletepopup' style='display:none;'></div>";
              
                $("#appName").prop("disabled", true);
-                $("#Status").prop("disabled", true);
+           
             $("#Phase").prop("disabled", true);
+                 $("#Status").prop("disabled", true);
                              $("#ProjectNumber").prop("disabled", true);
    
                 var Value=value.Value;

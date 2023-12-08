@@ -30,7 +30,7 @@ public class FinanceDropService {
 	      
 
 	        // Second Query
-	        String selectQuery2 = "SELECT Application_Name FROM financedetails WHERE Application_Name LIKE '" + app + "%';";
+	        String selectQuery2 = "SELECT `Application Name` FROM financedetails WHERE `Application Name` LIKE '" + app + "%';";
 	        st2 = connection.prepareStatement(selectQuery2);
 	        rs2 = st2.executeQuery();
 

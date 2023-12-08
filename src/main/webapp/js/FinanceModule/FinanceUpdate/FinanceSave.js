@@ -86,13 +86,13 @@
             }
 
          if (checkMandatory == true ) {
+			  window.location.href = "Finance.jsp";
 	 notification("success", "Finance Details Are Entered successfully.", "Note");
 	console.log("Hi bro any body is there")
     
-    $("#Submit").click(function () {
-      
-        window.location.href = "Finance.jsp";
-    });
+   
+       
+   
 }
 
         } else {

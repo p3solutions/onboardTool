@@ -12,7 +12,7 @@ import com.google.gson.JsonObject;
 import FinanceDetails.Service.TableDetailDeleteService;
 
 /**
- * Servlet implementation class FinanceTableDetails
+ * Servlet implementation class TableDetailDeleteServlet
  */
 @WebServlet("/TableDetailDeleteServlet")
 public class TableDetailDeleteServlet extends HttpServlet {
