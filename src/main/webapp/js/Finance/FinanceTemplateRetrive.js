@@ -1,10 +1,20 @@
 
 
+// Assuming you are using jQuery
+$(document).ready(function () {
+    // Add an input event listener to the input fields with specified column names
+    $('input[name="cba"], input[name="softlicensecost"], input[name="infrastructurecostsavings"], input[name="costavoidance"], input[name="costarchive"]').on('input', function () {
+        // Remove the dollar sign from the input value
+        var valueWithoutDollarSign = $(this).val().replace(/\$/g, '');
+
+        // Update the input value without the dollar sign
+        $(this).val(valueWithoutDollarSign);
+    });
+});
+
+
 $(document).ready(function () {
 
-    function disableStatusElement() {
-        $("#status").prop("disabled", true);
-    }
     // Retrieve data from sessionStorage
     var appId = sessionStorage.getItem("APPID");
     var appName = sessionStorage.getItem("APPNAME");
@@ -129,13 +139,8 @@ function ajaxTemplateCallNoData(status){
                 var LabelName=value.LabelName;
                 var delete_icon="<div class='deletepopup' style='display:none;'></div>";
                 var Value=value.Value;
-                /* if(ColumnName=="thirdpartyvendor" || ColumnName == "listcountry")
-                 {
-                     dependencyValue = Value;
-                     if(Value=="Internally Developed")
-                         Value="Internal";
-                 }*/
-                //var options=data[i].options.split(',');
+
+
                 if(value.mandatory=="No")
                 {
                     manadatory="class = 'LabelName'";
@@ -155,45 +160,38 @@ function ajaxTemplateCallNoData(status){
 
 
                     if (ColumnName === 'cba'||ColumnName === 'softlicensecost'||ColumnName === 'infrastructurecostsavings'||ColumnName === 'costavoidance'||ColumnName === 'costarchive') {
-                        var formatter = new Intl.NumberFormat('en-US', {
-                            style: 'currency',
-                            currency: 'USD',
-                        });
-                        Value = formatter.format(Value)
-                        inputtext = inputtext+"<input type='text' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "' onkeypress='return isNumber(event)'" +
+                        inputtext = inputtext+"<input type='number' class='form-control' size='35' id='" + ColumnName + "' placeholder='$' name='" + ColumnName + "' value='" + Value + "' onkeypress='return isNumber(event)'" +
                             "</div>";
                     }
-                    else if (ColumnName === 'status') {
+                    else if (ColumnName === 'status' || ColumnName === "projnum" || ColumnName === "phase" ) {
                         disable_property = "disabled='disabled'";
                         inputtext = inputtext + "<input type='text' " + disable_property + " class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
                             "</div>";
                     }
-                    else if (ColumnName == "estimatestrucsize") {
-                        inputtext = inputtext + "<input type='number' min='0' onkeypress='return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
-                            "</div>";
-                    }
-                    else if (ColumnName == "estimateunstrucsize") {
-                        inputtext = inputtext + "<input type='number' min='0' onkeypress='return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
+                    else if (ColumnName === "softlicense") {
+                        var inputtext1 = "<div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
+                            "<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span><span class='glyphicon glyphicon-pencil' style='float:right;display:none;'></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil ' style='float:right;display:none;'></span>\n";
+
+                        inputtext1 = inputtext1 + "<input type='number' min='0' onkeypress='return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
                             "</div>";
                     }
                     else {
                         inputtext = inputtext + "<input type='text' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
                             "</div>";
                     }
-                    $('#inputFieldsAppInfo').append(inputtext);
+                    if (ColumnName === "softlicense") {
+                        $('#inputFieldsAppInfo').append(inputtext1);
+                    }else{
+                        $('#inputFieldsAppInfo').append(inputtext);
+                    }
                 }
-
                 else if(Type=="Datepicker")
                 {
-
                     var inputdate="<div class='form-group InputField' id='"+ColumnName+"_Row'>" +
                         "<label class='control-label' for= 'archiveLegacy'>"+LabelName+"<span "+manadatory+"></span></label>"+delete_icon+"<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>\n" +
                         "<input type='text' onchange='dateChangeFunction(this.value)' Class='form-control datepicker1' id='"+ColumnName+"' placeholder='mm/dd/yyyy' name='"+ColumnName+"' value='"+Value+"'/>" +
                         "</div>";
                     $('#inputFieldsAppInfo').append(inputdate);
-
-
-
                 }
                 else if(Type=="Dropdown")
                 {
@@ -284,11 +282,6 @@ function ajaxTemplateCallNoData(status){
                 }
 
             });
-
-            /*var script="<script>$('.datepicker1').datepicker({\n" +
-                "format: \"mm/dd/yyyy\",\n"+
-                "autoclose: true\n"+
-                "});<\/script>";*/
             var ss=$('input[name = dataloclaw]:checked').val();
             console.log("Radio Value : ",ss);
             if(ss=="Yes")
@@ -351,13 +344,7 @@ function ajaxTemplateCall(status , Id , AppName){
                 var LabelName=value.LabelName;
                 var delete_icon="<div class='deletepopup' style='display:none;'></div>";
                 var Value=value.Value;
-                /* if(ColumnName=="thirdpartyvendor" || ColumnName == "listcountry")
-                 {
-                     dependencyValue = Value;
-                     if(Value=="Internally Developed")
-                         Value="Internal";
-                 }*/
-                //var options=data[i].options.split(',');
+
                 if(value.mandatory=="No")
                 {
                     manadatory="class = 'LabelName'";
@@ -366,8 +353,6 @@ function ajaxTemplateCall(status , Id , AppName){
                 }
                 if(value.mandatory=="Yes" && value.umandatory=="Yes")
                 {
-                    //manadatory="class = 'LabelName'";
-                    //disable_property = "";
                     delete_icon = "<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span>";
                 }
                 if (Type == "Text box") {
@@ -375,27 +360,30 @@ function ajaxTemplateCall(status , Id , AppName){
                     var inputtext = "<div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
                         "<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil ' style='float:right;display:none;'></span>\n";
                     if (ColumnName === 'cba'||ColumnName === 'softlicensecost'||ColumnName === 'infrastructurecostsavings'||ColumnName === 'costavoidance'||ColumnName === 'costarchive') {
-                        var formatter = new Intl.NumberFormat('en-US', {
-                            style: 'currency',
-                            currency: 'USD',
-                        });
-                        Value = formatter.format(Value)
-                        inputtext = inputtext+"<input type='text' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "' onkeypress='return isNumber(event)'" +
+                        inputtext = inputtext+"<input type='number' class='form-control' size='35' id='" + ColumnName + "' placeholder='$' name='" + ColumnName + "' value='" + Value + "' onkeypress='return isNumber(event)'" +
                             "</div>";
                     }
-                    else if (ColumnName == "estimatestrucsize") {
-                        inputtext = inputtext + "<input type='number' min='0' onkeypress='return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
+                    else if (ColumnName === 'status' || ColumnName === "projnum" || ColumnName === "phase" ) {
+                        disable_property = "disabled='disabled'";
+                        inputtext = inputtext + "<input type='text' " + disable_property + " class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
                             "</div>";
                     }
-                    else if (ColumnName == "estimateunstrucsize") {
-                        inputtext = inputtext + "<input type='number' min='0' onkeypress='return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
+                    else if (ColumnName === "softlicense") {
+                        var inputtext1 = "<div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
+                            "<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span><span class='glyphicon glyphicon-pencil' style='float:right;display:none;'></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil ' style='float:right;display:none;'></span>\n";
+
+                        inputtext1 = inputtext1 + "<input type='number' min='0' onkeypress='return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
                             "</div>";
                     }
                     else {
                         inputtext = inputtext + "<input type='text' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
                             "</div>";
                     }
+                    if (ColumnName === "softlicense") {
+                        $('#inputFieldsAppInfo').append(inputtext1);
+                    }else{
                     $('#inputFieldsAppInfo').append(inputtext);
+                    }
                 }
 
                 else if(Type=="Datepicker")

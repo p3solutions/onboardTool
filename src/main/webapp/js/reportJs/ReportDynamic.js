@@ -22,7 +22,7 @@ $(document).ready(function () {
     var tempCondition;
 
     ajaxcall(currentReport,1);
-    $("#cd-header").text("Intake Report 1");
+    $("#cd-header").text("Intake");
     $('#cd-header').append(filterIcon);
 
     $("#Report").change(function () {
@@ -94,11 +94,11 @@ $(document).ready(function () {
 
         // To show the name in the jsp report name
         if (selectedOption === "intakeReport1") {
-            reportTitle = "Intake Report 1"
+            reportTitle = "Intake"
         } else if (selectedOption === "intakeReport2") {
-            reportTitle = "Intake Report 2"
+            reportTitle = "Intake-Triage"
         } else if (selectedOption === "intakeReport3") {
-            reportTitle = "Intake Report 3"
+            reportTitle = "Requirements"
         } else {
             reportTitle = "Report"
         }

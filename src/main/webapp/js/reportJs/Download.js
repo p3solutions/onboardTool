@@ -60,6 +60,8 @@ $(document).ready(function () {
     $('#submitExport').on('click', function () {
         var decision = $('#exportFormat').val();
         var dynamicFileName = $('#Report').val();
+        var downloadNameElement = document.getElementById("cd-header");
+        var downloadName = downloadNameElement.textContent;
 
         if (decision === "totalRecords") {
             console.log("The Export on total records is in progress");
@@ -87,7 +89,7 @@ $(document).ready(function () {
                         currentDate.getFullYear();
 
                     a.href = URL.createObjectURL(blob);
-                        a.download = dynamicFileName + '_' + formattedDate + ".csv"; // Use the dynamic filename with date
+                        a.download = downloadName + '_' + formattedDate + ".csv"; // Use the dynamic filename with date
 
                     // Trigger a click event on the link to start the download
                     a.click();

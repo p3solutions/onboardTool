@@ -268,9 +268,9 @@
                     <div class="col-lg-12" id="input-align-top"  style=" width: auto;">
                         <label class="col-form-label" id="title" style="margin-top: 28px">Report</label>
                         <select class="form-select align-right selectInput filter" aria-label="Default select example" id="Report" style=" width: auto;margin-top: 28px; margin-left: 10px" >
-                            <option class='options' value="intakeReport1">Intake Report 1</option>
-                            <option class='options' value="intakeReport2">Intake Report 2</option>
-                            <option class='options' value="intakeReport3">Intake Report 3</option>
+                            <option class='options' value="intakeReport1">Intake</option>
+                            <option class='options' value="intakeReport2">Intake-Triage</option>
+                            <option class='options' value="intakeReport3">Requirements</option>
                         </select>
                     </div>
                 </div>
@@ -279,28 +279,50 @@
 </nav>
 
 
-<div class="col-lg- left-side" style="margin: 29px 0 0 90px;">
-    <button type="button" class="btn btn-primary pull-right "  style="margin-right: 100px;" id="exportButton" data-bs-toggle="modal" data-bs-target="#exportModal">Export</button>
-    <button type="button" class="btn btn-primary pull-left" id="searchToggleButton" data-bs-toggle="modal" data-bs-target="#searchModal" style="margin-left: 10px;">Filter</button>
-    <a href="Report.jsp" > <button type="button" id="ExitSearch" class="btn btn-primary pull-left" style="margin-left: 10px; font-size: 14px;" > Exit Search</button></a>
 
-</div>
-<div class="card-container-5 card d3s-mt-50">
+<div class="card-container-5 card d3s-mt-50" style=" border-top: none;">
+    <div class="row">
+        <div class="col-lg-2 col-sm-2">
+            <div class="d-flex " >
+                <button type="button" class="btn btn-primary pull-left" id="searchToggleButton" data-bs-toggle="modal" data-bs-target="#searchModal" >Filter</button>
+                <a href="Report.jsp" > <button type="button" id="ExitSearch" class="btn btn-primary pull-left" style="margin-left: 10px; font-size: 14px;" > Exit Search</button></a>
+            </div>
+        </div>
+        <div class="col-lg-10 col-sm-10 d-flex justify-content-end">
+            <button type="button" class="btn btn-primary pull-right " id="exportButton" data-bs-toggle="modal" data-bs-target="#exportModal">Export</button>
+        </div>
+    </div>
     <div class="card-header d3s-pl-15" id="cd-header"></div>
-    <label style="margin-top: 20px ;margin-left: 8px;">Show </label>
-    <label style="margin-left: 140px;margin-top: -16px;"> Entries</label>
-    <select class="form-select align-left"
-            aria-label="Default select example" id="maxRows"
-            style="padding: 0.75 0 0 0.75rem; margin-bottom: 5px;  margin-top: -28px;margin-left: 55px; width: 80px;">
-        <option value="5000">Show All</option>
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
-        <option value="20">20</option>
-        <option value="50">50</option>
-        <option value="70">70</option>
-        <option value="100">100</option>
-    </select><br>
+    <div class="d-flex align-items-center mt-3" style="margin-left: 1%">
+        <label class="mr-5">Show </label>
+        <select class="form-select" aria-label="Default select example" id="maxRows" style="width: auto;">
+            <option value="5000">Show All</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="70">70</option>
+            <option value="100">100</option>
+        </select>
+        <label class="ml-9">Entries</label>
+    </div>
+
+<%--    <label style="margin-top: 20px ;margin-left: 8px;">Show </label>--%>
+<%--    <label style="margin-left: 140px;margin-top: -16px;"> Entries</label>--%>
+<%--    <select class="form-select align-left"--%>
+<%--            aria-label="Default select example" id="maxRows"--%>
+<%--            style="padding: 0.75 0 0 0.75rem; margin-bottom: 5px;  margin-top: -28px;margin-left: 55px; width: 80px;">--%>
+<%--        <option value="5000">Show All</option>--%>
+<%--        <option value="5">5</option>--%>
+<%--        <option value="10">10</option>--%>
+<%--        <option value="15">15</option>--%>
+<%--        <option value="20">20</option>--%>
+<%--        <option value="50">50</option>--%>
+<%--        <option value="70">70</option>--%>
+<%--        <option value="100">100</option>--%>
+<%--    </select>--%>
+    <br>
     <div class="withoutPhase display" id="admin_userslist_div">
         <div class="table-container">
             <div id="overlay">

@@ -263,38 +263,37 @@
         </div>
     </div>
 </nav>
-<button type="button" class="btn btn-primary pull-right"
-        id="deletepopup_btn" data-bs-toggle="modal"
-        data-bs-target="#DeletePopUp" style="display: none;">Delete
-    PopUp</button>
-<%--         <div class="container-fluid "  id="bg-color">--%>
-<%--            <h5 id="title2">Finance Filter</h5>--%>
-<%--             <i class="fa fa-search search-Icon"></i><input id="AppFilter" type="text" >--%>
-<%--         </div>--%>
+<button type="button" class="btn btn-primary pull-right" id="deletepopup_btn" data-bs-toggle="modal" data-bs-target="#DeletePopUp" style="display: none;">Delete PopUp</button>
 
-<div class="col-lg- left-side" style="margin: 29px 0 0 90px;">
-    <button type="button" class="btn btn-primary pull-right" style="margin-right: 100px;" id="exportButton" data-bs-toggle="modal" data-bs-target="#exportModal">Export</button>
-    <a href="Finance.jsp">
-        <button type="button" id="add_user_btn" class="btn btn-primary pull-left" data-bs-toggle="modal" style="font-size: 14px; display: none;">Add Finance</button>
-    </a>
-    <button type="button" class="btn btn-primary pull-left" id="searchToggleButton" data-bs-toggle="modal" data-bs-target="#searchModal" style="margin-left: 10px;">Filter</button>
-</div>
-<div class="card-container-5 card d3s-mt-50">
+<div class="card-container-5 card d3s-mt-50" style=" border-top: none;">
+    <div class="row">
+        <div class="col-lg-2 col-sm-2">
+            <div class="d-flex " >
+                <a href="Finance.jsp" class="mr-auto"><button type="button" id="add_user_btn" class="btn btn-primary" data-bs-toggle="modal" style="font-size: 14px; display: none;">Add Finance</button></a>
+                <button type="button" class="btn btn-primary" id="searchToggleButton" data-bs-toggle="modal" data-bs-target="#searchModal" style="margin-left: 10px;">Filter</button>
+            </div>
+        </div>
+        <div class="col-lg-10 col-sm-10 d-flex justify-content-end">
+            <button type="button" class="btn btn-primary" id="exportButton" data-bs-toggle="modal" data-bs-target="#exportModal">Export</button>
+        </div>
+    </div>
+
     <div class="card-header d3s-pl-15" id="cd-header">Finance Module <span class="glyphicon glyphicon-filter" id="ExitSearch"></span></div>
-    <label style="margin-top: 20px ;margin-left: 8px;">Show </label>
-    <label style="margin-left: 140px;margin-top: -16px;"> Entries</label>
-    <select class="form-select align-left"
-            aria-label="Default select example" id="maxRows"
-            style="padding: 0.75 0 0 0.75rem; margin-bottom: 5px;  margin-top: -28px;margin-left: 55px; width: 80px;">
-        <option value="5000">Show All</option>
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
-        <option value="20">20</option>
-        <option value="50">50</option>
-        <option value="70">70</option>
-        <option value="100">100</option>
-    </select><br>
+    <div class="d-flex align-items-center mt-3" style="margin-left: 1%">
+        <label class="mr-5">Show </label>
+        <select class="form-select" aria-label="Default select example" id="maxRows" style="width: auto;">
+            <option value="5000">Show All</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="70">70</option>
+            <option value="100">100</option>
+        </select>
+        <label class="ml-9">Entries</label>
+    </div>
+    <br>
     <div class="withoutPhase display" id="admin_userslist_div">
         <div class="table-container">
             <div id="overlay">
@@ -320,15 +319,7 @@
             <div class="col-md-12" align="end" id="recordInfo"></div>
         </div>
     </div>
-</div>
-</div>
-</div>
 
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 
 <div class="modal" id="DeletePopUp" tabindex="-1"
