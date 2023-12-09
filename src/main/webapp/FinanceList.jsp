@@ -321,8 +321,10 @@
     </div>
 
 </div>
-<div class="container d-flex align-items-center justify-content-center vh-100" id="userBlocked" style="font-size: 30px; color: grey; display: none"  >
+<div id="userBlocked">
+<div class="container d-flex align-items-center justify-content-center vh-100" style="font-size: 30px; color: grey;"  >
         <p>You don't have sufficient privilege to view this page. Please contact administrator </p>
+</div>
 </div>
 
 <div class="modal" id="DeletePopUp" tabindex="-1"
@@ -413,6 +415,13 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        userHide();
+});
+
+
+</script>
 
 <!-- ========== PAGE JS FILES ========== -->
 <script src="js/prism/prism.js"></script>
@@ -440,6 +449,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
 
 <!-- ========== BootstrapV5 ========== -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
         rel="stylesheet"

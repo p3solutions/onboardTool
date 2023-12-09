@@ -470,6 +470,7 @@ $(document).ready(function() {
         });
     </script>
 <script src="js/admin_modify_module/admin_role.js"></script>
+<script src="js/Finance/Role_Check.js"></script>
 <script src="js/admin_modify_module/changepwd.js"></script>
 <script src="js/notification/notification.js"></script>
 <script src="js/BindWave.js"></script>

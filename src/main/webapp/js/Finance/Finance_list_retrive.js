@@ -1,7 +1,7 @@
 
 
     $(document).ready(function () {
-        userHide()
+        userHide();
         $("#ExitSearch").hide();
         SearchValidation();
         FinanceSearchDropdown();
