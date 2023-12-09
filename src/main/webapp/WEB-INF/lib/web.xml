@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>D3Sixty</display-name>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>SearchServlet</display-name>
+  	<servlet-name>SearchServlet</servlet-name>
+  	<servlet-class>compliance_module_servlet.SearchServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>FinanceTableRetrieveServlet</display-name>
+  	<servlet-name>FinanceTableRetrieveServlet</servlet-name>
+  	<servlet-class>Finance_module.servlet.FinanceTableRetrieveServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>Add_finance_servlet</display-name>
+  	<servlet-name>Add_finance_servlet</servlet-name>
+  	<servlet-class>Finance_module.servlet.Add_finance_servlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>FinanceAppDataRetrieveServlet</display-name>
+  	<servlet-name>FinanceAppDataRetrieveServlet</servlet-name>
+  	<servlet-class>finance_module_servlet.FinanceAppDataRetrieveServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>Retrieve_Finance_List_Servlet</display-name>
+  	<servlet-name>Retrieve_Finance_List_Servlet</servlet-name>
+  	<servlet-class>finance_module_servlet.Retrieve_Finance_List_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>FinanceAppInfoSaveServlet</display-name>
+  	<servlet-name>FinanceAppInfoSaveServlet</servlet-name>
+  	<servlet-class>finance_module_servlet.FinanceAppInfoSaveServlet</servlet-class>
+  </servlet>
+ 
+  <servlet-mapping>
+  	<servlet-name>FinanceAppDataRetrieveServlet</servlet-name>
+  	<url-pattern>/FinanceAppDataRetrieveServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Retrieve_Finance_List_Servlet</servlet-name>
+  	<url-pattern>/Retrieve_Finance_List_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>FinanceAppInfoSaveServlet</servlet-name>
+  	<url-pattern>/FinanceAppInfoSaveServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  	
+  
+  	
+  
+  
+  
+  
+  <welcome-file-list>
+    <welcome-file>Home.jsp</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <description>Location to zstore uploaded file</description>
+    <param-name>file-upload</param-name>
+    <param-value>
+         C:\apache-tomcat-9.0.0.M20\webapps\data\
+     </param-value>
+  </context-param>
+  <context-param>
+    <param-name>log4j-config-location</param-name>
+    <param-value>WEB-INF/log4j.properties</param-value>
+  </context-param>
+  <!-- <security-constraint>
+    <web-resource-collection>
+        <web-resource-name>D3Sixty</web-resource-name>
+        <url-pattern>/*</url-pattern>
+    </web-resource-collection>
+    <user-data-constraint>
+        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+    </user-data-constraint>
+</security-constraint> -->
+</web-app>

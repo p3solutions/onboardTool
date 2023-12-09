@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import NewArchiveRequirements.LegacyApplicationInfo.Service.archiveLegacyAppInfoEditService;
+import finance_module_service.FinanceAppInfoEditService;
 
 /**
  * Servlet implementation class FinanceAppInfoEditServlet
@@ -45,11 +46,11 @@ public class FinanceAppInfoEditServlet extends HttpServlet {
         String appName=(String)details.getAttribute("app_name");
       
 		String label_name = request.getParameter("label_name");
-		int sequencenumber = Integer.parseInt(request.getParameter("seq_no"))+1;
+		int seqnum = Integer.parseInt(request.getParameter("seq_no"))+1;
 		JsonObject jsonObj = new JsonObject();
 		try {
 			
-			archiveLegacyAppInfoEditService FinanceAppInfo = new archiveLegacyAppInfoEditService(appName, sequencenumber, label_name);
+			FinanceAppInfoEditService FinanceAppInfo = new FinanceAppInfoEditService(appName, seqnum, label_name);
 		    boolean checkDuplicate = FinanceAppInfo.checkDuplicateLabelName();
 		    boolean statusFlag =false;
 		    jsonObj.addProperty("checkDuplicate",checkDuplicate);
@@ -60,7 +61,7 @@ public class FinanceAppInfoEditServlet extends HttpServlet {
 			
 		    }
 			jsonObj.addProperty("checkEditStatus",statusFlag);
-			jsonObj.addProperty("seq_no",sequencenumber);
+			jsonObj.addProperty("seq_no",seqnum);
 		    jsonObj.addProperty("label_name",label_name);
 		    FinanceAppInfo = null;
 		    System.gc();

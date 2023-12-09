@@ -14,10 +14,10 @@ import com.google.gson.JsonArray;
 import compliance_module_service.IntakeReport3Service;
 
 @WebServlet("/IntakeReport3Servlet")
-public class IntakeReport3Servlet extends HttpServlet {
+public class ThridreportIntakeReportServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public IntakeReport3Servlet() {
+    public ThridreportIntakeReportServlet() {
         super();
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

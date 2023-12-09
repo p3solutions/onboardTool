@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
     $("#search").on("keyup", function() {
         var searchText = $(this).val().toLowerCase();

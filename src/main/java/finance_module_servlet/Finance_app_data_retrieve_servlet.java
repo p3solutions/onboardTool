@@ -13,19 +13,20 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
+import IntakeDetails.IntakeOpportunity.Service.IntakeOpportunityService;
 import finance_module_service.FinanceAppDataRetrieveService;
 
 /**
  * Servlet implementation class FinanceAppDataRetrieveServlet
  */
-@WebServlet("/FinanceAppDataRetrieve")
-public class FinanceAppDataRetrieveServlet extends HttpServlet {
+@WebServlet("/Finance_app_data_retrieve_servlet")
+public class Finance_app_data_retrieve_servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FinanceAppDataRetrieveServlet() {
+    public Finance_app_data_retrieve_servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,14 +45,13 @@ public class FinanceAppDataRetrieveServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession details = request.getSession();
-        String Id=(String)details.getAttribute("Id");
-        String oppName=(String)details.getAttribute("SelectedOpportunity");
-        
+        String id=(String)details.getAttribute("ID");
+        String appName=(String)details.getAttribute("app_name");
         JsonArray jsonArray = null;
         FinanceAppDataRetrieveService Appinfo;
 		try {
-			Appinfo = new FinanceAppDataRetrieveService(Id,oppName);
-			jsonArray = Appinfo.FinanceTemplateToFinanceInfo();
+			Appinfo = new FinanceAppDataRetrieveService(id, appName); 
+			jsonArray = Appinfo.financeTemplateToFinanceInfo();
 			Appinfo =null;
 			//calling finalize method and garbage collector
 			System.gc();
@@ -66,7 +66,7 @@ public class FinanceAppDataRetrieveServlet extends HttpServlet {
 		
 		System.out.println("JSON ARRAY"+jsonArray);
 			String json = new Gson().toJson(jsonArray);
-	        response.setContentType("application/json");
+	        response.setContentType("text/csv");
 	        response.setCharacterEncoding("UTF-8");
 	        response.getWriter().write(json);
 	}

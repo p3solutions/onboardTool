@@ -89,9 +89,7 @@ public class FinanceTemplateService {
 		try {
 			
 		
-		String SelectQuery = "select * from finance_info where srcdb='"+srcdb+"' order by seq_no";
-		st = con.prepareStatement(SelectQuery);
-		rs = st.executeQuery();
+		
 		
 		if (!rs.next()){
 			String TemplateQuery = "select * from finance_info__detail order by seq_no;";
@@ -122,7 +120,7 @@ public class FinanceTemplateService {
 		}
 		else
 		{
-			String TemplateQuery = "select * from archivereq_legacyapp_info where id='"+app_name+"' order by seq_no;";
+			String TemplateQuery = "select * from finance_info where id='"+app_name+"' order by seq_no;";
 			st1 = con.prepareStatement(TemplateQuery);
 			rs1 = st1.executeQuery();
 			
