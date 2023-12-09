@@ -10,29 +10,29 @@ public class ReportMapping {
      protected void reportMapping1(ResultSet rs, JsonArray jsonArray) throws SQLException {
         while(rs.next()) {
             JsonObject jsonObj = new JsonObject();
-            jsonObj.addProperty("Application_Id",rs.getString(2));
-            jsonObj.addProperty("Application_Name",rs.getString(3));
-            jsonObj.addProperty("Application_Status",rs.getString(4));
-            jsonObj.addProperty("Phase_Status",rs.getString(5));
-            jsonObj.addProperty("Creation_Date",rs.getString(6));
+            jsonObj.addProperty("Application Id",rs.getString(2));
+            jsonObj.addProperty("Application Name",rs.getString(3));
+            jsonObj.addProperty("Workflow Status",rs.getString(4));
+            jsonObj.addProperty("Phase",rs.getString(5));
+            jsonObj.addProperty("Creation Date",rs.getString(6));
             jsonObj.addProperty("Status",rs.getString(7));
-            jsonObj.addProperty("Request_Type",rs.getString(8));
+            jsonObj.addProperty("Request Type",rs.getString(8));
             jsonObj.addProperty("Requester",rs.getString(9));
-            jsonObj.addProperty("Application_Owner",rs.getString(10));
-            jsonObj.addProperty("Business_Segment",rs.getString(11));
-            jsonObj.addProperty("Business_Unit",rs.getString(12));
-            jsonObj.addProperty("Preliminary_CBA",rs.getString(13));
-            jsonObj.addProperty("Funding_Available",rs.getString(14));
-            jsonObj.addProperty("Program_Funder",rs.getString(15));
-            jsonObj.addProperty("Project_Portfolio_Information",rs.getString(16));
-            jsonObj.addProperty("Project_Decommission_Date",rs.getString(17));
-            jsonObj.addProperty("Infrastructure_Impact",rs.getString(18));
-            jsonObj.addProperty("Number_of_Infrastructure_Components",rs.getString(19));
-            jsonObj.addProperty("Archival_Solution",rs.getString(20));
-            jsonObj.addProperty("Status_Notes",rs.getString(21));
-            jsonObj.addProperty("EDR_Analyst",rs.getString(22));
-            jsonObj.addProperty("Big_Rock",rs.getString(23));
-            jsonObj.addProperty("Readonlydate",rs.getString(24));
+            jsonObj.addProperty("Application Owner",rs.getString(10));
+            jsonObj.addProperty("Business Segment",rs.getString(11));
+            jsonObj.addProperty("Business Unit",rs.getString(12));
+            jsonObj.addProperty("Preliminary CBA",rs.getString(13));
+            jsonObj.addProperty("Funding Available",rs.getString(14));
+            jsonObj.addProperty("Program Funder",rs.getString(15));
+            jsonObj.addProperty("Project Portfolio Information",rs.getString(16));
+            jsonObj.addProperty("Project Decommission Date",rs.getString(17));
+            jsonObj.addProperty("Infrastructure Impact",rs.getString(18));
+            jsonObj.addProperty("Number of Infrastructure Components",rs.getString(19));
+            jsonObj.addProperty("Archival Solution",rs.getString(20));
+            jsonObj.addProperty("Status Notes",rs.getString(21));
+            jsonObj.addProperty("EDR Analyst",rs.getString(22));
+            jsonObj.addProperty("Big Rock",rs.getString(23));
+            jsonObj.addProperty("Read Only Date",rs.getString(24));
             jsonArray.add(jsonObj);
         }
          int arraySize = jsonArray.size();
@@ -84,15 +84,15 @@ public class ReportMapping {
     protected void reportMapping3(ResultSet rs, JsonArray jsonArray) throws SQLException {
         while (rs.next()) {
             JsonObject reportObj = new JsonObject();
-          //  reportObj.addProperty("Id", rs.getString(1));
-            reportObj.addProperty("Application_Name", rs.getString(2));
-            reportObj.addProperty("Source_Platform_Databases", rs.getString(3));
-            reportObj.addProperty("Legacy_App_Description", rs.getString(4));
-            reportObj.addProperty("Read_Only_Date", rs.getString(5));
-            reportObj.addProperty("Is_Application_The_Only_Source_Of_Truth_For_The_Data", rs.getString(6));
-            reportObj.addProperty("Legacy_Application_Hosted_Internally_Or_With_Third_Party_Vendor", rs.getString(7));
-            reportObj.addProperty("Total_Data_Size", rs.getString(8));
-            reportObj.addProperty("Retention_Period", rs.getString(9));
+            reportObj.addProperty("Application Name", rs.getString(1));
+            reportObj.addProperty("Phase", rs.getString(2));
+            reportObj.addProperty("Source Platform Databases", rs.getString(3));
+            reportObj.addProperty("Legacy App Description", rs.getString(4));
+            reportObj.addProperty("Read Only Date", rs.getString(5));
+            reportObj.addProperty("Is Application The Only Source Of Truth For The Data", rs.getString(6));
+            reportObj.addProperty("Legacy Application Hosted Internally Or With Third Party Vendor", rs.getString(7));
+            reportObj.addProperty("Total Data Size", rs.getString(8));
+            reportObj.addProperty("Retention Period", rs.getString(9));
 
             jsonArray.add(reportObj);
         }
@@ -109,29 +109,29 @@ public class ReportMapping {
     protected void reportHeaderMapping1(JsonArray jsonArray)  {
 
             JsonObject jsonObj = new JsonObject();
-            jsonObj.addProperty("Application_Id","");
-            jsonObj.addProperty("Application_Name","");
-            jsonObj.addProperty("Application_Status","");
-            jsonObj.addProperty("Phase_Status","");
-            jsonObj.addProperty("Creation_Date","");
+            jsonObj.addProperty("Application Id","");
+            jsonObj.addProperty("Application Name","");
+            jsonObj.addProperty("Workflow Status","");
+            jsonObj.addProperty("Phase","");
+            jsonObj.addProperty("Creation Date","");
             jsonObj.addProperty("Status","");
-            jsonObj.addProperty("Request_Type","");
+            jsonObj.addProperty("Request Type","");
             jsonObj.addProperty("Requester","");
-            jsonObj.addProperty("Application_Owner","");
-            jsonObj.addProperty("Business_Segment","");
-            jsonObj.addProperty("Business_Unit","");
-            jsonObj.addProperty("Preliminary_CBA","");
-            jsonObj.addProperty("Funding_Available","");
-            jsonObj.addProperty("Program_Funder","");
-            jsonObj.addProperty("Project_Portfolio_Information","");
-            jsonObj.addProperty("Project_Decommission_Date","");
-            jsonObj.addProperty("Infrastructure_Impact","");
-            jsonObj.addProperty("Number_of_Infrastructure_Components","");
-            jsonObj.addProperty("Archival_Solution","");
-            jsonObj.addProperty("Status_Notes","");
-            jsonObj.addProperty("EDR_Analyst","");
-            jsonObj.addProperty("Big_Rock","");
-            jsonObj.addProperty("Readonlydate","");
+            jsonObj.addProperty("Application Owner","");
+            jsonObj.addProperty("Business Segment","");
+            jsonObj.addProperty("Business Unit","");
+            jsonObj.addProperty("Preliminary CBA","");
+            jsonObj.addProperty("Funding Available","");
+            jsonObj.addProperty("Program Funder","");
+            jsonObj.addProperty("Project Portfolio Information","");
+            jsonObj.addProperty("Project Decommission Date","");
+            jsonObj.addProperty("Infrastructure Impact","");
+            jsonObj.addProperty("Number of Infrastructure Components","");
+            jsonObj.addProperty("Archival Solution","");
+            jsonObj.addProperty("Status Notes","");
+            jsonObj.addProperty("EDR Analyst","");
+            jsonObj.addProperty("Big Rock","");
+            jsonObj.addProperty("Read Only Date","");
             jsonArray.add(jsonObj);
         }
     protected void reportHeaderMapping2(JsonArray jsonArray) {
@@ -163,15 +163,16 @@ public class ReportMapping {
     protected void reportHeaderMapping3(JsonArray jsonArray) throws SQLException {
 
             JsonObject reportObj = new JsonObject();
-         //   reportObj.addProperty("Id", "");
-            reportObj.addProperty("Application_Name","");
-            reportObj.addProperty("Source_Platform_Databases","");
-            reportObj.addProperty("Legacy_App_Description","");
-            reportObj.addProperty("Read_Only_Date","");
-            reportObj.addProperty("Is_Application_The_Only_Source_Of_Truth_For_The_Data","");
-            reportObj.addProperty("Legacy_Application_Hosted_Internally_Or_With_Third_Party_Vendor","");
-            reportObj.addProperty("Total_Data_Size","");
-            reportObj.addProperty("Retention_Period","");
+
+            reportObj.addProperty("Application Name","");
+            reportObj.addProperty("Phase", "");
+            reportObj.addProperty("Source Platform Databases","");
+            reportObj.addProperty("Legacy App Description","");
+            reportObj.addProperty("Read Only Date","");
+            reportObj.addProperty("Is Application The Only Source Of Truth For The Data","");
+            reportObj.addProperty("Legacy Application Hosted Internally Or With Third Party Vendor","");
+            reportObj.addProperty("Total Data Size","");
+            reportObj.addProperty("Retention Period","");
             jsonArray.add(reportObj);
         }
 }

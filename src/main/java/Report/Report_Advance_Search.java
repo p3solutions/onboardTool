@@ -41,15 +41,15 @@ public class Report_Advance_Search {
         String ReportName = null;
         switch(tableName){
             case "intakeReport1" : {
-                ReportName = "decom3sixtytool.applicationdataview1";
+                ReportName = "applicationdataview1";
                 break;
             }
             case "intakeReport2" : {
-                ReportName = "decom3sixtytool.applicationdataview2";
+                ReportName = "applicationdataview2";
                 break;
             }
             case "intakeReport3" : {
-                ReportName = "decom3sixtytool.applicationdataview3";
+                ReportName = "applicationdataview3";
                 break;
             }
 
@@ -104,7 +104,7 @@ public class Report_Advance_Search {
             if (i > 0) {
                 sql.append(" ").append(condition).append(" ");
             }
-            sql.append(selectedColumns.get(i)).append(" LIKE ?");
+            sql.append("`").append(selectedColumns.get(i)).append("` LIKE ?");
 
             if (i < selectedColumns.size() - 1) {
                 sql.append(" ");
@@ -127,7 +127,7 @@ public class Report_Advance_Search {
             if (i > 0) {
                 countSql.append(" ").append(condition).append(" ");
             }
-            countSql.append(columns.get(i)).append(" LIKE ?");
+            countSql.append("`").append(columns.get(i)).append("` LIKE ?");
 
             // Add parameter placeholders for prepared statement
             if (i < columns.size() - 1) {

@@ -146,7 +146,7 @@ public class availabilityOfView {
                 "    COALESCE(triage_subquery.Funding_Available, '') AS \"Funding Available\"," +
                 "    COALESCE(triage_subquery.Program_Funder, '') AS \"Program Funder\"," +
                 "    COALESCE(triage_subquery.Project_Portfolio_Information, '') AS \"Project Portfolio Information\"," +
-                "    COALESCE(triage_subquery.Project_Decomission_Date, '') AS \"Project Decomission Date\"," +
+                "    COALESCE(triage_subquery.Project_Decomission_Date, '') AS \"Project Decommission Date\"," +
                 "    COALESCE(triage_subquery.Infrastructure_Impact, '') AS \"Infrastructure Impact\"," +
                 "    COALESCE(triage_subquery.Number_of_Infrastructure_Components, '') AS \"Number of Infrastructure Components\"," +
                 "    COALESCE(triage_subquery.Archival_Solution, '') AS \"Archival Solution\"," +
@@ -321,27 +321,91 @@ public class availabilityOfView {
 
 
     private void Report3() throws SQLException {
-            String sqlViewCreation =
-                   "CREATE VIEW ApplicationDataView3 AS " +
-                           "SELECT " +
-                           "    t1.Id, " +
-                           "    MAX(CASE WHEN t1.column_name = 'legacyappname' THEN t1.value END) AS Application_Name," +
-                           "    MAX(CASE WHEN t1.column_name = 'srcdb' THEN t1.value END) AS Source_Platform_Databases," +
-                           "    MAX(CASE WHEN t1.column_name = 'legacyappdesc' THEN t1.value END) AS Legacy_App_Description," +
-                           "    MAX(CASE WHEN t1.column_name = 'readonly' THEN t1.value END) AS Read_Only_Date," +
-                           "    MAX(CASE WHEN t1.column_name = 'onlysrcdata' THEN t1.value END) AS Is_Application_The_Only_Source_Of_Truth_For_The_Data," +
-                           "    MAX(CASE WHEN t1.column_name = 'thirdpartyvendor' THEN t1.value END) AS Legacy_Application_Hosted_Internally_Or_With_Third_Party_Vendor," +
-                           "    MAX(CASE WHEN t1.column_name = 'totalsize' THEN t1.value END) AS Total_Data_Size," +
-                           "    MAX(CASE WHEN t2.column_name = 'retentionperiod' THEN t2.value END) AS Retention_Period " +
-                           "FROM " +
-                           "    (SELECT Id, label_name, column_name, value FROM decom3sixtytool.archivereq_legacyapp_info) AS t1 " +
-                           "LEFT JOIN " +
-                           "    decom3sixtytool.assessment_compliance_char_info t2 ON " +
-                           "    t1.Id = t2.Id " +
-                           "WHERE " +
-                           "    t1.Id IS NOT NULL " +
-                           "GROUP BY" +
-                           "    t1.Id;";
+            String sqlViewCreation ="CREATE VIEW applicationdataview3 AS " +
+                    "WITH OpportunityInfo AS (" +
+                    "    SELECT" +
+                    "        `Id`," +
+                    "        MAX(CASE WHEN `column_name` = 'appName' THEN `value` END) AS `Application_Name`" +
+                    "    FROM `opportunity_info`" +
+                    "    WHERE `column_name` IN ('appName')" +
+                    "    GROUP BY `Id`" +
+                    "),  " +
+                    "ApplicationStatus AS (" +
+                    "    SELECT " +
+                    "        `o`.`Id`," +
+                    "        MAX(CASE" +
+                    "            WHEN (CASE WHEN `i`.`isCompleted` = 'Yes' AND `i`.`intakeApproval` = 'Approved' THEN 1 ELSE 0 END) = 0 THEN 'Intake' " +
+                    "            WHEN (CASE WHEN `a`.`mail_flag`='true' AND `a`.`intakeApproval` = 'Approved' THEN 1 ELSE 0 END) = 0 THEN 'Requirements'" +
+                    "            ELSE 'Archive Execution'" +
+                    "        END) as `Status`" +
+                    "    FROM `opportunity_info` `o`" +
+                    "    LEFT JOIN `Intake_Stake_Holder_Info` `i` ON `o`.`Id` = `i`.`OppId`" +
+                    "    LEFT JOIN `archivereq_roles_info` `a` ON `i`.`OppId` = `a`.`OppId`" +
+                    "    GROUP BY `o`.`Id`" +
+                    ")," +
+                    "PhaseStatus AS (" +
+                    "    WITH SeparatedValues AS (" +
+                    "        SELECT " +
+                    "            `waveName`," +
+                    "            TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(`value`, ',', n.digit + 1), ',', -1)) AS `separatedValue`" +
+                    "        FROM " +
+                    "            `governance_info`" +
+                    "        JOIN " +
+                    "            (SELECT 0 AS digit UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3) AS n" +
+                    "            ON LENGTH(REPLACE(`value`, ',' , '')) <= LENGTH(`value`) - n.digit" +
+                    "        WHERE " +
+                    "            `column_name` = 'apps'" +
+                    "    )" +
+                    "    SELECT " +
+                    "        `o`.`Id`," +
+                    "        `sv`.`separatedValue`," +
+                    "        `sv`.`waveName`," +
+                    "        `p`.`phaseName`" +
+                    "    FROM " +
+                    "        `opportunity_info` `o`" +
+                    "    JOIN " +
+                    "        `SeparatedValues` `sv` ON `o`.`value` = `sv`.`separatedValue`" +
+                    "    JOIN " +
+                    "       `phase_info` `p` ON `sv`.`waveName` = `p`.`value`" +
+                    "    WHERE " +
+                    "        `o`.`column_name` = 'appname'" +
+                    "        AND `p`.`column_name` = 'waves'" +
+                    ")" +
+                    ", LegacyAppInfo AS (" +
+                    "    SELECT" +
+                    "        t1.Id," +
+                    "        MAX(CASE WHEN t1.column_name = 'legacyappname' THEN t1.value END) AS Application_Name," +
+                    "        MAX(CASE WHEN t1.column_name = 'srcdb' THEN t1.value END) AS Source_Platform_Databases," +
+                    "        MAX(CASE WHEN t1.column_name = 'legacyappdesc' THEN t1.value END) AS Legacy_App_Description," +
+                    "        MAX(CASE WHEN t1.column_name = 'readonly' THEN t1.value END) AS Read_Only_Date," +
+                    "        MAX(CASE WHEN t1.column_name = 'onlysrcdata' THEN t1.value END) AS Is_Application_The_Only_Source_Of_Truth_For_The_Data," +
+                    "        MAX(CASE WHEN t1.column_name = 'thirdpartyvendor' THEN t1.value END) AS Legacy_Application_Hosted_Internally_Or_With_Third_Party_Vendor," +
+                    "        MAX(CASE WHEN t1.column_name = 'totalsize' THEN t1.value END) AS Total_Data_Size," +
+                    "        MAX(CASE WHEN t2.column_name = 'retentionperiod' THEN t2.value END) AS Retention_Period" +
+                    "    FROM" +
+                    "        archivereq_legacyapp_info t1" +
+                    "    LEFT JOIN" +
+                    "        assessment_compliance_char_info t2 ON t1.Id = t2.Id" +
+                    "    WHERE" +
+                    "        t1.Id IS NOT NULL" +
+                    "    GROUP BY" +
+                    "        t1.Id" +
+                    ")" +
+                    "" +
+                    "SELECT" +
+                    "    COALESCE(`o`.`Application_Name`, '') AS \"Application Name\"," +
+                    "    COALESCE(`phs`.`phaseName`, '') AS \"Phase\"," +
+                    "    COALESCE(`lai`.`Source_Platform_Databases`, '') AS \"Source Platform Databases\"," +
+                    "    COALESCE(`lai`.`Legacy_App_Description`, '') AS \"Legacy App Description\"," +
+                    "    COALESCE(`lai`.`Read_Only_Date`, '') AS \"Read Only Date\"," +
+                    "    COALESCE(`lai`.`Is_Application_The_Only_Source_Of_Truth_For_The_Data`, '') AS \"Is Application The Only Source Of Truth For The Data\"," +
+                    "    COALESCE(`lai`.`Legacy_Application_Hosted_Internally_Or_With_Third_Party_Vendor`, '') AS \"Legacy Application Hosted Internally Or With Third Party Vendor\"," +
+                    "    COALESCE(`lai`.`Total_Data_Size`, '') AS \"Total Data Size\"," +
+                    "    COALESCE(`lai`.`Retention_Period`, '') AS \"Retention Period\"" +
+                    "FROM `OpportunityInfo` `o`" +
+                    "LEFT JOIN `ApplicationStatus` `s` ON `o`.`Id` = `s`.`Id`" +
+                    "LEFT JOIN `PhaseStatus` `phs` ON `o`.`Id` = `phs`.`Id`" +
+                    "LEFT JOIN `LegacyAppInfo` `lai` ON `o`.`Id` = `lai`.`Id`;";
 
 
             Statement viewStatement = connection.createStatement();
