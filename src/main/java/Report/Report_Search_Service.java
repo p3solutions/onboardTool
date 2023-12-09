@@ -20,15 +20,15 @@ public class Report_Search_Service {
         String ReportName = null;
         switch (SelectedReport){
             case "intakeReport1" : {
-                ReportName = "decom3sixtytool.applicationdataview1";
+                ReportName = "applicationdataview1";
                 break;
             }
             case "intakeReport2" : {
-                ReportName = "decom3sixtytool.applicationdataview2";
+                ReportName = "applicationdataview2";
                 break;
             }
             case "intakeReport3" : {
-                ReportName = "decom3sixtytool.applicationdataview3";
+                ReportName = "applicationdataview3";
                 break;
             }
         }

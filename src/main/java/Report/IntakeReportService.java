@@ -26,14 +26,14 @@ ReportMapping reportMapping =new ReportMapping();
                 connection = (Connection) dBconnection.getConnection();
                 int start = (page - 1) * maxRows;
 
-                String selectQuery = "SELECT * FROM decom3sixtytool.ApplicationDataView1 LIMIT ?, ?";
+                String selectQuery = "SELECT * FROM ApplicationDataView1 LIMIT ?, ?";
                 st = connection.prepareStatement(selectQuery);
                 st.setInt(1, start);
                 st.setInt(2, maxRows);
                 rs = st.executeQuery();
 
                 reportMapping.reportMapping1(rs, jsonArray);
-                String countQuery = "SELECT COUNT(*) AS total FROM decom3sixtytool.ApplicationDataView1";
+                String countQuery = "SELECT COUNT(*) AS total FROM ApplicationDataView1";
                 st = connection.prepareStatement(countQuery);
                 rs = st.executeQuery();
                 if (rs.next()) {
@@ -77,13 +77,13 @@ ReportMapping reportMapping =new ReportMapping();
 
             int start = (page - 1) * maxRows;
 
-            String selectQuery = "SELECT * FROM decom3sixtytool.ApplicationDataView2 LIMIT ?, ?";
+            String selectQuery = "SELECT * FROM ApplicationDataView2 LIMIT ?, ?";
             st = connection.prepareStatement(selectQuery);
             st.setInt(1, start);
             st.setInt(2, maxRows);
             rs = st.executeQuery();
             reportMapping.reportMapping2(rs, jsonArray);
-            String countQuery = "SELECT COUNT(*) AS total FROM decom3sixtytool.ApplicationDataView2";
+            String countQuery = "SELECT COUNT(*) AS total FROM ApplicationDataView2";
             st = connection.prepareStatement(countQuery);
             rs = st.executeQuery();
             if (rs.next()) {
@@ -126,14 +126,14 @@ ReportMapping reportMapping =new ReportMapping();
                 dBconnection = new DBconnection();
                 connection = (Connection) dBconnection.getConnection();
 
-                String selectQuery = "SELECT * FROM decom3sixtytool.ApplicationDataView3  LIMIT ?, ?";
+                String selectQuery = "SELECT * FROM ApplicationDataView3  LIMIT ?, ?";
                 st = connection.prepareStatement(selectQuery);
                 st.setInt(1, start);
                 st.setInt(2, maxRows);
                 rs = st.executeQuery();
 
                 reportMapping.reportMapping3(rs, jsonArray);
-                String countQuery = "SELECT COUNT(*) AS total FROM decom3sixtytool.ApplicationDataView3";
+                String countQuery = "SELECT COUNT(*) AS total FROM ApplicationDataView3";
                 st = connection.prepareStatement(countQuery);
                 rs = st.executeQuery();
                 if (rs.next()) {
@@ -173,14 +173,14 @@ ReportMapping reportMapping =new ReportMapping();
                 dBconnection = new DBconnection();
                 connection = (Connection) dBconnection.getConnection();
 
-                String selectQuery = "SELECT * FROM decom3sixtytool.ApplicationDataView4 LIMIT ?, ?";
+                String selectQuery = "SELECT * FROM ApplicationDataView4 LIMIT ?, ?";
                 st = connection.prepareStatement(selectQuery);
                 st.setInt(1, start);
                 st.setInt(2, maxRows);
                 rs = st.executeQuery();
 
                 reportMapping.reportMapping3(rs, jsonArray);
-                String countQuery = "SELECT COUNT(*) AS total FROM decom3sixtytool.ApplicationDataView4";
+                String countQuery = "SELECT COUNT(*) AS total FROM ApplicationDataView4";
                 st = connection.prepareStatement(countQuery);
                 rs = st.executeQuery();
                 if (rs.next()) {

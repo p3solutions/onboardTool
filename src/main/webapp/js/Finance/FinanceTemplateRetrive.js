@@ -176,10 +176,11 @@ function ajaxTemplateCallNoData(status){
                             "</div>";
                     }
                     else if (ColumnName === "phase") {
+                        disable_property = "disabled='disabled'";
                         var inputtext1 = "<div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
                             "<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span>"+" <span class='info-icon' title='Phase gets populated once assigned application is assigned to a phase in governance module.' style='margin-left: 5px;'>&#9432;</span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil ' style='float:right;display:none;'></span>\n";
 
-                        inputtext1 = inputtext1 + "<input type='number' min='0' onkeypress='return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
+                        inputtext1 = inputtext1 + "<input type='text' " + disable_property + " class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
                             "</div>";
                     }
                     else {
@@ -377,16 +378,17 @@ function ajaxTemplateCall(status , Id , AppName){
                         inputtext1 = inputtext1+"<input type='number' class='form-control' size='35' id='" + ColumnName + "' placeholder='$' name='" + ColumnName + "' value='" + Value + "' onkeypress='return isNumber(event)'" +
                             "</div>";
                     }
-                    else if (ColumnName === 'status' || ColumnName === "projnum" || ColumnName === "phase" ) {
+                    else if (ColumnName === 'status' || ColumnName === "projnum" ) {
                         disable_property = "disabled='disabled'";
                         inputtext = inputtext + "<input type='text' " + disable_property + " class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
                             "</div>";
                     }
                     else if (ColumnName === "phase") {
+                        disable_property = "disabled='disabled'";
                         var inputtext1 = "<div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
                             "<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span>"+" <span class='info-icon' title='Phase gets populated once assigned application is assigned to a phase in governance module.' style='margin-left: 5px;'>&#9432;</span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil ' style='float:right;display:none;'></span>\n";
 
-                        inputtext1 = inputtext1 + "<input type='number' min='0' onkeypress='return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
+                        inputtext1 = inputtext1 + "<input type='text' " + disable_property + " class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
                             "</div>";
                     }
                     else {
