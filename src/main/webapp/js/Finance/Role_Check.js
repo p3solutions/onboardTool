@@ -10,18 +10,14 @@ function userHide()
         data : {user_Name:user_Name},
         success: function (data) {
             console.log("Users List Retrieve",data);
-            if(data.User_Role=="D3SIXTY_SUPER_ADMIN")
+            if(data.User_Role=="D3SIXTY_FINANCE_CONTRIBUTOR"|| data.User_Role=="D3SIXTY_SUPER_ADMIN")
             {
-                $(".useraction").show();
-                $("#add_user_btn").show();
-                $("#update_license_btn").show();
-                $(".useractionheader").show();
-                $(".main-page").show();
-
+                $("#Allowed").show();
+                $("#userBlocked").hide();
 
             }
             else{
-                $(".main-page").hide();
+                $("#Allowed").hide();
                 $("#userBlocked").show();
             }
         },

@@ -265,7 +265,7 @@
 </nav>
 <button type="button" class="btn btn-primary pull-right" id="deletepopup_btn" data-bs-toggle="modal" data-bs-target="#DeletePopUp" style="display: none;">Delete PopUp</button>
 
-<div class="card-container-5 card d3s-mt-50" style=" border-top: none;">
+<div class="card-container-5 card d3s-mt-50" style=" border-top: none;" id="Allowed">
     <div class="row">
         <div class="col-lg-2 col-sm-2">
             <div class="d-flex " >
@@ -320,6 +320,9 @@
         </div>
     </div>
 
+</div>
+<div class="container d-flex align-items-center justify-content-center vh-100" id="userBlocked" style="font-size: 30px; color: grey; display: none"  >
+        <p>You don't have sufficient privilege to view this page. Please contact administrator </p>
 </div>
 
 <div class="modal" id="DeletePopUp" tabindex="-1"
@@ -430,6 +433,7 @@
 <!-- ========== Export ========== -->
 <script src="js/Finance/CSVExport.js"></script>
 <script src="js/Finance/ExportCSVView.js"></script>
+<script src="js/Finance/Role_Check.js"></script>
 
 <!-- ========== Pagination ========== -->
 
