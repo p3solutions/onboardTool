@@ -27,14 +27,20 @@ $(document).ready(function () {
         // Convert data to CSV content
         const csvContent = convertDataToCSV(data);
 
+        // Get the current date in MMDDYYYY format
+        const currentDate = new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }).replace(/\//g, '');
+
         // Set the response headers for CSV file download
         const csvData = "data:text/csv;charset=utf-8," + encodeURIComponent(csvContent);
 
         const link = document.createElement("a");
 
         if (link.download !== undefined) {
+            // Include the current date in the filename
+            const filename = reportname + '_' + currentDate + '_data.csv';
+
             link.setAttribute("href", csvData);
-            link.setAttribute("download", reportname + "_data.csv");
+            link.setAttribute("download", filename);
             link.style.visibility = 'hidden';
             document.body.appendChild(link);
             link.click();
@@ -57,6 +63,5 @@ $(document).ready(function () {
             console.error('Unsupported data format for CSV export');
             return '';
         }
-    
     }
 });

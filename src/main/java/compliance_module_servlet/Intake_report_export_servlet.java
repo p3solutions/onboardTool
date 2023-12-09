@@ -53,7 +53,7 @@ public class Intake_report_export_servlet extends HttpServlet {
         System.out.println("<<selectedOption>>"+category);
         IntakeExportReportService Report = new IntakeExportReportService();
         switch (category) {
-            case "IntakeReport1":
+            case "Intake":
                 try {
                     jsonArray= Report.fetchReportDetails1();
                 } catch (Exception e) {
@@ -61,7 +61,7 @@ public class Intake_report_export_servlet extends HttpServlet {
                     
                 }
                 break;
-            case "IntakeReport2":
+            case "Intake-Triage":
                 try {
                     jsonArray = Report.fetchReportDetails2();
                 } catch (Exception e) {
@@ -69,7 +69,7 @@ public class Intake_report_export_servlet extends HttpServlet {
                 	 
                 }
                 break;
-            case "IntakeReport3":
+            case "Requirements":
                 try {
                     jsonArray = Report.fetchReportDetails3();
                 } catch (Exception e) {

@@ -11,7 +11,7 @@ import onboard.DBconnection;
 
 public class IntakeExportReportService {
 	public  JsonArray fetchReportDetails1() {
-		System.out.println("=========IntakeReport 1===========");
+		System.out.println("=========Intake===========");
 		PreparedStatement st=null;
 		ResultSet rs=null;
 	    JsonArray jsonArray1 = new JsonArray();
@@ -20,7 +20,7 @@ public class IntakeExportReportService {
 	        DBconnection dBconnection = new DBconnection();
 	        Connection connection = (Connection) dBconnection.getConnection();
 	        System.out.println("Connected... in intake1Service");
-	        String selectQuery = "SELECT * FROM decom3sixtytool.IntakeReport1;";
+	        String selectQuery = "SELECT * FROM IntakeReport1;";
 	        st = connection.prepareStatement(selectQuery);
 	        rs = st.executeQuery();
 	       while(rs.next())
@@ -46,7 +46,8 @@ public class IntakeExportReportService {
 	        jsonObj.addProperty("Status_Notes",rs.getString(18));
 	        jsonObj.addProperty("EDR_Analyst",rs.getString(19));
 	        jsonObj.addProperty("Big_Rock",rs.getString(20));
-
+	        jsonObj.addProperty("Application_Status", rs.getString(22));
+            jsonObj.addProperty("Phase_Status", rs.getString(23));
 
 
 	        jsonArray1.add(jsonObj);
@@ -65,7 +66,7 @@ public class IntakeExportReportService {
 
     
   public JsonArray fetchReportDetails2() {
-	System.out.println("=========IntakeReport 2===========");
+	System.out.println("=========Intake-Triage===========");
 	PreparedStatement st=null;
 	ResultSet rs=null;
     JsonArray jsonArray2 = new JsonArray();
@@ -74,7 +75,7 @@ public class IntakeExportReportService {
        DBconnection dBconnection = new DBconnection();
        Connection connection = (Connection) dBconnection.getConnection();
        System.out.println("Connected... in intake2Service");
-       String selectQuery = "select * from decom3sixtytool.IntakeReport2";
+       String selectQuery = "SELECT * FROM intakereport2";
        st = connection.prepareStatement(selectQuery);
        rs = st.executeQuery();
     while(rs.next())
@@ -99,6 +100,9 @@ public class IntakeExportReportService {
         jsonObj.addProperty("Database_Name",rs.getString(17));
         jsonObj.addProperty("Table_Names",rs.getString(18));
         jsonObj.addProperty("DBA_Contact",rs.getString(19));
+        jsonObj.addProperty("Encryption",rs.getString(20));
+        jsonObj.addProperty("DataMasking",rs.getString(21));
+        jsonObj.addProperty("Phase_Status", rs.getString(22));
 
 
 
@@ -119,14 +123,14 @@ public class IntakeExportReportService {
   }
   
   public JsonArray fetchReportDetails3() {
-	  System.out.println("=========IntakeReport 3===========");
+	  System.out.println("=========Requirements===========");
       JsonArray jsonArray3 = new JsonArray();
 
       try {
           DBconnection dBconnection = new DBconnection();
           Connection connection = (Connection) dBconnection.getConnection();
           System.out.println("connected to............Intake Report 3");
-          String query = "SELECT * FROM decom3sixtytool.requirementreports;";
+          String query = "SELECT * FROM requirementreports;";
           PreparedStatement st = connection.prepareStatement(query);
           ResultSet rs = st.executeQuery();
 
@@ -141,6 +145,8 @@ public class IntakeExportReportService {
               jsonObj.addProperty("Isthelegacyapplicationhostedinternallyorwithanthirdpartyvendor", rs.getString("Isthelegacyapplicationhostedinternallyorwithanthirdpartyvendor"));
               jsonObj.addProperty("What_is_the_total_data_size", rs.getString("What_is_the_total_data_size"));
               jsonObj.addProperty("Retention_Period", rs.getString("Retention_Period"));
+              jsonObj.addProperty("Phase_Status",rs.getString("Phase_Status"));
+
 
               jsonArray3.add(jsonObj);
           }
