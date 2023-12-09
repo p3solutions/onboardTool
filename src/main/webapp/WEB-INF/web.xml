@@ -4,46 +4,15 @@
   <servlet>
   	<description>
   	</description>
-  	<display-name>SearchServlet</display-name>
-  	<servlet-name>SearchServlet</servlet-name>
-  	<servlet-class>compliance_module_servlet.SearchServlet</servlet-class>
-  </servlet>
-  <servlet>
-  	<description>
-  	</description>
-  	<display-name>FinanceTableRetrieveServlet</display-name>
-  	<servlet-name>FinanceTableRetrieveServlet</servlet-name>
-  	<servlet-class>Finance_module.servlet.FinanceTableRetrieveServlet</servlet-class>
-  </servlet>
-  <servlet>
-  	<description>
-  	</description>
-  	<display-name>Add_finance_servlet</display-name>
-  	<servlet-name>Add_finance_servlet</servlet-name>
-  	<servlet-class>Finance_module.servlet.Add_finance_servlet</servlet-class>
-  </servlet>
-  <servlet>
-  	<description>
-  	</description>
-  	<display-name>FinanceAppDataRetrieveServlet</display-name>
-  	<servlet-name>FinanceAppDataRetrieveServlet</servlet-name>
-  	<servlet-class>finance_module_servlet.FinanceAppDataRetrieveServlet</servlet-class>
-  </servlet>
-  <servlet>
-  	<description>
-  	</description>
-  	<display-name>Retrieve_Finance_List_Servlet</display-name>
-  	<servlet-name>Retrieve_Finance_List_Servlet</servlet-name>
-  	<servlet-class>finance_module_servlet.Retrieve_Finance_List_Servlet</servlet-class>
+  	<display-name>IntakeReportExportServlet</display-name>
+  	<servlet-name>IntakeReportExportServlet</servlet-name>
+  	<servlet-class>compliance_module_servlet.IntakeReportExportServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>FinanceAppDataRetrieveServlet</servlet-name>
-  	<url-pattern>/FinanceAppDataRetrieveServlet</url-pattern>
+  	<servlet-name>IntakeReportExportServlet</servlet-name>
+  	<url-pattern>/IntakeReportExportServlet</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>Retrieve_Finance_List_Servlet</servlet-name>
-  	<url-pattern>/Retrieve_Finance_List_Servlet</url-pattern>
-  </servlet-mapping>
+  
   
   	
   

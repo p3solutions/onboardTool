@@ -46,26 +46,27 @@ import java.sql.SQLException;
         	HttpSession details = request.getSession();
             JsonObject result = new JsonObject();
             JsonArray jsonArray = null;
+            
 
             String selectedOption = request.getParameter("category");
             System.out.println("<<selectedOption>>"+selectedOption);
             IntakeReportService Report = new IntakeReportService();
             switch (selectedOption) {
-                case "IntakeReport1":
+                case "Intake":
                     try {
                         jsonArray= Report.getReportDetails1();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                     break;
-                case "IntakeReport2":
+                case "Intake-Triage":
                     try {
                         jsonArray = Report.getReportDetails2();
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
                     break;
-                case "IntakeReport3":
+                case "Requirements":
                     try {
                         jsonArray = Report.getReportDetails3();
                     } catch (Exception e) {

@@ -11,18 +11,18 @@ $(document).ready(function () {
             },
             success: function (data) {
                 $('#overlay').hide();
-                console.log("Data retrieved:", data);
+                console.log("+_+_+_!!!!!!!Data retrieved : :", data);
 
                 if (data.error) {
                     $("#dynamicHeader").html("Error: " + data.error);
                 } else {
                     var tableHtml = null;
 
-                    if (category === "IntakeReport1") {
+                    if (category === "Intake") {
                         tableHtml = constructTable1(data);
-                    } else if (category === "IntakeReport2") {
+                    } else if (category === "Intake-Triage") {
                         tableHtml = constructTable2(data);
-                    } else if (category === "IntakeReport3") {
+                    } else if (category === "Requirements") {
                         tableHtml = constructTable3(data);
                     } else {
                         console.log("Unknown option is selected");
@@ -35,7 +35,7 @@ $(document).ready(function () {
     }
 
     // Initialize with intakereport1
-    var defaultCategory = "IntakeReport1";
+    var defaultCategory = "Intake";
     $("#category").val(defaultCategory);
 
    
@@ -95,6 +95,12 @@ function constructTable1(data) {
         "<th style='text-align: center; vertical-align: middle; width: 10%;' scope=\"col\">EDR_Analyst</th>" +
 
         "<th style='text-align: center; vertical-align: middle; width: 10%;' scope=\"col\">Big_Rock</th>"+
+       
+        "<th style='text-align: center; vertical-align: middle; width: 10%;' scope=\"col\">Data_Read_only_State</th>"+
+        
+        "<th style='text-align: center; vertical-align: middle; width: 10%;' scope=\"col\">Application_Status</th>"+
+        
+        "<th style='text-align: center; vertical-align: middle; width: 10%;' scope=\"col\">Phase_Status</th>"+
 
         "</tr>" +
 
@@ -145,6 +151,11 @@ function constructTable1(data) {
         var EDR_Analyst = value.EDR_Analyst;
 
         var Big_Rock = value.Big_Rock;
+        
+        var Data_Read_only_State=value.Data_Read_only_State;
+         
+         var Application_Status=value.Application_Status;
+         var Phase_Status=value.Phase_Status;
 
  
 
@@ -228,7 +239,26 @@ function constructTable1(data) {
 
             "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+Big_Rock+"</label>" +
 
-            "</td>"+"</tr>"
+            "</td>"+
+            
+
+            "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+Data_Read_only_State+"</label>" +
+
+            "</td>"+
+            
+            "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+Application_Status+"</label>" +
+
+            "</td>"+
+            
+            "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+Phase_Status+"</label>" +
+
+            "</td>"+
+            
+            
+            
+            
+            
+            "</tr>"
 
         tableHtml+=row;
 
@@ -273,6 +303,8 @@ function constructTable2(data) {
 
         "<th style='text-align: center; vertical-align: middle; width: 10%;' scope=\"col\">Database type</th>" +
 
+        "<th style='text-align: center; vertical-align: middle; width: 10%;' scope=\"col\">Database_Type_Characteristics</th>" +
+        
         "<th style='text-align: center; vertical-align: middle; width: 10%;' scope=\"col\">Structured Data In GB</th>" +
 
         "<th style='text-align: center; vertical-align: middle; width: 10%;' scope=\"col\">Structured Data Number of Tables</th>" +
@@ -291,6 +323,13 @@ function constructTable2(data) {
 
         "<th style='text-align: center; vertical-align: middle; width: 10%;' scope=\"col\">DBA Contact</th>" +
 
+         "<th style='text-align: center; vertical-align: middle; width: 10%;' scope=\"col\">Encryption</th>" +
+         
+         "<th style='text-align: center; vertical-align: middle; width: 10%;' scope=\"col\">DataMasking</th>" +
+
+         "<th style='text-align: center; vertical-align: middle; width: 10%;' scope=\"col\">Phase_Status</th>" +
+
+        
         "</tr>" +
 
         "</thead><tbody>";
@@ -302,43 +341,45 @@ function constructTable2(data) {
     $.each(data, function(key, value){
 
 
-        var Application_Name = value.Application_Name || " ";
+        var Application_Name = value.Application_Name;
 
-        var Application_Owner = value.Application_Owner || " ";
+        var Application_Owner = value.Application_Owner;
 
-        var status = value.status || " ";
+        var status = value.status;
 
-        var Project_Portfolio_Information = value.Project_Portfolio_Information || " ";
+        var Project_Portfolio_Information = value.Project_Portfolio_Information;
 
-        var Funding_Available = value.Funding_Available || " ";
+        var Funding_Available = value.Funding_Available;
 
-        var Application_Details = value.Application_Details || " ";
+        var Application_Details = value.Application_Details;
 
-        var Target_Date = value.Target_Date || " ";
+        var Target_Date = value.Target_Date;
 
-        var Readonly_Date = value.Readonly_Date || " ";
+        var Readonly_Date = value.Readonly_Date;
 
-        var Database_type = value.Database_type || " ";
+        var Database_type = value.Database_type;
 
-        var Database_Type_Characteristics= value.Database_Type_Characteristics || " ";
+        var Database_Type_Characteristics= value.Data_Type_Characteristics;
 
-        var Structured_Data_In_GB = value.Structured_Data_In_GB || " ";
+        var Structured_Data_In_GB = value.Structured_Data_In_GB;
 
-        var Structured_Data_Number_of_tables=value.Structured_Data_Number_of_tables||"";
+        var Structured_Data_Number_of_tables=value.Structured_Data_Number_of_tables;
 
-        var Unstructured_Data_In_GB = value.Unstructured_Data_In_GB || " ";
+        var Unstructured_Data_In_GB = value.Unstructured_Data_In_GB;
 
-        var Unstructured_Data_files = value.Unstructured_Data_files || " ";
+        var Unstructured_Data_files = value.Unstructured_Data_files;
 
-        var Database_Server_Name = value.Database_Server_Name || " ";
+        var Database_Server_Name = value.Database_Server_Name;
 
-        var Database_Name = value.Database_Name || " ";
+        var Database_Name = value.Database_Name;
 
-        var Table_Names = value.Table_Names || " ";
+        var Table_Names = value.Table_Names;
 
-        var DBA_Contact = value.DBA_Contact || " ";
+        var DBA_Contact = value.DBA_Contact;
 
- 
+        var Encrytion=value.Encryption;
+        var DataMasking=value.DataMasking;
+        var Phase_Status=value.Phase_Status;
 
             var row = "<tr>"+
 
@@ -408,7 +449,12 @@ function constructTable2(data) {
 
                 "</td>"+ "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+DBA_Contact+"</label>" +
 
-                "</td>"+
+                "</td>"+ "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+Encrytion+"</label>" +
+                
+                "</td>"+ "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+DataMasking+"</label>" +
+               
+                "</td>"+ "<td style='text-align:center;vertical-align: middle;'><label class='control-label ' for=''>"+Phase_Status+"</label>" +
+
 
                 "</tr>";
 
@@ -452,6 +498,8 @@ function constructTable3(data) {
 
        "<th style='text-align: center; vertical-align: middle; width: 10%;' scope=\"col\">RetentionPeriod</th>"+
 
+       "<th style='text-align: center; vertical-align: middle; width: 10%;' scope=\"col\">Phase_Status</th>"+
+
         "</tr>" +
 
         "</thead><tbody>";
@@ -477,6 +525,8 @@ function constructTable3(data) {
         var What_is_the_total_data_size=value.What_is_the_total_data_size;
 
         var Retention_Period=value.Retention_Period;
+        
+        var Phase_Status=value.Phase_Status;
 
  
 
@@ -513,6 +563,11 @@ function constructTable3(data) {
             "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for=''>"+Retention_Period+"</label>" +
 
             "</td>"+
+            
+            "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for=''>"+Phase_Status+"</label>" +
+
+            "</td>"+
+
 
             "</tr>";
 
