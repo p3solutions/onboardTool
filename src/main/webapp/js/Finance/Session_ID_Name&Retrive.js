@@ -39,6 +39,7 @@ $(document).on('keyup focus', '#financeappname', function () {
                 var li = $("<li class='suggestion'>" + suggestion.Application_Name + "</li>");
 
                 li.on('click', function () {
+                    $("#inputFieldsRoles").show();
                     var selectedName = suggestion.Application_Name;
                     var selectedId = suggestion.Id;
                     //setting the value to session in jsp

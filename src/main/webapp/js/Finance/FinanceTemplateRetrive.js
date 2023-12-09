@@ -2,14 +2,7 @@
 
 // Assuming you are using jQuery
 $(document).ready(function () {
-    // Add an input event listener to the input fields with specified column names
-    $('input[name="cba"], input[name="softlicensecost"], input[name="infrastructurecostsavings"], input[name="costavoidance"], input[name="costarchive"]').on('input', function () {
-        // Remove the dollar sign from the input value
-        var valueWithoutDollarSign = $(this).val().replace(/\$/g, '');
-
-        // Update the input value without the dollar sign
-        $(this).val(valueWithoutDollarSign);
-    });
+ $("#inputFieldsRoles").hide();
 });
 
 
@@ -26,6 +19,7 @@ $(document).ready(function () {
         console.log("Retrieved APPNAME:", appName);
         ajaxTemplateCall("Retrieve" , appId , appName);
         financeSetSessionAttribute1(appId,appName);
+        $("#inputFieldsRoles").show();
 
     } else {
         Title = "ADD Finance";
@@ -334,7 +328,6 @@ function ajaxTemplateCall(status , Id , AppName){
         data:{Current: status, ID: Id, Opportunity:AppName},
         dataType: "json",
         success: function (data) {
-
             console.log("Data Retrieve json array----->",data);
             AddTemplateData = data;
             if (!$.isArray(data)) {

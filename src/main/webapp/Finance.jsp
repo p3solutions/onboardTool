@@ -58,6 +58,7 @@
           media="screen">
 </head>
 
+
 <body class="top-navbar-fixed">
 
 <%@ page import="java.text.SimpleDateFormat"%>
@@ -230,7 +231,7 @@
                                                             </div>
 
                                                             <!-- Legacy Application Screenshot -->
-                                                            <div class="panel panel-default">
+                                                            <div class="panel panel-default" >
                                                                 <div class="card-header" id="cd-header">
                                                                     <h4 class="panel-title">
                                                                         <a class="collapsed" data-bs-toggle="collapse"
@@ -239,10 +240,10 @@
                                                                     </h4>
                                                                 </div>
                                                                 <div id="collapse3" class="panel-collapse collapse">
-                                                                    <div class="panel-body">
+                                                                    <div class="panel-body" >
                                                                         <div id="collapse1"
                                                                              class="panel-collapse collapse show" name="collapse">
-                                                                            <div class="panel-body">
+                                                                            <div class="panel-body" id="screentab">
                                                                                 <div id="inputFieldsRoles">
 
                                                                                     <div class="container fileClass">
@@ -267,7 +268,7 @@
                                                                                 </div>
                                                                                 <button type="button" id="add_btn"
                                                                                         class="btn btn-primary" href="#"
-                                                                                        data-bs-toggle="modal"
+                                                                                         data-bs-toggle="modal"
                                                                                         data-bs-target="#Legacy_ScrPopUp"
                                                                                         style="margin: 5px">View Uploaded Files</button>
                                                                             </div>
@@ -647,7 +648,6 @@
         $('.activeIcon').css('color','#fff');
 
     });
-    $("#status").prop("disabled", true);
 </script>
 <%@include file="Footer.jspf"%>
 <!-- ========== COMMON JS FILES ========== -->
