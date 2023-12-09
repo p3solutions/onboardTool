@@ -851,7 +851,7 @@ $(document).on('mouseenter','.active1', function(){
 	<script type="text/javascript"
 		src="js/Requirements/ArchiveRequirements/LegacyApplicationInfo/LegacyAddFeatureFunctionality.js"></script>
 	<script type="text/javascript"
-		src="js/Requirements/ArchiveRequirements/LegacyApplicationInfo/archiveLegacyAddAjaxcall.js"></script>
+		src="js/Finance/FinanceAppInfoSave.js"></script>
 	<script type="text/javascript"
 		src="js/Finance/FinanceEditDeleteAjaxCall.js"></script>
 	

@@ -1,36 +1,34 @@
 $(document).ready(function(){
     $.ajax({
-        url: "FinanceAppDataRetrieve",
+        url: "Finance_app_data_retrieve_servlet",
         type: 'POST',
+        
         dataType: "json",
         success: function (data) {
+			
+			
             console.log("Data Retrieve json array----->",data);
-            AddTemplateData = data;
+            console.log("Data Retrieve json array----->",data);
             if (!$.isArray(data)) {
                 data = [data];
-                AddTemplateData=[data];
             }
-           var dependencyValue="";
+            var template_fields=['legacyappname','srcdb','legacyappdesc','readonly','onlysrcdata','thirdpartyvendor','locationcenter','dbaaccess','dataloclaw','listcountry','datachar','totalsize','nooftables'];
             $.each(data, function(key, value){
                 /*console.log("FULL NAME " + value.Type);*/
-            	var mandatory= "class='required_fie LabelName'";
+                var manadatory="class='required_fie'";
                 var disable_property = "disabled='disabled'";
                 var seq_num =value.seq_num;
                 var Type=value.Type;
                 var ColumnName=value.ColumnName;
                 var LabelName=value.LabelName;
+                var CheckTemplateField =false;
                 var delete_icon="<div class='deletepopup' style='display:none;'></div>";
+               // var delete_edit_icon="<div class='editpopup deletepopup' style='display:none;'></div>";
                 var Value=value.Value;
-               /* if(ColumnName=="thirdpartyvendor" || ColumnName == "listcountry")
-            	{
-                	dependencyValue = Value;
-                	if(Value=="Internally Developed")
-                		Value="Internal";
-            	}*/
-                //var options=data[i].options.split(',');
+
                 if(value.mandatory=="No")
                 {
-                	mandatory="class = 'LabelName'";
+                	manadatory="class = 'LabelName'";
                     disable_property = "";
                     delete_icon = "<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span>";
                 }
@@ -164,27 +162,9 @@ $(document).ready(function(){
                 }
 
             });
-            
-            /*var script="<script>$('.datepicker1').datepicker({\n" +
-                "format: \"mm/dd/yyyy\",\n"+
-                "autoclose: true\n"+
-                "});<\/script>";*/
-            var ss=$('input[name = dataloclaw]:checked').val();
-           	console.log("Radio Value : ",ss);
-           	if(ss=="Yes")           	
-			$("#listcountry_Row").show();
-			else
-			$("#listcountry_Row").hide();		
-
-            var s=$('#thirdpartyvendor').val();
-            if(s=="Internal")
-            {
-			 $('#locationcenter_Row').show();
-			}
-			if(s=="Third Party")
-			{
-				$('#locationcenter_Row').hide();
-			}
+           
+           
+           
             var script="<script>$('.datepicker1').datepicker({\n" +
             "format: \"mm/dd/yyyy\",\n"+
             "clearBtn:true,"+
@@ -210,34 +190,11 @@ $(document).ready(function(){
     
     });
 //$('.deletepopup').click(function() {
-$(document).on('click', '.deletepopup', function () {
+    $(document).on('click', '.deletepopup', function () {
      $('#deletepopup_btn').click();
-    var seqnum=$(this).index('.deletepopup');
+     var seqnum=$(this).index('.deletepopup');
     $('#LegacyDeleteSeq').val(seqnum);
     
 
 });
-$(document).on('change','#thirdpartyvendor',function()
-{
-	if($(this).val()=="Internal")
-		$("#locationcenter_Row").show();
-	else
-		$("#locationcenter_Row").hide();
 });
-
-$(document).on('change','input[name = dataloclaw]',function()
-		{
-			if($(this).val()=="Yes")
-				$("#listcountry_Row").show();
-			else
-				$("#listcountry_Row").hide();
-		});
-
-});
-
-function dateChangeFunction(val) {
-	if (!val.match('^((0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01])[- /.](19|20)?[0-9]{2})*$')) {
-		notification("warning", "Date field should be in mm/dd/yyyy format", "Note:");
-	}
-}
-

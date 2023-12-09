@@ -14,6 +14,7 @@ import ArchiveExecutionModule.ArchiveExecutionDetails.service.ArchiveExecutionTe
 import NewArchiveRequirements.LegacyApplicationInfo.Service.archiveReqLegacyAppTemplateService;
 import NewArchiveRequirements.LegacyApplicationInfo.retentionDetails.Service.archiveRetentionTemplateDetailsService;
 import NewArchiveRequirements.businessRequirementsDetails.functionalReqInfo.dataReq.Service.archiveFunDataReqTemplate;
+import finance_module_service.FinanceTemplateService;
 
 import org.apache.log4j.BasicConfigurator;
 
@@ -243,9 +244,9 @@ public class Login extends HttpServlet {
                 this.description = description;
 
             }
+           
+
         }
-
-
         int i = 0, exec_det = 0, dum = 0, lm = 0;
 
 
@@ -852,6 +853,12 @@ public class Login extends HttpServlet {
             archiveRetentionTemplateDetailsService archiveRetentionObj = new archiveRetentionTemplateDetailsService();
             archiveRetentionObj.archiveRetentionTemplate();
             archiveRetentionObj = null;
+            System.gc();
+            
+            //FinanceAppInfoDetails
+            FinanceTemplateService financeAppInfoObj=new FinanceTemplateService(""); 
+            financeAppInfoObj.FinanceAppTemplate();
+            financeAppInfoObj=null;
             System.gc();
 
             //Archive Function Data Req Details

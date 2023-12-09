@@ -25,7 +25,7 @@ PreparedStatement s=null;
 	{		
 			DBconnection  d = new DBconnection(true);
 	    	Connection dbconnection = (Connection) d.getConnection();
-	        s = dbconnection.prepareStatement("CREATE DATABASE decom3sixtytool");
+	        s = dbconnection.prepareStatement("CREATE DATABASE  IF NOT EXISTS decom3sixtytool");
 	       	s.executeUpdate();
 	       
 	       	dbconnection.close();

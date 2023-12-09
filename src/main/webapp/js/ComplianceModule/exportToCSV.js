@@ -1,18 +1,9 @@
-
-    function exportToCSV() {
+function exportToCSV() {
         // Get the table element
         var table = document.querySelector('.table');
 
         // Create an empty array to store the data
         var data = [];
-
-        // Get column headers
-        var headers = [];
-        var headerCells = table.querySelectorAll('thead th');
-        headerCells.forEach(function (cell) {
-            headers.push(cell.textContent.trim());
-        });
-        data.push(headers.join(','));
 
         // Iterate through the rows and cells of the table
         var rows = table.querySelectorAll('tr');
@@ -39,5 +30,4 @@
 
         // Simulate a click on the link to trigger the download
         link.click();
-    
-}
+    }

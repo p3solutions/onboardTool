@@ -50,6 +50,7 @@
 <script src="js/main.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="js/admin_modify_module/admin_users_pagination.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <style>
         th {
@@ -173,10 +174,21 @@
             margin-left: 289px;
         }
         
+       .col-auto {
+            text-align: left; /* Align the content to the left within the column */
+        }
+ 
+       .btn-primary {
+            float: left; /* Float the button to the left */
+            margin-right: 80px; /* Add some right margin for spacing */
+        }
+		
+        
 </style>
+
 </head>
 <body>
-<script src="js/ComplianceModule/exportToCSV.js"></script>
+<script src="js/ComplianceModule/backendexport.js"></script>
 <script src="js/ComplianceModule/SearchFunction.js"></script>
 
 
@@ -224,9 +236,9 @@
 <div class="col-auto">
 <select class="selectInput filter" id="category">
 
-<option class='options' value='IntakeReport1'>IntakeReport 1</option>
-<option class='options' value='IntakeReport2'>IntakeReport 2</option>
-<option class='options' value='IntakeReport3'>IntakeReport 3</option>  
+<option class='options' value='Intake'>Intake</option>
+<option class='options' value='Intake-Triage'>Intake-Triage</option>
+<option class='options' value='Requirements'>Requirements</option>  
 </select>
 
 
@@ -244,7 +256,7 @@
 
 <div class="col-auto"  >
 
-<button type="button" class="btn btn-primary pull-right" id="exportButton" onclick="exportToCSV();">Export</button>
+<button  class="btn btn-primary pull-right" id="Exportwholedata" >Export All</button>
  </div>
 
 

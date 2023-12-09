@@ -124,11 +124,11 @@ function FinanceAppInfoAjaxCallUpdate(JsonString,checkMandatory,e)
         success: function (data) {
             console.log("CREATE VALIDATION",data);
             if(data.checkSaveStatus){
-                notification("success","Saved Successfully in Archive Application Info.","Note : ");
+                notification("success","Saved Successfully in Finnace Application Info.","Note : ");
                 document.getElementById("saveEnvmntName").disabled = false;
                 }
             else
-                notification("error","Problem occured while saving in Archive Application Info.","Error : ");
+                notification("error","Problem occured while saving in Finance Application Info.","Error : ");
             JsonObject = data;
         },
         error: function (e) {
@@ -150,7 +150,7 @@ $(document).on('click', '#complete', function(e) {
             if (data.iscompleted==true) {
                 notification("success", "Completed successfully.", "Note:");
             }else if (data.iscompleted==false) {
-                notification("error","Please fill atleast One Row in Archive Environment Information Server Details","Error:");
+                notification("error","Error:");
             }
         }
     });

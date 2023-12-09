@@ -13,7 +13,7 @@ public class FinanceAppInfoEditService {
 	public String appName = null;
 	public int seqNum ;
 	public String labelName = null;
-public FinanceAppInfoEditService(String appName,int seqNum,String labelName) throws ClassNotFoundException, SQLException {
+  public FinanceAppInfoEditService(String appName,int seqNum,String labelName) throws ClassNotFoundException, SQLException {
 	dBconnection = new DBconnection();
 	 con = (Connection) dBconnection.getConnection();
 	 this.appName = appName;
