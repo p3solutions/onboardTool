@@ -35,12 +35,12 @@ public class availabilityOfView {
     }
     private boolean viewAvailability(String viewName) {
         boolean flag = false;
-        String schemaName = "decom3sixtytool";
+//
 
-        String sql = "SELECT COUNT(*) as view_count FROM information_schema.views WHERE table_name = ? AND table_schema = ?";
+        String sql = "SELECT COUNT(*) as view_count FROM information_schema.views WHERE table_name = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, viewName);
-            statement.setString(2, schemaName);
+
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
@@ -491,9 +491,9 @@ public class availabilityOfView {
                 "    MAX(CASE WHEN t1.column_name = 'status' THEN t1.value END) AS Status," +
                 "    MAX(t2.File_Name) AS ScreenshotFileName " +
                 "FROM" +
-                "    decom3sixtytool.finance_info t1 " +
+                "    finance_info t1 " +
                 "LEFT JOIN" +
-                "    decom3sixtytool.finance_application_screenshot t2 ON t1.Id = t2.AppId " +
+                "    finance_application_screenshot t2 ON t1.Id = t2.AppId " +
                 "GROUP BY" +
                 "    t1.Id " +
                 "HAVING" +

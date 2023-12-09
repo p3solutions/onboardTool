@@ -33,14 +33,14 @@ public class FinanceAppInfoSaveService {
                 JsonObject jsonObj = jsonArray.get(i).getAsJsonObject();
                 String name = jsonObj.get("Name").getAsString();
                 String value = jsonObj.get("Value").getAsString();
-                String SelectQuery = "select * from decom3sixtytool.finance_info where id =? and column_name=?;";
+                String SelectQuery = "select * from finance_info where id =? and column_name=?;";
                 PreparedStatement st = con.prepareStatement(SelectQuery);
                 st.setString(1, Id);
                 st.setString(2, name);
                 ResultSet rs = st.executeQuery();
                 if(rs.next())
                 {
-                    String UpdateQuery = "update decom3sixtytool.finance_info set value=?, app_name = ? where id =? and column_name =?";
+                    String UpdateQuery = "update finance_info set value=?, app_name = ? where id =? and column_name =?";
                     PreparedStatement st1 = con.prepareStatement(UpdateQuery);
                     st1.setString(1, value);
                     st1.setString(2, oppName);

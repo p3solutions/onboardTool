@@ -37,7 +37,7 @@ public class Finance_Advance_Search_servlet extends HttpServlet {
         String searchTerm = request.getParameter("searchTerm");
         int page = Integer.parseInt(request.getParameter("page"));
         int maxRows = Integer.parseInt(request.getParameter("maxRows"));
-        String tableName = "decom3sixtytool.financelist";
+        String tableName = "financelist";
 
         JsonObject result = null;
         try {

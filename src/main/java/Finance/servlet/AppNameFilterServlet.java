@@ -28,12 +28,12 @@ public class AppNameFilterServlet extends HttpServlet {
             DBconnection dbConnection = new DBconnection();
             Connection connection = dbConnection.getConnection();
 
-            String sql = "SELECT Id, value FROM decom3sixtytool.opportunity_info WHERE column_name = 'appName' AND value LIKE ?;";
+            String sql = "SELECT Id, value FROM opportunity_info WHERE column_name = 'appName' AND value LIKE ?;";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, name + "%");
             ResultSet resultSet = statement.executeQuery();
 
-            String sql1 = "SELECT DISTINCT Id, app_name FROM decom3sixtytool.finance_info WHERE Id IN ( SELECT DISTINCT Id FROM decom3sixtytool.finance_info WHERE value IS NOT NULL AND TRIM(value) <> '');";
+            String sql1 = "SELECT DISTINCT Id, app_name FROM finance_info WHERE Id IN ( SELECT DISTINCT Id FROM finance_info WHERE value IS NOT NULL AND TRIM(value) <> '');";
             Statement statement1 = connection.createStatement();
             ResultSet rs = statement1.executeQuery(sql1);
 

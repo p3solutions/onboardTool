@@ -24,14 +24,14 @@ public class FinanceFieldAddFeatureService {
         try {
             DBconnection dBconnection = new DBconnection();
             Connection connection = (Connection) dBconnection.getConnection();
-            String select_query = "select * from decom3sixtytool.finance_info where Id = ? order by seq_no;";
+            String select_query = "select * from finance_info where Id = ? order by seq_no;";
             PreparedStatement st = connection.prepareStatement(select_query);
             st.setString(1, Id);
             ResultSet rs = st.executeQuery();
             String name = "LegacyAddInfo";
 
             if (rs.next()) {
-                String max_seqnum = "select max(seq_no) from decom3sixtytool.finance_info where Id = ? order by seq_no;";
+                String max_seqnum = "select max(seq_no) from finance_info where Id = ? order by seq_no;";
                 PreparedStatement st1 = connection.prepareStatement(max_seqnum);
                 st1.setString(1, Id);
                 ResultSet rs1 = st1.executeQuery();
@@ -44,7 +44,7 @@ public class FinanceFieldAddFeatureService {
             if (!type.equals("Text box") && !type.equals("Datepicker")) {
                 options = options.substring(0, options.length() - 1);
             }
-            String insert_query = "insert into decom3sixtytool.finance_info (seq_no,Id,prj_name,app_name,options,label_name,column_name,type,mandatory,value,usermandatoryflag) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?);";
+            String insert_query = "insert into finance_info (seq_no,Id,prj_name,app_name,options,label_name,column_name,type,mandatory,value,usermandatoryflag) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?);";
             PreparedStatement preparedStatement1 = connection.prepareStatement(insert_query);
             preparedStatement1.setInt(1, max_seq_num);
             preparedStatement1.setString(2, Id);

@@ -26,7 +26,7 @@ public class ReportExportService {
             dBconnection = new DBconnection();
             connection = (Connection) dBconnection.getConnection();
 
-            String selectQuery = "SELECT * FROM decom3sixtytool.ApplicationDataView1 ";
+            String selectQuery = "SELECT * FROM ApplicationDataView1 ";
             st = connection.prepareStatement(selectQuery);
 
             rs = st.executeQuery();
@@ -62,7 +62,7 @@ public class ReportExportService {
             dBconnection = new DBconnection();
             connection = (Connection) dBconnection.getConnection();
 
-            String selectQuery = "SELECT * FROM decom3sixtytool.ApplicationDataView2 ";
+            String selectQuery = "SELECT * FROM ApplicationDataView2 ";
             st = connection.prepareStatement(selectQuery);
 
             rs = st.executeQuery();
@@ -96,7 +96,7 @@ public class ReportExportService {
             dBconnection = new DBconnection();
             connection = (Connection) dBconnection.getConnection();
 
-            String selectQuery = "SELECT * FROM decom3sixtytool.ApplicationDataView3 ";
+            String selectQuery = "SELECT * FROM ApplicationDataView3 ";
             st = connection.prepareStatement(selectQuery);
 
             rs = st.executeQuery();

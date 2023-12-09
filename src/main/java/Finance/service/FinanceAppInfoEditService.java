@@ -26,7 +26,7 @@ public class FinanceAppInfoEditService {
         boolean StatusFlag = false;
         try
         {
-            String UpdateQuery = "update decom3sixtytool.finance_info set label_name = ? where Id=? and seq_no=?";
+            String UpdateQuery = "update finance_info set label_name = ? where Id=? and seq_no=?";
             PreparedStatement prestmt = con.prepareStatement(UpdateQuery);
             prestmt.setString(1,labelName);
             prestmt.setString(2,Id);
@@ -48,7 +48,7 @@ public class FinanceAppInfoEditService {
         boolean StatusFlag = true;
         try
         {
-            String selectQuery = "select * from decom3sixtytool.finance_info where Id=? and label_name=?";
+            String selectQuery = "select * from finance_info where Id=? and label_name=?";
             PreparedStatement st = con.prepareStatement(selectQuery);
             st.setString(1, Id);
             st.setString(2, labelName);
@@ -70,7 +70,7 @@ public class FinanceAppInfoEditService {
         String previousLabelName ="";
         try
         {
-            String selectQuery = "select * from decom3sixtytool.finance_info where Id=? and seq_no=?";
+            String selectQuery = "select * from finance_info where Id=? and seq_no=?";
             PreparedStatement st = con.prepareStatement(selectQuery);
             st.setString(1, Id);
             st.setInt(2, seqNum);

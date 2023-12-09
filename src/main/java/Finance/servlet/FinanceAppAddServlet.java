@@ -72,7 +72,7 @@ public class FinanceAppAddServlet extends HttpServlet{
                 jsonobject.addProperty("OptionCheckExistance", true);
             }
 
-            String select_lab = "select * from decom3sixtytool.finance_info where Id = ? and  label_name = ? ";
+            String select_lab = "select * from finance_info where Id = ? and  label_name = ? ";
             PreparedStatement st1 = connection.prepareStatement(select_lab);
             st1.setString(1, Id);
             st1.setString(2, label_name);

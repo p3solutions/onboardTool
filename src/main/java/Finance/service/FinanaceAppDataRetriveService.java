@@ -171,7 +171,7 @@ public class FinanaceAppDataRetriveService {
             }
 
             if (!checkValue && columnName.equals("Phase")) {
-                tableName = "decom3sixtytool.phase";
+                tableName = "phase";
                 String selectQueryDB = "select * from " + tableName + " where Application_Id = ?";
                 PreparedStatement stDb = con.prepareStatement(selectQueryDB);
                 stDb.setString(1, Id);
@@ -185,7 +185,7 @@ public class FinanaceAppDataRetriveService {
 
             }
             else if (!checkValue && columnName.equals("status")) {
-                tableName = "decom3sixtytool.phase";
+                tableName = "phase";
                 String selectQueryDB = "select * from " + tableName + " where Application_Id = ?";
                 PreparedStatement stDb = con.prepareStatement(selectQueryDB);
                 stDb.setString(1, Id);
