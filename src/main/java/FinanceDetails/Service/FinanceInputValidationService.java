@@ -118,6 +118,7 @@ public class FinanceInputValidationService {
 		Connection connection = null;
 		String Name = Id;
 		System.out.println("The value----------" + Name);
+		System.out.println("The value of Array"+jsonArray);
 		try {
 			DBconnection con = new DBconnection();
 			connection = (Connection) con.getConnection();
@@ -126,7 +127,9 @@ public class FinanceInputValidationService {
 				JsonObject jsonObj = jsonArray.get(i).getAsJsonObject();
 
 				String name = jsonObj.get("Name").getAsString();
+				System.out.println("Name value"+name);
 				String value = jsonObj.get("Value").getAsString();
+				System.out.println(" value"+value);
 				String SelectQuery = "select * from Finance_Informations_Details where column_name='" + name + "';";
 
 				try {

@@ -71,15 +71,15 @@ public class ReportSearch extends HttpServlet {
 		    	System.out.println("Checkinggg-------------------------------===========");
 		    try {
 		    	 switch (ReportName) {
-	             case "IntakeReport1":
+	             case "Intake":
 	            	 jsonObj = reportGenerationSearchService.fetchDataForIntakeReport1(page, maxRows,SearchValue,ColumnName);
 	                 break;
 
-	             case "IntakeReport2":
+	             case " Intake_Triage":
 	            	 jsonObj = reportGenerationSearchService.fetchDataForIntakeReport2(page, maxRows,SearchValue,ColumnName);
 	                 break;
 
-	             case "IntakeReport3":
+	             case "Requirements":
 	            	 jsonObj = reportGenerationSearchService.fetchDataForIntakeReport3(page, maxRows,SearchValue,ColumnName);
 	                 break;
 

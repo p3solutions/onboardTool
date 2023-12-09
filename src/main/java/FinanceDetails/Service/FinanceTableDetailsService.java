@@ -19,7 +19,7 @@ public class FinanceTableDetailsService {
             Connection connection = (Connection) dBconnection.getConnection();
             System.out.println("Connected...");
             int start = (Page - 1) * MaxRows;
-            String query = "SELECT * FROM decom3sixtytool.financedetails LIMIT ?, ?";
+            String query = "SELECT * FROM financedetails LIMIT ?, ?";
             st = connection.prepareStatement(query);
             st.setInt(1, start);
             st.setInt(2, MaxRows);
@@ -46,7 +46,7 @@ public class FinanceTableDetailsService {
             jsonObj.addProperty("Id",rs.getString(16));
             jsonArray.add(jsonObj);
        }
-            String countQuery = "SELECT COUNT(*) AS total FROM decom3sixtytool.financedetails";
+            String countQuery = "SELECT COUNT(*) AS total FROM financedetails";
             st = connection.prepareStatement(countQuery);
             rs = st.executeQuery();
             if (rs.next()) {

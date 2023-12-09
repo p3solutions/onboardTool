@@ -46,15 +46,15 @@ public class Compliance extends HttpServlet {
 	     
 	     try {
 	    	 switch (ReportName) {
-             case "IntakeReport1":
+             case "Intake":
             	 jsonObj = governanceReportGenerationService.fetchDataForIntakeReport1(page, maxRows);
                  break;
 
-             case "IntakeReport2":
+             case "Intake_Triage":
             	 jsonObj = governanceReportGenerationService.fetchDataForIntakeReport2(page, maxRows);
                  break;
 
-             case "IntakeReport3":
+             case "Requirements":
             	 jsonObj = governanceReportGenerationService.fetchDataForIntakeReport3(page, maxRows);
                  break;
 

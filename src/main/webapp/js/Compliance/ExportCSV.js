@@ -62,17 +62,29 @@ function exportToCSV(jsonArray) {
         csvContent += row + "\r\n";
     });
 
+   
+
+ function getFormattedDate() {
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, '0');
+        const month = String(today.getMonth() + 1).padStart(2, '0'); // Month is zero-based
+        const year = today.getFullYear();
+
+        return `${day}/${month}/${year}`;
+    }
+
+    var formattedDate = getFormattedDate();
+    console.log("Formatted Date:", formattedDate);
+
     var encodedUri = encodeURI(csvContent);
     var link = document.createElement("a");
 
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", filename + ".csv"); // Set the filename based on the dropdown value
+   link.setAttribute("download", filename+"("+ formattedDate +") .csv"); // Set the filename based on the formatted date
 
     document.body.appendChild(link);
     link.click();
-    document.body.removeChild(link);
 }
-
 
 function exportdatatocsv() {
 	closeexportPopup();
@@ -99,11 +111,23 @@ function exportdatatocsv() {
         csvContent += row + "\r\n";
     });
 
+    function getFormattedDate() {
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, '0');
+        const month = String(today.getMonth() + 1).padStart(2, '0'); // Month is zero-based
+        const year = today.getFullYear();
+
+        return `${day}/${month}/${year}`;
+    }
+
+    var formattedDate = getFormattedDate();
+    console.log("Formatted Date:", formattedDate);
+
     var encodedUri = encodeURI(csvContent);
     var link = document.createElement("a");
 
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", filename + ".csv"); // Set the filename based on the dropdown value
+    link.setAttribute("download", filename+"("+ formattedDate +") +.csv"); // Set the filename based on the formatted date
 
     document.body.appendChild(link);
     link.click();

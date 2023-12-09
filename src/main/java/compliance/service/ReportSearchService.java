@@ -60,7 +60,7 @@ public class ReportSearchService {
             
             int start = (Page - 1) * MaxRows;
             
-            String query = "SELECT * FROM decom3sixtytool.IntakeReport1 where "+columnName+" like ? LIMIT ?,?;";
+            String query = "SELECT * FROM Intake where `"+columnName+"` like ? LIMIT ?,?;";
             st = connection.prepareStatement(query);
             st.setString(1, "%"+searchValue+"%");
             st.setInt(2, start);
@@ -69,33 +69,33 @@ public class ReportSearchService {
 
             while (rs.next()) {
                 JsonObject jsonObj = new JsonObject();
-                jsonObj.addProperty("Application_Id",rs.getString(1));
-                jsonObj.addProperty("Application_Name",rs.getString(2));
-                jsonObj.addProperty("Creation_Date",rs.getString(3));
+                jsonObj.addProperty("Application Id",rs.getString(1));
+                jsonObj.addProperty("Application Name",rs.getString(2));
+                jsonObj.addProperty("Creation Date",rs.getString(3));
                 jsonObj.addProperty("Status",rs.getString(4));
-                jsonObj.addProperty("Request_Type",rs.getString(5));
+                jsonObj.addProperty("Request Type",rs.getString(5));
                 jsonObj.addProperty("Requester",rs.getString(6));
-                jsonObj.addProperty("Application_Owner",rs.getString(7));
-                jsonObj.addProperty("Business_Segment",rs.getString(8));
-                jsonObj.addProperty("Business_Unit",rs.getString(9));
-                jsonObj.addProperty("Preliminary_CBA",rs.getString(10));
-                jsonObj.addProperty("Funding_Available",rs.getString(11));
-                jsonObj.addProperty("Program_Funder",rs.getString(12));
-                jsonObj.addProperty("Project_Portfolio_Information",rs.getString(13));
-                jsonObj.addProperty("Project_Decomission_Date",rs.getString(14));
-                jsonObj.addProperty("Infrastructure_Impact",rs.getString(15));
-                jsonObj.addProperty("Number_of_Infrastructure_Components",rs.getString(16));
-                jsonObj.addProperty("Archival_Solution",rs.getString(17));
-                jsonObj.addProperty("Status_Notes",rs.getString(18));
-                jsonObj.addProperty("EDR_Analyst",rs.getString(19));
-                jsonObj.addProperty("Big_Rock",rs.getString(20));
-                jsonObj.addProperty("Data_Read_only_State",rs.getString(21));
-                jsonObj.addProperty("Application_Status",rs.getString(22));
-                jsonObj.addProperty("Phase_Status",rs.getString(23));
+                jsonObj.addProperty("Application Owner",rs.getString(7));
+                jsonObj.addProperty("Business Segment",rs.getString(8));
+                jsonObj.addProperty("Business Unit",rs.getString(9));
+                jsonObj.addProperty("Preliminary CBA",rs.getString(10));
+                jsonObj.addProperty("Funding Available",rs.getString(11));
+                jsonObj.addProperty("Program Funder",rs.getString(12));
+                jsonObj.addProperty("Project Portfolio Information",rs.getString(13));
+                jsonObj.addProperty("Project Decomission Date",rs.getString(14));
+                jsonObj.addProperty("Infrastructure Impact",rs.getString(15));
+                jsonObj.addProperty("Number of Infrastructure Components",rs.getString(16));
+                jsonObj.addProperty("Archival Solution",rs.getString(17));
+                jsonObj.addProperty("Status Notes",rs.getString(18));
+                jsonObj.addProperty("EDR Analyst",rs.getString(19));
+                jsonObj.addProperty("Big Rock",rs.getString(20));
+                jsonObj.addProperty("Data Read only State",rs.getString(21));
+                jsonObj.addProperty("Application Status",rs.getString(22));
+                jsonObj.addProperty("Phase Status",rs.getString(23));
                 jsonArray.add(jsonObj);
             }
           
-            String countQuery = "SELECT COUNT("+columnName+") AS total FROM decom3sixtytool.IntakeReport1 Where "+columnName+" Like ?";
+            String countQuery = "SELECT COUNT(`"+columnName+"`) AS total FROM Intake Where `"+columnName+"` Like ?";
             st1 = connection.prepareStatement(countQuery);
             st1.setString(1, "%"+searchValue+"%");
             rs1 = st1.executeQuery();
@@ -132,7 +132,7 @@ public class ReportSearchService {
             
             int start = (Page - 1) * MaxRows;
             
-            String query = "SELECT * FROM decom3sixtytool.IntakeReport2 where "+columnName+" like ? LIMIT ?,?;";
+            String query = "SELECT * FROM Intake_Triage where `"+columnName+"` like ? LIMIT ?,?;";
             st = connection.prepareStatement(query);
             st.setString(1, "%"+searchValue+"%");
             st.setInt(2, start);
@@ -141,30 +141,31 @@ public class ReportSearchService {
 
             while (rs.next()) {
                 JsonObject jsonObj = new JsonObject();
-                jsonObj.addProperty("Application_Name",rs.getString(1));
-                jsonObj.addProperty("Application_Owner",rs.getString(2));
+                jsonObj.addProperty("Application Name",rs.getString(1));
+                jsonObj.addProperty("Application Owner",rs.getString(2));
                 jsonObj.addProperty("status",rs.getString(3));
-                jsonObj.addProperty("Project_Portfolio_Information",rs.getString(4));
-                jsonObj.addProperty("Funding_Available",rs.getString(5));
-                jsonObj.addProperty("Application_Details",rs.getString(6));
-                jsonObj.addProperty("Target_Date",rs.getString(7));
-                jsonObj.addProperty("Readonly_Date",rs.getString(8));
-                jsonObj.addProperty("Database_type",rs.getString(9));
-                jsonObj.addProperty("Data_Type_Characteristics",rs.getString(10));
-                jsonObj.addProperty("Structured_Data_In_GB",rs.getString(11));
-                jsonObj.addProperty("Structured_Data_Number_of_tables",rs.getString(12));
-                jsonObj.addProperty("Unstructured_Data_In_GB",rs.getString(13));
-                jsonObj.addProperty("Unstructured_Data_files",rs.getString(14));
-                jsonObj.addProperty("Database_Server_Name",rs.getString(15));
-                jsonObj.addProperty("Database_Name",rs.getString(16));
-                jsonObj.addProperty("Table_Names",rs.getString(17));
-                jsonObj.addProperty("DBA_Contact",rs.getString(18));
+                jsonObj.addProperty("Project Portfolio Information",rs.getString(4));
+                jsonObj.addProperty("Funding Available",rs.getString(5));
+                jsonObj.addProperty("Application Details",rs.getString(6));
+                jsonObj.addProperty("Target Date",rs.getString(7));
+                jsonObj.addProperty("Readonly Date",rs.getString(8));
+                jsonObj.addProperty("Database type",rs.getString(9));
+                jsonObj.addProperty("Data Type Characteristics",rs.getString(10));
+                jsonObj.addProperty("Structured Data In GB",rs.getString(11));
+                jsonObj.addProperty("Structured Data Number of tables",rs.getString(12));
+                jsonObj.addProperty("Unstructured Data In GB",rs.getString(13));
+                jsonObj.addProperty("Unstructured Data files",rs.getString(14));
+                jsonObj.addProperty("Database Server Name",rs.getString(15));
+                jsonObj.addProperty("Database Name",rs.getString(16));
+                jsonObj.addProperty("Table Names",rs.getString(17));
+                jsonObj.addProperty("DBA Contact",rs.getString(18));
                 jsonObj.addProperty("Encryption",rs.getString(19));
-                jsonObj.addProperty("Data_Masking",rs.getString(20));
+                jsonObj.addProperty("Data Masking",rs.getString(20));
+                jsonObj.addProperty("Phase Status",rs.getString(21));
                 jsonArray.add(jsonObj);
             }
           
-            String countQuery = "SELECT COUNT("+columnName+") AS total FROM decom3sixtytool.IntakeReport2 Where "+columnName+" Like ?";
+            String countQuery = "SELECT COUNT(`"+columnName+"`) AS total FROM Intake_Triage Where `"+columnName+"` Like ?";
             st1 = connection.prepareStatement(countQuery);
             st1.setString(1, "%"+searchValue+"%");
             rs1 = st1.executeQuery();
@@ -202,7 +203,7 @@ public class ReportSearchService {
             
             int start = (Page - 1) * MaxRows;
             
-            String query = "SELECT * FROM decom3sixtytool.IntakeReport3 where "+columnName+" like ? LIMIT ?,?;";
+            String query = "SELECT * FROM Requirements where `"+columnName+"` like ? LIMIT ?,?;";
             st = connection.prepareStatement(query);
             st.setString(1, "%"+searchValue+"%");
             st.setInt(2, start);
@@ -211,18 +212,19 @@ public class ReportSearchService {
 
             while (rs.next()) {
                 JsonObject jsonObj = new JsonObject();
-                jsonObj.addProperty("Legacy_Application_Name", rs.getString(1));
-                jsonObj.addProperty("SourcePlatform_Databases", rs.getString(2));
-                jsonObj.addProperty("Legacy_Application_Description", rs.getString(3));
-                jsonObj.addProperty("What_is_the_read_only_date", rs.getString(4));
-                jsonObj.addProperty("Is_this_application_the_only_source_of_truth_for_the_data", rs.getString(5));
-                jsonObj.addProperty("Isthelegacyapplicationhostedinternallyorwithanthirdpartyvendor", rs.getString(6));
-                jsonObj.addProperty("What_is_the_total_data_size", rs.getString(7));
-                jsonObj.addProperty("Retention_Period", rs.getString(8));
+                jsonObj.addProperty("Legacy Application Name", rs.getString(1));
+                jsonObj.addProperty("Source Platform Databases", rs.getString(2));
+                jsonObj.addProperty("Legacy Application Description", rs.getString(3));
+                jsonObj.addProperty("What is the read only date", rs.getString(4));
+                jsonObj.addProperty("Is this application the only source of truth for the data", rs.getString(5));
+                jsonObj.addProperty("Is the legacy application hosted internally or with an third party vendor", rs.getString(6));
+                jsonObj.addProperty("What is the total data size", rs.getString(7));
+                jsonObj.addProperty("Retention Period", rs.getString(8));
+                jsonObj.addProperty("Phase Status",rs.getString(9));
                 jsonArray.add(jsonObj);
             }
           
-            String countQuery = "SELECT COUNT("+columnName+") AS total FROM decom3sixtytool.IntakeReport3 Where "+columnName+" Like ?";
+            String countQuery = "SELECT COUNT(`"+columnName+"`) AS total FROM Requirements Where `"+columnName+"` Like ?";
             st1 = connection.prepareStatement(countQuery);
             st1.setString(1, "%"+searchValue+"%");
             rs1 = st1.executeQuery();

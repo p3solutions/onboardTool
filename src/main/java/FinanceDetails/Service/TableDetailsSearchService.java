@@ -60,7 +60,7 @@ public class TableDetailsSearchService {
             
             int start = (Page - 1) * MaxRows;
             
-            String query = "SELECT * FROM decom3sixtytool.FinanceDetails where `"+columnName+"` like ? LIMIT ?,?;";
+            String query = "SELECT * FROM FinanceDetails where `"+columnName+"` like ? LIMIT ?,?;";
             st = connection.prepareStatement(query);
             st.setString(1, "%"+searchValue+"%");
             st.setInt(2, start);
@@ -89,7 +89,7 @@ public class TableDetailsSearchService {
                 jsonArray.add(jsonObj);
             }
           
-            String countQuery = "SELECT COUNT("+columnName+") AS total FROM decom3sixtytool.FinanceDetails Where `"+columnName+"` Like ?";
+            String countQuery = "SELECT COUNT("+columnName+") AS total FROM FinanceDetails Where `"+columnName+"` Like ?";
             st1 = connection.prepareStatement(countQuery);
             st1.setString(1, "%"+searchValue+"%");
             rs1 = st1.executeQuery();

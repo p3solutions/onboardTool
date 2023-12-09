@@ -1,8 +1,8 @@
 $(function() {
 	$("#creation_date").datepicker();
- 
+
 });
- 
+
 var AddTemplateData;
 $(document).ready(function() {
 	$.ajax({
@@ -18,9 +18,9 @@ $(document).ready(function() {
 				AddTemplateData = [data];
 				console.log("Data Retrieve json array----->", data);
 			}
- 
+
 			$.each(data, function(key, value) {
- 
+
 				var manadatory = "class='required_fie'";
 				var disable_property = "disabled='disabled'";
 				var seq_num = value.seq_num;
@@ -34,58 +34,46 @@ $(document).ready(function() {
 					disable_property = "";
 					delete_icon = "<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span>";
 				}
-				if (Type == "Text box"){
+				if (Type == "Text box") {
 					var template_check = "";
 					if (seq_num <= 16) {
 						var inputtext = "<div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
 							"<label class='control-label' for='opportunity'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>\n";
- var formatter = new Intl.NumberFormat('en-US', {
-								
-							});
-							
- if (ColumnName == 'License Cost') {
-    console.log("I am into it");
-    var inputtext = "<div class='form-group InputField' id='" + ColumnName + "_Row'>\n" +
-        "<label class='control-label' for='opportunity'>" + LabelName +
-        "<span " + manadatory + "></span>" +
-        "<span class='info-icon' title='It is software and licensing part of CBA.' style='margin-left: 5px;'>&#9432;</span></label>" +
-        delete_icon +
-        "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>\n" +
-        "</div>";
-        "<input type='text' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName +  "' onkeypress='return isNumber(event)'" +
-								"</div>";
 
-}if (ColumnName == 'Phase') {
-    console.log("I am into it");
-    var inputtext = "<div class='form-group InputField' id='" + ColumnName + "_Row'>\n" +
-        "<label class='control-label' for='opportunity'>" + LabelName +
-        "<span " + manadatory + "></span>" +
-        "<span class='info-icon' title='Phase gets populated once assigned application is assigned to a phase in governance module.' style='margin-left: 5px;'>&#9432;</span></label>" +
-        delete_icon +
-        "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>\n" +
-        "</div>";
-
-}
-						
 						if (ColumnName == 'InfraCost' || ColumnName == 'Avoidance_Cost' || ColumnName == 'Archive_Cost' || ColumnName == 'CBA') {
- 	
-							
-							
 							inputtext = "<div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
 								"<label class='control-label' for='opportunity'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>\n" +
 								"<input type='text' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "' onkeypress='return isNumber(event)'" +
 								"</div>";
-						}  
-else { 
-	console.log("The name is mine");
+						}
+						else if (ColumnName == 'License Cost') {
+							console.log("I am into it");
+							var inputtext = "<div class='form-group InputField' id='" + ColumnName + "_Row'>\n" +
+								"<label class='control-label' for='opportunity'>" + LabelName +
+								"<span class='info-icon' title='It is software and licensing part of CBA.' style='margin-left: 5px;'>&#9432;</span></label>" +delete_icon +"<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>\n" +
+								"<input type='text' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "' onkeypress='return isNumber(event)'" +
+								"</div>";
+
+						} else if (ColumnName == 'Phase') {
+							console.log("I am into it");
+							var inputtext = "<div class='form-group InputField' id='" + ColumnName + "_Row'>\n" +
+								"<label class='control-label' for='opportunity'>" + LabelName +
+								"<span class='info-icon' title='Phase gets populated once assigned application is assigned to a phase in governance module.' style='margin-left: 5px;'>&#9432;</span></label>" +delete_icon +"<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>\n" +
+								"<input type='text' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value +  "'/>\n" +
+								"</div>";
+
+						}
+						
+						else {
+							console.log("The name is mine");
 							inputtext += "<input type='text' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n";
 						}
- 
+
 						inputtext += "</div>";
 						$('#FinanceInput').append(inputtext);
 						template_check = "checked";
 					}
- 
+
 					var TemplateField = "<div class='row'>" +
 						"<div class='col-md-1'>" +
 						"<input type='checkbox' id='" + ColumnName + "_temp' name='" + ColumnName + "_temp' class = 'Template_Field' value='' " + disable_property + " " + template_check + ">" +
@@ -99,7 +87,7 @@ else {
 						"</div></br>";
 					$('#TemplateFields').append(TemplateField);
 				}
- 
+
 				else if (Type == "Datepicker") {
 					var template_check = "";
 					if (seq_num <= 16) {
@@ -198,7 +186,7 @@ else {
 					}
 					inputcheck += "</div>";
 					$('#FinanceInput').append(inputcheck);
- 
+
 				}
 				else if (Type == "Radio box") {
 					var inputdrop = "<div class='form-group'>" +
@@ -216,9 +204,9 @@ else {
 					}
 					inputdrop += "</div>";
 					$('#FinanceInput').append(inputdrop);
- 
+
 				}
- 
+
 				else if (Type == "TextAreaFile") {
 					var inputHtml = "<div class='form-group'>\n" +
 						"<label class='control-label' for='" + ColumnName + "'><div " + manadatory + ">" + LabelName + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'' ></span></div></label>\n" +
@@ -261,24 +249,24 @@ else {
 						updateState({ files: files, filesArr: filesArr });
 						renderFileList();
 					});
- 
- 
+
+
 					$(document).on("#FinanceUploadFiles", function(e) {
 						e.preventDefault();
 						console.log(state);
 						renderFileList();
 					});
 				}
- 
- 
+
+
 				else if (Type == "file") {
- 
+
 					inputfile = "<div class='form-group'>\n" +
 						"<label class='control-label' for='formInput198'><div class='required_fie'>" + LabelName + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'' ></span></div></label>\n" +
 						"<input type='file' name='" + ColumnName + "' accept='image/!*' id ='choosen_file_name'>\n" +
 						"</div>";
 					$('#FinanceInput').append(inputfile);
- 
+
 				}
 				else if (Type == "Text area") {
 					var inputtext = "<div class='form-group'>\n" +
@@ -288,13 +276,13 @@ else {
 						"</div>";
 					$('#inputFields').append(inputtext);
 				}
- 
+
 			});
 			var script = "<script>$('.datepicker1').datepicker({\n" +
 				"format: \"mm/dd/yyyy\",\n" +
 				"autoclose: true\n" +
 				"});<\/script>";
- 
+
 			$('#scripttag').append(script);
 			var styleRight = ".editpopup{float:right}";
 			$("<style>").text(".editpopup {float:right; }").appendTo("head");
@@ -304,12 +292,12 @@ else {
 		}
 	});
 	let state = {};
- 
+
 	function updateState(newState) {
 		state = { ...state, ...newState };
 		console.log(state);
 	}
- 
+
 	function renderFileList() {
 		console.log("render");
 		let fileMap = state.filesArr.map((file, index) => {
@@ -322,7 +310,7 @@ else {
 				suffix = "MB";
 				size = Math.round(size / 1024000 * 100) / 100;
 			}
- 
+
 			return `<li key='${index}'>${file.name} </li>`;
 		});
 		$("#FinanceFileList").html(fileMap);
@@ -343,19 +331,19 @@ else {
 		$('#sequence1').val(seqnum);
 		$('#DeletePopUp').on('shown.bs.modal', function() {
 		});
- 
+
 	});
- 
+
 });
 function validateForm(e) {
- 
+
 	var umandatory = "";
 	var templateMandatory = $('#templmandatory').val();
 	if (templateMandatory == "Yes")
 		umandatory = "Yes";
 	if (templateMandatory == "No")
 		umandatory = "No";
- 
+
 	$(".submitDisable").attr("disabled", true);
 	$(this).prop('disabled', true);
 	$(".hidepencil").hide();
@@ -380,7 +368,7 @@ function validateForm(e) {
 			console.log("data add template ; ", data);
 			if (!$.isArray(data)) {
 				data = [data];
- 
+
 			}
 			var index = 0;
 			$.each(data, function(key, value) {
@@ -439,7 +427,7 @@ function validateForm(e) {
 							else {
 								inputdrop += "<option label=''class='control-label' for= 'triage' " + select + ">" + option[i] + "</option>";
 							}
- 
+
 						}
 						inputdrop += "</select></div>";
 						if (!$('#' + ColumnName).length) {
@@ -464,7 +452,7 @@ function validateForm(e) {
 						}
 						inputcheck += "</div>";
 						$('#FinanceInput').append(inputcheck);
- 
+
 					}
 					else if (Type == "Radio box") {
 						var inputdrop = "<div class='form-group'>" +
@@ -482,7 +470,7 @@ function validateForm(e) {
 						}
 						inputdrop += "</div>";
 						$('#FinanceInput').append(inputdrop);
- 
+
 					}
 					else if (Type == "file") {
 						inputfile = "<div class='form-group'>\n" +
@@ -490,7 +478,7 @@ function validateForm(e) {
 							"<input type='file' name='" + ColumnName + "' accept='image/!*' id ='choosen_file_name'>\n" +
 							"</div>";
 						$('#FinanceInput').append(inputfile);
- 
+
 					}
 					else if (Type == "Text area") {
 						var inputtext = "<div class='form-group'>\n" +
@@ -500,7 +488,7 @@ function validateForm(e) {
 							"</div>";
 						$('#FinanceInput').append(inputtext);
 					}
- 
+
 				}
 				else {
 					var indexValue = value;
@@ -519,8 +507,8 @@ function validateForm(e) {
 				"});<\/script>";
 			//$('#scripttag').html("");
 			$('#scripttag').append(script);
- 
- 
+
+
 			for (var i = 0; i < $(".InputField").length; i++) {
 				var exist = $(".InputField").eq(i).find("input").length;
 				if ($(".InputField").eq(i).find("input").length) {
@@ -535,7 +523,7 @@ function validateForm(e) {
 						$(".InputField").eq(i).find("select").attr("name", "OpportunityAddInfo" + (i + 1));
 					}
 				}
- 
+
 			}
 			$("#temp_close_id").click();
 			$(".submitDisable").attr("disabled", false);
@@ -546,7 +534,7 @@ function validateForm(e) {
 		}
 	});
 }
- 
+
 function dateChangeFunction(val) {
 	if (!val.match('^((0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01])[- /.](19|20)?[0-9]{2})*$')) {
 		notification("warning", "Date field should be in mm/dd/yyyy format", "Note:");
@@ -556,8 +544,8 @@ function isNumber(evt) {
 	evt = (evt) ? evt : window.event;
 	var charCode = (evt.which) ? evt.which : evt.keyCode
 	if (charCode != 46 && charCode > 31
-&& (charCode < 48 || charCode > 57))
+		&& (charCode < 48 || charCode > 57))
 		return false;
- 
+
 	return true;
 }

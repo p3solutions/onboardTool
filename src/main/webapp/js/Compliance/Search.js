@@ -8,8 +8,7 @@ function showSearchPopup() {
     var overlaySearch = document.getElementById('overlaySearch');
     popup.classList.add('active');
     overlaySearch.classList.add('active');
-      searchValueLabel.classList.add("hidden");
-        searchValueInput.classList.add("hidden");
+     
     fetchColumn(); 
 }
 

@@ -48,15 +48,15 @@ public class ReportExportServlet extends HttpServlet {
 		ReportExportService  exportreportgenerationService = new ReportExportService ();
 	     
 	     switch (ReportName) {
-		 case "IntakeReport1":
+		 case "Intake":
 			 jsonArray = exportreportgenerationService.fetchExportDataForIntakeReport1(ReportName);
 		     break;
 
-		 case "IntakeReport2":
+		 case "Intake_Triage":
 			 jsonArray = exportreportgenerationService.fetchExportDataForIntakeReport2(ReportName);
 		     break;
 
-		 case "IntakeReport3":
+		 case "Requirements":
 			 jsonArray = exportreportgenerationService.fetchExportDataForIntakeReport3(ReportName);
 		     break;
 

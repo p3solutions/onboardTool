@@ -261,9 +261,9 @@ rotate
 				<div class="centered-content">
 					<label class="col-form-label" id="title" style="color: black;">Report
 						Name </label> <select id="category" style="color: black;width:auto">
-						<option class='options' value='IntakeReport1'>Intake</option>
-						<option class='options' value='IntakeReport2'>Intake-Triage</option>
-						<option class='options' value='IntakeReport3'>Requirements</option>
+						<option class='options' value='Intake'>Intake</option>
+						<option class='options' value='Intake_Triage'>Intake-Triage</option>
+						<option class='options' value='Requirements'>Requirements</option>
 					</select>
 					</div>
 				<div class="Search-content">

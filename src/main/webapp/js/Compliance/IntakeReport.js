@@ -9,7 +9,7 @@ function sendsearchfunctionvalue(searchflag){
 $(document).ready(function () {
 	
 	fetchData(1);
-	var category = "IntakeReport1";
+	var category = "Intake";
     $("#category").change(function () {
          category = $(this).val();
         console.log("category : ", category);
@@ -47,7 +47,7 @@ $(document).ready(function () {
         console.log('Fetching data for page:', page); // Add this line
         var maxRows = parseInt($('#maxRows').val());
         
-        category = category || "IntakeReport1";
+        category = category || "Intake";
         
         $.ajax({
             url: "Compliance",
@@ -163,87 +163,3 @@ function makeAjaxRequest(category) {
         },
     });
 }
-
-
-//search Function
-
-
-/*function constructTable(data) {
-    var tableHtml = "<thead>";
-    if (data.length > 0) {
-        tableHtml += "<tr>";
-        for (var key in data[0]) {
-            if (data[0].hasOwnProperty(key)) {
-                tableHtml += "<th>" + key + "</th>";
-            }
-        }
-        tableHtml += "</tr>";
-    }
-    tableHtml += "</thead><tbody>";
-    data.forEach(function (item) {
-        tableHtml += "<tr>";
-        for (var key in item) {
-            if (item.hasOwnProperty(key)) {
-                tableHtml += "<td>" + item[key] + "</td>";
-            }
-        }
-        tableHtml += "</tr>";
-    });
-    tableHtml += "</tbody>";
-    return tableHtml;
-}
-
-function constructTable123(data) {
-	console.log("XonstructTable--------rterter---====");
-    var tableHtml = "<thead><tr>";
-    if (data.length > 0) {
-        for (var key in data[0]) {
-            if (data[0].hasOwnProperty(key)){
-                if ((key === 'Application_Name')|| (key === 'Legacy_Application_Name')) {
-                    // Add a button in the header for the "Application_Name" column with a unique ID
-                    tableHtml += "<th>" + key + "<button class='filter-button' onclick='toggleSearchBar()'></button>"+
-                    "<div class='search-bar'>"+
-        			"<input id='Search' type='text' class='search-input' placeholder='Search.,'>"+
-    				"</div>"+
-    				"<script>"+
-        			"function toggleSearchBar() { "+
-            		"var searchBar = document.querySelector('.search-bar'); "+
-            		"searchBar.style.display = (searchBar.style.display === 'block') ? 'none' : 'block';" +
-        			"}"+
-    				"</script>"+
-    				"</th>";
-                }
-                
-                
-                else if(key === 'Requester'){
-					tableHtml += "<th>" + key + "&nbsp;&nbsp;&nbsp;<button class='filter-button' onclick='toggleSearchBarRequest()'></button>"+
-                    "<div class='search-bar-request'>"+
-        			"<input id='SearchRequest' type='text' class='search-input' placeholder='Search..'>"+
-    				"</div>"+
-    				"<script>"+
-        			"function toggleSearchBarRequest() { "+
-            		"var searchBar = document.querySelector('.search-bar-request'); "+
-            		"searchBar.style.display = (searchBar.style.display === 'block') ? 'none' : 'block';" +
-        			"}"+
-    				"</script>"+
-    				"</th>";
-				}
-                 else {
-                    tableHtml += "<th>" + key + "</th>";
-                }
-            }
-        }
-        tableHtml += "</tr></thead><tbody>";
-        data.forEach(function (item,index) {
-            tableHtml += "<tr>";
-            for (var key in item) { 
-                if (item.hasOwnProperty(key)) {
-                    tableHtml += "<td>" + item[key] + "</td>";
-                }
-            }
-            tableHtml += "</tr>";
-        });
-    }
-    tableHtml += "</tbody>";
-    return tableHtml;
-} */
