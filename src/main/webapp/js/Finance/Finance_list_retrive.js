@@ -192,8 +192,6 @@
             });
         }
 
-
-
         function clearTable() {
             $("#admin_userslist").empty();
         }
@@ -204,6 +202,10 @@
                 // Add table headers
                 var headerRow = "<thead>" + "<tr>";
                 $.each(headers, function (index, header) {
+                    if (header === 'ID') {
+                        // If the header is 'ID', skip the current iteration (skip the column)
+                        return; // Skip to the next iteration of the inner loop
+                    }
                     headerRow += "<th style='color: black; font-weight: bold;'>";
                     headerRow += header;
                     headerRow += "</th>";
@@ -214,22 +216,26 @@
 
                 $.each(data, function (key, value) {
                     var row = "<tbody>" + "<tr>";
+
                     $.each(headers, function (index, header) {
-                       row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for=''>" + value[header] + "</label></td>";
+                        if (header === 'ID') {
+                            // If the header is 'ID', skip the current iteration (skip the column)
+                            return; // Skip to the next iteration of the inner loop
+                        }
+                            row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for=''>" + value[header] + "</label></td>";
+
                     });
-                    //    The below line is for view button
-                    //    row += "<td style='text-align:center;vertical-align: middle;'><i class='fa fa-edit edit-icon' data-id='" + value.ID + "' data-finance='" + value.FinanceAppName + "'></i> <i class='fa fa-trash delete-icon' data-id='" + value.ID + "' data-finance='" + value.FinanceAppName + "'></i> <button class='btn btn-info view-button' data-id='" + value.ID + "'>View</button></td>";
+
+                    // Append the column for 'ID'
                     row += "<td style='text-align:center;vertical-align: middle;'>";
-                    //   row += "<span class='glyphicon glyphicon-pencil edit-icon' data-id='" + value.ID + "' data-finance='" + value.Application Name + "' style='display:block;margin-left:-22px;'></span><span class='glyphicon glyphicon-trash delete-icon' data-id='" + value.ID + "' data-finance='" + value.FinanceAppName + "' style='float:right;display:block;margin-top:-13px;'></span>";
-                  //  row += "<span class='glyphicon glyphicon-pencil edit-icon' data-id='" + value.ID + "' data-finance='" + value['Application Name'] + "' style='display:block;margin-left:-22px;'></span><span class='glyphicon glyphicon-trash delete-icon' data-id='" + value.ID + "' data-finance='" + value['Application Name'] + "' style='float:right;display:block;margin-top:-13px;'></span>";
-
                     row += "<span class='glyphicon glyphicon-pencil edit-icon' data-id='" + value.ID + "' data-finance='" + value['Application Name'] + "' style='display:block;margin-left:-22px;'></span><span class='glyphicon glyphicon-trash delete-icon' data-id='" + value.ID + "' data-finance='" + value['Application Name'] + "' style='float:right;display:block;margin-top:-13px;'></span>";
-
                     row += "</td>";
+
                     row += "</tr>" + "</tbody>";
 
                     $("#admin_userslist").append(row);
                 });
+
 
                 // Add click event handler for the edit icon
                 $(".edit-icon").on("click", function () {
