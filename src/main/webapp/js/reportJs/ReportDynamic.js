@@ -2,8 +2,8 @@
 $(document).ready(function () {
     SearchValidation();
     ReportSearchDropdown();
-    var filterIcon = $('<span>').addClass('glyphicon glyphicon-filter').attr('id', 'ExitSearch');
-    filterIcon.css('display', 'none');
+ //   var filterIcon = $('<span>').addClass('glyphicon glyphicon-filter').attr('id', 'ExitSearch');
+   // filterIcon.css('display', 'none');
     $("#ExitSearch").hide();
 
     var selectedOption = "intakeReport1";
@@ -23,7 +23,7 @@ $(document).ready(function () {
 
     ajaxcall(currentReport,1);
     $("#cd-header").text("Intake");
-    $('#cd-header').append(filterIcon);
+   // $('#cd-header').append(filterIcon);
 
     $("#Report").change(function () {
         currentReport = $(this).val();
@@ -85,7 +85,7 @@ $(document).ready(function () {
 
     $("#Report").change(function () {
         $("#ExitSearch").hide();
-        filterIcon.hide();
+       // filterIcon.hide();
         selectedOption = $(this).val();
         var reportTitle;
 
@@ -103,13 +103,13 @@ $(document).ready(function () {
             reportTitle = "Report"
         }
         $("#cd-header").text(reportTitle);
-        $('#cd-header').append(filterIcon);
+   //     $('#cd-header').append(filterIcon);
         clearTable();
         ajaxcall(selectedOption, 1);
     });
 
     $("#submitSearch").on("click", function () {
-        filterIcon.show();
+    //    filterIcon.show();
         $("#ExitSearch").show();
         currentReport =  $("#Report").val();
         // Get the selected values from the first dropdown, second dropdown, and input field

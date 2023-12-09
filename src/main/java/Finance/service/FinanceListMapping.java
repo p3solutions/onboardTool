@@ -13,20 +13,20 @@ public class FinanceListMapping {
             jsonObj.addProperty("ID", rs.getString(1));
             jsonObj.addProperty("Application Name", rs.getString(2));
             jsonObj.addProperty("Project Number",rs.getString(3));
-            jsonObj.addProperty("Phase",rs.getString(4));
-            jsonObj.addProperty("Software and Licensing",rs.getString(5));
-            jsonObj.addProperty("Software and Licensing(cost Saving)",rs.getString(6));
-            jsonObj.addProperty("Contract end date",rs.getString(7));
-            jsonObj.addProperty("Contract end date -comments",rs.getString(8));
-            jsonObj.addProperty("Scope of infrastructure",rs.getString(9));
-            jsonObj.addProperty("Infrastructure Cost Savings",rs.getString(10));
-            jsonObj.addProperty("Cost Avoidance",rs.getString(11));
-            jsonObj.addProperty("Cost Archive",rs.getString(12));
-            jsonObj.addProperty("Total CBA",rs.getString(13));
-            jsonObj.addProperty("Funding approved",rs.getString(14));
-            jsonObj.addProperty("Funding Type",rs.getString(15));
-            jsonObj.addProperty("Status",rs.getString(16));
-            jsonObj.addProperty("ScreenshotFileName",rs.getString(17));
+            jsonObj.addProperty("Software and Licensing",rs.getString(4));
+            jsonObj.addProperty("Software and Licensing(cost Saving)",rs.getString(5));
+            jsonObj.addProperty("Contract end date",rs.getString(6));
+            jsonObj.addProperty("Contract end date -comments",rs.getString(7));
+            jsonObj.addProperty("Scope of infrastructure",rs.getString(8));
+            jsonObj.addProperty("Infrastructure Cost Savings",rs.getString(9));
+            jsonObj.addProperty("Cost Avoidance",rs.getString(10));
+            jsonObj.addProperty("Cost Archive",rs.getString(11));
+            jsonObj.addProperty("Total CBA",rs.getString(12));
+            jsonObj.addProperty("Funding approved",rs.getString(13));
+            jsonObj.addProperty("Funding Type",rs.getString(14));
+            jsonObj.addProperty("Status",rs.getString(15));
+            jsonObj.addProperty("Phase",rs.getString(16));
+
             jsonArray.add(jsonObj);
         }
         int arraySize = jsonArray.size();
@@ -40,9 +40,9 @@ public class FinanceListMapping {
     }
     protected void FinanceMappingHeader(JsonArray jsonArray) throws SQLException {
             JsonObject jsonObj = new JsonObject();
+        jsonObj.addProperty("ID","");
         jsonObj.addProperty("Application Name", "");
         jsonObj.addProperty("Project Number","");
-        jsonObj.addProperty("Phase","");
         jsonObj.addProperty("Software and Licensing","");
         jsonObj.addProperty("Software and Licensing(cost Saving)","");
         jsonObj.addProperty("Contract end date","");
@@ -55,7 +55,7 @@ public class FinanceListMapping {
         jsonObj.addProperty("Funding approved","");
         jsonObj.addProperty("Funding Type","");
         jsonObj.addProperty("Status","");
-        jsonObj.addProperty("ScreenshotFileName","");
+        jsonObj.addProperty("Phase","");
         jsonArray.add(jsonObj);
     }
 }

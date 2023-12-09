@@ -472,32 +472,102 @@ public class availabilityOfView {
 
     private void financeListview(){
         String sqlViewCreation = "CREATE VIEW FinanceList AS " +
-                "SELECT" +
-                "    t1.Id," +
-                "    MAX(CASE WHEN t1.column_name = 'financeappname' THEN t1.value END) AS \"Application Name\"," +
-                "    MAX(CASE WHEN t1.column_name = 'projnum' THEN t1.value END) AS \"Project Number\"," +
-                "    MAX(CASE WHEN t1.column_name = 'phase' THEN t1.value END) AS Phase," +
-                "    MAX(CASE WHEN t1.column_name = 'softlicense' THEN t1.value END) AS \"Software and Licensing\"," +
-                "    MAX(CASE WHEN t1.column_name = 'softlicensecost' THEN t1.value END) AS \"Software and Licensing(cost Saving)\"," +
-                "    MAX(CASE WHEN t1.column_name = 'contractDate' THEN t1.value END) AS \"Contract end date\"," +
-                "    MAX(CASE WHEN t1.column_name = 'contractDateComment' THEN t1.value END) AS \"Contract end date -comments\"," +
-                "    MAX(CASE WHEN t1.column_name = 'scopeinfra' THEN t1.value END) AS \"Scope of infrastructure\"," +
-                "    MAX(CASE WHEN t1.column_name = 'infrastructurecostsavings' THEN t1.value END) AS \"Infrastructure Cost Savings\"," +
-                "    MAX(CASE WHEN t1.column_name = 'costavoidance' THEN t1.value END) AS \"Cost Avoidance\"," +
-                "    MAX(CASE WHEN t1.column_name = 'costarchive' THEN t1.value END) AS \"Cost Archive\"," +
-                "    MAX(CASE WHEN t1.column_name = 'cba' THEN t1.value END) AS \"Total CBA\"," +
-                "    MAX(CASE WHEN t1.column_name = 'fundapprove' THEN t1.value END) AS \"Funding approved\"," +
-                "    MAX(CASE WHEN t1.column_name = 'fundtype' THEN t1.value END) AS \"Funding Type\"," +
-                "    MAX(CASE WHEN t1.column_name = 'status' THEN t1.value END) AS Status," +
-                "    MAX(t2.File_Name) AS ScreenshotFileName " +
-                "FROM" +
-                "    finance_info t1 " +
-                "LEFT JOIN" +
-                "    finance_application_screenshot t2 ON t1.Id = t2.AppId " +
-                "GROUP BY" +
-                "    t1.Id " +
-                "HAVING" +
-                "    TRIM(MAX(CASE WHEN t1.column_name = 'financeappname' THEN t1.value END)) <> '';";
+                "WITH `financeInfodetails` AS(" +
+                "SELECT " +
+                "t1.Id," +
+                "MAX(CASE WHEN t1.column_name = 'financeappname' THEN t1.value END) AS `Application_Name`," +
+                "MAX(CASE WHEN t1.column_name = 'projnum' THEN t1.value END) AS `Project_Number`," +
+                "MAX(CASE WHEN t1.column_name = 'softlicense' THEN t1.value END) AS `Software_and_Licensing`," +
+                "MAX(CASE WHEN t1.column_name = 'softlicensecost' THEN t1.value END) AS `Software`," +
+                "MAX(CASE WHEN t1.column_name = 'contractDate' THEN t1.value END) AS `Contract_end_date`," +
+                "MAX(CASE WHEN t1.column_name = 'contractDateComment' THEN t1.value END) AS `Contract_end_date_comments`," +
+                "MAX(CASE WHEN t1.column_name = 'scopeinfra' THEN t1.value END) AS `Scope_of_infrastructure`," +
+                "MAX(CASE WHEN t1.column_name = 'infrastructurecostsavings' THEN t1.value END) AS `Infrastructure_Cost_Savings`," +
+                "MAX(CASE WHEN t1.column_name = 'costavoidance' THEN t1.value END) AS `Cost_Avoidance`," +
+                "MAX(CASE WHEN t1.column_name = 'costarchive' THEN t1.value END) AS `Cost_Archive`," +
+                "MAX(CASE WHEN t1.column_name = 'cba' THEN t1.value END) AS `Total_CBA`," +
+                "MAX(CASE WHEN t1.column_name = 'fundapprove' THEN t1.value END) AS `Funding_approved`," +
+                "MAX(CASE WHEN t1.column_name = 'fundtype' THEN t1.value END) AS `Funding_Type`" +
+                "FROM " +
+                "finance_info t1 " +
+                "WHERE " +
+                "(t1.column_name IN ('financeappname','projnum','softlicense','softlicensecost','contractDate','contractDateComment','scopeinfra','infrastructurecostsavings','costavoidance','costarchive','cba','fundapprove','fundtype'))" +
+                " GROUP BY " +
+                "t1.Id " +
+                "), `applicationstatus` AS (" +
+                "    SELECT " +
+                "      `o`.`Id` AS `Id`," +
+                "      MAX(" +
+                "        (CASE WHEN (" +
+                "              (CASE WHEN (`i`.`isCompleted` = 'Yes' AND `i`.`intakeApproval` = 'Approved') THEN 1 ELSE 0 END) = 0" +
+                "            ) THEN 'Intake'" +
+                "              WHEN (" +
+                "              (CASE WHEN (`a`.`isCompleted` = 'Yes' AND `a`.`intakeApproval` = 'Approved') THEN 1 ELSE 0 END) = 0" +
+                "            ) THEN 'Requirements'" +
+                "              ELSE 'Archive Execution'" +
+                "          END)" +
+                "      ) AS `Status`" +
+                "    FROM " +
+                "      ((`opportunity_info` `o`" +
+                "        LEFT JOIN `intake_stake_holder_info` `i` ON (`o`.`Id` = `i`.`OppId`))" +
+                "        LEFT JOIN `archivereq_roles_info` `a` ON (`i`.`OppId` = `a`.`OppId`))" +
+                "    GROUP BY " +
+                "      `o`.`Id`" +
+                "  )," +
+                "  `phasestatus` AS (" +
+                "    WITH " +
+                "      `separatedvalues` AS (" +
+                "        SELECT " +
+                "          `governance_info`.`waveName` AS `waveName`," +
+                "          TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(`governance_info`.`value`,',',(`n`.`digit` + 1)),',',-(1))) AS `separatedValue`" +
+                "        FROM " +
+                "          (`governance_info`" +
+                "            JOIN " +
+                "          (SELECT 0 AS `digit` UNION ALL SELECT 1 AS `1` UNION ALL SELECT 2 AS `2` UNION ALL SELECT 3 AS `3`) `n` ON (LENGTH(REPLACE(`governance_info`.`value`,',','')) <= (LENGTH(`governance_info`.`value`) - `n`.`digit`)))" +
+                "        WHERE " +
+                "          (`governance_info`.`column_name` = 'apps')" +
+                "      )" +
+                "    SELECT " +
+                "      `o`.`Id` AS `Id`," +
+                "      `sv`.`separatedValue` AS `separatedValue`," +
+                "      `sv`.`waveName` AS `waveName`," +
+                "      `p`.`phaseName` AS `phaseName`" +
+                "    FROM " +
+                "      (" +
+                "        (`opportunity_info` `o`" +
+                "          JOIN " +
+                "        `separatedvalues` `sv` ON (`o`.`value` = `sv`.`separatedValue`))" +
+                "          JOIN " +
+                "        `phase_info` `p` ON (`sv`.`waveName` = `p`.`value`)" +
+                "      )" +
+                "    WHERE " +
+                "      ((`o`.`column_name` = 'appname') AND (`p`.`column_name` = 'waves'))" +
+                "  )" +
+                "SELECT " +
+                "  COALESCE(`f`.`Id`,'') AS \"Id\"," +
+                "  COALESCE(`f`.`Application_Name`,'') AS \"Application Name\"," +
+                "  COALESCE(`f`.`Project_Number`,'') AS \"Project Number\"," +
+                "  COALESCE(`f`.`Software_and_Licensing`,'') AS \"Software and Licensing\"," +
+                "  COALESCE(`f`.`Software`,'') AS \"Software and Licensing(cost Saving)\"," +
+                "  COALESCE(`f`.`Contract_end_date`,'') AS \"Contract end date\"," +
+                "  COALESCE(`f`.`Contract_end_date_comments`,'') AS \"Contract end date -comments\"," +
+                "  COALESCE(`f`.`Scope_of_infrastructure`,'') AS \"Scope of infrastructure\"," +
+                "  COALESCE(`f`.`Infrastructure_Cost_Savings`,'') AS \"Infrastructure Cost Savings\"," +
+                "  COALESCE(`f`.`Cost_Avoidance`,'') AS \"Cost Avoidance\"," +
+                "  COALESCE(`f`.`Cost_Archive`,'') AS \"Cost Archive\"," +
+                "  COALESCE(`f`.`Total_CBA`,'') AS \"Total CBA\"," +
+                "  COALESCE(`f`.`Funding_approved`,'') AS \"Funding approved\"," +
+                "  COALESCE(`f`.`Funding_Type`,'') AS \"Funding Type\"," +
+                "  COALESCE(`s`.`Status`,'') AS \"Status\"," +
+                "  COALESCE(`phs`.`phaseName`,'') AS \"Phase\"" +
+                "FROM " +
+                "( " +
+                "(`financeInfodetails` `f`" +
+                "LEFT JOIN `applicationstatus` `s` ON (`f`.`Id` = `s`.`Id`))" +
+                "LEFT JOIN `phasestatus` `phs` ON (`f`.`Id` = `phs`.`Id`)" +
+                "  )" +
+                "  WHERE NOT (" +
+                "    (`f`.`Application_Name` IS NULL OR `f`.`Application_Name` = ''));";
         try (Statement viewStatement = connection.createStatement()) {
             viewStatement.execute(sqlViewCreation);
         } catch (SQLException e) {

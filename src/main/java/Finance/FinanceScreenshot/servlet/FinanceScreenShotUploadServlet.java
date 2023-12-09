@@ -51,7 +51,7 @@ public class FinanceScreenShotUploadServlet extends HttpServlet {
             int lastrow_count=0;
             for(FileItem item : multiFiles)
             {
-                String selectQuery3 ="SELECT COUNT(*) FROM decom3sixtytool.finance_application_screenshot where AppId=? ";
+                String selectQuery3 ="SELECT COUNT(*) FROM finance_application_screenshot where AppId=? ";
                 PreparedStatement st3 = con.prepareStatement(selectQuery3);
                 st3.setString(1, sessionId);
                 ResultSet rs3 = st3.executeQuery();
