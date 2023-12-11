@@ -148,10 +148,10 @@
                 selectElement.append('<option value="' + option + '">' + option + '</option>');
             });
         }
-        function FinanceSearchDropdown(){
+
+        function FinanceSearchDropdown() {
             var selectedColumns = [];
             $('#searchModal').on('show.bs.modal', function (e) {
-
                 var headers = [];
 
                 $("#admin_userslist thead th").each(function () {
@@ -162,9 +162,11 @@
                 selectOptions.empty(); // Clear existing options
                 selectOptions.append('<option value="">----------------Select------------------</option>');
                 $.each(headers, function (index, header) {
-                    selectOptions.append('<option value="' + header + '">' + header + '</option>');
+                    if (header !== 'Action') {
+                        // Exclude "Action" column from the dropdown options
+                        selectOptions.append('<option value="' + header + '">' + header + '</option>');
+                    }
                 });
-
 
                 $('input[name="condition"]').change(function () {
                     var selectedValue = $('input[name="condition"]:checked').val();
@@ -172,7 +174,7 @@
                     if (selectedValue === "OR" || selectedValue === "AND") {
                         // Create a new select dropdown with options excluding the selected option
                         var secondSelectOptions = headers.filter(function (header) {
-                            return header !== $("#SearchOptions").val();
+                            return header !== $("#SearchOptions").val() && header !== 'Action';
                         });
 
                         // Create a new select dropdown element
@@ -191,6 +193,7 @@
                 });
             });
         }
+
 
         function clearTable() {
             $("#admin_userslist").empty();
