@@ -262,7 +262,7 @@
 
 
 
-<div class="card-container-5 card d3s-mt-50" style=" border-top: none;">
+<div class="card-container-5 card mt-20" style=" border-top: none;">
     <div class="row">
         <div class="col-lg-2 col-sm-2">
             <div class="d-flex " >
@@ -274,7 +274,7 @@
             <button type="button" class="btn btn-primary pull-right " id="exportButton" data-bs-toggle="modal" data-bs-target="#exportModal">Export</button>
         </div>
     </div>
-    <div class="card-header d3s-pl-15" id="cd-header"></div>
+    <div class="card-header d3s-pl-15  mt-3" id="cd-header"></div>
     <div class="d-flex align-items-center mt-3" style="margin-left: 1%">
         <label class="mr-5">Show </label>
         <select class="form-select" aria-label="Default select example" id="maxRows" style="width: auto;">
