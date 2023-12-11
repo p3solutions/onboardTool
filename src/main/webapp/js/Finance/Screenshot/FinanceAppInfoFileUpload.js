@@ -46,7 +46,8 @@ function renderFileList() {
 
         return `<li key="${index}">${
             file.name
-        } <span class="file-size">${size} ${suffix}</span><i class="material-icons md-48">delete</i></li>`;
+        }
+<!-- <span class="file-size">${size} ${suffix}</span><i class="material-icons md-48">delete</i></li>-->`;
     });
     $("#FileList").html(fileMap);
 }

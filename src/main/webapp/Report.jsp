@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,10 +33,6 @@
 
     <!-- ========== Header Icon ========== -->
     <link rel="stylesheet"
-          href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-          crossorigin="anonymous"/>
-    <link rel="stylesheet"
           href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <link rel="stylesheet" href="css/headerIcon/headerIcon.css"
           media="screen">
@@ -52,17 +47,6 @@
     <script src="js/multiplepages.js"></script>
 
     <!-- ========== COMMON JS FILES ========== -->
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="...">
-
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- Bootstrap JavaScript Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="..."
-            crossorigin="anonymous"></script>
-
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <script src="js/jquery-ui/jquery-ui.min.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
@@ -92,16 +76,23 @@
     <!-- ========== THEME JS ========== -->
     <script src="js/main.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <style>
+    /* Add some styling to the search buttons */
+    .search-btn {
+        background: none;
+        border: none;
+        color: blue;
+        cursor: pointer;
+        text-decoration: underline;
+    }
     .table-container {
         width: 100%;
         overflow-x: auto;
     }
-
-
     #overlay {
         position: fixed;
         top: 0;
@@ -193,16 +184,16 @@
         animation: sp-anime1 0.8s infinite linear;
     }
 
-    @
-    -webkit-keyframes sp-anime1 {
-        0% {
-            -webkit-transform: rotate(0deg);
-        }
+    @  -webkit-keyframes sp-anime1 {
+           0% {
+               -webkit-transform: rotate(0deg);
+           }
 
-        100% {
-            -webkit-transform: rotate(360deg);
-        }
-    }
+           100% {
+               -webkit-transform: rotate(
+                       360deg);
+           }
+       }
 
     @
     keyframes sp-anime1 {
@@ -211,7 +202,8 @@
         }
 
         100% {
-            transform: rotate(360deg);
+            transform: rotate(
+                    360deg);
         }
     }
 
@@ -232,23 +224,8 @@
         margin-left: 289px;
     }
 
-    #bg-color {
-        height: 200px;
-    }
-
-    #input-align-top {
-        margin-left: 20px;
-        margin-top: -60px !important;
-    }
-
-    .img-rounded {
-        padding-top: 20px;
-        transition: width 2s, height 2s, transform 2s;
-    }
-
 </style>
 <body>
-
 
 <%@include file="Nav-Bar.jspf" %>
 <nav id="bg-color" style=" height: 90px;">
@@ -264,17 +241,17 @@
                     <a href="DashBoard.jsp" id="sitetitle1" style="color: #fff"><span class="glyphicon glyphicon-home"></span> Home</a> >> <a href="Governance_Home.jsp" id="sitetitle2" style="color: #fff">Governance </a> >> <a href="Report.jsp" id="sitetitle3" style="color: #fff">Report </a>
                 </div>
             </div>
-                <div class="row col-sm-2" style="margin-left: 30% ; width: auto;">
-                    <div class="col-lg-12" id="input-align-top"  style=" width: auto;">
-                        <label class="col-form-label" id="title" style="margin-top: 28px">Report</label>
-                        <select class="form-select align-right selectInput filter" aria-label="Default select example" id="Report" style=" width: auto;margin-top: 28px; margin-left: 10px" >
-                            <option class='options' value="intakeReport1">Intake</option>
-                            <option class='options' value="intakeReport2">Intake-Triage</option>
-                            <option class='options' value="intakeReport3">Requirements</option>
-                        </select>
-                    </div>
+            <div class="row col-sm-2" style="margin-left: 30% ; width: auto;">
+                <div class="col-lg-12" id="input-align-top"  style=" color: #0a6aa1; width: auto;">
+                    <label class="col-form-label" id="title" style="color: #0a6aa1;margin-top: 28px">Report</label>
+                    <select class="form-select align-right selectInput filter" aria-label="Default select example" id="Report" style=" color: #0a6aa1; width: auto;margin-top: 28px; margin-left: 10px" >
+                        <option class='options' value="intakeReport1">Intake</option>
+                        <option class='options' value="intakeReport2">Intake-Triage</option>
+                        <option class='options' value="intakeReport3">Requirements</option>
+                    </select>
                 </div>
-    </div>
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -308,20 +285,20 @@
         <label class="ml-9">Entries</label>
     </div>
 
-<%--    <label style="margin-top: 20px ;margin-left: 8px;">Show </label>--%>
-<%--    <label style="margin-left: 140px;margin-top: -16px;"> Entries</label>--%>
-<%--    <select class="form-select align-left"--%>
-<%--            aria-label="Default select example" id="maxRows"--%>
-<%--            style="padding: 0.75 0 0 0.75rem; margin-bottom: 5px;  margin-top: -28px;margin-left: 55px; width: 80px;">--%>
-<%--        <option value="5000">Show All</option>--%>
-<%--        <option value="5">5</option>--%>
-<%--        <option value="10">10</option>--%>
-<%--        <option value="15">15</option>--%>
-<%--        <option value="20">20</option>--%>
-<%--        <option value="50">50</option>--%>
-<%--        <option value="70">70</option>--%>
-<%--        <option value="100">100</option>--%>
-<%--    </select>--%>
+    <%--    <label style="margin-top: 20px ;margin-left: 8px;">Show </label>--%>
+    <%--    <label style="margin-left: 140px;margin-top: -16px;"> Entries</label>--%>
+    <%--    <select class="form-select align-left"--%>
+    <%--            aria-label="Default select example" id="maxRows"--%>
+    <%--            style="padding: 0.75 0 0 0.75rem; margin-bottom: 5px;  margin-top: -28px;margin-left: 55px; width: 80px;">--%>
+    <%--        <option value="5000">Show All</option>--%>
+    <%--        <option value="5">5</option>--%>
+    <%--        <option value="10">10</option>--%>
+    <%--        <option value="15">15</option>--%>
+    <%--        <option value="20">20</option>--%>
+    <%--        <option value="50">50</option>--%>
+    <%--        <option value="70">70</option>--%>
+    <%--        <option value="100">100</option>--%>
+    <%--    </select>--%>
     <br>
     <div class="withoutPhase display" id="admin_userslist_div">
         <div class="table-container">
@@ -346,7 +323,7 @@
                         </ul>
                     </nav>
                 </div>
-<%--                <a href="FinanceList.jsp" > <button type="button" id="ExitSearch" class="btn btn-primary pull-left" style="margin: 29px 0 0 9px; font-size: 14px;" > Exit Search</button></a>--%>
+                <%--                <a href="FinanceList.jsp" > <button type="button" id="ExitSearch" class="btn btn-primary pull-left" style="margin: 29px 0 0 9px; font-size: 14px;" > Exit Search</button></a>--%>
             </div>
             <div class="col-md-12" align="end" id="recordInfo"></div>
         </div>
@@ -396,10 +373,10 @@
                 </select>
                 <br>
                 <input class="form-control" type="text" id="advanceSearch" placeholder="Search Value">
-<%--                <input type="radio" id="and" name="condition" value="AND" onclick="toggleRadioButton('and')">--%>
-<%--                <label for="AND">AND</label>--%>
-<%--                <input type="radio" id="or" name="condition" value="OR" onclick="toggleRadioButton('or')"/>--%>
-<%--                <label for="OR">OR</label>--%>
+                <%--                <input type="radio" id="and" name="condition" value="AND" onclick="toggleRadioButton('and')">--%>
+                <%--                <label for="AND">AND</label>--%>
+                <%--                <input type="radio" id="or" name="condition" value="OR" onclick="toggleRadioButton('or')"/>--%>
+                <%--                <label for="OR">OR</label>--%>
 
             </div>
             <div class="modal-footer">
@@ -411,6 +388,8 @@
         </div>
     </div>
 </div>
+
+
 
 
 <%--Show select tag dynamic --%>
@@ -442,6 +421,8 @@
     });
 </script>
 
+
+
 <!-- ========== PAGE JS FILES ========== -->
 <script src="js/prism/prism.js"></script>
 <script type="text/javascript"
@@ -452,14 +433,20 @@
 <script type="text/javascript" src="js/date-picker/moment.js"></script>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-<script src="js/notification/notification.js"></script>
+
+<script src="js/navigation/navigation.js"></script>
 <script type="text/javascript" src="js/reportJs/ReportDynamic.js"></script>
 <script type="text/javascript" src="js/reportJs/Download.js"></script>
 <script type="text/javascript" src="js/reportJs/ExportToCSV.js"></script>
-<script src="js/navigation/navigation.js"></script>
+<!-- ========== Export ========== -->
+
 <!-- ========== Pagination ========== -->
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+
 <!-- ========== BootstrapV5 ========== -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -478,7 +465,8 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
 
-<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>--%>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css"/>
 <!-- ========== Toastr ========== -->
@@ -487,6 +475,7 @@
 <link
         href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
         rel="stylesheet">
+<script src="js/notification/notification.js"></script>
 
 </body>
 </html>
