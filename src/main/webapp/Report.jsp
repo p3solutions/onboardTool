@@ -224,6 +224,11 @@
         margin-left: 289px;
     }
 
+    #input-align-top {
+        margin-left: 20px;
+        margin-top: -60px !important;
+    }
+
 </style>
 <body>
 
@@ -242,8 +247,8 @@
                 </div>
             </div>
             <div class="row col-sm-2" style="margin-left: 30% ; width: auto;">
-                <div class="col-lg-12" id="input-align-top"  style=" color: #0a6aa1; width: auto;">
-                    <label class="col-form-label" id="title" style="color: #0a6aa1;margin-top: 28px">Report</label>
+                <div class="col-lg-12" id="input-align-top"  style="width: auto;">
+                    <label class="col-form-label" id="title" style="margin-top: 28px">Report</label>
                     <select class="form-select align-right selectInput filter" aria-label="Default select example" id="Report" style=" color: #0a6aa1; width: auto;margin-top: 28px; margin-left: 10px" >
                         <option class='options' value="intakeReport1">Intake</option>
                         <option class='options' value="intakeReport2">Intake-Triage</option>
@@ -285,20 +290,6 @@
         <label class="ml-9">Entries</label>
     </div>
 
-    <%--    <label style="margin-top: 20px ;margin-left: 8px;">Show </label>--%>
-    <%--    <label style="margin-left: 140px;margin-top: -16px;"> Entries</label>--%>
-    <%--    <select class="form-select align-left"--%>
-    <%--            aria-label="Default select example" id="maxRows"--%>
-    <%--            style="padding: 0.75 0 0 0.75rem; margin-bottom: 5px;  margin-top: -28px;margin-left: 55px; width: 80px;">--%>
-    <%--        <option value="5000">Show All</option>--%>
-    <%--        <option value="5">5</option>--%>
-    <%--        <option value="10">10</option>--%>
-    <%--        <option value="15">15</option>--%>
-    <%--        <option value="20">20</option>--%>
-    <%--        <option value="50">50</option>--%>
-    <%--        <option value="70">70</option>--%>
-    <%--        <option value="100">100</option>--%>
-    <%--    </select>--%>
     <br>
     <div class="withoutPhase display" id="admin_userslist_div">
         <div class="table-container">
