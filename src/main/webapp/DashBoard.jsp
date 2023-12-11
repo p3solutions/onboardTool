@@ -713,7 +713,7 @@ display:none;
 													style="margin-left: 95%;"></canvas>
 											</div>
 											<div id="legend2"
-												style="float: right; margin-right: -59%; margin-top: -33%; font-size: 11px; font-weight: 600;"></div>
+												style="float: right; margin-right: -63%; margin-top: -33%; font-size: 11px; font-weight: 600;"></div>
 										</div>
 									</div>
 								</div>
