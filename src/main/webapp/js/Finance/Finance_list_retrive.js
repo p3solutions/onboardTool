@@ -198,6 +198,7 @@
         function clearTable() {
             $("#admin_userslist").empty();
         }
+
         function appendRowFunction(data) {
             if (data.length > 0) {
                 var headers = Object.keys(data[0]);
@@ -225,7 +226,7 @@
                             // If the header is 'ID', skip the current iteration (skip the column)
                             return; // Skip to the next iteration of the inner loop
                         }
-                            row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for=''>" + value[header] + "</label></td>";
+                            row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for='' style='color: dimgrey;'>" + value[header] + "</label></td>";
 
                     });
 

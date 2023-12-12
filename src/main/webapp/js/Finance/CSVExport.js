@@ -16,8 +16,17 @@ $(document).ready(function () {
                     var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
                     // Create a download link for the Blob
                     var a = document.createElement("a");
+
+                    // Generate dynamic file name with current date
+                    var currentDate = new Date();
+                    var formattedDate = (currentDate.getMonth() + 1).toString().padStart(2, '0') +
+                        '/' +
+                        (currentDate.getDate()).toString().padStart(2, '0') +
+                        '/' +
+                        currentDate.getFullYear();
+
                     a.href = URL.createObjectURL(blob);
-                    a.download = FileName + ".csv"; // Use the dynamic filename
+                    a.download = FileName + '_' + formattedDate + ".csv"; // Use the dynamic filename
 
                     // Trigger a click event on the link to start the download
                     a.click();

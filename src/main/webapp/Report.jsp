@@ -278,7 +278,6 @@
     <div class="d-flex align-items-center mt-3" style="margin-left: 1%">
         <label class="mr-5">Show </label>
         <select class="form-select" aria-label="Default select example" id="maxRows" style="width: auto;">
-            <option value="5000">Show All</option>
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="15">15</option>
@@ -286,6 +285,7 @@
             <option value="50">50</option>
             <option value="70">70</option>
             <option value="100">100</option>
+            <option value="5000">Show All</option>
         </select>
         <label class="ml-9">Entries</label>
     </div>
@@ -396,7 +396,7 @@
     // Add an event listener to select1
     select1.addEventListener("change", function () {
         // Set the selected option in select2 to match select1
-        select2.value = "5000";
+        select2.value = "5";
     });
 </script>
 <%--to erase the search element when the report is changed--%>

@@ -63,25 +63,6 @@ $(document).ready(function () {
     function clearTable() {
         $("#admin_userslist").empty();
     }
-    // $("#Report").change(function () {
-    //     filterIcon.hide();
-    //     selectedOption = $(this).val();
-    //     var reportTitle;
-    //     // To show the name in the jsp report name
-    //     if (selectedOption === "intakeReport1") {
-    //         reportTitle = "Intake Report 1"
-    //     } else if (selectedOption === "intakeReport2") {
-    //         reportTitle = "Intake Report 2"
-    //     } else if (selectedOption === "intakeReport3") {
-    //         reportTitle = "Intake Report 3"
-    //     } else {
-    //         reportTitle = "Report"
-    //     }
-    //     $("#cd-header").text(reportTitle);
-    //     $('#cd-header').append(filterIcon);
-    //     clearTable();
-    //     ajaxcall(selectedOption,1);
-    // });
 
     $("#Report").change(function () {
         $("#ExitSearch").hide();

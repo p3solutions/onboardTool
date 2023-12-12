@@ -19,6 +19,13 @@ function exportToCSVFinance() {
         // Add a new line character after each row
         csvContent += "\n";
     }
+    // Generate dynamic file name with current date
+    var currentDate = new Date();
+    var formattedDate = (currentDate.getMonth() + 1).toString().padStart(2, '0') +
+        '/' +
+        (currentDate.getDate()).toString().padStart(2, '0') +
+        '/' +
+        currentDate.getFullYear();
 
     // Create a Blob object containing the CSV data
     var blob = new Blob([csvContent], { type: "text/csv" });
@@ -26,7 +33,7 @@ function exportToCSVFinance() {
     // Create a download link for the Blob
     var a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = downloadName+".csv";
+    a.download = downloadName + '_' + formattedDate + ".csv";
 
     // Trigger a click event on the link to start the download
     a.click();
