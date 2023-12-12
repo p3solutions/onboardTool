@@ -224,24 +224,7 @@
         margin-top: 22px;
         margin-left: 289px;
     }
-    #AppFilter {
-        position: relative;
-        top: 1px;
-        border: none;
-        border-style: none;
-        border-bottom: 1px solid #959595;
-        -o-border-image: initial;
-        border-image: initial;
-        border-radius: 0;
-        color: #fff !important;
-        text-indent: 12px;
-        background-color: transparent !important;
-        box-shadow: none;
-        bottom: 80px;
-        padding-bottom: 13px;
-        width: 220px;
-        margin-left: 15px;
-    }
+
 </style>
 <body>
 
