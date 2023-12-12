@@ -1,4 +1,3 @@
-//var Id="D3S592T30BPGT"; // Define a variable outside the click event handler
 
   
 $(document).on('click', '.editpopup', function() {
@@ -80,12 +79,43 @@ $(document).ready(function(){
                 if(Type=="Text box")
                 {
                 	var template_check=""; 
-                    var inputtext="<div class='form-group InputField' id ='"+ColumnName+"_Row'>\n" +
-                        "<label class='control-label' for='opportunity'>"+LabelName+"<span "+manadatory+"></span></label>"+delete_icon+"<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>\n" +
-                        "<input type='text' class='form-control' size='35' id='"+ColumnName+"' placeholder='' name='"+ColumnName+"' value='"+Value+"'/>\n" +
-                        "</div>";
-                    $('#FinanceInput1').append(inputtext);
-                  }
+                    var inputtext = "<div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
+							"<label class='control-label' for='opportunity'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>\n";
+
+						if (ColumnName == 'InfraCost' || ColumnName == 'Avoidance_Cost' || ColumnName == 'Archive_Cost' || ColumnName == 'CBA') {
+							inputtext = "<div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
+								"<label class='control-label' for='opportunity'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>\n" +
+								"<input type='text' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "' onkeypress='return isNumber(event)'" +
+								"</div>";
+						}
+						else if (ColumnName == 'License Cost') {
+							console.log("I am into it");
+							var inputtext = "<div class='form-group InputField' id='" + ColumnName + "_Row'>\n" +
+								"<label class='control-label' for='opportunity'>" + LabelName +
+								"<span class='info-icon' title='It is software and licensing part of CBA.' style='margin-left: 5px;'>&#9432;</span></label>" +delete_icon +"<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>\n" +
+								"<input type='text' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "' onkeypress='return isNumber(event)'" +
+								"</div>";
+
+						} else if (ColumnName == 'Phase') {
+							console.log("I am into it");
+							var inputtext = "<div class='form-group InputField' id='" + ColumnName + "_Row'>\n" +
+								"<label class='control-label' for='opportunity'>" + LabelName +
+								"<span class='info-icon' title='Phase gets populated once assigned application is assigned to a phase in governance module.' style='margin-left: 5px;'>&#9432;</span></label>" +delete_icon +"<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>\n" +
+								"<input type='text' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value +  "'/>\n" +
+								"</div>";
+
+						}
+						
+						else {
+							console.log("The name is mine");
+							inputtext += "<input type='text' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n";
+						}
+
+						inputtext += "</div>";
+						$('#FinanceInput1').append(inputtext);
+						template_check = "checked";
+					}
+
                 else if(Type=="Datepicker")
                 {
                 	var template_check=""; 
