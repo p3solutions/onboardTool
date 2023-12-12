@@ -210,11 +210,11 @@
                         // If the header is 'ID', skip the current iteration (skip the column)
                         return; // Skip to the next iteration of the inner loop
                     }
-                    headerRow += "<th style='color: black; font-weight: bold;'>";
+                    headerRow += "<th style='background-color: #d7e9f7; color: black; font-weight: bold;'>";
                     headerRow += header;
                     headerRow += "</th>";
                 });
-                headerRow += "<th>Action</th>";
+                headerRow += "<th style='background-color:#d7e9f7; color: black; font-weight: bold;'>Action</th>";
                 headerRow += "</tr>" + "</thead>";
                 $("#admin_userslist").append(headerRow);
 

@@ -269,6 +269,7 @@
                 <button type="button" class="btn btn-primary pull-left" id="searchToggleButton" data-bs-toggle="modal" data-bs-target="#searchModal" >Filter</button>
                 <a href="Report.jsp" > <button type="button" id="ExitSearch" class="btn btn-primary pull-left" style="margin-left: 10px; font-size: 14px;" > Exit Search</button></a>
             </div>
+            
         </div>
         <div class="col-lg-10 col-sm-10 d-flex justify-content-end">
             <button type="button" class="btn btn-primary pull-right " id="exportButton" data-bs-toggle="modal" data-bs-target="#exportModal">Export</button>

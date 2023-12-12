@@ -9,7 +9,6 @@ $(document).ready(function()
             if (!$.isArray(data)) {
                 data = [data];
             }
-            /*var parentRow = ""*/
             appendRowFunction(data);
         },
     });
@@ -25,7 +24,6 @@ function ajaxscrcall(Id){
             if (!$.isArray(data)) {
                 data = [data];
             }
-            /*var parentRow = ""*/
             appendRowFunction(data);
         },
     });
