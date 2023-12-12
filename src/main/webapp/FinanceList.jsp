@@ -83,13 +83,6 @@
 </head>
 <style>
     /* Add some styling to the search buttons */
-    .search-btn {
-        background: none;
-        border: none;
-        color: blue;
-        cursor: pointer;
-        text-decoration: underline;
-    }
     .table-container {
         width: 100%;
         overflow-x: auto;

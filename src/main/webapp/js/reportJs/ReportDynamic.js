@@ -216,7 +216,7 @@ function updatePaginationReport(totalRecords, currentPage) {
             // Add table headers
             var headerRow = "<thead>" + "<tr>";
             $.each(headers, function (index, header) {
-                headerRow += "<th style='color: black; background-color:#ddf0f6; font-weight: bold;'>";
+                headerRow += "<th style='color: black; background-color: #ddf0f6; font-weight: bold;'>";
                 headerRow += header;
                 headerRow += "</th>";
             });
@@ -234,6 +234,7 @@ function updatePaginationReport(totalRecords, currentPage) {
 
                 $("#admin_userslist").append(row);
             });
+
         }
     }
 
