@@ -614,8 +614,9 @@
     function clearSessionItem() {
         // Specify the key of the item you want to remove
         var itemKey = "APPID";
+        console.log('itemkey : ',itemKey);
         var  itemKey1 = "APPNAME";
-
+		console.log('itemkey1',itemKey1);
         // Remove the specific item from sessionStorage
         sessionStorage.removeItem(itemKey);
         sessionStorage.removeItem(itemKey1);
@@ -623,8 +624,9 @@
         // Optionally, you can perform additional actions after removing the item
         console.log("Item with key '" + itemKey + "' removed from sessionStorage.");
 
-        // Refresh the page or navigate to another page if needed
+     // Refresh the page or navigate to another page if needed
         location.href='FinanceList.jsp';
+        
     }
 </script>
 <script>

@@ -26,13 +26,14 @@ public class ReportMapping {
             jsonObj.addProperty("Program Funder",rs.getString(15));
             jsonObj.addProperty("Project Portfolio Information",rs.getString(16));
             jsonObj.addProperty("Project Decommission Date",rs.getString(17));
+            jsonObj.addProperty("EDR Analyst",rs.getString(22));
             jsonObj.addProperty("Infrastructure Impact",rs.getString(18));
             jsonObj.addProperty("Number of Infrastructure Components",rs.getString(19));
             jsonObj.addProperty("Archival Solution",rs.getString(20));
             jsonObj.addProperty("Status Notes",rs.getString(21));
-            jsonObj.addProperty("EDR Analyst",rs.getString(22));
             jsonObj.addProperty("Big Rock",rs.getString(23));
             jsonObj.addProperty("Read Only Date",rs.getString(24));
+        
             jsonArray.add(jsonObj);
         }
          int arraySize = jsonArray.size();
@@ -49,6 +50,7 @@ public class ReportMapping {
             JsonObject jsonObj = new JsonObject();
            // jsonObj.addProperty("ID",rs.getString(1));
             jsonObj.addProperty("Application Name",rs.getString(1));
+            jsonObj.addProperty("Phase",rs.getString(21));
             jsonObj.addProperty("Application Owner",rs.getString(2));
             jsonObj.addProperty("Status",rs.getString(3));
             jsonObj.addProperty("Project Portfolio Information",rs.getString(4));
@@ -68,7 +70,7 @@ public class ReportMapping {
             jsonObj.addProperty("DBA Contact",rs.getString(18));
             jsonObj.addProperty("Encryption",rs.getString(19));
             jsonObj.addProperty("Data Masking",rs.getString(20));
-            jsonObj.addProperty("Phase",rs.getString(21));
+            
 
             jsonArray.add(jsonObj);
         }
@@ -126,19 +128,20 @@ public class ReportMapping {
             jsonObj.addProperty("Program Funder","");
             jsonObj.addProperty("Project Portfolio Information","");
             jsonObj.addProperty("Project Decommission Date","");
+            jsonObj.addProperty("EDR Analyst","");
             jsonObj.addProperty("Infrastructure Impact","");
             jsonObj.addProperty("Number of Infrastructure Components","");
             jsonObj.addProperty("Archival Solution","");
             jsonObj.addProperty("Status Notes","");
-            jsonObj.addProperty("EDR Analyst","");
+            
             jsonObj.addProperty("Big Rock","");
             jsonObj.addProperty("Read Only Date","");
             jsonArray.add(jsonObj);
         }
     protected void reportHeaderMapping2(JsonArray jsonArray) {
             JsonObject jsonObj = new JsonObject();
-          //  jsonObj.addProperty("ID","");
             jsonObj.addProperty("Application Name","");
+            jsonObj.addProperty("Phase","");
             jsonObj.addProperty("Application Owner","");
             jsonObj.addProperty("Status","");
             jsonObj.addProperty("Project Portfolio Information","");
@@ -158,7 +161,7 @@ public class ReportMapping {
             jsonObj.addProperty("DBA Contact","");
             jsonObj.addProperty("Encryption","");
             jsonObj.addProperty("Data Masking","");
-            jsonObj.addProperty("Phase","");
+            
 
             jsonArray.add(jsonObj);
         }

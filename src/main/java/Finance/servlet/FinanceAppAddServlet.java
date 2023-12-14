@@ -43,6 +43,7 @@ public class FinanceAppAddServlet extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession details = request.getSession();
         String Id = (String) details.getAttribute("APPID");
+        System.out.println("appid :"+Id);
         JsonObject jsonobject = new JsonObject();
 
         try {
