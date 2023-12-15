@@ -87,8 +87,14 @@ public class availabilityOfView {
                 }
         }
     private void Report1() throws SQLException {
-        String sqlViewCreation ="CREATE VIEW applicationdataview1 AS "  
-        		+ "WITH `OpportunityInfo` AS (\r\n"
+        String sqlViewCreation ="CREATE VIEW applicationdataview1 AS "  +
+        		"WITH `submodules` AS(\r\n"
+        		+ "	select \r\n"
+        		+ "    distinct(`Id`) as `AppId`, \r\n"
+        		+ "    value from `opportunity_info` where `Id` not \r\n"
+        		+ "	in(select `OppId` from `intake_stake_holder_info` where `intakeApproval` = 'Approved') and `column_name`='appName'\r\n"
+        		+ ") ,\r\n"
+        		+ "`OpportunityInfo` AS (\r\n"
         		+ "    SELECT\r\n"
         		+ "        `Id`,\r\n"
         		+ "        MAX(CASE WHEN `column_name` = 'apmid' THEN `value` END) AS `Application_Id`,\r\n"
@@ -136,18 +142,16 @@ public class availabilityOfView {
         		+ "),\r\n"
         		+ "`ApplicationStatus` AS (\r\n"
         		+ "    SELECT \r\n"
-        		+ "        o.`Id`,\r\n"
+        		+ "        `o`.`Id`,\r\n"
         		+ "        MAX(CASE\r\n"
-        		+ "            WHEN (CASE WHEN `i`.`isCompleted` = 'Yes' AND `i`.`intakeApproval` = 'Approved' THEN 1 ELSE 0 END) = 0 THEN 'Intake' \r\n"
-        		+ "            WHEN (CASE WHEN `a`.`mail_flag`='true' AND `a`.`intakeApproval` = 'Approved' THEN 1 ELSE 0 END) = 0 THEN 'Requirements'\r\n"
+        		+ "            WHEN (CASE WHEN `i`.`isCompleted`= 'Yes' AND `i`.`intakeApproval`= 'Approved' THEN 1 ELSE 0 END) = 0 THEN 'Intake' \r\n"
+        		+ "            WHEN (CASE WHEN `a`.`isCompleted`='Yes' AND `a`.`intakeApproval` = 'Approved' THEN 1 ELSE 0 END) = 0 THEN 'Requirements'\r\n"
         		+ "            ELSE 'Archive Execution'\r\n"
         		+ "        END) as `Status`\r\n"
         		+ "    FROM `opportunity_info` `o`\r\n"
         		+ "    LEFT JOIN `Intake_Stake_Holder_Info` `i` ON `o`.`Id` = `i`.`OppId`\r\n"
         		+ "    LEFT JOIN `archivereq_roles_info` `a` ON `i`.`OppId` = `a`.`OppId`\r\n"
-        		+ "    \r\n"
         		+ "    GROUP BY `o`.`Id`\r\n"
-        		+ "    \r\n"
         		+ "),\r\n"
         		+ "`PhaseStatus` AS (  \r\n"
         		+ "  WITH separatedvalues AS (\r\n"
@@ -222,13 +226,13 @@ public class availabilityOfView {
         		+ "    COALESCE(`t`.`Big_Rock`, '') AS \"Big Rock\",\r\n"
         		+ "    COALESCE(`a`.`Data_Read_only_State`, '') AS \"Read Only Date\"\r\n"
         		+ "\r\n"
-        		+ "FROM `OpportunityInfo` `o`\r\n"
-        		+ "LEFT JOIN `TriageInfo` `t` ON `o`.`Id` = `t`.`Id`\r\n"
-        		+ "LEFT JOIN `AssessmentData` `a` ON `o`.`Id` = `a`.`Id`\r\n"
-        		+ "LEFT JOIN `ApplicationStatus` `s` ON `o`.`Id` = `s`.`Id`\r\n"
-        		+ "LEFT JOIN `PhaseStatus` `phs` ON `o`.`Id` =`phs`.`Id`\r\n"
-        		+ "LEFT JOIN `Intakemodules`  ON `o`.`Id` =`Intakemodules`.`Id`\r\n"
-        		+ "where `s`.`Status` ='Intake';";
+        		+ "FROM `submodules` `sub` \r\n"
+        		+ " LEFT JOIN `OpportunityInfo` `o` ON `sub`.`AppId` = `o`.`Id`\r\n"
+        		+ "LEFT JOIN `TriageInfo` `t` ON  `sub`.`AppId` = `t`.`Id`\r\n"
+        		+ "LEFT JOIN `AssessmentData` `a` ON  `sub`.`AppId` = `a`.`Id`\r\n"
+        		+ "LEFT JOIN `ApplicationStatus` `s` ON  `sub`.`AppId` = `s`.`Id`\r\n"
+        		+ "LEFT JOIN `PhaseStatus` `phs` ON  `sub`.`AppId` =`phs`.`Id`\r\n"
+        		+ "LEFT JOIN `Intakemodules`  ON  `sub`.`AppId`=`Intakemodules`.`Id`;";
 
         try (Statement viewStatement = connection.createStatement()) {
             viewStatement.execute(sqlViewCreation);

@@ -712,6 +712,10 @@ public class dashboardService {
                     countIntake = rs3.getInt(1);
                 rs3.close();
                 st3.close();*/
+            System.out.println("-===========================----------=------------countPhase : "+countPhase );
+            System.out.println("-===========================----------=------------waveCount : "+countWave );
+            System.out.println("-===========================----------=------------countOpportunity : "+countOpportunity );
+            System.out.println("-===========================----------=------------countIntake : "+countIntake );
             jsonObject.addProperty("phaseCount", countPhase);
             jsonObject.addProperty("waveCount", countWave);
             jsonObject.addProperty("appCount", countOpportunity);
