@@ -60,7 +60,6 @@ public class FinanceDetailsUpdateService {
 
 	    return jsonObject;
 	}
-
     public static void FinanceDetailsSave(JsonArray jsonArray,String Id) throws ClassNotFoundException, SQLException {
         PreparedStatement st = null, st1 = null;
         ResultSet rs = null;

@@ -33,12 +33,14 @@ public class FinanceDropService {
 	        String selectQuery2 = "SELECT `Application Name` FROM financedetails WHERE `Application Name` LIKE '" + app + "%';";
 	        st2 = connection.prepareStatement(selectQuery2);
 	        rs2 = st2.executeQuery();
+	        System.out.println(rs2);
 
 	        // Process the result of the second query
 	        if (!rs2.next()) {
 	            // The second query result set is empty, add all unique values from the first query to the JsonArray
-	        	  String selectQuery1 = "SELECT value, id FROM decom3sixtytool.opportunity_info WHERE column_name = 'appname' AND value LIKE '" + app + "%';";
-	  	        st1 = connection.prepareStatement(selectQuery1);
+	        	  String selectQuery1 = "SELECT value, id FROM opportunity_info WHERE column_name = 'appname' AND value LIKE '" + app + "%';";
+	  	      System.out.println("Helo");
+	        	  st1 = connection.prepareStatement(selectQuery1);
 	  	        rs1 = st1.executeQuery();
 
 	  	        // Store values from the first query in a list
