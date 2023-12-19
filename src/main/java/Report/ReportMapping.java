@@ -36,14 +36,14 @@ public class ReportMapping {
         
             jsonArray.add(jsonObj);
         }
-         int arraySize = jsonArray.size();
-         // Check if the array size is 0 and print a message accordingly
-         if (arraySize == 0) {
-             System.out.println("The JSON array is empty.");
-             reportHeaderMapping1(jsonArray);
-         } else {
-             System.out.println("Array size: " + arraySize);
-         }
+//         int arraySize = jsonArray.size();
+//         // Check if the array size is 0 and print a message accordingly
+//         if (arraySize == 0) {
+//             System.out.println("The JSON array is empty.");
+//             reportHeaderMapping1(jsonArray);
+//         } else {
+//             System.out.println("Array size: " + arraySize);
+//         }
     }
     protected void reportMapping2(ResultSet rs, JsonArray jsonArray) throws SQLException {
         while(rs.next()) {
@@ -74,14 +74,14 @@ public class ReportMapping {
 
             jsonArray.add(jsonObj);
         }
-        int arraySize = jsonArray.size();
+//        int arraySize = jsonArray.size();
         // Check if the array size is 0 and print a message accordingly
-        if (arraySize == 0) {
-            System.out.println("The JSON array is empty.");
-            reportHeaderMapping2(jsonArray);
-        } else {
-            System.out.println("Array size: " + arraySize);
-        }
+//        if (arraySize == 0) {
+//            System.out.println("The JSON array is empty.");
+//            reportHeaderMapping2(jsonArray);
+//        } else {
+//            System.out.println("Array size: " + arraySize);
+//        }
     }
 
     protected void reportMapping3(ResultSet rs, JsonArray jsonArray) throws SQLException {
@@ -99,14 +99,14 @@ public class ReportMapping {
 
             jsonArray.add(reportObj);
         }
-        int arraySize = jsonArray.size();
-        // Check if the array size is 0 and print a message accordingly
-        if (arraySize == 0) {
-            System.out.println("The JSON array is empty.");
-            reportHeaderMapping3(jsonArray);
-        } else {
-            System.out.println("Array size: " + arraySize);
-        }
+//        int arraySize = jsonArray.size();
+//        // Check if the array size is 0 and print a message accordingly
+//        if (arraySize == 0) {
+//            System.out.println("The JSON array is empty.");
+//            reportHeaderMapping3(jsonArray);
+//        } else {
+//            System.out.println("Array size: " + arraySize);
+//        }
     }
 
     protected void reportHeaderMapping1(JsonArray jsonArray)  {

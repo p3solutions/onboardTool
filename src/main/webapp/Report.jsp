@@ -250,8 +250,8 @@
                 <div class="col-lg-12" id="input-align-top"  style="width: auto;">
                     <label class="col-form-label" id="title" style="margin-top: 28px">Report</label>
                     <select class="form-select align-right selectInput filter" aria-label="Default select example" id="Report" style=" color: #0a6aa1; width: auto;margin-top: 28px; margin-left: 10px" >
-                        <option class='options' value="intakeReport1">Intake</option>
-                        <option class='options' value="intakeReport2">Intake-Triage</option>
+                        <option class='options' value="intakeReport1">Intake Report 1</option>
+                        <option class='options' value="intakeReport2">Intake Report 2</option>
                         <option class='options' value="intakeReport3">Requirements</option>
                     </select>
                 </div>
@@ -359,15 +359,10 @@
                 <!-- Add your export options here -->
                 <label for="SearchOptions">Select Search Column:</label>
                 <select class="form-control" id="SearchOptions">
-                    <option value="">----------------Select------------------</option>
                     <!-- Add more options as needed -->
                 </select>
                 <br>
                 <input class="form-control" type="text" id="advanceSearch" placeholder="Search Value">
-                <%--                <input type="radio" id="and" name="condition" value="AND" onclick="toggleRadioButton('and')">--%>
-                <%--                <label for="AND">AND</label>--%>
-                <%--                <input type="radio" id="or" name="condition" value="OR" onclick="toggleRadioButton('or')"/>--%>
-                <%--                <label for="OR">OR</label>--%>
 
             </div>
             <div class="modal-footer">

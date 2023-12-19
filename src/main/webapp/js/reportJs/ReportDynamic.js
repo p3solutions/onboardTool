@@ -1,9 +1,5 @@
 
 $(document).ready(function () {
-    SearchValidation();
-    ReportSearchDropdown();
- //   var filterIcon = $('<span>').addClass('glyphicon glyphicon-filter').attr('id', 'ExitSearch');
-   // filterIcon.css('display', 'none');
     $("#ExitSearch").hide();
 
     var selectedOption = "intakeReport1";
@@ -12,18 +8,15 @@ $(document).ready(function () {
     var currentPage = 1;
     var selectedColumns;
     var selectedColumn ;
-    var secondSelectedColumn ; // Add this line
+    var secondSelectedColumn ;
     var searchValue ;
     var condition ;
     var tempColumnArray;
-    var tempSelectedColumn;
-    var tempSecondSelectedColumn;
     var tempSearchValue;
     var tempCondition;
-
+    fetchColumn();
     ajaxcall(currentReport,1);
-    $("#cd-header").text("Intake");
-   // $('#cd-header').append(filterIcon);
+    $("#cd-header").text("Intake Report 1");
 
     $("#Report").change(function () {
         currentReport = $(this).val();
@@ -52,7 +45,7 @@ $(document).ready(function () {
         }
 
         if (isSearching) {
-           reportAdvanceSearchData(currentReport,tempColumnArray,tempSearchValue,tempCondition,$('#maxRows').val(),currentPage);
+            reportAdvanceSearchData(currentReport,tempColumnArray,tempSearchValue,tempCondition,$('#maxRows').val(),currentPage);
         } else {
             $("#ExitSearch").hide();
             ajaxcall(currentReport,currentPage);
@@ -75,44 +68,30 @@ $(document).ready(function () {
 
         // To show the name in the jsp report name
         if (selectedOption === "intakeReport1") {
-            reportTitle = "Intake"
+            reportTitle = "Intake Report 1";
         } else if (selectedOption === "intakeReport2") {
-            reportTitle = "Intake-Triage"
+            reportTitle = "Intake Report 2";
         } else if (selectedOption === "intakeReport3") {
             reportTitle = "Requirements"
         } else {
             reportTitle = "Report"
         }
         $("#cd-header").text(reportTitle);
-   //     $('#cd-header').append(filterIcon);
         clearTable();
         ajaxcall(selectedOption, 1);
     });
 
     $("#submitSearch").on("click", function () {
-    //    filterIcon.show();
         $("#ExitSearch").show();
         currentReport =  $("#Report").val();
+
         // Get the selected values from the first dropdown, second dropdown, and input field
         selectedColumn = $("#SearchOptions").val();
         secondSelectedColumn = $("#SecondSearchOptions").val(); // Add this line
         searchValue = $("#advanceSearch").val();
         condition = $('input[name="condition"]:checked').val();
 
-        // Validate the selected values (customize as needed)
-        if (selectedColumn === "" || searchValue === "") {
-            alert("Please select a column, enter a search value, and choose a condition.");
-            return;
-        }
-        // Add selected columns to the array
-        selectedColumns = [selectedColumn, secondSelectedColumn];
         reportAdvanceSearchData(currentReport,selectedColumns,searchValue,condition,$('#maxRows').val(),1)
-         tempColumnArray= selectedColumns;
-         tempSelectedColumn = selectedColumn;
-         tempSecondSelectedColumn = secondSelectedColumn;
-         tempSearchValue = searchValue;
-         tempCondition = condition;
-        SearchResetForm();
     });
 
 function ajaxcall(selectedOption,page) {
@@ -129,28 +108,23 @@ function ajaxcall(selectedOption,page) {
             },
             success: function (data) {
                 $('#overlay').hide();
-                ReportSearchDropdown();
+                fetchColumn();
+
                 console.log("Data retrieved:", data);
 
+                if(data.length <= 0){
+                    console.log("data Less :",data.length);
+                    var Nodata = '<div style="text-align: center; font-weight: bold;">No Record Found</div>';
+                    $("#admin_userslist").html(Nodata);
+                }else{
                 if (data.error) {
                     // Handle the error
                     $("#admin_userslist").html("Error: " + data.error);
                 } else {
                    clearTable();
-                    if (selectedOption === "intakeReport1") {
-                        RecordAppendRowFunction(data.data);
-                        updatePaginationReport(data.total, page);
-                    } else if (selectedOption === "intakeReport2") {
-                        RecordAppendRowFunction(data.data);
-                        updatePaginationReport(data.total, page);
-                    } else if (selectedOption === "intakeReport3") {
-                        RecordAppendRowFunction(data.data);
-                        updatePaginationReport(data.total, page);
-                    } else {
-                        // Handle other cases or provide a default action
-                        console.log("Unknown option is selected");
-                    }
-
+                    RecordAppendRowFunction(data.data);
+                    updatePaginationReport(data.total, page);
+                }
                 }
             },
         });
@@ -187,10 +161,7 @@ function updatePaginationReport(totalRecords, currentPage) {
     limitPagging();
 }
 
-
     function limitPagging(){
-        // alert($('.pagination li').length)
-
         if($('.pagination li').length > 7 ){
             if( $('.pagination li.active').attr('data-page') <= 3 ){
                 $('.pagination li:gt(5)').hide();
@@ -207,7 +178,6 @@ function updatePaginationReport(totalRecords, currentPage) {
             }
         }
     }
-
 
     function RecordAppendRowFunction(data) {
         if (data.length > 0) {
@@ -257,137 +227,75 @@ function updatePaginationReport(totalRecords, currentPage) {
             success: function (data) {
                 $('#overlay').hide();
                 isSearching = true;
+           if(data.length <= 0){
+                    console.log("data Less :",data.length);
+                    var Nodata = '<div style="text-align: center; font-weight: bold;">No Record Found</div>';
+                    $("#admin_userslist").html(Nodata);
+                }
+                else{
                 console.log("Search Results", data);
                 clearTable();
                 RecordAppendRowFunction(data.data);
                 updatePaginationReport(data.total, page);
+           }
             },
         });
-        selectedColumns = [];
     }
-    function    SearchResetForm() {
-        // Reset the form elements
-        document.getElementById('SearchOptions').value = '';
-        document.getElementById('SecondSearchOptions').value = '';
-        document.getElementById('advanceSearch').value = '';
-        document.getElementById('and').checked = false;
-        document.getElementById('or').checked = false;
-
-        // Remove SecondSearchOptions and its label
-        $('#SecondSearchOptions, #SecondSearchOptionsLabel').remove();
-    }
-
-
-    $("#resetButton").on("click", function () {
-        SearchResetForm();
-    });
-    function populateDropdown(selectElement, options) {
-        selectElement.empty();
-        selectElement.append('<option value="">----------------Select------------------</option>');
-        $.each(options, function (index, option) {
-            selectElement.append('<option value="' + option + '">' + option + '</option>');
-        });
-    }
-    function ReportSearchDropdown(){
-        var selectedColumns = [];
-        $('#searchModal').on('show.bs.modal', function (e) {
-
-            var headers = [];
-            // Extract headers from the table
-            $("#admin_userslist thead th").each(function () {
-                headers.push($(this).text());
-            });
-            // Populate the select dropdown in the modal
-            var selectOptions = $("#SearchOptions");
-            selectOptions.empty(); // Clear existing options
-            selectOptions.append('<option value="">----------------Select------------------</option>');
-            $.each(headers, function (index, header) {
-                selectOptions.append('<option value="' + header + '">' + header + '</option>');
-            });
-
-            // Event handler for radio button click
-            $('input[name="condition"]').change(function () {
-                var selectedValue = $('input[name="condition"]:checked').val();
-                $("#SecondSearchOptions, #SecondSearchOptionsLabel").remove();
-                if (selectedValue === "OR" || selectedValue === "AND") {
-                    // Create a new select dropdown with options excluding the selected option
-                    var secondSelectOptions = headers.filter(function (header) {
-                        return header !== $("#SearchOptions").val();
-                    });
-
-                    // Create a new select dropdown element
-                    var secondSelect = $('<select class="form-control" id="SecondSearchOptions"></select>');
-
-                    // Create a new label for the second dropdown
-                    var secondSelectLabel = $('<label for="SecondSearchOptions" id="SecondSearchOptionsLabel">Select Second Search Column:</label>');
-
-                    // Append the new label and select dropdown to the modal body
-                    $("#searchModal .modal-body").append(secondSelectLabel);
-                    $("#searchModal .modal-body").append(secondSelect);
-
-                    // Populate the new select dropdown with options
-                    populateDropdown(secondSelect, secondSelectOptions);
-                }
-            });
-        });
-    }
-    function SearchValidation(){
-        var searchTerm = $("#advanceSearch").val();
-        var radioSelectedValue = $('input[name="condition"]:checked').val();
-
-        // Initial validation
-        $('#submitSearch').hide();
-
-        $('#SearchOptions, #advanceSearch, #SecondSearchOptions').on('change input change', function () {
-            var selectedOption = $('#SearchOptions').val();
-            var selectedOption2 = $('#SecondSearchOptions').val();
-            if (radioSelectedValue === ""){
-                if (selectedOption !== "" && searchTerm !== "") {
-                    $('#submitSearch').show();
-
-                } else {
-                    $('#submitSearch').hide();
-                }
-            }
-            else if (selectedOption !== "" && searchTerm !== "" && selectedOption2 !== ""){
-                $('#submitSearch').show();
-            }
-            else{
-                $('#submitSearch').hide();
-            }
-
-        });
-
-        // Advance search input change event
-        $('#advanceSearch').on('input', function () {
-            searchTerm = $(this).val();
-
-            // Trigger change event for SearchOptions
-            $('#SearchOptions').trigger('change');
-        });
-
-        $('input[name="condition"]').change(function () {
-            radioSelectedValue = $(this).val();
-
-            // Trigger change event for SearchOptions
-            $('#SearchOptions').trigger('change');
+    function fetchColumn(){
+        $.ajax({
+            url: "Report_Search_FieldName",
+            method: "POST",
+            data: {SelectedReport: currentReport},
+            dataType: "json",
+            beforeSend: function () {
+                $('#overlay').show();
+            },
+            success: function (data) {
+                $('#overlay').hide();
+                isSearching = true;
+                console.log("Search Results", data);
+                populateDropdown(data.data);
+            },
         });
     }
 
-    // $("#ExitSearch").click(function() {
-    //     // Reset back to the same report by making an AJAX call
-    //     console.log("exit search button clicked");
-    //     ajaxcall(currentReport, currentPage);
-    //
-    //     // Optionally, you can also reset other search-related variables if needed
-    //     isSearching = false;
-    //     selectedColumns = [];
-    //     selectedOption = currentReport;
-    //
-    //     filterIcon.hide();
-    // });
+    // function fetchColumn() {
+    //     var currentSearchReport =$("#Report").val();
+    //     $.ajax({
+    //         url: "Report_Search_FieldName",
+    //         type: 'POST',
+    //         data: { SelectedReport: currentSearchReport}, // Convert data to JSON string
+    //         dataType: "json",
+    //         beforeSend: function () {
+    //             $('#overlay').show();
+    //         },
+    //         success: function (data) {
+    //             $('#overlay').hide();
+    //             console.log("columnName", data);
+    //             cleardropdown();
+    //             populateDropdown(data.data);
+    //         }
+    //     });
+    // }
+    function cleardropdown() {
+        var dropdown = $('#SearchOptions');
+        dropdown.empty();
+        dropdown.append('<option value="null">--Select--</option>');
+    }
+    function populateDropdown(columnNames) {
+        var dropdown = $('#SearchOptions');
 
-
+        // Clear existing options
+        dropdown.empty();
+        dropdown.append('<option value="" selected>--Select--</option>');
+        // Populate the dropdown with column names
+        for (var i = 0; i < columnNames.length; i++) {
+            var option = $('<option></option>');
+            option.val(columnNames[i].Field);
+            option.text(columnNames[i].Field);
+            dropdown.append(option);
+        }
+    }
 });
 
 

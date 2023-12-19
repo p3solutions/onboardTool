@@ -12,20 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Report_Advance_Search {
-//    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-//        List<String> columns = new ArrayList<>();
-//        columns.add("LegacyAppName");
-//        columns.add("Isapplicationtheonlysourceoftruthforthedata");
-//        System.out.println("The list of columns" + columns);
-//        String tableName = "intakeReport3";
-//        String condition = "AND";
-//        String searchTerm = "n";
-//        int maxRows = 15;
-//        int page =1;
-//
-//        Report_Advance_Search financeAdvanceSearch = new Report_Advance_Search();
-//        financeAdvanceSearch.getDataBasedOnFilter(tableName,columns,condition,searchTerm,maxRows,page);
-//    }
+
     DBconnection dBconnection;
     Connection connection;
     ReportMapping reportMapping =new ReportMapping();
@@ -33,6 +20,47 @@ public class Report_Advance_Search {
         dBconnection = new DBconnection();
         connection = (Connection) dBconnection.getConnection();
 
+    }
+    public JsonObject reportColumnName(String reportName) throws SQLException{
+        JsonArray jsonArray = new JsonArray();
+        String ReportName = null;
+        switch(reportName){
+            case "intakeReport1" : {
+                ReportName = "applicationdataview1";
+                break;
+            }
+            case "intakeReport2" : {
+                ReportName = "applicationdataview2";
+                break;
+            }
+            case "intakeReport3" : {
+                ReportName = "applicationdataview3";
+                break;
+            }
+            default:
+                ReportName = "applicationdataview1";
+        }
+        try {
+            String query = "DESC " + ReportName + ";";
+
+            try (PreparedStatement st = connection.prepareStatement(query);
+                 ResultSet rs = st.executeQuery()) {
+
+                while (rs.next()) {
+                    JsonObject jsonObj = new JsonObject();
+                    jsonObj.addProperty("Field", rs.getString(1));
+                    jsonArray.add(jsonObj);
+                }
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        JsonObject result = new JsonObject();
+        result.add("data", jsonArray);
+        return result;
     }
 
     public JsonObject getDataBasedOnFilter(String tableName, List<String> selectedColumns, String condition, String searchTerm, int maxRows, int page) throws SQLException {
