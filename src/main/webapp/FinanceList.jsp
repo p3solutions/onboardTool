@@ -310,7 +310,7 @@
         <div class="modal-content">
             <div class="modal-header" style="background-color: #1565c0;">
                 <h5 class="modal-title" id="exampleModalLabel"
-                    style="color: white;">Delete User</h5>
+                    style="color: white;">Delete Finance Information</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
             </div>
