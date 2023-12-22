@@ -10,9 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 public class Report_Advance_Search {
-
     DBconnection dBconnection;
     Connection connection;
     ReportMapping reportMapping =new ReportMapping();
@@ -63,107 +61,268 @@ public class Report_Advance_Search {
         return result;
     }
 
-    public JsonObject getDataBasedOnFilter(String tableName, List<String> selectedColumns, String condition, String searchTerm, int maxRows, int page) throws SQLException {
+    public JsonObject getDataBasedOnFilter(String selectedReport, String columnName, String operators, String searchValue1, String searchValue2, String yesnofiled, int page, int maxRows,String colType) {
+        JsonArray jsonArray = new JsonArray();
         int start = (page - 1) * maxRows;
         int totalCount = 0;
-        String ReportName = null;
-        switch(tableName){
-            case "intakeReport1" : {
-                ReportName = "applicationdataview1";
-                break;
-            }
-            case "intakeReport2" : {
-                ReportName = "applicationdataview2";
-                break;
-            }
-            case "intakeReport3" : {
-                ReportName = "applicationdataview3";
-                break;
-            }
+        String reportName = null;
 
-        }
-        String sql = buildSqlQuery(ReportName, selectedColumns, condition,start,maxRows);
-        PreparedStatement st1 = connection.prepareStatement(sql);
-
-        for (int i = 0; i < selectedColumns.size(); i++) {
-            st1.setString(i + 1, "%" + searchTerm + "%");
+        switch (selectedReport) {
+            case "intakeReport1":
+                reportName = "applicationdataview1";
+                break;
+            case "intakeReport2":
+                reportName = "applicationdataview2";
+                break;
+            case "intakeReport3":
+                reportName = "applicationdataview3";
+                break;
         }
 
-        ResultSet rs = st1.executeQuery();
-            JsonArray jsonArray = new JsonArray();
-            switch (tableName){
-                case "intakeReport1" : {
-                    reportMapping.reportMapping1(rs, jsonArray);
-                    break;
+        if (!"Select".equals(columnName) && "Select".equals(operators) && !"".equals(searchValue1) && "".equals(searchValue2)&& "Select".equals(yesnofiled)) {
+            Connection connection = null;
+            PreparedStatement st = null;
+            PreparedStatement st1 = null;
+
+            try {
+                DBconnection dBconnection = new DBconnection();
+                connection = dBconnection.getConnection();
+
+                st = connection.prepareStatement("SELECT * FROM "+reportName+" WHERE `" + columnName + "` LIKE ? LIMIT ?,?");
+                st.setString(1, "%" + searchValue1 + "%");
+                st.setInt(2, start);
+                st.setInt(3, maxRows);
+
+                ResultSet rs = st.executeQuery();
+
+                switch (reportName) {
+                    case "applicationdataview1":
+                        reportMapping.reportMapping1(rs, jsonArray);
+                        break;
+                    case "applicationdataview2":
+                        reportMapping.reportMapping2(rs, jsonArray);
+                        break;
+                    case "applicationdataview3":
+                        reportMapping.reportMapping3(rs, jsonArray);
+                        break;
                 }
-                case "intakeReport2" : {
-                    reportMapping.reportMapping2(rs, jsonArray);
-                    break;
+
+                String countQuery = "SELECT COUNT(`" + columnName + "`) AS total FROM "+reportName+" WHERE `" + columnName + "` LIKE ?";
+                st1 = connection.prepareStatement(countQuery);
+                st1.setString(1, "%" + searchValue1 + "%");
+                ResultSet rs1 = st1.executeQuery();
+
+                if (rs1.next()) {
+                    totalCount = rs1.getInt("total");
                 }
-                case "intakeReport3" : {
-                    reportMapping.reportMapping3(rs, jsonArray);
-                    break;
+
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (st != null) {
+                        st.close();
+                    }
+                    if (st1 != null) {
+                        st1.close();
+                    }
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
             }
-
-        String countQuery = buildCountQuery(ReportName, selectedColumns, condition, searchTerm);
-        st1 = connection.prepareStatement(countQuery);
-        for (int i = 0; i < selectedColumns.size(); i++) {
-            st1.setString(i + 1, "%" + searchTerm + "%");
         }
-        rs = st1.executeQuery();
-        if (rs.next()) {
-            totalCount = rs.getInt("total");
+        else if(!"Select".equals(columnName) && "Select".equals(operators) && "".equals(searchValue1) && "".equals(searchValue2)&& !"Select".equals(yesnofiled)) {
+        	Connection connection = null;
+            PreparedStatement st = null;
+            PreparedStatement st1 = null;
+
+            try {
+                DBconnection dBconnection = new DBconnection();
+                connection = dBconnection.getConnection();
+
+                st = connection.prepareStatement("SELECT * FROM "+reportName+" WHERE `" + columnName + "`='"+yesnofiled+"' LIMIT ?,?");
+                st.setInt(1, start);
+                st.setInt(2, maxRows);
+
+                ResultSet rs = st.executeQuery();
+
+                switch (reportName) {
+                    case "applicationdataview1":
+                        reportMapping.reportMapping1(rs, jsonArray);
+                        break;
+                    case "applicationdataview2":
+                        reportMapping.reportMapping2(rs, jsonArray);
+                        break;
+                    case "applicationdataview3":
+                        reportMapping.reportMapping3(rs, jsonArray);
+                        break;
+                }
+
+                String countQuery = "SELECT COUNT(`" + columnName + "`) AS total FROM "+reportName+" WHERE `" + columnName + "` = '"+yesnofiled+"'";
+                st1 = connection.prepareStatement(countQuery);
+                ResultSet rs1 = st1.executeQuery();
+
+                if (rs1.next()) {
+                    totalCount = rs1.getInt("total");
+                }
+
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (st != null) {
+                        st.close();
+                    }
+                    if (st1 != null) {
+                        st1.close();
+                    }
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        else if(!"Select".equals(columnName) && !"Select".equals(operators) && !"".equals(searchValue1) && "".equals(searchValue2)&& "Select".equals(yesnofiled)) {
+        	Connection connection = null;
+            PreparedStatement st = null;
+            PreparedStatement st1 = null;
+            System.out.println("operators : "+operators);
+            System.out.println("I am Without Between");
+
+            try {
+                DBconnection dBconnection = new DBconnection();
+                connection = dBconnection.getConnection();
+                if("date".equals(colType)) {
+                	st = connection.prepareStatement("SELECT * FROM "+reportName+" WHERE STR_TO_DATE(`" + columnName + "`,'%m/%d/%Y') "+operators+" STR_TO_DATE('"+searchValue1+"','%m/%d/%Y') LIMIT ?,?");
+                }
+                else {
+                	st = connection.prepareStatement("SELECT * FROM "+reportName+" WHERE `" + columnName + "`"+operators+" "+searchValue1+" LIMIT ?,?");
+                }
+                st.setInt(1, start);
+                st.setInt(2, maxRows);
+
+                ResultSet rs = st.executeQuery();
+
+                switch (reportName) {
+                    case "applicationdataview1":
+                        reportMapping.reportMapping1(rs, jsonArray);
+                        break;
+                    case "applicationdataview2":
+                        reportMapping.reportMapping2(rs, jsonArray);
+                        break;
+                    case "applicationdataview3":
+                        reportMapping.reportMapping3(rs, jsonArray);
+                        break;
+                }
+                String countQuery = null;
+                if("date".equals(colType)) {
+                	 countQuery = "SELECT COUNT(`" + columnName + "`) AS total FROM "+reportName+"  WHERE STR_TO_DATE(`" + columnName + "`,'%m/%d/%Y') "+operators+" STR_TO_DATE('"+searchValue1+"','%m/%d/%Y');";
+                } else {
+                	countQuery = "SELECT COUNT(`" + columnName + "`) AS total FROM "+reportName+" WHERE `" + columnName + "`"+operators+" "+searchValue1+";";
+                }
+                st1 = connection.prepareStatement(countQuery);
+                ResultSet rs1 = st1.executeQuery();
+
+                if (rs1.next()) {
+                    totalCount = rs1.getInt("total");
+                }
+
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (st != null) {
+                        st.close();
+                    }
+                    if (st1 != null) {
+                        st1.close();
+                    }
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        else if(!"Select".equals(columnName) && "BETWEEN".equals(operators) && !"".equals(searchValue1) && !"".equals(searchValue2)&& "Select".equals(yesnofiled)) {
+        	Connection connection = null;
+            PreparedStatement st = null;
+            PreparedStatement st1 = null;
+            System.out.println("operators : "+operators);
+            System.out.println("I am Between");
+            System.out.println("");
+
+            try {
+                DBconnection dBconnection = new DBconnection();
+                connection = dBconnection.getConnection();
+                if ("date".equals(colType)) {
+                    st = connection.prepareStatement("SELECT * FROM " + reportName +
+                            " WHERE `" + columnName + "` BETWEEN '"+searchValue1+"' AND '"+searchValue2+"' LIMIT ?, ?");
+                } else {
+                    st = connection.prepareStatement("SELECT * FROM " + reportName +
+                            " WHERE `" + columnName + "` BETWEEN "+searchValue1+" AND "+searchValue2+" LIMIT ?, ?");
+                }
+                st.setInt(1, start);
+                st.setInt(2, maxRows);
+                System.out.println("Query: " + st.toString());
+                ResultSet rs = st.executeQuery();
+
+                switch (reportName) {
+                    case "applicationdataview1":
+                        reportMapping.reportMapping1(rs, jsonArray);
+                        break;
+                    case "applicationdataview2":
+                        reportMapping.reportMapping2(rs, jsonArray);
+                        break;
+                    case "applicationdataview3":
+                        reportMapping.reportMapping3(rs, jsonArray);
+                        break;
+                }
+                String countQuery = null;
+                if("date".equals(colType)) {
+                	countQuery = "SELECT COUNT(`" + columnName + "`) AS total FROM "+reportName+" WHERE `" + columnName + "` BETWEEN '"+searchValue1+"' AND '"+searchValue2+"' ;";
+                }else {
+                	countQuery = "SELECT COUNT(`" + columnName + "`) AS total FROM "+reportName+" WHERE `" + columnName + "` BETWEEN "+searchValue1+" AND "+searchValue2+"";
+                }
+                st1 = connection.prepareStatement(countQuery);
+                ResultSet rs1 = st1.executeQuery();
+
+                if (rs1.next()) {
+                    totalCount = rs1.getInt("total");
+                }
+
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (st != null) {
+                        st.close();
+                    }
+                    if (st1 != null) {
+                        st1.close();
+                    }
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        else {
+        	System.out.println("Invalid Operators");
         }
         JsonObject result = new JsonObject();
         result.addProperty("total", totalCount);
         result.add("data", jsonArray);
-        System.out.println("JSON" + result);
+
+        System.out.println("JSON Search Service Pagination: " + result);
         return result;
-
-
-
-
     }
-    private String buildSqlQuery(String tableName, List<String> selectedColumns, String condition, int start , int maxRows) {
-        StringBuilder sql = new StringBuilder("SELECT * FROM " + tableName + " WHERE ");
-
-        for (int i = 0; i < selectedColumns.size(); i++) {
-            if (i > 0) {
-                sql.append(" ").append(condition).append(" ");
-            }
-            sql.append("`").append(selectedColumns.get(i)).append("` LIKE ?");
-
-            if (i < selectedColumns.size() - 1) {
-                sql.append(" ");
-            }
-        }
-        sql.append(" LIMIT ").append(start).append(",").append(maxRows).append(";");
-        return sql.toString();
-    }
-    private  String buildCountQuery(String ReportName, List<String> columns, String condition, String searchTerm) {
-        // Validate that there are columns in the list
-        if (columns == null || columns.isEmpty()) {
-            throw new IllegalArgumentException("List of columns cannot be null or empty");
-        }
-
-        // Build the SQL query to count the total number of records
-        StringBuilder countSql = new StringBuilder("SELECT COUNT(*) AS total FROM ").append(ReportName).append(" WHERE ");
-
-        // Add conditions for each column
-        for (int i = 0; i < columns.size(); i++) {
-            if (i > 0) {
-                countSql.append(" ").append(condition).append(" ");
-            }
-            countSql.append("`").append(columns.get(i)).append("` LIKE ?");
-
-            // Add parameter placeholders for prepared statement
-            if (i < columns.size() - 1) {
-                countSql.append(" ");
-            }
-        }
-
-        return countSql.toString();
-    }
-
 }

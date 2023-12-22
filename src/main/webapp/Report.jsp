@@ -36,7 +36,7 @@
           href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <link rel="stylesheet" href="css/headerIcon/headerIcon.css"
           media="screen">
-
+	<script src="path/to/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="css/Responsive/intake-opportunity.css"
           media="screen">
     <link rel="stylesheet" href="css/Responsive/responsive.css"
@@ -358,16 +358,42 @@
             <div class="modal-body">
                 <!-- Add your export options here -->
                 <label for="SearchOptions">Select Search Column:</label>
-                <select class="form-control" id="SearchOptions">
+                <select class="form-control" id="SearchOptions" onchange="handleColumnChange()">
+                    <option value="Select">--Select--</option>
                     <!-- Add more options as needed -->
                 </select>
                 <br>
-                <input class="form-control" type="text" id="advanceSearch" placeholder="Search Value">
+                <label for="SearchOprerators" style="display:none;">Select Operator:</label>
+                <select class="form-control" id="SearchOperators" style="display:none;">
+                    <option value="Select" Selected>--Select--</option>
+                    <option value="=">  =  </option>
+                    <option value="<">  <  </option>
+                    <option value="<="> <= </option>
+                    <option value=">">  >  </option>
+                    <option value=">="> >= </option>
+                    <option value="BETWEEN">BETWEEN</option>
+                </select>
+                <br>
+                <label for="lable3" style="display:none;">Select Input Value:</label>
+                <select class="form-control" id="YesNoField" style="display:none;">
+                    <option value="Select" Selected>--Select--</option>
+                    <option value="yes"> YES </option>
+                    <option value="no">   NO </option>
+                </select>
+                <label for="lable1" style="display:none;">Enter Search Value:</label>
+                <label for="lable4" style="display:none;">Enter From Value:</label>
+                <label for="lable5" style="display:none;">Enter From Date:</label>
+                <input class="form-control" class='form-control datepicker1' type="text" id="Searchinput1" style="display:none;" placeholder="Search Value">
+                <br>
+                <label for="lable2" style="display:none;">Enter To Value:</label>
+                <label for="lable6" style="display:none;">Enter To Date:</label>
+                <input class="form-control" class='form-control datepicker1' type="text" id="Searchinput2" style="display:none;" placeholder="Search Value">
+                <br>
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary pull-left" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="submitSearch" data-bs-dismiss="modal">Search</button>
+                <button type="button" class="btn btn-primary" id="submitSearch">Search</button>
                 <button type="button" class="btn btn-secondary pull-left" id="resetButton">Reset</button>
 
             </div>
