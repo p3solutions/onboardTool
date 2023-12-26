@@ -7,19 +7,13 @@
         FinanceSearchDropdown();
 
         var isSearching = false;
-        var selectedColumns;
-        var currentSearchColumn;
-        var currentSearchTerm;
         var currentPage = 1; // Default page number
-        var selectedColumn ;
-        var secondSelectedColumn ; // Add this line
-        var searchValue ;
-        var condition ;
-        var tempColumnsArray;
-        var tempSelectedColumn;
-        var tempSecondSelectedColumn;
-        var tempSearchValue;
-        var tempCondition;
+       	var tempcolumnName;
+		var tempOperators;
+		var tempsearchValue1;
+		var tempsearchValue2;
+		var tempyesnofiled;
+		var temptype;
 
         var appId = sessionStorage.getItem("APPID");
         var appName = sessionStorage.getItem("APPNAME");
@@ -41,7 +35,7 @@
             if (isSearching) {
                 currentPage = 1;
               //  searchData(currentSearchColumn, currentSearchTerm, maxRow, currentPage);
-               advanceSearchData(tempColumnsArray,tempSearchValue,tempCondition,maxRow,currentPage);
+               advanceSearchData(tempcolumnName, tempOperators, tempsearchValue1, tempsearchValue2, tempyesnofiled, maxRow, currentPage,temptype);
 
             } else {
                 fetchData(1); // Fetch data for the first page when the row count changes
@@ -60,37 +54,14 @@
             }
 
             if (isSearching) {
-                advanceSearchData(tempColumnsArray,tempSearchValue,tempCondition,$('#maxRows').val(),currentPage);
+                advanceSearchData(tempcolumnName, tempOperators, tempsearchValue1, tempsearchValue2, tempyesnofiled, $('#maxRows').val(), currentPage,temptype);
             } else {
                 fetchData(currentPage);
             }
         });
         $("#submitSearch").on("click", function () {
             $("#ExitSearch").show();
-             selectedColumn = $("#SearchOptions").val();
-             secondSelectedColumn = $("#SecondSearchOptions").val(); // Add this line
-             searchValue = $("#advanceSearch").val();
-             condition = $('input[name="condition"]:checked').val();
-
-            // Validate the selected values (customize as needed)
-            if (selectedColumn === "" || searchValue === "") {
-                alert("Please select a column, enter a search value, and choose a condition.");
-                return;
-            }
-            // Add selected columns to the array
-            selectedColumns = [selectedColumn, secondSelectedColumn];
-            advanceSearchData(selectedColumns,searchValue,condition,$('#maxRows').val(),1)
-            tempColumnsArray = selectedColumns;
-            tempSelectedColumn = selectedColumn;
-            tempSecondSelectedColumn = secondSelectedColumn;
-            tempSearchValue = searchValue;
-            tempCondition = condition;
-
-            console.log(tempSelectedColumn);
-            console.log(tempSearchValue);
-            console.log(tempCondition);
-            console.log(tempColumnsArray);
-           resetForm();
+			validateForm();
 
         });
         function fetchData(page) {
@@ -115,17 +86,21 @@
                 },
             });
         }
-        function advanceSearchData(selectedColumns,searchValue,condition,maxRows,page){
+        function advanceSearchData(ColumnName, Operators, SearchValue1, SearchValue2, Yesnofiled, MaxRows, page,type){
             $.ajax({
                 url: "Finance_Advance_Search_servlet",
                 method: "POST",
-                data: {
-                    column: selectedColumns,
-                    searchTerm: searchValue,
-                    condition: condition,
-                    maxRows: maxRows,
-                    page: page
-                },
+                data: JSON.stringify({ // Use an empty string if it's null or undefined
+				columnName: ColumnName || "",
+				Operators: Operators || "",
+				searchValue1: SearchValue1 || "",
+				searchValue2: SearchValue2 || "",
+				yesnofiled: Yesnofiled || "",
+				Page: page || 1, 
+				maxRows: MaxRows || 5, 
+				Type : type
+				}),
+				contentType: "application/json",
                 dataType: "json",
                 beforeSend: function () {
                     $('#overlay').show();
@@ -143,14 +118,13 @@
         }
         function populateDropdown(selectElement, options) {
             selectElement.empty();
-            selectElement.append('<option value="">----------------Select------------------</option>');
+            selectElement.append('<option value="Select">--Select--</option>');
             $.each(options, function (index, option) {
                 selectElement.append('<option value="' + option + '">' + option + '</option>');
             });
         }
 
         function FinanceSearchDropdown() {
-            var selectedColumns = [];
             $('#searchModal').on('show.bs.modal', function (e) {
                 var headers = [];
 
@@ -160,7 +134,7 @@
 
                 var selectOptions = $("#SearchOptions");
                 selectOptions.empty(); // Clear existing options
-                selectOptions.append('<option value="">----------------Select------------------</option>');
+                selectOptions.append('<option value="Select">--Select--</option>');
                 $.each(headers, function (index, header) {
                     if (header !== 'Action') {
                         // Exclude "Action" column from the dropdown options
@@ -363,25 +337,349 @@
         }
 
         // Add this function to your existing script
-        function resetForm() {
-            // Reset the form elements
-            document.getElementById('SearchOptions').value = '';
-            document.getElementById('SecondSearchOptions').value = '';
-            document.getElementById('advanceSearch').value = '';
-            document.getElementById('and').checked = false;
-            document.getElementById('or').checked = false;
-
-            // Remove SecondSearchOptions and its label
-            $('#SecondSearchOptions, #SecondSearchOptionsLabel').remove();
-        }
-
-
+        
         $("#resetButton").on("click", function () {
-            //resetForm();
+            SearchResetForm();
         });
         $("#ExitSearch").click(function() {
             // Redirect to another page when the icon is clicked
             window.location.href = "FinanceList.jsp";
         });
+        function SearchResetForm() {
+		document.getElementById('SearchOptions').value = 'Select';
+		document.getElementById('SearchOperators').value = 'Select';
+		document.getElementById('YesNoField').value = 'Select';
+		document.getElementById('Searchinput1').value = '';
+		document.getElementById('Searchinput2').value = '';
+		document.getElementById('SearchOperators').style.display = 'none';
+		document.querySelector('label[for="SearchOprerators"]').style.display = 'none';
+		document.querySelector('label[for="lable3"]').style.display = 'none';
+		document.getElementById('YesNoField').style.display = 'none';
+		document.querySelector('label[for="lable1"]').style.display = 'none';
+		document.getElementById('Searchinput1').style.display = 'none';
+		document.querySelector('label[for="lable2"]').style.display = 'none';
+		document.querySelector('label[for="lable4"]').style.display = 'none';
+		document.querySelector('label[for="lable5"]').style.display = 'none';
+		document.querySelector('label[for="lable6"]').style.display = 'none';
+		document.getElementById('Searchinput2').style.display = 'none';
+	}
+
+
+
+
+	function validateForm() {
+		console.log("ValidateForm");
+		const columnName = document.getElementById('SearchOptions').value;
+		const Operators = document.getElementById('SearchOperators').value;
+		const yesnofiled = document.getElementById('YesNoField').value;
+		const searchValue1 = document.getElementById('Searchinput1').value;
+		const searchValue2 = document.getElementById('Searchinput2').value;
+		var coltype;
+		const showError = (message) => {
+			notification("warning", message, "Warning:");
+			return false;
+		};
+
+		const isValid = () => {
+			const columnType = getColumnType(columnName);
+			
+			coltype = columnType;
+			if (columnName === 'Select') {
+				return showError("Select a column name");
+			}
+			if (columnName !== 'Select' && columnType === 'text' && searchValue1 === '') {
+				return showError("Enter Search Value!");
+			}
+			if (columnName !== 'Select' && yesnofiled === 'Select' && columnType === 'yesno') {
+				return showError("Select Input Value!");
+			}
+			if (columnName !== 'Select' && Operators === 'Select' && columnType === 'date') {
+				return showError("Select Operator!");
+			}
+			if (columnName !== 'Select' && Operators === 'Select' && columnType === 'number') {
+				return showError("Select Operator!");
+			}
+			if (Operators !== 'Select' && columnType === 'number' && Operators !== 'BETWEEN' && !/^\d+$/.test(searchValue1) && validateInput(searchValue1)) {
+				return showError("Enter a Number values");
+			}
+			if (Operators !== 'Select' && columnType === 'number' && Operators === 'BETWEEN' && !/^\d+$/.test(searchValue1) && !/^\d+$/.test(searchValue2) && searchValue2 === '' && searchValue1 === '') {
+				return showError("Enter a Number values in both input fileds ");
+			}
+
+			if (Operators !== 'Select' && columnType === 'date' && Operators === 'BETWEEN' && !isValidDate(searchValue1) && !isValidDate(searchValue2)) {
+				return showError("Enter a valid date in mm/dd/yyyy format in Both input Fileds");
+			}
+			if (Operators !== 'Select' && columnType === 'date' && Operators !== 'BETWEEN' && !isValidDate(searchValue1)) {
+				return showError("Enter a valid date in mm/dd/yyyy format");
+			}
+			return true;
+		};
+		if (isValid()) {
+			var page = 1;
+			tempcolumnName = columnName;
+			console.log("tempcolumnName", tempcolumnName);
+			tempOperators = Operators;
+			console.log("tempOperators", tempOperators);
+			tempsearchValue1 = searchValue1;
+			console.log("tempsearchValue1 : ", tempsearchValue1);
+			tempsearchValue2 = searchValue2;
+			console.log("tempsearchValue2 ", tempsearchValue2);
+			tempyesnofiled = yesnofiled;
+			console.log(tempyesnofiled);
+			temptype = coltype;
+			console.log("ColumnType",temptype);
+			advanceSearchData(columnName, Operators, searchValue1, searchValue2, yesnofiled, 5, page,coltype);
+			SearchResetForm();
+			closeModal();
+			notification("success", "Search successfully.", "Note:");
+
+		}
+	}
+	function closeModal() {
+    var closeButton = document.querySelector('#searchModal .btn-close');
+    if (closeButton) {
+        closeButton.click();
+    }
+}
+	function isValidDate(dateString) {
+		const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+		if (!dateRegex.test(dateString)) {
+			return false;
+		}
+
+		const [month, day, year] = dateString.split('/').map(Number);
+		const date = new Date(year, month - 1, day);
+
+		return (
+			date.getFullYear() === year &&
+			date.getMonth() === month - 1 &&
+			date.getDate() === day
+		);
+	}
 
     });
+    
+function handleColumnChange() {
+	var columnSelect = document.getElementById('SearchOptions');
+	var operatorLabel = document.querySelector('label[for="SearchOprerators"]');
+	var operatorSelect = document.getElementById('SearchOperators');
+	var value1Label = document.querySelector('label[for="lable1"]');
+	var value1Input = document.getElementById('Searchinput1');
+	var value2Label = document.querySelector('label[for="lable2"]');
+	var value2Input = document.getElementById('Searchinput2');
+	var value3Label = document.querySelector('label[for="lable3"]');
+	var value3Input = document.getElementById('YesNoField');
+	var value4Label = document.querySelector('label[for="lable4"]');
+	var value5Label = document.querySelector('label[for="lable5"]');
+	var value6Label = document.querySelector('label[for="lable6"]');
+
+	// Reset values and visibility
+	operatorSelect.value = 'Select';
+	value1Input.value = '';
+	value2Input.value = '';
+	value3Input.value = 'Select';
+	value1Input.style.display = 'none';
+	value2Input.style.display = 'none';
+	operatorLabel.style.display = 'none';
+	value1Label.style.display = 'none';
+	value2Label.style.display = 'none';
+	value3Label.style.display = 'none';
+	value3Input.style.display = 'none';
+	value4Label.style.display = 'none';
+	value5Label.style.display = 'none';
+	value6Label.style.display = 'none';
+	if (columnSelect.value === 'Select') {
+		var columnType = getColumnType(columnSelect.value);
+		operatorLabel.style.display = 'none';
+		operatorSelect.style.display = 'none';
+		value1Label.style.display = 'none';
+		value1Input.style.display = 'none';
+		value2Label.style.display = 'none';
+		value2Input.style.display = 'none';
+		value3Label.style.display = 'none';
+		value3Input.style.display = 'none';
+		value4Label.style.display = 'none';
+		value5Label.style.display = 'none';
+		value6Label.style.display = 'none';
+	} else {
+		var columnType = getColumnType(columnSelect.value);
+		console.log("columnType Hi :", columnType);
+		if (columnType === 'date' && operatorSelect !== 'null') {
+			operatorLabel.style.display = 'block';
+			operatorSelect.style.display = 'block';
+			value1Label.style.display = 'none';
+			value1Input.style.display = 'none';
+			value2Label.style.display = 'none';
+			value2Input.style.display = 'none';
+			value3Label.style.display = 'none';
+			value3Input.style.display = 'none';
+			value4Label.style.display = 'none';
+			value5Label.style.display = 'none';
+			value6Label.style.display = 'none';
+		} else if (columnType === 'number' && operatorSelect !== 'null') {
+			operatorLabel.style.display = 'block';
+			operatorSelect.style.display = 'block';
+			value1Label.style.display = 'none';
+			value1Input.style.display = 'none';
+			value2Label.style.display = 'none';
+			value2Input.style.display = 'none';
+			value3Label.style.display = 'none';
+			value3Input.style.display = 'none';
+			value4Label.style.display = 'none';
+			value5Label.style.display = 'none';
+			value6Label.style.display = 'none';
+		} else if (columnType === 'text' && operatorSelect !== 'null') {
+			value1Input.setAttribute("type", "text");
+			value1Input.setAttribute("placeholder", "Enter Text values");
+			operatorLabel.style.display = 'none';
+			operatorSelect.style.display = 'none';
+			value1Label.style.display = 'block';
+			value1Input.style.display = 'block';
+			value2Label.style.display = 'none';
+			value2Input.style.display = 'none';
+			value3Label.style.display = 'none';
+			value3Input.style.display = 'none';
+			value4Label.style.display = 'none';
+			value5Label.style.display = 'none';
+			value6Label.style.display = 'none';
+		} else if (columnType === 'yesno' && operatorSelect !== 'null') {
+			operatorLabel.style.display = 'none';
+			operatorSelect.style.display = 'none';
+			value1Label.style.display = 'none';
+			value1Input.style.display = 'none';
+			value2Label.style.display = 'none';
+			value2Input.style.display = 'none';
+			value3Label.style.display = 'block';
+			value3Input.style.display = 'block';
+			value4Label.style.display = 'none';
+			value5Label.style.display = 'none';
+			value6Label.style.display = 'none';
+		}
+		else {
+			// For other columns, show operator and value1
+			console.log("sauy");
+			value1Input.setAttribute("type", "text");
+			value1Input.setAttribute("placeholder", "Searchs");
+			operatorLabel.style.display = 'none';
+			operatorSelect.style.display = 'none';
+			value1Label.style.display = 'none';
+			value1Input.style.display = 'none';
+			value2Label.style.display = 'none';
+			value2Input.style.display = 'none';
+			value3Label.style.display = 'none';
+			value3Input.style.display = 'none';
+			value4Label.style.display = 'none';
+			value5Label.style.display = 'none';
+			value6Label.style.display = 'none';
+		}
+	}
+
+	// Show/hide value2 input and label based on operator selection is between
+	operatorSelect.addEventListener('change', function() {
+		// Set the type of value2 input based on the column type
+		if (operatorSelect.value === 'Select') {
+			console.log("Null for operatorSelect");
+			value1Input.style.display = 'none';
+			value1Label.style.display = 'none';
+			value2Input.style.display = 'none';
+			value2Label.style.display = 'none';
+			value3Label.style.display = 'none';
+			value3Input.style.display = 'none';
+			value4Label.style.display = 'none';
+			value5Label.style.display = 'none';
+			value6Label.style.display = 'none';
+		}
+		else if (columnType === 'date' && operatorSelect.value === 'BETWEEN') {
+			console.log("Between Date");
+			value1Input.setAttribute("type", "text");
+			value1Input.setAttribute("pattern", "\\d{2}/\\d{2}/\\d{4}");
+			value1Input.setAttribute("placeholder", "mm/dd/yyyy");
+			value1Label.style.display = 'none';
+			value1Input.style.display = 'block';
+			value2Input.setAttribute("type", "text");
+			value2Input.setAttribute("pattern", "\\d{2}/\\d{2}/\\d{4}");
+			value2Input.setAttribute("placeholder", "mm/dd/yyyy");
+			value2Input.style.display = 'block';
+			value2Label.style.display = 'none';
+			value3Label.style.display = 'none';
+			value3Input.style.display = 'none';
+			value4Label.style.display = 'none';
+			value5Label.style.display = 'block';
+			value6Label.style.display = 'block';
+		} else if (columnType === 'date' && operatorSelect.value !== 'BETWEEN') {
+			console.log("Between Not Date");
+			value1Input.setAttribute("type", "text");
+			value1Input.setAttribute("pattern", "\\d{2}/\\d{2}/\\d{4}");
+			value1Input.setAttribute("placeholder", "mm/dd/yyyy");
+			value1Input.style.display = 'block';
+			value1Label.style.display = 'block';
+			value2Input.style.display = 'none';
+			value2Label.style.display = 'none';
+			value3Label.style.display = 'none';
+			value3Input.style.display = 'none';
+			value4Label.style.display = 'none';
+			value5Label.style.display = 'none';
+			value6Label.style.display = 'none';
+		} else if (columnType === 'number' && operatorSelect.value !== 'BETWEEN') {
+			console.log("Between Not Number");
+			value1Input.setAttribute("onkeypress", "return isNumber(event)");
+			value1Input.setAttribute("type", "number");
+			value1Input.setAttribute("placeholder", "");
+			value1Input.style.display = 'block';
+			value1Label.style.display = 'block';
+			value2Input.style.display = 'none';
+			value2Label.style.display = 'none';
+			value3Label.style.display = 'none';
+			value3Input.style.display = 'none';
+			value4Label.style.display = 'none';
+			value5Label.style.display = 'none';
+			value6Label.style.display = 'none';
+		} else if (columnType === 'number' && operatorSelect.value === 'BETWEEN') {
+			console.log("Between Number");
+			value1Input.setAttribute("onkeypress", "return isNumber(event)");
+			value2Input.setAttribute("onkeypress", "return isNumber(event)");
+			value1Input.setAttribute("type", "number");
+			value1Input.setAttribute("placeholder", "");
+			value2Input.setAttribute("type", "number");
+			value2Input.setAttribute("placeholder", "");
+			value4Label.style.display = 'block';
+			value1Input.style.display = 'block';
+			value1Label.style.display = 'none';
+			value2Input.style.display = 'block';
+			value2Label.style.display = 'block';
+			value3Label.style.display = 'none';
+			value3Input.style.display = 'none';
+			value5Label.style.display = 'none';
+			value6Label.style.display = 'none';
+		}
+		else {
+
+		}
+	});
+}
+function isNumber(evt) {
+	evt = (evt) ? evt : window.event;
+	var charCode = (evt.which) ? evt.which : evt.keyCode
+	if (charCode != 46 && charCode > 31
+		&& (charCode < 48 || charCode > 57))
+		return false;
+
+	return true;
+}
+function getColumnType(columnName) {
+	console.log("Sysout");
+	const columnTypeMap = {
+		'Contract end date': 'date',
+		'Cost Avoidance': 'number',
+		'Cost Archive': 'number',
+		'Total CBA': 'number',
+		'Software and Licensing(cost Saving) ': 'number',
+		'Funding approved': 'yesno',
+		'Software and Licensing': 'yesno'
+		
+	};
+
+	const trimmedColumnName = columnName.trim();
+
+	return columnTypeMap[trimmedColumnName] || 'text';
+}

@@ -62,176 +62,176 @@ public class availabilityOfView {
         return flag;
     }
 
-        public void viewCreation(String viewName) throws SQLException {
-                switch(viewName){
-                    case "applicationdataview1":{
-                        Report1();
-                        break;
-                    }
-                    case "applicationdataview2":{
-                        Report2();
-                        break;
-                    }
-                    case "applicationdataview3":{
-                        Report3();
-                        break;
-                    }
-                    case "financelist":{
-                      financeListview();
-                        break;
-                    }
-                    case "phase":{
-                        phaseStatusView();
-                        break;
-                    }
-                }
+    public void viewCreation(String viewName) throws SQLException {
+        switch(viewName){
+            case "applicationdataview1":{
+                Report1();
+                break;
+            }
+            case "applicationdataview2":{
+                Report2();
+                break;
+            }
+            case "applicationdataview3":{
+                Report3();
+                break;
+            }
+            case "financelist":{
+                financeListview();
+                break;
+            }
+            case "phase":{
+                phaseStatusView();
+                break;
+            }
         }
+    }
     private void Report1() throws SQLException {
         String sqlViewCreation ="CREATE VIEW applicationdataview1 AS "  +
-        		"WITH `submodules` AS("
-        		+ "	select "
-        		+ "    distinct(`Id`) as `AppId`, "
-        		+ "    value from `opportunity_info` where `Id` not "
-        		+ "	in(select `OppId` from `intake_stake_holder_info` where `intakeApproval` = 'Approved') and `column_name`='appName'"
-        		+ ") ,"
-        		+ "`OpportunityInfo` AS ("
-        		+ "    SELECT"
-        		+ "        `Id`,"
-        		+ "        MAX(CASE WHEN `column_name` = 'apmid' THEN `value` END) AS `Application_Id`,"
-        		+ "        MAX(CASE WHEN `column_name` = 'appName' THEN `value` END) AS `Application_Name`,"
-        		+ "        MAX(CASE WHEN `column_name` = 'creation_date' THEN `value` END) AS `Creation_Date`,"
-        		+ "        MAX(CASE WHEN `column_name` = 'status' THEN `value` END) AS `Status`,"
-        		+ "        MAX(CASE WHEN `column_name` = 'request_type' THEN `value` END) AS `Request_Type`,"
-        		+ "        MAX(CASE WHEN `column_name` = 'requester' THEN `value` END) AS `Requester`,"
-        		+ "        MAX(CASE WHEN `column_name` = 'appowner' THEN `value` END) AS `Application_Owner`,"
-        		+ "        MAX(CASE WHEN `column_name` = 'businesssegment' THEN `value` END) AS `Business_Segment`,"
-        		+ "        MAX(CASE WHEN `column_name` = 'businessunit' THEN value END) AS `Business_Unit`"
-        		+ "    FROM `opportunity_info`"
-        		+ "    WHERE `column_name` IN ('apmid', 'appName', 'creation_date', 'status', 'request_type', 'requester', 'appowner', 'businesssegment', 'businessunit')"
-        		+ "    GROUP BY `Id`"
-        		+ "),"
-        		+ "`TriageInfo` AS ("
-        		+ "    SELECT"
-        		+ "        `Id`,"
-        		+ "        count(Id),"
-        		+ "        MAX(CASE WHEN `column_name` = 'Preliminary_CBA' THEN `value` END) AS `Preliminary_CBA`,"
-        		+ "        MAX(CASE WHEN `column_name` = 'funding_Avl' THEN `value` END) AS `Funding_Available`,"
-        		+ "        MAX(CASE WHEN `column_name` = 'prgFunder' THEN value END) AS `Program_Funder`,"
-        		+ "        MAX(CASE WHEN `column_name` = 'PrjInfo' THEN `value` END) AS `Project_Portfolio_Information`,"
-        		+ "        MAX(CASE WHEN `column_name` = 'Decom_date' THEN `value` END) AS `Project_Decomission_Date`,"
-        		+ "        MAX(CASE WHEN `column_name` = 'infrastructure_impact' THEN `value` END) AS `Infrastructure_Impact`,"
-        		+ "        MAX(CASE WHEN `column_name` = 'nmbr_of_infrastructure_components' THEN `value` END) AS `Number_of_Infrastructure_Components`,"
-        		+ "        MAX(CASE WHEN `column_name` = 'archival_Sol' THEN `value` END) AS `Archival_Solution`,"
-        		+ "        MAX(CASE WHEN `column_name` = 'Status' THEN `value` END) AS `Status_Notes`,"
-        		+ "        MAX(CASE WHEN `column_name` = 'decomAnalyst' THEN `value` END) AS `EDR_Analyst`,"
-        		+ "        MAX(CASE WHEN `column_name` = 'Bigrock' THEN value END) AS `Big_Rock`"
-        		+ "    FROM `triage_info`"
-        		+ "    WHERE `column_name` IN ('Preliminary_CBA', 'funding_Avl', 'prgFunder', 'PrjInfo', 'Decom_date', 'infrastructure_impact', 'nmbr_of_infrastructure_components', 'archival_Sol', 'Status', 'decomAnalyst', 'Bigrock')"
-        		+ "    GROUP BY `Id`"
-        		+ "),"
-        		+ "`AssessmentData` AS ("
-        		+ "    SELECT"
-        		+ "        `Id`,"
-        		+ "        MAX(CASE"
-        		+ "            WHEN `column_name` = 'LastUpdateMade' THEN `value`"
-        		+ "            WHEN `column_name` = 'ExpectedDate' THEN `value`"
-        		+ "        END) AS `Data_Read_only_State`"
-        		+ "    FROM `assessment_data_char_info`"
-        		+ "    WHERE `column_name` IN ('LastUpdateMade', 'ExpectedDate')"
-        		+ "    GROUP BY `Id`"
-        		+ "),"
-        		+ "`ApplicationStatus` AS ("
-        		+ "    SELECT "
-        		+ "        `o`.`Id`,"
-        		+ "        MAX(CASE"
-        		+ "            WHEN (CASE WHEN `i`.`isCompleted`= 'Yes' AND `i`.`intakeApproval`= 'Approved' THEN 1 ELSE 0 END) = 0 THEN 'Intake' "
-        		+ "            WHEN (CASE WHEN `a`.`isCompleted`='Yes' AND `a`.`intakeApproval` = 'Approved' THEN 1 ELSE 0 END) = 0 THEN 'Requirements'"
-        		+ "            ELSE 'Archive Execution'"
-        		+ "        END) as `Status`"
-        		+ "    FROM `opportunity_info` `o`"
-        		+ "    LEFT JOIN `Intake_Stake_Holder_Info` `i` ON `o`.`Id` = `i`.`OppId`"
-        		+ "    LEFT JOIN `archivereq_roles_info` `a` ON `i`.`OppId` = `a`.`OppId`"
-        		+ "    GROUP BY `o`.`Id`"
-        		+ "),"
-        		+ "`PhaseStatus` AS (  "
-        		+ "  WITH separatedvalues AS ("
-        		+ "    SELECT"
-        		+ "        `governance_info`.`waveName` AS `waveName`,"
-        		+ "        TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(`governance_info`.`value`, ',', (`n`.`digit` + 1)), ',', - (1))) AS `separatedValue`"
-        		+ "    FROM"
-        		+ "        (`governance_info`"
-        		+ "        JOIN (SELECT 0 AS `digit` UNION ALL SELECT 1 AS `1` UNION ALL SELECT 2 AS `2` UNION ALL SELECT 3 AS `3`) `n`"
-        		+ "        ON (LENGTH(REPLACE(`governance_info`.`value`, ',', '')) <= (LENGTH(`governance_info`.`value`) - `n`.`digit`)))"
-        		+ "    WHERE"
-        		+ "        (`governance_info`.`column_name` = 'apps')"
-        		+ ")"
-        		+ "SELECT"
-        		+ "    `o`.`Id` AS `Id`,"
-        		+ "    `sv`.`waveName` AS `waveName`,"
-        		+ "    `sv`.`separatedValue` AS `separatedValue`,"
-        		+ "    `p`.`phaseName` AS `phaseName`"
-        		+ "FROM"
-        		+ "    `opportunity_info` `o`"
-        		+ "    JOIN `separatedvalues` `sv` ON TRIM(BOTH ' ' FROM `o`.`value`) = TRIM(BOTH ' ' FROM `sv`.`separatedValue`)"
-        		+ "    LEFT JOIN `phase_info` `p` ON TRIM(BOTH ' ' FROM `sv`.`waveName`) = TRIM(BOTH ' ' FROM `p`.`value`)"
-        		+ "WHERE"
-        		+ "    (`o`.`column_name` = 'appname' AND `p`.`column_name` = 'waves')"
-        		+ "),"
-        		+ "`Intakemodules` AS("
-        		+ "	SELECT "
-        		+ "    `o`.`Id`,"
-        		+ "    MAX(CASE WHEN `o`.`column_name` = 'appName' THEN `o`.`value`END) as `Application_Name`,"
-        		+ "    MAX(CASE WHEN `ts`.`isCompleted` = 'Yes' THEN 1 ELSE 0 END) as `Triage_Summary`,"
-        		+ "    MAX(CASE WHEN `a`.`isCompleted` = 'Yes' THEN 1 ELSE 0 END) as `Assessment`,"
-        		+ "    MAX(CASE WHEN `i`.`isCompleted` = 'Yes' THEN 1 ELSE 0 END) as `StakeHolder`,"
-        		+ "    MAX(CASE WHEN `i`.`isCompleted` = 'Yes' AND `i`.`mail_flag` = 'true' THEN 1 ELSE 0 END) as `Intake_Approved`,"
-        		+ "    CASE"
-        		+ "        WHEN MAX(CASE WHEN `ts`.`isCompleted` = 'Yes' THEN 1 ELSE 0 END) = 0 THEN 'Triage Summary'"
-        		+ "        WHEN MAX(CASE WHEN `a`.`isCompleted` = 'yes' THEN 1 ELSE 0 END) = 0 THEN 'Assessment'"
-        		+ "        WHEN MAX(CASE WHEN `i`.`isCompleted` = 'Yes' THEN 1 ELSE 0 END) = 0 THEN 'StakeHolder'"
-        		+ "        WHEN MAX(CASE WHEN `i`.`isCompleted` = 'Yes' AND `i`.`mail_flag` = 'true' THEN 1 ELSE 0 END) = 0 THEN 'Intake Approved'"
-        		+ "        ELSE 'Intake Approved'"
-        		+ "    END AS `Intake_status`"
-        		+ "FROM "
-        		+ "    `opportunity_info` `o`"
-        		+ "    LEFT JOIN `triage_summary_info` `ts` ON `o`.`Id` = `ts`.`Id`"
-        		+ "    LEFT JOIN `Assessment_Archival_Consumption_Info` `a` ON `o`.`Id` = `a`.`Id`"
-        		+ "    LEFT JOIN `Intake_Stake_Holder_Info` `i` ON `o`.`Id` = `i`.`OppId`"
-        		+ "GROUP BY"
-        		+ "    `o`.`Id`"
-        		+ ")"
-        		+ "SELECT"
-        		+ "    COALESCE(`o`.`Id`, '') AS \"Application Id Gen\","
-        		+ "    COALESCE(`o`.`Application_Id`, '') AS \"Application Id\","
-        		+ "    COALESCE(`o`.`Application_Name`, '') AS \"Application Name\","
-        		+ "    COALESCE(`Intakemodules`.`Intake_status`, '') AS \"Workflow Status\","
-        		+ "    COALESCE(`phs`.`phaseName`, '') AS \"Phase\","
-        		+ "    COALESCE(`o`.`Creation_Date`, '') AS \"Creation Date\","
-        		+ "    COALESCE(`o`.`Status`, '') AS \"Status\","
-        		+ "    COALESCE(`o`.`Request_Type`, '') AS \"Request Type\","
-        		+ "    COALESCE(`o`.`Requester`, '') AS \"Requester\","
-        		+ "    COALESCE(`o`.`Application_Owner`, '') AS \"Application Owner\","
-        		+ "    COALESCE(`o`.`Business_Segment`, '') AS \"Business Segment\","
-        		+ "    COALESCE(`o`.`Business_Unit`, '') AS \"Business Unit\","
-        		+ "    COALESCE(`t`.`Preliminary_CBA`, '') AS \"Preliminary CBA\","
-        		+ "    COALESCE(`t`.`Funding_Available`, '') AS \"Funding Available\","
-        		+ "    COALESCE(`t`.`Program_Funder`, '') AS \"Program Funder\","
-        		+ "    COALESCE(`t`.`Project_Portfolio_Information`, '') AS \"Project Portfolio Information\","
-        		+ "    COALESCE(`t`.`Project_Decomission_Date`, '') AS \"Project Decommission Date\","
-        		+ "    COALESCE(`t`.`Infrastructure_Impact`, '') AS \"Infrastructure Impact\","
-        		+ "    COALESCE(`t`.`Number_of_Infrastructure_Components`, '') AS \"Number of Infrastructure Components\","
-        		+ "    COALESCE(`t`.`Archival_Solution`, '') AS \"Archival Solution\","
-        		+ "    COALESCE(`t`.`Status_Notes`, '') AS \"Status Notes\","
-        		+ "    COALESCE(`t`.`EDR_Analyst`, '') AS \"EDR Analyst\","
-        		+ "    COALESCE(`t`.`Big_Rock`, '') AS \"Big Rock\","
-        		+ "    COALESCE(`a`.`Data_Read_only_State`, '') AS \"Read Only Date\""
-        		+ "FROM `submodules` `sub` "
-        		+ " LEFT JOIN `OpportunityInfo` `o` ON `sub`.`AppId` = `o`.`Id`"
-        		+ "LEFT JOIN `TriageInfo` `t` ON  `sub`.`AppId` = `t`.`Id`"
-        		+ "LEFT JOIN `AssessmentData` `a` ON  `sub`.`AppId` = `a`.`Id`"
-        		+ "LEFT JOIN `ApplicationStatus` `s` ON  `sub`.`AppId` = `s`.`Id`"
-        		+ "LEFT JOIN `PhaseStatus` `phs` ON  `sub`.`AppId` =`phs`.`Id`"
-        		+ "LEFT JOIN `Intakemodules`  ON  `sub`.`AppId`=`Intakemodules`.`Id`;";
+                "WITH `submodules` AS("
+                + "	select "
+                + "    distinct(`Id`) as `AppId`, "
+                + "    value from `opportunity_info` where `Id` not "
+                + "	in(select `OppId` from `intake_stake_holder_info` where `intakeApproval` = 'Approved') and `column_name`='appName'"
+                + ") ,"
+                + "`OpportunityInfo` AS ("
+                + "    SELECT"
+                + "        `Id`,"
+                + "        MAX(CASE WHEN `column_name` = 'apmid' THEN `value` END) AS `Application_Id`,"
+                + "        MAX(CASE WHEN `column_name` = 'appName' THEN `value` END) AS `Application_Name`,"
+                + "        MAX(CASE WHEN `column_name` = 'creation_date' THEN `value` END) AS `Creation_Date`,"
+                + "        MAX(CASE WHEN `column_name` = 'status' THEN `value` END) AS `Status`,"
+                + "        MAX(CASE WHEN `column_name` = 'request_type' THEN `value` END) AS `Request_Type`,"
+                + "        MAX(CASE WHEN `column_name` = 'requester' THEN `value` END) AS `Requester`,"
+                + "        MAX(CASE WHEN `column_name` = 'appowner' THEN `value` END) AS `Application_Owner`,"
+                + "        MAX(CASE WHEN `column_name` = 'businesssegment' THEN `value` END) AS `Business_Segment`,"
+                + "        MAX(CASE WHEN `column_name` = 'businessunit' THEN value END) AS `Business_Unit`"
+                + "    FROM `opportunity_info`"
+                + "    WHERE `column_name` IN ('apmid', 'appName', 'creation_date', 'status', 'request_type', 'requester', 'appowner', 'businesssegment', 'businessunit')"
+                + "    GROUP BY `Id`"
+                + "),"
+                + "`TriageInfo` AS ("
+                + "    SELECT"
+                + "        `Id`,"
+                + "        count(Id),"
+                + "        MAX(CASE WHEN `column_name` = 'Preliminary_CBA' THEN `value` END) AS `Preliminary_CBA`,"
+                + "        MAX(CASE WHEN `column_name` = 'funding_Avl' THEN `value` END) AS `Funding_Available`,"
+                + "        MAX(CASE WHEN `column_name` = 'prgFunder' THEN value END) AS `Program_Funder`,"
+                + "        MAX(CASE WHEN `column_name` = 'PrjInfo' THEN `value` END) AS `Project_Portfolio_Information`,"
+                + "        MAX(CASE WHEN `column_name` = 'Decom_date' THEN `value` END) AS `Project_Decomission_Date`,"
+                + "        MAX(CASE WHEN `column_name` = 'infrastructure_impact' THEN `value` END) AS `Infrastructure_Impact`,"
+                + "        MAX(CASE WHEN `column_name` = 'nmbr_of_infrastructure_components' THEN `value` END) AS `Number_of_Infrastructure_Components`,"
+                + "        MAX(CASE WHEN `column_name` = 'archival_Sol' THEN `value` END) AS `Archival_Solution`,"
+                + "        MAX(CASE WHEN `column_name` = 'Status' THEN `value` END) AS `Status_Notes`,"
+                + "        MAX(CASE WHEN `column_name` = 'decomAnalyst' THEN `value` END) AS `EDR_Analyst`,"
+                + "        MAX(CASE WHEN `column_name` = 'Bigrock' THEN value END) AS `Big_Rock`"
+                + "    FROM `triage_info`"
+                + "    WHERE `column_name` IN ('Preliminary_CBA', 'funding_Avl', 'prgFunder', 'PrjInfo', 'Decom_date', 'infrastructure_impact', 'nmbr_of_infrastructure_components', 'archival_Sol', 'Status', 'decomAnalyst', 'Bigrock')"
+                + "    GROUP BY `Id`"
+                + "),"
+                + "`AssessmentData` AS ("
+                + "    SELECT"
+                + "        `Id`,"
+                + "        MAX(CASE"
+                + "            WHEN `column_name` = 'LastUpdateMade' THEN `value`"
+                + "            WHEN `column_name` = 'ExpectedDate' THEN `value`"
+                + "        END) AS `Data_Read_only_State`"
+                + "    FROM `assessment_data_char_info`"
+                + "    WHERE `column_name` IN ('LastUpdateMade', 'ExpectedDate')"
+                + "    GROUP BY `Id`"
+                + "),"
+                + "`ApplicationStatus` AS ("
+                + "    SELECT "
+                + "        `o`.`Id`,"
+                + "        MAX(CASE"
+                + "            WHEN (CASE WHEN `i`.`isCompleted`= 'Yes' AND `i`.`intakeApproval`= 'Approved' THEN 1 ELSE 0 END) = 0 THEN 'Intake' "
+                + "            WHEN (CASE WHEN `a`.`isCompleted`='Yes' AND `a`.`intakeApproval` = 'Approved' THEN 1 ELSE 0 END) = 0 THEN 'Requirements'"
+                + "            ELSE 'Archive Execution'"
+                + "        END) as `Status`"
+                + "    FROM `opportunity_info` `o`"
+                + "    LEFT JOIN `Intake_Stake_Holder_Info` `i` ON `o`.`Id` = `i`.`OppId`"
+                + "    LEFT JOIN `archivereq_roles_info` `a` ON `i`.`OppId` = `a`.`OppId`"
+                + "    GROUP BY `o`.`Id`"
+                + "),"
+                + "`PhaseStatus` AS (  "
+                + "  WITH separatedvalues AS ("
+                + "    SELECT"
+                + "        `governance_info`.`waveName` AS `waveName`,"
+                + "        TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(`governance_info`.`value`, ',', (`n`.`digit` + 1)), ',', - (1))) AS `separatedValue`"
+                + "    FROM"
+                + "        (`governance_info`"
+                + "        JOIN (SELECT 0 AS `digit` UNION ALL SELECT 1 AS `1` UNION ALL SELECT 2 AS `2` UNION ALL SELECT 3 AS `3`) `n`"
+                + "        ON (LENGTH(REPLACE(`governance_info`.`value`, ',', '')) <= (LENGTH(`governance_info`.`value`) - `n`.`digit`)))"
+                + "    WHERE"
+                + "        (`governance_info`.`column_name` = 'apps')"
+                + ")"
+                + "SELECT"
+                + "    `o`.`Id` AS `Id`,"
+                + "    `sv`.`waveName` AS `waveName`,"
+                + "    `sv`.`separatedValue` AS `separatedValue`,"
+                + "    `p`.`phaseName` AS `phaseName`"
+                + "FROM"
+                + "    `opportunity_info` `o`"
+                + "    JOIN `separatedvalues` `sv` ON TRIM(BOTH ' ' FROM `o`.`value`) = TRIM(BOTH ' ' FROM `sv`.`separatedValue`)"
+                + "    LEFT JOIN `phase_info` `p` ON TRIM(BOTH ' ' FROM `sv`.`waveName`) = TRIM(BOTH ' ' FROM `p`.`value`)"
+                + "WHERE"
+                + "    (`o`.`column_name` = 'appname' AND `p`.`column_name` = 'waves')"
+                + "),"
+                + "`Intakemodules` AS("
+                + "	SELECT "
+                + "    `o`.`Id`,"
+                + "    MAX(CASE WHEN `o`.`column_name` = 'appName' THEN `o`.`value`END) as `Application_Name`,"
+                + "    MAX(CASE WHEN `ts`.`isCompleted` = 'Yes' THEN 1 ELSE 0 END) as `Triage_Summary`,"
+                + "    MAX(CASE WHEN `a`.`isCompleted` = 'Yes' THEN 1 ELSE 0 END) as `Assessment`,"
+                + "    MAX(CASE WHEN `i`.`isCompleted` = 'Yes' THEN 1 ELSE 0 END) as `StakeHolder`,"
+                + "    MAX(CASE WHEN `i`.`isCompleted` = 'Yes' AND `i`.`mail_flag` = 'true' THEN 1 ELSE 0 END) as `Intake_Approved`,"
+                + "    CASE"
+                + "        WHEN MAX(CASE WHEN `ts`.`isCompleted` = 'Yes' THEN 1 ELSE 0 END) = 0 THEN 'Triage Summary'"
+                + "        WHEN MAX(CASE WHEN `a`.`isCompleted` = 'yes' THEN 1 ELSE 0 END) = 0 THEN 'Assessment'"
+                + "        WHEN MAX(CASE WHEN `i`.`isCompleted` = 'Yes' THEN 1 ELSE 0 END) = 0 THEN 'StakeHolder'"
+                + "        WHEN MAX(CASE WHEN `i`.`isCompleted` = 'Yes' AND `i`.`mail_flag` = 'true' THEN 1 ELSE 0 END) = 0 THEN 'Intake Approved'"
+                + "        ELSE 'Intake Approved'"
+                + "    END AS `Intake_status`"
+                + "FROM "
+                + "    `opportunity_info` `o`"
+                + "    LEFT JOIN `triage_summary_info` `ts` ON `o`.`Id` = `ts`.`Id`"
+                + "    LEFT JOIN `Assessment_Archival_Consumption_Info` `a` ON `o`.`Id` = `a`.`Id`"
+                + "    LEFT JOIN `Intake_Stake_Holder_Info` `i` ON `o`.`Id` = `i`.`OppId`"
+                + "GROUP BY"
+                + "    `o`.`Id`"
+                + ")"
+                + "SELECT"
+                + "    COALESCE(`o`.`Id`, '') AS \"Application Id Gen\","
+                + "    COALESCE(`o`.`Application_Id`, '') AS \"Application Id\","
+                + "    COALESCE(`o`.`Application_Name`, '') AS \"Application Name\","
+                + "    COALESCE(`Intakemodules`.`Intake_status`, '') AS \"Workflow Status\","
+                + "    COALESCE(`phs`.`phaseName`, '') AS \"Phase\","
+                + "    COALESCE(`o`.`Creation_Date`, '') AS \"Creation Date\","
+                + "    COALESCE(`o`.`Status`, '') AS \"Status\","
+                + "    COALESCE(`o`.`Request_Type`, '') AS \"Request Type\","
+                + "    COALESCE(`o`.`Requester`, '') AS \"Requester\","
+                + "    COALESCE(`o`.`Application_Owner`, '') AS \"Application Owner\","
+                + "    COALESCE(`o`.`Business_Segment`, '') AS \"Business Segment\","
+                + "    COALESCE(`o`.`Business_Unit`, '') AS \"Business Unit\","
+                + "    COALESCE(`t`.`Preliminary_CBA`, '') AS \"Preliminary CBA\","
+                + "    COALESCE(`t`.`Funding_Available`, '') AS \"Funding Available\","
+                + "    COALESCE(`t`.`Program_Funder`, '') AS \"Program Funder\","
+                + "    COALESCE(`t`.`Project_Portfolio_Information`, '') AS \"Project Portfolio Information\","
+                + "    COALESCE(`t`.`Project_Decomission_Date`, '') AS \"Project Decommission Date\","
+                + "    COALESCE(`t`.`Infrastructure_Impact`, '') AS \"Infrastructure Impact\","
+                + "    COALESCE(`t`.`Number_of_Infrastructure_Components`, '') AS \"Number of Infrastructure Components\","
+                + "    COALESCE(`t`.`Archival_Solution`, '') AS \"Archival Solution\","
+                + "    COALESCE(`t`.`Status_Notes`, '') AS \"Status Notes\","
+                + "    COALESCE(`t`.`EDR_Analyst`, '') AS \"EDR Analyst\","
+                + "    COALESCE(`t`.`Big_Rock`, '') AS \"Big Rock\","
+                + "    COALESCE(`a`.`Data_Read_only_State`, '') AS \"Read Only Date\""
+                + "FROM `submodules` `sub` "
+                + " LEFT JOIN `OpportunityInfo` `o` ON `sub`.`AppId` = `o`.`Id`"
+                + "LEFT JOIN `TriageInfo` `t` ON  `sub`.`AppId` = `t`.`Id`"
+                + "LEFT JOIN `AssessmentData` `a` ON  `sub`.`AppId` = `a`.`Id`"
+                + "LEFT JOIN `ApplicationStatus` `s` ON  `sub`.`AppId` = `s`.`Id`"
+                + "LEFT JOIN `PhaseStatus` `phs` ON  `sub`.`AppId` =`phs`.`Id`"
+                + "LEFT JOIN `Intakemodules`  ON  `sub`.`AppId`=`Intakemodules`.`Id`;";
 
         try (Statement viewStatement = connection.createStatement()) {
             viewStatement.execute(sqlViewCreation);
@@ -245,170 +245,170 @@ public class availabilityOfView {
     private void Report2() throws SQLException {
         String sqlViewCreation ="CREATE VIEW applicationdataview2 AS " +
                 "WITH `submodules` AS(" +
-				"select " +
-				"    distinct(`Id`) as `AppId`, " +
-				"    value from `opportunity_info` where `Id` not " +
-				"in(select `OppId` from `intake_stake_holder_info` where `intakeApproval` = 'Approved') and `column_name`='appName'" +
-				")," +
-				"`Oppinfo` AS(" +
-				"SELECT " +
-				"            `opportunity_info`.`Id` AS `Id`," +
-				"                MAX((CASE" +
-				"                    WHEN (`opportunity_info`.`column_name` = 'appName') THEN `opportunity_info`.`value`" +
-				"                END)) AS `Application_Name`," +
-				"                MAX((CASE" +
-				"                    WHEN (`opportunity_info`.`column_name` = 'appowner') THEN `opportunity_info`.`value`" +
-				"                END)) AS `Application_Owner`," +
-				"                MAX((CASE" +
-				"                    WHEN (`opportunity_info`.`column_name` = 'status') THEN `opportunity_info`.`value`" +
-				"                END)) AS `status`" +
-				"        FROM" +
-				"            `opportunity_info`" +
-				"        WHERE" +
-				"            (`opportunity_info`.`column_name` IN ('appName' , 'appowner', 'status'))" +
-				"        GROUP BY `opportunity_info`.`Id`" +
-				")," +
-				"`TriageInfo` AS(SELECT " +
-				"            `triage_info`.`Id` AS `Id`," +
-				"                MAX((CASE" +
-				"                    WHEN (`triage_info`.`column_name` = 'PrjInfo') THEN `triage_info`.`value`" +
-				"                END)) AS `Project_Portfolio_Information`," +
-				"                MAX((CASE" +
-				"                    WHEN (`triage_info`.`column_name` = 'funding_Avl') THEN `triage_info`.`value`" +
-				"                END)) AS `Funding_Available`" +
-				"        FROM" +
-				"            `triage_info`" +
-				"        WHERE" +
-				"            (`triage_info`.`column_name` IN ('PrjInfo' , 'funding_Avl'))" +
-				"        GROUP BY `triage_info`.`Id`" +
-				")," +
-				"`assessmentinfo` as (" +
-				"SELECT " +
-				"            `assessment_application_info`.`Id` AS `Id`," +
-				"                MAX((CASE" +
-				"                    WHEN (`assessment_application_info`.`column_name` = 'AppDetails') THEN `assessment_application_info`.`value`" +
-				"                END)) AS `Application_Details`," +
-				"                MAX((CASE" +
-				"                    WHEN (`assessment_application_info`.`column_name` = 'DataMigrationComplete') THEN `assessment_application_info`.`value`" +
-				"                END)) AS `Target_Date`," +
-				"                MAX((CASE" +
-				"                    WHEN (`assessment_application_info`.`column_name` = 'DecomReadiness') THEN `assessment_application_info`.`value`" +
-				"                END)) AS `Readonly_Date`" +
-				"        FROM" +
-				"            `assessment_application_info`" +
-				"        WHERE" +
-				"            (`assessment_application_info`.`column_name` IN ('AppDetails' , 'DataMigrationComplete', 'DecomReadiness'))" +
-				"        GROUP BY `assessment_application_info`.`Id`" +
-				")," +
-				"`assessmentdatainfo` AS (" +
-				"SELECT " +
-				"            `assessment_data_char_info`.`Id` AS `Id`," +
-				"                MAX((CASE" +
-				"                    WHEN (`assessment_data_char_info`.`column_name` = 'DatabaseType') THEN `assessment_data_char_info`.`value`" +
-				"                END)) AS `Database_type`," +
-				"                MAX((CASE" +
-				"                    WHEN (`assessment_data_char_info`.`column_name` = 'DataTypeCharacteristics') THEN `assessment_data_char_info`.`value`" +
-				"                END)) AS `Data_Type_Characteristics`," +
-				"                MAX((CASE" +
-				"                    WHEN (`assessment_data_char_info`.`column_name` = 'StrucDBsize') THEN `assessment_data_char_info`.`value`" +
-				"                END)) AS `Structured_Data_In_GB`," +
-				"                MAX((CASE" +
-				"                    WHEN (`assessment_data_char_info`.`column_name` = 'StrucNoofTables') THEN `assessment_data_char_info`.`value`" +
-				"                END)) AS `Structured_Data_Number_of_tables`," +
-				"                MAX((CASE" +
-				"                    WHEN (`assessment_data_char_info`.`column_name` = 'UnstrucDataVolume') THEN `assessment_data_char_info`.`value`" +
-				"                END)) AS `Unstructured_Data_In_GB`," +
-				"                MAX((CASE" +
-				"                    WHEN (`assessment_data_char_info`.`column_name` = 'UnstrucNoofFiles') THEN `assessment_data_char_info`.`value`" +
-				"                END)) AS `Unstructured_Data_files`," +
-				"                MAX((CASE" +
-				"                    WHEN (`assessment_data_char_info`.`column_name` = 'DBServerName') THEN `assessment_data_char_info`.`value`" +
-				"                END)) AS `Database_Server_Name`," +
-				"                MAX((CASE" +
-				"                    WHEN (`assessment_data_char_info`.`column_name` = 'DBNames') THEN `assessment_data_char_info`.`value`" +
-				"                END)) AS `Database_Name`," +
-				"                MAX((CASE" +
-				"                    WHEN (`assessment_data_char_info`.`column_name` = 'TableNames') THEN `assessment_data_char_info`.`value`" +
-				"                END)) AS `Table_Names`," +
-				"                MAX((CASE" +
-				"                    WHEN (`assessment_data_char_info`.`column_name` = 'DBAContact') THEN `assessment_data_char_info`.`value`" +
-				"                END)) AS `DBA_Contact`" +
-				"        FROM" +
-				"            `assessment_data_char_info`" +
-				"        WHERE" +
-				"            (`assessment_data_char_info`.`column_name` IN ('DatabaseType' , 'DataTypeCharacteristics', 'StrucDBsize', 'StrucNoofTables', 'UnstrucDataVolume', 'UnstrucNoofFiles', 'DBServerName', 'DBNames', 'TableNames', 'DBAContact'))" +
-				"        GROUP BY `assessment_data_char_info`.`Id`" +
-				")," +
-				"`assarchconsinfo` AS(" +
-				"SELECT " +
-				"            `assessment_archival_consumption_info`.`Id` AS `Id`," +
-				"                MAX((CASE" +
-				"                    WHEN (`assessment_archival_consumption_info`.`column_name` = 'enc') THEN `assessment_archival_consumption_info`.`value`" +
-				"                END)) AS `Encryption`," +
-				"                MAX((CASE" +
-				"                    WHEN (`assessment_archival_consumption_info`.`column_name` = 'datamask') THEN `assessment_archival_consumption_info`.`value`" +
-				"                END)) AS `Data_Masking`" +
-				"        FROM" +
-				"            `assessment_archival_consumption_info`" +
-				"        WHERE" +
-				"            (`assessment_archival_consumption_info`.`column_name` IN ('enc' , 'datamask'))" +
-				"        GROUP BY `assessment_archival_consumption_info`.`Id`" +
-				")," +
-				"`phaseinfo` AS (" +
-				"  (WITH separatedvalues AS (" +
-				"    SELECT" +
-				"        `governance_info`.`waveName` AS `waveName`," +
-				"        TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(`governance_info`.`value`, ',', (`n`.`digit` + 1)), ',', - (1))) AS `separatedValue`" +
-				"    FROM" +
-				"        (`governance_info`" +
-				"        JOIN (SELECT 0 AS `digit` UNION ALL SELECT 1 AS `1` UNION ALL SELECT 2 AS `2` UNION ALL SELECT 3 AS `3`) `n`" +
-				"        ON (LENGTH(REPLACE(`governance_info`.`value`, ',', '')) <= (LENGTH(`governance_info`.`value`) - `n`.`digit`)))" +
-				"    WHERE" +
-				"        (`governance_info`.`column_name` = 'apps')" +
-				")" +
-				"SELECT" +
-				"    `o`.`Id` AS `Id`," +
-				"    `sv`.`waveName` AS `waveName`," +
-				"    `sv`.`separatedValue` AS `separatedValue`," +
-				"    `p`.`phaseName` AS `phaseName`" +
-				"FROM" +
-				"    `opportunity_info` `o`" +
-				"    JOIN `separatedvalues` `sv` ON TRIM(BOTH ' ' FROM `o`.`value`) = TRIM(BOTH ' ' FROM `sv`.`separatedValue`)" +
-				"    LEFT JOIN `phase_info` `p` ON TRIM(BOTH ' ' FROM `sv`.`waveName`) = TRIM(BOTH ' ' FROM `p`.`value`)" +
-				"WHERE" +
-				"    (`o`.`column_name` = 'appname' AND `p`.`column_name` = 'waves'))" +
-				")" +
-				"SELECT " +
-				"        COALESCE(`o`.`Application_Name`, '') AS \"Application Name\"," +
-				"        COALESCE(`o`.`Application_Owner`, '') AS \"Application Owner\"," +
-				"        COALESCE(`o`.`status`, '') AS \"Status\"," +
-				"        COALESCE(`t`.`Project_Portfolio_Information`,'') AS \"Project Portfolio Information\"," +
-				"        COALESCE(`t`.`Funding_Available`, '') AS \"Funding Available\"," +
-				"        COALESCE(`ai`.`Application_Details`, '') AS \"Application Details\"," +
-				"        COALESCE(`ai`.`Target_Date`, '') AS \"Target Date\"," +
-				"        COALESCE(`ai`.`Readonly_Date`, '') AS \"Readonly Date\"," +
-				"        COALESCE(`ad`.`Database_type`, '') AS \"Database type\"," +
-				"        COALESCE(`ad`.`Data_Type_Characteristics`,'') AS \"Data Type Characteristics\"," +
-				"        COALESCE(`ad`.`Structured_Data_In_GB`,'') AS \"Structured Data In GB\"," +
-				"        COALESCE(`ad`.`Structured_Data_Number_of_tables`,'') AS \"Structured Data Number of tables\"," +
-				"        COALESCE(`ad`.`Unstructured_Data_In_GB`,'') AS \"Unstructured Data In GB\"," +
-				"        COALESCE(`ad`.`Unstructured_Data_files`,'') AS \"Unstructured Data files\"," +
-				"        COALESCE(`ad`.`Database_Server_Name`,'') AS \"Database Server Name\"," +
-				"        COALESCE(`ad`.`Database_Name`, '') AS \"Database Name\"," +
-				"        COALESCE(`ad`.`Table_Names`, '') AS \"Table Names\"," +
-				"        COALESCE(`ad`.`DBA_Contact`, '') AS \"DBA Contact\"," +
-				"        COALESCE(`ac`.`Encryption`, '') AS \"Encryption\"," +
-				"        COALESCE(`ac`.`Data_Masking`, '') AS \"Data Masking\"," +
-				"        COALESCE(`ph`.`phaseName`, '') AS \"Phase\"" +
-				"FROM `submodules` `s`" +
-				"LEFT JOIN `Oppinfo` `o` ON `s`.`AppId` = `o`.`Id`" +
-				"LEFT JOIN  `TriageInfo` `t` ON `s`.`AppId` = `t`.`Id`" +
-				"LEFT JOIN  `assessmentinfo` `ai` ON `s`.`AppId`=`ai`.`Id`" +
-				"LEFT JOIN  `assessmentdatainfo` `ad` ON `s`.`AppId` = `ad`.`Id`" +
-				"LEFT JOIN  `assarchconsinfo` `ac` ON `s`.`AppId`=`ac`.`Id`" +
-				"LEFT JOIN `phaseinfo` `ph` ON `s`.`AppId`=`ph`.`Id`;";
+                "select " +
+                "    distinct(`Id`) as `AppId`, " +
+                "    value from `opportunity_info` where `Id` not " +
+                "in(select `OppId` from `intake_stake_holder_info` where `intakeApproval` = 'Approved') and `column_name`='appName'" +
+                ")," +
+                "`Oppinfo` AS(" +
+                "SELECT " +
+                "            `opportunity_info`.`Id` AS `Id`," +
+                "                MAX((CASE" +
+                "                    WHEN (`opportunity_info`.`column_name` = 'appName') THEN `opportunity_info`.`value`" +
+                "                END)) AS `Application_Name`," +
+                "                MAX((CASE" +
+                "                    WHEN (`opportunity_info`.`column_name` = 'appowner') THEN `opportunity_info`.`value`" +
+                "                END)) AS `Application_Owner`," +
+                "                MAX((CASE" +
+                "                    WHEN (`opportunity_info`.`column_name` = 'status') THEN `opportunity_info`.`value`" +
+                "                END)) AS `status`" +
+                "        FROM" +
+                "            `opportunity_info`" +
+                "        WHERE" +
+                "            (`opportunity_info`.`column_name` IN ('appName' , 'appowner', 'status'))" +
+                "        GROUP BY `opportunity_info`.`Id`" +
+                ")," +
+                "`TriageInfo` AS(SELECT " +
+                "            `triage_info`.`Id` AS `Id`," +
+                "                MAX((CASE" +
+                "                    WHEN (`triage_info`.`column_name` = 'PrjInfo') THEN `triage_info`.`value`" +
+                "                END)) AS `Project_Portfolio_Information`," +
+                "                MAX((CASE" +
+                "                    WHEN (`triage_info`.`column_name` = 'funding_Avl') THEN `triage_info`.`value`" +
+                "                END)) AS `Funding_Available`" +
+                "        FROM" +
+                "            `triage_info`" +
+                "        WHERE" +
+                "            (`triage_info`.`column_name` IN ('PrjInfo' , 'funding_Avl'))" +
+                "        GROUP BY `triage_info`.`Id`" +
+                ")," +
+                "`assessmentinfo` as (" +
+                "SELECT " +
+                "            `assessment_application_info`.`Id` AS `Id`," +
+                "                MAX((CASE" +
+                "                    WHEN (`assessment_application_info`.`column_name` = 'AppDetails') THEN `assessment_application_info`.`value`" +
+                "                END)) AS `Application_Details`," +
+                "                MAX((CASE" +
+                "                    WHEN (`assessment_application_info`.`column_name` = 'DataMigrationComplete') THEN `assessment_application_info`.`value`" +
+                "                END)) AS `Target_Date`," +
+                "                MAX((CASE" +
+                "                    WHEN (`assessment_application_info`.`column_name` = 'DecomReadiness') THEN `assessment_application_info`.`value`" +
+                "                END)) AS `Readonly_Date`" +
+                "        FROM" +
+                "            `assessment_application_info`" +
+                "        WHERE" +
+                "            (`assessment_application_info`.`column_name` IN ('AppDetails' , 'DataMigrationComplete', 'DecomReadiness'))" +
+                "        GROUP BY `assessment_application_info`.`Id`" +
+                ")," +
+                "`assessmentdatainfo` AS (" +
+                "SELECT " +
+                "            `assessment_data_char_info`.`Id` AS `Id`," +
+                "                MAX((CASE" +
+                "                    WHEN (`assessment_data_char_info`.`column_name` = 'DatabaseType') THEN `assessment_data_char_info`.`value`" +
+                "                END)) AS `Database_type`," +
+                "                MAX((CASE" +
+                "                    WHEN (`assessment_data_char_info`.`column_name` = 'DataTypeCharacteristics') THEN `assessment_data_char_info`.`value`" +
+                "                END)) AS `Data_Type_Characteristics`," +
+                "                MAX((CASE" +
+                "                    WHEN (`assessment_data_char_info`.`column_name` = 'StrucDBsize') THEN `assessment_data_char_info`.`value`" +
+                "                END)) AS `Structured_Data_In_GB`," +
+                "                MAX((CASE" +
+                "                    WHEN (`assessment_data_char_info`.`column_name` = 'StrucNoofTables') THEN `assessment_data_char_info`.`value`" +
+                "                END)) AS `Structured_Data_Number_of_tables`," +
+                "                MAX((CASE" +
+                "                    WHEN (`assessment_data_char_info`.`column_name` = 'UnstrucDataVolume') THEN `assessment_data_char_info`.`value`" +
+                "                END)) AS `Unstructured_Data_In_GB`," +
+                "                MAX((CASE" +
+                "                    WHEN (`assessment_data_char_info`.`column_name` = 'UnstrucNoofFiles') THEN `assessment_data_char_info`.`value`" +
+                "                END)) AS `Unstructured_Data_files`," +
+                "                MAX((CASE" +
+                "                    WHEN (`assessment_data_char_info`.`column_name` = 'DBServerName') THEN `assessment_data_char_info`.`value`" +
+                "                END)) AS `Database_Server_Name`," +
+                "                MAX((CASE" +
+                "                    WHEN (`assessment_data_char_info`.`column_name` = 'DBNames') THEN `assessment_data_char_info`.`value`" +
+                "                END)) AS `Database_Name`," +
+                "                MAX((CASE" +
+                "                    WHEN (`assessment_data_char_info`.`column_name` = 'TableNames') THEN `assessment_data_char_info`.`value`" +
+                "                END)) AS `Table_Names`," +
+                "                MAX((CASE" +
+                "                    WHEN (`assessment_data_char_info`.`column_name` = 'DBAContact') THEN `assessment_data_char_info`.`value`" +
+                "                END)) AS `DBA_Contact`" +
+                "        FROM" +
+                "            `assessment_data_char_info`" +
+                "        WHERE" +
+                "            (`assessment_data_char_info`.`column_name` IN ('DatabaseType' , 'DataTypeCharacteristics', 'StrucDBsize', 'StrucNoofTables', 'UnstrucDataVolume', 'UnstrucNoofFiles', 'DBServerName', 'DBNames', 'TableNames', 'DBAContact'))" +
+                "        GROUP BY `assessment_data_char_info`.`Id`" +
+                ")," +
+                "`assarchconsinfo` AS(" +
+                "SELECT " +
+                "            `assessment_archival_consumption_info`.`Id` AS `Id`," +
+                "                MAX((CASE" +
+                "                    WHEN (`assessment_archival_consumption_info`.`column_name` = 'enc') THEN `assessment_archival_consumption_info`.`value`" +
+                "                END)) AS `Encryption`," +
+                "                MAX((CASE" +
+                "                    WHEN (`assessment_archival_consumption_info`.`column_name` = 'datamask') THEN `assessment_archival_consumption_info`.`value`" +
+                "                END)) AS `Data_Masking`" +
+                "        FROM" +
+                "            `assessment_archival_consumption_info`" +
+                "        WHERE" +
+                "            (`assessment_archival_consumption_info`.`column_name` IN ('enc' , 'datamask'))" +
+                "        GROUP BY `assessment_archival_consumption_info`.`Id`" +
+                ")," +
+                "`phaseinfo` AS (" +
+                "  (WITH separatedvalues AS (" +
+                "    SELECT" +
+                "        `governance_info`.`waveName` AS `waveName`," +
+                "        TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(`governance_info`.`value`, ',', (`n`.`digit` + 1)), ',', - (1))) AS `separatedValue`" +
+                "    FROM" +
+                "        (`governance_info`" +
+                "        JOIN (SELECT 0 AS `digit` UNION ALL SELECT 1 AS `1` UNION ALL SELECT 2 AS `2` UNION ALL SELECT 3 AS `3`) `n`" +
+                "        ON (LENGTH(REPLACE(`governance_info`.`value`, ',', '')) <= (LENGTH(`governance_info`.`value`) - `n`.`digit`)))" +
+                "    WHERE" +
+                "        (`governance_info`.`column_name` = 'apps')" +
+                ")" +
+                "SELECT" +
+                "    `o`.`Id` AS `Id`," +
+                "    `sv`.`waveName` AS `waveName`," +
+                "    `sv`.`separatedValue` AS `separatedValue`," +
+                "    `p`.`phaseName` AS `phaseName`" +
+                "FROM" +
+                "    `opportunity_info` `o`" +
+                "    JOIN `separatedvalues` `sv` ON TRIM(BOTH ' ' FROM `o`.`value`) = TRIM(BOTH ' ' FROM `sv`.`separatedValue`)" +
+                "    LEFT JOIN `phase_info` `p` ON TRIM(BOTH ' ' FROM `sv`.`waveName`) = TRIM(BOTH ' ' FROM `p`.`value`)" +
+                "WHERE" +
+                "    (`o`.`column_name` = 'appname' AND `p`.`column_name` = 'waves'))" +
+                ")" +
+                "SELECT " +
+                "        COALESCE(`o`.`Application_Name`, '') AS \"Application Name\"," +
+                "        COALESCE(`o`.`Application_Owner`, '') AS \"Application Owner\"," +
+                "        COALESCE(`o`.`status`, '') AS \"Status\"," +
+                "        COALESCE(`t`.`Project_Portfolio_Information`,'') AS \"Project Portfolio Information\"," +
+                "        COALESCE(`t`.`Funding_Available`, '') AS \"Funding Available\"," +
+                "        COALESCE(`ai`.`Application_Details`, '') AS \"Application Details\"," +
+                "        COALESCE(`ai`.`Target_Date`, '') AS \"Target Date\"," +
+                "        COALESCE(`ai`.`Readonly_Date`, '') AS \"Readonly Date\"," +
+                "        COALESCE(`ad`.`Database_type`, '') AS \"Database type\"," +
+                "        COALESCE(`ad`.`Data_Type_Characteristics`,'') AS \"Data Type Characteristics\"," +
+                "        COALESCE(`ad`.`Structured_Data_In_GB`,'') AS \"Structured Data In GB\"," +
+                "        COALESCE(`ad`.`Structured_Data_Number_of_tables`,'') AS \"Structured Data Number of tables\"," +
+                "        COALESCE(`ad`.`Unstructured_Data_In_GB`,'') AS \"Unstructured Data In GB\"," +
+                "        COALESCE(`ad`.`Unstructured_Data_files`,'') AS \"Unstructured Data files\"," +
+                "        COALESCE(`ad`.`Database_Server_Name`,'') AS \"Database Server Name\"," +
+                "        COALESCE(`ad`.`Database_Name`, '') AS \"Database Name\"," +
+                "        COALESCE(`ad`.`Table_Names`, '') AS \"Table Names\"," +
+                "        COALESCE(`ad`.`DBA_Contact`, '') AS \"DBA Contact\"," +
+                "        COALESCE(`ac`.`Encryption`, '') AS \"Encryption\"," +
+                "        COALESCE(`ac`.`Data_Masking`, '') AS \"Data Masking\"," +
+                "        COALESCE(`ph`.`phaseName`, '') AS \"Phase\"" +
+                "FROM `submodules` `s`" +
+                "LEFT JOIN `Oppinfo` `o` ON `s`.`AppId` = `o`.`Id`" +
+                "LEFT JOIN  `TriageInfo` `t` ON `s`.`AppId` = `t`.`Id`" +
+                "LEFT JOIN  `assessmentinfo` `ai` ON `s`.`AppId`=`ai`.`Id`" +
+                "LEFT JOIN  `assessmentdatainfo` `ad` ON `s`.`AppId` = `ad`.`Id`" +
+                "LEFT JOIN  `assarchconsinfo` `ac` ON `s`.`AppId`=`ac`.`Id`" +
+                "LEFT JOIN `phaseinfo` `ph` ON `s`.`AppId`=`ph`.`Id`;";
 
-         try (Statement viewStatement = connection.createStatement()) {
+        try (Statement viewStatement = connection.createStatement()) {
             viewStatement.execute(sqlViewCreation);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -417,90 +417,94 @@ public class availabilityOfView {
 
 
     private void Report3() throws SQLException {
-            String sqlViewCreation ="CREATE VIEW applicationdataview3 AS " +
-                    "WITH " +
-                    "  `opportunityinfo` AS (" +
-                    "SELECT " +
-                    "  `opportunity_info`.`Id` AS `Id`" +
-                    "FROM " +
-                    "  `opportunity_info`" +
-                    "GROUP BY " +
-                    "  `opportunity_info`.`Id`" +
-                    "  )," +
-                    "`arqreqdetails` AS( " +
-                    "SELECT" +
-                    "  `archivereq_legacyapp_info`.`Id` AS `Id`," +
-                    "  MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'legacyappname') THEN `archivereq_legacyapp_info`.`value` END)) AS `Legacy_Application_Name`," +
-                    "  MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'srcdb') THEN `archivereq_legacyapp_info`.`value` END)) AS `SourcePlatform_Databases`," +
-                    "  MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'legacyappdesc') THEN `archivereq_legacyapp_info`.`value` END)) AS `Legacy_Application_Description`," +
-                    "  MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'readonly') THEN `archivereq_legacyapp_info`.`value` END)) AS `What_is_the_read_only_date`," +
-                    "  MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'onlysrcdata') THEN `archivereq_legacyapp_info`.`value` END)) AS `Is_this_application_the_only_source_of_truth_for_the_data`," +
-                    "  MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'thirdpartyvendor') THEN `archivereq_legacyapp_info`.`value` END)) AS `Isthelegacyapplicationhostedinternallyorwithanthirdpartyvendor`," +
-                    "  MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'totalsize') THEN `archivereq_legacyapp_info`.`value` END)) AS `What_is_the_total_data_size`" +
-                    " FROM  `archivereq_legacyapp_info`" +
-                    "WHERE " +
-                    "  (`archivereq_legacyapp_info`.`column_name` IN ('legacyappname','srcdb','legacyappdesc','readonly','onlysrcdata','thirdpartyvendor','totalsize'))" +
-                    "GROUP BY " +
-                    "  `archivereq_legacyapp_info`.`Id`" +
-                    ")," +
-                    "`retentiondata` AS(" +
-                    "SELECT  " +
-                    "`assessment_compliance_char_info`.`Id` AS `Id`," +
-                    "MAX((CASE WHEN (`assessment_compliance_char_info`.`column_name` = 'retentionperiod') THEN `assessment_compliance_char_info`.`value` END)) AS `Retention_Period`" +
-                    "FROM  `assessment_compliance_char_info`" +
-                    "WHERE (`assessment_compliance_char_info`.`column_name` IN ('retentionperiod'))" +
-                    "GROUP BY " +
-                    "  `assessment_compliance_char_info`.`Id`" +
-                    ")," +
-                    "`phasestatus` AS (" +
-                    "  WITH separatedvalues AS (" +
-                    "    SELECT" +
-                    "        `governance_info`.`waveName` AS `waveName`," +
-                    "        TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(`governance_info`.`value`, ',', (`n`.`digit` + 1)), ',', - (1))) AS `separatedValue`" +
-                    "    FROM" +
-                    "        (`governance_info`" +
-                    "        JOIN (SELECT 0 AS `digit` UNION ALL SELECT 1 AS `1` UNION ALL SELECT 2 AS `2` UNION ALL SELECT 3 AS `3`) `n`" +
-                    "        ON (LENGTH(REPLACE(`governance_info`.`value`, ',', '')) <= (LENGTH(`governance_info`.`value`) - `n`.`digit`)))" +
-                    "    WHERE" +
-                    "        (`governance_info`.`column_name` = 'apps')" +
-                    ")" +
-                    "SELECT" +
-                    "    `o`.`Id` AS `Id`," +
-                    "    `sv`.`waveName` AS `waveName`," +
-                    "    `sv`.`separatedValue` AS `separatedValue`," +
-                    "    `p`.`phaseName` AS `phaseName`" +
-                    "FROM" +
-                    "    `opportunity_info` `o`" +
-                    "    JOIN `separatedvalues` `sv` ON TRIM(BOTH ' ' FROM `o`.`value`) = TRIM(BOTH ' ' FROM `sv`.`separatedValue`)" +
-                    "    LEFT JOIN `phase_info` `p` ON TRIM(BOTH ' ' FROM `sv`.`waveName`) = TRIM(BOTH ' ' FROM `p`.`value`)" +
-                    "WHERE" +
-                    "    (`o`.`column_name` = 'appname' AND `p`.`column_name` = 'waves'))" +
-                    "  SELECT " +
-                    "  COALESCE(`a`.`Legacy_Application_Name`,'') AS \"Application Name\"," +
-                    "      COALESCE(`phs`.`phaseName`,'') AS \"Phase\"," +
-                    "  COALESCE(`a`.`SourcePlatform_Databases`,'') AS \"Source Platform Databases\"," +
-                    "  COALESCE(`a`.`Legacy_Application_Description`,'') AS \"Legacy App Description\"," +
-                    "  COALESCE(`a`.`What_is_the_read_only_date`,'') AS \"Read Only Date\"," +
-                    "  COALESCE(`a`.`Is_this_application_the_only_source_of_truth_for_the_data`,'') AS \"Is Application The Only Source Of Truth For The Data\"," +
-                    "  COALESCE(`a`.`Isthelegacyapplicationhostedinternallyorwithanthirdpartyvendor`,'') AS \"Legacy Application Hosted Internally Or With Third Party Vendor\"," +
-                    "  COALESCE(`a`.`What_is_the_total_data_size`,'') AS \"Total Data Size\"," +
-                    "  COALESCE(`r`.`Retention_Period`,'') AS \"Retention Period\"" +
-                    "  " +
-                    "FROM " +
-                    "(" +
-                    "  (" +
-                    "(`opportunityinfo` `o`" +
-                    "  LEFT JOIN `arqreqdetails` `a` ON (`o`.`Id` = `a`.`Id`))" +
-                    "  LEFT JOIN `retentiondata` `r` ON (`o`.`Id` = `r`.`Id`))" +
-                    "  LEFT JOIN `phasestatus` `phs` ON (`o`.`Id` = `phs`.`Id`)" +
-                    "  )" +
-                    "      WHERE NOT (" +
-                    "    (`a`.`Legacy_Application_Name` IS NULL OR `a`.`Legacy_Application_Name` = '')" +
-                    "  );";
+        String sqlViewCreation ="CREATE VIEW applicationdataview3 AS "+
+                "WITH `submodules` AS(\r\n"
+                + "	select \r\n"
+                + "    distinct(`Id`) as `AppId`, \r\n"
+                + "    value as `Legacy_Application_Name` from `opportunity_info` where `Id` \r\n"
+                + "	in(select `OppId` from `intake_stake_holder_info` where `intakeApproval` = 'Approved') and `column_name`='appName'\r\n"
+                + "),\r\n"
+                + "`opportunityinfo` AS (\r\n"
+                + "		SELECT \r\n"
+                + "		  `opportunity_info`.`Id` AS `Id`\r\n"
+                + "		FROM \r\n"
+                + "		  `opportunity_info`\r\n"
+                + "		GROUP BY \r\n"
+                + "		  `opportunity_info`.`Id`\r\n"
+                + "	  ),\r\n"
+                + "	`arqreqdetails` AS( \r\n"
+                + "		SELECT\r\n"
+                + "		  `archivereq_legacyapp_info`.`Id` AS `Id`,\r\n"
+                + "		  MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'srcdb') THEN `archivereq_legacyapp_info`.`value` END)) AS `SourcePlatform_Databases`,\r\n"
+                + "		  MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'legacyappdesc') THEN `archivereq_legacyapp_info`.`value` END)) AS `Legacy_Application_Description`,\r\n"
+                + "		  MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'readonly') THEN `archivereq_legacyapp_info`.`value` END)) AS `What_is_the_read_only_date`,\r\n"
+                + "		  MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'onlysrcdata') THEN `archivereq_legacyapp_info`.`value` END)) AS `Is_this_application_the_only_source_of_truth_for_the_data`,\r\n"
+                + "		  MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'thirdpartyvendor') THEN `archivereq_legacyapp_info`.`value` END)) AS `Isthelegacyapplicationhostedinternallyorwithanthirdpartyvendor`,\r\n"
+                + "		  MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'totalsize') THEN `archivereq_legacyapp_info`.`value` END)) AS `What_is_the_total_data_size`\r\n"
+                + "		 FROM  `archivereq_legacyapp_info`\r\n"
+                + "		WHERE \r\n"
+                + "		  (`archivereq_legacyapp_info`.`column_name` IN ('legacyappname','srcdb','legacyappdesc','readonly','onlysrcdata','thirdpartyvendor','totalsize'))\r\n"
+                + "		GROUP BY \r\n"
+                + "		  `archivereq_legacyapp_info`.`Id`\r\n"
+                + "	),\r\n"
+                + "	`retentiondata` AS(\r\n"
+                + "		SELECT  \r\n"
+                + "		`assessment_compliance_char_info`.`Id` AS `Id`,\r\n"
+                + "		MAX((CASE WHEN (`assessment_compliance_char_info`.`column_name` = 'retentionperiod') THEN `assessment_compliance_char_info`.`value` END)) AS `Retention_Period`\r\n"
+                + "		FROM  `assessment_compliance_char_info`\r\n"
+                + "		WHERE (`assessment_compliance_char_info`.`column_name` IN ('retentionperiod'))\r\n"
+                + "		GROUP BY \r\n"
+                + "		  `assessment_compliance_char_info`.`Id`\r\n"
+                + "	),\r\n"
+                + "	`phasestatus` AS (\r\n"
+                + "		  WITH separatedvalues AS (\r\n"
+                + "    SELECT\r\n"
+                + "        `governance_info`.`waveName` AS `waveName`,\r\n"
+                + "        TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(`governance_info`.`value`, ',', (`n`.`digit` + 1)), ',', - (1))) AS `separatedValue`\r\n"
+                + "    FROM\r\n"
+                + "        (`governance_info`\r\n"
+                + "        JOIN (SELECT 0 AS `digit` UNION ALL SELECT 1 AS `1` UNION ALL SELECT 2 AS `2` UNION ALL SELECT 3 AS `3`) `n`\r\n"
+                + "        ON (LENGTH(REPLACE(`governance_info`.`value`, ',', '')) <= (LENGTH(`governance_info`.`value`) - `n`.`digit`)))\r\n"
+                + "    WHERE\r\n"
+                + "        (`governance_info`.`column_name` = 'apps')\r\n"
+                + ")\r\n"
+                + "SELECT\r\n"
+                + "    `o`.`Id` AS `Id`,\r\n"
+                + "    `sv`.`waveName` AS `waveName`,\r\n"
+                + "    `sv`.`separatedValue` AS `separatedValue`,\r\n"
+                + "    `p`.`phaseName` AS `phaseName`\r\n"
+                + "FROM\r\n"
+                + "    `opportunity_info` `o`\r\n"
+                + "    JOIN `separatedvalues` `sv` ON TRIM(BOTH ' ' FROM `o`.`value`) = TRIM(BOTH ' ' FROM `sv`.`separatedValue`)\r\n"
+                + "    LEFT JOIN `phase_info` `p` ON TRIM(BOTH ' ' FROM `sv`.`waveName`) = TRIM(BOTH ' ' FROM `p`.`value`)\r\n"
+                + "WHERE\r\n"
+                + "    (`o`.`column_name` = 'appname' AND `p`.`column_name` = 'waves'))\r\n"
+                + "	  SELECT \r\n"
+                + "	  COALESCE(`s`.`Legacy_Application_Name`,'') AS \"Legacy Application Name\",\r\n"
+                + "	  COALESCE(`a`.`SourcePlatform_Databases`,'') AS \"Source Platform Databases\",\r\n"
+                + "	  COALESCE(`a`.`Legacy_Application_Description`,'') AS \"Legacy Application Description\",\r\n"
+                + "	  COALESCE(`a`.`What_is_the_read_only_date`,'') AS \"What is the read only date\",\r\n"
+                + "	  COALESCE(`a`.`Is_this_application_the_only_source_of_truth_for_the_data`,'') AS \"Is this application the only source of truth for the data\",\r\n"
+                + "	  COALESCE(`a`.`Isthelegacyapplicationhostedinternallyorwithanthirdpartyvendor`,'') AS \"Hosted internally or with third party vendor\",\r\n"
+                + "	  COALESCE(`a`.`What_is_the_total_data_size`,'') AS \"What is the total data size\",\r\n"
+                + "	  COALESCE(`r`.`Retention_Period`,'') AS \"Retention Period\",\r\n"
+                + "	  COALESCE(`phs`.`phaseName`,'') AS \"Phase Status\"\r\n"
+                + "	FROM \r\n"
+                + "		(\r\n"
+                + "		  (\r\n"
+                + "			( `submodules` `s`\r\n"
+                + "			  LEFT JOIN `opportunityinfo` `o` ON (`s`.`AppId` = `o`.`Id`)\r\n"
+                + "			  LEFT JOIN `arqreqdetails` `a` ON (`s`.`AppId` = `a`.`Id`))\r\n"
+                + "			  LEFT JOIN `retentiondata` `r` ON (`s`.`AppId` = `r`.`Id`))\r\n"
+                + "			  LEFT JOIN `phasestatus` `phs` ON (`s`.`AppId` = `phs`.`Id`)\r\n"
+                + "	  )\r\n"
+                + "      WHERE NOT (\r\n"
+                + "    (`s`.`Legacy_Application_Name` IS NULL OR `s`.`Legacy_Application_Name` = '')\r\n"
+                + "  );";
 
-            Statement viewStatement = connection.createStatement();
-            viewStatement.execute(sqlViewCreation);
-        }
+        Statement viewStatement = connection.createStatement();
+        viewStatement.execute(sqlViewCreation);
+    }
 
     private void financeListview(){
         String sqlViewCreation = "CREATE VIEW financelist AS " +
@@ -654,7 +658,7 @@ public class availabilityOfView {
                 "FROM `OpportunityInfo` `o`" +
                 "LEFT JOIN `ApplicationStatus` `s` ON `o`.`Id` = `s`.`Id`" +
                 "LEFT JOIN `PhaseStatus` `phs` ON `o`.`Id` = `phs`.`Id`;";
-               
+
 
         try (Statement viewStatement = connection.createStatement()) {
             viewStatement.execute(sqlViewCreation);
@@ -666,6 +670,7 @@ public class availabilityOfView {
 
 
 }
+
 
 
 
