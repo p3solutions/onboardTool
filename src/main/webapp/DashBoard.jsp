@@ -440,6 +440,25 @@ display:none;
 
 </head>
 <body class="top-navbar-fixed">
+<style>
+  /* Style the Export CSV button */
+  .card-header button {
+    float: right;
+    background-color: #0c7ef0; /* Set the button background color to blue */
+    color: white; /* Set the text color to white */
+    border-radius: 5px; /* Add curved corners */
+    padding: 3px 8px; /* Adjust the padding for a smaller size */
+    border: none; /* Remove the border */
+    font-size: 12px; /* Adjust the font size to make it smaller */
+    transition: background-color 0.3s, color 0.3s; /* Add transition for smooth animation */
+  }
+
+  /* Add hover effect */
+  .card-header button:hover {
+    background-color: #0056b3; /* Change the background color on hover */
+    color: #fff; /* Change the text color on hover */
+  }
+</style>
 	<%@ page import="java.text.SimpleDateFormat"%>
 	<%@ page import="java.util.Date"%>
 	<%
@@ -618,7 +637,7 @@ display:none;
 											for Archival or Decommission or Retiring purpose.</div> -->
 										<div class="col-sm-8 col-md-8 col-lg-8">Applications are opportunities
 											provided within the organisation for Archival or Decommission
-											or for both Archival and Decommission purpose.</div>
+											or for both purpose.</div>
 									</a>
 
 								</div>
@@ -697,23 +716,23 @@ display:none;
 													style="margin-left: -40%;">
 													<b>Intake</b>
 												</h6>
-												<canvas id="mycanvas" width="200" height="200"
-													style="margin-left: 0%;"></canvas>
+												<canvas id="mycanvas" width="200px" height="200px"
+													style="margin-left: -5%;"></canvas>
 												<div id="legend"
-													style="margin-top: -34%; margin-left: 37%; font-size: 11px; font-weight: 600;">
+													style="margin-top: -34%; margin-left: 33%; font-size: 11px; font-weight: 600;">
 												</div>
 											</div>
 											<div class="col-md-4.5" id="canvas2"
-												style="padding-left: 318px; margin-top: -34%; margin-right: 12%;">
+												style="padding-left: 318px; margin-top: -34%; margin-right: 16%;">
 												<h6 class="d-flex justify-content-left"
 													style="margin-left: 95%;">
 													<b style="margin-top: -8px;">Waves</b>
 												</h6>
-												<canvas id="mycanvas1" width="200" height="200"
-													style="margin-left: 95%;"></canvas>
+												<canvas id="mycanvas1" width="200px" height="200pxpx"
+													style="margin-left: 85%;"></canvas>
 											</div>
 											<div id="legend2"
-												style="float: right; margin-right: -63%; margin-top: -33%; font-size: 11px; font-weight: 600;"></div>
+												style="float: right; margin-right: -59%; margin-top: -33%; font-size: 11px; font-weight: 600;"></div>
 										</div>
 									</div>
 								</div>
@@ -735,15 +754,14 @@ display:none;
 						<div class="col-md-12 mt-3">
 							<div class="row">
 								<div class="col-md-8">
-									<div class="card ht-233">
-										<div class="card-header" id="card-header">Intake Status
-											<button type="button" class="btn btn-primary pull-right" id="exportButton" onclick="dashboardExportToCSV('Intake Status','example');">Export CSV</button>
-										</div>
+									<div class="card ht-270">
+										<div class="card-header" id="card-header">Intake Status 
+											 <button onclick = "exportToCSV()" > Export CSV </button></div>
 										<div class="card-body" style="padding: 0px;">
 											<div id="ApplicationStatusDash">
+											<div style="max-height: 200px; overflow-y: auto;">
 												<table id="example" class="table">
 													<thead>
-
 														<tr>
 															<th scope="col">App Name</th>
 															<th scope="col">Submitted Date</th>
@@ -756,6 +774,7 @@ display:none;
 													<tbody id="dataTableId">
 													</tbody>
 												</table>
+												</div>
 												<div class="col-md-12 text-center" id="pg1">
 													<ul class="pagination pagination-lg pager pagination-align"
 														id="developer_page"></ul>
@@ -765,7 +784,7 @@ display:none;
 									</div>
 								</div>
 								<div class="col-md-4">
-									<div class="card ht-233">
+									<div class="card ht-270">
 										<div class="card-header" id="card-header">Risk, Issues
 											and Deadlines</div>
 										<div class="card-body justify-content-center">
@@ -780,11 +799,10 @@ display:none;
 							<div class="row">
 								<div class="col-md-8">
 									<div class="card ht-270">
-										<div class="card-header" id="card-header">Archive Requirements
-											<button type="button" class="btn btn-primary pull-right" onclick="dashboardExportToCSV('Archive Requirements','example1');">Export CSV</button>
-										</div>
+										<div class="card-header" id="card-header">Archive Requirements <button onclick = "exportToCSV()" > Export CSV </button></div>
 										<div class="card-body" style="padding: 0px;">
 											<div id="AppAchiveReqDash">
+											<div style="max-height: 200px; overflow-y: auto;">
 												<table id="example1" class="table">
 													<thead>
 														<tr>
@@ -800,6 +818,7 @@ display:none;
 													<tbody id="dataTableId1">
 													</tbody>
 												</table>
+												</div>
 												<div class="col-md-12 text-center" id="pg2">
 													<ul class="pagination pagination-lg pager pagination-align"
 														id="developer_page_1"></ul>
@@ -831,11 +850,11 @@ display:none;
 							<div class="row">
 								<div class="col-md-8">
 									<div class="card ht-270">
-										<div class="card-header" id="card-header">Archive Execution
-											<button type="button" class="btn btn-primary pull-right" onclick="dashboardExportToCSV('Archive Execution','example2');">Export CSV</button>
-										</div>
+										<div class="card-header" id="card-header">Archive
+											Execution<button onclick = "exportToCSV()" > Export CSV </button></div>
 										<div class="card-body" style="padding: 0px;">
 											<div id="AppArchiveExeDash">
+											<div style="max-height: 200px; overflow-y: auto;">
 												<table id="example2" class="table">
 													<thead>
 														<tr>
@@ -847,6 +866,7 @@ display:none;
 													<tbody id="dataTableId2">
 													</tbody>
 												</table>
+												</div>
 												<div class="col-md-12 text-center" id="pg3">
 													<ul class="pagination pagination-lg pager pagination-align"
 														id="developer_page_2"></ul>
@@ -909,6 +929,57 @@ display:none;
 	<script src="js/pace/pace.min.js"></script>
 	<script src="js/lobipanel/lobipanel.min.js"></script>
 	<script src="js/iscroll/iscroll.js"></script>
+	<script>
+	function exportToCSV() {
+
+		 
+
+		var table = document.querySelector('.table');
+
+	 
+
+		var data = [];
+
+	 
+
+		for (var i = 0; i < table.rows.length; i++) {
+			var row = table.rows[i];
+			var rowData = [];
+			for (var j = 0; j < row.cells.length; j++) {
+				rowData.push(row.cells[j].textContent.trim());
+			}
+			data.push(rowData);
+		}
+
+	 
+
+	 
+
+		var csvContent = "data:text/csv;charset=utf-8,";
+		data.forEach(function(rowArray) {
+			var row = rowArray.join(",");
+			csvContent += row + "\r\n";
+		});
+
+	 
+
+		var encodedUri = encodeURI(csvContent);
+
+	 
+
+	 
+
+		var link = document.createElement("a");
+		link.setAttribute("href", encodedUri);
+		link.setAttribute("download", "DasboardDetails.csv");
+		document.body.appendChild(link);
+
+	 
+
+		link.click();
+	}
+	
+	</script>
 
 
 	<script type="text/javascript">
@@ -1057,7 +1128,6 @@ $(document).ready(function() {
 	<script type="text/javascript" src="js/chartjs/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/chartjs/Chart.js"></script>
 	<script src="js/dashboard/dashboardAjaxCall.js"></script>
-	<script src = "js/reportJs/ExportToCSV.js"></script>
 	
 <!-- 	<script type="text/javascript"  src=" https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script> -->
 	<!-- <script src="https://cdnjs.com/libraries/Chart.js"></script> -->
