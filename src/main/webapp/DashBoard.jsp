@@ -756,7 +756,7 @@ display:none;
 								<div class="col-md-8">
 									<div class="card ht-270">
 										<div class="card-header" id="card-header">Intake Status 
-											 <button onclick = "exportToCSV()" > Export CSV </button></div>
+											 <button onclick = "exportToCSV()" > Export </button></div>
 										<div class="card-body" style="padding: 0px;">
 											<div id="ApplicationStatusDash">
 											<div style="max-height: 200px; overflow-y: auto;">
@@ -799,7 +799,7 @@ display:none;
 							<div class="row">
 								<div class="col-md-8">
 									<div class="card ht-270">
-										<div class="card-header" id="card-header">Archive Requirements <button onclick = "exportToCSV()" > Export CSV </button></div>
+										<div class="card-header" id="card-header">Archive Requirements <button onclick = "exportToCSV()" > Export </button></div>
 										<div class="card-body" style="padding: 0px;">
 											<div id="AppAchiveReqDash">
 											<div style="max-height: 200px; overflow-y: auto;">
@@ -851,7 +851,7 @@ display:none;
 								<div class="col-md-8">
 									<div class="card ht-270">
 										<div class="card-header" id="card-header">Archive
-											Execution<button onclick = "exportToCSV()" > Export CSV </button></div>
+											Execution<button onclick = "exportToCSV()" > Export </button></div>
 										<div class="card-body" style="padding: 0px;">
 											<div id="AppArchiveExeDash">
 											<div style="max-height: 200px; overflow-y: auto;">
