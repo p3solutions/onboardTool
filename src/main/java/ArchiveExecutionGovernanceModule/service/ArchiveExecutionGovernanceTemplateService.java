@@ -90,24 +90,24 @@ public class ArchiveExecutionGovernanceTemplateService {
 				archiveExecTemp[37] = new ArchiveExecutionGovernanceTemplateDetails("38","2","","Applications Intake assessment, Define Waves, Implementation Roadmap for 19 In-scope applications");
 
 				archiveExecTemp[38] = new ArchiveExecutionGovernanceTemplateDetails("39","1","Archive Implementation","");
-				archiveExecTemp[39] = new ArchiveExecutionGovernanceTemplateDetails("40","2","OppurtunityName – Allscripts","Requirements Gathering");
-				archiveExecTemp[40] = new ArchiveExecutionGovernanceTemplateDetails("41","2","OppurtunityName – Allscripts","Requirements Documentation/Approval");
-				archiveExecTemp[41] = new ArchiveExecutionGovernanceTemplateDetails("42","2","OppurtunityName – Allscripts","Technical Design Document");
-				archiveExecTemp[42] = new ArchiveExecutionGovernanceTemplateDetails("43","2","OppurtunityName – Allscripts","Technical Design Documentation/Approval");
-				archiveExecTemp[43] = new ArchiveExecutionGovernanceTemplateDetails("44","2","OppurtunityName – Allscripts","Archon - Source system connectivity");
-				archiveExecTemp[44] = new ArchiveExecutionGovernanceTemplateDetails("45","2","OppurtunityName – Allscripts","Data Archive in Test Environment");
-				archiveExecTemp[45] = new ArchiveExecutionGovernanceTemplateDetails("46","2","OppurtunityName – Allscripts","Screens Configuration in Test Environment");
-				archiveExecTemp[46] = new ArchiveExecutionGovernanceTemplateDetails("47","2","OppurtunityName – Allscripts","Perform System Testing");
-				archiveExecTemp[47] = new ArchiveExecutionGovernanceTemplateDetails("48","2","OppurtunityName – Allscripts","System Test Documentation/Results Approval");
-				archiveExecTemp[48] = new ArchiveExecutionGovernanceTemplateDetails("49","2","OppurtunityName – Allscripts","UAT Testing");
-				archiveExecTemp[49] = new ArchiveExecutionGovernanceTemplateDetails("50","2","OppurtunityName – Allscripts","UAT Signoff");
-				archiveExecTemp[50] = new ArchiveExecutionGovernanceTemplateDetails("51","2","OppurtunityName – Allscripts","Production implementation - Data Archival");
-				archiveExecTemp[51] = new ArchiveExecutionGovernanceTemplateDetails("52","2","OppurtunityName – Allscripts","Production implementation - Screens configuration");
-				archiveExecTemp[52] = new ArchiveExecutionGovernanceTemplateDetails("53","2","OppurtunityName – Allscripts","Production implementation - Users configuration");
-				archiveExecTemp[53] = new ArchiveExecutionGovernanceTemplateDetails("54","2","OppurtunityName – Allscripts","Production implementation - Retention configuration");
-				archiveExecTemp[54] = new ArchiveExecutionGovernanceTemplateDetails("55","2","OppurtunityName – Allscripts","Chain of Custody validation/documentation");
-				archiveExecTemp[55] = new ArchiveExecutionGovernanceTemplateDetails("56","2","OppurtunityName – Allscripts","Chain of Custody documentation approval");
-				archiveExecTemp[56] = new ArchiveExecutionGovernanceTemplateDetails("57","2","OppurtunityName – Allscripts","Implementation Signoff");
+				archiveExecTemp[39] = new ArchiveExecutionGovernanceTemplateDetails("40","2","OppurtunityName ï¿½ Allscripts","Requirements Gathering");
+				archiveExecTemp[40] = new ArchiveExecutionGovernanceTemplateDetails("41","2","OppurtunityName ï¿½ Allscripts","Requirements Documentation/Approval");
+				archiveExecTemp[41] = new ArchiveExecutionGovernanceTemplateDetails("42","2","OppurtunityName ï¿½ Allscripts","Technical Design Document");
+				archiveExecTemp[42] = new ArchiveExecutionGovernanceTemplateDetails("43","2","OppurtunityName ï¿½ Allscripts","Technical Design Documentation/Approval");
+				archiveExecTemp[43] = new ArchiveExecutionGovernanceTemplateDetails("44","2","OppurtunityName ï¿½ Allscripts","Archon - Source system connectivity");
+				archiveExecTemp[44] = new ArchiveExecutionGovernanceTemplateDetails("45","2","OppurtunityName ï¿½ Allscripts","Data Archive in Test Environment");
+				archiveExecTemp[45] = new ArchiveExecutionGovernanceTemplateDetails("46","2","OppurtunityName ï¿½ Allscripts","Screens Configuration in Test Environment");
+				archiveExecTemp[46] = new ArchiveExecutionGovernanceTemplateDetails("47","2","OppurtunityName ï¿½ Allscripts","Perform System Testing");
+				archiveExecTemp[47] = new ArchiveExecutionGovernanceTemplateDetails("48","2","OppurtunityName ï¿½ Allscripts","System Test Documentation/Results Approval");
+				archiveExecTemp[48] = new ArchiveExecutionGovernanceTemplateDetails("49","2","OppurtunityName ï¿½ Allscripts","UAT Testing");
+				archiveExecTemp[49] = new ArchiveExecutionGovernanceTemplateDetails("50","2","OppurtunityName ï¿½ Allscripts","UAT Signoff");
+				archiveExecTemp[50] = new ArchiveExecutionGovernanceTemplateDetails("51","2","OppurtunityName ï¿½ Allscripts","Production implementation - Data Archival");
+				archiveExecTemp[51] = new ArchiveExecutionGovernanceTemplateDetails("52","2","OppurtunityName ï¿½ Allscripts","Production implementation - Screens configuration");
+				archiveExecTemp[52] = new ArchiveExecutionGovernanceTemplateDetails("53","2","OppurtunityName ï¿½ Allscripts","Production implementation - Users configuration");
+				archiveExecTemp[53] = new ArchiveExecutionGovernanceTemplateDetails("54","2","OppurtunityName ï¿½ Allscripts","Production implementation - Retention configuration");
+				archiveExecTemp[54] = new ArchiveExecutionGovernanceTemplateDetails("55","2","OppurtunityName ï¿½ Allscripts","Chain of Custody validation/documentation");
+				archiveExecTemp[55] = new ArchiveExecutionGovernanceTemplateDetails("56","2","OppurtunityName ï¿½ Allscripts","Chain of Custody documentation approval");
+				archiveExecTemp[56] = new ArchiveExecutionGovernanceTemplateDetails("57","2","OppurtunityName ï¿½ Allscripts","Implementation Signoff");
 
 				archiveExecTemp[57] = new ArchiveExecutionGovernanceTemplateDetails("58","1","Closure","");
 				archiveExecTemp[58] = new ArchiveExecutionGovernanceTemplateDetails("59","2","","Warranty Support - 6 Weeks");
@@ -517,23 +517,48 @@ public class ArchiveExecutionGovernanceTemplateService {
 			if(level ==1)
 			{
 				cond = "taskGroup='"+taskGroup+"';";
+				String updateQuery = "update Archive_Execution_Governance_Info set planSrt = ?, planEnd=?, actSrt=?, actEnd=? where waveId =? and taskGroup=?";
+				
+				PreparedStatement prestmt = con.prepareStatement(updateQuery);
+				prestmt.setString(1, min.toString());
+				prestmt.setString(2, max.toString());
+				prestmt.setString(3, min2.toString());
+				prestmt.setString(4, max2.toString());
+				prestmt.setString(5, Id);
+				prestmt.setString(6, taskGroup);
+				prestmt.execute();
+
+				prestmt.close();
+
 			}
 			else
 			{
 				cond = "taskName='"+taskName+"';";
+				String updateQuery = "update Archive_Execution_Governance_Info set planSrt = ?, planEnd=?, actSrt=?, actEnd=? where waveId =? and taskName=?";
+				PreparedStatement prestmt = con.prepareStatement(updateQuery);
+				prestmt.setString(1, min.toString());
+				prestmt.setString(2, max.toString());
+				prestmt.setString(3, min2.toString());
+				prestmt.setString(4, max2.toString());
+				prestmt.setString(5, Id);
+				prestmt.setString(6, taskName);
+				prestmt.execute();
+
+				prestmt.close();
 			}
-
-			String updateQuery = "update Archive_Execution_Governance_Info set planSrt = ?, planEnd=?, actSrt=?, actEnd=? where waveId =? and ?";
-			PreparedStatement prestmt = con.prepareStatement(updateQuery);
-			prestmt.setString(1, min.toString());
-			prestmt.setString(2, max.toString());
-			prestmt.setString(3, min2.toString());
-			prestmt.setString(4, max2.toString());
-			prestmt.setString(5, Id);
-			prestmt.setString(6, cond);
-			prestmt.execute();	 
-
-			prestmt.close();
+//			System.out.println("Cond :"+cond);
+//			String updateQuery = "update Archive_Execution_Governance_Info set planSrt = ?, planEnd=?, actSrt=?, actEnd=? where waveId =? and ?";
+//			System.out.println("Update query :"+updateQuery);
+//			PreparedStatement prestmt = con.prepareStatement(updateQuery);
+//			prestmt.setString(1, min.toString());
+//			prestmt.setString(2, max.toString());
+//			prestmt.setString(3, min2.toString());
+//			prestmt.setString(4, max2.toString());
+//			prestmt.setString(5, Id);
+//			prestmt.setString(6, cond);
+//			prestmt.execute();
+//
+//			prestmt.close();
 		}
 		catch (Exception e) {
 			e.printStackTrace();

@@ -189,8 +189,8 @@ HttpSession details = request.getSession();
                    <div class='form-group'>
                         <input type='hidden' class='form-control' size='35' id="wave_Id" placeholder='' name="wave_Id" value=""/>
                        <input type='hidden' class='form-control' size='35' id="Json_sample_id" placeholder='' name="Json_Sample" value=""/>
-                        </div>	               
-              </div>     
+                   </div>
+             </div>
               
 	              
 	                      <div class="row">

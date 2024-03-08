@@ -204,7 +204,6 @@
 }
 </style>
 <body>
-
 	<%@include file="Nav-Bar.jspf"%>
 	<nav class="nav" id="bg-color" style="height: 75px;">
 		<div class="container-fluid" id="container-fluid-margin">

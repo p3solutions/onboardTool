@@ -162,8 +162,6 @@ public class governanceSaveService {
 				JsonObject jsonObj = jsonArray.get(i).getAsJsonObject();
 				String name = jsonObj.get("Name").getAsString();
 				String value = jsonObj.get("Value").getAsString();
-				System.out.println("TABLE NAME -- : "+tableName);
-				System.out.println("ID COND : "+idAndCond);
 				if(tableName.equals("governance_info"))
 				{
 	            String updateQuery =getUpdQuery(tableName);

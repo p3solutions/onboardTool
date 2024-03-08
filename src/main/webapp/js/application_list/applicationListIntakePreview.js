@@ -117,8 +117,11 @@ $(document).on('click', '#saveApplicationList', function(e) {
 	for (var i = 0; i < $('.rowClass').length; i++) {
 		var inputs = {};
 		var appId = $('.applicationName').eq(i).val();
+		console.log("appId :",appId);
 		var phaseId = $('.phase').eq(i).val();
+		console.log("phaseId :",phaseId);
 		var waveId = $('.wave').eq(i).val();
+		console.log("waveId :",waveId);
 		validation = true;
 		inputs['appName'] = appId;
 		inputs['phase'] = phaseId;
