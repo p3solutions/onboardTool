@@ -29,8 +29,9 @@ import java.util.Date;
  */
 @WebServlet("/Login_1")
 public class Login_1 extends HttpServlet {
+	private static Logger logger =  Logger.getRootLogger();
 	private static final long serialVersionUID = 1L;
-	private Logger logger = null;
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -50,7 +51,8 @@ public class Login_1 extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+		logger.info("=========================Accessed login through SAML servlet =======================");
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date date = new Date();  
 		System.out.println("[INFO]-----"+formatter.format(date)+"-----Accessed Login servlet-----[INFO]");  
 		// TODO Auto-generated method stub
@@ -62,8 +64,11 @@ public class Login_1 extends HttpServlet {
 		String user_lname=request.getParameter("user_lname");
 		String username=request.getParameter("username");
 		String user_group=request.getParameter("user_group");
-
 		session.setAttribute("username",username);
+		logger.info("User name on request: "+username);
+		logger.info("User First name request: "+user_fname);
+		logger.info("User Last name request: "+ user_lname);
+		logger.info("User Role request: "+ user_group);
 		class Samp
 		{
 			String seq_num,level,name,id,refid;
@@ -868,7 +873,10 @@ public class Login_1 extends HttpServlet {
 		String user_id=u_name;
 		MDC.put("USERID", user_id);
 		MDC.put("USERROLE", u_role);
-		logger.info("Logged In"); 
+		logger.info("Logged In through SAML");
+		logger.info("Username : "+ u_name);
+		logger.info("USer Role : "+u_role);
+
 
 		}
 		catch(Exception e)

@@ -506,7 +506,8 @@ font-family:sans-serif;
 <%@page import="onboard.DBconnection"%>
 <%@page import="org.owasp.encoder.Encode" %>
 <%@ page import="java.util.ResourceBundle"%>
-	<%
+<%@ page import="org.apache.log4j.Logger" %>
+<%
 	ResourceBundle resource = ResourceBundle.getBundle("VersionInfo");
 	ResourceBundle resource1 = ResourceBundle.getBundle("Configuration");
 	String versioninfo = resource.getString("VERSION");
@@ -527,6 +528,8 @@ font-family:sans-serif;
 	
 	
 <%
+    Logger logger =  Logger.getRootLogger();
+    logger.info("====================Accessed Login.Jsp =========================");
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     Date date = new Date();
     System.out.println("[INFO]-----" + formatter.format(date) + "-----Accessed Login JSP PAGE-----[INFO]"); %>

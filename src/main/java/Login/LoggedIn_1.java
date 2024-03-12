@@ -14,11 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import onboard.DBconnection;
+import org.apache.log4j.Logger;
 
 /**
  * Servlet implementation class Login_1
  */
 public class LoggedIn_1 extends HttpServlet {
+	private static Logger logger =  Logger.getRootLogger();
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -42,7 +44,7 @@ public class LoggedIn_1 extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		logger.info("=========================Accessed LoggedIn_1  servlet =======================");
 		HttpSession details=request.getSession(); 
 		HttpSession session=request.getSession();
 		String uname=request.getParameter("usr");
@@ -67,20 +69,17 @@ public class LoggedIn_1 extends HttpServlet {
 	
 							session.setAttribute("USER",dbuname); 
 		                    response.sendRedirect("DashBoard.jsp");
-						}
+						logger.info("User name: "+uname);
 
+						}
 					}
 				else {
 					response.sendRedirect("Login_Error.jsp");
 				}
 				}
-					
-	                 
 					catch(Exception e)
 					{
-						
-					
-					
+						e.printStackTrace();
 					}
 		
 		doGet(request, response);

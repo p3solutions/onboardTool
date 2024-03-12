@@ -14,11 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import onboard.DBconnection;
+import org.apache.log4j.Logger;
 
 /**
  * Servlet implementation class Login
  */
 public class LoggedIn extends HttpServlet {
+	private static Logger logger =  Logger.getRootLogger();
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -42,7 +44,7 @@ public class LoggedIn extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		logger.info("=========================Accessed LoggedIn  servlet =======================");
 		HttpSession details=request.getSession(); 
 		HttpSession session=request.getSession();
 		String ufname=request.getParameter("usr");
@@ -67,30 +69,23 @@ public class LoggedIn extends HttpServlet {
 					
 					if(ufname.equals(dbuname) && ulname.equals(dbpwd) && ugroup.equals(dburole))
 		            {
-				
 						if(ugroup.equals("DECOM_ADMIN")||ugroup.equals("DECOM_SUPER_ADMIN")|| ugroup.equals("DECOM_TECHNICAL_CONTRIBUTOR"))
 						{
 							session.setAttribute("USER",dbuname); 
 		                    response.sendRedirect("DashBoard.jsp");
+							logger.info("User name: "+dbuname);
+							logger.info("User Role: "+ ugroup);
 						}
-					
-					
 					}
 				else {
 					response.sendRedirect("Login_Error.jsp");
 				}
 				}}
-					
-	                 
 					catch(Exception e)
 					{
-						
-					
-					
+						e.printStackTrace();
+						logger.info("Error in LoggedIn servlet");
 					}
-		
-		
-		
 		doGet(request, response);
 	}
 

@@ -70,6 +70,7 @@ public class Login extends HttpServlet {
         //System.out.println("HI");
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
+        logger.info("=========================== Accessed login service =====================");
         System.out.println("[INFO]-----" + formatter.format(date) + "-----Accessed Login servlet-----[INFO]");
         // TODO Auto-generated method stub
         HttpSession details = request.getSession();
@@ -77,6 +78,8 @@ public class Login extends HttpServlet {
         String userid = request.getParameter("usr");
         String pwd = request.getParameter("pwd");
         session.setAttribute("username", userid);
+        logger.info("Username From request "+ userid);
+        logger.info("password form request "+ pwd);
         //details.setAttribute("u_Name",userid);
 
 
@@ -1011,6 +1014,8 @@ public class Login extends HttpServlet {
 
 
             logger.info("Logged In");
+            logger.info("userName: " + u_name);
+            logger.info("User Role: "+u_role);
             st5.close();
             rs5.close();
             st6.close();
