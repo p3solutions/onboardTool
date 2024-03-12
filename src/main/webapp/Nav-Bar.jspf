@@ -74,13 +74,69 @@ margin-left: 247px;
 	<%@ page import="onboard.DBconnection"%>
 	<%@page import="org.owasp.encoder.Encode"%>
 	<%@ page import="java.util.ResourceBundle"%>
+	<%@ page import="java.util.Properties" %>
+	<%@ page import="java.io.FileInputStream" %>
+	<%@ page import="java.io.File" %>
+	<%@ page import="java.io.FileReader" %>
+	<%@ page import="java.io.InputStreamReader" %>
+	<%@ page import="java.io.IOException" %>
+	<%@ page import="java.io.InputStream" %>
 	<%
+    Properties prop = new Properties();
+    String workingDir = System.getProperty("catalina.base") + File.separator + "D3Sixty_conf";
+    File configFile = new File(workingDir, "Configuration.properties");
+    File versionFile = new File(workingDir, "VersionInfo.properties");
+    String authType="";
+    String ssoLoginUrl="";
+    String versionInfo="";
+    try {
+        // Load Configuration.properties
+        if (configFile.exists()) {
+            prop.load(new FileReader(configFile));
+        } else {
+            // Load from resources folder using class loader
+            InputStream resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("Configuration.properties");
+            if (resourceStream != null) {
+                prop.load(new InputStreamReader(resourceStream));
+            } else {
+                throw new IOException("Configuration.properties file not found.");
+            }
+        }
+
+        authType = prop.getProperty("AUTHTYPE");
+        ssoLoginUrl=prop.getProperty("SSOLOGINURL");
+        System.out.println("AUTHTYPE :: " + authType);
+        System.out.println("SSO LOGIN URL :: " + ssoLoginUrl);
+        // Load VersionInfo.properties
+        prop.clear(); // Clear the properties for reuse
+        if (versionFile.exists()) {
+            prop.load(new FileReader(versionFile));
+        } else {
+            // Load from resources folder using class loader
+            InputStream resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("VersionInfo.properties");
+            if (resourceStream != null) {
+                prop.load(new InputStreamReader(resourceStream));
+            } else {
+                throw new IOException("VersionInfo.properties file not found.");
+            }
+        }
+        versionInfo = prop.getProperty("VERSION");
+        System.out.println("Version Info :: " + versionInfo);
+    } catch (IOException e) {
+        System.out.println(e.getMessage());
+    }
+    if(authType.equals("SSO"))
+    {
+   	 response.sendRedirect(ssoLoginUrl);
+    }    
+%>	
+	<%-- <%
 	ResourceBundle resource1 = ResourceBundle.getBundle("VersionInfo");
 	String versioninfo1 = resource1.getString("VERSION");
 	ResourceBundle resource8 = ResourceBundle.getBundle("Configuration");
 	String authtype8 = resource8.getString("AUTHTYPE");
 	System.out.println("Version" + versioninfo1);
-	%>
+	%> --%>
 	<%
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	response.setHeader("Pragma", "no-cache");
@@ -261,7 +317,7 @@ margin-left: 247px;
 									</center>
 									<div class="col-lg-12">
 										<center>
-											<label class="versioninfo">Version : <%=versioninfo1%></label>
+											<label class="versioninfo">Version : <%=versionInfo%></label>
 										</center>
 										<center>
 											<label class="versioninfo">Copyright &copy; 2022 <a
@@ -334,7 +390,7 @@ margin-left: 247px;
 									<label class="control-label" for="formInput526">Auth
 										Type:</label> <input type="text" class="form-control" id="auth_type"
 										name="auth_type"
-										value="<%=Encode.forHtmlAttribute(authtype8)%>" required>
+										value="<%=Encode.forHtmlAttribute(authType)%>" required>
 								</div>
 
 							</div>

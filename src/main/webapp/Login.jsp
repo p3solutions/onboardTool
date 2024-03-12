@@ -506,25 +506,69 @@ font-family:sans-serif;
 <%@page import="onboard.DBconnection"%>
 <%@page import="org.owasp.encoder.Encode" %>
 <%@ page import="java.util.ResourceBundle"%>
-	<%
-	ResourceBundle resource = ResourceBundle.getBundle("VersionInfo");
-	ResourceBundle resource1 = ResourceBundle.getBundle("Configuration");
-	String versioninfo = resource.getString("VERSION");
-	String ssologinurl = resource1.getString("SSOLOGINURL");
-	String authtype = resource1.getString("AUTHTYPE");
-	System.out.println("Version" + versioninfo);
-	System.out.println("SSOURL" + ssologinurl);
-	%>
-	
-	<%
- 
-  if(authtype.equals("SSO"))
- {
-	 response.sendRedirect(ssologinurl);
- }
- 
- %>
-	
+<%@ page import="java.util.Properties" %>
+<%@ page import="java.io.FileInputStream" %>
+<%@ page import="java.io.File" %>
+<%@ page import="java.io.FileReader" %>
+<%@ page import="java.io.InputStreamReader" %>
+<%@ page import="java.io.IOException" %>
+<%@ page import="java.io.InputStream" %>
+
+<%
+    Properties prop = new Properties();
+    String workingDir = System.getProperty("catalina.base") + File.separator + "D3Sixty_conf";
+    File configFile = new File(workingDir, "Configuration.properties");
+    File versionFile = new File(workingDir, "VersionInfo.properties");
+    String authType="";
+    String ssoLoginUrl="";
+    String versionInfo="";
+    try {
+        // Load Configuration.properties
+        if (configFile.exists()) {
+            prop.load(new FileReader(configFile));
+        } else {
+            // Load from resources folder using class loader
+            InputStream resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("Configuration.properties");
+            if (resourceStream != null) {
+                prop.load(new InputStreamReader(resourceStream));
+            } else {
+                throw new IOException("Configuration.properties file not found.");
+            }
+        }
+
+        authType = prop.getProperty("AUTHTYPE");
+        ssoLoginUrl=prop.getProperty("SSOLOGINURL");
+        System.out.println("AUTHTYPE :: " + authType);
+        System.out.println("SSO LOGIN URL :: " + ssoLoginUrl);
+        // Load VersionInfo.properties
+        prop.clear(); // Clear the properties for reuse
+        if (versionFile.exists()) {
+            prop.load(new FileReader(versionFile));
+        } else {
+            // Load from resources folder using class loader
+            InputStream resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("VersionInfo.properties");
+            if (resourceStream != null) {
+                prop.load(new InputStreamReader(resourceStream));
+            } else {
+                throw new IOException("VersionInfo.properties file not found.");
+            }
+        }
+        versionInfo = prop.getProperty("VERSION");
+        System.out.println("Version Info :: " + versionInfo);
+    } catch (IOException e) {
+        System.out.println(e.getMessage());
+    }
+    finally{
+    	if(resourceStream!=null)
+    	{
+    		resourceStream.close();
+    	}
+    }
+    if(authType.equals("SSO"))
+    {
+   	 response.sendRedirect(ssoLoginUrl);
+    }    
+%>
 	
 <%
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -600,7 +644,7 @@ font-family:sans-serif;
      
      <center>
 											<label class="versioninfo" for="formInput526">Version :
-												<%=versioninfo%></label>
+												<%=versionInfo%></label>
 										</center>
 										<center><label class="versioninfo">Copyright
 											&copy; 2022 <a href="https://platform3solutions.com/" style="color:#0d6efd;font-weight:550;">Platform

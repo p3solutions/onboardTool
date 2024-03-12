@@ -1,6 +1,7 @@
 package NewArchiveRequirements.archiveRequirementReview.service;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.ResultSet;
@@ -31,6 +32,8 @@ import NewArchiveRequirements.businessRequirementsDetails.businessReqInfo.Servic
 import NewArchiveRequirements.businessRequirementsDetails.functionalReqInfo.dataReq.Service.archiveFunctionDataRetrieveService;
 import NewArchiveRequirements.businessRequirementsDetails.screenReqInfo.Service.archiveScreenReqDataRetrieveService;
 import NewArchiveRequirements.documentRevisions.service.archiveReqDocRevDataRetrieveService;
+import common.constant.EMAIL_SERVICE_CONSTANT;
+import common.email.service.EmailApprovalService;
 import onboard.DBconnection;
 
 public class archiveReqReviewService {
@@ -141,46 +144,45 @@ public class archiveReqReviewService {
 		return jsonArray;
 	}
 
-	private JsonObject getUploadedScreenShotNameList()
-	{
-		InputStream resourceStream=null;
+	private JsonObject getUploadedScreenShotNameList() {
+		InputStream fileInput = null;
 		JsonObject jsonObject = new JsonObject();
-		try
-		{
-			ClassLoader loader = Thread.currentThread().getContextClassLoader();
-			Properties prop = new Properties();
-			String workingDir = System.getProperty("user.dir");
-			resourceStream = (InputStream) loader.getResourceAsStream("fileUpload.properties");
-
-			prop.load(resourceStream);
-			String Path=prop.getProperty("FILE.REQUIREMENTS.SCREENSHOT.PATH");
-			System.out.println("Path : "+Path);
-			String path = Path+File.separator+Id;
-			System.out.println("PATH : "+path);
+		try {
+			Properties properties = new Properties();
+			String workingDir = System.getProperty("catalina.base") + File.separator
+					+ EMAIL_SERVICE_CONSTANT.D3SIXTY_CONF;
+			File configFile = new File(workingDir, "fileUpload.properties");
+			if (configFile.exists()) {
+				properties.load(new FileReader(configFile));
+			} else {
+				fileInput = getClass().getClassLoader().getResourceAsStream("fileUpload.properties");
+				properties.load(fileInput);
+			}
+			String Path = properties.getProperty("FILE.REQUIREMENTS.SCREENSHOT.PATH");
+			System.out.println("Path : " + Path);
+			String path = Path + File.separator + Id;
+			System.out.println("PATH : " + path);
 			File screenShot = FileUtils.createFile(path);
 
-			File[] files =screenShot.listFiles();
+			File[] files = screenShot.listFiles();
 			String fileList = "";
-			if(files!=null)
-				for(File f: files)
-				{
-					fileList+=f.getName()+",";
+			if (files != null)
+				for (File f : files) {
+					fileList += f.getName() + ",";
 				}
 
 			if (files != null & fileList.length() > 0) {
-			    jsonObject.addProperty("listOfScreenShots", fileList.substring(0, fileList.length() - 1));
+				jsonObject.addProperty("listOfScreenShots", fileList.substring(0, fileList.length() - 1));
 			} else {
-			    jsonObject.addProperty("listOfScreenShots", "");
+				jsonObject.addProperty("listOfScreenShots", "");
 			}
-			resourceStream.close();
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			try {
-				resourceStream.close();
+				if (fileInput != null) {
+					fileInput.close();
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

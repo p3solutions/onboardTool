@@ -1,7 +1,9 @@
 package common.email.service;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.text.MessageFormat;
 import java.util.Properties;
 
@@ -24,20 +26,29 @@ public class EmailService {
 	static String mailPwd=null;
 	static Properties properties = new Properties();
 
-	public Properties loadProperties() {
-
+	public Properties loadProperties() throws IOException {
+		InputStream fileInput = null;
 		try {
-			InputStream fileInput = EmailApprovalService.class
-					.getResourceAsStream(EMAIL_SERVICE_CONSTANT.MAIL_PROPS);
-			properties.load(fileInput);
-			fileInput.close();
+			String workingDir = System.getProperty("catalina.base") + File.separator
+					+ EMAIL_SERVICE_CONSTANT.D3SIXTY_CONF;
+			File configFile = new File(workingDir, "mail.properties");
+			if (configFile.exists()) {
+				properties.load(new FileReader(configFile));
+			} else {
+				fileInput = EmailApprovalService.class.getResourceAsStream(EMAIL_SERVICE_CONSTANT.MAIL_PROPS);
+				properties.load(fileInput);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if (fileInput != null) {
+				fileInput.close();
+			}
 		}
 		return properties;
 	}
 
-	public boolean sendApprovalEmail(String username, String uEmail, String approval_Link, String mail_content, String subject,Object[] replaceValues) throws MessagingException, UnsupportedEncodingException {
+	public boolean sendApprovalEmail(String username, String uEmail, String approval_Link, String mail_content, String subject,Object[] replaceValues) throws MessagingException, IOException {
 		loadProperties();
 		Mailbean mbn = new Mailbean();
 		StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();

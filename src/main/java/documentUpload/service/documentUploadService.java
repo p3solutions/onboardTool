@@ -1,9 +1,12 @@
 package documentUpload.service;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.sql.Blob;
 import java.sql.Connection;
@@ -31,7 +34,7 @@ public class documentUploadService {
 	private DBconnection dBconnection;
 	private Connection	con;
 	private String tableName;
-	
+	private static final String D3SIXTY_CONF="D3Sixty_conf";
 	public documentUploadService(String appId,String sectionName) throws ClassNotFoundException, SQLException {
 		this.appId = appId;
 		this.sectionName = sectionName;
@@ -105,46 +108,54 @@ public class documentUploadService {
 	}
 	
 	public boolean retrieveBlob() {
-		InputStream resourceStream=null;
+		InputStream resourceStream = null;
 		try {
-			ClassLoader loader = Thread.currentThread().getContextClassLoader();
-            Properties prop = new Properties();
-            String workingDir = System.getProperty("user.dir");
-            resourceStream = (InputStream) loader.getResourceAsStream("fileUpload.properties");
-            
-                 prop.load(resourceStream);
-                 String Path=prop.getProperty("FILE.REQUIREMENTS.SCREENSHOT.PATH");
-                 System.out.println("Path : "+Path);
-			String selectQuery ="SELECT * FROM "+tableName+" WHERE appId=? AND seq_num="+1;
+			Properties prop = new Properties();
+			String workingDir = System.getProperty("catalina.base") + File.separator + D3SIXTY_CONF;
+			File configFile = new File(workingDir, "fileUpload.properties");
+			if (configFile.exists()) {
+				prop.load(new FileReader(configFile));
+			} else {
+				// Load from resources folder using class loader
+				resourceStream = getClass().getClassLoader().getResourceAsStream("fileUpload.properties");
+				if (resourceStream != null) {
+					prop.load(new InputStreamReader(resourceStream));
+				} else {
+					throw new IOException("fileUpload.properties file not found.");
+				}
+			}
+			String Path = prop.getProperty("FILE.REQUIREMENTS.SCREENSHOT.PATH");
+			System.out.println("Path : " + Path);
+			String selectQuery = "SELECT * FROM " + tableName + " WHERE appId=? AND seq_num=" + 1;
 			PreparedStatement st = con.prepareStatement(selectQuery);
 			st.setString(1, appId);
 			ResultSet rs = st.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				Blob blob = rs.getBlob("doc");
 				InputStream in = blob.getBinaryStream();
-				Path=Path.concat(rs.getString("File_Name"));
-				System.out.println("Path 2 : "+Path);
+				Path = Path.concat(rs.getString("File_Name"));
+				System.out.println("Path 2 : " + Path);
 				OutputStream out = FileUtils.createFileOut(Path);
-				byte[] buff = new byte[4096];  // how much of the blob to read/write at a time
+				byte[] buff = new byte[4096]; // how much of the blob to read/write at a time
 				int len = 0;
 
 				while ((len = in.read(buff)) != -1) {
-				    out.write(buff, 0, len);
+					out.write(buff, 0, len);
 				}
 				in.close();
 				out.close();
 			}
 			st.close();
 			rs.close();
-			
-		}
-		catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
-		}
-		finally {
+		} finally {
 			try {
-				resourceStream.close();
+				if (resourceStream != null) {
+					resourceStream.close();
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

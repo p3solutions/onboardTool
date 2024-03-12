@@ -76,7 +76,7 @@ public class exportPdfService extends jsonToHtmlContent {
          }
          return applicationId;
      }
-    public exportPdfService(JsonArray jsonArray,String appName,String appId,String modulename) throws ClassNotFoundException, SQLException {
+    public exportPdfService(JsonArray jsonArray,String appName,String appId,String modulename) throws ClassNotFoundException, SQLException, IOException {
     this.home = System.getProperty("user.home");
     this.downloadDirectory = new File(home+"/Downloads");
     this.appName = appName;

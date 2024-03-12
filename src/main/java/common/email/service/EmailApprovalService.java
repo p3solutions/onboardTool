@@ -1,4 +1,5 @@
 package common.email.service;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,7 +32,7 @@ public class EmailApprovalService extends EmailService {
     private String approval_Link = null;
     private String subject = null;
     public EmailApprovalService(String oppId, String appName, String module)
-            throws ClassNotFoundException, SQLException {
+            throws ClassNotFoundException, SQLException, IOException {
         dBconnection = new DBconnection();
         con = (Connection) dBconnection.getConnection();
         properties = loadProperties();

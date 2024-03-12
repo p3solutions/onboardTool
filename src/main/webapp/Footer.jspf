@@ -53,10 +53,38 @@ font-family:sans-serif;
 	<%@ page import="onboard.DBconnection"%>
 	<%@page import="org.owasp.encoder.Encode"%>
 	<%@ page import="java.util.ResourceBundle"%>
-	<%
-	ResourceBundle resource2 = ResourceBundle.getBundle("VersionInfo");
-	String versioninfo2 = resource2.getString("VERSION");
-	System.out.println("Version" + versioninfo2);
+	<%@ page import="java.util.Properties" %>
+	<%@ page import="java.io.FileInputStream" %>
+	<%@ page import="java.io.File" %>
+	<%@ page import="java.io.FileReader" %>
+	<%@ page import="java.io.InputStreamReader" %>
+	<%@ page import="java.io.IOException" %>
+	<%@ page import="java.io.InputStream" %>
+
+<%
+    Properties prop = new Properties();
+    String workingDir = System.getProperty("catalina.base") + File.separator + "D3Sixty_conf";
+    File versionFile = new File(workingDir, "VersionInfo.properties");
+    String versionInfo="";
+    try {
+        // Load Configuration.properties
+        if (versionFile.exists()) {
+            prop.load(new FileReader(versionFile));
+        } else {
+            // Load from resources folder using class loader
+            InputStream resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("VersionInfo.properties");
+            if (resourceStream != null) {
+                prop.load(new InputStreamReader(resourceStream));
+            } else {
+                throw new IOException("VersionInfo.properties file not found.");
+            }
+        }
+
+        versionInfo = prop.getProperty("VERSION");
+        System.out.println("Version Info :: " + versionInfo);    
+    } catch (IOException e) {
+        System.out.println(e.getMessage());
+    }
 	%>
 
 

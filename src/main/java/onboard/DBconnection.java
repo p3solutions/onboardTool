@@ -2,6 +2,7 @@ package onboard;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,8 +14,7 @@ import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig; 
 
 public class DBconnection{
-
-
+	private static final String D3SIXTY_CONF="D3Sixty_conf";
 	private Connection connection;
 	public  DBconnection() throws ClassNotFoundException, SQLException{
 
@@ -27,12 +27,20 @@ public class DBconnection{
 		String decPw=null;
 		InputStream resourceStream=null;
 		try {
-
-			ClassLoader loader = Thread.currentThread().getContextClassLoader();
 			Properties prop = new Properties();
-			String workingDir = System.getProperty("user.dir");
-			resourceStream = (InputStream) loader.getResourceAsStream("Configuration.properties");
-			prop.load(resourceStream);
+            String workingDir = System.getProperty("catalina.base")+File.separator+D3SIXTY_CONF;
+            File configFile = new File(workingDir, "Configuration.properties");
+            if (configFile.exists()) {
+                prop.load(new FileReader(configFile));
+            } else {
+                // Load from resources folder using class loader
+                resourceStream = getClass().getClassLoader().getResourceAsStream("Configuration.properties");
+                if (resourceStream != null) {
+                    prop.load(new InputStreamReader(resourceStream));
+                } else {
+                    throw new IOException("Configuration.properties file not found.");
+                }
+            }
 
 			Class.forName(prop.getProperty("DRIVER"));
 
@@ -58,7 +66,9 @@ public class DBconnection{
 		}
 		finally {
 			try {
+				if(resourceStream!=null) {
 				resourceStream.close();
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -77,14 +87,20 @@ public class DBconnection{
 		String decPw=null;
 		InputStream resourceStream=null;
 		try {
-
-			ClassLoader loader = Thread.currentThread().getContextClassLoader();
 			Properties prop = new Properties();
-			String workingDir = System.getProperty("user.dir");
-			resourceStream = (InputStream) loader.getResourceAsStream("Configuration.properties");
-
-			prop.load(resourceStream);
-
+            String workingDir = System.getProperty("catalina.base")+File.separator+D3SIXTY_CONF;
+            File configFile = new File(workingDir, "Configuration.properties");
+            if (configFile.exists()) {
+                prop.load(new FileReader(configFile));
+            } else {
+                // Load from resources folder using class loader
+                resourceStream = getClass().getClassLoader().getResourceAsStream("Configuration.properties");
+                if (resourceStream != null) {
+                    prop.load(new InputStreamReader(resourceStream));
+                } else {
+                    throw new IOException("Configuration.properties file not found.");
+                }
+            }
 			Class.forName(prop.getProperty("DRIVER"));
 
 			String dbcPw=prop.getProperty("Pw");
@@ -111,7 +127,9 @@ public class DBconnection{
 		}
 		finally {
 			try {
+				if(resourceStream!=null) {
 				resourceStream.close();
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

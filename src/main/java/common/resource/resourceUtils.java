@@ -1,6 +1,10 @@
 package common.resource;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Properties;
 
 import common.constant.EMAIL_SERVICE_CONSTANT;
@@ -14,16 +18,27 @@ public class resourceUtils {
 	}
 	
 	
-	public Properties loadProperties() {
+	public Properties loadProperties() throws IOException {
 		Properties properties = new Properties();
+		InputStream fileInput = null;
 		try {
-			InputStream fileInput = EmailApprovalService.class
-					.getResourceAsStream(path);
-			properties.load(fileInput);
-			fileInput.close();
+			String workingDir = System.getProperty("catalina.base") + File.separator
+					+ EMAIL_SERVICE_CONSTANT.D3SIXTY_CONF;
+			File configFile = new File(workingDir, "fileUpload.properties");
+			if (configFile.exists()) {
+				properties.load(new FileReader(configFile));
+			} else {
+				fileInput = EmailApprovalService.class.getResourceAsStream(path);
+				properties.load(fileInput);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if (fileInput != null) {
+				fileInput.close();
+			}
 		}
+
 		return properties;
 	}
-}
+	}
