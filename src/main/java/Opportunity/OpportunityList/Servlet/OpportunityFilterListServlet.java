@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
 import Opportunity.OpportunityList.Service.OpportunityFilterList;
+import logger.System;
 
 @WebServlet("/OpportunityFilterListServlet")
 public class OpportunityFilterListServlet extends HttpServlet {

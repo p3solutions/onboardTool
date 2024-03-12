@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 import com.google.gson.JsonObject;
 import onboard.DBconnection;
+import logger.System;
 public class ArchiveExeIssueRiskAddService {
     DBconnection dBconnection;
     Connection con;

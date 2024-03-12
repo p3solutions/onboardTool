@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+import logger.System;
 
     @WebServlet("/ReportServlet")
     public class ReportServlet extends HttpServlet {

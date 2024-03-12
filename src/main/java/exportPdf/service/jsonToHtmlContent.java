@@ -16,6 +16,7 @@ import IntakeDetails.IntakePreviewDetails.service.intakePreviewHtmlContentServic
 import NewArchiveRequirements.archiveRequirementReview.service.archivePreviewHtmlContentService;
 import common.constant.APPROVAL_CONSTANT;
 import common.constant.MODULE_NAME;
+import logger.System;
 
 public class jsonToHtmlContent {
 	private static StringBuffer buffer = null;

@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import governance.service.dynamicCreationService;
+import logger.System;
 
 @WebServlet("/dynamicWaveCreationServlet")
 public class dynamicWaveCreationServlet extends HttpServlet {

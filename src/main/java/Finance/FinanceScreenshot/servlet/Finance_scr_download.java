@@ -17,6 +17,7 @@ import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import logger.System;
 
 @WebServlet("/Finance_scr_download")
 public class Finance_scr_download  extends HttpServlet {

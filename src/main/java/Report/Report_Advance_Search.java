@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import logger.System;
 public class Report_Advance_Search {
     DBconnection dBconnection;
     Connection connection;

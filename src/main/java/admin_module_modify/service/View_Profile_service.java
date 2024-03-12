@@ -8,6 +8,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import onboard.DBconnection;
+import logger.System;
 
 public class View_Profile_service {
 	public JsonArray view_profile(String username) {

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import NewArchiveRequirements.documentRevisions.service.archiveReqDocRevDataRetrieveService;
+import logger.System;
 @WebServlet("/RevisionVersionServlet")
 public class RevisionVersionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

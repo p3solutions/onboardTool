@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import governance.service.governanceDeleteService;
+import logger.System;
 @WebServlet("/governanceDeleteServlet")
 
 public class governanceDeleteServlet extends HttpServlet {

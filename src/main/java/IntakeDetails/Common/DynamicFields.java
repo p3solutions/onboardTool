@@ -2,6 +2,7 @@ package IntakeDetails.Common;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import logger.System;
 
 public abstract class DynamicFields {
 

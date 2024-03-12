@@ -3,6 +3,7 @@ import java.util.Scanner;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig;
 import org.jasypt.salt.FixedSaltGenerator;
+import logger.System;
 public class jasyptenc {
     public static void main(String args[]) {
       StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();

@@ -22,6 +22,7 @@ import common.constant.EMAIL_SERVICE_CONSTANT;
 import common.constant.INTAKE_TABLE;
 import common.constant.MODULE_NAME;
 import onboard.DBconnection;
+import logger.System;
 public class EmailApprovalService extends EmailService {
     static Properties properties = new Properties();
     private Connection con = null;

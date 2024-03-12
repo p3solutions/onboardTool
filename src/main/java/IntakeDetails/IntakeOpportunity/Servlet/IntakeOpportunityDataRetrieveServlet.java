@@ -13,6 +13,7 @@ import com.google.gson.JsonArray;
 
 import IntakeDetails.IntakeOpportunity.Service.IntakeOpportunityService;
 import Opportunity.OpportunityList.Service.OpportunityListService;
+import logger.System;
 
 /**
  * Servlet implementation class IntakeOpportunityDataRetrieveServlet

@@ -18,6 +18,7 @@ import com.google.gson.JsonObject;
 import IntakeDetails.IntakeAssessment.service.IntakeAssessmentService;
 import IntakeDetails.IntakeTriage.Service.IntakeTriageService;
 import onboard.DBconnection;
+import logger.System;
 
 /**
  * Servlet implementation class IntakeAssessmentAddFeatureServlet

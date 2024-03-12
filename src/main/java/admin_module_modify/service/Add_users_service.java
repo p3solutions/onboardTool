@@ -8,6 +8,7 @@ import java.util.UUID;
 import java.security.*;
 import com.google.gson.JsonObject;
 import onboard.DBconnection;
+import logger.System;
 public class Add_users_service {
 	public static JsonObject add_users(String uname,String ufname,String ulname,String u_email,String u_pwd,String u_role) {
 		JsonObject jsonobj = new JsonObject();

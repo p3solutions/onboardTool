@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import NewArchiveRequirements.LegacyApplicationInfo.ArchiveEnvironmentInfo.Service.archiveEnvironmentAddService;
 import NewArchiveRequirements.documentRevisions.service.archiveReqDocRevAddService;
+import logger.System;
 /**
  * Servlet implementation class archiveReqDecRevAddServlet
  */

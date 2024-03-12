@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
 import IntakeDetails.IntakeAssessment.service.IntakeAssessmentService;
+import logger.System;
 
 /**
  * Servlet implementation class IntakeAssessmentContractInformationServlet

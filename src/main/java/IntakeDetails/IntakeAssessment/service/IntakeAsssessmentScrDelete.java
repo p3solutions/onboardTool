@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import com.google.gson.JsonObject;
 
 import onboard.DBconnection;
+import logger.System;
 
 public class IntakeAsssessmentScrDelete {
 	 public static JsonObject delete_screenshots(String Id,String File_Name) {

@@ -19,6 +19,7 @@ import com.google.gson.JsonParser;
 import IntakeDetails.IntakeAssessment.service.IntakeAssessmentSaveFunctionalityService;
 import IntakeDetails.IntakeTriage.Service.IntakeTriageService;
 import IntakeDetails.IntakeTriageSummary.service.IntakeTriageSummaryService;
+import logger.System;
 
 /**
  * Servlet implementation class IntakeAssessmentSaveServlet

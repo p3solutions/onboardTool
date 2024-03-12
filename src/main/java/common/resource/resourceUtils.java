@@ -9,6 +9,7 @@ import java.util.Properties;
 
 import common.constant.EMAIL_SERVICE_CONSTANT;
 import common.email.service.EmailApprovalService;
+import logger.System;
 
 public class resourceUtils {
 	

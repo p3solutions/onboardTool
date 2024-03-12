@@ -31,6 +31,7 @@ import onboard.DBconnection;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Properties;
+import logger.System;
 
 /**
  * Servlet implementation class legacyApplicationScreenshotsUpload

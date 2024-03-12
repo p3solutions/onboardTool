@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import logger.System;
 
 /**
  * Servlet implementation class ArchiveExeIssueTemplateServlet1

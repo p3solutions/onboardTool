@@ -12,6 +12,7 @@ import com.google.gson.JsonObject;
 
 
 import onboard.DBconnection;
+import logger.System;
 
 public class Legacy_App_Scr_Retrieve {
 	public JsonArray screenshot_retrieve(String Id) {

@@ -13,6 +13,7 @@ import com.google.gson.JsonObject;
 
 import NewArchiveRequirements.LegacyApplicationInfo.ArchiveEnvironmentInfo.Service.archiveEnvironmentDeleteService;
 import NewArchiveRequirements.documentRevisions.service.archiveReqDocRevDeleteService;
+import logger.System;
 
 /**
  * Servlet implementation class archiveReqDocRevDeleteServlet

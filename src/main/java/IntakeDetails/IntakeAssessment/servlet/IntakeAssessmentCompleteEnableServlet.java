@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import IntakeDetails.IntakeAssessment.service.IntakeAssessmentCompleteEnableService;
+import logger.System;
 
 @WebServlet("/IntakeAssessmentCompleteEnableServlet1")
 public class IntakeAssessmentCompleteEnableServlet extends HttpServlet { 

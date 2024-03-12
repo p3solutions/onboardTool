@@ -11,6 +11,7 @@ import com.google.gson.JsonObject;
 
 import IntakeDetails.Common.DynamicFields;
 import onboard.DBconnection;
+import logger.System;
 
 public class IntakeAssessmentService extends DynamicFields {
 	

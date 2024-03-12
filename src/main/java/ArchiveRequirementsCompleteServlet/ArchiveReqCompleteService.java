@@ -8,6 +8,7 @@ import java.sql.Statement;
 import com.google.gson.JsonObject;
 
 import onboard.DBconnection;
+import logger.System;
 
 public class ArchiveReqCompleteService {
 	

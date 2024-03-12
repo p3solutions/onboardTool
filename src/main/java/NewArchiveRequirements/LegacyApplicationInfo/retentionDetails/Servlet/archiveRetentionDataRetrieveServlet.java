@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
 import NewArchiveRequirements.LegacyApplicationInfo.retentionDetails.Service.archiveRetentionDataRetrieve;
+import logger.System;
 
 /**
  * Servlet implementation class archiveRetentionDataRetrieveServlet

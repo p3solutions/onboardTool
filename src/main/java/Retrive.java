@@ -21,6 +21,7 @@ import org.owasp.encoder.Encode;
 import onboard.DBconnection;
 
 import java.sql.Statement;
+import logger.System;
 
 /**
  * Servlet implementation class Retrive

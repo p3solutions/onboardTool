@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import ArchiveExecutionModule.ArchiveExecutionDetails.service.ArchiveExecutionDetailService;
+import logger.System;
 /**
  * Servlet implementation class ArchiveExecutionInfoDataRetrieveServlet
  */

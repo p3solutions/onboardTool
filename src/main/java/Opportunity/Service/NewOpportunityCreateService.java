@@ -11,6 +11,7 @@ import onboard.DBconnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import logger.System;
 
 public class NewOpportunityCreateService {
 

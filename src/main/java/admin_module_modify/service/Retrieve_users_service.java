@@ -6,6 +6,7 @@ import java.sql.Statement;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import onboard.DBconnection;
+import logger.System;
 public class Retrieve_users_service {
     public JsonArray retrieve_users() {
     	PreparedStatement st=null;

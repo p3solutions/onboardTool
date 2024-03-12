@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import org.owasp.encoder.Encode;
 
 import onboard.DBconnection;
+import logger.System;
 
 /**
  * Servlet implementation class Intake_scr_Download

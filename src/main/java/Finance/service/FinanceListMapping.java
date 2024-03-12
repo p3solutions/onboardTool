@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import logger.System;
 
 public class FinanceListMapping {
     protected void FinanceMapping(ResultSet rs, JsonArray jsonArray) throws SQLException {

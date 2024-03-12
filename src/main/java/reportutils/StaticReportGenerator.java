@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static net.sf.dynamicreports.report.builder.DynamicReports.*;
+import logger.System;
 
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;

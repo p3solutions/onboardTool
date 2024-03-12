@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import NewArchiveRequirements.LegacyApplicationInfo.Service.archiveLegacyAppInfoEditService;
+import logger.System;
 
 /**
  * Servlet implementation class archiveLegacyAppInfoEditServlet

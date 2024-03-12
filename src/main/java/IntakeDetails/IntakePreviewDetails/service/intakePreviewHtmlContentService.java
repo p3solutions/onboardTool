@@ -11,6 +11,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import exportPdf.service.jsonToHtmlContent;
+import logger.System;
 
 public class intakePreviewHtmlContentService  extends jsonToHtmlContent{
 

@@ -21,6 +21,7 @@ import org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig;
 
 import common.bean.Mailbean;
 import common.constant.EMAIL_SERVICE_CONSTANT;
+import logger.System;
 
 public class EmailService {
 	static String mailPwd=null;

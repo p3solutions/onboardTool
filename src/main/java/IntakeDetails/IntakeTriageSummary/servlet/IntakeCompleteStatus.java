@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.IOException;
 import IntakeDetails.IntakeTriageSummary.service.IntakeTriageSummaryService;
+import logger.System;
 
 @WebServlet("/IntakeCompleteStatus")
 

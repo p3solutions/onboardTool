@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.owasp.encoder.Encode;
 import File_Utility.FileUtils;
+import logger.System;
 
 @WebServlet("/downloadPDFservlet")
 public class downloadPDFservlet extends HttpServlet {

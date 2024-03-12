@@ -9,6 +9,7 @@ import onboard.DBconnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import logger.System;
 
 public class IntakeTriageService extends DynamicFields {
 

@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import logger.System;
 
 public class FinanceAddAppInfoDeleteService {
     DBconnection dBconnection;

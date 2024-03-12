@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import onboard.DBconnection;
+import logger.System;
 
 /**
  * Servlet implementation class dynamic_addition

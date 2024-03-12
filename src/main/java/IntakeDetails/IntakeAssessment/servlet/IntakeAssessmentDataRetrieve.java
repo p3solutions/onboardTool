@@ -15,6 +15,7 @@ import com.google.gson.JsonArray;
 
 import IntakeDetails.IntakeAssessment.service.IntakeAssessmentService;
 import IntakeDetails.IntakeOpportunity.Service.IntakeOpportunityService;
+import logger.System;
 
 /**
  * Servlet implementation class IntakeAssessmentDataRetrieve

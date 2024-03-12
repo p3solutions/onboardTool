@@ -16,6 +16,7 @@ import com.google.gson.JsonObject;
 import IntakeDetails.IntakeAssessment.service.IntakeAssessmentEditDeleteFeatureService;
 import IntakeDetails.IntakeAssessment.service.IntakeAssessmentService;
 import IntakeDetails.IntakeTriageSummary.service.IntakeTriageSummaryService;
+import logger.System;
 
 /**
  * Servlet implementation class IntakeAssessmentDeleteFeature

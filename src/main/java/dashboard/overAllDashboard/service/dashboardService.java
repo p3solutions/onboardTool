@@ -19,6 +19,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.itextpdf.styledxmlparser.jsoup.nodes.Entities;
 import onboard.DBconnection;
+import logger.System;
 public class dashboardService {
         List<String> mainList = new LinkedList<String>();
     DBconnection dBconnection = null;

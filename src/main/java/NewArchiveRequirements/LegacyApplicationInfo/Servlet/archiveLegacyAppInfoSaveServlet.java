@@ -17,6 +17,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import NewArchiveRequirements.LegacyApplicationInfo.Service.archiveLegacyAppInfoSaveService;
+import logger.System;
 
 /**
  * Servlet implementation class archiveLegacyAppInfoSaveServlet

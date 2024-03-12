@@ -26,6 +26,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 import java.util.Properties;
+import logger.System;
 
 @WebServlet("/FinanceScreenShotUpload")
 public class FinanceScreenShotUploadServlet extends HttpServlet {

@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
 import governance.wave.service.waveListService;
+import logger.System;
 
 @WebServlet("/waveListServlet")
 

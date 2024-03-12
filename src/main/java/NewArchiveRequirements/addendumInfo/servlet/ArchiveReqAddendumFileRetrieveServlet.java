@@ -13,6 +13,7 @@ import com.google.gson.JsonArray;
 
 import NewArchiveRequirements.LegacyApplicationInfo.legacyAppScreenshot.service.Legacy_App_Scr_Retrieve;
 import NewArchiveRequirements.addendumInfo.service.ArchiveReqAddendumFileRetrieveService;
+import logger.System;
 
 /**
  * Servlet implementation class Legacy_App_Scr_Retrieve_Servlet

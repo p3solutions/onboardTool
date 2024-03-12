@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import common.constant.MODULE_NAME;
 import common.email.service.EmailApprovalService;
+import logger.System;
 @WebServlet("/EmailApproval")
 public class EmailApproval extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

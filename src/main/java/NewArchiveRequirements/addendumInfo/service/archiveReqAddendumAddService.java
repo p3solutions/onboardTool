@@ -9,6 +9,7 @@ import com.google.gson.JsonObject;
 import java.sql.Connection;
 
 import onboard.DBconnection;
+import logger.System;
 
 public class archiveReqAddendumAddService {
 

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.sql.Connection;
 
 import onboard.DBconnection;
+import logger.System;
 
 public class phaseDeleteService {
 	DBconnection dBconnection;

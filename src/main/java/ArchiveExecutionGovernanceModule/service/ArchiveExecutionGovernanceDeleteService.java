@@ -13,6 +13,7 @@ import java.util.Date;
 import com.google.gson.JsonArray;
 
 import onboard.DBconnection;
+import logger.System;
 
 public class ArchiveExecutionGovernanceDeleteService {
 

@@ -15,6 +15,7 @@ import com.google.gson.JsonArray;
 
 import NewArchiveRequirements.LegacyApplicationInfo.ArchiveEnvironmentInfo.Service.archiveEnvironmentNameDataRetrieveService;
 import NewArchiveRequirements.LegacyApplicationInfo.Service.archiveReqLegacyDataRetrieveService;
+import logger.System;
 
 /**
  * Servlet implementation class archiveEnvironmentNameDataRetrieveServlet

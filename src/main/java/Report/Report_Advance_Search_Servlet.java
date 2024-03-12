@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
+import logger.System;
 
 @WebServlet("/Report_Advance_Search_Servlet")
 public class Report_Advance_Search_Servlet extends HttpServlet {

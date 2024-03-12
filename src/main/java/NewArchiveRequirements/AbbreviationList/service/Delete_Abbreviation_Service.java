@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import com.google.gson.JsonObject;
 import onboard.DBconnection;
+import logger.System;
 public class Delete_Abbreviation_Service {
     public static JsonObject delete_abbreviation(String random_id) {
         JsonObject jsonobj = new JsonObject();

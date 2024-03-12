@@ -24,6 +24,7 @@ import org.owasp.encoder.Encode;
 
 import onboard.DBconnection;
 
+import logger.System;
 /**
  * Servlet implementation class ajx
  */

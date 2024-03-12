@@ -9,6 +9,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import onboard.DBconnection;
+import logger.System;
 
 public class IntakeAssessmentCompleteEnableService {
 

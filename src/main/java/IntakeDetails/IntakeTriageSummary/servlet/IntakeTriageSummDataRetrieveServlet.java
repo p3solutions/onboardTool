@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
 import IntakeDetails.IntakeTriageSummary.service.IntakeTriageSummaryService;
+import logger.System;
 
 /**
  * Servlet implementation class IntakeTriageSummDataRetrieveServlet

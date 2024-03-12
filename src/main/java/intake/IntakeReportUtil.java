@@ -6,6 +6,7 @@ import reportutils.ReportPojo;
 
 import java.util.LinkedList;
 import java.util.List;
+import logger.System;
 
 public class IntakeReportUtil {
 

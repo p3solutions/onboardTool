@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
 import NewArchiveRequirements.LegacyApplicationInfo.legacyAppScreenshot.service.Legacy_App_Scr_Retrieve;
+import logger.System;
 
 /**
  * Servlet implementation class Legacy_App_Scr_Retrieve_Servlet

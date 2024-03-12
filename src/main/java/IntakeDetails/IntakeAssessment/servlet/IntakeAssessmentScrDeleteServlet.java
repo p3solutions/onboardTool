@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import IntakeDetails.IntakeAssessment.service.IntakeAsssessmentScrDelete;
+import logger.System;
 
 /**
  * Servlet implementation class IntakeAssessmentScrDeleteServlet

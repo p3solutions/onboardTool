@@ -6,6 +6,7 @@ import java.sql.Statement;
 import com.google.gson.JsonObject;
 import java.sql.Connection;
 import onboard.DBconnection;
+import logger.System;
 public class archiveReqDocRevAddService {
     DBconnection dBconnection;
     Connection con;

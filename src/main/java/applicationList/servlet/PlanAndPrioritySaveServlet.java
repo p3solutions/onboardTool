@@ -12,6 +12,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import applicationList.service.PlanAndPrioritySaveService;
+import logger.System;
 @WebServlet("/PlanAndPrioritySaveServlet")
 public class PlanAndPrioritySaveServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;

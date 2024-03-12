@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
 import governance.service.selectCategory;
+import logger.System;
 @WebServlet("/selectCategoryServlet")
 public class selectCategoryServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

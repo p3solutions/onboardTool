@@ -26,6 +26,7 @@ import common.constant.INTAKE_SECTIONS;
 import common.constant.INTAKE_TABLE;
 import common.constant.MODULE_NAME;
 import onboard.DBconnection;
+import logger.System;
 
 public class documentUploadService {
 

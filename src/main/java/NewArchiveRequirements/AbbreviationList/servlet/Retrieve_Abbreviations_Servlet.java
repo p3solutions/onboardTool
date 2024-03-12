@@ -13,6 +13,7 @@ import com.google.gson.JsonArray;
 
 import NewArchiveRequirements.AbbreviationList.service.Retrieve_Abbreviations_Service;
 import admin_module_modify.service.Retrieve_users_service;
+import logger.System;
 
 /**
  * Servlet implementation class AbbreviationRetrieveServlet

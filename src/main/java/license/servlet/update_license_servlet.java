@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import license.service.update_license;
+import logger.System;
 
 /**
  * Servlet implementation class update_license_servlet

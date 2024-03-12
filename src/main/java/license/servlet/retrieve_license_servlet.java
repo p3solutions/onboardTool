@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
 import license.service.retrieve_license_info;
+import logger.System;
 
 /**
  * Servlet implementation class retrieve_license_servlet

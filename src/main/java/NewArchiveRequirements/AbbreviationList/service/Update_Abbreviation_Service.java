@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import com.google.gson.JsonObject;
 import onboard.DBconnection;
+import logger.System;
 public class Update_Abbreviation_Service {
     public static JsonObject update_Abbreviation(String app_id,String random_id,String abbreviation_acronym_modify,String description_modify) {
         JsonObject jsonobj = new JsonObject();

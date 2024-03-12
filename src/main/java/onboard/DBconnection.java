@@ -11,7 +11,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
-import org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig; 
+import org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig;
+import logger.System;
 
 public class DBconnection{
 	private static final String D3SIXTY_CONF="D3Sixty_conf";

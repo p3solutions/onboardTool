@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import com.google.gson.JsonObject;
 import onboard.DBconnection;
+import logger.System;
 public class Delete_users_service {
     public static JsonObject delete_users(String random_id) {
         JsonObject jsonobj = new JsonObject();

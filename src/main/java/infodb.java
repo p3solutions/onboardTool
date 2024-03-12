@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import onboard.DBconnection;
+import logger.System;
 
 /**
  * Servlet implementation class infodb

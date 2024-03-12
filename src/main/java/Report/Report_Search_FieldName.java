@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import logger.System;
 
 @WebServlet("/Report_Search_FieldName")
 public class Report_Search_FieldName extends HttpServlet {

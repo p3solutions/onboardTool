@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import logger.System;
 @WebServlet("/ArchiveIntroCompleteStatusServlet")
 public class ArchiveIntroCompleteStatusServlet  extends HttpServlet {
 	

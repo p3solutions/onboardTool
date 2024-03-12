@@ -16,6 +16,7 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 import org.apache.log4j.MDC;
+import logger.System;
 /**
  * Servlet implementation class Logout
  */

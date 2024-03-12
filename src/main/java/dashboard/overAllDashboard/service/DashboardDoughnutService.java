@@ -11,6 +11,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import onboard.DBconnection;
+import logger.System;
 public class DashboardDoughnutService {
     DBconnection dBconnection = null;
     Connection con = null;

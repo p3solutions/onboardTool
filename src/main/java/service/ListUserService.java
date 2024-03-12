@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
+import logger.System;
 
 public class ListUserService {
     final static Logger logger = Logger.getLogger(ListUserService.class);

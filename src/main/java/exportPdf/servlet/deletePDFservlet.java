@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import File_Utility.FileUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import logger.System;
 
 @WebServlet("/deletePDFservlet")
 public class deletePDFservlet extends HttpServlet {

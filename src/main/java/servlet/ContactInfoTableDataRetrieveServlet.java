@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.Console;
 import java.io.IOException;
+import logger.System;
 
 @WebServlet("/ContactInfoTableDataRetrieveServlet")
 public class ContactInfoTableDataRetrieveServlet extends HttpServlet {

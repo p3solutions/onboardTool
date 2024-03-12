@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import dashboard.overAllDashboard.service.dashboardService;
+import logger.System;
 
 @WebServlet("/FilteredApplicationServlet")
 public class FilteredApplicationServlet extends HttpServlet { 

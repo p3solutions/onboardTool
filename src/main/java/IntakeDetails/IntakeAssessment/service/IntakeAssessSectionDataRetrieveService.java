@@ -12,6 +12,7 @@ import com.google.gson.JsonObject;
 import com.sun.jersey.core.impl.provider.entity.XMLJAXBElementProvider.App;
 
 import onboard.DBconnection;
+import logger.System;
 
 public class IntakeAssessSectionDataRetrieveService {
     DBconnection dBconnection =null;

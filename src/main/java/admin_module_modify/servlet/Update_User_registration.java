@@ -17,6 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import logger.System;
 
 /**
  * Servlet implementation class user_registration

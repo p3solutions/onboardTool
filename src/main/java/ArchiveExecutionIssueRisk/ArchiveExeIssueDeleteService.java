@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import com.google.gson.JsonObject;
 import onboard.DBconnection;
+import logger.System;
 public class ArchiveExeIssueDeleteService {
     DBconnection dBconnection;
     Connection con;

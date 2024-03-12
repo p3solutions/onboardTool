@@ -8,6 +8,7 @@ import java.util.UUID;
 import java.security.*;
 import com.google.gson.JsonObject;
 import onboard.DBconnection;
+import logger.System;
 public class Add_Abbreviation_Service {
 	public static JsonObject add_Abbreviation(String app_id,String abbreviation_acronym,String description) {
 		JsonObject jsonobj = new JsonObject();

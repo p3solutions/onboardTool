@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import logger.System;
 /**
  * Servlet implementation class archiveLegacyAppInfoDeleteServlet
  */

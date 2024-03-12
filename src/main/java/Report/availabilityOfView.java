@@ -3,6 +3,7 @@ package Report;
 import onboard.DBconnection;
 
 import java.sql.*;
+import logger.System;
 
 public class availabilityOfView {
     private DBconnection dBconnection;

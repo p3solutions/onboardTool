@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import logger.System;
 
 public class ReportMapping {
      protected void reportMapping1(ResultSet rs, JsonArray jsonArray) throws SQLException {

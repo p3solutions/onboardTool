@@ -47,6 +47,7 @@ import net.sf.dynamicreports.report.constant.FontName;
 import onboard.DBconnection;
 import com.itextpdf.kernel.font.PdfFont;
 import File_Utility.FileUtils;
+import logger.System;
 public class exportPdfService extends jsonToHtmlContent {
     DBconnection dBconnection = null;
     Connection con = null;

@@ -5,6 +5,7 @@ import onboard.DBconnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import logger.System;
 
 public class Finance_App_Scr_Delete {
     public static JsonObject delete_screenshots(String Id, String File_Name) {

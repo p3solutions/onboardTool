@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import NewArchiveRequirements.LegacyApplicationInfo.legacyAppScreenshot.service.Legacy_App_Scr_Delete;
+import logger.System;
 
 /**
  * Servlet implementation class Legacy_App_Scr_DeleteServlet

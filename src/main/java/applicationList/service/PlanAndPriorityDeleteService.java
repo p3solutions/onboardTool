@@ -11,6 +11,7 @@ import java.util.UUID;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import onboard.DBconnection;
+import logger.System;
 public class PlanAndPriorityDeleteService {
          DBconnection dBconnection = null;
         Connection con = null;

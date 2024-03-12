@@ -15,6 +15,7 @@ import com.google.gson.JsonArray;
 
 import NewArchiveRequirements.addendumInfo.service.archiveReqAddendumDataRetrieveService;
 import NewArchiveRequirements.documentRevisions.service.archiveReqDocRevDataRetrieveService;
+import logger.System;
 
 /**
  * Servlet implementation class archiveReqAddendumDataRetrieveServlet

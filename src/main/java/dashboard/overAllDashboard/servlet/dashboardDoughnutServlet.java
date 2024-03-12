@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import dashboard.overAllDashboard.service.DashboardDoughnutService;
+import logger.System;
 @WebServlet("/dashboardDoughnutServlet")
 public class dashboardDoughnutServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;

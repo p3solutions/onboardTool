@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import logger.System;
 
 @WebServlet("/Finance_Scr_Retrieve_Servlet")
 public class Finance_Scr_Retrieve_Servlet  extends HttpServlet {

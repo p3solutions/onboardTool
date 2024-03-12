@@ -15,6 +15,7 @@ import com.google.gson.JsonObject;
 
 import Opportunity.OpportunityList.Servlet.OpportunityListServlet;
 import onboard.DBconnection;
+import logger.System;
 
 public class OpportunityFilterList {
 

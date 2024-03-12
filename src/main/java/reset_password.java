@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.owasp.encoder.Encode;
+import logger.System;
 
 /**
  * Servlet implementation class reset_password

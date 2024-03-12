@@ -7,6 +7,7 @@ import onboard.DBconnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import logger.System;
 
 public class Finance_Screen_Retrieve {
     public JsonArray screenshot_retrieve(String Id) {

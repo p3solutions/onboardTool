@@ -22,6 +22,7 @@ import com.google.gson.JsonObject;
 
 
 import exportPdf.service.jsonToHtmlContent;
+import logger.System;
 
 public class archivePreviewHtmlContentService extends jsonToHtmlContent {
 	  

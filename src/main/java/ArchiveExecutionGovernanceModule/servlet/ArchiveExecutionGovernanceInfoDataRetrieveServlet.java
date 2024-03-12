@@ -15,6 +15,7 @@ import com.google.gson.JsonArray;
 
 import ArchiveExecutionGovernanceModule.service.ArchiveExecutionGovernanceDetailService;
 import ArchiveExecutionModule.ArchiveExecutionDetails.service.ArchiveExecutionDetailService;
+import logger.System;
 @WebServlet("/ArchiveExecutionGovernanceInfoDataRetrieveServlet")
 public class ArchiveExecutionGovernanceInfoDataRetrieveServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

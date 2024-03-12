@@ -12,6 +12,7 @@ import com.google.gson.JsonObject;
 
 
 import onboard.DBconnection;
+import logger.System;
 
 public class ArchiveReqAddendumFileRetrieveService {
 	public JsonArray file_retrieve(String Id,String Section_no) {

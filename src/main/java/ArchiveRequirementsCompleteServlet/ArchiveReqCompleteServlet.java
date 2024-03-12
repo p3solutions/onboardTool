@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import logger.System;
 
 @WebServlet("/ArchiveReqCompleteServlet")
 public class ArchiveReqCompleteServlet extends HttpServlet {

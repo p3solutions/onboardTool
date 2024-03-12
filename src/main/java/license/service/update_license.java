@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import java.security.*;
 import com.google.gson.JsonObject;
 import onboard.DBconnection;
+import logger.System;
 public class update_license {
     public static JsonObject license_update(String license_info, String last_update_date) throws EncryptionOperationNotPossibleException {
         JsonObject jsonobj = new JsonObject();

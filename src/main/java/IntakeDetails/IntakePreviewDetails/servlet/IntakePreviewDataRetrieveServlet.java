@@ -15,6 +15,7 @@ import com.google.gson.JsonArray;
 
 import IntakeDetails.IntakePreviewDetails.service.IntakePreviewDetailsService;
 import IntakeDetails.IntakeTriageSummary.service.IntakeTriageSummaryService;
+import logger.System;
 
 @WebServlet("/IntakePreviewDataRetrieveServlet")
 public class IntakePreviewDataRetrieveServlet extends HttpServlet {

@@ -11,6 +11,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import Opportunity.OpportunityBean;
 import onboard.DBconnection;
+import logger.System;
 public class NewOpportunityService {
     public static JsonArray OpportunityDataRetrieve() {
         JsonArray jsonArray = null;

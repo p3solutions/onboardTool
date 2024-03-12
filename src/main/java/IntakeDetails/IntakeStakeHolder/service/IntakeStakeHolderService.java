@@ -16,6 +16,7 @@ import common.constant.APPROVAL_CONSTANT;
 import common.constant.MODULE_NAME;
 import common.email.service.EmailApprovalService;
 import onboard.DBconnection;
+import logger.System;
 
 public class IntakeStakeHolderService extends  DynamicFields
 {

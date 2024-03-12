@@ -12,6 +12,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import onboard.DBconnection;
+import logger.System;
 public class retrieve_license_info {
 	public JsonArray retrieve_license_details() {
 		PreparedStatement st=null;

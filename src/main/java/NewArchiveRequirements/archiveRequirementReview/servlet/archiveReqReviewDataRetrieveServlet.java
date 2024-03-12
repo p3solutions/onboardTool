@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
 import NewArchiveRequirements.archiveRequirementReview.service.archiveReqReviewService;
+import logger.System;
 @WebServlet("/archiveReqReviewDataRetrieveServlet")
 
 public class archiveReqReviewDataRetrieveServlet extends HttpServlet {
