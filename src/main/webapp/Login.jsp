@@ -522,13 +522,14 @@ font-family:sans-serif;
     String authType="";
     String ssoLoginUrl="";
     String versionInfo="";
+    InputStream resourceStream=null;
     try {
         // Load Configuration.properties
         if (configFile.exists()) {
             prop.load(new FileReader(configFile));
         } else {
             // Load from resources folder using class loader
-            InputStream resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("Configuration.properties");
+             resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("Configuration.properties");
             if (resourceStream != null) {
                 prop.load(new InputStreamReader(resourceStream));
             } else {
@@ -546,7 +547,7 @@ font-family:sans-serif;
             prop.load(new FileReader(versionFile));
         } else {
             // Load from resources folder using class loader
-            InputStream resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("VersionInfo.properties");
+            resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("VersionInfo.properties");
             if (resourceStream != null) {
                 prop.load(new InputStreamReader(resourceStream));
             } else {
