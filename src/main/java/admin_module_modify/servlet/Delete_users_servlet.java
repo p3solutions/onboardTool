@@ -7,14 +7,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import admin_module_modify.service.Delete_users_service;
 import admin_module_modify.service.Update_users_service;
+import org.apache.log4j.Logger;
+
 /**
  * Servlet implementation class Delete_users_servlet
  */
 @WebServlet("/Delete_users_servlet")
 public class Delete_users_servlet extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
     /**
      * @see HttpServlet#HttpServlet()
@@ -38,13 +42,15 @@ public class Delete_users_servlet extends HttpServlet {
         HttpSession details = request.getSession();
         //int seq_num = Integer.parseInt(request.getParameter("seq_num"))+1;
         String random_id=request.getParameter("random_id");
+        String userName = (String) details.getAttribute("username");
         System.out.println("Random ID : "+random_id);
-        JsonObject jsonObj =Delete_users_service.delete_users(random_id);
-         String json = new Gson().toJson(jsonObj);
+        JsonArray jsonArray =Delete_users_service.delete_users(random_id,userName);
+
+         String json = new Gson().toJson(jsonArray);
          System.out.println("JSON"+json);
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(json);
-        doGet(request, response);
+//        doGet(request, response);
     }
 }
