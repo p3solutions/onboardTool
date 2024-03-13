@@ -8,493 +8,174 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<script src="js/jquery/jquery-2.2.4.min.js"></script>
-
-<!-- ========== COMMON STYLES ========== -->
-<link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
-<link rel="stylesheet" href="css/font-awesome.min.css" media="screen">
-<link rel="stylesheet" href="css/animate-css/animate.min.css"
-	media="screen">
-<link rel="stylesheet" href="css/lobipanel/lobipanel.min.css"
-	media="screen">
-
-<!-- ========== PAGE STYLES ========== -->
-<link rel="stylesheet" href="css/prism/prism.css" media="screen">
-<link rel="stylesheet" href="css/toastr/toastr.min.css" media="screen">
-<link rel="stylesheet" href="css/icheck/skins/line/blue.css">
-<link rel="stylesheet" href="css/icheck/skins/line/red.css">
-<link rel="stylesheet" href="css/icheck/skins/line/green.css">
-<link rel="stylesheet" href="css/bootstrap-tour/bootstrap-tour.css">
-<link rel="icon" type="image/png" href="assets/img/favicon.ico">
-
-<!-- ========== THEME CSS ========== -->
-<link rel="stylesheet" href="css/main.css" media="screen">
-<link rel="stylesheet" href="css/UserInfo/userinfo.css">
-
-<!-- ========== Header Icon ========== -->
-<link rel="stylesheet"
-	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
-<link rel="stylesheet" href="css/headerIcon/headerIcon.css"
-	media="screen">
-
-<link rel="stylesheet" href="css/Responsive/intake-opportunity.css"
-	media="screen">
-<link rel="stylesheet" href="css/Responsive/responsive.css"
-	media="screen">
-<!-- ========== MODERNIZR ========== -->
-<script src="js/modernizr/modernizr.min.js"></script>
-
-<script src="js/multiplepages.js"></script>
+	<!-- ========== SELECT TAG IMPORT ========== -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
+		  referrerpolicy="no-referrer" />
 
 <!-- ========== COMMON JS FILES ========== -->
 <script src="js/jquery/jquery-2.2.4.min.js"></script>
-<script src="js/jquery-ui/jquery-ui.min.js"></script>
-<script src="js/bootstrap/bootstrap.min.js"></script>
-<script src="js/pace/pace.min.js"></script>
-<script src="js/lobipanel/lobipanel.min.js"></script>
-<script src="js/iscroll/iscroll.js"></script>
-
-<!-- ========== PAGE JS FILES ========== -->
-<script src="js/prism/prism.js"></script>
-<script src="js/waypoint/waypoints.min.js"></script>
-<script src="js/counterUp/jquery.counterup.min.js"></script>
-<script src="js/amcharts/amcharts.js"></script>
-<script src="js/amcharts/serial.js"></script>
-<script src="js/amcharts/plugins/export/export.min.js"></script>
-<link rel="stylesheet" href="js/amcharts/plugins/export/export.css"
-	type="text/css" media="all" />
-<script src="js/amcharts/themes/light.js"></script>
-<script src="js/toastr/toastr.min.js"></script>
-<script src="js/icheck/icheck.min.js"></script>
-<script src="js/bootstrap-tour/bootstrap-tour.js"></script>
-
-<!-- ========== THEME JS ========== -->
-<script src="js/production-chart.js"></script>
-<script src="js/traffic-chart.js"></script>
-<script src="js/task-list.js"></script>
-
-<!-- ========== THEME JS ========== -->
-<script src="js/main.js"></script>
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="./Bootstrap/Admin_userlist.css">
+<%--	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>--%>
 
 </head>
 <style>
-#overlay {
-	position: fixed;
-	top: 0;
-	z-index: 100;
-	width: 1400px;
-	height: 100%;
-	display: none;
-}
-
-.cv-spinner {
-	height: 62rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.pagination li:hover {
-	cursor: pointer;
-}
-
-.pagination1 li:hover {
-	cursor: pointer;
-}
-
-.spinner {
-	width: 60px;
-	height: 60px;
-	margin-right: 15rem;
-	margin-left: -3.5rem;
-	border: 8px #ddd solid;
-	border-top: 8px #2e93e6 solid;
-	border-radius: 50%;
-	animation: sp-anime 0.8s infinite linear;
-}
-
-@
--webkit-keyframes sp-anime { 0% {
-	-webkit-transform: rotate(0deg);
-}
-
-100
-
-
-
-
-%
-{
--webkit-transform
-
-
-
-
-:
-
-
-
-
-rotate
-
-
-(
-
-
-
-
-360deg
-
-
-
-
-)
-
-
-;
-}
-}
-@
-keyframes sp-anime { 0% {
-	transform: rotate(0deg);
-}
-
-100
-
-
-
-
-%
-{
-transform
-
-
-
-
-:
-
-
-
-
-rotate
-
-
-(
-
-
-
-
-360deg
-
-
-
-
-)
-
-
-;
-}
-}
-}
-.is-hide {
-	display: none;
-}
-
-#overlay1 {
-	position: fixed;
-	top: 0;
-	z-index: 100;
-	width: 1400px;
-	height: 100%;
-	display: none;
-}
-
-.cv-spinner1 {
-	height: 62rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.spinner1 {
-	width: 60px;
-	height: 60px;
-	margin-right: 15rem;
-	margin-left: -3.5rem;
-	border: 8px #ddd solid;
-	border-top: 8px #2e93e6 solid;
-	border-radius: 50%;
-	animation: sp-anime1 0.8s infinite linear;
-}
-
-@
--webkit-keyframes sp-anime1 { 0% {
-	-webkit-transform: rotate(0deg);
-}
-
-100
-
-
-
-
-%
-{
--webkit-transform
-
-
-
-
-:
-
-
-
-
-rotate
-
-
-(
-
-
-
-
-360deg
-
-
-
-
-)
-
-
-;
-}
-}
-@
-keyframes sp-anime1 { 0% {
-	transform: rotate(0deg);
-}
-
-100
-
-
-
-
-%
-{
-transform
-
-
-
-
-:
-
-
-
-
-rotate
-
-
-(
-
-
-
-
-360deg
-
-
-
-
-)
-
-
-;
-}
-}
-}
-.is-hide1 {
-	display: none;
-}
-
-#u_pwd_togglePassword {
-	position: absolute;
-	margin-top: 22px;
-	margin-left: 348px;
-}
-
-#conf_u_pwd_togglePassword {
-	position: absolute;
-	margin-top: 22px;
-	margin-left: 289px;
-}
+	.top-scroll-lock{
+		background-color: #FFFFFF !important;
+		box-shadow: 0px 2px 8px 0px #0000001A;
+	}
 </style>
 <body>
-
 	<%@include file="Nav-Bar.jspf"%>
 
-	<nav class="nav nav-height-70 nav-font" id="bg-color"
-		style="margin-top: -10px; height: 85px;">
-		<div class="container-fluid">
-			<div class="col-sm-12" id="d3s-mt-20">
-				<ul class="nav navbar-nav-1 mt-3">
-					<li class="nav-link-2 active-2" id="nav-link"
-						style="border-bottom: 4px solid rgba(255, 255, 255, .5) !important"><a
-						class="link" href="Admin_Userslist.jsp"
-						style="color: #fff; padding: 7px 7px; margin-top: -10px; height: 35px;">UserList</a></li>
-					<li id="nav-link"><a class="link" href="License_info.jsp"
-						style="color: #fff; padding: 7px 7px; margin-top: -10px; height: 35px;">License
-							Information</a></li>
-				</ul>
-
-			</div>
-		</div>
+	<div class="row m-0">
+		<div class="col p-0">
+	<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%23f1f1f1'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+		<ol class="breadcrumb px-4 m-0 ">
+			<li class="breadcrumb-item inactive my-3 text-light ">
+				<a href="DashBoard.jsp" class="text-decoration-none breadcrumbtextinactive">Home</a>
+			</li>
+			<li class="breadcrumb-item active my-3 breadcrumbtextactive" aria-current="page">Administration</li>
+		</ol>
 	</nav>
-	<div class="col-lg-6 left-side phase-btn1" align="left">
-
-		<button type="button" id="add_user_btn" class="btn btn-primary"
-			href="#" data-bs-toggle="modal" data-bs-target="#adduserModal"
-			style="margin: 29px 0 0 83px; font-size: 14px; display: none;">Add
-			User</button>
-		<button type="button" class="btn btn-primary pull-right"
-			id="editpopup_btn" data-bs-toggle="modal" data-bs-target="#EditPopUp"
-			style="display: none;">Edit PopUp</button>
-		<button type="button" class="btn btn-primary pull-right"
-			id="deletepopup_btn" data-bs-toggle="modal"
-			data-bs-target="#DeletePopUp" style="display: none;">Delete
-			PopUp</button>
-
+</div>
 	</div>
-	<br />
-	<div class="card-container-5 card d3s-mt-50">
-		<div class="card-header d3s-pl-15" id="cd-header">Users List</div>
-
-		<div class="withoutPhase display" id="admin_userslist_div">
-			<table class="table table-bordered table-responsive"
-				id="admin_userslist" style="width: 100%; font-size: 12px;">
-				</br>
-				<label>&nbsp;Show </label>
-				<label style="margin-left: 110px;"> Entries</label>
-				<select class="form-select align-left"
-					aria-label="Default select example" id="maxRows"
-					style="padding: 0.75 0 0 0.75rem; margin-bottom: 5px; margin-top: -28px; margin-left: 45px; width: auto;">
-					<option value="5000">Show All</option>
-					<option value="5">5</option>
-					<option value="10">10</option>
-					<option value="15">15</option>
-					<option value="20">20</option>
-					<option value="50">50</option>
-					<option value="70">70</option>
-					<option value="100">100</option>
-				</select>
-
-				<thead>
-
-					<th style='text-align: center; vertical-align: middle; width: 25%;'
-						scope="col">UserName</th>
-					<th style='text-align: center; vertical-align: middle; width: 25%;'
-						scope="col">FirstName</th>
-					<th style='text-align: center; vertical-align: middle; width: 25%;'
-						scope="col">LastName</th>
-					<th style='text-align: center; vertical-align: middle; width: 25%;'
-						scope="col">Email</th>
-					<th style='text-align: center; vertical-align: middle; width: 25%;'
-						scope="col">Role</th>
-					<th
-						style='text-align: center; display: none; vertical-align: middle; width: 15%;'
-						class="useractionheader" scope="col">Action</th>
-
-
-				</thead>
-
-				<div id="overlay">
-					<div class="cv-spinner">
-						<span class="spinner"></span>
+	<div class="row m-0">
+		<div class="col p-0">
+	<div id="Filter-container">
+		<ul class="nav nav-underline mx-4 pt-3 pb-0 ">
+			<li class="nav-item">
+				<a class="nav-link active" aria-current="page" href="Admin_Userslist.jsp">User List</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link text-dark" href="License_info.jsp">License Information</a>
+			</li>
+		</ul>
+		<hr class="tab-shift">
+	</div>
+		</div></div></div>
+<div class="row m-0">
+	<div class="col p-0">
+		<div class="container-fluid px-4" id="Filter-container1">
+			<div class="row mb-md-4 pt-1 mb-2">
+				<div class="col-lg-4 col-xl-3 col-md-11 col-10 my-lg-0 ">
+					<div class="input-group ">
+                                <span class="input-group-append btn1 btn search-button ">
+                                    <i class="fa fa-search iconColor"></i>
+                                </span>
+						<input class="form-control" type="search" placeholder="Search..." id="search-input">
 					</div>
 				</div>
-				<tbody id="AdminUserslist">
-
-				</tbody>
-
-			</table>
-			<div class="row">
-				<div class="col-md-12" align="end">
-					<div class='pagination-container' style="float: right;">
-						<nav>
-							<ul class="pagination">
-
-								<li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>
-								<!--	Here the JS Function Will Add the Rows -->
-								<li data-page="next" id="prev"><span> >> <span
-										class="sr-only">(current)</span></span></li>
-							</ul>
-						</nav>
-					</div>
+				<div class="col-1 px-0 mb-3 mb-lg-0">
+					<button type="button" style="display: none" id="add_user_btn" class="btn " href="#" data-bs-toggle="modal"
+							data-bs-target="#adduserModal" ><i
+							class="fa-solid fa-circle-plus fa-2xl addWaveIcon "></i></button>
 				</div>
-
 			</div>
 		</div>
+	</div>
+</div>
 
+	<div class="container-fluid px-4 mb-5">
+		<button type="button" class="btn btn-primary pull-right" id="editpopup_btn" style="display: none;" data-bs-toggle="modal"
+				data-bs-target="#EditPopUp" >Edit PopUp</button>
+		<button type="button" class="btn btn-primary pull-right" id="deletepopup_btn" style="display: none;" data-bs-toggle="modal"
+				data-bs-target="#DeletePopUp">Delete PopUp</button>
+		<div class="card">
+			<div class="card-header Card-Header" id="cd-header">Users List</div>
+			<div class="table-responsive" id="admin_userslist_div">
+				<table class="table table-bordered caption-top" id="admin_userslist">
+					<thead class="text-center Table-Header">
+					<tr>
+						<th scope="col">UserName</th>
+						<th scope="col">FirstName</th>
+						<th scope="col">LastName</th>
+						<th scope="col">Email</th>
+						<th scope="col">Role</th>
+						<th class="useractionheader" style="display: none">Edit</th>
+						<th class="useractionheader" style="display: none">Delete</th>
+					</tr>
+					</thead>
+					<div id="overlay">
+						<div class="cv-spinner">
+							<span class="spinner"></span>
+						</div>
+					</div>
+					<tbody class="text-center Table-Body" id="AdminUserslist">
+					</tbody>
+				</table>
+			</div>
+			<div class="row d-flex justify-content-end m-2 mt-3" id="footer">
+				<div class="col-auto Table-Body mt-1 item-label">items per page:</div>
+				<div class="col-auto mt-2 ">
+					<select class="form-select form-select-sm custom-show-entities p-0" id="maxRows">
+						<option value="5">5</option>
+						<option value="10">10</option>
+						<option value="15">15</option>
+						<option value="20">20</option>
+						<option value="50">50</option>
+						<option value="70">70</option>
+						<option value="100">100</option>
+						<option value="5000">Show All</option>
+					</select>
+				</div>
+				<div class="col-auto Table-Body mt-2 mx-3"  id="recordInfo"></div>
+				<div class="col-auto mt-3 mt-sm-0">
+					<ul class="pagination">
+						<li data-page="prev" class="page-link"><span> << </span></li>
+
+												<li data-page="next" class="page-link" id="prev"><span> >> <span
+														class="sr-only">(current)</span></span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
 	</div>
 
-	</div>
-
-	<div class="modal" id="adduserModal" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+	<!-- add modal -->
+	<div class="modal fade" id="adduserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog  modal-dialog-centered">
 			<div class="modal-content">
-				<div class="modal-header" style="background-color: #1565c0;">
-					<h5 class="modal-title" id="exampleModalLabel"
-						style="color: white;">Add New User</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
+				<div class="modal-header modal-font-label">
+					<h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
 					<form name="PopUpform">
 						<div class="row">
 							<div class="form-group">
-								<div class="col-lg-12">
+								<div class="col-lg-12 mb-2">
 									<label class="control-label" for="formInput526">UserName:</label>
-									<input type="text" class="form-control" id="uname" name="uname"
-										required>
+									<input type="text" class="form-control" id="uname" name="uname" required>
 								</div>
-								<div class="col-lg-12">
+								<div class="col-lg-12 mb-2">
 									<label class="control-label" for="formInput526">FirstName:</label>
-									<input type="text" class="form-control" id="ufname"
-										name="fname" required>
+									<input type="text" class="form-control" id="ufname" name="fname" required>
 								</div>
-								<div class="col-lg-12">
+								<div class="col-lg-12 mb-2">
 									<label class="control-label" for="formInput526">LastName:</label>
-									<input type="text" class="form-control" id="ulname"
-										name="lname" required>
+									<input type="text" class="form-control" id="ulname" name="lname" required>
 								</div>
-								<div class="col-lg-12">
+								<div class="col-lg-12 mb-2">
 									<label class="control-label" for="formInput526">E-Mail:</label>
-									<input type="text" class="form-control" id="u_email"
-										name="u_email" required>
+									<input type="text" class="form-control" id="u_email" name="u_email" required>
 								</div>
-								<div class="col-lg-12">
+								<div class="col-lg-12 mb-2">
 									<label class="control-label" for="formInput526">Password:</label>
+									<i class="fa fa-eye-slash icon" aria-hidden="true" id="u_pwd_togglePassword"></i>
+									<input type="password" class="form-control" id="u_pwd" name="u_pwd" required>
+								</div>
+								<div class="col-lg-12 mb-2">
+									<label class="control-label" for="formInput526">Confirm Password:</label>
 									<i class="fa fa-eye-slash icon" aria-hidden="true"
-										id="u_pwd_togglePassword"></i> <input
-										type="password" class="form-control" id="u_pwd" name="u_pwd"
-										required>
+									   id="conf_u_pwd_togglePassword"></i>
+									<input type="password" class="form-control" id="conf_u_pwd" name="conf_u_pwd"
+										   required>
 								</div>
-								<div class="col-lg-12">
-									<label class="control-label" for="formInput526">Confirm
-										Password:</label> <i class="fa fa-eye-slash icon" aria-hidden="true"
-										id="conf_u_pwd_togglePassword"></i> <input
-										type="password" class="form-control" id="conf_u_pwd"
-										name="conf_u_pwd" required>
-								</div>
-								<div class="col-lg-12">
+								<div class="col-lg-12 mb-2">
 									<label class="control-label" for="formInput526">Role/Group:</label>
-									<!-- <input type="text" class="form-control" id="u_role"
-													name="u_role" required>  -->
-									<select class="form-select form-select-lg mb-3"
-										aria-label=".form-select-lg example" id="u_role" name="u_role"
-										style="font-size: 14px;" required>
+									<select class="selectpicker form-control mb-3" aria-label=".form-select-lg example"
+											id="u_role" name="u_role" required>
 										<option value="">Select</option>
 										<option>D3SIXTY_SUPER_ADMIN</option>
 										<option>D3SIXTY_ADMIN</option>
@@ -504,47 +185,26 @@ rotate
 										<option>D3SIXTY_FINANCE_CONTRIBUTOR</option>
 									</select>
 								</div>
-
 							</div>
 						</div>
-
-
 					</form>
 				</div>
 				<div class="modal-footer">
-
-					<button type="button" class="btn btn-primary" id="add_usersubmit"
-						data-dismiss="modal" style="font-size: 12px;">Add User</button>
-					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal" style="font-size: 12px;">Close</button>
+					<button type="button" class="btn buttonFrame tertiaryButton text-center"
+							data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn primaryButton text-center" id="add_usersubmit" data-dismiss="modal">Add
+						User</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-
-	</div>
-
-
-	</div>
-	</div>
-	</div>
-
-
-	</div>
-	</div>
-	</div>
-
-	<div class="modal" id="EditPopUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+	<!-- Edit Modal -->
+	<div class="modal fade" id="EditPopUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
-				<div class="modal-header" style="background-color: #1565c0;">
-					<h5 class="modal-title" id="exampleModalLabel"
-						style="color: white;">Update User Details</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
+				<div class="modal-header modal-font-label">
+					<h5 class="modal-title " id="exampleModalLabel">Update User Details</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
 					<form name="PopUpform">
@@ -552,20 +212,16 @@ rotate
 							<div class="form-group">
 								<div class="col-lg-12">
 									<label class="control-label" for="formInput526">Username:</label>
-									<input type="text" class="form-control" id="uname_modify"
-										name="uname" required> <label class="control-label"
-										for="formInput526">Firstname:</label> <input type="text"
-										class="form-control" id="ufname_modify" name="ufname" required>
+									<input type="text" class="form-control mb-2 " id="uname_modify" name="uname" required>
+									<label class="control-label " for="formInput526">Firstname:</label>
+									<input type="text" class="form-control mb-2" id="ufname_modify" name="ufname" required>
 									<label class="control-label" for="formInput526">Lastname:</label>
-									<input type="text" class="form-control" id="ulname_modify"
-										name="ulname" required> <label class="control-label"
-										for="formInput526">User E-Mail:</label> <input type="text"
-										class="form-control" id="u_email_modify" name="u_email"
-										required> <label class="control-label"
-										for="formInput526">User Role:</label> <select
-										class="form-select form-select-lg mb-3"
-										aria-label=".form-select-lg example" id="u_role_modify"
-										name="u_role" style="font-size: 14px;" required>
+									<input type="text" class="form-control mb-2" id="ulname_modify" name="ulname" required>
+									<label class="control-label" for="formInput526">User E-Mail:</label>
+									<input type="text" class="form-control mb-2" id="u_email_modify" name="u_email" required>
+									<label class="control-label" for="formInput526">User Role:</label>
+									<select class="selectpicker form-control mb-3" aria-label=".form-select-lg example"
+											id="u_role_modify" name="u_role" required>
 										<option value="">Select</option>
 										<option>D3SIXTY_SUPER_ADMIN</option>
 										<option>D3SIXTY_ADMIN</option>
@@ -574,55 +230,61 @@ rotate
 										<option>D3SIXTY_DECOMMISSION_CONTRIBUTOR</option>
 										<option>D3SIXTY_FINANCE_CONTRIBUTOR</option>
 									</select>
-
-
-
 								</div>
 							</div>
 						</div>
-						<input type="text" id="random_id_modify" name="random_id" value=""
-							style="display: none;">
+						<input type="text" id="random_id_modify" name="random_id" value="" style="display: none;">
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" id="update_submit"
-						>Update</button>
-					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">Cancel</button>
+					<button type="button" class="btn buttonFrame tertiaryButton text-center" data-bs-dismiss="modal">Cancel</button>
+					<button type="button" class="btn primaryButton text-center" id="update_submit">Update</button>
 
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="modal" id="DeletePopUp" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+	<!-- Delete Modal -->
+	<div class="modal fade" id="DeletePopUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog  modal-dialog-centered">
 			<div class="modal-content">
-				<div class="modal-header" style="background-color: #1565c0;">
-					<h5 class="modal-title" id="exampleModalLabel"
-						style="color: white;">Delete User</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
+				<div class="modal-header modal-font-label">
+					<h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
 					<form name="DeleteForm">
 						<div class="modal-body">
-							<p style="font-size: 14px;">Do you want to Delete this User
-								Permanently?</p>
+							<p>Do you want to Delete this User Permanently?</p>
 							<input type="text" id="random_id" style="display: none;" />
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary"
-						data-bs-dismiss="modal" id="delete_submit">Yes</button>
-					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">No</button>
+					<button type="button" class="btn buttonFrame tertiaryButton text-center" data-bs-dismiss="modal">No</button>
+					<button type="button" class="btn primaryButton text-center" data-bs-dismiss="modal"
+							id="delete_submit">Yes</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	<%@include file="Footer.jspf"%>
+	<script>
+		let scrollStickyFilterContainer =document.getElementById("Filter-container");
+		// let scrollStickyFilterContainer1 =document.getElementById("Filter-container1");
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
 
+		function scrollFunction() {
+			if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+				scrollStickyFilterContainer.classList.add("top-scroll-lock");
+				// scrollStickyFilterContainer1.classList.add("top-scroll-lock");
+			} else {
+				scrollStickyFilterContainer.classList.remove("top-scroll-lock");
+				// scrollStickyFilterContainer1.classList.remove("top-scroll-lock");
+			}
+		}
+	</script>
 	<script>
         const togglePassword10 = document
             .querySelector('#conf_u_pwd_togglePassword');
@@ -676,61 +338,25 @@ rotate
            
         });
     </script>
+<script>
+
+</script>
 
 
 
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js" integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 	<!-- ========== PAGE JS FILES ========== -->
-	<script src="js/prism/prism.js"></script>
-	<script type="text/javascript"
-		src="js/date-picker/bootstrap-datepicker.js"></script>
-	<script type="text/javascript"
-		src="js/date-picker/jquery.timepicker.js"></script>
-	<script type="text/javascript" src="js/date-picker/datepair.js"></script>
-	<script type="text/javascript" src="js/date-picker/moment.js"></script>
-	<script type="text/javascript"
-		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-
 	<script src="js/navigation/navigation.js"></script>
 	<script src="js/admin_modify_module/admin_retrieve_users.js"></script>
 	<script src="js/admin_modify_module/admin_add_user.js"></script>
 	<script src="js/admin_modify_module/DeleteAjaxCall.js"></script>
 	<script src="js/admin_modify_module/EditAjaxCall.js"></script>
 	<script src="js/admin_modify_module/admin_users_pagination.js"></script>
-	<!-- ========== Pagination ========== -->
-
-
-	<!-- ========== BootstrapV5 ========== -->
-	<link
-		href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-		rel="stylesheet"
-		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-		crossorigin="anonymous">
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-		integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-		integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-		crossorigin="anonymous"></script>
-
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css" />
-	<!-- ========== Toastr ========== -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-	<link
-		href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
-		rel="stylesheet">
 	<script src="js/notification/notification.js"></script>
+	<!-- ========== Toastr ========== -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
 </body>
 </html>

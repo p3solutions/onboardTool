@@ -1,5 +1,5 @@
 $(document).on('click','#existWaveSubmit', function(){
-	
+	$('#overlay').hide();
 	var oppName = $('#oppNameId').val();
 	var waveName = $('#existWaveTypesId').val();
 	var seqNum = $('#existWaveSeqNum').val();
@@ -21,10 +21,11 @@ function addToWave(seqNum, oppName, waveName){
 	        	 	if(data.checkStatus){
 	        	 		$('.addClass').eq(seqNum).hide();
 	        	 		$('#existWaveClose').click();
+						$('#overlay').hide();
 	        	 		notification("success","Successfully added Opportunity to selected wave.","Note : ");
 	        	 	}
 	        		 else
-	        			 notification("error","Problem occured while creating.","Error");
+	        			 notification("error","Problem occurred while creating.","Error");
 	        	 
 	        	        },
 	        error: function (e) {

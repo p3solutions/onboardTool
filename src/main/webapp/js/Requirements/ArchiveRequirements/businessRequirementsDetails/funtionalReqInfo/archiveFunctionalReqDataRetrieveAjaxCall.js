@@ -31,27 +31,45 @@ function archiveFunctionalDataRetrieve(){
             	 rowCount++;
             	 var dataReqCheckYesRadio = (value.reqInScope=='Yes')?'checked':'';
             	 var dataReqCheckNoRadio = (value.reqInScope=='No')?'checked':'';
-                 var Row="<tr class = '"+Sections[i]+"RowClass' style ='height: 140px;'>"+
-            	 "<td style='text-align:center;vertical-align: middle;' class = '"+Sections[i]+"ReqId'>"+value.reqId+
+                 var Row="<tr class = '"+Sections[i]+"RowClass' >"+
+            	 "<td class = '"+Sections[i]+"ReqId'>"+value.reqId+
             	 "</td>" +
-            	 "<td style='text-align:center;vertical-align: middle;'>"+
-            	 "<input type ='radio' name='"+Sections[i]+(rowCount)+"' class='"+Sections[i]+"InScope "+Sections[i]+"Yes' value='Yes' "+dataReqCheckYesRadio+"/> Yes &nbsp;"+
-            	 "<input type ='radio' name='"+Sections[i]+(rowCount)+"' class='"+Sections[i]+"InScope "+Sections[i]+"No' value='No' "+dataReqCheckNoRadio+" /> No"+
+            	 "<td>"+
+					 " <div class=\"form-check form-check-inline\">" +
+					 "<input type=\"radio\"" +
+					 " name='"+Sections[i]+(rowCount)+"' class='"+Sections[i]+"InScope "+Sections[i]+"Yes form-check-input' value='Yes' "+dataReqCheckYesRadio+">" +
+					 "<label class=\"form-check-label\">Yes</label>" +
+					 "</div>" +
+					 "<div class=\"form-check form-check-inline\">" +
+					 "<input type=\"radio\"" +
+					 " name='"+Sections[i]+(rowCount)+"' class='"+Sections[i]+"InScope "+Sections[i]+"No form-check-input' value='No' "+dataReqCheckNoRadio+">" +
+					 "<label class=\"form-check-label\">No</label>" +
+					 "</div>"+
             	 "</td>"+
-            	 "<td style='text-align:center;vertical-align: middle;'><input type='text' class='"+Sections[i]+"ReqType reqType' value='"+value.reqType+"'/></td>" +
-            	 "<td style='text-align:center;vertical-align: middle;'>" +
-            	 "<textarea rows='2' cols='40' style='height:100px;' class='req "+Sections[i]+"Requirements'>"+value.req+"</textarea>"+
+            	 "<td><input type='text' class='"+Sections[i]+"ReqType reqType form-control' value='"+value.reqType+"'/></td>" +
+            	 "<td>" +
+            	 "<textarea rows='2' cols='30'  class='req "+Sections[i]+"Requirements form-control'>"+value.req+"</textarea>"+
             	 "</td>"+
-            	 "<td style='text-align:center;vertical-align: middle;'>"+
-            	 "<textarea class='additional "+Sections[i]+"Additional'>"+value.additionInfo+"</textarea>"+
+            	 "<td>"+
+            	 "<textarea class='additional "+Sections[i]+"Additional form-control'>"+value.additionInfo+"</textarea>"+
             	 "</td>" +
-            	 "<td style='text-align:center;vertical-align: middle;'>"+
-            	 "<div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>"+
-                 "<ul class='dropdown-menu'>"+
-                 /*"<li><a  class='fa fa-edit EditRow "+Sections[i]+"Edit' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>"+*/
-                 "<li><a  class='fa fa-trash DeleteRow "+Sections[i]+"Delete' style='font-size: 18px; color: black'>&nbsp;&nbsp;&nbsp;Delete</a></li>"+
-                 "</ul>"+
-                 "</div>"+
+            	 "<td>"+
+            	"<div class=\"dropdown dropend\">" +
+					 "<button class=\"btn btn-outline-light\" id=\"Drop-option\"" +
+					 " data-bs-toggle=\"dropdown\" aria-expanded=\"false\"> " +
+					 " <i class=\"fa-solid fa-ellipsis-vertical iconColor fa-lg \"></i>" +
+					 "</button>" +
+					 "<ul class=\"dropdown-menu p-0\" aria-labelledby=\"Drop-option\">" +
+					 "<li><a class=\"dropdown-item dropdown-styles 	\" ><i" +
+					 " class=\"fa-solid fa-pencil iconColor\"></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
+					 " <li>" +
+					 "<hr class=\"dropdown-divider m-0\">" +
+					 "</li>" +
+					 "<li><a class='dropdown-item dropdown-styles DeleteRow "+Sections[i]+"Delete' ><i" +
+					 " class=\"fa-solid fa-trash-can text-danger \"></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
+					 "</li>" +
+					 "</ul>" +
+					 "</div>"+
             	 "</td>"+
             	 "</tr>";
             	 $("#"+SectionId[i]).append(Row);
@@ -63,7 +81,7 @@ function archiveFunctionalDataRetrieve(){
             else
         	{
 			 var Row="<tr class = 'screenReqRowClass'id='"+SectionId[i]+"NoDataScrRow'>"+
-            	 "<td align='center' colspan='6'style='width:100%; text-decoration:bold;'>"+"<label style='color: black;'>No Records Found </label>"+
+            	 "<td colspan='6'>"+"<b>No records found</b>"+
             	 "</td>" +
             	 "</tr>";
 			  $("#"+SectionId[i]).append(Row);

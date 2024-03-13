@@ -31,7 +31,7 @@ function renderFileList() {
 
 		return `<li key="${index}">${
 			file.name
-		} <span class="file-size">${size} ${suffix}</span><i class="glyphicon glyphicon-trash deletepopup" alt='delete'></i></li>`;
+		} <span class="file-size">${size} ${suffix}</span><i class="fas fa-trash-can text-danger deletepopup" alt='delete'></i></li>`;
 	});
 	$("#FileList").html(fileMap);
 }
@@ -70,7 +70,7 @@ $.each($('#fileUpload')[0].files, function(k, value)
     		  $("#UploadFiles").attr('disabled',true);
     		    }
     	  else
-    		  notification("error","Problem occured while file uploading.","Error:");
+    		  notification("error","Problem occurred while file uploading.","Error:");
       }
     });
 });

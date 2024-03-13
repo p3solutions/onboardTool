@@ -31,7 +31,7 @@ $.each($('#fileUpload')[0].files, function(k, value)
     		  $("#UploadFiles").attr('disabled',true);
     		    }
     	  else
-    		  notification("error","Problem occured while file uploading.","Error:");
+    		  notification("error","Problem occurred while file uploading.","Error:");
       }
     });
 });

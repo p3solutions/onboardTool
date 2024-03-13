@@ -23,7 +23,7 @@ $(document).ready(function(){
 			$(".version").eq(seqNum).prop("readonly", true);
 			$(".documentChanges").eq(seqNum).prop("readonly", true);
 			$(".changeAuthor").eq(seqNum).prop("readonly", true);
-			notification("info","Seleted row is non-editable.","Info:");
+			notification("info","Selected row is non-editable.","Info:");
 		}	
 			
 	});
@@ -62,11 +62,11 @@ function archiveReqDocRevDeleteAjaxCall(seqNum){
         	console.log("Delete Row Retrieve--->",data);
         	if(data.DeleteStatus){
         		$('.rowClassDoc').eq(seqNum-1).remove();
-        		notification("success","Seleted row deleted Successfully.","Note:");
+        		notification("success","Selected row deleted Successfully.","Note:");
         		archiveReqDocRevDataRetrieve("0");
         	}
         	else
-        		notification("error","Error occured while deleting the row.","Error:");
+        		notification("error","Error occurred while deleting the row.","Error:");
         	
         },
         error: function (e) {

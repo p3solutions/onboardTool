@@ -8,10 +8,10 @@ $(document).ready(function()
             console.log("WA",wavename);
             var creation_date="";
             var completion_date="";
-            $('#phaseName').html("Phase Name : "+phasename);
-            $('#waveName').html("Wave Name : "+wavename);
-            $('#creation_date').html("Creation Date : "+creation_date);
-            $('#completion_date').html("Planned Completion Date : "+completion_date);
+            $('#phaseName').html(phasename);
+            $('#waveName').html(wavename);
+            $('#creation_date').html(creation_date);
+            $('#completion_date').html(completion_date);
  $('#spinner').hide();
     users=[];
     taskTypeArr = [];
@@ -41,12 +41,12 @@ $(document).ready(function()
     $(document).on("mouseenter", ".completion", function() {
         var index = $(this).index('.completion');
         $('.visibleBtn').eq(index).show();
-        $('.ArchiveList').eq(index).attr('data-toggle','');
+        $('.ArchiveList').eq(index).attr('data-bs-toggle','');
     });
     $(document).on("mouseleave", ".completion", function() {
         var index = $(this).index('.completion');
         $('.visibleBtn').eq(index).hide();
-        $('.ArchiveList').eq(index).attr('data-toggle','collapse');
+        $('.ArchiveList').eq(index).attr('data-bs-toggle','collapse');
     });
     $(document).on('click','.up',function()
         {
@@ -101,19 +101,14 @@ $.ajax({
             var className = $('.datepicker1').eq(i).attr('class');
             $('.datepicker1').eq(i).attr('class', className+" taskChange");
         }
-        /*var className = $('.datepicker1').attr('class');
-        $('.datepicker1').attr('class', className+" taskChange");*/
         $('#spinner').hide();
         },
         error: function (e) {
             console.log(e);
         }
     });
-    		//console.log("NUMMM",num);
-    		
        		var phasename = phase == false ? "" : phase;
-            $('#phaseName').html("Phase Name : "+phasename);
-                   
+            $('#phaseName').html(phasename);
 });
       
  $(document).on('click','.arc_level',function()
@@ -168,11 +163,6 @@ $.ajax({
                 {
                     
                 });
-                
-                             
-                
-   
-    
 });
 function userAppendFunction(data) {
     $.each(data, function(){
@@ -220,17 +210,15 @@ if(data.length>1)
         var status1=arcstatuscolor(completion);
         var lvlflag=levlflag(level);
        var t=taskId;
-      
-       //var s1=s(taskId);
+
        console.log("T VALUE",t);
-     // console.log("S1 VALUE",s1);
        var t1=t;
        console.log(t1);
        collapse1="collapse1"+t1;
         if (level == 1){        
             collapse = "collapse"+i;
            
-       var row = "<tr class='ArchiveList' style='height:60px;' role='button' data-toggle='collapse' data-parent='#accordion' href='."+collapse+"' aria-expanded='false' aria-controls='"+collapse+"' >"+
+       var row = "<tr class='ArchiveList' style='height:60px;' role='button' data-bs-toggle='collapse' data-bs-parent='#accordion' href='."+collapse+"' aria-expanded='false' aria-controls='"+collapse+"' >"+
          		  "<td style='text-align:left;vertical-align: middle; color:black;' class='arc_level' id='arclevel_"+i+"' data-bs-toggle='tooltip' data-bs-placement='top' title='"+oppName+"'><label class='control-label' style='cursor:pointer;'for='ArchiveExection'><i class='fa fa-angle-down arc_expand"+i+"' style='font-size:14px;color:black; display:none;'></i>&nbsp;<i class='fa fa-angle-right arc_collapse"+i+"' style='font-size:14px;color:black'></i>&nbsp;"+oppName+"</label>" +
                 "<td style='text-align:center;vertical-align: middle;'><label class='control-label taskChange taskId' for='ArchiveExection'></label>" +
                         "<input type = 'hidden' class = 'archiveLevel' value = '"+level+"'/>"+
@@ -265,7 +253,7 @@ if(data.length>1)
                   "<span class='"+arcstatuscolor(completion)+" statusCode colorCode' id='pppperc_"+i+"' style='display:none;'></span>"+
                   "</td>"+
                   "<td style='text-align:center;vertical-align: middle;'><i class='fas fa-comment-alt fa-2x remarksIcon' style='color:#87CEEB; display:none;' role='button' ></i><input type='hidden' class ='remark changeText' value='"+remark+"' disabled></td>"+
-                  "<td style='display:none;'><div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown' style='display:none;'></img>"+
+                  "<td style='display:none;'><div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-bs-toggle='dropdown' style='display:none;'></img>"+
                   "<ul class='dropdown-menu'>"+
                   "<li><a  class='fa fa-plus AddRow' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Add</a></li>"+
                   "<li><a  class='fa fa-edit EditRow' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>"+
@@ -282,7 +270,7 @@ if(data.length>1)
             
         else if(level==2){
 
-            var row = "<tr class='ArchiveList panel-collapse collapse out "+collapse+"' role='button'  aria-labelledby='headingOne' data-toggle='collapse' data-parent='#accordion1' href='."+collapse1+"' aria-expanded='false' aria-controls='"+collapse1+"'>"+
+            var row = "<tr class='ArchiveList panel-collapse collapse out "+collapse+"' role='button'  aria-labelledby='headingOne' data-bs-toggle='collapse' data-bs-parent='#accordion1' href='."+collapse1+"' aria-expanded='false' aria-controls='"+collapse1+"'>"+
              "<td style='text-align:center;vertical-align: middle;'><label class='control-label taskChange taskId' for='ArchiveExection'></label>" +
             "<td style='text-align:center;vertical-align: middle;'><label class='control-label taskId' for='ArchiveExection'>"+taskId+"</label>" +
             "<input type = 'hidden' class = 'archiveLevel' value = '"+level+"'/>"+      
@@ -318,7 +306,7 @@ if(data.length>1)
               "<span class='"+arcstatuscolor(completion)+" statusCode colorCode' id='pppperc_"+i+"' disabled></span>"+
               "</td>"+ 
               "<td style='text-align:center;vertical-align: middle;'><i class='fas fa-comment-alt fa-2x remarksIcon'id='remarksIcon"+i+"' style='color:#87CEEB;' role='button'></i><input type='hidden' class ='remark changeText' value='"+remark+"' disabled></td>"+
-          "<td style='display:none;'><div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>"+
+          "<td style='display:none;'><div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-bs-toggle='dropdown'></img>"+
           "<ul class='dropdown-menu'>"+
           "<li><a  class='fa fa-plus AddRow' style='font-size: 19px; color: black; "+lvlflag+"'>&nbsp;&nbsp;&nbsp;Add</a></li>"+
           "<li><a  class='fa fa-edit EditRow' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>"+
@@ -344,9 +332,9 @@ if(data.length>1)
             console.log("WA",wavename);
             var creation_date=value.creation_date == false ? "" : value.creation_date;
             var completion_date=value.completion_date == false ? "" : value.completion_date;
-            $('#waveName').html("Wave Name : "+wavename);
-            $('#creation_date').html("Creation Date : "+creation_date);
-            $('#completion_date').html("Planned Completion Date : "+completion_date);
+            $('#waveName').html(wavename);
+            $('#creation_date').html(creation_date);
+            $('#completion_date').html(completion_date);
         }
         
    i++;
@@ -358,9 +346,13 @@ if(data.length>1)
 }
 function noDataFound(count) {
     if (count < 1) {
-        $("#notFound").show();
+        console.log("==============================================================");
+        console.log("data is shown");
+        // $("#notFound").show();
     } else {
-        $("#notFound").hide();
+        console.log("==============================================================");
+        console.log("data is shown");
+        // $("#notFound").hide();
     }
 }
 function Options(optionlist,value)

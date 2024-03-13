@@ -137,6 +137,7 @@ li a.alignCenter {
 			</div>
 		</div>
 	</nav>
+	</div>
 	<div class="main-wrapper">
 
 		<!-- ========== TOP NAVBAR ========== -->

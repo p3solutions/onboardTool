@@ -84,15 +84,6 @@ $(document).ready(function() {
 	$("#submitSearch").on("click", function() {
 		$("#ExitSearch").show();
 		validateForm();
-		//currentReport =  $("#Report").val();
-
-		// Get the selected values from the first dropdown, second dropdown, and input field
-		//selectedColumn = $("#SearchOptions").val();
-		//secondSelectedColumn = $("#SecondSearchOptions").val(); // Add this line
-		//searchValue = $("#advanceSearch").val();
-		//condition = $('input[name="condition"]:checked').val();
-
-		//reportAdvanceSearchData(currentReport,selectedColumns,searchValue,condition,$('#maxRows').val(),1)
 	});
 
 	function ajaxcall(selectedOption, page) {
@@ -115,7 +106,7 @@ $(document).ready(function() {
 
 				if (data.length <= 0) {
 					console.log("data Less :", data.length);
-					var Nodata = '<div style="text-align: center; font-weight: bold;">No Record Found</div>';
+					var Nodata = '<div>No Record Found</div>';
 					$("#admin_userslist").html(Nodata);
 				} else {
 					if (data.error) {
@@ -140,24 +131,24 @@ $(document).ready(function() {
 		var paginationContainer = $('.pagination');
 		paginationContainer.empty();
 		if (currentPage > 1) {
-			paginationContainer.append('<li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>');
+			paginationContainer.append('<li data-page="prev" class="page-link"><span> << <span class="sr-only">(current)</span></span></li>');
 		}
 		for (var i = 1; i <= totalPages; i++) {
 			paginationContainer.append(
-				'<li data-page="' + i + '">\
+				'<li class="page-link" data-page="' + i + '">\
             <span>' + i + '</span>\
         </li>'
 			);
 		}
 		if (currentPage < totalPages) {
-			paginationContainer.append('<li data-page="next"><span> >> <span class="sr-only">(current)</span></span></li>');
+			paginationContainer.append('<li class="page-link" data-page="next"><span> >> <span class="sr-only">(current)</span></span></li>');
 		}
 
 		paginationContainer.find('[data-page="' + currentPage + '"]').addClass('active');
 
 		// Display record information
 		var recordInfo = $('#recordInfo');
-		recordInfo.html('Showing ' + startRecord + ' to ' + endRecord + ' of ' + totalRecords + ' records');
+		recordInfo.html(startRecord + ' - ' + endRecord + ' of ' + totalRecords);
 
 		limitPagging();
 	}
@@ -185,9 +176,9 @@ $(document).ready(function() {
 			var headers = Object.keys(data[0]);
 
 			// Add table headers
-			var headerRow = "<thead>" + "<tr>";
+			var headerRow = "<thead class='Table-Header text-center'>" + "<tr>";
 			$.each(headers, function(index, header) {
-				headerRow += "<th style='color: black; background-color: #d7e9f7; font-weight: bold;'>";
+				headerRow += "<th>";
 				headerRow += header;
 				headerRow += "</th>";
 			});
@@ -195,11 +186,11 @@ $(document).ready(function() {
 			$("#admin_userslist").append(headerRow);
 
 			$.each(data, function(key, value) {
-				var row = "<tbody>" + "<tr>";
+				var row = "<tbody class='Table-Body text-center mx-5'>" + "<tr>";
 				$.each(headers, function(index, header) {
 					// Check if the value is undefined, replace it with an empty string
 					var cellValue = value[header] !== undefined ? value[header] : '';
-					row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for='' style='color: dimgrey;'>" + cellValue + "</label></td>";
+					row += "<td>" + cellValue + "</td>";
 				});
 				row += "</tr>" + "</tbody>";
 
@@ -245,7 +236,7 @@ $(document).ready(function() {
 				isSearching = true;
 				if (data.length <= 0) {
 					console.log("data Less :", data.length);
-					var Nodata = '<div style="text-align: center; font-weight: bold;">No Record Found</div>';
+					var Nodata = '<div>No Record Found</div>';
 					$("#admin_userslist").html(Nodata);
 				}
 				else {
@@ -360,11 +351,11 @@ $(document).ready(function() {
 				return showError("Enter a Number values");
 			}
 			if (Operators !== 'Select' && columnType === 'number' && Operators === 'BETWEEN' && !/^\d+$/.test(searchValue1) && !/^\d+$/.test(searchValue2) && searchValue2 === '' && searchValue1 === '') {
-				return showError("Enter a Number values in both input fileds ");
+				return showError("Enter a Number values in both input fields ");
 			}
 
 			if (Operators !== 'Select' && columnType === 'date' && Operators === 'BETWEEN' && !isValidDate(searchValue1) && !isValidDate(searchValue2)) {
-				return showError("Enter a valid date in mm/dd/yyyy format in Both input Fileds");
+				return showError("Enter a valid date in mm/dd/yyyy format in Both input fields");
 			}
 			if (Operators !== 'Select' && columnType === 'date' && Operators !== 'BETWEEN' && !isValidDate(searchValue1)) {
 				return showError("Enter a valid date in mm/dd/yyyy format");
@@ -426,7 +417,6 @@ function isNumber(evt) {
 	return true;
 }
 function getColumnType(columnName) {
-	console.log("Sysout");
 	const columnTypeMap = {
 		'Creation Date': 'date',
 		'Project Decommission Date': 'date',
@@ -555,7 +545,6 @@ function handleColumnChange() {
 		}
 		else {
 			// For other columns, show operator and value1
-			console.log("sauy");
 			value1Input.setAttribute("type", "text");
 			value1Input.setAttribute("placeholder", "Searchs");
 			operatorLabel.style.display = 'none';

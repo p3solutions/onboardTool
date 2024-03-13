@@ -31,20 +31,26 @@ function archiveScreenReqAddAjaxCall(displayName){
             $('#NoDataScrRecordsRow').hide();            
             	 rowCount++;
             	     var Row="<tr class = 'screenReqRowClass'>"+
-            	 "<td align='center' class = 'ScreenReqId'>"+data.ReqId+
+            	 "<td class = 'ScreenReqId'>"+data.ReqId+
             	 "</td>" +
-            	 "<td align='center'>"+
-            	 "<input type='text' class = 'screenDisplay' value='"+displayName+"' readonly/>"+
+            	 "<td>"+
+            	 "<input type='text' class = 'screenDisplay form-control' value='"+displayName+"' readonly/>"+
             	 "</td>"+
-            	 "<td align='center'><input type='text' class='purpose' value='' readonly/></td>" +
-            	 "<td align='center'>"+
-            	 "<input type='text' class='equivalentLegacy' value='' readonly/>"+
+            	 "<td><input type='text' class='purpose form-control' value='' readonly/></td>" +
+            	 "<td>"+
+            	 "<input type='text' class='equivalentLegacy form-control' value='' readonly/>"+
             	 "</td>"+
-            	 "<td align='center'>"+
-            	 "<div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>"+
-                 "<ul class='dropdown-menu'>"+
-                 "<li><a  class='fa fa-edit screenInfoEditRow Edit' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>"+
-                 "<li><a  class='fa fa-trash screenInfoDeleteRow Delete' style='font-size: 18px; color: black'>&nbsp;&nbsp;&nbsp;Delete</a></li>"+
+            	 "<td>"+
+						 "<div class=\"dropdown dropend\">" +
+						 "<button class=\"btn btn-outline-light\" id=\"Drop-option\"" +
+						 " data-bs-toggle=\"dropdown\" aria-expanded=\"false\"> <img" +
+						 " src='images/icons8-expand-arrow-25.png'" +
+						 " alt=\"dropdown\">" +
+						 "</button>" +"<ul class='dropdown-menu p-0' aria-labelledby=\"Drop-option\">"+
+                 "<li><a class='dropdown-item dropdown-styles screenInfoEditRow Edit'><i" +
+						 " class=\"fa-solid fa-pencil iconColor \"></i>&nbsp;&nbsp;&nbsp;Edit</a></li>"+
+						 "<li><hr class='dropdown-divider m-0'></li>"+
+                 "<li><a class='dropdown-item dropdown-styles screenInfoDeleteRow Delete'><i class='fa-solid fa-trash-can text-danger'></i>&nbsp;&nbsp;&nbsp;Delete</a></li>"+
                  "</ul>"+
                  "</div>"+
             	 "</td>"+
@@ -58,16 +64,16 @@ function archiveScreenReqAddAjaxCall(displayName){
             	 var ReqID = (data.ReqId).replace("-","");
             	 
             	 var searchFormRow="<tr class = 'searchFormRowClass "+ReqID+"'>"+
-            	 "<td align='center' class = 'searchFormReqId'>"+data.ReqId+
+            	 "<td class = 'searchFormReqId'>"+data.ReqId+
             	 "</td>" +
-            	 "<td align='center' class='searchFormName' >"+displayName+
+            	 "<td class='searchFormName' >"+displayName+
             	 "</td>"+
-            	 "<td align='center'><input type='text' class='searchFormFieldName' value='' readonly/></td>" +
-            	 "<td align='center'>"+
-            	 "<input type='text' class='searchFormFieldFormat' value='' readonly/>"+
+            	 "<td><input type='text' class='searchFormFieldName form-control' value='' readonly/></td>" +
+            	 "<td>"+
+            	 "<input type='text' class='searchFormFieldFormat form-control' value='' readonly/>"+
             	 "</td>"+
-            	 "<td align='center'>"+
-            	 "<select class='searchFormDataType' value='' disabled>"+
+            	 "<td>"+
+            	 "<select class='searchFormDataType selectpicker form-control' value='' disabled>"+
             	 "<option></option>"+
             	 "<option>Integer</option>"+
             	 "<option>String</option>"+
@@ -75,8 +81,8 @@ function archiveScreenReqAddAjaxCall(displayName){
             	 "<option>VARCHAR</option>"+
             	 "</select>"+
             	 "</td>"+
-            	 "<td align='center'>"+
-            	 "<select class='searchFormDataRetrieval' value='' disabled>"+
+            	 "<td>"+
+            	 "<select class='searchFormDataRetrieval selectpicker form-control' value='' disabled>"+
             	 "<option></option>"+
             	 "<option>Equal to</option>"+
             	 "<option>Contains</option>"+
@@ -84,20 +90,25 @@ function archiveScreenReqAddAjaxCall(displayName){
             	 "<option>Partial Search</option>"+
             	 "</select>"+
             	 "</td>"+
-            	 "<td align='center'>"+
-            	 "<select class='searchFormRequiredField' value='' disabled>"+
+            	 "<td>"+
+            	 "<select class='searchFormRequiredField selectpicker form-control' value='' disabled>"+
             	 "<option></option>"+
             	 "<option>Yes</option>"+
             	 "<option>No</option>"+
             	 "</select>"+
             	 "</td>"+
-            	 "<td style='text-align:center;vertical-align: middle;'>"+
-            	 "<textarea class='searchFormAdditionalInfo' value='' readonly></textarea>"+
+            	 "<td>"+
+            	 "<textarea class='searchFormAdditionalInfo form-control' value='' readonly></textarea>"+
             	 "</td>" +
-            	 "<td align='center'>"+
-            	 "<div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>"+
-                 "<ul class='dropdown-menu' style='margin: -49px -10px 0px -70px'>"+
-                 "<li><a  class='fa fa-edit searchFormEditRow Edit' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>"+
+					 "<td>"+
+					 "<div class=\"dropdown dropend\">" +
+					 "<button class=\"btn btn-outline-light\" id=\"Drop-option1\"" +
+					 " data-bs-toggle=\"dropdown\" aria-expanded=\"false\"> <img" +
+					 " src=\"images/icons8-expand-arrow-25.png\"" +
+					 " alt=\"dropdown\">" +
+					 "</button>" +"<ul class='dropdown-menu p-0' aria-labelledby=\"Drop-option1\">"+
+                 "<li><a class='dropdown-item dropdown-styles searchFormEditRow Edit'><i" +
+					 " class=\"fa-solid fa-pencil iconColor \"></i>&nbsp;&nbsp;&nbsp;Edit</a></li>"+
                  "<div class='searchFormDeleteRow Delete'></div>"+
                  "</ul>"+
                  "</div>"+
@@ -111,7 +122,7 @@ function archiveScreenReqAddAjaxCall(displayName){
             	 $('#searchFormTypesId').append(option);
         	}
         	else
-        		notification("error","Error occured while adding row.","Error:");
+        		notification("error","Error occurred while adding row.","Error:");
         	
         	}
         	else

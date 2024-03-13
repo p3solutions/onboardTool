@@ -32,7 +32,7 @@ $(document).ready(function(){
 			$(".testName").eq(seqNum).removeAttr("readonly");
 			$(".stageName").eq(seqNum).removeAttr("readonly");
 			$(".prodName").eq(seqNum).removeAttr("readonly");
-			notification("info","Seleted row is editable.","Info:");
+			notification("info","Selected row is editable.","Info:");
 		}
 		else
 		{
@@ -40,7 +40,7 @@ $(document).ready(function(){
 			$(".testName").eq(seqNum).prop("readonly", true);
 			$(".stageName").eq(seqNum).prop("readonly", true);
 			$(".prodName").eq(seqNum).prop("readonly", true);
-			notification("info","Seleted row is non-editable.","Info:");
+			notification("info","Selected row is non-editable.","Info:");
 		}	
 			
 	});
@@ -125,10 +125,10 @@ function archiveEnvmtDeleteAjaxCall(seqNum,tableName){
         		var columnSuffix2 = ((tableName == ("archive_environment_name_info"))?"Name":(tableName == ("archive_environment_serverip_info")?"Server":""));
         		
         		$('.rowClass'+columnSuffix2).eq(seqNum-1).remove();
-        		notification("success","Seleted row deleted Successfully.","Note:");
+        		notification("success","Selected row deleted Successfully.","Note:");
         	}
         	else
-        		notification("error","Error occured while deleting the row.","Error:");
+        		notification("error","Error occurred while deleting the row.","Error:");
         	
         },
         error: function (e) {
@@ -153,24 +153,36 @@ function archiveEnvironmentAddAjaxCall(seqNum,tableName){
         	
         	if(data.AddStatus){
         		var Row="<tr class = 'rowClass"+columnSuffix2+"'>"+
-           	 "<td><input type ='text' class='dev"+columnSuffix1+"' value=''></td>" +
-           	 "<td><input type ='text' class='test"+columnSuffix1+"' value=''></td>" +
-           	 "<td><input type ='text' class='stage"+columnSuffix1+"' value=''></td>" +
-           	 "<td><input type ='text' class='prod"+columnSuffix1+"' value=''></td>" +
+           	 "<td><input type ='text' class='dev"+columnSuffix1+" form-control' value=''></td>" +
+           	 "<td><input type ='text' class='test"+columnSuffix1+" form-control' value=''></td>" +
+           	 "<td><input type ='text' class='stage"+columnSuffix1+" form-control' value=''></td>" +
+           	 "<td><input type ='text' class='prod"+columnSuffix1+" form-control' value=''></td>" +
            	 "<td>"+
-           	 "<div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>"+
-                           "<ul class='dropdown-menu'>"+
-                           "<li><a  class='fa fa-edit EditRow"+columnSuffix2+"' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>"+
-                           "<li><a  class='fa fa-trash DeleteRow"+columnSuffix2+"' style='font-size: 18px; color: black'>&nbsp;&nbsp;&nbsp;Delete</a></li>"+
-                           "</ul>"+
-                           "</div>"+
+           	"<div class=\"dropdown dropend\">" +
+					"<button class=\"btn btn-outline-light\" id=\"Drop-option\"" +
+					" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">" +
+					" <i class=\"fa-solid fa-ellipsis-vertical iconColor fa-lg \"></i>" +
+					"</button>" +
+					"<ul class=\"dropdown-menu\" aria-labelledby=\"Drop-option\">" +
+					"<li><a class=\"dropdown-item dropdown-styles EditRow\"><i" +
+					" class='fa-solid fa-pencil iconColor "+columnSuffix2+"'></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
+					"</li>" +
+					"<li>" +
+					"<hr class=\"dropdown-divider m-0\">" +
+					"</li>" +
+					"<li><a class=\"dropdown-item dropdown-styles DeleteRow\" data-bs-toggle=\"modal\"" +
+					"   data-bs-target=\"#ArchiveDeletePopUp \"><i" +
+					" class='fa-solid fa-trash-can text-danger "+columnSuffix2+"'></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
+					"</li>" +
+					"</ul>" +
+					"</div>"+
            	 "</td>" +
            	 "</tr>";
            	 $("#Environment"+columnSuffix2).append(Row);
            	 	notification("success","Row added Successfully.","Note:");
         	}
         	else
-        		notification("error","Error occured while adding the row.","Error:");
+        		notification("error","Error occurred while adding the row.","Error:");
         	
         },
         error: function (e) {
@@ -200,18 +212,30 @@ function archiveEnvironmentDataRetrieve(){
              $.each(data[0], function(key, value){
             	 
             	 var Row="<tr class = 'rowClassName'>"+
-            	 "<td><input type ='text' style='width:100%; text-align:center;' class='devName' value='"+value.DevName+"' readonly></td>" +
-            	 "<td><input type ='text' style='width:100%; text-align:center;' class='testName' value='"+value.TestName+"' readonly></td>" +
-            	 "<td><input type ='text' style='width:100%; text-align:center;' class='stageName' value='"+value.StageName+"' readonly></td>" +
-            	 "<td><input type ='text' style='width:100%; text-align:center;' class='prodName' value='"+value.ProdName+"' readonly></td>" +
-            	 "<td>"+
-            	 "<div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>"+
-                            "<ul class='dropdown-menu'>"+
-                            "<li><a  class='fa fa-edit EditRowName' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>"+
-                            "<li><a  class='fa fa-trash DeleteRowName' style='font-size: 18px; color: black'>&nbsp;&nbsp;&nbsp;Delete</a></li>"+
-                            "</ul>"+
-                            "</div>"+
-            	 "</td>" +
+            	 "<td><input type ='text' class='devName form-control' value='"+value.DevName+"' readonly></td>" +
+            	 "<td><input type ='text' class='testName form-control' value='"+value.TestName+"' readonly></td>" +
+            	 "<td><input type ='text' class='stageName form-control' value='"+value.StageName+"' readonly></td>" +
+            	 "<td><input type ='text' class='prodName form-control' value='"+value.ProdName+"' readonly></td>" +
+					 "<td>"+
+					 "<div class=\"dropdown dropend\">" +
+					 "<button class=\"btn btn-outline-light\" id=\"Drop-option\"" +
+					 " data-bs-toggle=\"dropdown\" aria-expanded=\"false\"> " +
+					 " <i class=\"fa-solid fa-ellipsis-vertical iconColor fa-lg \"></i>" +
+					 "</button>" +
+					 "<ul class=\"dropdown-menu\" aria-labelledby=\"Drop-option\">" +
+					 "<li><a class=\"dropdown-item dropdown-styles EditRowName\"><i" +
+					 " class='fa-solid fa-pencil iconColor '></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
+					 "</li>" +
+					 "<li>" +
+					 "<hr class=\"dropdown-divider m-0\">" +
+					 "</li>" +
+					 "<li><a class=\"dropdown-item dropdown-styles DeleteRowName\" data-bs-toggle=\"modal\"" +
+					 "   data-bs-target=\"#ArchiveDeletePopUp\"><i" +
+					 " class='fa-solid fa-trash-can text-danger'></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
+					 "</li>" +
+					 "</ul>" +
+					 "</div>"+
+					 "</td>" +
             	 "</tr>";
             	 $("#EnvironmentName").append(Row);
             	 });
@@ -219,18 +243,30 @@ function archiveEnvironmentDataRetrieve(){
         	 
             else{
             		 var Row="<tr class = 'rowClassName'>"+
-                	 "<td><input type ='text' class='devName' value='' readonly></td>" +
-                	 "<td><input type ='text' class='testName' value='' readonly></td>" +
-                	 "<td><input type ='text' class='stageName' value='' readonly></td>" +
-                	 "<td><input type ='text' class='prodName' value='' readonly></td>" +
+                	 "<td><input type ='text' class='devName form-control' value='' readonly></td>" +
+                	 "<td><input type ='text' class='testName form-control' value='' readonly></td>" +
+                	 "<td><input type ='text' class='stageName form-control' value='' readonly></td>" +
+                	 "<td><input type ='text' class='prodName form-control' value='' readonly></td>" +
                 	 "<td>"+
-                	 "<div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>"+
-                                "<ul class='dropdown-menu'>"+
-                                "<li><a  class='fa fa-edit EditRowName' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>"+
-                                "<li><a  class='fa fa-trash DeleteRowName' style='font-size: 18px; color: black'>&nbsp;&nbsp;&nbsp;Delete</a></li>"+
-                                "</ul>"+
-                                "</div>"+
-                	 "</td>" +
+						 "<div class=\"dropdown dropend\">" +
+						 "<button class=\"btn btn-outline-light\" id=\"Drop-option\"" +
+						 " data-bs-toggle=\"dropdown\" aria-expanded=\"false\">" +
+						 " <i class=\"fa-solid fa-ellipsis-vertical iconColor fa-lg \"></i>" +
+						 "</button>" +
+						 "<ul class=\"dropdown-menu\" aria-labelledby=\"Drop-option\">" +
+						 "<li><a class=\"dropdown-item dropdown-styles EditRowName\"><i" +
+						 " class='fa-solid fa-pencil iconColor'></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
+						 "</li>" +
+						 "<li>" +
+						 "<hr class=\"dropdown-divider m-0\">" +
+						 "</li>" +
+						 "<li><a class=\"dropdown-item dropdown-styles DeleteRowName\" data-bs-toggle=\"modal\"" +
+						 "   data-bs-target=\"#ArchiveDeletePopUp\"><i" +
+						 " class='fa-solid fa-trash-can text-danger'></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
+						 "</li>" +
+						 "</ul>" +
+						 "</div>"+
+						 "</td>" +
                 	 "</tr>";
                 	 $("#EnvironmentName").append(Row);
             	 }
@@ -241,18 +277,30 @@ function archiveEnvironmentDataRetrieve(){
              $.each(data[1], function(key, value){
             	 
             	 var Row="<tr class = 'rowClassServer'>"+
-            	 "<td><input type ='text' style='width:100%; text-align:center;' class='devServerIp' value='"+value.DevServerIp+"' readonly></td>" +
-            	 "<td><input type ='text' style='width:100%; text-align:center;' class='testServerIp' value='"+value.TestServerIp+"' readonly></td>" +
-            	 "<td><input type ='text' style='width:100%; text-align:center;' class='stageServerIp' value='"+value.StageServerIp+"' readonly></td>" +
-            	 "<td><input type ='text' style='width:100%; text-align:center;' class='prodServerIp' value='"+value.ProdServerIp+"' readonly></td>" +
-            	 "<td>"+
-            	 "<div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>"+
-                            "<ul class='dropdown-menu'>"+
-                            "<li><a  class='fa fa-edit EditRowServer' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>"+
-                            "<li><a  class='fa fa-trash DeleteRowServer' style='font-size: 18px; color: black'>&nbsp;&nbsp;&nbsp;Delete</a></li>"+
-                            "</ul>"+
-                            "</div>"+
-            	 "</td>" +
+            	 "<td><input type ='text' class='devServerIp form-control' value='"+value.DevServerIp+"' readonly></td>" +
+            	 "<td><input type ='text' class='testServerIp form-control' value='"+value.TestServerIp+"' readonly></td>" +
+            	 "<td><input type ='text' class='stageServerIp form-control' value='"+value.StageServerIp+"' readonly></td>" +
+            	 "<td><input type ='text' class='prodServerIp form-control' value='"+value.ProdServerIp+"' readonly></td>" +
+					 "<td>"+
+					 "<div class=\"dropdown dropend\">" +
+					 "<button class=\"btn btn-outline-light\" id=\"Drop-option\"" +
+					 " data-bs-toggle=\"dropdown\" aria-expanded=\"false\">" +
+					 " <i class=\"fa-solid fa-ellipsis-vertical iconColor fa-lg \"></i>" +
+					 "</button>" +
+					 "<ul class=\"dropdown-menu\" aria-labelledby=\"Drop-option\">" +
+					 "<li><a class=\"dropdown-item dropdown-styles EditRowServer\"><i" +
+					 " class='fa-solid fa-pencil iconColor'></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
+					 "</li>" +
+					 "<li>" +
+					 "<hr class=\"dropdown-divider m-0\">" +
+					 "</li>" +
+					 "<li><a class=\"dropdown-item dropdown-styles DeleteRowServer\" data-bs-toggle=\"modal\"" +
+					 "   data-bs-target=\"#ArchiveDeletePopUp\"><i" +
+					 " class='fa-solid fa-trash-can text-danger'></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
+					 "</li>" +
+					 "</ul>" +
+					 "</div>"+
+					 "</td>" +
             	 "</tr>";
             	 $("#EnvironmentServer").append(Row);
             	 });
@@ -260,18 +308,31 @@ function archiveEnvironmentDataRetrieve(){
         	 
             else{
             		 var Row="<tr class = 'rowClassServer'>"+
-                	 "<td><input type ='text' class='devServerIp' value='' readonly></td>" +
-                	 "<td><input type ='text' class='testServerIp' value='' readonly></td>" +
-                	 "<td><input type ='text' class='stageServerIp' value='' readonly></td>" +
-                	 "<td><input type ='text' class='prodServerIp' value='' readonly></td>" +
+                	 "<td><input type ='text' class='devServerIp form-control' value='' readonly></td>" +
+                	 "<td><input type ='text' class='testServerIp form-control' value='' readonly></td>" +
+                	 "<td><input type ='text' class='stageServerIp form-control' value='' readonly></td>" +
+                	 "<td><input type ='text' class='prodServerIp form-control' value='' readonly></td>" +
                 	 "<td>"+
-                	 "<div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>"+
-                                "<ul class='dropdown-menu'>"+
-                                "<li><a  class='fa fa-edit EditRowServer' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>"+
-                                "<li><a  class='fa fa-trash DeleteRowServer' style='font-size: 18px; color: black'>&nbsp;&nbsp;&nbsp;Delete</a></li>"+
-                                "</ul>"+
-                                "</div>"+
-                	 "</td>" +
+						 "<td>"+
+						 "<div class=\"dropdown dropend\">" +
+						 "<button class=\"btn btn-outline-light\" id=\"Drop-option\"" +
+						 " data-bs-toggle=\"dropdown\" aria-expanded=\"false\">" +
+						 " <i class=\"fa-solid fa-ellipsis-vertical iconColor fa-lg \"></i>" +
+						 "</button>" +
+						 "<ul class=\"dropdown-menu\" aria-labelledby=\"Drop-option\">" +
+						 "<li><a class=\"dropdown-item dropdown-styles EditRowServer\"><i" +
+						 " class='fa-solid fa-pencil iconColor '></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
+						 "</li>" +
+						 "<li>" +
+						 "<hr class=\"dropdown-divider m-0\">" +
+						 "</li>" +
+						 "<li><a class=\"dropdown-item dropdown-styles DeleteRowServer\" data-bs-toggle=\"modal\"" +
+						 "   data-bs-target=\"#ArchiveDeletePopUp\"><i" +
+						 " class='fa-solid fa-trash-can text-danger '></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
+						 "</li>" +
+						 "</ul>" +
+						 "</div>"+
+						 "</td>" +
                 	 "</tr>";
                 	 $("#EnvironmentServer").append(Row);
             	 }

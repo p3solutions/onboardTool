@@ -20,14 +20,16 @@ $(document).ready(function() {
 		ajaxTemplateCall("Retrieve", appId, appName);
 		financeSetSessionAttribute1(appId, appName);
 		$("#inputFieldsRoles").show();
+		$("#suggestionDropdown").hide();
 
 	} else {
-		Title = "ADD Finance";
+		Title = "Add Finance";
 		financeRemoveSessionAttribute();
 		console.log("APPID or APPNAME not found in sessionStorage.");
 		ajaxTemplateCallNoData("Initial")
+		$("#suggestionDropdown").show();
 	}
-	$("#sitetitle3").text(Title);
+	$("#Current-page").text(Title);
 });
 function header(Name) {
 	var cardHeader = document.getElementById('cd-header');

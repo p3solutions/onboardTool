@@ -121,10 +121,10 @@ function archiveRequirementApprovalDataRetrieveAjaxCall()
                    if(role==undefined||role == "" && name =="" ||name == undefined)
                        readonly ="";
                   var Row = "<tr class='"+CurrentRoleClass+"Class' "+toolTip+">"+
-                            "<td style='text-align:center;vertical-align: middle;'class='UserName' >"+name+"</td>"+
-                            "<td style='text-align:center;vertical-align: middle;'>"+role+"</td>"+
-                            "<td style='text-align:center;vertical-align: middle;'>"+
-                            "<select class='archiveRequirementApproval'"+checkDisable+">"+
+                            "<td class='UserName' >"+name+"</td>"+
+                            "<td>"+role+"</td>"+
+                            "<td>"+
+                            "<select class='archiveRequirementApproval form-select'"+checkDisable+">"+
                             "<option value='Approved'"+ApprovedStatus+">Approved</option>"+
                             "<option value='Rejected'"+RejectedStatus+">Rejected</option>"+
                             "<option value='Decision pending'"+YettoDecideStatus+">Decision pending.</option>"+

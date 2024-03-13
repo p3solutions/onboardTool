@@ -24,17 +24,28 @@ function archiveReqDocRevDataRetrieve(){
                  var dateFromDb=value.date==''?today:value.date;
                  var versionFromDb=value.version;
                  var Row="<tr class = 'rowClassDoc'>"+
-                 "<td><input type ='text' class='date' style='width: 100%; text-align:center;' value='"+dateFromDb+"' readonly></td>" +
-                 "<td><input type ='text' class='version' style='width: 100%; text-align:center;' value='"+versionFromDb+"' readonly></td>" +
-                 "<td><input type ='text' class='documentChanges' style='width: 100%; text-align:center;' value='"+value.documentChanges+"' readonly></td>" +
-                 "<td><input type ='text' class='changeAuthor' style='width: 100%; text-align:center;' value='"+value.changeAuthor+"' readonly></td>" +
+                 "<td><input type ='text' class='date form-control' value='"+dateFromDb+"' readonly></td>" +
+                 "<td><input type ='text' class='version form-control' value='"+versionFromDb+"' readonly></td>" +
+                 "<td><input type ='text' class='documentChanges form-control' value='"+value.documentChanges+"' readonly></td>" +
+                 "<td><input type ='text' class='changeAuthor form-control' value='"+value.changeAuthor+"' readonly></td>" +
                  "<td>"+
-                 "<div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>"+
-                            "<ul class='dropdown-menu'>"+
-                            "<li><a  class='fa fa-edit EditRowDoc' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>"+
-                            "<li><a  class='fa fa-trash DeleteRowDoc' style='font-size: 18px; color: black'>&nbsp;&nbsp;&nbsp;Delete</a></li>"+
-                            "</ul>"+
-                            "</div>"+
+                 "<div class=\"dropdown dropend\">" +
+                     "<button class=\"btn btn-outline-light\" id=\"Drop-option\" data-bs-toggle=\"dropdown\"" +
+                     " aria-expanded=\"false\"> " +
+                     " <i class=\"fa-solid fa-ellipsis-vertical iconColor fa-lg \"></i>" +
+                     "</button>" +
+                     "<ul class=\"dropdown-menu\" aria-labelledby=\"Drop-option\">" +
+                     "<li><a class=\"dropdown-item dropdown-styles EditRowDoc\"><i" +
+                     " class=\"fa-solid fa-pencil iconColor \"></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
+                     "</li>" +
+                     "<li>" +
+                     "<hr class=\"dropdown-divider m-0\">" +
+                     "</li>" +
+                     "<li><a class=\"dropdown-item dropdown-styles DeleteRowDoc\"><i" +
+                     " class=\"fa-solid fa-trash-can text-danger \"></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
+                     "</li>" +
+                     "</ul>" +
+                     "</div>"+
                  "</td>" +
                  "</tr>";
                  $("#docRevInfo").append(Row);
@@ -49,17 +60,28 @@ function archiveReqDocRevDataRetrieve(){
                  }
             else{
                      var Row="<tr class = 'rowClassDoc'>"+
-                     "<td><input type ='text' class='date' value="+today+" readonly></td>" +
-             "<td><input type ='text' class='version' value="+'1' +" readonly></td>" +
-                                         "<td><input type ='text' class='documentChanges' value='' readonly></td>" +
-                     "<td><input type ='text' class='changeAuthor' value='' readonly></td>" +
+                     "<td><input type ='text' class='date form-control' value="+today+" readonly></td>" +
+             "<td><input type ='text' class='version form-control' value="+'1' +" readonly></td>" +
+                                         "<td><input type ='text' class='documentChanges form-control' value='' readonly></td>" +
+                     "<td><input type ='text' class='changeAuthor form-control' value='' readonly></td>" +
                      "<td>"+
-                     "<div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>"+
-                                "<ul class='dropdown-menu'>"+
-                                "<li><a  class='fa fa-edit EditRowDoc' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>"+
-                                "<li><a  class='fa fa-trash DeleteRowDoc' style='font-size: 18px; color: black'>&nbsp;&nbsp;&nbsp;Delete</a></li>"+
-                                "</ul>"+
-                                "</div>"+
+                     "<div class=\"dropdown dropend\">" +
+                         "<button class=\"btn btn-outline-light\" id=\"Drop-option\" data-bs-toggle=\"dropdown\"" +
+                         " aria-expanded=\"false\"> " +
+                         " <i class=\"fa-solid fa-ellipsis-vertical iconColor fa-lg \"></i>" +
+                         "</button>" +
+                         "<ul class=\"dropdown-menu\" aria-labelledby=\"Drop-option\">" +
+                         "<li><a class=\"dropdown-item dropdown-styles EditRowDoc\"><i" +
+                         " class=\"fa-solid fa-pencil iconColor \"></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
+                         "</li>" +
+                         "<li>" +
+                         "<hr class=\"dropdown-divider m-0\">" +
+                         "</li>" +
+                         "<li><a class=\"dropdown-item dropdown-styles DeleteRowDoc\"><i" +
+                         " class=\"fa-solid fa-trash-can text-danger \"></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
+                         "</li>" +
+                         "</ul>" +
+                         "</div>"+
                      "</td>" +
                      "</tr>";
                      $("#docRevInfo").append(Row);

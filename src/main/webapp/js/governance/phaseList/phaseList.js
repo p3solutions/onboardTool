@@ -210,21 +210,41 @@ function selectCategory(category)
 	 $('#ul_id').html("");
      $.each(data, function(key, value){
     	 var waveName = value.WaveName; 
-    	 var WaveId = value.WaveId; 
-    	
-	var li_element ="<li class = 'waveCard'>"+
-					"<div class='drophide'>"+
-					"<i class = 'fal fa-ellipsis-v dropbtn dropClass' style='font-size:35px; position:absolute; width:90%; top:0px;'>"+
-					"<div class='dropdown-content myDropdown' style = 'float:right;'>"+
-					"<a class = 'options' style = 'text-align:left;' href='#'>Edit</a>"+
-					"<a class = 'options deleteWaveClass' style = 'text-align:left;' href='#'>Delete</a>"+
-					"</div>"+
-					"</i>"+
-					"<input type = 'hidden' class = 'waveName' value = '"+waveName+"'>"+
-					"<input type = 'hidden' class = 'waveId' value = '"+WaveId+"'>"+
-					"</div>"+
-                  "<h3 class='cbp-vm-title left-col primary waveHeadingName' name='name' contenteditable='false'>"+waveName+"</h3>"+
-                  "</li>";
+    	 var WaveId = value.WaveId;
+		 var Appdesc="";
+		 var li_element ="<div class=\"col waveCard\">" +
+			 "<div class=\"card\">" +
+			 "<div class=\"row\">" +
+			 "<div class=\"col-9 mt-3 m-auto\">" +
+			 "<h5 class=\"card-title AppCardTitle waveHeadingName\">"+waveName+"</h5>" +
+			 "</div>" +
+			 "<div class=\"col-1 mt-2 m-auto\">" +
+			 "<div class=\" d-flex justify-content-end\">" +
+			 "<button type=\"button\" class=\"Card-Icon btn btn-outline-none border-0 dropdown-toggle-split\"" +
+			 "data-bs-toggle=\"dropdown\" aria-expanded=\"false\">" +
+			 "<i class=\"fa-solid fa-ellipsis-vertical fa-lg \"></i>" +
+			 "</button>" +
+			 "<ul class=\"dropdown-menu\">" +
+			 "<li><a class=\"dropdown-item\">" +
+			 "<i class= 'fa-solid fa-pencil iconColor'></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
+			 "</li>" +
+			 "<li>" +
+			 "<hr class=\"dropdown-divider\">" +
+			 "</li>" +
+			 "<li><a class=\"dropdown-item deleteWaveClass\" href=\"#\"" +
+			 ">" +
+			 "<i class=\"fa-solid fa-trash-can text-danger\"></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
+			 "</li>" +
+			 "</ul>" +
+			 "</div>" +
+			 "</div>" +
+			 "</div>" +
+			 "<input type = 'hidden' class = 'waveName' value = '"+waveName+"'>"+
+			 "<input type = 'hidden' class = 'waveId' value = '"+WaveId+"'>"+
+			 "<div class=\"row card-text col-11 mt-3 m-auto AppCardBody scrollbar\">" +Appdesc+
+			 "</div>" +
+			 "</div>" +
+			 "</div>";
 	$('#ul_id').append(li_element);
 	
 	i++;
@@ -301,27 +321,41 @@ function phaseListAjaxCall()
              var option ="<option class='options' value='All'>All</option>";
              $.each(data, function(key, value){
             	 var phaseName = value.phaseName; 
-            	 var phaseId = value.phaseId; 
-            	
-        	var li_element ="<li class = 'phaseCard cardClass' >"+
-				        	"<div class='drophide'>"+
-							"<i class = 'fal fa-ellipsis-v dropbtn dropClass' style='font-size:35px; position:absolute; width:90%; top:0px;margin-left:5px; margin-top:0.5%;'>"+
-							"<div class='dropdown-content myDropdown' style = 'float:right;'>"+
-							"<a class = 'options editPhaseClass' style = 'text-align:left;' href='#'>Edit</a>"+
-							"<a class = 'options deletePhaseClass' style = 'text-align:left;' href='#'>Delete</a>"+
-							"</div>"+
-							"</i>"+
-							"<input type = 'hidden' class = 'phaseName' value = '"+phaseName+"'/>"+
-							"<input type = 'hidden' class = 'phaseId' value = '"+phaseId+"'/>"+
-							"</div>"+
-							"<h3 class='cbp-vm-title' style='display:none;'>"+value.apps+"</h3>"+
-                             /*"<h3 class='left-col primary phaseHeadingName' name='name' contenteditable='false'>"+phaseName+"</h3>"+*/
-                             "<h3 class='cbp-vm-title left-col primary' data-bs-toggle='tooltip' data-bs-placement='top' title='"+phaseName+"'>"+phaseName+"</h3>"+
-                             "<button type='button' class='btn btn-primary mt-2' name='btn' onClick=\"edit('"+phaseId+"','"+phaseName+"')\";>"+
-								"<i class='fa fa-eye'></i>/ &nbsp; <i class='fa fa-edit'></i>"+
-							 "</button>"+
-                             
-                              "</li>";
+            	 var phaseId = value.phaseId;
+				 var Appdesc ="";
+				 var li_element ="<div class=\"col phaseCard\">" +
+					 "<div class=\"card\">" +
+					 "<div class=\"row\">" +
+					 "<div class=\"col-9 mt-3 m-auto\">" +
+					 "<h5 class=\"card-title AppCardTitle waveHeadingName\">"+phaseName+"</h5>" +
+					 "</div>" +
+					 "<div class=\"col-1 mt-2 m-auto\">" +
+					 "<div class=\" d-flex justify-content-end\">" +
+					 "<button type=\"button\" class=\"Card-Icon btn btn-outline-none border-0 dropdown-toggle-split\"" +
+					 "data-bs-toggle=\"dropdown\" aria-expanded=\"false\">" +
+					 "<i class=\"fa-solid fa-ellipsis-vertical fa-lg \"></i>" +
+					 "</button>" +
+					 "<ul class=\"dropdown-menu\">" +
+					 "<li><a class=\"dropdown-item editPhaseClass\" onClick=\"edit('"+phaseId+"','"+phaseName+"')\";>" +
+					 "<i class= 'fa-solid fa-pencil iconColor'></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
+					 "</li>" +
+					 "<li>" +
+					 "<hr class=\"dropdown-divider\">" +
+					 "</li>" +
+					 "<li><a class=\"dropdown-item deletePhaseClass\" href=\"#\"" +
+					 ">" +
+					 "<i class=\"fa-solid fa-trash-can text-danger\"></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
+					 "</li>" +
+					 "</ul>" +
+					 "</div>" +
+					 "</div>" +
+					 "</div>" +
+					 "<input type = 'hidden' class = 'phaseName' value = '"+phaseName+"'>"+
+					 "<input type = 'hidden' class = 'phaseId' value = '"+phaseId+"'>"+
+					 "<div class=\"row card-text col-11 mt-3 m-auto AppCardBody scrollbar\">" +Appdesc+
+					 "</div>" +
+					 "</div>" +
+					 "</div>";
         	$('#ul_id').append(li_element);
         	 option +="<option class='options' value='"+phaseName+"'>"+phaseName+"</option>";
         	

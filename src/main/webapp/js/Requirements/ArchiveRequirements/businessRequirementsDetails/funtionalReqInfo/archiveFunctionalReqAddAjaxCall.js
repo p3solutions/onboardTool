@@ -65,24 +65,38 @@ function archiveFunctionalReqAddAjaxCall(seqNum){
         	console.log("Data Add Row Retrieve--->",data);
         	if(data.AddStatus){
         		
-        		 var Row="<tr class = '"+section+"RowClass' style ='height: 140px;'>"+
-            	 "<td style='text-align:center;vertical-align: middle;' class = '"+section+"ReqId'>"+data.ReqId+
+        		 var Row="<tr class = '"+section+"RowClass' >"+
+            	 "<td class = '"+section+"ReqId'>"+data.ReqId+
             	 "</td>" +
-            	 "<td style='text-align:center;vertical-align: middle;'>"+
-            	 "<input type ='radio' name='"+section+(seqNum+1)+"' id='"+section+(seqNum+1)+"' class='"+section+"InScope "+section+"Yes' value='Yes'   /> Yes &nbsp;"+
-            	 "<input type ='radio' name='"+section+(seqNum+1)+"' id='"+section+(seqNum+1)+"' class='"+section+"InScope "+section+"No' value='No'  /> No"+
+            	 "<td>"+
+					 " <div class=\"form-check form-check-inline\">" +
+					 "<input type=\"radio\"" +
+            	 " name='"+section+(seqNum+1)+"' id='"+section+(seqNum+1)+"' class='"+section+"InScope "+section+"Yes form-check-input' value='Yes'/><label class=\"form-check-label\">Yes</label>"+
+					 "</div>" +
+					 "<div class=\"form-check form-check-inline\">" +
+					 "<input type=\"radio\"" +
+					 " name='"+section+(seqNum+1)+"' id='"+section+(seqNum+1)+"' class='"+section+"InScope "+section+"No form-check-input' value='No'/> <label class=\"form-check-label\">No</label>"+
             	 "</td>"+
-            	 "<td style='text-align:center;vertical-align: middle;'><input type='text' class='dataReq "+section+"ReqType' value='' /></td>" +
-            	 "<td style='text-align:center;vertical-align: middle;'>" +
-            	 "<textarea rows='2' cols='40' style='height:100px;' class='req "+section+"Requirements' ></textarea>"+
+            	 "<td><input type='text' class='dataReq "+section+"ReqType form-control' value='' /></td>" +
+            	 "<td>" +
+            	 "<textarea rows='2' cols='30' class='req "+section+"Requirements form-control' ></textarea>"+
             	 "</td>"+
-            	 "<td style='text-align:center;vertical-align: middle;'>"+
-            	 "<textarea class='additional "+section+"Additional' value='N/A' >N/A</textarea>"+
+            	 "<td>"+
+            	 "<textarea rows='2' cols='30' class='additional "+section+"Additional form-control' value='N/A' >N/A</textarea>"+
             	 "</td>" +
-            	 "<td style='text-align:center;vertical-align: middle;'>"+
-            	 "<div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>"+
-                 "<ul class='dropdown-menu'>"+
-                 "<li><a  class='fa fa-trash DeleteRow "+section+"Delete' style='font-size: 18px; color: black'>&nbsp;&nbsp;&nbsp;Delete</a></li>"+
+            	 "<td>"+
+					 "<div class=\"dropdown dropend\">" +
+					 "<button class=\"btn btn-outline-light\" id=\"Drop-option\"" +
+					 " data-bs-toggle=\"dropdown\" aria-expanded=\"false\">" +
+					 " <i class=\"fa-solid fa-ellipsis-vertical iconColor fa-lg \"></i>" +
+					 "</button>" +
+                 "<ul class='dropdown-menu p-0' aria-labelledby=\"Drop-option\">"+
+					 "<li><a class=\"dropdown-item dropdown-styles disabled	\" ><i" +
+					 " class=\"fa-solid fa-pencil iconColor\"></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
+					 " <li>" +
+					 "<hr class=\"dropdown-divider m-0\">" +
+					 "</li>" +
+                 "<li><a class='dropdown-item dropdown-styles DeleteRow "+section+"Delete' ><i class='fa-solid fa-trash-can text-danger'></i>&nbsp;&nbsp;&nbsp;Delete</a></li>"+
                  "</ul>"+
                  "</div>"+
             	 "</td>"+
@@ -93,7 +107,7 @@ function archiveFunctionalReqAddAjaxCall(seqNum){
            	 	notification("success","Row added Successfully in "+tableNameAdd+".","Note:");
         	}
         	else
-        		notification("error","Error occured while adding the row in "+tableNameAdd+".","Error:");
+        		notification("error","Error occurred while adding the row in "+tableNameAdd+".","Error:");
         	
         },
         error: function (e) {

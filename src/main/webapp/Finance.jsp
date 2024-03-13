@@ -3,63 +3,60 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- ========== COMMON STYLES ========== -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
-    <link rel="stylesheet" href="css/font-awesome.min.css" media="screen">
-    <link rel="stylesheet" href="css/animate-css/animate.min.css"
-          media="screen">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet">
-
     <title>D3Sixty - Finance </title>
-    <!-- ========== PAGE STYLES ========== -->
-    <link rel="stylesheet" href="css/prism/prism.css" media="screen">
 
-    <link rel="stylesheet" href="css/toastr/toastr.min.css" media="screen">
-    <link rel="stylesheet" href="css/icheck/skins/line/blue.css">
-    <link rel="stylesheet" href="css/icheck/skins/line/red.css">
-    <link rel="stylesheet" href="css/icheck/skins/line/green.css">
-    <link rel="stylesheet" href="css/bootstrap-tour/bootstrap-tour.css">
-    <link rel="stylesheet" href="css/UserInfo/userinfo.css">
+<%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>--%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+    <!-- ========== Toastr ========== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
-    <!-- ========== THEME CSS ========== -->
-    <link rel="stylesheet" href="css/main.css" media="screen">
-
-
-    <!-- =========== Header Icon ========= -->
-    <link rel="stylesheet"
-          href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
-    <link rel="stylesheet" href="css/headerIcon/headerIcon.css"
-          media="screen">
-
-    <!-- ========== MODERNIZR ========== -->
-    <script src="js/modernizr/modernizr.min.js"></script>
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
-    <link
-            href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
-            rel="stylesheet">
-
-    <link rel="stylesheet" href="css/Finance/Finance.css">
+    <!-- ========== COMMON JS FILES ========== -->
+        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Finance ApplicationInfo -->
     <script type="text/javascript" src="js/Finance/FinanceTemplateRetrive.js"></script>
 
-
-
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
-    <script
-            src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script
-            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <link rel="stylesheet" href="js_in_pages/requirements.css"
-          type="text/css" />
-    <link rel="stylesheet" href="css/Responsive/intake-opportunity.css"
-          media="screen">
-    <link rel="stylesheet" href="css/Responsive/responsive.css"
-          media="screen">
 </head>
 
+<style>
+    .form-group,
+    .form-select {
+        font-family: 'Roboto';
+        font-size: 14px;
+        box-shadow: none !important;
+    }
+    .accordion-button{
+        background-color: #AED9F9 !important;
+        color: #FFFFFF !important ;
+        font-family: 'Roboto';
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+        box-shadow: none !important;
+    }
 
-<body class="top-navbar-fixed">
+    /*.icon-float {*/
+    /*    float: right;*/
+    /*}*/
+
+    /*.hidepencil {*/
+    /*    display: none;*/
+    /*}*/
+
+    /*.hidedelete {*/
+    /*    display: none;*/
+    /*}*/
+    div.financeSuggestionScrollBar {
+        height: 110px;
+        overflow-y:auto;
+        margin-left: -10px;
+    }
+</style>
+<body>
 
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="java.util.Date"%>
@@ -88,25 +85,22 @@
     }
     else {
 %>
-<form class="form-signin" name="loginForm" method="post">
-    <div class="main-wrapper">
+<%--<form class="form-signin" name="loginForm" method="post">--%>
         <%@include file="Nav-Bar.jspf"%>
-        <nav class="nav nav-height-70 nav-font" id="bg-color"
-             style="font-size: 14px;">
-            <div class="container-fluid" id="container-fluid-margin">
-                <div class="row" id="d3s-mt-10">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="sub-title" style="color: #fff">
-                            <a href="OpportunityList.jsp" id="sitetitle1"
-                               style="color: #fff"><span class="glyphicon glyphicon-home"></span>
-                                Home</a> >> <a href="FinanceList.jsp" id="sitetitle2"
-                                               style="color: #fff">Finance</a> >> <a href="#" id="sitetitle3"
-                                               style="color: #fff"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="row m-0">
+    <div class="col p-0">
+        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%23f1f1f1'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+            <ol class="breadcrumb px-4 m-0 ">
+                <li class="breadcrumb-item inactive my-3 text-light ">
+                    <a href="#" class="text-decoration-none breadcrumbtextinactive">Home</a>
+                </li>
+                <li class="breadcrumb-item inactive my-3 text-light ">
+                    <a href="#" class="text-decoration-none breadcrumbtextinactive">Finance List</a>
+                </li>
+                <li class="breadcrumb-item active my-3 breadcrumbtextactive" id="Current-page" aria-current="page"></li>
+            </ol>
         </nav>
+        </div></div></div>
 
 <% } %>
         <input type="hidden" name="selectedId" id="selectedId" value="">
@@ -119,15 +113,6 @@
             session.setAttribute("seId", ID);
             session.setAttribute("seName", Opportunity);
         %>
-
-
-        <div class="content-wrapper">
-            <div class="content-container">
-                <!-- Projects List Start -->
-                <div class="main-page">
-                    <section class="wizard-section">
-                        <div class="row">
-                            <div class="container" id="module_header">
                                 <%
                                     String initiate = (String) session.getAttribute("Ideation and Initiate");
                                     String plan = (String) session.getAttribute("Plan");
@@ -142,209 +127,132 @@
                                     if (hypercare == null)
                                         hypercare = "0";
                                 %>
-                                <br />
-                                <br />
-                                <br />
 
+<div class="container-fluid px-4 my-5">
+    <div class="card">
+        <div class="card-header Card-Header" id="cd-header">Finance Information
+        </div>
+        <div class="accordion m-3 " id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button " type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Application Finance Info
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                     data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="row row-cols-1 row-cols-md-2 gx-5 g-3" id="inputFieldsAppInfo">
+                            <div id="suggestionDropdown" class=" col financeSuggestionScrollBar">
 
-                                <div class="tab-pane" role="tabpanel" id="step4">
-
-                                    <!-- Application Informations -->
-                                    <div class="card-container-2 card">
-                                        <div id="suggestionDropdown"></div>
-
-                                        <div class="card-header" id="cd-header"> Finance Information</div>
-<%--                                        <label id="labelhead">Enter the name of the Application: </label>--%>
-<%--                                        <input type="text" id="nameInput" name = "appName" placeholder="Enter a name">--%>
-<%--                                        <button id="refreshButton">Refresh Page</button>--%>
-
-                                        <div id="collapse4" class="panel-collapse ">
-                                            <div id="collapse1" class="panel-collapse " name="collapse">
-                                                <div class="panel-body">
-                                                    <div id="inputFieldsAssessment">
-                                                        <!-- Application Info -->
-                                                        <div class="panel panel-default">
-<%--                                                            <div id="suggestionDropdown"></div>--%>
-                                                            <div class="card-header" id="cd-header">
-                                                                <h4 class="panel-title">
-                                                                    <a class="collapsed" data-bs-toggle="collapse"
-                                                                       data-bs-parent="#panels1" href="">Application Finance
-                                                                        Info</a>
-                                                                </h4>
-                                                            </div>
-<%--                                                            <div id="suggestionDropdown"></div>--%>
-                                                            <div id="collapse5" class="panel-collapse ">
-                                                                <div class="panel-body">
-                                                                    <div id="collapse1"
-                                                                         class="panel-collapse collapse show" name="collapse">
-                                                                        <div class="panel-body">
-                                                                            <div id="inputFieldsAppInfo"></div>
-                                                                            <div class="col-md-12">
-
-                                                                                <div class="col-12" align="end">
-
-                                                                                    <div class="dropdown">
-                                                                                        <button type="button"
-                                                                                                class="btn btn-secondary dropdown-toggle"
-                                                                                                id="dropdownMenuButton1"
-                                                                                                data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
-                                                                                        <ul class="dropdown-menu"
-                                                                                            aria-labelledby="dropdownMenuButton1">
-                                                                                            <li><a class="dropdown-item dropDown-font"
-                                                                                                   id="add" href="#" data-bs-toggle="modal"
-                                                                                                   data-bs-target="#LegacyAddPopUp"> <i
-                                                                                                    class="fas fa-plus" aria-hidden="true">&nbsp;&nbsp;&nbsp;
-                                                                                            </i>Add
-                                                                                            </a></li>
-                                                                                            <li><a class="dropdown-item dropDown-font"
-                                                                                                   id="EditLegacy" href="#"><i
-                                                                                                    class="fas fa-edit" aria-hidden="true">&nbsp;&nbsp;
-                                                                                            </i>Edit</a></li>
-                                                                                            <li><a class="dropdown-item dropDown-font"
-                                                                                                   id="DeleteLegacy" href="#"><i
-                                                                                                    class="fas fa-trash" aria-hidden="true">&nbsp;&nbsp;&nbsp;
-                                                                                            </i>Delete</a></li>
-
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                    <button type="submit" class="btn btn-primary"
-                                                                                            id="legacyAppInfoSave">Save</button>
-
-                                                                                    <button type="button"
-                                                                                            class="btn btn-primary pull-right"
-                                                                                            id="editpopup_btn" data-bs-toggle="modal"
-                                                                                            data-bs-target="#LegacyEditPopUp"
-                                                                                            style="display: none;">Edit PopUp</button>
-                                                                                    <button type="button"
-                                                                                            class="btn btn-primary pull-right"
-                                                                                            id="deletepopup_btn" data-bs-toggle="modal"
-                                                                                            data-bs-target="#LegacyDeletePopUp"
-                                                                                            style="display: none;">Delete PopUp</button>
-                                                                                    <!--  <button type="button" class="btn btn-primary pull-right" id="TriageSummaryListbtn" onclick ="window.location.href='IntakeDetails.jsp';"style="display:none;"></button> -->
-                                                                                </div>
-                                                                            </div>
-
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- Legacy Application Screenshot -->
-                                                            <div class="panel panel-default" >
-                                                                <div class="card-header" id="cd-header">
-                                                                    <h4 class="panel-title">
-                                                                        <a class="collapsed" data-bs-toggle="collapse"
-                                                                           data-bs-parent="#panels1" href="#collapse3">Finance
-                                                                            Application Screenshots</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div id="collapse3" class="panel-collapse collapse">
-                                                                    <div class="panel-body" >
-                                                                        <div id="collapse1"
-                                                                             class="panel-collapse collapse show" name="collapse">
-                                                                            <div class="panel-body" id="screentab">
-                                                                                <div id="inputFieldsRoles">
-
-                                                                                    <div class="container fileClass">
-                                                                                        <form action="" method="post"
-                                                                                              enctype="multipart/form-data">
-                                                                                            <div class="fileClass">
-                                                                                                <label for="upload"> <input type="file"
-                                                                                                                            id="fileUpload" multiple> Upload Files
-                                                                                                </label>
-                                                                                            </div>
-                                                                                            <div class="files fileClass">
-                                                                                                <h6>
-                                                                                                    <b>Files Selected</b>
-                                                                                                </h6>
-                                                                                                <ul id="FileList"></ul>
-                                                                                            </div>
-                                                                                            <input type="button" value="Upload"
-                                                                                                   class="btn btn-primary" name="submit"
-                                                                                                   id="UploadFiles" />
-                                                                                        </form>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <button type="button" id="add_btn"
-                                                                                        class="btn btn-primary" href="#"
-                                                                                         data-bs-toggle="modal"
-                                                                                        data-bs-target="#Legacy_ScrPopUp"
-                                                                                        style="margin: 5px">View Uploaded Files</button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-md-12">
-                                                                    <br />
-                                                                    <div class="col-md-4">
-                                                                        <button type="button" class="btn btn-secondary"
-                                                                                style="padding-top: 5px; padding-left: 10px; float: left;"
-                                                                                onclick="clearSessionItem()">Back</button>
-                                                                    </div>
-                                                                    <div class="col-md-8 dropup" align="end">
-                                                                        <button type="submit" class="btn btn-primary"
-                                                                                id="complete" onclick="clearSessionItem()">Submit</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
                             </div>
-                            <!-- /.row -->
 
                         </div>
+                        <div class="row my-3 mx-1">
+                            <div class="col-12  d-flex justify-content-center ">
+                                <div class="dropdown">
 
-                    </section>
-                    <!-- /.section -->
+                                    <button class="btn secondaryButton text-center dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                        Action
+                                    </button>
+                                    <ul class="dropdown-menu ">
+                                        <li><a class="dropdown-item dropdown-styles" id="add" data-bs-toggle="modal"
+                                               data-bs-target="#LegacyAddPopUp"><i
+                                                class="fa-solid fa-plus iconColor"></i>&nbsp;&nbsp;&nbsp;Add</a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider m-0">
+                                        </li>
+                                        <li><a class="dropdown-item dropdown-styles" id="EditLegacy" ><i
+                                                class="fa-solid fa-pencil iconColor"></i>&nbsp;&nbsp;&nbsp;Edit</a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider m-0">
+                                        </li>
+                                        <li><a class="dropdown-item dropdown-styles" id="DeleteLegacy" ><i
+                                                class="fa-solid fa-trash-can text-danger"></i>&nbsp;&nbsp;&nbsp;Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
 
+
+
+
+                                <!-- end of dropdown  -->
+                                <button type="submit" class="btn primaryButton text-center mx-2"
+                                        id="legacyAppInfoSave">Save</button>
+                                <button type="button" class="btn btn-primary pull-right" id="editpopup_btn"
+                                        data-bs-toggle="modal" data-bs-target="#LegacyEditPopUp"
+                                        style="display: none;">Edit PopUp</button>
+                                <button type="button" class="btn btn-primary pull-right" id="deletepopup_btn"
+                                        data-bs-toggle="modal" data-bs-target="#LegacyDeletePopUp"
+                                        style="display: none;">Delete PopUp</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- /.main-page -->
-                <!-- Project List End -->
             </div>
-            <!-- /.content-container -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed " type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                        Finance Application Screenshots
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                     data-bs-parent="#accordionExample">
+                    <div class="accordion-body" id="inputFieldsRoles">
+                        <div class="mb-3 col-3">
+                            <input class="form-control" type="file" id="fileUpload" multiple>
+                        </div>
+                        <h6>
+                            <b>Files Selected</b>
+                        </h6>
+                        <ul id="FileList">
 
-            <!-- /.main-wrapper -->
-            <script>
-                function validateform9() {
+                        </ul>
+                        <div>
+                            <input type="button" value="Upload" class="btn primaryButton text-center" name="submit"
+                                   id="UploadFiles" />
+                            <button type="button" id="add_btn" class="btn primaryButton text-center w-auto mx-2" href="#"
+                                    data-bs-toggle="modal" data-bs-target="#Legacy_ScrPopUp">View Uploaded
+                                Files</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row my-3 mx-1">
+            <div class="col-12  d-flex justify-content-center ">
+                <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                        onclick="clearSessionItem()">Back</button>
+                <button type="submit" class="btn primaryButton text-center mx-2" id="complete"
+                        onclick="clearSessionItem()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-                    var f = document.loginForm;
-                    f.method = "post";
-                    f.action = 'ArchivalRequirements';
-                    f.submit();
-
-                }
-            </script>
 
 
             <%
-                //     }
-                //    }
+
             %>
-        </div>
-    </div>
-</form>
+<%--</form>--%>
+<!-- modal -->
 
-<!-- Legacy Application Information Add popup -->
-
-<div class="modal" id="LegacyAddPopUp" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+<!-- Finance Application Information Add popup -->
+<div class="modal fade" id="LegacyAddPopUp" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header modal-font-label">
                 <h5 class="modal-title" id="exampleModalLabel">Add Input
                     Fields</h5>
-                <button type="button" class="btn-close" id="Legacyaddclose_id"
-                        data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" id="Legacyaddclose_id" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form name="PopUpform">
@@ -353,24 +261,20 @@
                             <div class="form-group-popup">
                                 <div class="col-lg-12">
                                     <label class="control-label" for="formInput526">Label:</label>
-                                    <input type="text" class="form-control" id="Legacyaddlabel"
-                                           name="Legacylabel" required>
+                                    <input type="text" class="form-control" id="Legacyaddlabel" name="Legacylabel"
+                                           required>
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" id="Legacyproject_name" name="project_name"
-                               value=""> <input type="text" id="Legacyappln_name"
-                                                name="appln_name" value="" style="display: none;"> <input
-                            type="text" id="Legacyservlet_name" name="servlet_name" value=""
-                            style="display: none;">
-
-
+                        <input type="hidden" id="Legacyproject_name" name="project_name" value=""> <input
+                            type="text" id="Legacyappln_name" name="appln_name" value="" style="display: none;">
+                        <input type="text" id="Legacyservlet_name" name="servlet_name" value=""
+                               style="display: none;">
                         <div class="row">
                             <div class="form-group-popup">
                                 <div class="col-lg-12">
                                     <label class="control-label" for="formInput526">Type:</label>
-                                    <select id="Legacytypes" class="form-select" name="types"
-                                            required>
+                                    <select id="Legacytypes" class="form-select" name="types" required>
                                         <option value="Text box">Text box</option>
                                         <option value="Check box">Check box</option>
                                         <option value="Radio box">Radio box</option>
@@ -380,8 +284,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row Legacyhidefield" id="Legacycheck"
-                             style="display: none;">
+                        <div class="row Legacyhidefield" id="Legacycheck" style="display: none;">
                             <div class="form-group-popup">
                                 <div class="col-lg-12">
                                     <label class="control-label" for="formInput526">Number
@@ -389,10 +292,8 @@
                                                                        id="Legacycheck_number" name="Legacycheck_number">
                                 </div>
                             </div>
-
                         </div>
-                        <div class="row Legacyhidefield" id="Legacyradio"
-                             style="display: none;">
+                        <div class="row Legacyhidefield" id="Legacyradio" style="display: none;">
                             <div class="form-group-popup">
                                 <div class="col-lg-12">
                                     <label class="control-label" for="formInput526">Number
@@ -400,10 +301,8 @@
                                                                        id="Legacyradio_number" name="Legacyradio_number">
                                 </div>
                             </div>
-
                         </div>
-                        <div class="row Legacyhidefield" id="Legacydrop"
-                             style="display: none;">
+                        <div class="row Legacyhidefield" id="Legacydrop" style="display: none;">
                             <div class="form-group-popup">
                                 <div class="col-lg-12">
                                     <label class="control-label" for="formInput526">Number
@@ -413,15 +312,12 @@
                             </div>
                             <br />
                         </div>
-
                         <div class="col-lg-12" id="Legacyoptions"></div>
-
                         <div class="row">
                             <div class="form-group-popup">
                                 <div class="col-lg-12">
                                     <label class="control-label" for="formInput526">Mandatory:</label>
-                                    <select id="Legacymandatory" class="form-select"
-                                            name="mandatory" required>
+                                    <select id="Legacymandatory" class="form-select" name="mandatory" required>
                                         <option>Yes</option>
                                         <option>No</option>
                                     </select>
@@ -434,64 +330,58 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" id="Legacysubmit" class="btn btn-primary">Add
+                <button type="button" class="btn buttonFrame tertiaryButton text-center" data-bs-dismiss="modal"
+                        id="Legacyclose">Close</button>
+                <button type="button" id="Legacysubmit" class="btn primaryButton text-center">Add
                     Fields</button>
-                <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal" id="Legacyclose">Close</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Legacy Edit Popup -->
-
-<div class="modal" id="LegacyEditPopUp" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+<!-- Finance Edit Popup -->
+<div class="modal fade" id="LegacyEditPopUp" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header modal-font-label">
                 <h5 class="modal-title" id="exampleModalLabel">Edit Input
                     Field</h5>
-                <button type="button" id="LegacyEditClose" class="btn-close"
-                        data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" id="LegacyEditClose" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form name="PopUpform">
                     <div class="row">
                         <div class="form-group">
                             <div class="col-lg-8">
-                                <label class="control-label" for="Legacy">Label:</label> <input
-                                    type="text" class="form-control" id="LegacyLabelModify"
-                                    name="Legacylabel" required>
+                                <label class="control-label" for="Legacy">Label:</label> <input type="text"
+                                                                                                class="form-control" id="LegacyLabelModify" name="Legacylabel" required>
                             </div>
                         </div>
                     </div>
                     <br />
-                    <input type="text" id="LegacySeqNum" name="" value=""
-                           style="display: none;"> <input type="text"
-                                                          id="EditSection" name="" value="" style="display: none;">
+                    <input type="text" id="LegacySeqNum" name="" value="" style="display: none;"> <input type="text"
+                                                                                                         id="EditSection" name="" value="" style="display: none;">
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" id="LegacyEditSubmit" class="btn btn-primary"
+                <button type="button" class="btn buttonFrame tertiaryButton text-center" data-bs-dismiss="modal"
+                        aria-label="Close">Cancel</button>
+                <button type="button" id="LegacyEditSubmit" class="btn primaryButton text-center"
                         data-bs-dismiss="modal">Submit</button>
-                <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal" aria-label="Close">Cancel</button>
-
             </div>
         </div>
     </div>
 </div>
 
-
-
-<!-- Legacy Delete PopUp -->
-<div class="modal" id="LegacyDeletePopUp" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+<!-- Finance Delete PopUp -->
+<div class="modal fade" id="LegacyDeletePopUp" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header modal-font-label">
                 <h5 class="modal-title" id="exampleModalLabel">Delete Field</h5>
-                <button type="button" id="LegacyEditClose" class="btn-close"
-                        data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" id="LegacyEditClose" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form name="DeleteForm">
@@ -502,102 +392,51 @@
                 </form>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn buttonFrame tertiaryButton text-center" id="closeLegacyIdDelete"
+                        data-bs-dismiss="modal" aria-label="Close">No</button>
                 <button type="button" id="LegacyDeleteSubmit"
-                        class="btn btn-primary submitDisableDelete"
-                        data-bs-dismiss="modal">Yes</button>
-                <button type="button" class="btn btn-secondary"
-                        id="closeLegacyIdDelete" data-bs-dismiss="modal"
-                        aria-label="Close">No</button>
+                        class="btn primaryButton text-center submitDisableDelete" data-bs-dismiss="modal">Yes</button>
             </div>
         </div>
     </div>
 </div>
 
 
-<div class="modal" id="Legacy_ScrPopUp" tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="Legacy_ScrPopUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #1565c0;">
-                <h5 class="modal-title" id="exampleModalLabel"
-                    style="color: white;">Finance Application Screenshots</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+            <div class="modal-header modal-font-label">
+                <h5 class="modal-title" id="exampleModalLabel">Finance Application Screenshots
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" data-bs-target="">
-                <table class="table table-bordered table-striped"
-                       id="legacy_datatable">
-
-                    <thead>
-
+            <div class="modal-body">
+                <table class="table table-bordered table-striped" id="legacy_datatable">
+                    <thead class="Table-Header text-center">
                     <tr>
-                        <th style="text-align: center;">File Name</th>
-                        <th style="text-align: center;">Action</th>
+                        <th>File Name</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
-
-                    <tbody id="Legacy_Scr_List">
-
+                    <tbody class="Table-Body text-center mx-5" id="Legacy_Scr_List">
                     </tbody>
                 </table>
                 <div class="modal-footer">
-
-                    <button type="button" class="btn btn-secondary"
+                    <button type="button" class="btn buttonFrame tertiaryButton text-center"
                             data-bs-dismiss="modal">Close</button>
-
                 </div>
             </div>
         </div>
     </div>
     <form action="Finance_scr_download" method="post">
-        <input type="hidden" id="File_Name" name="File_Name"> <input
-            type="submit" id="scr_submit" style="display: none;">
-
+        <input type="hidden" id="File_Name" name="File_Name"> <input type="submit" id="scr_submit"
+                                                                     style="display: none;">
     </form>
     <input type="submit" id="deletegrid_update" style="display: none;">
-
-</div>
-
-</div>
-</div>
 </div>
 
 
-
-<%--finance screenshot delete--%>
-
-<button type="button" class="btn btn-primary"
-        id="legacy_scr_delete_popup" data-bs-toggle="modal"
-        data-bs-target="#LegacySCRDeletePopUp" style="display: none;"></button>
-
-<div class="modal" id="LegacySCRDeletePopUp" tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content" style="width: auto; height: 250px;">
-            <div class="modal-header" style="background-color: #1565c0;">
-                <h5 class="modal-title" id="exampleModalLabel"
-                    style="color: white;">Delete File</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form name="DeleteForm">
-                    <div class="modal-body">
-                        <p style="font-size: 14px;">Do you want to Delete this File
-                            Permanently?</p>
-                        <input type="text" id="random_id" style="display: none;" />
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary"
-                        data-bs-dismiss="modal" id="legacy_scr_delete_submit">Yes</button>
-                <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
+<%@include file="Footer.jspf"%>
 <script>
     $(document).ready(function () {
         // Find the link with id "sitetitle1" and text "Add Finance"
@@ -651,49 +490,7 @@
 
     });
 </script>
-<%@include file="Footer.jspf"%>
-<!-- ========== COMMON JS FILES ========== -->
-<script src="js/jquery/jquery-2.2.4.min.js"></script>
-<script src="js/jquery-ui/jquery-ui.min.js"></script>
-<script src="js/bootstrap/bootstrap.min.js"></script>
-<script src="js/pace/pace.min.js"></script>
-
-<script src="js/iscroll/iscroll.js"></script>
-
-
-<!-- ========== PAGE JS FILES ========== -->
-<script src="js/prism/prism.js"></script>
-<script src="js/waypoint/waypoints.min.js"></script>
-<script src="js/counterUp/jquery.counterup.min.js"></script>
-<script src="js/amcharts/amcharts.js"></script>
-<script src="js/amcharts/serial.js"></script>
-<script src="js/amcharts/plugins/export/export.min.js"></script>
-<link rel="stylesheet" href="js/amcharts/plugins/export/export.css"
-      type="text/css" media="all" />
-<script src="js/amcharts/themes/light.js"></script>
-<script src="js/toastr/toastr.min.js"></script>
-<script src="js/icheck/icheck.min.js"></script>
-<script src="js/bootstrap-tour/bootstrap-tour.js"></script>
-
-<!-- ========== THEME JS ========== -->
-<script src="js/production-chart.js"></script>
-<script src="js/traffic-chart.js"></script>
-<script src="js/task-list.js"></script>
-
-<!-- ========== THEME JS ========== -->
-
-<script id="scripttag"></script>
-
-<!-- ========== PAGE JS FILES ========== -->
-<script src="js/prism/prism.js"></script>
-<script type="text/javascript"
-        src="js/date-picker/bootstrap-datepicker.js"></script>
-<script type="text/javascript"
-        src="js/date-picker/jquery.timepicker.js"></script>
-<script type="text/javascript" src="js/date-picker/datepair.js"></script>
-<script type="text/javascript" src="js/date-picker/moment.js"></script>
-
-<script src="js/notification/notification.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js" integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- Application Info  -->
 <script type="text/javascript" src="js/Finance/Session_ID_Name&Retrive.js"></script>
@@ -711,12 +508,7 @@
 <script type="text/javascript" src="js/Finance/Screenshot/Finance_scr_delete.js"></script>
 <script type="text/javascript" src="js/Finance/Screenshot/FinanceAppInfoFileUpload.js"></script>
 <script src="js/navigation/navigation.js"></script>
-<!-- ========== Toastr ========== -->
-<script
-        src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<link
-        href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
-        rel="stylesheet">
+
 
 </body>
 </html>

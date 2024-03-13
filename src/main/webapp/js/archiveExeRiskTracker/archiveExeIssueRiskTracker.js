@@ -26,7 +26,7 @@ $(document).ready(function() {
                 $(".exp_date").eq(seqNum).removeAttr("readonly");
                 $(".end_date").eq(seqNum).removeAttr("readonly");
                 $(".comments").eq(seqNum).removeAttr("readonly");
-                notification("info", "Seleted row is editable.", "Info:");
+                notification("info", "Selected row is editable.", "Info:");
             }
             else
                 notification("info", "Decision has taken already for this Issue", "Info:");
@@ -55,6 +55,8 @@ $(document).ready(function() {
         $('.submitDisableDelete').attr('disabled', true);
         var seqNum = $('#ArchiveDeleteSeq').val();
         var app_Id = $(".app_Id").eq(seqNum - 1).val();
+        console.log("seq num for delete " + seqNum);
+        console.log("app_ID for delete " + app_Id);
         archiveReqDeleteAjaxCall(seqNum, app_Id);
         $('.submitDisableDelete').attr('disabled', false);
         $('#closeIdDelete').click();
@@ -71,10 +73,10 @@ function archiveReqDeleteAjaxCall(seqNum, app_Id) {
             console.log("Delete Row Retrieve--->", data);
             if (data.DeleteStatus) {
                 $('.rowClass').eq(seqNum - 1).remove();
-                notification("success", "Seleted row deleted Successfully.", "Note:");
+                notification("success", "Selected row deleted Successfully.", "Note:");
             }
             else
-                notification("error", "Error occured while deleting the row.", "Error:");
+                notification("error", "Error occurred while deleting the row.", "Error:");
         },
         error: function(e) {
             console.log(e);
@@ -93,58 +95,83 @@ function archiveExeIssueAddAjaxCall(seqNum) {
             if (data.AddStatus) {
                 var Row = "<tr class = 'rowClass'>" +
                     "<td>" +
-                    "<div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>" +
-                    "<ul class='dropdown-menu' style='margin: -50px -12px -9px -6px;'>" +
-                    "<li><a  class='fa fa-edit EditRow' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>" +
-                    "<li><a  class='fa fa-trash DeleteRow' style='font-size: 18px; color: black'>&nbsp;&nbsp;&nbsp;Delete</a></li>" +
+                    "<div class=\"dropdown dropend\">" +
+                    "<button class=\"btn btn-outline-light\" id=\"Drop-option\"" +
+                    " data-bs-toggle=\"dropdown\" aria-expanded=\"false\"> " +
+                    " <i class=\"fa-solid fa-ellipsis-vertical iconColor fa-lg \"></i>" +
+                    "</button>" +
+                    "<ul class=\"dropdown-menu\" aria-labelledby=\"Drop-option\">" +
+                    "<li><a class=\"dropdown-item dropdown-styles EditRow \"><i " +
+                    "class=\"fa-solid fa-pencil iconColor  \"></i>&nbsp;&nbsp;&nbsp;Edit</a></li>" +
+                    "<li>" +
+                    "<hr class=\"dropdown-divider m-0\">" +
+                    "</li>" +
+                    "<li><a class=\"dropdown-item dropdown-styles DeleteRow\" data-bs-toggle=\"modal\" data-bs-target=\"#ArchiveDeletePopUp\"><i" +
+                    " class=\"fa-solid fa-trash-can text-danger\"  ></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
+                    "</li>" +
                     "</ul>" +
                     "</div>" +
                     "</td>" +
-                    "<td><input type ='text' class='app_Id' value=''><input type='hidden' class='ArchiveApproval' value='false'/></td>" +
-                    //  "<td><input type ='text' readonly class='app_Id' value='"+data.id+"'><input type='hidden' class='ArchiveApproval' value='false'/></td>" +
                     "<td>" +
-                    "<select name='Impact' class='impact'>" +
-                    "<option class='high' style='font-size: 19px; color: black' value='HIGH'>HIGH</option>" +
-                    "<option class='medium' style='font-size: 19px; color: black' value='MEDIUM' selected>MEDIUM</option>" +
-                    "<option class='low' style='font-size: 19px; color: black' value='LOW'>LOW</option>" +
-                    "<option class='critical' style='font-size: 19px; color: black' value='CRITICAL'>CRITICAL</option>" +
+                    "<input type=\"text\" class=\"app_Id form-control \" value=''><input type='hidden' class='ArchiveApproval ' value='false'/>" +
+                    "</td>" +
+                    "<td>" +
+                    "<select name=\"Impact\" id=\"\" class=\"selectpicker form-control impact\">" +
+                    "<option class='high'  value='HIGH'>HIGH</option>" +
+                    "<option class='medium'  value='MEDIUM' selected>MEDIUM</option>" +
+                    "<option class='low'  value='LOW'>LOW</option>" +
+                    "<option class='critical' value='CRITICAL'>CRITICAL</option>" +
                     "</select>" +
                     "</td>" +
                     "<td>" +
-                    "<select name='Type' class='type'>" +
-                    "<option class='issue' style='font-size: 19px; color: black' value='ISSUE' selected>ISSUE</option>" +
-                    "<option class='process' style='font-size: 19px; color: black' value='PROCESS'>PROCESS</option>" +
-                    "<option class='risk' style='font-size: 19px; color: black' value='RISK'>RISK</option>" +
-                    "<option class='scope' style='font-size: 19px; color: black' value='SCOPE'>SCOPE</option>" +
-                    "<option class='task' style='font-size: 19px; color: black' value='TASK'>TASK</option>" +
-                    "<option class='decision' style='font-size: 19px; color: black' value='DECISION'>DECISION</option>" +
+                    "<select name=\"Type\" id=\"\" class=\"selectpicker form-control type\">" +
+                    "<option class='issue' value='ISSUE' selected>ISSUE</option>" +
+                    "<option class='process' value='PROCESS'>PROCESS</option>" +
+                    "<option class='risk' value='RISK'>RISK</option>" +
+                    "<option class='scope' value='SCOPE'>SCOPE</option>" +
+                    "<option class='task' value='TASK'>TASK</option>" +
+                    "<option class='decision' value='DECISION'>DECISION</option>" +
                     "</select>" +
                     "</td>" +
-                    "<td><textarea class='description' rows='3' value=''/></td>" +
-                    "<td><input type ='date' class='start_date' placeholder='mm/dd/yyyy' value=''></td>" +
-                    "<td><input type ='text' class='raised_by' value=''></td>" +
-                    "<td><textarea class='status' rows='3' value=''/></td>" +
-                    "<td><input type ='text' class='assigned_to' value=''></td>" +
                     "<td>" +
-                    "<select name='Resolved' class='resolved'>" +
-                    "<option class='open' style='font-size: 19px; color: black' value='OPEN' selected>OPEN</option>" +
-                    "<option class='inProgress' style='font-size: 19px; color: black' value='IN PROGRESS'>IN PROGRESS</option>" +
-                    "<option class='completed' style='font-size: 19px; color: black' value='COMPLETED'>COMPLETED</option>" +
-                    "<option class='cancelled' style='font-size: 19px; color: black' value='CANCELLED'>CANCELLED</option>" +
-                    +
+                    "<textarea  rows=\"3\" cols=\"30\" value='' class=\"form-control description\"></textarea>" +
+                    "</td>" +
+                    "<td>" +
+                    "<input type=\"date\" class=\"form-control start_date\" placeholder=\"mm/dd/yyyy\" value=''>" +
+                    "</td>" +
+                    "<td>" +
+                    "<input type=\"text\" class=\" form-control raised_by\" value=''>" +
+                    "</td>" +
+                    "<td>" +
+                    "<textarea  value='' cols=\"30\" rows=\"3\" class=\"form-control status\"></textarea>" +
+                    "</td>" +
+                    "<td>" +
+                    "<input type=\"text\" class=\"form-control assigned_to\" value='' >" +
+                    "</td>" +
+                    "<td>" +
+                    "<select name=\"Resolved\" id=\"\" class=\"selectpicker form-control resolved\">" +
+                    "<option class='open' value='OPEN' selected>OPEN</option>" +
+                    "<option class='inProgress' value='IN PROGRESS'>IN PROGRESS</option>" +
+                    "<option class='completed' value='COMPLETED'>COMPLETED</option>" +
+                    "<option class='cancelled' value='CANCELLED'>CANCELLED</option>" +
                     "</select>" +
                     "</td>" +
-                    "<td><input type ='date' class='exp_date' placeholder='mm/dd/yyyy' value=''></td>" +
-                    "<td><input type ='date' class='end_date' placeholder='mm/dd/yyyy' value=''></td>" +
-                    "<td><textarea class='comments' rows='3' value=''/></td>" +
+                    "<td>" +
+                    "<input type=\"date\" class=\"form-control exp_date\" placeholder='mm/dd/yyyy' value=''>" +
+                    "</td>" +
+                    "<td>" +
+                    "<input type=\"date\" class=\"form-control end_date\" placeholder='mm/dd/yyyy' value=''>" +
+                    "</td>" +
+                    "<td>" +
+                    "<textarea cols=\"30\" rows=\"3\" class=\" form-control comments\" value=''></textarea>" +
+                    "</td>" +
                     "</tr>";
                 $("#AppIssue").append(Row);
-                				
                 notification("success", "Row added Successfully.", "Note:");
                 
             }
             else
-                notification("error", "Error occured while adding the row.", "Error:");
+                notification("error", "Error occurred while adding the row.", "Error:");
         },
         error: function(e) {
             console.log(e);
@@ -211,33 +238,68 @@ function archiveExeIssueDataRetrieve() {
                 }
                 var Row = "<tr class = 'rowClass'>" +
                     "<td>" +
-                    "<div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>" +
-                    "<ul class='dropdown-menu' style='margin: -50px -12px -9px -6px;'>" +
-                    "<li><a  class='fa fa-edit EditRow' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>" +
-                    "<li><a  class='fa fa-trash DeleteRow' style='font-size: 18px; color: black'>&nbsp;&nbsp;&nbsp;Delete</a></li>" +
+                    "<div class=\"dropdown dropend\">" +
+                    "<button class=\"btn btn-outline-light\" id=\"Drop-option\"" +
+                    " data-bs-toggle=\"dropdown\" aria-expanded=\"false\">" +
+                    " <i class=\"fa-solid fa-ellipsis-vertical iconColor fa-lg \"></i>" +
+                    "</button>" +
+                    "<ul class=\"dropdown-menu\" aria-labelledby=\"Drop-option\">" +
+                    "<li><a class=\"dropdown-item dropdown-styles EditRow\"><i" +
+                    " class=\"fa-solid fa-pencil iconColor  \"></i>&nbsp;&nbsp;&nbsp;Edit</a></li>" +
+                    "<li>" +
+                    "<hr class=\"dropdown-divider m-0\">" +
+                    "</li>" +
+                    "<li><a class=\"dropdown-item dropdown-styles DeleteRow\" data-bs-toggle=\"modal\" data-bs-target=\"#ArchiveDeletePopUp\"><i" +
+                    " class=\"fa-solid fa-trash-can text-danger\"  ></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
+                    "</li>" +
                     "</ul>" +
                     "</div>" +
                     "</td>" +
-                    "<td><input type ='text' readonly class='app_Id' value='" + value.IssueId + "'></td>" +
-                    "<td><select type='text' class='impact' value='" + value.impact + "' >" +
-                    optionsImpact
-                    + "</select></td>" +
-                    "<td><select type='text' class='type' value='" + value.type + "' >" +
-                    optionsType
-                    + "</select></td>" +
-                    "<td><textarea readonly class='description' id='description' rows='3'>" + value.description + "</textarea></td>" +
-                    "<td><input type ='date' readonly class='start_date' placeholder='mm/dd/yyyy' value='" + value.start_date + "'></td>" +
-                    "<td><input type ='text' readonly class='raised_by' value='" + value.raised_by + "'></td>" +
-                    "<td><textarea class='status' readonly id='status' rows='3'>" + value.status + "</textarea></td>" +
-                    "<td><input type ='text' readonly class='assigned_to' value='" + value.assigned_to + "'></td>" +
-                    "<td><select type='text' class='resolved' value='" + value.resolved + "' >" +
-                    optionsResolved
-                    + "</select></td>" +
-                    "<td><input type ='date' readonly class='exp_date' placeholder='mm/dd/yyyy' value='" + value.exp_date + "'></td>" +
-                    "<td><input type ='date' readonly class='end_date' placeholder='mm/dd/yyyy' value='" + value.end_date + "'></td>" +
-                    "<td><textarea class='comments' readonly id='comments' rows='3'>" + value.comments + "</textarea></td>" +
+                    "<td >" +
+                    "<input type=\"text\" class=\"app_Id form-control \" value='" + value.IssueId + "' readonly >" +
+                    "</td>" +
+                    "<td>" +
+                    "<select type='text'  class=\"selectpicker form-control impact\"  value='" + value.impact + "'>" +
+                    optionsImpact +
+                    "</select>" +
+                    "</td>" +
+                    "<td>" +
+                    "<select type='text' class=\"selectpicker form-control type\" value='" + value.type + "'>" +
+                    optionsType +
+                    "</select>" +
+                    "</td>" +
+                    "<td>" +
+                    "<textarea name=\"\" id='description' rows=\"3\" cols=\"30\" class=\"form-control description\" readonly>" + value.description + "</textarea>" +
+                    "</td>" +
+                    "<td>" +
+                    "<input type=\"date\" class=\"form-control start_date\"  placeholder='mm/dd/yyyy' value='" + value.start_date + "' readonly>" +
+                    "</td>" +
+                    "<td>" +
+                    "<input type=\"text\" class=\" form-control raised_by\"  value='" + value.raised_by + "' readonly>" +
+                    "</td>" +
+                    "<td>" +
+                    "<textarea cols=\"30\" rows=\"3\" id='status' class=\"form-control status\" readonly> " + value.status + "</textarea>" +
+                    "</td>" +
+                    "<td>" +
+                    "<input type=\"text\" class=\"form-control assigned_to\" value='" + value.assigned_to + "' readonly>" +
+                    "</td>" +
+                    "<td>" +
+                    "<select type=\"text\" class=\"selectpicker form-control resolved\" value='" + value.resolved + "'>" +
+                    optionsResolved +
+                    "</select>" +
+                    "</td>" +
+                    "<td>" +
+                    "<input type=\"date\" class=\"form-control exp_date\" placeholder='mm/dd/yyyy' value='" + value.exp_date + "' readonly >" +
+                    "</td>" +
+                    "<td>" +
+                    "<input type=\"date\" class=\"form-control end_date\" placeholder='mm/dd/yyyy' value='" + value.end_date + "' readonly >" +
+                    "</td>" +
+                    "<td>" +
+                    "<textarea id='comments'  cols=\"30\" rows=\"3\" class=\" form-control comments\" readonly>" + value.comments + "</textarea>" +
+                    "</td>" +
                     "</tr>";
                 $("#AppIssue").append(Row);
+                // $('#AppIssue').selectpicker('refresh');
 
                 if (checkFieldValues(value.role, value.name, value.email, value.username, value.priority))
                     checkRoles = true;
@@ -327,7 +389,7 @@ function archiveExeIssueSaveAjaxcall(JsonArray) {
                 checkRoles = true;
             }
             else {
-                notification("error", "Error occured while saving.", "Error:");
+                notification("error", "Error occurred while saving.", "Error:");
                 checkRoles = false;
             }
         },

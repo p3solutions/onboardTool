@@ -1,0 +1,61 @@
+#overlay {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 1400px;
+    height: 100%;
+    display: none;
+}
+.cv-spinner {
+    height: 62rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pagination{
+    cursor: pointer;
+    background-color: aqua;
+    color: black;
+}
+
+.search-button {
+    background-color: #FFFFFF !important;
+}
+
+.addWaveIcon {
+    color: #237DCA;
+}
+
+.btn1 {
+    border: 1px solid #CED0D2 !important;
+    border-top-left-radius: 6px !important;
+    border-bottom-left-radius: 6px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+.form-group {
+    color: #474747;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.custom-show-entities {
+    border: none !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom: 1px solid black !important;
+}
+
+.tab-shift {
+    position: relative;
+    bottom: 17px;
+}
+div.item-label{
+    margin-right: -17px !important;
+    margin-top: 9px !important; ;
+}

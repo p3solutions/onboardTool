@@ -14,9 +14,9 @@ function getSearchFormJsonArray(e){
 		searchForm = (searchForm==null||searchForm==undefined||searchForm=='')?'':searchForm;
 		var searchField = $('.searchFormFieldName').eq(i).val();
 		var searchFormFieldFormat = $('.searchFormFieldFormat').eq(i).val();
-		var searchFormDataType = $('.searchFormDataType').eq(i).val();
-		var searchFormDataRetrieval = $('.searchFormDataRetrieval').eq(i).val();
-		var searchFormRequiredField = $('.searchFormRequiredField').eq(i).val();
+		var searchFormDataType = $('.searchFormDataType .selectpicker').eq(i).val();
+		var searchFormDataRetrieval = $('.searchFormDataRetrieval .selectpicker').eq(i).val();
+		var searchFormRequiredField = $('.searchFormRequiredField .selectpicker').eq(i).val();
 		var searchFormAdditionalInfo = $('.searchFormAdditionalInfo').eq(i).val();
 		if(!checkSearchFormValues(searchField, searchFormFieldFormat, searchFormDataType, searchFormDataRetrieval,searchFormRequiredField))
 			validation = false;
@@ -66,10 +66,11 @@ function archiveSearchFormSaveAjaxcall(JsonArray){
 	        	if(data.SaveStatus)
 	        	   {
 	        		notification("success","Saved successfully.","Note:");
-	        		$("#busreqNext").removeAttr("disabled");
+	        		$("#" +
+						"busreqNext").removeAttr("disabled");
 	        	   }
 	        		else
-	        		notification("error","Error occured while saving details.","Error:");
+	        		notification("error","Error occurred while saving details.","Error:");
 	        },
 	        error: function (e) {
 	            console.log(e);

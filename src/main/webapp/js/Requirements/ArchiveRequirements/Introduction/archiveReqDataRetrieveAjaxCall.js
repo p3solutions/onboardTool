@@ -1,4 +1,4 @@
-var checkScope = false;
+    var checkScope = false;
 var checkRoles = false;
 $(document).ready(function(){
     archiveReqDataRetrieve();
@@ -22,7 +22,7 @@ $(document).on('click','.EditRow', function(){
             $(".emailId").eq(seqNum).removeAttr("readonly");
             $(".username").eq(seqNum).removeAttr("readonly");
             $(".priority_order_num").eq(seqNum).removeAttr("readonly");
-            notification("info","Seleted row is editable.","Info:");
+            notification("info","Selected row is editable.","Info:");
             }
             else
                 notification("info","Decision has taken already for this role","Info:");
@@ -34,11 +34,12 @@ $(document).on('click','.EditRow', function(){
             $(".emailId").eq(seqNum).prop("readonly", true);
             $(".username").eq(seqNum).prop("readonly", true);
             $(".priority_order_num").eq(seqNum).prop("readonly", true);
-            notification("info","Seleted row is non-editable.","Info:");
+            notification("info","Selected row is non-editable.","Info:");
         }   
     });
 $(document).on('click','.DeleteRow', function(){
         var seqNum = $(this).index('.DeleteRow')+1;
+    console.log("entered deletee func")
         $('#ArchiveDeleteSeq').val(seqNum);
         $('#ArchReqDeleteId').click();
     });
@@ -61,10 +62,10 @@ function archiveReqDeleteAjaxCall(seqNum){
             console.log("Delete Row Retrieve--->",data);
             if(data.DeleteStatus){
                 $('.rowClass').eq(seqNum-1).remove();
-                notification("success","Seleted row deleted Successfully.","Note:");
+                notification("success","Selected row deleted Successfully.","Note:");
             }
             else
-                notification("error","Error occured while deleting the row.","Error:");
+                notification("error","Error occurred while deleting the row.","Error:");
         },
         error: function (e) {
             console.log(e);
@@ -89,25 +90,38 @@ function archiveReqAddAjaxCall(seqNum){
                        options += "<option value='"+options_arr[n]+"' "+selected+">"+options_arr[n]+"</option>";
                    }
                 var Row="<tr class = 'rowClass'>"+
-             "<td><select type ='text' class='role' style='width: 100%; text-align:center;padding: 0.3rem 0 0.3rem 0;' value=''>"+options+"</select><input type='hidden' class='ArchiveApproval' value='false'/></td>" +
-             "<td><input type ='text' id='firstName"+seq_no+"' class='name' style='width: 100%; text-align:center;' value=''></td>" +
-             "<td><input type ='text' id='search"+seq_no+"' style='width: 100%; text-align:center;' onClick='searchFunction("+seq_no+");' class='emailId' value=''><ul id='result"+seq_no+"' class='list-group searchResult'></ul></td>" +
-             "<td><input type ='text' id='userName"+seq_no+"' style='width: 100%; text-align:center;' class='username' value=''></td>" +
-            "<td><input type ='text' class='priority_order_num' style='width: 100%; text-align:center;' value=''></td>" +
-             "<td>"+
-             "<div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>"+
-                           "<ul class='dropdown-menu'>"+
-                           "<li><a  class='fa fa-edit EditRow' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>"+
-                           "<li><a  class='fa fa-trash DeleteRow' style='font-size: 18px; color: black'>&nbsp;&nbsp;&nbsp;Delete</a></li>"+
-                           "</ul>"+
-                           "</div>"+
-             "</td>" +
+             "<td><select type ='text' class='role form-control selectpicker dropend' value=''>"+options+"</select><input type='hidden' class='ArchiveApproval' value='false'/></td>" +
+             "<td><input type ='text' id='firstName"+seq_no+"' class='name form-control' value=''></td>" +
+             "<td><input type ='text' id='search"+seq_no+"' onClick='searchFunction("+seq_no+");' class='emailId form-control' value=''><ul id='result"+seq_no+"' class='list-group searchResult'></ul></td>" +
+             "<td><input type ='text' id='userName"+seq_no+"'  class='username form-control' value=''></td>" +
+            "<td><input type ='text' class='priority_order_num form-control' value=''></td>" +
+                    "<td>" +
+                    "<div class=\"dropdown dropend\">" +
+                    "<button class=\"btn btn-outline-light\" id=\"Drop-option\"" +
+                    " data-bs-toggle=\"dropdown\" aria-expanded=\"false\">" +
+                    "<i class=\"fa-solid fa-ellipsis-vertical iconColor fa-lg \"></i>" +
+                    "</button>" +
+                    "<ul class=\"dropdown-menu\" aria-labelledby=\"Drop-option\">" +
+                    "<li><a class=\"dropdown-item dropdown-styles EditRow\"><i" +
+                    " class=\"fa-solid fa-pencil iconColor \"></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
+                    "</li>" +
+                    "<li>" +
+                    "<hr class=\"dropdown-divider m-0\">" +
+                    "</li>" +
+                    "<li><a class=\"dropdown-item dropdown-styles DeleteRow\" data-bs-toggle=\"modal\"" +
+                    "   data-bs-target=\"#ArchiveDeletePopUp\"><i" +
+                    " class=\"fa-solid fa-trash-can text-danger \"></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
+                    "</li>" +
+                    "</ul>" +
+                    "</div>" +
+                    "</td>"+
              "</tr>";
              $("#Approver").append(Row);
+             $('.selectpicker').selectpicker('result');
                 notification("success","Row added Successfully.","Note:");
             }
             else
-                notification("error","Error occured while adding the row.","Error:");
+                notification("error","Error occurred while adding the row.","Error:");
         },
         error: function (e) {
             console.log(e);
@@ -163,19 +177,31 @@ function archiveReqRolesResponseDataRetrieve(){
                        options += "<option value='"+options_arr[n]+"' "+selected+">"+options_arr[n]+"</option>";
                    }
                  var Row="<tr class = 'rowClass'>"+
-                 "<td><select type ='text' class='role' value='"+value.role+"' style='width: 100%; text-align:center;padding: 0.3rem 0 0.3rem 0;' readonly>"+options+"</select><input type='hidden' class='ArchiveApproval' value='"+value.ApprovalStatus+"'></td>" +
-                 "<td><input type ='text' class='name' id='firstName"+seq_no+"' style='width: 100%; text-align:center;' value='"+value.name+"' readonly></td>" +
-                 "<td><input type ='text' class='emailId' id='search"+seq_no+"' style='width: 100%; text-align:center;' onClick='searchFunction("+seq_no+");' value='"+value.emailId+"' readonly><ul id='result"+seq_no+"' class='list-group searchResult'></ul></td>" +
-                 "<td><input type ='text' class='username' id='userName"+seq_no+"' style='width: 100%; text-align:center;' value='"+value.username+"' readonly></td>" +
-                 "<td><input type ='text' class='priority_order_num' value='"+value.priority_order_num+"' style='width: 100%; text-align:center;' readonly></td>" +
-                 "<td>"+
-                 "<div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>"+
-                            "<ul class='dropdown-menu'>"+
-                            "<li><a  class='fa fa-edit EditRow' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>"+
-                            "<li><a  class='fa fa-trash DeleteRow' style='font-size: 18px; color: black'>&nbsp;&nbsp;&nbsp;Delete</a></li>"+
-                            "</ul>"+
-                            "</div>"+
-                 "</td>" +
+                 "<td><select type ='text' class='role form-control selectpicker dropend' value='"+value.role+"' readonly>"+options+"</select><input type='hidden' class='ArchiveApproval' value='"+value.ApprovalStatus+"'></td>" +
+                 "<td><input type ='text' class='name form-control' id='firstName"+seq_no+"' value='"+value.name+"' readonly></td>" +
+                 "<td><input type ='text' class='emailId form-control' id='search"+seq_no+"' onClick='searchFunction("+seq_no+");' value='"+value.emailId+"' readonly><ul id='result"+seq_no+"' class='list-group searchResult'></ul></td>" +
+                 "<td><input type ='text' class='username form-control' id='userName"+seq_no+"' value='"+value.username+"' readonly></td>" +
+                 "<td><input type ='text' class='priority_order_num form-control' value='"+value.priority_order_num+"' readonly></td>" +
+                     "<td>" +
+                     "<div class=\"dropdown dropend\">" +
+                     "<button class=\"btn btn-outline-light\" id=\"Drop-option\"" +
+                     " data-bs-toggle=\"dropdown\" aria-expanded=\"false\">" +
+                     "<i class=\"fa-solid fa-ellipsis-vertical iconColor fa-lg \"></i>" +
+                     "</button>" +
+                     "<ul class=\"dropdown-menu\" aria-labelledby=\"Drop-option\">" +
+                     "<li><a class=\"dropdown-item dropdown-styles EditRow\" href=\"#\"><i" +
+                     " class=\"fa-solid fa-pencil iconColor \"></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
+                     "</li>" +
+                     "<li>" +
+                     "<hr class=\"dropdown-divider m-0\">" +
+                     "</li>" +
+                     "<li><a class=\"dropdown-item dropdown-styles DeleteRow\" data-bs-toggle=\"modal\"" +
+                     "   data-bs-target=\"#ArchiveDeletePopUp\"><i" +
+                     " class=\"fa-solid fa-trash-can text-danger \"></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
+                     "</li>" +
+                     "</ul>" +
+                     "</div>" +
+                     "</td>"+
                  "</tr>";
                  $("#Approver").append(Row);
                  if(checkFieldValues(value.role,  value.name, value.email, value.username, value.priority))

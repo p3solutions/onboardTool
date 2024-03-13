@@ -7,6 +7,8 @@ $(document).on('click','.DeleteRow', function(){
 	$('#ArchiveDeleteSeq').val(seqNum);
 	
 	$('#ArchExecDeleteId').click();
+	console.log("delete");
+
 	
 });
 

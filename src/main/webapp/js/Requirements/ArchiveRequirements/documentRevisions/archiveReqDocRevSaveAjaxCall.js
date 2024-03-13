@@ -63,7 +63,7 @@ function archiveReqDocRevSaveAjaxcall(JsonArray){
 		        		$("#docRevNext").removeAttr("disabled");
 		        	}
 		        	else
-		        		notification("error","Error occured while saving.","Error:");
+		        		notification("error","Error occurred while saving.","Error:");
 		        },
 		        error: function (e) {
 		            console.log(e);

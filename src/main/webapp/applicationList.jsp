@@ -228,6 +228,7 @@
 			</div>
 		</div>
 	</nav>
+	</div>
 	<div class="col-lg-6 right-side phase-btn" align="end">
 		<div class="dropdown">
 			<button type="button" class="btn btn-primary dropdown-toggle"
@@ -236,6 +237,8 @@
 			<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 				<li><a class="dropdown-item dropDown-font" id="phaseadd"
 					onclick="location.href='NewPhase.jsp';" data-bs-toggle="modal"
+
+
 					data-bs-target=""> <i class="fas fa-plus" aria-hidden="true">&nbsp;&nbsp;&nbsp;
 					</i>Create Phase
 				</a></li>
@@ -662,7 +665,7 @@
 	<script src="js/paging/pagination.js"></script>
 
 </br>
-<%@include file="Footer.jspf"%>
+<%--<%@include file="Footer.jspf"%>--%>
 	<!-- ========== BootstrapV5 ========== -->
 	<link
 		href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"

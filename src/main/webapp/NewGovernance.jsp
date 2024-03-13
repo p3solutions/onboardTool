@@ -104,6 +104,7 @@ HttpSession details = request.getSession();
 			</div>
 		</div>
 	</nav>
+</div>
 <div class="main-wrapper">
 
         <!-- ========== TOP NAVBAR ========== -->
@@ -160,6 +161,7 @@ HttpSession details = request.getSession();
         <!-- /.container-fluid -->
   <!--   </nav >
  -->
+
         <div class="content-wrapper">
             <div class="content-container">
 
@@ -190,10 +192,10 @@ HttpSession details = request.getSession();
                         <input type='hidden' class='form-control' size='35' id="wave_Id" placeholder='' name="wave_Id" value=""/>
                        <input type='hidden' class='form-control' size='35' id="Json_sample_id" placeholder='' name="Json_Sample" value=""/>
                         </div>	               
-              </div>     
-              
-	              
-	                      <div class="row">
+              </div>
+
+
+             <div class="row">
                 <div class="col-4">
 	               <button type="button" class="btn btn-secondary"onclick="location.href='waveList.jsp';">Back</button>
 	           </div>

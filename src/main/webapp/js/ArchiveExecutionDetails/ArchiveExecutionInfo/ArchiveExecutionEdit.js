@@ -12,6 +12,7 @@ $(document).on('click','.EditRow', function(){
 	$('#ArchiveEditLabelId').val(taskName);
 	
 	$('#ArchExecEditId').click();
+	console.log("Edit");
 	
 	
 });

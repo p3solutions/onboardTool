@@ -38,11 +38,11 @@ function archiveReqAddendumDeleteAjaxCall(seqNum){
         	console.log("Delete Row Retrieve--->",data);
         	if(data.DeleteStatus){
         		$('.addendumField').eq(seqNum-1).remove();
-        		notification("success","Seleted row deleted Successfully.","Note:");
+        		notification("success","Selected row deleted Successfully.","Note:");
         		archiveReqAddendumDataRetrieveAjaxCall();
         	}
         	else
-        		notification("error","Error occured while deleting the row.","Error:");
+        		notification("error","Error occurred while deleting the row.","Error:");
         	
         },
         error: function (e) {
@@ -69,14 +69,14 @@ function archiveReqAddendumDataRetrieveAjaxCall(){
         	 var count=1;
         	 if(checkTable){
              $.each(data, function(key, value){  
-				 var delete_icon = "<span class='glyphicon glyphicon-trash deletepopup hidedelete'  style='float:right;display:none;' deletesectioniconcount='"+value.seq_no+"' ></span>";          	 
-            	 var Row="<div class='addendumField' style='margin-top: 6px;margin-bottom: 60px;'>"+
-            	 		 "<label class='editable' contenteditable='true'>"+value.labelName+"</label>"+delete_icon+            	 		 
-            	 		 "<textarea rows='2' cols='130' style='height:100px;' class='req addendumInfo'>"+value.addendumInfo+"</textarea>"+
-                         "<div style='margin-top: -69px;margin-left: 87%;'>"+                         
-                         "<button class='upload-icon' id='"+value.seq_no+"'style='margin-top: -87px;border: none;background: white;display: inline-block;padding: 12px;' uploadsectioniconcount='"+value.seq_no+"'>"+  						 
-  						 "<label for='fileUpload" + value.seq_no + "' style='border: none;'><i class='fas fa-cloud-upload-alt' id='UploadFile" + value.seq_no + "' uploadsectioniconcount='"+value.seq_no+"'></i></label></button>"+
-					     "<i class='fa icon fa-eye' id='eyeicon" + value.seq_no + "' eyesectioncount='"+value.seq_no+"' style='color: #1565C0;display: inline-block;padding-left: 39px;'></i>"+
+				 var delete_icon = "<span class='fas fa-trash-can text-danger deletepopup hidedelete'  style='float:right;display:none;' deletesectioniconcount='"+value.seq_no+"' ></span>";
+            	 var Row="<div class='addendumField row row-cols-2 g-2 mt-3'><div class=' col-9'>"+
+            	 		 "<label class='editable form-label text-muted' contenteditable='true'>"+value.labelName+"</label>"+delete_icon+
+            	 		 "<textarea rows='6' cols='30' class='req addendumInfo form-control'>"+value.addendumInfo+"</textarea>"+
+					     "</div>"+
+                         "<div class='col-3 px-0 d-flex justify-content-center mt-4 pt-5'>"+
+					     "<i class='upload-icon fas fa-cloud-upload-alt' id='UploadFile" + value.seq_no + "' uploadsectioniconcount= '"+value.seq_no+"'></i>"+
+					     "<i class='fa icon fa-eye mx-3' id='eyeicon" + value.seq_no + "' eyesectioncount='"+value.seq_no+"'></i>"+
 					     "</div>"+
             	 		 "</div>";
             	 		 
@@ -92,14 +92,14 @@ function archiveReqAddendumDataRetrieveAjaxCall(){
 </div> */
         	 
         	 else{
-				 var delete_icon = "<span class='glyphicon glyphicon-trash deletepopup hidedelete'  style='float:right;display:none;' deletesectioniconcount='1'></span>";
-        		 var Row="<div class='addendumField' style='margin-top: 6px;margin-bottom: 60px;'>"+
-        	 		 "<label class='editable' contenteditable='true'>Section 1</label>"+delete_icon+        	 		 
-        			 "<textarea rows='2' cols='130' style='height:100px;' class='req addendumInfo'></textarea>"+
-        			 "<div style='margin-top: -69px;margin-left: 87%;'>"+
-        			 "<button class='upload-icon' id='1'style='margin-top: -87px;border: none;background: white;display: inline-block;padding: 12px;' uploadsectioniconcount='1'>"+  						 
-  					 "<label for='fileUpload1' style='border: none;'><i class='fas fa-cloud-upload-alt' id='UploadFile1' uploadsectioniconcount='1'></i></label></button>"+
-					 "<i class='fa icon fa-eye' id='eyeicon1' eyesectioncount=1 style='color: #1565C0;display: inline-block;padding-left: 39px;'></i>"+
+				 var delete_icon = "<span class='fas fa-trash-can text-danger deletepopup hidedelete'  style='float:right;display:none;' deletesectioniconcount='1'></span>";
+        		 var Row="<div class='addendumField row row-cols-2 g-2 mt-3'><div class=' col-9'>"+
+        	 		 "<label class='editable form-label text-muted' contenteditable='true'>Section 1</label>"+delete_icon+
+        			 "<textarea rows='6' cols='30' style='height:100px;' class='req addendumInfo'></textarea>"+
+					 "</div>"+
+        			 "<div class='col-3 px-0 d-flex justify-content-center mt-4 pt-5'>"+
+  					 "<i class='fas fa-cloud-upload-alt upload-icon' id='UploadFile1' uploadsectioniconcount='1'></i>"+
+					 "<i class='fa icon fa-eye' id='eyeicon1' eyesectioncount=1 ></i>"+
 					 "</div>"+
         		 "</div>";
         		 

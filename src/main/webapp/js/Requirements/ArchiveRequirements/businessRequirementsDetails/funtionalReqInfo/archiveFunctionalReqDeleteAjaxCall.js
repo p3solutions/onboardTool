@@ -131,10 +131,10 @@ function archiveFunctionalReqDeleteAjaxCall(seqNum){
 	
 				 //$("#"+tableNoData+"NoDataScrRow").show();
 				}
-        		notification("success","Seleted row deleted Successfully in "+tableNameDelEdit+".","Note:");
+        		notification("success","Selected row deleted Successfully in "+tableNameDelEdit+".","Note:");
         	}
         	else
-        		notification("error","Error occured while deleting the row in "+tableNameDelEdit+".","Error:");
+        		notification("error","Error occurred while deleting the row in "+tableNameDelEdit+".","Error:");
         	
         },
         error: function (e) {

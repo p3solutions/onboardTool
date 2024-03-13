@@ -89,7 +89,7 @@ function archiveRetentionSaveAjaxcall(JsonArray){
                         document.getElementById("complete").disabled = false;
                     }
                     else
-                        notification("error","Error occured while saving.","Error:");
+                        notification("error","Error occurred while saving.","Error:");
                 },
                 error: function (e) {
                     console.log(e);

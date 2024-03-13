@@ -31,7 +31,7 @@
             		if(!data.checkDuplicate)
             			notification("warning","Label name already exist in Archive Application Info.","Warning : ");
             		else if(!data.checkEditStatus)
-            			notification("error","Problem occured while editing in Archive Application Info.","Error : ");
+            			notification("error","Problem occurred while editing in Archive Application Info.","Error : ");
             	}
             },
             error: function (e) {
@@ -92,7 +92,7 @@
             	
             	}
             	else
-            		notification("error","Problem occured while deleting in Archive Application Info.","Error : ");
+            		notification("error","Problem occurred while deleting in Archive Application Info.","Error : ");
             	$("#LegacyDeleteClose").click();
             	$('.hidedelete').hide();
             	

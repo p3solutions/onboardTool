@@ -197,236 +197,294 @@ function userAppendFunction(data) {
 function appendRowFunction(data){
     var collapse = "";
     var checkIndex = false;
-    var i=0;
-  
-    $.each(data, function(key, value){
-	console.log("INDEX UI",i);
-        if(checkIndex){
-        var seqNo = value.seq_no;
-        var oppId = value.oppId;
-        var oppName = value.oppName;
-        var taskId = value.taskId;
-        var level = value.level;
-        var taskGroup = value.taskGroup;
-        var taskName = value.taskName;
-        var taskType = value.taskType;
-        var majDep = value.majorDep;
-        var assignedTo = value.assignedTo;
-        var planStart = value.planStart;
-        var planEnd = value.planEnd;
-        var actStart = value.actStart;
-        var actEnd = value.actEnd;
-        var completion = !isNaN(value.completion)&&value.completion!=""?value.completion:0 ;
-        var status = value.status;
-        var remark = value.remark;
-        var AssignedToOptions =userAppendFunction(data[0].user,assignedTo);
-        var taskTypeOptions = Options(taskTypeArr,taskType);
-        var status1=arcstatuscolor(completion);
-        var lvlflag=levlflag(level);
-       var t=taskId.replaceAll('.','_');
-       //var s1=s(taskId);
-       console.log("T VALUE",t);
-     // console.log("S1 VALUE",s1);
-       var t1=t.slice(0,3);
-       console.log(t1);
-       collapse1="collapse1"+t1;
-        if (level == 1){        
-            collapse = "collapse"+seqNo;
-            
-            //console.log("CONS")
-        var row = "<tr class='ArchiveList' role='button' data-toggle='collapse' data-parent='#accordion' href='."+collapse+"' aria-expanded='false' aria-controls='"+collapse+"'>"+
-                "<td style='text-align:center;vertical-align: middle;'><label class='control-label taskChange taskId' for='ArchiveExection'>"+taskId+"</label>" +
-                        "<input type = 'hidden' class = 'archiveLevel' value = '"+level+"'/>"+
-                 "</td>"+
-                  "<td style='text-align:center;vertical-align: middle;'><label class='control-label taskGroup' for='ArchiveExection'>"+taskGroup+"</label></td>"+
-                  "<td><label class='control-label taskName' for='ArchiveExection'>"+taskName+"</label></td>"+
-                  "<td style='text-align:center;vertical-align: middle;'>"+
-                  "<select class='taskTypeDrop taskChange' disabled>"+
-                  taskTypeOptions+
-                  "</select>" +
-                  "</td>"+
-                  "<td style='text-align:center;vertical-align: middle;'><input type='text' class ='majorDep changeText' value='"+majDep+"' disabled></td>"+
-                  "<td style='text-align:center;vertical-align: middle;'>"+
-                  "<select multiple data-live-search='true' class='assignedToDrop selectpicker' multiple data-actions-box='true' disabled value='"+assignedTo+"'>"+
-                  AssignedToOptions+
-                  "</select>" +
-                  "</td>"+
-                  "<td style='text-align:center;vertical-align: middle;'><input type='text' Class='form-control planStart' placeholder='mm/dd/yyyy' value='"+planStart+"' disabled/></td>"+
-                  "<td style='text-align:center;vertical-align: middle;'><input type='text' Class='form-control planEnd' placeholder='mm/dd/yyyy' value='"+planEnd+"' disabled/></td>"+
-                  "<td style='text-align:center;vertical-align: middle;'><input type='text' Class='form-control actStart' placeholder='mm/dd/yyyy' value='"+actStart+"' disabled/></td>"+
-                  "<td style='text-align:center;vertical-align: middle;'><input type='text' Class='form-control actEnd' placeholder='mm/dd/yyyy' value='"+actEnd+"' disabled/></td>"+
-                  "<td style='text-align:center;vertical-align: middle;'>"+
-                  "<div class='clearfix completion'>"+
-             "<input type='text' style='display:none;width:40px; height:40px;'class='per pro' id='perc_"+i+"'value="+completion+">"+
-           "<div class='c100 p"+completion+" small circle' id='pperc_"+i+"'>"+
-           "<span class='percentage' id='ppperc_"+i+"'>"+completion+" %</span>"+
-                  "<div class='slice'>"+
-                  "<div class='bar'></div>"+
-                 "<div class='fill'></div>"+
-                 "</div>"+
-                 "</div>"+
-                 "<div class='visibleBtn arrow'>"+
-                 "<div>"+
-                 "<i style='vertical-align:top;position:relative;' role ='button' class='triangle up parentUp'></i>"+
-                 "</div>"+
-                 "<br/>"+
-                 "<div>"+
-                 "<i style='vertical-align:bottom;position:relative;' role='button' class='triangle down parentDown'></i>"+
-                 "</div>"+
-                 "</div>"+
-                 "</div>"+
-                  "</td>"+
-                  "<td style='text-align:center;vertical-align: middle;'>"+
-                  "<span class='"+arcstatuscolor(completion)+" statusCode colorCode' id='pppperc_"+i+"'></span>"+
-                  "</td>"+
-                  "<td style='text-align:center;vertical-align: middle;'><i class='fas fa-comment-alt fa-2x remarksIcon' style='color:#87CEEB;' role='button' ></i><input type='hidden' class ='remark changeText' value='"+remark+"' disabled></td>"+
-                  "<td><div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>"+
-                  "<ul class='dropdown-menu'>"+
-                  "<li><a  class='fa fa-plus AddRow' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Add</a></li>"+
-                  "<li><a  class='fa fa-edit EditRow' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>"+
-                  "<li><a  class='fa fa-trash DeleteRow' style='font-size: 18px; color: black'>&nbsp;&nbsp;&nbsp;Delete</a></li>"+
-                  "</ul>"+
-                  "</div>"+
-                  "</td>"+
-                  "</tr>";
-                  $("#ArchiveExecutionList").append(row);
-                 
-        }
-     
-            
-        else if(level==2){
+    var i = 0;
 
-            var row = "<tr class='ArchiveList panel-collapse collapse out "+collapse+"' role='button'  aria-labelledby='headingOne' data-toggle='collapse' data-parent='#accordion1' href='."+collapse1+"' aria-expanded='false' aria-controls='"+collapse1+"'>"+
-            "<td style='text-align:center;vertical-align: middle;'><label class='control-label taskId' for='ArchiveExection'>"+taskId+"</label>" +
-            "<input type = 'hidden' class = 'archiveLevel' value = '"+level+"'/>"+      
-            "</td>"+
-            "<td style='text-align:center;vertical-align: middle;'><label class='control-label taskGroup' for='ArchiveExection'>"+taskGroup+"</label></td>"+
-              "<td><label class='control-label taskName' for='ArchiveExection'>"+taskName+"</label></td>"+
-              "<td style='text-align:center;vertical-align: middle;'>"+
-              "<select class='taskTypeDrop taskChange' id='tasktype_"+t+"'>"+
-              taskTypeOptions+
-              "</select>" +
-              "</td>"+
-              "<td style='text-align:center;vertical-align: middle;'><input type='text' class ='majorDep changeText' id='maj_"+t+"' value='"+majDep+"'></td>"+
-              "<td style='text-align:center;vertical-align: middle;'>"+
-              "<select multiple data-live-search='true' class='assignedToDrop selectpicker' multiple data-actions-box='true' id='assign_"+t+"' value='"+assignedTo+"' >"+
-            AssignedToOptions+
-              "</select>" +
-              "</td>"+
-              "<td style='text-align:center;vertical-align: middle;'><input type='text' Class='form-control datepicker1 planStart' placeholder='mm/dd/yyyy' value='"+planStart+"' maxlength='0' id='pln_srt"+t+"' /></td>"+
-              "<td style='text-align:center;vertical-align: middle;'><input type='text' Class='form-control datepicker1 planEnd' placeholder='mm/dd/yyyy' value='"+planEnd+"' maxlength='0' id='pln_end"+t+"'/></td>"+
-              "<td style='text-align:center;vertical-align: middle;'><input type='text' Class='form-control datepicker1 actStart' placeholder='mm/dd/yyyy' value='"+actStart+"' maxlength='0' id='act_srt"+t+"'/></td>"+
-              "<td style='text-align:center;vertical-align: middle;'><input type='text' Class='form-control datepicker1 actEnd' placeholder='mm/dd/yyyy' value='"+actEnd+"' maxlength='0' id='act_end"+t+"'/></td>"+
-              "<td style='text-align:center;vertical-align: middle;'>"+
-            "<div class='clearfix completion'>"+
-             "<input type='text' style='display:none;width:40px; height:40px;'class='per pro' id='perc_"+i+"'value="+completion+">"+
-           "<div class='c100 p"+completion+" small circle' id='pperc_"+i+"'>"+
-           "<span class='percentage' id='ppperc_"+i+"'>"+completion+" %</span>"+
-          "<div class='slice'>"+
-         "<div class='bar'></div>"+
-        "<div class='fill'></div>"+
-        "</div>"+
-        "</div>"+
-        "<div class='visibleBtn arrow'>"+
-        "<div>"+
-        "<i style='vertical-align:top;position:relative;' role ='button' class='triangle up parentUp'></i>"+
-        "</div>"+
-        "<br/>"+
-        "<div>"+
-        "<i style='vertical-align:bottom;position:relative;' role='button' class='triangle down parentDown'></i>"+
-        "</div>"+
-        "</div>"+
-        "</div>"+
-          "</td>"+
-          "<td style='text-align:center;vertical-align: middle;'>"+
-              "<span class='"+arcstatuscolor(completion)+" statusCode colorCode' id='pppperc_"+i+"'></span>"+
-              "</td>"+ 
-              "<td style='text-align:center;vertical-align: middle;'><i class='fas fa-comment-alt fa-2x remarksIcon' style='color:#87CEEB;' role='button'></i><input type='hidden' class ='remark changeText' value='"+remark+"'></td>"+
-          "<td><div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>"+
-          "<ul class='dropdown-menu'>"+
-          "<li><a  class='fa fa-plus AddRow' style='font-size: 19px; color: black; "+lvlflag+"'>&nbsp;&nbsp;&nbsp;Add</a></li>"+
-          "<li><a  class='fa fa-edit EditRow' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>"+
-          "<li><a  class='fa fa-trash DeleteRow' style='font-size: 18px; color: black'>&nbsp;&nbsp;&nbsp;Delete</a></li>"+
-          "</ul>"+
-          "</div>"+
-          "</td>"+
-              "</tr>";
-              $("#ArchiveExecutionList").append(row);
-             
-        }
-         else {
+    $.each(data, function (key, value) {
+        console.log("INDEX UI", i);
+        if (checkIndex) {
+            var seqNo = value.seq_no;
+            var oppId = value.oppId;
+            var oppName = value.oppName;
+            var taskId = value.taskId;
+            var level = value.level;
+            var taskGroup = value.taskGroup;
+            var taskName = value.taskName;
+            var taskType = value.taskType;
+            var majDep = value.majorDep;
+            var assignedTo = value.assignedTo;
+            var planStart = value.planStart;
+            var planEnd = value.planEnd;
+            var actStart = value.actStart;
+            var actEnd = value.actEnd;
+            var completion = !isNaN(value.completion) && value.completion != "" ? value.completion : 0;
+            var status = value.status;
+            var remark = value.remark;
+            var AssignedToOptions = userAppendFunction(data[0].user, assignedTo);
+            var taskTypeOptions = Options(taskTypeArr, taskType);
+            var status1 = arcstatuscolor(completion);
+            var lvlflag = levlflag(level);
+            var t = taskId.replaceAll('.', '_');
+            //var s1=s(taskId);
+            console.log("T VALUE", t);
+            // console.log("S1 VALUE",s1);
+            var t1 = t.slice(0, 3);
+            console.log(t1);
+            collapse1 = "collapse1" + t1;
+            if (level == 1) {
+                collapse = "collapse" + seqNo;
 
-            var row = "<tr class='ArchiveList panel-collapse collapse out "+collapse1+"' role='tabpanel' aria-labelledby='headingOne'>"+
-            "<td style='text-align:center;vertical-align: middle;'><label class='control-label taskId' for='ArchiveExection'>"+taskId+"</label>" +
-            "<input type = 'hidden' class = 'archiveLevel' value = '"+level+"'/>"+      
-            "</td>"+
-            "<td style='text-align:center;vertical-align: middle;'><label class='control-label taskGroup' for='ArchiveExection'>"+taskGroup+"</label></td>"+
-              "<td><label class='control-label taskName' for='ArchiveExection'>"+taskName+"</label></td>"+
-              "<td style='text-align:center;vertical-align: middle;'>"+
-              "<select class='taskTypeDrop taskChange' id='tasktype_"+t+"'>"+
-              taskTypeOptions+
-              "</select>" +
-              "</td>"+
-              "<td style='text-align:center;vertical-align: middle;'><input type='text' class ='majorDep changeText' id='maj_"+t+"' value='"+majDep+"'></td>"+
-              "<td style='text-align:center;vertical-align: middle;'>"+
-              "<select multiple data-live-search='true' class='assignedToDrop selectpicker' multiple data-actions-box='true' id='assign_"+t+"' value='"+assignedTo+"'>"+
-            AssignedToOptions+
-              "</select>" +
-              "</td>"+
-              "<td style='text-align:center;vertical-align: middle;'><input type='text' Class='form-control datepicker1 planStart' placeholder='mm/dd/yyyy' value='"+planStart+"' maxlength='0' id='pln_srt"+t+"' /></td>"+
-              "<td style='text-align:center;vertical-align: middle;'><input type='text' Class='form-control datepicker1 planEnd' placeholder='mm/dd/yyyy' value='"+planEnd+"' maxlength='0' id='pln_end"+t+"'/></td>"+
-              "<td style='text-align:center;vertical-align: middle;'><input type='text' Class='form-control datepicker1 actStart' placeholder='mm/dd/yyyy' value='"+actStart+"' maxlength='0' id='act_srt"+t+"'/></td>"+
-              "<td style='text-align:center;vertical-align: middle;'><input type='text' Class='form-control datepicker1 actEnd' placeholder='mm/dd/yyyy' value='"+actEnd+"' maxlength='0' id='act_end"+t+"'/></td>"+
-              "<td style='text-align:center;vertical-align: middle;'>"+
-             "<div class='clearfix completion'>"+
-             "<input type='text' style='display:none;width:40px; height:40px;'class='per pro' id='perc_"+i+"'value="+completion+">"+
-           "<div class='c100 p"+completion+" small circle' id='pperc_"+i+"'>"+
-           "<span class='percentage' id='ppperc_"+i+"'>"+completion+" %</span>"+
-          "<div class='slice'>"+
-         "<div class='bar'></div>"+
-        "<div class='fill'></div>"+
-        "</div>"+
-        "</div>"+
-        
-        "<div class='visibleBtn arrow'>"+
-        "<div>"+
-        "<i style='vertical-align:top;position:relative;' role ='button' class='triangle up parentUp'></i>"+
-        "</div>"+
-        "<br/>"+
-        "<div>"+
-        "<i style='vertical-align:bottom;position:relative;' role='button' class='triangle down parentDown'></i>"+
-        "</div>"+
-        "</div>"+
-        "</div>"+
-          "</td>"+
-              "<td style='text-align:center;vertical-align: middle;'>"+
-              "<span class='"+arcstatuscolor(completion)+" statusCode colorCode' id='pppperc_"+i+"'></span>"+
-              "</td>"+ 
-              "<td style='text-align:center;vertical-align: middle;'><i class='fas fa-comment-alt fa-2x remarksIcon' style='color:#87CEEB;' role='button'></i><input type='hidden' class ='remark changeText' value='"+remark+"'></td>"+
-          "<td><div class='col-md-4 dropdown'><img src='images/icons8-expand-arrow-25.png' class='dropdown-toggle' data-toggle='dropdown'></img>"+
-          "<ul class='dropdown-menu'>"+
-          "<li><a  class='fa fa-plus AddRow' style='font-size: 19px; color: black; "+lvlflag+"'>&nbsp;&nbsp;&nbsp;Add</a></li>"+
-          "<li><a  class='fa fa-edit EditRow' style='font-size: 19px; color: black'>&nbsp;&nbsp;&nbsp;Edit</a></li>"+
-          "<li><a  class='fa fa-trash DeleteRow' style='font-size: 18px; color: black'>&nbsp;&nbsp;&nbsp;Delete</a></li>"+
-          "</ul>"+
-          "</div>"+
-          "</td>"+
-              "</tr>";
-              $("#ArchiveExecutionList").append(row);
-        }
-        }
-        else {
-           /* users =[];*/
-            taskTypeArr = ['','Activity','Deliverable'];
+
+                var row = "<tr class='ArchiveList' role='button' data-bs-toggle='collapse' data-bs-parent='#accordion' href='." + collapse + "' aria-expanded='false' aria-controls='" + collapse + "'>" +
+                    "<td><label class='control-label taskChange taskId' for='ArchiveExection'>" + taskId + "</label>" +
+                    "<input type = 'hidden' class = 'archiveLevel' value = '" + level + "'/>" +
+                    "</td>" +
+                    "<td><label class='control-label taskGroup' for='ArchiveExection'>" + taskGroup + "</label></td>" +
+                    "<td><label class='control-label taskName' for='ArchiveExection'>" + taskName + "</label></td>" +
+                    "<td>" +
+                    "<select class='form-select  taskTypeDrop taskChange' disabled>" +
+                    taskTypeOptions +
+                    "</select>" +
+                    "</td>" +
+                    "<td><input type='text' class ='form-control majorDep changeText' value='" + majDep + "' disabled></td>" +
+                    "<td>" +
+                    "<select multiple data-live-search='true' class='assignedToDrop selectpicker' multiple data-actions-box='true' disabled value='" + assignedTo + "'>" +
+                    AssignedToOptions +
+                    "</select>" +
+                    "</td>" +
+                    "<td><input type='text' Class='form-control planStart' placeholder='mm/dd/yyyy' value='" + planStart + "' disabled/></td>" +
+                    "<td><input type='text' Class='form-control planEnd' placeholder='mm/dd/yyyy' value='" + planEnd + "' disabled/></td>" +
+                    "<td><input type='text' Class='form-control actStart' placeholder='mm/dd/yyyy' value='" + actStart + "' disabled/></td>" +
+                    "<td><input type='text' Class='form-control actEnd' placeholder='mm/dd/yyyy' value='" + actEnd + "' disabled/></td>" +
+                    "<td>" +
+                    "<div class='clearfix completion'>" +
+                    "<input type='text' style='display:none;width:40px; height:40px;'class='per pro' id='perc_" + i + "'value=" + completion + ">" +
+                    "<div class='c100 p" + completion + " small circle' id='pperc_" + i + "'>" +
+                    "<span class='percentage' id='ppperc_" + i + "'>" + completion + " %</span>" +
+                    "<div class='slice'>" +
+                    "<div class='bar'></div>" +
+                    "<div class='fill'></div>" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class='visibleBtn arrow'>" +
+                    "<div>" +
+                    "<i style='vertical-align:top;position:relative;' role ='button' class='triangle up parentUp'></i>" +
+                    "</div>" +
+                    "<br/>" +
+                    "<div>" +
+                    "<i style='vertical-align:bottom;position:relative;' role='button' class='triangle down parentDown'></i>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "</td>" +
+                    "<td>" +
+                    "<span class='" + arcstatuscolor(completion) + " statusCode colorCode' id='pppperc_" + i + "'></span>" +
+                    "</td>" +
+                    "<td><i class='fas fa-comment-alt fa-2x remarksIcon' style='color:#87CEEB;' role='button' ></i><input type='hidden' class ='remark changeText' value='" + remark + "' disabled></td>" +
+                    "<td>" +
+                    "<div class='dropdown dropstart'>" +
+                    " <img src='images/icons8-expand-arrow-25.png' data-bs-toggle='dropdown' " +
+                    " alt='dropdown'>" +
+                    "<ul class='dropdown-menu' aria-labelledby='Drop-option'>" +
+                    "<li>" +
+                    "<a class='dropdown-item AddRow' ><i" +
+                    " class='fa-solid fa-plus  iconColor'></i>&nbsp;&nbsp;&nbsp;Add</a>" +
+                    "</li>" +
+                    "<li>" +
+                    "<hr class='dropdown-divider'>" +
+                    "</li>" +
+                    "<li>" +
+                    "<a class='dropdown-item EditRow' ><i" +
+                    " class='fa-solid fa-pencil  iconColor'></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
+                    "</li>" +
+                    "<li>" +
+                    "<hr class='dropdown-divider'>\n" +
+                    "</li>" +
+                    "<li>" +
+                    "<a class='dropdown-item DeleteRow' ><i " +
+                    " class='fa-solid fa-trash-can  text-danger'></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
+                    "</li>" +
+                    "</ul>" +
+                    "</div>" +
+                    "</td>" +
+                    "</ul>" +
+                    "</div>" +
+                    "</td>" +
+                    "</tr>";
+                $("#ArchiveExecutionList").append(row);
+
+            } else if (level == 2) {
+
+                var row = "<tr class='ArchiveList panel-collapse collapse out " + collapse + "' role='button'  aria-labelledby='headingOne' data-bs-toggle='collapse' data-bs-parent='#accordion1' href='." + collapse1 + "' aria-expanded='false' aria-controls='" + collapse1 + "'>" +
+                    "<td><label class='control-label taskId' for='ArchiveExection'>" + taskId + "</label>" +
+                    "<input type = 'hidden' class = 'archiveLevel' value = '" + level + "'/>" +
+                    "</td>" +
+                    "<td><label class='control-label taskGroup' for='ArchiveExection'>" + taskGroup + "</label></td>" +
+                    "<td><label class='control-label taskName' for='ArchiveExection'>" + taskName + "</label></td>" +
+                    "<td>" +
+                    "<select class='form-select taskTypeDrop taskChange' id='tasktype_" + t + "'>" +
+                    taskTypeOptions +
+                    "</select>" +
+                    "</td>" +
+                    "<td><input type='text' class ='form-control majorDep changeText' id='maj_" + t + "' value='" + majDep + "'></td>" +
+                    "<td>" +
+                    "<select multiple data-live-search='true' class='assignedToDrop selectpicker' multiple data-actions-box='true' id='assign_" + t + "' value='" + assignedTo + "' >" +
+                    AssignedToOptions +
+                    "</select>" +
+                    "</td>" +
+                    "<td><input type='text' Class='form-control datepicker1 planStart' placeholder='mm/dd/yyyy' value='" + planStart + "' maxlength='0' id='pln_srt" + t + "' /></td>" +
+                    "<td><input type='text' Class='form-control datepicker1 planEnd' placeholder='mm/dd/yyyy' value='" + planEnd + "' maxlength='0' id='pln_end" + t + "'/></td>" +
+                    "<td><input type='text' Class='form-control datepicker1 actStart' placeholder='mm/dd/yyyy' value='" + actStart + "' maxlength='0' id='act_srt" + t + "'/></td>" +
+                    "<td><input type='text' Class='form-control datepicker1 actEnd' placeholder='mm/dd/yyyy' value='" + actEnd + "' maxlength='0' id='act_end" + t + "'/></td>" +
+                    "<td>" +
+                    "<div class='clearfix completion'>" +
+                    "<input type='text' style='display:none;width:40px; height:40px;'class='per pro' id='perc_" + i + "'value=" + completion + ">" +
+                    "<div class='c100 p" + completion + " small circle' id='pperc_" + i + "'>" +
+                    "<span class='percentage' id='ppperc_" + i + "'>" + completion + " %</span>" +
+                    "<div class='slice'>" +
+                    "<div class='bar'></div>" +
+                    "<div class='fill'></div>" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class='visibleBtn arrow'>" +
+                    "<div>" +
+                    "<i style='vertical-align:top;position:relative;' role ='button' class='triangle up parentUp'></i>" +
+                    "</div>" +
+                    "<br/>" +
+                    "<div>" +
+                    "<i style='vertical-align:bottom;position:relative;' role='button' class='triangle down parentDown'></i>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "</td>" +
+                    "<td>" +
+                    "<span class='" + arcstatuscolor(completion) + " statusCode colorCode' id='pppperc_" + i + "'></span>" +
+                    "</td>" +
+                    "<td><i class='fas fa-comment-alt fa-2x remarksIcon' style='color:#87CEEB;' role='button'></i><input type='hidden' class ='remark changeText' value='" + remark + "'></td>" +
+                    "<td>" +
+                    "<div class='dropdown dropstart'>" +
+                    " <img src='images/icons8-expand-arrow-25.png' data-bs-toggle='dropdown'" +
+                    " alt='dropdown'>" +
+                    "<ul class='dropdown-menu' aria-labelledby='Drop-option'>" +
+                    "<li>" +
+                    "<a class='dropdown-item AddRow'" + lvlflag + "><i" +
+                    " class='fa-solid fa-plus  iconColor'></i>&nbsp;&nbsp;&nbsp;Add</a>" +
+                    "</li>" +
+                    "<li>" +
+                    "<hr class='dropdown-divider'>" +
+                    "</li>" +
+                    "<li>" +
+                    "<a class='dropdown-item EditRow' ><i" +
+                    " class='fa-solid fa-pencil  iconColor'></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
+                    "</li>" +
+                    "<li>" +
+                    "<hr class='dropdown-divider'>" +
+                    "</li>" +
+                    "<li>" +
+                    "<a class='dropdown-item DeleteRow' '><i " +
+                    " class='fa-solid fa-trash-can  text-danger'></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
+                    "</li>" +
+                    "</ul>" +
+                    "</div>" +
+                    "</td>" +
+                    "</ul>" +
+                    "</div>" +
+                    "</td>" +
+                    "</tr>";
+                $("#ArchiveExecutionList").append(row);
+
+            } else {
+
+                var row = "<tr class='ArchiveList panel-collapse collapse out " + collapse1 + "' role='tabpanel' aria-labelledby='headingOne'>" +
+                    "<td style='text-align:center;vertical-align: middle;'><label class='control-label taskId' for='ArchiveExection'>" + taskId + "</label>" +
+                    "<input type = 'hidden' class = 'archiveLevel' value = '" + level + "'/>" +
+                    "</td>" +
+                    "<td style='text-align:center;vertical-align: middle;'><label class='control-label taskGroup' for='ArchiveExection'>" + taskGroup + "</label></td>" +
+                    "<td><label class='control-label taskName' for='ArchiveExection'>" + taskName + "</label></td>" +
+                    "<td style='text-align:center;vertical-align: middle;'>" +
+                    "<select class='form-select taskTypeDrop taskChange' id='tasktype_" + t + "'>" +
+                    taskTypeOptions +
+                    "</select>" +
+                    "</td>" +
+                    "<td><input type='text' class ='form-control majorDep changeText' id='maj_" + t + "' value='" + majDep + "'></td>" +
+                    "<td >" +
+                    "<select multiple data-live-search='true' class='assignedToDrop selectpicker' multiple data-actions-box='true' id='assign_" + t + "' value='" + assignedTo + "'>" +
+                    AssignedToOptions +
+                    "</select>" +
+                    "</td>" +
+                    "<td><input type='text' Class='form-control datepicker1 planStart' placeholder='mm/dd/yyyy' value='" + planStart + "' maxlength='0' id='pln_srt" + t + "' /></td>" +
+                    "<td><input type='text' Class='form-control datepicker1 planEnd' placeholder='mm/dd/yyyy' value='" + planEnd + "' maxlength='0' id='pln_end" + t + "'/></td>" +
+                    "<td><input type='text' Class='form-control datepicker1 actStart' placeholder='mm/dd/yyyy' value='" + actStart + "' maxlength='0' id='act_srt" + t + "'/></td>" +
+                    "<td><input type='text' Class='form-control datepicker1 actEnd' placeholder='mm/dd/yyyy' value='" + actEnd + "' maxlength='0' id='act_end" + t + "'/></td>" +
+                    "<td>" +
+                    "<div class='clearfix completion'>" +
+                    "<input type='text' style='display:none;width:40px; height:40px;'class='per pro' id='perc_" + i + "'value=" + completion + ">" +
+                    "<div class='c100 p" + completion + " small circle' id='pperc_" + i + "'>" +
+                    "<span class='percentage' id='ppperc_" + i + "'>" + completion + " %</span>" +
+                    "<div class='slice'>" +
+                    "<div class='bar'></div>" +
+                    "<div class='fill'></div>" +
+                    "</div>" +
+                    "</div>" +
+
+                    "<div class='visibleBtn arrow'>" +
+                    "<div>" +
+                    "<i style='vertical-align:top;position:relative;' role ='button' class='triangle up parentUp'></i>" +
+                    "</div>" +
+                    "<br/>" +
+                    "<div>" +
+                    "<i style='vertical-align:bottom;position:relative;' role='button' class='triangle down parentDown'></i>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "</td>" +
+                    "<td>" +
+                    "<span class='" + arcstatuscolor(completion) + " statusCode colorCode' id='pppperc_" + i + "'></span>" +
+                    "</td>" +
+                    "<td><i class='fas fa-comment-alt fa-2x remarksIcon' style='color:#87CEEB;' role='button'></i><input type='hidden' class ='remark changeText' value='" + remark + "'></td>" +
+                    "<td>" +
+                    "<div class='dropdown dropstart'>" +
+                    "<img src='images/icons8-expand-arrow-25.png' data-bs-toggle='dropdown' " +
+                    " alt='dropdown'>" +
+                    "<ul class='dropdown-menu' aria-labelledby='Drop-option'>" +
+                    "<li>" +
+                    "<a class='dropdown-item AddRow' " + lvlflag + "" +
+                    "><i class='fa-solid fa-plus iconColor '></i>&nbsp;&nbsp;&nbsp;Add</a>" +
+                    "</li>" +
+                    "<li>" +
+                    "<hr class='dropdown-divider'>" +
+                    "</li>" +
+                    "<li>" +
+                    "<a class='dropdown-item EditRow' " +
+                    "><i class='fa-solid fa-pencil iconColor '></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
+                    "</li>" +
+                    "<li>" +
+                    "<hr class='dropdown-divider'>" +
+                    "</li>" +
+                    "<li>" +
+                    "<a class='dropdown-item DeleteRow' > " +
+                    "<i class='fa-solid fa-trash-can text-danger '></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
+                    "</li>" +
+                    "</ul>" +
+                    "</div>" +
+                    "</td>" +
+                    "</ul>" +
+                    "</div>" +
+                    "</td>" +
+                    "</tr>";
+                $("#ArchiveExecutionList").append(row);
+            }
+        } else {
+            /* users =[];*/
+            taskTypeArr = ['', 'Activity', 'Deliverable'];
             checkIndex = true;
             var headerOppId = value.Opp_Id == false ? "" : value.Opp_Id;
             var headerOppName = value.appName == false ? "" : value.appName;
-            var headerstartDate=value.startDate == false ? "</br>" : value.startDate;
-            var headerendDate=value.endDate == false ? "</br>" : value.endDate;
-            $('#oppName').html("Opportunity Name : </br>"+headerOppName);
-            $('#oppId').html("P3 Project Id : </br>"+headerOppId);
-            $('#startDate').html("Start Date : </br>"+headerstartDate);
-            $('#endDate').html("Estimated Completion : </br>"+headerendDate);
+            var headerstartDate = value.startDate == false ? "</br>" : value.startDate;
+            var headerendDate = value.endDate == false ? "</br>" : value.endDate;
+            $('#oppName').html(headerOppName);
+            $('#oppId').html(headerOppId);
+            $('#startDate').html(headerstartDate);
+            $('#endDate').html(headerendDate);
         }
    i++;
    

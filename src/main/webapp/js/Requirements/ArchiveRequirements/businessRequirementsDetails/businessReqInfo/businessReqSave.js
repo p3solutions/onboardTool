@@ -62,7 +62,7 @@ var typingTimer;                //timer identifier
                 if(data.checkUpdate)
                     notification("success","Saved successfully.","Note:");
                 else
-                    notification("error","Error occured while saving.","Error:");
+                    notification("error","Error occurred while saving.","Error:");
             },
             error: function (e) {
                 console.log(e);
@@ -108,7 +108,7 @@ var typingTimer;                //timer identifier
                         document.getElementById("dataSaveReq").disabled = false;
                    }
                     else
-                        notification("error","Error occured while saving.","Error:");
+                        notification("error","Error occurred while saving.","Error:");
                 },
                 error: function (e) {
                     console.log(e);

@@ -47,15 +47,15 @@ function deletegrid(section_no){
         var oppId = value.oppId;
         var File_Name = value.File_Name;
         var row = "<tr>" +
-            "<td style='text-align:center;vertical-align: middle; display:none;'><label class='control-label' for=''>" + seq_num + "</label>" +
+            "<td style='display:none;'>" + seq_num +
             "</td>"+
-            "<td style='text-align:center;vertical-align: middle; display:none;'><label class='control-label' for=''>" + section_no + "</label>" +
+            "<td style='display:none;'>" + section_no +
             "</td>"+
-            "<td style='text-align:center;vertical-align: middle; display:none;'><label class='control-label' for=''>" + oppId + "</label>" +
+            "<td style='display:none;'>" + oppId +
             "</td>"+
-            "<td style='text-align:center;vertical-align: middle;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;max-width:10ch;' data-bs-toggle='tooltip' data-bs-placement='top' title='" + File_Name + "'><label class='control-label ' for=''>" + File_Name + "</label>" +
+            "<td style='text-align:center;vertical-align: middle;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;max-width:10ch;' data-bs-toggle='tooltip' data-bs-placement='top' title='" + File_Name + "'>" + File_Name +
             "</td>" +
-            "<td style='text-align:center;vertical-align: middle;'><span class='glyphicon glyphicon-download-alt add_download_btn'style='display:block; margin-left:-15px;'></span><span class='glyphicon glyphicon-trash addendum_scr_deletepopup'id='addendum_file_delete_icon" +count+ "'style='display:block;float:right;margin-top:-13px; margin-right:18px; margin-left:10px;'></span>" +
+            "<td><span class='fa-solid fa-download add_download_btn mx-2'></span><span class='fas fa-trash-can text-danger addendum_scr_deletepopup'id='addendum_file_delete_icon" +count+ "'></span>" +
             "</td>" +
             "</tr>";	
     	$(".Uploaded_Files_List").append(row);		

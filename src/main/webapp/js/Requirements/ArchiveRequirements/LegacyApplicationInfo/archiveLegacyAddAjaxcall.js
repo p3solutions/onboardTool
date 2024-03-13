@@ -63,10 +63,10 @@ function addAjaxCall(app_name,proj_name,label_name,type,mandatory,num,options,um
             console.log("data add---->",data);
 			var num=data.Seq_Num;
             var required_field = "";
-            var delete_icon = "<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span>";
+            var delete_icon = "<span class='fa-solid fa-trash-can deletepopup hidedelete' style='float:right;display:none;' ></span>";
             if (data.Mandatory == "Yes" && data.UMandatory == "Yes" ){
                 required_field = "class = 'required_fie LabelName'";
-                delete_icon = "<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span>";
+                delete_icon = "<span class='fa-solid fa-trash-can deletepopup hidedelete' style='float:right;display:none;' ></span>";
             }
             if (data.LabelDuplicateCheck == "true")
             {
@@ -83,7 +83,7 @@ function addAjaxCall(app_name,proj_name,label_name,type,mandatory,num,options,um
             else if(data.Type=="Text box")
            {
                 var inputtext="<div class='form-group InputField' id = '"+data.ColumnName+"_Row'>"+
-                    "<label class='control-label' for='archiveLegacy'><div "+required_field+">"+data.LabelName+delete_icon+"</div></label><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>"+
+                    "<label class='control-label' for='archiveLegacy'><div "+required_field+">"+data.LabelName+delete_icon+"</div></label><span class='fa-solid fa-pencil editpopup hidepencil' style='float:right;display:none;'></span>"+
                     "<input type='text' class='form-control' id='"+data.LabelName+"' placeholder='"+data.LabelName+"' name='"+data.ColumnName+num+"'/>"+
                     "</div>";
                 
@@ -92,7 +92,7 @@ function addAjaxCall(app_name,proj_name,label_name,type,mandatory,num,options,um
             else if(data.Type=="Datepicker")
             {
                 var inputdate="<div class='form-group InputField' id = '"+data.ColumnName+"_Row'>"+
-                    "<label class='control-label' for= 'archiveLegacy'><div "+required_field+">"+data.LabelName+delete_icon+"</div></label><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>"+
+                    "<label class='control-label' for= 'archiveLegacy'><div "+required_field+">"+data.LabelName+delete_icon+"</div></label><span class='fa-solid fa-pencil editpopup hidepencil' style='float:right;display:none;'></span>"+
                     "<input type='text' class='form-control datepicker1' id='"+data.LabelName+"' placeholder='"+data.LabelName+"' name='"+data.ColumnName+num+"'/>"+
                     "</div>";
                 $('#inputFieldsAppInfo').append(inputdate);
@@ -106,7 +106,7 @@ function addAjaxCall(app_name,proj_name,label_name,type,mandatory,num,options,um
             {
                 var input="";
                 input+= "<div class='form-group InputField' id = '"+data.ColumnName+"_Row'>"+
-                    "<label class='control-label' for= 'archiveLegacy'><div "+required_field+">"+data.LabelName+delete_icon+"</div></label><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span><br/>";
+                    "<label class='control-label' for= 'archiveLegacy'><div "+required_field+">"+data.LabelName+delete_icon+"</div></label><span class='fa-solid fa-pencil editpopup hidepencil' style='float:right;display:none;'></span><br/>";
                 var Options=data.Options;
                 var sub_option = Options.substring(0, Options.length - 1);
                 var option=sub_option.split(",");
@@ -123,7 +123,7 @@ function addAjaxCall(app_name,proj_name,label_name,type,mandatory,num,options,um
             {
                 var input="";
                 input+= "<div class='form-group InputField' id = '"+data.ColumnName+"_Row'>"+
-                    "<label class='control-label' for= 'archiveLegacy'><div "+required_field+">"+data.LabelName+delete_icon+"</div></label><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span><br/>";
+                    "<label class='control-label' for= 'archiveLegacy'><div "+required_field+">"+data.LabelName+delete_icon+"</div></label><span class='fa-solid fa-pencil editpopup hidepencil' style='float:right;display:none;'></span><br/>";
                 var Options=data.Options;
                 var sub_option = Options.substring(0, Options.length - 1);
                 var option=sub_option.split(",");
@@ -138,8 +138,8 @@ function addAjaxCall(app_name,proj_name,label_name,type,mandatory,num,options,um
             else if(data.Type=="Dropdown")
             {
                 var select="";
-                select+= "<div class='form-group InputField' id = '"+data.ColumnName+"_Row'><label class='control-label' for= 'archiveLegacy'><div "+required_field+">"+data.LabelName+delete_icon+"</div></label><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>"+
-                    "<select style = 'width:100%;' name = "+data.ColumnName+num+">";
+                select+= "<div class='form-group InputField' id = '"+data.ColumnName+"_Row'><label class='control-label' for= 'archiveLegacy'><div "+required_field+">"+data.LabelName+delete_icon+"</div></label><span class='fa-solid fa-pencil editpopup hidepencil' style='float:right;display:none;'></span>"+
+                    "<select class='selectpicker form-control ' style = 'width:100%;' name = "+data.ColumnName+num+">";
                 var Options=data.Options;
                 var sub_option = Options.substring(0, Options.length - 1);
                 var option=sub_option.split(",");
@@ -148,6 +148,7 @@ function addAjaxCall(app_name,proj_name,label_name,type,mandatory,num,options,um
                 }
                 select +="</select></div>";
                 $('#inputFieldsAppInfo').append(select);
+                $('.selectpicker').selectpicker('refresh');
             }
             $('#Legacyaddlabel').val("");
             $('#Legacytypes').val("Text box");

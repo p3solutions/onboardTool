@@ -28,19 +28,19 @@ function appendRowFunction(data){
         var description = value.description;
         if (data[0].checkData){
         var row = "<tr>"+
-        		  "<td style='text-align:center;vertical-align: middle;display:none;'><label class='control-label' for=''>"+seq_no+"</label>" +
+        		  "<td>"+seq_no+"" +
                   "</td>"+
-                  "<td style='text-align:left;color:black;vertical-align: middle;'><label class='control-label' for=''>"+abbreviation_acronym+"</label>" +
+                  "<td>"+abbreviation_acronym +
                   "</td>"+
-                  "<td style='text-align:left;color:black;vertical-align: middle;'><label class='control-label ' for=''>"+description+"</label>" +
+                  "<td>"+description+
                   "</td>"+
-                  "<td class='useraction' style='text-align:center;vertical-align: middle;color:black;'><span class='glyphicon glyphicon-pencil editpopup'id='editpopupabb"+seq_no+"'style='display:block;margin-left:-22px;'></span><span class='glyphicon glyphicon-trash deletepopup' style='float:right;display:block;margin-top:-13px;'></span>"+
+                  "<td class='useraction mx-5 p-0'><span class='fa-solid fa-pencil iconColor editpopup mx-2' id='editpopupabb"+seq_no+"'></span><span class='fa-solid fa-trash-can text-danger deletepopup mx-2'></span>"+
                   "</td>"+                  
                   "</tr>";
                  
                   $("#abbreviationlist").append(row);
          }else{
-					var row ="<tr><td colspan='4' style='text-align: center;'>No Abbreviations found.</td></tr>"; 
+					var row ="<tr><td colspan='4'> <b>No Abbreviations found.</b></td></tr>";
 					$("#abbreviationlist").append(row);
 				  }
     });

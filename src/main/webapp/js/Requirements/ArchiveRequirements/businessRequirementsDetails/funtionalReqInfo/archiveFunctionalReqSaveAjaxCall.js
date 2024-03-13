@@ -115,7 +115,7 @@ function archiveFunctionalReqSaveAjaxcall(JsonArray){
                     }
                 }   
                 else
-                    notification("error","Error occured while saving "+Table_Name_Save+" details.","Error:");
+                    notification("error","Error occurred while saving "+Table_Name_Save+" details.","Error:");
             },
             error: function (e) {
                 console.log(e);

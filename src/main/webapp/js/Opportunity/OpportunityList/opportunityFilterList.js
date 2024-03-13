@@ -45,6 +45,7 @@ function filterAjaxCall(category,phase,wave)
                  data = [data];
              }  
              getAppList(data);
+            $('#overlay').hide();
         },
         error: function (e) {
             console.log(e);
@@ -59,27 +60,46 @@ function getAppList(data)
          var opportunityName = value.OpportunityName; 
          var OpportunityId = value.OpportunityId; 
          var checkWave = value.CheckWave;
+         var Appdesc = value.AppDesc;
          var optionWave = "";
          if(checkWave || data.length == 0)
              optionWave = "display:none;";   
-    var li_element ="<li class='opportunityCard'>"+
-                    "<div class='drophide'>"+
-                    "<i class = 'fal fa-ellipsis-v dropbtn dropClass' style='font-size:35px; position:absolute; width:90%; top:0px;'>"+
-                    "<div class='dropdown-content myDropdown' style = 'float:right;'>"+
-                    "<a class = 'options' style = 'text-align:left;' onClick=\"edit('"+OpportunityId+"','"+opportunityName+"')\";>Edit</a>"+
-                    "<a class = 'options addClass' style = 'text-align:left;"+optionWave+"' href='#'>Add to Wave</a>"+
-                    "<a class = 'options deleteClass' style = 'text-align:left;' href='#'>Delete</a>"+
-                    "</div>"+
-                    "</i>"+
-                    "<input type = 'hidden' class = 'oppName' value = '"+opportunityName+"'>"+
-                    "<input type = 'hidden' class = 'oppId' value = '"+OpportunityId+"'>"+
-                    "</div>"+
-                     "<h3 class='cbp-vm-title left-col primary' data-bs-toggle='tooltip' data-bs-placement='top' title='"+opportunityName+"' name='name'>"+opportunityName+"</h3>"+
-                     /*"<p class='right-col primary' >In Test</p>"+*/
-                      "<button type='button' class='btn btn-primary mt-3' name='btn' onClick=\"edit('"+OpportunityId+"','"+opportunityName+"')\";>"+
-                      "<i class='fa fa-eye'></i>/ &nbsp; <i class='fa fa-edit'></i>"+
-                      "</button>"+
-                      "</li>";
+    var li_element ="<div class=\"col\">" +
+        "<div class=\"card\">" +
+        "<div class=\"row\">" +
+        "<div class=\"col-9 mt-3 m-auto\">" +
+        "<h5 class=\"card-title AppCardTitle\">"+opportunityName+"</h5>" +
+        "</div>" +
+        "<div class=\"col-1 mt-2 m-auto\">" +
+        "<div class=\" d-flex justify-content-end\">" +
+        "<a class=\"btn btn-outline-none addClass \" style ='"+optionWave+"' >" +
+        "<i class=\"fa-solid fa-circle-plus fa-xl addWaveIcon Card-Icon\"></i></a>" +
+        "<button type=\"button\" class=\" Card-Icon btn btn-outline-none border-0 dropdown-toggle-split\"" +
+        "data-bs-toggle=\"dropdown\" aria-expanded=\"false\">" +
+        "<i class=\"fa-solid fa-ellipsis-vertical fa-lg \"></i>" +
+        "</button>" +
+        "<ul class=\"dropdown-menu p-0\">" +
+        "<li><a class=\"dropdown-item dropdown-styles\" onClick=\"edit('"+OpportunityId+"','"+opportunityName+"')\" >" +
+        "<i class= 'fa-solid fa-pencil iconColor' ></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
+        "</li>" +
+        "<li>" +
+        "<hr class=\"dropdown-divider m-0\">" +
+        "</li>" +
+        "<li><a class=\"dropdown-item dropdown-styles deleteClass\" >"+
+        "<i class=\"fa-solid fa-trash-can text-danger\"></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
+        "</li>" +
+        "</ul>" +
+        "</div>" +
+        "</div>" +
+        "</div>" +
+        "<div class=\"row\">" +
+        "<input type = 'hidden' class = 'oppName' value = '"+opportunityName+"'>"+
+        "<input type = 'hidden' class = 'oppId' value = '"+OpportunityId+"'>"+
+        "<p class=\"card-text col-11 mt-3 m-auto AppCardBody\">"+Appdesc+"</p>"+
+        "</div>" +
+        "</div>" +
+        "</div>";
+
        $('#ul_id').append(li_element);
       i++;
       

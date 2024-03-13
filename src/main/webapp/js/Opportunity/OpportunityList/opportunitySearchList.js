@@ -2,6 +2,7 @@ var typingTimer;
 var doneTypingInterval = 500;  
 
 $(document).on('keyup','#appFilter', function () {
+	$('#overlay').hide();
 	      clearTimeout(typingTimer);
 		  var Obj_this = this;
 		  typingTimer=setTimeout(function (){
@@ -17,6 +18,7 @@ $(document).on('keydown','#appFilter',function () {
 function doneTyping(obj)
 {
 	var appName = $(obj).val();
+
 	filterBySearchAjaxCall(appName);
 }
 
@@ -31,6 +33,7 @@ function filterBySearchAjaxCall(appName)
         	console.log("Data:", data);
         	 if (!$.isArray(data)) {
                  data = [data];
+				 $('#overlay').hide();
         	 }  
         	 getAppList(data);
         },

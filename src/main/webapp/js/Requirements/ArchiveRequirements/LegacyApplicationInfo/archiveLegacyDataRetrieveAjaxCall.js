@@ -32,33 +32,33 @@ $(document).ready(function(){
                 {
                 	manadatory="class = 'LabelName'";
                     disable_property = "";
-                    delete_icon = "<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span>";
+                    delete_icon = "<span class='fa-solid fa-trash-can text-danger deletepopup hidedelete' style='float:right;display:none;' ></span>";
                 }
                 if(value.mandatory=="Yes" && value.umandatory=="Yes")
                 {
                 	//manadatory="class = 'LabelName'";
                     //disable_property = "";
-                    delete_icon = "<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span>";
+                    delete_icon = "<span class='fa-solid fa-trash-can text-danger deletepopup hidedelete' style='float:right;display:none;' ></span>";
                 }
 				if (Type == "Text box") {
 					var template_check = "";
-					var inputtext = "<div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
-						"<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil ' style='float:right;display:none;'></span>\n";
+					var inputtext = "<div class=\"col\"><div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
+						"<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='fa-solid fa-pencil iconColor editpopup hidepencil ' style='display:none; float: right'></span>\n";
 					if (ColumnName == "totalsize") {
 						inputtext = inputtext + "<input type='number' min='0' onkeypress='return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
-							"</div>";
+							"</div></div>";
 					}
 					else if (ColumnName == "estimatestrucsize") {
 						inputtext = inputtext + "<input type='number' min='0' onkeypress='return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
-							"</div>";
+							"</div></div>";
 					}
 					else if (ColumnName == "estimateunstrucsize") {
 						inputtext = inputtext + "<input type='number' min='0' onkeypress='return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
-							"</div>";
+							"</div></div>";
 					}
 					else {
 						inputtext = inputtext + "<input type='text' class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
-							"</div>";
+							"</div></div>";
 					}
 					$('#inputFieldsAppInfo').append(inputtext);
 				}
@@ -66,10 +66,10 @@ $(document).ready(function(){
                 else if(Type=="Datepicker")
                 {
                 	
-                    var inputdate="<div class='form-group InputField' id='"+ColumnName+"_Row'>" +
-                        "<label class='control-label' for= 'archiveLegacy'>"+LabelName+"<span "+manadatory+"></span></label>"+delete_icon+"<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>\n" +
+                    var inputdate="<div class=\"col\"><div class='form-group InputField' id='"+ColumnName+"_Row'>" +
+                        "<label class='control-label' for= 'archiveLegacy'>"+LabelName+"<span "+manadatory+"></span></label>"+delete_icon+"<span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='display:none; float: right;'></span>\n" +
                         "<input type='text' onchange='dateChangeFunction(this.value)' Class='form-control datepicker1' id='"+ColumnName+"' placeholder='mm/dd/yyyy' name='"+ColumnName+"' value='"+Value+"'/>" +
-                        "</div>";
+                        "</div></div>";
                     $('#inputFieldsAppInfo').append(inputdate);
                     
                 		
@@ -79,8 +79,8 @@ $(document).ready(function(){
                 {
                 	var template_check=""; 
                 	
-                    var inputdrop= "<div class='form-group InputField' id = '"+ColumnName+"_Row'><label class='control-label' for= 'archiveLegacy'>"+LabelName+"<span "+manadatory+"></span></label>"+delete_icon+"<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>"+
-                        "<select style = 'width:100%;' class ='form-select' id='"+ColumnName+"'name='"+ColumnName+"'>";
+                    var inputdrop= "<div class=\"col\"><div class='form-group InputField' id = '"+ColumnName+"_Row'><label class='control-label' for= 'archiveLegacy'>"+LabelName+"<span "+manadatory+"></span></label>"+delete_icon+"<span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='display:none; float: right;'></span>"+
+                        "<select style = 'width:100%;' class ='selectpicker form-control' id='"+ColumnName+"'name='"+ColumnName+"'>";
                     var Options=value.options;
                     var sub_option = Options.substring(0, Options.length);
                     var option=sub_option.split(",");
@@ -91,13 +91,14 @@ $(document).ready(function(){
                         }
                         inputdrop += "<option label='"+ option[i] + "' class='control-label' for= 'archiveLegacy' "+select+">" + option[i] + "</option>";
                     }
-                    inputdrop +="</select></div>";
+                    inputdrop +="</select></div></div>";
                     $('#inputFieldsAppInfo').append(inputdrop);
+                    $('.selectpicker').selectpicker('refresh');
                    }
                 else if(Type=="Check box")
                 {
-                    var inputcheck= "<div class='form-group InputField'>"+
-                        "<label class='control-label' for= 'archiveLegacy'>"+LabelName+"<span "+manadatory+"></span></label>"+delete_icon+"<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span><br/>";
+                    var inputcheck= "<div class=\"col\"><div class='form-group InputField'>"+
+                        "<label class='control-label' for= 'archiveLegacy'>"+LabelName+"<span "+manadatory+"></span></label>"+delete_icon+"<span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='display:none; float: right;'></span><br/>";
                     var Options=value.options;
                     var sub_option = Options.substring(0, Options.length - 1);
                     var option=Options.split(",");
@@ -108,17 +109,17 @@ $(document).ready(function(){
                         if(value_arr.includes(option_element)){
                             check = "checked";
                         }
-                        inputcheck += "<label class = 'control-label' for = 'fromInput198'><input type='checkbox' class = 'form-comtrol' id=" + option[i] + (i + 1) + "' placeholder ='" + option[i] + "' value = '"+option[i]+"' name='"+ColumnName+"' "+check+"/>&nbsp;&nbsp;" +
+                        inputcheck += "<label class = 'form-check-label' for = 'fromInput198'><input type='checkbox' class = 'form-check-input' id=" + option[i] + (i + 1) + "' placeholder ='" + option[i] + "' value = '"+option[i]+"' name='"+ColumnName+"' "+check+"/>&nbsp;&nbsp;" +
                             option[i]+"</label><br/>";
                     }
-                    inputcheck +="</div>";
+                    inputcheck +="</div></div>";
                     $('#inputFieldsAppInfo').append(inputcheck);
 
                 }
                 else if(Type=="Radio box")
                 {
-                    var inputdrop= "<div class='form-group InputField'>"+
-                        "<label class='control-label' for= 'archiveLegacy'>"+LabelName+"<span "+manadatory+"></span></label>"+delete_icon+"<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;' '></span><br/>";
+                    var inputdrop= "<div class=\"col\"><div class='form-group InputField'>"+
+                        "<label class='control-label' for= 'archiveLegacy'>"+LabelName+"<span "+manadatory+"></span></label>"+delete_icon+"<span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='display:none; float: right;' ></span><br/>";
                     var Options=value.options;
                     var sub_option = Options.substring(0, Options.length - 1);
                     var option=Options.split(",");
@@ -127,29 +128,29 @@ $(document).ready(function(){
                         if(Value.includes(option[i])){
                             check = "checked";
                         }
-                        inputdrop+= "<label class = 'control-label' for = 'fromInput198'><input type='radio' class = 'form-comtrol' id="+option[i]+(i+1)+"' placeholder ='"+option[i]+"' value = '"+option[i]+"' name='"+ColumnName+"' "+check+"/>&nbsp;&nbsp;"+
+                        inputdrop+= "<label class = 'control-label' for = 'fromInput198'><input type='radio' class = 'form-check-input' id="+option[i]+(i+1)+"' placeholder ='"+option[i]+"' value = '"+option[i]+"' name='"+ColumnName+"' "+check+" />&nbsp;&nbsp;"+
                             option[i]+"</label><br/>";
                     }
-                    inputdrop +="</div>";
+                    inputdrop +="</div></div>";
                     $('#inputFieldsAppInfo').append(inputdrop);
 
                 }
                 else if(Type=="file")
                 {
-                    inputfile="<div class='form-group InputField'>\n" +
-                        "<label class='control-label' for='archiveLegacy'><div class='required_fie'>"+LabelName+delete_icon+"<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'' ></span></div></label>\n" +
+                    inputfile="<div class=\"col\"><div class='form-group InputField'>\n" +
+                        "<label class='control-label' for='archiveLegacy'><div class='required_fie'>"+LabelName+delete_icon+"<span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='display:none;float: right;' ></span></div></label>\n" +
                         "<input type='file' name='"+ColumnName+"' accept='image/!*' id ='choosen_file_name'>\n" +
-                        "</div>";
+                        "</div></div>";
                     $('#inputFieldsAppInfo').append(inputfile);
 
                 }
                 else if(Type=="Text area")
                 {
-                    var inputtext="<div class='form-group InputField'>\n" +
-                        "<label class='control-label' for='archiveLegacy'><div "+manadatory+">"+LabelName+delete_icon+"<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>\n" +
+                    var inputtext="<div class=\"col\"><div class='form-group InputField'>\n" +
+                        "<label class='control-label' for='archiveLegacy'><div "+manadatory+">"+LabelName+delete_icon+"<span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='display:none; float: right;'></span></div></label>\n" +
                         /*"<input type='text' class='form-control' id='"+ColumnName+"' placeholder='' name='"+ColumnName+"' value='"+Value+"'/>\n" +*/
                          "<textarea class='form-control' name='"+ColumnName+"' id='"+ColumnName+"'>"+Value+"</textarea>"+
-                        "</div>";
+                        "</div></div>";
                     $('#inputFieldsAppInfo').append(inputtext);
                 }
                 else if(Type=="HiddenText")
@@ -157,7 +158,7 @@ $(document).ready(function(){
                 	var style = (dependencyValue=="Internal")?"style='display:block;'":"style='display:none;'";//var style = (dependencyValue=="Internally Developed" || dependencyValue=="Yes")?"style='display:block;'":"style='display:none;'";
                 	dependencyValue = ""; 
                 	var inputtext="<div class='form-group InputField hiddenText1' id ='"+ColumnName+"_Row' "+style+">\n" +
-                     "<label class='control-label' for='archiveLegacy'><div "+manadatory+">"+LabelName+"<div class='deletepopup' style='display:none;'></div><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>\n" +
+                     "<label class='control-label' for='archiveLegacy'><div "+manadatory+">"+LabelName+"<div class='deletepopup' style='display:none;'></div><span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='display:none; float: right;'></span></div></label>\n" +
                      "<input type='text' class='form-control hiddenText' size='35' id='"+ColumnName+"' placeholder='' name='"+ColumnName+"' value='"+Value+"'/>\n" +
                      "</div>";
                  $('#inputFieldsAppInfo').append(inputtext);

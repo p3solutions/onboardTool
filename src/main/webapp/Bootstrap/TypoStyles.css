@@ -1,0 +1,77 @@
+.Card-Header {
+    background-color: #d9edff !important;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #474747 !important;
+    height: 45px;
+    border-radius: 8px, 8px, 0px, 0px !important;
+}
+
+.Card-Body {
+    font-family: "Roboto";
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+}
+
+.Table-Header, th {
+    font-family: "Roboto";
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    line-height: 19px;
+    color: #474747 !important;
+}
+
+.Table-Body, td {
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19px;
+    color: #474747 !important;
+}
+
+.required_fie:after {
+    content: " *";
+    color: red;
+}
+
+.accordion-button {
+    color: #474747 !important;
+    background-color: #f2f7fc !important;
+    font-family: "Roboto" !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    line-height: 25px !important;
+    letter-spacing: 0em !important;
+}
+.dropdown-styles{
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+.dropdown-styles:hover{
+    background-color: #d9edff !important;
+    color: #474747 !important;
+}
+.btn-light{
+    background-color: #FFFFFF !important;
+    color: #2A3F57 !important;
+    font-family: "Roboto";
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    letter-spacing: 0em !important;
+    text-align: left;
+    border-style: none !important;
+    border: 1px solid #CED0D2 !important;
+    border-radius: 6px !important;
+    min-height: 38px !important;
+}
+.bootstrap-select .dropdown-toggle:focus, .bootstrap-select>select.mobile-device:focus+.dropdown-toggle{
+    outline: none !important;
+}
+.dropdown-menu{
+    padding: 0px !important;
+}

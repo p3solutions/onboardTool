@@ -128,7 +128,7 @@ function archiveLegacyAppInfoAjaxCallUpdate(JsonString,checkMandatory,e)
                 document.getElementById("saveEnvmntName").disabled = false;
                 }
             else
-                notification("error","Problem occured while saving in Archive Application Info.","Error : ");
+                notification("error","Problem occurred while saving in Archive Application Info.","Error : ");
             JsonObject = data;
         },
         error: function (e) {

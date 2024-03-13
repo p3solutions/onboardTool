@@ -7,7 +7,7 @@ function BindWave()
             data:{phase:phase1},
             dataType: "json",
             success: function (data) {
-	 var waveOptions ="<option selected class='options All' value='All'>All</option>"
+	 var waveOptions ="<option selected class='options All' value='All'>Select Wave</option>"
 	 $.each(data[0],function(key,value){
               
               
@@ -16,8 +16,10 @@ function BindWave()
               
                 });
                 $('#wave').empty();
-                $('#wave').append(waveOptions);
-             },
+                $('#wave').selectpicker('refresh');
+                $('#wave').html(waveOptions);
+                $('#wave').selectpicker('refresh');
+            },
             error: function (e) {
                 console.log(e);
             }
@@ -37,13 +39,15 @@ function BindWaveAll()
                      data = [data];
                  }
               
-                 var waveOptions ="<option selected class='options All' value='All'>All</option>"
+                 var waveOptions ="<option selected class='options All' value='All'>Select Wave</option>"
                      $.each(data[3][1], function(key, value){
                          
                           waveOptions += "<option class='options waveOptions' value='"+value.waveName+"'>"+value.waveName+"</option>";
                      });
                      $('#wave').empty();
-                 $('#wave').append(waveOptions);
+                $('#wave').selectpicker('refresh');
+                $('#wave').html(waveOptions);
+                $('#wave').selectpicker('refresh');
             },
             error: function (e) {
                 console.log(e);

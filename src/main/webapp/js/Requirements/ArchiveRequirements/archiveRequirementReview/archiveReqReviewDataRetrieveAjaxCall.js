@@ -6,11 +6,6 @@ $(document).ready(function()
 {
 	reviewDataRetrieveAjaxCall();
 	$(document).on('click','#button_id',function(){
-		// $("#loading_overlay").show();
-		//showSpin();
-		//$("#loading_overlay").attr("style","display:block;");
-		//$("#loading_overlay").html(progressCss.val());
-		
 		emailAjaxCall("ARCHIVE_REQUIREMENTS");
 		 
 	});
@@ -37,29 +32,6 @@ $(document).on('click','#exportPdf',function(o){
 	  
 	  });
 	});
-	
-	
-/*	var doc = new jsPDF('p','pt','a4');
-var specialElementHandlers = {
-    '#editor': function (element, renderer) {
-        return true;
-    }
-};
-   
-$('#exportPdf').click(function () {
-	debugger;
- doc.fromHTML($('#d1').html(), 15, 15, {
-        'width': 500,
-            'elementHandlers': specialElementHandlers
-    });
-    doc.save('sample-file.pdf');
-    
-})*/
-
-
-
-	
-	
 
 function reviewDataRetrieveAjaxCall()
 {
@@ -77,17 +49,17 @@ function reviewDataRetrieveAjaxCall()
         	 // purpose and scope
         	 if(data[0][0].checkData)
         	  {
-        		 var purpose = "<h3 class='panel-title'>Purpose</h3><br>";
-        		     purpose += "<pre style='font-family:verdana;font-size:100%;width:800px;' class = 'OppInfoPreview'><b>Purpose</b> : "+data[0][0].Purpose+" </pre>";
+        		 var purpose = "<textarea class='OppInfoPreview form-control border-none w-100' rows='3' >" +data[0][0].Purpose+ "</textarea>";
         		 $("#purposeInfoPreview").html(purpose);
-        		 var scope = "<h3 class='panel-title'>Scope</h3><br>";
-    		     scope += "<pre style='font-family:verdana;font-size:100%;width:800px;' class = 'OppInfoPreview'><b>Scope</b> : "+data[0][0].Scope+" </pre>";
+        		 var scope = "<h6 class='panel-title'>Scope</h6>";
+				 scope+= "<textarea class='form-control border-none w-100' rows='3' >" +data[0][0].Scope+ " </textarea>";
     		 $("#scopeInfoPreview").html(scope);
     		 var assumptionValArray = (data[0][0].Assumption).split("::");
     		 var assumptionVal ="";
     		 for(var i=0;i<assumptionValArray.length;i++)
     			 assumptionVal += "<li>"+assumptionValArray[i].trim()+"</li>";
-    		 var Assumption = "<pre style='font-family:verdana;font-size:100%;width:800px;' class = 'OppInfoPreview'><b>Assumptions</b> : "+assumptionVal+" </pre>";
+				  // b>Assumptions :</b>
+    		 var Assumption = "<b>Assumptions :</b><br><ul class = 'OppInfoPreview'>"+assumptionVal+"</ul>";
 		 $("#AssumptionInfoPreview").html(Assumption); }
         	 // Roles and Responsibility
         	 var checkRoles =true;
@@ -120,7 +92,7 @@ function reviewDataRetrieveAjaxCall()
                 		 var input = "<tr><td>"+value.LabelName+"</b> </td><td>"+value.Value+"</td></tr>";
                 		 $("#AppInfoPreview").append(input);
                 	  });
-        	 
+
         	 // archive environment
         	 $.each(data[1][1][0],function(key,value)
                 	 {
@@ -146,7 +118,7 @@ function reviewDataRetrieveAjaxCall()
         	 $.each(data[2][1],function(key,value)
                 	 {
         		         var check = value.retentionCheck=="true"?"checked":"";
-                		 var input = "<tr><td align ='center'><input type='checkbox' disabled "+check+"/></td><td>"+value.retentionLevel+"</td><td>"+value.condition+"</td><td><b>Field Type:</b> "+value.dateUsedType+"<br><b>value:</b> "+value.dateUsed+"</td><td>"+value.descp+"</td></tr>";
+                		 var input = "<tr><td><div><input type='checkbox' disabled "+check+"/></div></td><td>"+value.retentionLevel+"</td><td>"+value.condition+"</td><td><b>Field Type:</b> "+value.dateUsedType+"<br><b>value:</b> "+value.dateUsed+"</td><td>"+value.descp+"</td></tr>";
                 		 $("#RetentionInfoPreview").append(input);
                 	  });
         	 }
@@ -154,7 +126,7 @@ function reviewDataRetrieveAjaxCall()
         	 $.each(data[3],function(key,value)
                 	 {
         		         var check = value.retentionCheck=="true"?"checked":"";
-                		 var input = "<tr><td align ='center'>"+value.req_in_scope+"</td><td>"+value.description+"</td></tr>";
+                		 var input = "<tr><td>"+value.req_in_scope+"</td><td>"+value.description+"</td></tr>";
                 		 $("#BusinessReqTableInfoPreview").append(input);
                 	  });
         	 var businessContentInfo = "<ul><li>Each requirement must be marked as In-Scope or Out-of-Scope for this project, with additional information specific to each requirement if necessary. </li><li>Requirement ID's are linked to test script ID's to ensure traceability from requirement to test execution. Requirement ID's may be formatted according to client needs.</li></ul>";
@@ -173,7 +145,7 @@ function reviewDataRetrieveAjaxCall()
               var dataCheck = data[5][j][0].checkExistance; 
               $.each(data[5][j],function(key,value){    
             	         if(dataCheck){
-                 		 var input = "<tr><td width='80px;'>"+value.reqId+"</td><td>"+value.reqInScope+"</td><td>"+value.reqType+"</td><td>"+value.req+"</td><td>"+value.additionInfo+"</td></tr>";
+                 		 var input = "<tr><td>"+value.reqId+"</td><td>"+value.reqInScope+"</td><td>"+value.reqType+"</td><td>"+value.req+"</td><td>"+value.additionInfo+"</td></tr>";
          		         $("#"+functionalReqIdArray[j]).append(input);
             	         }
                  	});
@@ -187,12 +159,12 @@ function reviewDataRetrieveAjaxCall()
             	{
             	  $.each(data[6][0],function(key,value){    
          	         
-              		 var input = "<tr><td width='80px;'>"+value.reqId+"</td><td>"+value.screenDisplay+"</td><td>"+value.purpose+"</td><td>"+value.equivalentLegacy+"</td></tr>";
+              		 var input = "<tr><td>"+value.reqId+"</td><td>"+value.screenDisplay+"</td><td>"+value.purpose+"</td><td>"+value.equivalentLegacy+"</td></tr>";
       		         $("#ScreenReqInfoPreview").append(input);
          	         
               	});
             	}else{
-						   var input = "<tr><td colspan='5' style='text-align: center;'>No Records Found</td></tr>";
+						   var input = "<tr><td colspan='5'>No Records Found</td></tr>";
          		         $("#ScreenReqInfoPreview").append(input); 
 						 }
               var checkSearchFormReqData = data[6][1][0].checkData;
@@ -200,12 +172,12 @@ function reviewDataRetrieveAjaxCall()
                {
             	  $.each(data[6][1],function(key,value){    
           	         
-               		 var input = "<tr><td width='80px;'>"+value.reqId+"</td><td>"+value.searchForm+"</td><td>"+value.searchField+"</td><td>"+value.fieldFormat+"</td><td>"+value.dataType+"</td><td>"+value.dataRetrieval+"</td><td>"+value.requiredField+"</td><td>"+value.searchField+"</td></tr>";
+               		 var input = "<tr><td>"+value.reqId+"</td><td>"+value.searchForm+"</td><td>"+value.searchField+"</td><td>"+value.fieldFormat+"</td><td>"+value.dataType+"</td><td>"+value.dataRetrieval+"</td><td>"+value.requiredField+"</td><td>"+value.searchField+"</td></tr>";
        		         $("#SearchFormInfoPreview").append(input);
           	         
                	});
             	  }else{
-						   var input = "<tr><td colspan='8' style='text-align: center;'>No Records Found</td></tr>";
+						   var input = "<tr><td colspan='8'>No Records Found</td></tr>";
          		         $("#SearchFormInfoPreview").append(input); 
 						 }
 
@@ -217,7 +189,7 @@ function reviewDataRetrieveAjaxCall()
        				 $("#AbbrevationDescriptionInfoPreview").append(abbreviation);
        				 });
     			} else {
-       				  var abbreviation = "<tr><td colspan='2' style='text-align: center;'>No Abbreviations found.</td></tr>";
+       				  var abbreviation = "<tr><td colspan='2'>No Abbreviations found.</td></tr>";
        				 $("#AbbrevationDescriptionInfoPreview").append(abbreviation);
  			    }
 				
@@ -228,27 +200,25 @@ function reviewDataRetrieveAjaxCall()
             	{
             	  $.each(data[8],function(key,value){    
            	         
-                		 var input = "<tr><td width='80px;'>"+value.date+"</td><td>"+value.version+"</td><td>"+value.documentChanges+"</td><td>"+value.changeAuthor+"</td></tr>";
+                		 var input = "<tr><td >"+value.date+"</td><td>"+value.version+"</td><td>"+value.documentChanges+"</td><td>"+value.changeAuthor+"</td></tr>";
         		         $("#documentRevisionsInfoPreview").append(input);
-           	         
                 	});
             	  }
-              
               //addendum
 var checkAddendumData = data[9][0].checkExistance;
 if (checkAddendumData) {
   $.each(data[9], function(key, value) {
-    var input = `<pre style="font-family: verdana; font-size: 100%; width: 800px;" class="OppInfoPreview">
+
+    var input = `<div class="bg-light scroll-div pt-1 px-2 OppInfoPreview">
                    <b>${value.labelName}</b>: ${value.addendumInfo}
-                 </pre>
-                 <br>
-                 <div class="content table-responsive" id="addendum_filelist">
-                   <table class="table-bordered" id="datatable_add">
-                     <thead>
-                       <th style='text-align: center; vertical-align: middle; width: 25%;'>File Name</th>
-                       <th style='text-align: center; vertical-align: middle; width: 25%;'>Action</th>
+                 </div>
+                 <div class="table-responsive my-3" id="addendum_filelist">
+                      <table class="table table-bordered" id="datatable_add">
+                     <thead class="text-center">
+                       <th scope='col'>File Name</th>
+                       <th scope='col'>Action</th>
                      </thead>
-                     <tbody>`;
+                     <tbody  class="text-center" >`;
     if (value.fileNames.checkData) {
       Object.keys(value.fileNames).forEach(function(index) {
         if (index !== "checkData") {
@@ -259,7 +229,7 @@ if (checkAddendumData) {
                      <td hidden>${value.labelName}</td>
                      <td>${fileName}</td>
                      <td>
-                       <span class="glyphicon glyphicon-download-alt add_download_btn" style="margin-left:50%;">
+                       <span class="fa-solid fa-download add_download_btn" >
                        </span>
                      </td>
                    </tr>`;
@@ -267,7 +237,7 @@ if (checkAddendumData) {
       });
     } else {
       input += `<tr>
-                  <td colspan="2" style="text-align: center;">No Attachments found.</td>
+                  <td colspan="2" >No Attachments found.</td>
                 </tr>`;
     }
     input += `</tbody>

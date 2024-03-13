@@ -25,6 +25,7 @@ $(document).on('click','.AddRow',function(){
 			(PlanSrtDateFlag)?$(".hidePlanSrt1").show():$(".hidePlanSrt1").hide();
 			$("#checkChildPlanStartDate").val(PlanSrtDateFlag);
 			$('#ArchExecChildId').click();
+			console.log("child");
 			
 		}
 	});

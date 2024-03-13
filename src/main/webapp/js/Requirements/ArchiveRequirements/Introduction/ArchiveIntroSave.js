@@ -75,15 +75,15 @@ var typingTimer;                //timer identifier
                 JsonObject = data;
                 if(data.checkUpdate)
                     {
-                    if(columnName == 'scope')
+                    if(columnName === 'scope')
                         checkScope = true;
                     notification("success","Saved successfully.","Note:");
                     }
                 else
                     {
-                    if(columnName == 'scope')
+                    if(columnName === 'scope')
                         checkScope = true;
-                    notification("error","Error occured while saving.","Error:");
+                    notification("error","Error occurred while saving.","Error:");
                     }
             },
             error: function (e) {
@@ -165,7 +165,7 @@ var typingTimer;                //timer identifier
 						}
                     else
                         {
-                        notification("error","Error occured while saving.","Error:");
+                        notification("error","Error occurred while saving.","Error:");
                         checkRoles = false;
                         }
               },

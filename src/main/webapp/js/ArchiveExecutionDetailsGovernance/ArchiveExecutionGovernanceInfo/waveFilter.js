@@ -66,13 +66,15 @@ $(document).ready(function(){
                  $.each(data[3][0], function(key, value){
                       phaseOptions += "<option class='phaseOptions options' value='"+value.phaseName+"'>"+value.phaseName+"</option>";
                  });
-                 $('#phase').append(phaseOptions);
+                 $('#phase').html(phaseOptions);
+                $('#phase').selectpicker('refresh');
                  var waveOptions ="<option class='options All' value='Select'>Select</option>"
                      $.each(data[3][1], function(key, value){
                          
                           waveOptions += "<option class='options waveOptions' value='"+value.waveName+"'>"+value.waveName+"</option>";
                      });
-                 $('#wave').append(waveOptions);
+                 $('#wave').html(waveOptions).selectpicker('refresh');
+                // $('#wave').selectpicker('refresh');
                  $('#title_id').html("Number of Opportunities &nbsp;("+(i-1)+")");
             },
             error: function (e) {
@@ -116,8 +118,8 @@ function GovBindWave()
               
               
                 });
-                $('#wave').empty();
-                $('#wave').append(waveOptions);
+                $('#wave').empty().selectpicker('refresh');
+                $('#wave').html(waveOptions).selectpicker('refresh');
              },
             error: function (e) {
                 console.log(e);
@@ -143,8 +145,8 @@ function GovBindWaveAll()
                          
                           waveOptions += "<option class='options waveOptions' value='"+value.waveName+"'>"+value.waveName+"</option>";
                      });
-                     $('#wave').empty();
-                 $('#wave').append(waveOptions);
+                     $('#wave').empty().selectpicker('refresh');
+                 $('#wave').html(waveOptions).selectpicker('refresh');
             },
             error: function (e) {
                 console.log(e);

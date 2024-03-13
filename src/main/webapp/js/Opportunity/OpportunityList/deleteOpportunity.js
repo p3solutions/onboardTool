@@ -31,11 +31,12 @@ function deleteOpportunityAjaxCall(OppId,OppName,index)
           if(data.deleteStatus)
           {
         	notification("success",OppName+" deleted successfully","Note:");
-        	$(".opportunityCard").eq(index).remove();
+        	$(".col").eq(index).remove();
+              $('#overlay').hide();
           }
           else if(!data.deleteStatus)
           {
-        	  notification("error","Problem occured while deleting.","Error:");
+        	  notification("error","Problem occurred while deleting.","Error:");
           }
         
         },

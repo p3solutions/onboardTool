@@ -18,7 +18,7 @@ $(document).ready(function()
 function appendRowFunction(data){
 	if(!data[0]){
 		 var row = "<tr>" +
-    				  "<td colspan='2' style='text-align: center;'>No Attachments found.</td>" +
+    				  "<td colspan='2'>No Attachments found.</td>" +
      			   "</tr>";
     $("#Legacy_Scr_List").append(row);
 	}else{
@@ -27,11 +27,11 @@ function appendRowFunction(data){
         var File_Name = value.File_Name;
                
         var row = "<tr>"+
-                "<td style='text-align:center;vertical-align: middle; display:none;'><label class='control-label' for=''>"+Id+"</label>" +
+                "<td style=' display:none;'><label class='control-label' for=''>"+Id+"</label>" +
                  "</td>"+
-                 "<td style='text-align:center;vertical-align: middle;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;max-width:10ch;' data-bs-toggle='tooltip' data-bs-placement='top' title='"+File_Name+"'><label class='control-label ' for=''>"+File_Name+"</label>" +
+                 "<td style='white-space:nowrap;text-overflow:ellipsis;overflow:hidden;max-width:10ch;' data-bs-toggle='tooltip' data-bs-placement='top' title='"+File_Name+"'><label class='control-label ' for=''>"+File_Name+"</label>" +
                  "</td>"+
-                  "<td style='text-align:center;vertical-align: middle;'><span class='glyphicon glyphicon-download-alt download_btn'style='display:block; margin-left:-15px;'></span>"+
+                  "<td><span class='fa-solid fa-download download_btn'></span>"+
                   "</td>"+
                   "</tr>";
                   $("#Legacy_Scr_List").append(row);

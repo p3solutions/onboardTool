@@ -73,7 +73,7 @@ function archiveScrenReqSaveAjaxcall(JsonArray){
 	        		updateSearchFormName(JsonArray);
 	        	}
 	        	else
-	        		notification("error","Error occured while saving details.","Error:");
+	        		notification("error","Error occurred while saving details.","Error:");
 	        },
 	        error: function (e) {
 	            console.log(e);

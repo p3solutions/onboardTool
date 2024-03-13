@@ -28,7 +28,7 @@ $(document).on('change','.retentionCheck', function(){
 		$(".dateUsedColumn").eq(seqNum).removeAttr("readonly");
 		$(".dateUsedDate").eq(seqNum).removeAttr("disabled");
 		$(".descp").eq(seqNum).removeAttr("readonly");
-		notification("info","Seleted row is editable.","Info:");
+		notification("info","Selected row is editable.","Info:");
 	}
 	else
 	{
@@ -38,7 +38,7 @@ $(document).on('change','.retentionCheck', function(){
 		$(".dateUsedColumn").eq(seqNum).prop("readonly", true);
 		$(".dateUsedDate").eq(seqNum).prop("disabled", true);
 		$(".descp").eq(seqNum).prop("readonly", true);
-		notification("info","Seleted row is non-editable.","Info:");
+		notification("info","Selected row is non-editable.","Info:");
 	}	
 
 });
@@ -87,19 +87,18 @@ function archiveRetentionDataRetrieve(){
             	 var dateOption = ((value.dateUsedType == 'date') ? 'checked':'');
             	 var columnStyle  = ((value.dateUsedType == 'column' || value.dateUsedType == '') ? '':'display:none;');
             	 var dateStyle = ((value.dateUsedType == 'date') ? '':'display:none;');
-            	 var Row="<tr class = 'rowClass' style ='height: 140px;'>"+
-            	 "<td style='text-align:center;vertical-align: middle;'><input type ='checkbox' class='retentionCheck' value='"+value.retentionCheck+"' "+checkBox+"></td>" +
-            	 "<td style='text-align:center;vertical-align: middle;' class='retentionLevel'>"+value.retentionLevel+"</td>" +
-            	 "<td style='text-align:center;vertical-align: middle;'><textarea rows='2' cols='40' style='height:100px;' class='conditions' "+readonly+">"+value.condition+"</textarea></td>" +
-            	 "<td style='text-align:center;vertical-align: middle;'>" +
-            	 "<input type ='radio' name='dateUsedType"+(rowCount)+"' class='dateUsedType ColumnValue' value='column' "+columnOption+" "+disabled+" /> Field &nbsp;"+
-            	 "<input type ='radio' name='dateUsedType"+(rowCount)+"' class='dateUsedType ColumnDate' value='date' "+dateOption+" "+disabled+" /> Date"+
-            	 "<br/>"+
-            	 "<br/>"+
-            	 "<input type = 'text' class = 'dateUsedColumn hideField' style='"+columnStyle+"' value='"+dateUsedCol+"' "+readonly+">"+
-            	 "<input type = 'text' class = 'dateUsedDate datepicker1 hideField' style ='"+dateStyle+"' value='"+dateUsedDat+"' readonly "+disabled+">"+
-            	 "</td>"+
-            	 "<td style='text-align:center;vertical-align: middle;'><textarea rows='2' class='descp' "+readonly+">"+value.descp+"</textarea></td>" +
+            	 var Row="<tr class = 'rowClass'>"+
+            	 "<td ><input type ='checkbox' class='retentionCheck form-check-input' value='"+value.retentionCheck+"' "+checkBox+"></td>" +
+            	 "<td class='retentionLevel'>"+value.retentionLevel+"</td>" +
+            	 "<td ><textarea rows='3' cols='40' class='conditions form-control' "+readonly+">"+value.condition+"</textarea></td>" +
+					 "<td><div class=\"form-check form-check-inline\">" +
+					 "<input type ='radio' name='dateUsedType"+(rowCount)+"' class='dateUsedType ColumnValue form-check-input' value='column' "+columnOption+" "+disabled+" /><label class=\"form-check-label\" for=\"inlineRadio1\">Field</label></div>"+
+					 "<div class=\"form-check form-check-inline\"><input type ='radio' name='dateUsedType"+(rowCount)+"' class='dateUsedType ColumnDate form-check-input' value='date' "+dateOption+" "+disabled+" /> <label class=\"form-check-label\" for=\"inlineRadio1\">Date</label></div>"+
+
+					 "<input type = 'text' class = 'dateUsedColumn hideField form-control' style='"+columnStyle+"' value='"+dateUsedCol+"' "+readonly+">"+
+					 "<input type = 'text' class = 'dateUsedDate datepicker1 hideField form-control' style ='"+dateStyle+"' value='"+dateUsedDat+"' readonly "+disabled+">"+
+					 "</td>"+
+            	 "<td><textarea rows='3' class='descp form-control' "+readonly+">"+value.descp+"</textarea></td>" +
             	 "</td>" +
             	 "</tr>";
             	 $("#RetentionTable").append(Row);

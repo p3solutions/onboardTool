@@ -2,14 +2,14 @@ getPagination('#admin_userslist');
 					//getPagination('.table-class');
 					//getPagination('table');
 
-		  /*					PAGINATION 
+		  /*					PAGINATION
 		  - on change max rows select options fade out all rows gt option value mx = 5
 		  - append pagination list as per numbers of rows / max rows option (20row/5= 4pages )
 		  - each pagination li on click -> fade out all tr gt max rows * li num and (5*pagenum 2 = 10 rows)
 		  - fade out all tr lt max rows * li num - max rows ((5*pagenum 2 = 10) - 5)
-		  - fade in all tr between (maxRows*PageNum) and (maxRows*pageNum)- MaxRows 
+		  - fade in all tr between (maxRows*PageNum) and (maxRows*pageNum)- MaxRows
 		  */
-		 
+
 
 function getPagination(table) {
   var lastPage = 1;
@@ -55,7 +55,7 @@ function getPagination(table) {
             .before(
               '<li data-page="' +
                 i +
-                '">\
+                '" class="page-link">\
 								  <span>' +
                 i++ +
                 '<span class="sr-only">(current)</span></span>\
@@ -105,8 +105,11 @@ function getPagination(table) {
             $(this).show();
           } //else fade in
         }); // end of for each tr in table
+          updatePageInfo(maxRows, totalRows, pageNum);
       }); // end of on click pagination list
+
 	  limitPagging();
+        updatePageInfo(maxRows, totalRows, 1);
     })
     .val(5)
     .change();
@@ -114,6 +117,11 @@ function getPagination(table) {
   // end of on select change
 
   // END OF PAGINATION
+}
+function updatePageInfo(maxRows, totalRows, pageNum) {
+    var startRecord = (pageNum - 1) * maxRows + 1;
+    var endRecord = Math.min(startRecord + maxRows - 1, totalRows);
+    $('#recordInfo').text(startRecord + ' - ' + endRecord + ' of ' + totalRows);
 }
 
 function limitPagging(){

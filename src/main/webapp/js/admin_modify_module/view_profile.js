@@ -36,6 +36,7 @@ function appendRowFunction(data){
         var ulname_label ="<label class='control-label' for=''style='font-weight:400;'>"+ulname+"</label>";
         var u_email_label ="<label class='control-label' for=''style='font-weight:400;'>"+u_email+"</label>";
         var u_role_label ="<label class='control-label' for=''style='font-weight:400;'>"+u_role+"</label>";
+        $("#user_Name").val(uname);
         $("#uname").append(uname_label);
                     $("#ufname").append(ufname_label);
                     $("#ulname").append(ulname_label);

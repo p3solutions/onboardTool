@@ -95,7 +95,7 @@ $("#archiveReqConfirmationYes").click(function()
             }
             else if(checkStatus.statusFlag==false)
             {
-                notification("error","Problem has occuured while saving.","Error");
+                notification("error","Problem has occurred while saving.","Error");
             }
              $("#archiveReqConfirmationClose").click(); 
         });
@@ -104,23 +104,3 @@ $("#archiveReqConfirmationNo").click(function()
                      $("#archiveReqConfirmationClose").click(); 
                      notification("error","Approval canceled.","");
                 }); 
-        /*function getUserDetailAjaxCall()
-       {
-    $.ajax({
-        url: "archiveReqApprovalDataRetrieveServlet",
-        type: 'POST',
-        dataType: "json",
-        data: {aproverId: a_Id},
-        success: function (data) {
-            console.log("Data Retrieve Stake Holder json array----->",data);
-            console.log("Data Retrieve for User----->",data[0].user);
-            if (!$.isArray(data)) {
-                data = [data];
-            }
-            $.each(data, function(key, value){
-                    directUsername =(value.username == undefined)?"":value.username;
-                   directuser =(data[0].user == undefined)?"":data[0].user;
-                })
-                }
-                });
-                }*/

@@ -1,5 +1,4 @@
 
-
     $(document).ready(function () {
         userHide();
         $("#ExitSearch").hide();
@@ -178,35 +177,39 @@
                 var headers = Object.keys(data[0]);
 
                 // Add table headers
-                var headerRow = "<thead>" + "<tr>";
+                var headerRow = "<thead class='text-center Table-Header'>" + "<tr>";
                 $.each(headers, function (index, header) {
                     if (header === 'ID') {
                         // If the header is 'ID', skip the current iteration (skip the column)
                         return; // Skip to the next iteration of the inner loop
                     }
-                    headerRow += "<th style='background-color: #d7e9f7; color: black; font-weight: bold;'>";
+                    headerRow += "<th>"
                     headerRow += header;
                     headerRow += "</th>";
                 });
-                headerRow += "<th style='background-color:#d7e9f7; color: black; font-weight: bold;'>Action</th>";
+                headerRow += "<th>Edit</th>";
+                headerRow += "<th>Delete</th>";
                 headerRow += "</tr>" + "</thead>";
                 $("#admin_userslist").append(headerRow);
 
                 $.each(data, function (key, value) {
-                    var row = "<tbody>" + "<tr>";
+                    var row = "<tbody class='text-center Table-Body'>" + "<tr>";
 
                     $.each(headers, function (index, header) {
                         if (header === 'ID') {
                             // If the header is 'ID', skip the current iteration (skip the column)
                             return; // Skip to the next iteration of the inner loop
                         }
-                            row += "<td style='text-align:center;vertical-align: middle;'><label class='control-label' for='' style='color: dimgrey;'>" + value[header] + "</label></td>";
+                            row += "<td>" + value[header] + "</td>";
 
                     });
 
                     // Append the column for 'ID'
-                    row += "<td style='text-align:center;vertical-align: middle;'>";
-                    row += "<span class='glyphicon glyphicon-pencil edit-icon' data-id='" + value.ID + "' data-finance='" + value['Application Name'] + "' style='display:block;margin-left:-22px;'></span><span class='glyphicon glyphicon-trash delete-icon' data-id='" + value.ID + "' data-finance='" + value['Application Name'] + "' style='float:right;display:block;margin-top:-13px;'></span>";
+                    row += "<td>";
+                    row += "<span class='fa-solid fa-pencil iconColor edit-icon' data-id='" + value.ID + "' data-finance='" + value['Application Name'] + "'></span>";
+                    row += "</td>";
+                    row += "<td>";
+                    row += "<span class='fa-solid fa-trash-can text-danger delete-icon' data-id='" + value.ID + "' data-finance='" + value['Application Name'] + "'></span>";
                     row += "</td>";
 
                     row += "</tr>" + "</tbody>";
@@ -252,24 +255,25 @@
             var paginationContainer = $('.pagination');
             paginationContainer.empty();
             if(currentPage > 1){
-                paginationContainer.append('<li data-page="prev"><span> << <span class="sr-only">(current)</span></span></li>');
+                paginationContainer.append('<li data-page="prev" class="page-link"><span> << <span class="sr-only">(current)</span></span></li>');
             }
             for (var i = 1; i <= totalPages; i++) {
                 paginationContainer.append(
-                    '<li data-page="' + i + '">\
+                    '<li data-page="' + i + '" class="page-link">\
                 <span>' + i + '</span>\
             </li>'
                 );
             }
             if(currentPage < totalPages){
-                paginationContainer.append('<li data-page="next"><span> >> <span class="sr-only">(current)</span></span></li>');
+                paginationContainer.append('<li data-page="next" class="page-link"><span> >> <span class="sr-only">(current)</span></span></li>');
             }
 
             paginationContainer.find('[data-page="' + currentPage + '"]').addClass('active');
 
             // Display record information
             var recordInfo = $('#recordInfo');
-            recordInfo.html('Showing ' + startRecord + ' to ' + endRecord + ' of ' + totalRecords + ' records');
+            // recordInfo.html('Showing ' + startRecord + ' to ' + endRecord + ' of ' + totalRecords + ' records');
+            recordInfo.html(startRecord + ' - ' + endRecord + ' of ' + totalRecords);
             limitPagging();
         }
 
