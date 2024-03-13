@@ -10,10 +10,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import onboard.DBconnection;
+import org.apache.log4j.Logger;
 
 public class OpportunityListService {
-
+	private static Logger logger =  Logger.getRootLogger();
 	public static JsonArray OpportunityListDetails(String Projects) {
+
 		PreparedStatement st=null;
 		ResultSet rs=null;
 		JsonArray jsonArray = new JsonArray();
@@ -35,8 +37,10 @@ public class OpportunityListService {
 				 jsonObj.addProperty("OpportunityId", rs.getString("id"));
 				 jsonObj.addProperty("OpportunityName", rs.getString("value"));
 			     jsonObj.addProperty("CheckWave",checkOpportunityWave(rs.getString("value")));
+				 jsonObj.addProperty("AppDesc", ApplicationDescription(rs.getString("id")));
 				 jsonArray.add(jsonObj);
 			 }
+			 logger.info("Application retrieved successfully "+jsonArray);
 			 jsonArray1.add(jsonArray);
 			 jsonArray1.add(new OpportunityDropdownOptions().getOptions());
 			}
@@ -44,6 +48,7 @@ public class OpportunityListService {
 			rs.close();
 		}
 		catch(Exception e) {
+			logger.debug("Error in Application retrieve ",e);
 			e.printStackTrace();
 			System.out.println("Exception------->>>>>--------" + e);
 		}
@@ -70,10 +75,12 @@ public class OpportunityListService {
 			while(rs.next()) { 
 				jsonArray.add(rs.getString("value"));
 			}
+			logger.info("Wave Name "+jsonArray);
 			st.close();
 			rs.close();
 		}
 		catch(Exception e) {
+			logger.debug("error in getting wave name",e);
 			e.printStackTrace();
 		}
 		
@@ -83,6 +90,40 @@ public class OpportunityListService {
 		}
 		
 		return jsonArray;
+	}
+	public static String ApplicationDescription(String ID) throws SQLException {
+
+		DBconnection dBconnection = null;
+		Connection connection = null;
+		String Appdesc = "";
+
+		try {
+			dBconnection = new DBconnection();
+			connection = (Connection) dBconnection.getConnection();
+
+			String selectQuery = "select * from opportunity_info where column_name='appdesc'AND Id = ?";
+			PreparedStatement st = connection.prepareStatement(selectQuery);
+			st.setString(1,ID);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()){
+				Appdesc = rs.getString("value");
+			}
+			logger.info("Application description name "+ Appdesc);
+			st.close();
+			rs.close();
+
+		}
+
+		catch(Exception e) {
+			logger.debug("error in getting Application description name",e);
+			e.printStackTrace();
+		}
+
+		finally{
+			if(connection != null)
+				connection.close();
+		}
+		return Appdesc;
 	}
 	
 	public static boolean checkOpportunityWave(String waveName) throws SQLException {

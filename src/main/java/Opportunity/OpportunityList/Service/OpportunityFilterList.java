@@ -54,7 +54,8 @@ public class OpportunityFilterList {
 				  String app = rs.getString("value");
 				  jsonObject.addProperty("OpportunityName", app);
 				  jsonObject.addProperty("OpportunityId",rs.getString("Id"));
-				  jsonObject.addProperty("CheckWave",new OpportunityListService().checkOpportunityWave(app));
+				  jsonObject.addProperty("CheckWave",OpportunityListService.checkOpportunityWave(app));
+				  jsonObject.addProperty("AppDesc", OpportunityListService.ApplicationDescription(rs.getString("Id")));
 				  jsonArray.add(jsonObject);
 			}
 			rs.close();
@@ -196,7 +197,8 @@ public class OpportunityFilterList {
 					jsonObject = new JsonObject();
 			  jsonObject.addProperty("OpportunityName",app );
 			  jsonObject.addProperty("OpportunityId",rs.getString("Id"));
-			  jsonObject.addProperty("CheckWave",new OpportunityListService().checkOpportunityWave(app));
+			  jsonObject.addProperty("CheckWave",OpportunityListService.checkOpportunityWave(app));
+			  jsonObject.addProperty("AppDesc", OpportunityListService.ApplicationDescription(rs.getString("Id")));
 			}
 			}
 			rs.close();
