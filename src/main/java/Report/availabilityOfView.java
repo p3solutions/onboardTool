@@ -26,16 +26,43 @@ public class availabilityOfView {
         for (String viewName : viewNames) {
             boolean flag = viewAvailability(viewName);
             if (!flag) {
-                System.out.println("Viewing " + viewName);
+                System.out.println(viewName + " Not available");
                 viewCreation(viewName);
+                System.out.println(viewName + " is created successfully");
             } else {
-                System.out.println(viewName + " is already available");
+                String info = deletingView(viewName);
+                System.out.println(viewName + " "+ info);
+                viewCreation(viewName);
+                System.out.println(viewName + " is created successfully");
             }
         }
     }
+    private String deletingView(String viewName) throws SQLException {
+        String info = null;
+        String query = "DROP VIEW " + viewName;
+        Statement statement = connection.createStatement();
+        statement.executeUpdate(query);
+
+        String sql = "SELECT COUNT(*) as view_count FROM information_schema.views WHERE table_name = ?";
+        PreparedStatement statement1 = connection.prepareStatement(sql);
+        statement1.setString(1,viewName);
+        try (ResultSet resultSet = statement1.executeQuery()) {
+            if (resultSet.next()) {
+                int viewCount = resultSet.getInt("view_count");
+                if (viewCount > 0) {
+                    info = "deleted in database.";
+                    System.out.println("<====================" + viewName + " " + info +" ===========>");
+                }
+            } else {
+                info = "Error in deleting";
+                System.out.println("<====================" + viewName + " " +info+ " ====================>");
+            }
+        }
+        return info;
+    }
     private boolean viewAvailability(String viewName) {
         boolean flag = false;
-//
+
 
         String sql = "SELECT COUNT(*) as view_count FROM information_schema.views WHERE table_name = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -89,10 +116,10 @@ public class availabilityOfView {
     private void Report1() throws SQLException {
         String sqlViewCreation ="CREATE VIEW applicationdataview1 AS "  +
                 "WITH `submodules` AS("
-                + "	select "
+                + " select "
                 + "    distinct(`Id`) as `AppId`, "
                 + "    value from `opportunity_info` where `Id` not "
-                + "	in(select `OppId` from `intake_stake_holder_info` where `intakeApproval` = 'Approved') and `column_name`='appName'"
+                + " in(select `OppId` from `intake_stake_holder_info` where `intakeApproval` = 'Approved') and `column_name`='appName'"
                 + ") ,"
                 + "`OpportunityInfo` AS ("
                 + "    SELECT"
@@ -178,7 +205,7 @@ public class availabilityOfView {
                 + "    (`o`.`column_name` = 'appname' AND `p`.`column_name` = 'waves')"
                 + "),"
                 + "`Intakemodules` AS("
-                + "	SELECT "
+                + " SELECT "
                 + "    `o`.`Id`,"
                 + "    MAX(CASE WHEN `o`.`column_name` = 'appName' THEN `o`.`value`END) as `Application_Name`,"
                 + "    MAX(CASE WHEN `ts`.`isCompleted` = 'Yes' THEN 1 ELSE 0 END) as `Triage_Summary`,"
@@ -419,45 +446,45 @@ public class availabilityOfView {
     private void Report3() throws SQLException {
         String sqlViewCreation ="CREATE VIEW applicationdataview3 AS "+
                 "WITH `submodules` AS(\r\n"
-                + "	select \r\n"
+                + " select \r\n"
                 + "    distinct(`Id`) as `AppId`, \r\n"
                 + "    value as `Legacy_Application_Name` from `opportunity_info` where `Id` \r\n"
-                + "	in(select `OppId` from `intake_stake_holder_info` where `intakeApproval` = 'Approved') and `column_name`='appName'\r\n"
+                + " in(select `OppId` from `intake_stake_holder_info` where `intakeApproval` = 'Approved') and `column_name`='appName'\r\n"
                 + "),\r\n"
                 + "`opportunityinfo` AS (\r\n"
-                + "		SELECT \r\n"
-                + "		  `opportunity_info`.`Id` AS `Id`\r\n"
-                + "		FROM \r\n"
-                + "		  `opportunity_info`\r\n"
-                + "		GROUP BY \r\n"
-                + "		  `opportunity_info`.`Id`\r\n"
-                + "	  ),\r\n"
-                + "	`arqreqdetails` AS( \r\n"
-                + "		SELECT\r\n"
-                + "		  `archivereq_legacyapp_info`.`Id` AS `Id`,\r\n"
-                + "		  MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'srcdb') THEN `archivereq_legacyapp_info`.`value` END)) AS `SourcePlatform_Databases`,\r\n"
-                + "		  MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'legacyappdesc') THEN `archivereq_legacyapp_info`.`value` END)) AS `Legacy_Application_Description`,\r\n"
-                + "		  MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'readonly') THEN `archivereq_legacyapp_info`.`value` END)) AS `What_is_the_read_only_date`,\r\n"
-                + "		  MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'onlysrcdata') THEN `archivereq_legacyapp_info`.`value` END)) AS `Is_this_application_the_only_source_of_truth_for_the_data`,\r\n"
-                + "		  MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'thirdpartyvendor') THEN `archivereq_legacyapp_info`.`value` END)) AS `Isthelegacyapplicationhostedinternallyorwithanthirdpartyvendor`,\r\n"
-                + "		  MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'totalsize') THEN `archivereq_legacyapp_info`.`value` END)) AS `What_is_the_total_data_size`\r\n"
-                + "		 FROM  `archivereq_legacyapp_info`\r\n"
-                + "		WHERE \r\n"
-                + "		  (`archivereq_legacyapp_info`.`column_name` IN ('legacyappname','srcdb','legacyappdesc','readonly','onlysrcdata','thirdpartyvendor','totalsize'))\r\n"
-                + "		GROUP BY \r\n"
-                + "		  `archivereq_legacyapp_info`.`Id`\r\n"
-                + "	),\r\n"
-                + "	`retentiondata` AS(\r\n"
-                + "		SELECT  \r\n"
-                + "		`assessment_compliance_char_info`.`Id` AS `Id`,\r\n"
-                + "		MAX((CASE WHEN (`assessment_compliance_char_info`.`column_name` = 'retentionperiod') THEN `assessment_compliance_char_info`.`value` END)) AS `Retention_Period`\r\n"
-                + "		FROM  `assessment_compliance_char_info`\r\n"
-                + "		WHERE (`assessment_compliance_char_info`.`column_name` IN ('retentionperiod'))\r\n"
-                + "		GROUP BY \r\n"
-                + "		  `assessment_compliance_char_info`.`Id`\r\n"
-                + "	),\r\n"
-                + "	`phasestatus` AS (\r\n"
-                + "		  WITH separatedvalues AS (\r\n"
+                + "    SELECT \r\n"
+                + "      `opportunity_info`.`Id` AS `Id`\r\n"
+                + "    FROM \r\n"
+                + "      `opportunity_info`\r\n"
+                + "    GROUP BY \r\n"
+                + "      `opportunity_info`.`Id`\r\n"
+                + "   ),\r\n"
+                + " `arqreqdetails` AS( \r\n"
+                + "    SELECT\r\n"
+                + "      `archivereq_legacyapp_info`.`Id` AS `Id`,\r\n"
+                + "      MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'srcdb') THEN `archivereq_legacyapp_info`.`value` END)) AS `SourcePlatform_Databases`,\r\n"
+                + "      MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'legacyappdesc') THEN `archivereq_legacyapp_info`.`value` END)) AS `Legacy_Application_Description`,\r\n"
+                + "      MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'readonly') THEN `archivereq_legacyapp_info`.`value` END)) AS `What_is_the_read_only_date`,\r\n"
+                + "      MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'onlysrcdata') THEN `archivereq_legacyapp_info`.`value` END)) AS `Is_this_application_the_only_source_of_truth_for_the_data`,\r\n"
+                + "      MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'thirdpartyvendor') THEN `archivereq_legacyapp_info`.`value` END)) AS `Isthelegacyapplicationhostedinternallyorwithanthirdpartyvendor`,\r\n"
+                + "      MAX((CASE WHEN (`archivereq_legacyapp_info`.`column_name` = 'totalsize') THEN `archivereq_legacyapp_info`.`value` END)) AS `What_is_the_total_data_size`\r\n"
+                + "     FROM  `archivereq_legacyapp_info`\r\n"
+                + "    WHERE \r\n"
+                + "      (`archivereq_legacyapp_info`.`column_name` IN ('legacyappname','srcdb','legacyappdesc','readonly','onlysrcdata','thirdpartyvendor','totalsize'))\r\n"
+                + "    GROUP BY \r\n"
+                + "      `archivereq_legacyapp_info`.`Id`\r\n"
+                + " ),\r\n"
+                + " `retentiondata` AS(\r\n"
+                + "    SELECT  \r\n"
+                + "    `assessment_compliance_char_info`.`Id` AS `Id`,\r\n"
+                + "    MAX((CASE WHEN (`assessment_compliance_char_info`.`column_name` = 'retentionperiod') THEN `assessment_compliance_char_info`.`value` END)) AS `Retention_Period`\r\n"
+                + "    FROM  `assessment_compliance_char_info`\r\n"
+                + "    WHERE (`assessment_compliance_char_info`.`column_name` IN ('retentionperiod'))\r\n"
+                + "    GROUP BY \r\n"
+                + "      `assessment_compliance_char_info`.`Id`\r\n"
+                + " ),\r\n"
+                + " `phasestatus` AS (\r\n"
+                + "      WITH separatedvalues AS (\r\n"
                 + "    SELECT\r\n"
                 + "        `governance_info`.`waveName` AS `waveName`,\r\n"
                 + "        TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(`governance_info`.`value`, ',', (`n`.`digit` + 1)), ',', - (1))) AS `separatedValue`\r\n"
@@ -479,25 +506,25 @@ public class availabilityOfView {
                 + "    LEFT JOIN `phase_info` `p` ON TRIM(BOTH ' ' FROM `sv`.`waveName`) = TRIM(BOTH ' ' FROM `p`.`value`)\r\n"
                 + "WHERE\r\n"
                 + "    (`o`.`column_name` = 'appname' AND `p`.`column_name` = 'waves'))\r\n"
-                + "	  SELECT \r\n"
-                + "	  COALESCE(`s`.`Legacy_Application_Name`,'') AS \"Legacy Application Name\",\r\n"
-                + "	  COALESCE(`a`.`SourcePlatform_Databases`,'') AS \"Source Platform Databases\",\r\n"
-                + "	  COALESCE(`a`.`Legacy_Application_Description`,'') AS \"Legacy Application Description\",\r\n"
-                + "	  COALESCE(`a`.`What_is_the_read_only_date`,'') AS \"What is the read only date\",\r\n"
-                + "	  COALESCE(`a`.`Is_this_application_the_only_source_of_truth_for_the_data`,'') AS \"Is this application the only source of truth for the data\",\r\n"
-                + "	  COALESCE(`a`.`Isthelegacyapplicationhostedinternallyorwithanthirdpartyvendor`,'') AS \"Hosted internally or with third party vendor\",\r\n"
-                + "	  COALESCE(`a`.`What_is_the_total_data_size`,'') AS \"What is the total data size\",\r\n"
-                + "	  COALESCE(`r`.`Retention_Period`,'') AS \"Retention Period\",\r\n"
-                + "	  COALESCE(`phs`.`phaseName`,'') AS \"Phase Status\"\r\n"
-                + "	FROM \r\n"
-                + "		(\r\n"
-                + "		  (\r\n"
-                + "			( `submodules` `s`\r\n"
-                + "			  LEFT JOIN `opportunityinfo` `o` ON (`s`.`AppId` = `o`.`Id`)\r\n"
-                + "			  LEFT JOIN `arqreqdetails` `a` ON (`s`.`AppId` = `a`.`Id`))\r\n"
-                + "			  LEFT JOIN `retentiondata` `r` ON (`s`.`AppId` = `r`.`Id`))\r\n"
-                + "			  LEFT JOIN `phasestatus` `phs` ON (`s`.`AppId` = `phs`.`Id`)\r\n"
-                + "	  )\r\n"
+                + "   SELECT \r\n"
+                + "   COALESCE(`s`.`Legacy_Application_Name`,'') AS \"Legacy Application Name\",\r\n"
+                + "   COALESCE(`a`.`SourcePlatform_Databases`,'') AS \"Source Platform Databases\",\r\n"
+                + "   COALESCE(`a`.`Legacy_Application_Description`,'') AS \"Legacy Application Description\",\r\n"
+                + "   COALESCE(`a`.`What_is_the_read_only_date`,'') AS \"What is the read only date\",\r\n"
+                + "   COALESCE(`a`.`Is_this_application_the_only_source_of_truth_for_the_data`,'') AS \"Is this application the only source of truth for the data\",\r\n"
+                + "   COALESCE(`a`.`Isthelegacyapplicationhostedinternallyorwithanthirdpartyvendor`,'') AS \"Hosted internally or with third party vendor\",\r\n"
+                + "   COALESCE(`a`.`What_is_the_total_data_size`,'') AS \"What is the total data size\",\r\n"
+                + "   COALESCE(`r`.`Retention_Period`,'') AS \"Retention Period\",\r\n"
+                + "   COALESCE(`phs`.`phaseName`,'') AS \"Phase Status\"\r\n"
+                + " FROM \r\n"
+                + "    (\r\n"
+                + "      (\r\n"
+                + "       ( `submodules` `s`\r\n"
+                + "         LEFT JOIN `opportunityinfo` `o` ON (`s`.`AppId` = `o`.`Id`)\r\n"
+                + "         LEFT JOIN `arqreqdetails` `a` ON (`s`.`AppId` = `a`.`Id`))\r\n"
+                + "         LEFT JOIN `retentiondata` `r` ON (`s`.`AppId` = `r`.`Id`))\r\n"
+                + "         LEFT JOIN `phasestatus` `phs` ON (`s`.`AppId` = `phs`.`Id`)\r\n"
+                + "   )\r\n"
                 + "      WHERE NOT (\r\n"
                 + "    (`s`.`Legacy_Application_Name` IS NULL OR `s`.`Legacy_Application_Name` = '')\r\n"
                 + "  );";
@@ -670,7 +697,5 @@ public class availabilityOfView {
 
 
 }
-
-
 
 
