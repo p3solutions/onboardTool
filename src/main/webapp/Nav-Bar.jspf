@@ -82,6 +82,7 @@ margin-left: 247px;
 	<%@ page import="java.io.IOException" %>
 	<%@ page import="java.io.InputStream" %>
 	<%
+	InputStream resourceStream = null;
     Properties prop = new Properties();
     String workingDir = System.getProperty("catalina.base") + File.separator + "D3Sixty_conf";
     File configFile = new File(workingDir, "Configuration.properties");
@@ -95,7 +96,7 @@ margin-left: 247px;
             prop.load(new FileReader(configFile));
         } else {
             // Load from resources folder using class loader
-            InputStream resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("Configuration.properties");
+			resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("Configuration.properties");
             if (resourceStream != null) {
                 prop.load(new InputStreamReader(resourceStream));
             } else {
@@ -113,7 +114,7 @@ margin-left: 247px;
             prop.load(new FileReader(versionFile));
         } else {
             // Load from resources folder using class loader
-            InputStream resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("VersionInfo.properties");
+             resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("VersionInfo.properties");
             if (resourceStream != null) {
                 prop.load(new InputStreamReader(resourceStream));
             } else {

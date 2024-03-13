@@ -62,26 +62,27 @@ font-family:sans-serif;
 	<%@ page import="java.io.InputStream" %>
 
 <%
-    Properties prop = new Properties();
-    String workingDir = System.getProperty("catalina.base") + File.separator + "D3Sixty_conf";
-    File versionFile = new File(workingDir, "VersionInfo.properties");
-    String versionInfo="";
+	InputStream resource = null;
+    Properties properties = new Properties();
+    String workingDirc = System.getProperty("catalina.base") + File.separator + "D3Sixty_conf";
+    File versionFil = new File(workingDirc, "VersionInfo.properties");
+    String versionInf="";
     try {
         // Load Configuration.properties
-        if (versionFile.exists()) {
-            prop.load(new FileReader(versionFile));
+        if (versionFil.exists()) {
+			properties.load(new FileReader(versionFil));
         } else {
             // Load from resources folder using class loader
-            InputStream resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("VersionInfo.properties");
-            if (resourceStream != null) {
-                prop.load(new InputStreamReader(resourceStream));
+			resource = Thread.currentThread().getContextClassLoader().getResourceAsStream("VersionInfo.properties");
+            if (resource != null) {
+				properties.load(new InputStreamReader(resource));
             } else {
                 throw new IOException("VersionInfo.properties file not found.");
             }
         }
 
-        versionInfo = prop.getProperty("VERSION");
-        System.out.println("Version Info :: " + versionInfo);    
+        versionInf = properties.getProperty("VERSION");
+        System.out.println("Version Info :: " + versionInf);
     } catch (IOException e) {
         System.out.println(e.getMessage());
     }
