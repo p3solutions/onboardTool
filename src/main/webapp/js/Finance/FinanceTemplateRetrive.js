@@ -3,6 +3,7 @@
 // Assuming you are using jQuery
 $(document).ready(function() {
 	$("#inputFieldsRoles").hide();
+	$(".hidden-contents").hide();
 });
 
 
@@ -19,6 +20,7 @@ $(document).ready(function() {
 		console.log("Retrieved APPNAME:", appName);
 		ajaxTemplateCall("Retrieve", appId, appName);
 		financeSetSessionAttribute1(appId, appName);
+		$(".hidden-contents").show();
 		$("#inputFieldsRoles").show();
 		$("#suggestionDropdown").hide();
 

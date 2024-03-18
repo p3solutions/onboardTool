@@ -21,6 +21,8 @@ $(document).on('keyup focus', '#financeappname', function () {
     }
 
     function clearSuggestionDropdown() {
+
+        $("#suggestionDropdown").removeClass("financeSuggestionScrollBar");
         $("#suggestionDropdown").empty();
     }
 
@@ -38,6 +40,7 @@ $(document).on('keyup focus', '#financeappname', function () {
                 var li = $("<li class='suggestion'>" + suggestion.Application_Name + "</li>");
 
                 li.on('click', function () {
+                    $(".hidden-contents").show();
                     $("#inputFieldsRoles").show();
                     var selectedName = suggestion.Application_Name;
                     var selectedId = suggestion.Id;
@@ -55,6 +58,7 @@ $(document).on('keyup focus', '#financeappname', function () {
                         financeSetSessionAttribute(selectedId,selectedName);
                         ajaxTemplateCallNoData("Retrieve");
                         ajaxscrcall(selectedId);
+                        $("#suggestionDropdown").removeClass("financeSuggestionScrollBar");
                         $("#suggestionDropdown").hide();
                         $("#financeappname").prop('disabled', true);
                     }
@@ -86,16 +90,18 @@ $(document).on('keyup focus', '#financeappname', function () {
 
     function enableDropdownStyles() {
         var suggestionDropdown = $('#suggestionDropdown');
+        suggestionDropdown.addClass("financeSuggestionScrollBar");
         suggestionDropdown.show();
 
-        // var inputPosition = $("#financeappname").position();
-        // suggestionDropdown.css({
-        //     position: "absolute",
-        //     top: inputPosition.top + $("#financeappname").outerHeight(),
-        //     left: inputPosition.left,
-        //     background: "white",
-        //     zIndex: 1000
-        // });
+        var inputPosition = $("#financeappname").position();
+        var inputWidth = $("#financeappname").outerWidth();
+        suggestionDropdown.css({
+            position: "absolute",
+            top: inputPosition.top + $("#financeappname").outerHeight(),
+            left: inputPosition.left,
+            background: "white",
+            width: inputWidth + "px",
+            zIndex: 1000
+        });
     }
-
 });
