@@ -8,11 +8,40 @@
   	<servlet-name>clear_Session_details</servlet-name>
   	<servlet-class>Finance.servlet.clear_Session_details</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>ConsoleCaptureFilter</display-name>
+  	<servlet-name>ConsoleCaptureFilter</servlet-name>
+  	<servlet-class>log.ConsoleCaptureFilter</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>LogFilterInitializer</display-name>
+  	<servlet-name>LogFilterInitializer</servlet-name>
+  	<servlet-class>log.LogFilterInitializer</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>clear_Session_details</servlet-name>
   	<url-pattern>/clear_Session_details</url-pattern>
   </servlet-mapping>
-  
+  <servlet-mapping>
+  	<servlet-name>ConsoleCaptureFilter</servlet-name>
+  	<url-pattern>/ConsoleCaptureFilter</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LogFilterInitializer</servlet-name>
+  	<url-pattern>/LogFilterInitializer</url-pattern>
+  </servlet-mapping>
+ <filter>
+    <filter-name>consoleCaptureFilter</filter-name>
+    <filter-class>log.ConsoleCaptureFilter</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>consoleCaptureFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
   <welcome-file-list>
     <welcome-file>Home.jsp</welcome-file>
   </welcome-file-list>
