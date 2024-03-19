@@ -778,7 +778,7 @@ rotate
 										<option>D3SIXTY_TECHNICAL_CONTRIBUTOR</option>
 										<option>D3SIXTY_ARCHIVE_CONTRIBUTOR</option>
 										<option>D3SIXTY_DECOMMISSION_CONTRIBUTOR</option>
-										<option>D3SIXTY_FINANCE_CONTRIBUTOR</option>
+										<option>D3SIXTY_FINANCE</option>
 									</select>
 
 

@@ -1,9 +1,11 @@
 package common.constant;
 
 public class COMMON_CONSTANTS {
+	public static final String LOG_ENABLED = "LOG_ENABLED";
 	public static final String LOG_PATH = "LOG_PATH";
-	public static final String LOG_FILE_SIZE ="LOG_FILE_SIZE";
-	public static final String LOG_FILE_MAX_DAYS ="LOG_FILE_MAX_DAYS";
+	public static final String LOG_FOLDER_MAX_SIZE = "LOG_FOLDER_MAX_SIZE";
+	public static final String LOG_FILE_SIZE = "LOG_FILE_SIZE";
+	public static final String LOG_FILE_MAX_DAYS = "LOG_FILE_MAX_DAYS";
 	public static final String CATALINA_BASE = "catalina.base";
 	public static final String CONFIG_PROPS = "Configuration.properties";
 	public static final String FILE_UPLOAD_PROPS = "fileUpload.properties";
@@ -35,4 +37,5 @@ public class COMMON_CONSTANTS {
 	public static final String VERSION = "VERSION";
 	public static final String AUTHTYPE = "AUTHTYPE";
 	public static final String SSOLOGINURL = "SSOLOGINURL";
+
 }

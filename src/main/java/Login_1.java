@@ -1030,8 +1030,11 @@ public class Login_1 extends HttpServlet {
 					String dbulname = rs2.getString("ulname");
 					String dbu_email = rs2.getString("u_email");
 					String dbu_role = rs2.getString("u_role");
-
-					if (username.equals(dbuname) && user_fname.equals(dbufname) && user_lname.equals(dbulname)
+					boolean userLastnameMatched = true;
+					if (user_lname != null && dbulname != null) {
+				        userLastnameMatched = user_lname.equals(dbulname);
+				    }
+					if (username.equals(dbuname) && user_fname.equals(dbufname) && userLastnameMatched
 							&& user_email.equals(dbu_email) && user_group.equals(dbu_role)) {
 						String lic_info = "";
 						StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
