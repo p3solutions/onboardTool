@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Properties;
 
+import common.constant.COMMON_CONSTANTS;
 import common.constant.EMAIL_SERVICE_CONSTANT;
 import common.email.service.EmailApprovalService;
 
@@ -22,9 +23,9 @@ public class resourceUtils {
 		Properties properties = new Properties();
 		InputStream fileInput = null;
 		try {
-			String workingDir = System.getProperty("catalina.base") + File.separator
-					+ EMAIL_SERVICE_CONSTANT.D3SIXTY_CONF;
-			File configFile = new File(workingDir, "fileUpload.properties");
+			String workingDir = System.getProperty(COMMON_CONSTANTS.CATALINA_BASE) + File.separator
+					+ COMMON_CONSTANTS.D3SIXTY_CONF;
+			File configFile = new File(workingDir, COMMON_CONSTANTS.FILE_UPLOAD_PROPS);
 			if (configFile.exists()) {
 				properties.load(new FileReader(configFile));
 			} else {

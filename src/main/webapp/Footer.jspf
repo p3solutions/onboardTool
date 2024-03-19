@@ -51,6 +51,7 @@ font-family:sans-serif;
 	<%@page import="java.util.Date"%>
 	<%@page import="java.sql.*"%>
 	<%@ page import="onboard.DBconnection"%>
+	<%@ page import="common.constant.COMMON_CONSTANTS"%>
 	<%@page import="org.owasp.encoder.Encode"%>
 	<%@ page import="java.util.ResourceBundle"%>
 	<%@ page import="java.util.Properties" %>
@@ -64,8 +65,8 @@ font-family:sans-serif;
 <%
 	InputStream resource = null;
     Properties properties = new Properties();
-    String workingDirc = System.getProperty("catalina.base") + File.separator + "D3Sixty_conf";
-    File versionFil = new File(workingDirc, "VersionInfo.properties");
+    String workingDirc = System.getProperty(COMMON_CONSTANTS.CATALINA_BASE) + File.separator + COMMON_CONSTANTS.D3SIXTY_CONF;
+    File versionFil = new File(workingDirc, COMMON_CONSTANTS.VERSION_INFO_PROPS);
     String versionInf="";
     try {
         // Load Configuration.properties
@@ -73,7 +74,7 @@ font-family:sans-serif;
 			properties.load(new FileReader(versionFil));
         } else {
             // Load from resources folder using class loader
-			resource = Thread.currentThread().getContextClassLoader().getResourceAsStream("VersionInfo.properties");
+			resource = Thread.currentThread().getContextClassLoader().getResourceAsStream(COMMON_CONSTANTS.VERSION_INFO_PROPS);
             if (resource != null) {
 				properties.load(new InputStreamReader(resource));
             } else {
@@ -81,7 +82,7 @@ font-family:sans-serif;
             }
         }
 
-        versionInf = properties.getProperty("VERSION");
+        versionInf = properties.getProperty(COMMON_CONSTANTS.VERSION);
         System.out.println("Version Info :: " + versionInf);
     } catch (IOException e) {
         System.out.println(e.getMessage());

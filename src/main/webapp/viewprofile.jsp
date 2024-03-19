@@ -406,6 +406,7 @@ rotate
 	<%@page import="java.util.Date"%>
 	<%@page import="java.sql.*"%>
 	<%@ page import="onboard.DBconnection"%>
+	<%@ page import="common.constant.COMMON_CONSTANTS"%>
 	<%@page import="org.owasp.encoder.Encode"%>
 	<%@ page import="java.util.ResourceBundle"%>
 	<%@ page import="java.util.Properties" %>
@@ -417,9 +418,9 @@ rotate
 	<%@ page import="java.io.InputStream" %>
 	<%
     Properties prop = new Properties();
-    String workingDir = System.getProperty("catalina.base") + File.separator + "D3Sixty_conf";
-    File configFile = new File(workingDir, "Configuration.properties");
-    File versionFile = new File(workingDir, "VersionInfo.properties");
+    String workingDir = System.getProperty(COMMON_CONSTANTS.CATALINA_BASE) + File.separator + COMMON_CONSTANTS.D3SIXTY_CONF;
+    File configFile = new File(workingDir, COMMON_CONSTANTS.CONFIG_PROPS);
+    File versionFile = new File(workingDir, COMMON_CONSTANTS.VERSION_INFO_PROPS);
     String authType="";
     String ssoLoginUrl="";
     String versionInfo="";
@@ -429,7 +430,7 @@ rotate
             prop.load(new FileReader(configFile));
         } else {
             // Load from resources folder using class loader
-            InputStream resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("Configuration.properties");
+            InputStream resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(COMMON_CONSTANTS.CONFIG_PROPS);
             if (resourceStream != null) {
                 prop.load(new InputStreamReader(resourceStream));
             } else {
@@ -437,8 +438,8 @@ rotate
             }
         }
 
-        authType = prop.getProperty("AUTHTYPE");
-        ssoLoginUrl=prop.getProperty("SSOLOGINURL");
+        authType = prop.getProperty(COMMON_CONSTANTS.AUTHTYPE);
+        ssoLoginUrl=prop.getProperty(COMMON_CONSTANTS.SSOLOGINURL);
         System.out.println("AUTHTYPE :: " + authType);
         System.out.println("SSO LOGIN URL :: " + ssoLoginUrl);
         // Load VersionInfo.properties
@@ -447,14 +448,14 @@ rotate
             prop.load(new FileReader(versionFile));
         } else {
             // Load from resources folder using class loader
-            InputStream resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("VersionInfo.properties");
+            InputStream resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(COMMON_CONSTANTS.VERSION_INFO_PROPS);
             if (resourceStream != null) {
                 prop.load(new InputStreamReader(resourceStream));
             } else {
                 throw new IOException("VersionInfo.properties file not found.");
             }
         }
-        versionInfo = prop.getProperty("VERSION");
+        versionInfo = prop.getProperty(COMMON_CONSTANTS.VERSION);
         System.out.println("Version Info :: " + versionInfo);
     } catch (IOException e) {
         System.out.println(e.getMessage());

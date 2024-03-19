@@ -92,6 +92,7 @@ ReportMapping reportMapping =new ReportMapping();
 
         } catch (Exception e) {
             System.out.println("Exception Occurs");
+            e.printStackTrace();
         }
         finally {
             assert st != null;

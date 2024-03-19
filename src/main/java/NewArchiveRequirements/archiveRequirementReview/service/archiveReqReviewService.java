@@ -32,6 +32,7 @@ import NewArchiveRequirements.businessRequirementsDetails.businessReqInfo.Servic
 import NewArchiveRequirements.businessRequirementsDetails.functionalReqInfo.dataReq.Service.archiveFunctionDataRetrieveService;
 import NewArchiveRequirements.businessRequirementsDetails.screenReqInfo.Service.archiveScreenReqDataRetrieveService;
 import NewArchiveRequirements.documentRevisions.service.archiveReqDocRevDataRetrieveService;
+import common.constant.COMMON_CONSTANTS;
 import common.constant.EMAIL_SERVICE_CONSTANT;
 import common.email.service.EmailApprovalService;
 import onboard.DBconnection;
@@ -42,14 +43,15 @@ public class archiveReqReviewService {
 	Connection con;
 	String Id;
 	String OppName;
-	public archiveReqReviewService(String Id,String OppName) throws ClassNotFoundException, SQLException
-	{
+
+	public archiveReqReviewService(String Id, String OppName) throws ClassNotFoundException, SQLException {
 		dBconnection = new DBconnection();
 		con = (Connection) dBconnection.getConnection();
 		this.Id = Id;
 		this.OppName = OppName;
 	}
-	public JsonArray archiveReqReviewDataRetrieve(){
+
+	public JsonArray archiveReqReviewDataRetrieve() {
 
 		JsonArray jsonArray = new JsonArray();
 
@@ -58,8 +60,9 @@ public class archiveReqReviewService {
 			JsonArray JsonArray = new JsonArray();
 			archiveReqIntroDataRetrieveService archiveReqIntro = new archiveReqIntroDataRetrieveService(Id);
 			JsonArray.add(archiveReqIntro.archiveReqDataRetrieve());
-			//archiveReqIntro.con.close();
-			archiveReqIntroRolesResponseTemplateService archiveReqIntroObj = new archiveReqIntroRolesResponseTemplateService(Id,OppName);
+			// archiveReqIntro.con.close();
+			archiveReqIntroRolesResponseTemplateService archiveReqIntroObj = new archiveReqIntroRolesResponseTemplateService(
+					Id, OppName);
 			JsonArray.add(archiveReqIntroObj.archiveReqIntroRolesResponseDataRetrieve());
 			jsonArray.add(JsonArray);
 
@@ -67,37 +70,38 @@ public class archiveReqReviewService {
 			JsonArray = new JsonArray();
 			archiveReqLegacyDataRetrieveService Appinfo = new archiveReqLegacyDataRetrieveService(Id, OppName);
 			JsonArray.add(Appinfo.archiveReqLegacyTemplateToArchiveReqLegacyInfo());
-			//Appinfo.con.close();
+			// Appinfo.con.close();
 
-			archiveEnvironmentNameDataRetrieveService EnvmtName = new archiveEnvironmentNameDataRetrieveService(Id, OppName);
+			archiveEnvironmentNameDataRetrieveService EnvmtName = new archiveEnvironmentNameDataRetrieveService(Id,
+					OppName);
 			JsonArray.add(EnvmtName.archiveEnvmtDataRetrieve());
-			//EnvmtName.con.close();
+			// EnvmtName.con.close();
 			JsonArray.add(getUploadedScreenShotNameList());
 			jsonArray.add(JsonArray);
 
 			// archive Requirement Retention Details
 			archiveRetentionDataRetrieve retentionDetails = new archiveRetentionDataRetrieve(Id, OppName);
 			jsonArray.add(retentionDetails.archiveRetentionDataRetrieveService());
-			//retentionDetails.con.close();
+			// retentionDetails.con.close();
 
-			// archive Requirement  Business Req Details
-			businessReqInScopeService businesssreqscope = new businessReqInScopeService(Id,OppName);
+			// archive Requirement Business Req Details
+			businessReqInScopeService businesssreqscope = new businessReqInScopeService(Id, OppName);
 			jsonArray.add(businesssreqscope.BusinessRequirementsDataRetrieve());
-			//businesssreqscope.con.close();
+			// businesssreqscope.con.close();
 
-			//archive Requirement  Business Req Contact Info Details
+			// archive Requirement Business Req Contact Info Details
 			businessReqDataRetrieveService archivebusReq = new businessReqDataRetrieveService(Id);
 			jsonArray.add(archivebusReq.archiveReqDataRetrieve());
 
 			JsonArray = new JsonArray();
-			String[] tableNamesFunctionReq = {"Archive_DataReq_Info","Archive_RetentionLegalReq_Info","Archive_SecurityReq_Info","Archive_UsabilityReq_Info","Archive_AuditReq_Info"};
-			for(int index=0;index<tableNamesFunctionReq.length;index++)
-			{
+			String[] tableNamesFunctionReq = { "Archive_DataReq_Info", "Archive_RetentionLegalReq_Info",
+					"Archive_SecurityReq_Info", "Archive_UsabilityReq_Info", "Archive_AuditReq_Info" };
+			for (int index = 0; index < tableNamesFunctionReq.length; index++) {
 				archiveFunctionDataRetrieveService dataReqDetails;
 				try {
-					dataReqDetails = new archiveFunctionDataRetrieveService(Id, OppName,tableNamesFunctionReq[index]);
+					dataReqDetails = new archiveFunctionDataRetrieveService(Id, OppName, tableNamesFunctionReq[index]);
 					JsonArray.add(dataReqDetails.archiveFunctionDataRetrieve());
-					//dataReqDetails.con.close();
+					// dataReqDetails.con.close();
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -113,31 +117,31 @@ public class archiveReqReviewService {
 			JsonArray.add(ScreenReq.archiveScreenInfoDataRetrieve());
 			JsonArray.add(ScreenReq.searchFormDataRetrieve());
 			jsonArray.add(JsonArray);
-			//ScreenReq.con.close();
+			// ScreenReq.con.close();
 
-			// document revision 
-			Retrieve_Abbreviations_Service retrieve_abbreviations=new Retrieve_Abbreviations_Service();
+			// document revision
+			Retrieve_Abbreviations_Service retrieve_abbreviations = new Retrieve_Abbreviations_Service();
 			jsonArray.add(retrieve_abbreviations.retrieve_abbreviations(Id));
 
 			archiveReqDocRevDataRetrieveService docRevData = new archiveReqDocRevDataRetrieveService(Id, OppName);
 			jsonArray.add(docRevData.archiveReqDocDataRetrieve());
-			//docRevData.con.close();
+			// docRevData.con.close();
 
 			// addendum
 
-			archiveReqAddendumDataRetrieveService addendumRevData = new archiveReqAddendumDataRetrieveService(Id, OppName);
+			archiveReqAddendumDataRetrieveService addendumRevData = new archiveReqAddendumDataRetrieveService(Id,
+					OppName);
 			jsonArray.add(addendumRevData.archiveReqAddendumDataRetrieve());
-			//addendumRevData.con.close();
+			// addendumRevData.con.close();
 
-			//over all status
-			jsonArray.add(getOverAllApproval());	
+			// over all status
+			jsonArray.add(getOverAllApproval());
 
-			//approval 
+			// approval
 			archiveReqApprovalDataRetrieveService approvalData = new archiveReqApprovalDataRetrieveService(Id, OppName);
 			jsonArray.add(approvalData.ApprovalDataRetrieve());
 
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -149,16 +153,16 @@ public class archiveReqReviewService {
 		JsonObject jsonObject = new JsonObject();
 		try {
 			Properties properties = new Properties();
-			String workingDir = System.getProperty("catalina.base") + File.separator
-					+ EMAIL_SERVICE_CONSTANT.D3SIXTY_CONF;
-			File configFile = new File(workingDir, "fileUpload.properties");
+			String workingDir = System.getProperty(COMMON_CONSTANTS.CATALINA_BASE) + File.separator
+					+ COMMON_CONSTANTS.D3SIXTY_CONF;
+			File configFile = new File(workingDir, COMMON_CONSTANTS.FILE_UPLOAD_PROPS);
 			if (configFile.exists()) {
 				properties.load(new FileReader(configFile));
 			} else {
-				fileInput = getClass().getClassLoader().getResourceAsStream("fileUpload.properties");
+				fileInput = getClass().getClassLoader().getResourceAsStream(COMMON_CONSTANTS.FILE_UPLOAD_PROPS);
 				properties.load(fileInput);
 			}
-			String Path = properties.getProperty("FILE.REQUIREMENTS.SCREENSHOT.PATH");
+			String Path = properties.getProperty(COMMON_CONSTANTS.FILE_PROPS_SCREENSHOT_PATH);
 			System.out.println("Path : " + Path);
 			String path = Path + File.separator + Id;
 			System.out.println("PATH : " + path);
@@ -190,31 +194,28 @@ public class archiveReqReviewService {
 		}
 		return jsonObject;
 	}
-	public JsonObject getOverAllApproval()
-	{
+
+	public JsonObject getOverAllApproval() {
 		JsonObject jsonObject = new JsonObject();
-		try
-		{
-			boolean checkOverAllApproval= false;
-			String selectQuery ="select * from module_approval_info where OppId=? and moduleName='Archive_Requirement'";
+		try {
+			boolean checkOverAllApproval = false;
+			String selectQuery = "select * from module_approval_info where OppId=? and moduleName='Archive_Requirement'";
 			PreparedStatement st = con.prepareStatement(selectQuery);
-			st.setString(1,Id);
+			st.setString(1, Id);
 			ResultSet rs = st.executeQuery();
 
-			if(rs.next())
+			if (rs.next())
 				checkOverAllApproval = rs.getBoolean("overAllApproval");
-			jsonObject.addProperty("checkOverAllStatus",checkOverAllApproval);
-		}
-		catch(Exception e)
-		{
+			jsonObject.addProperty("checkOverAllStatus", checkOverAllApproval);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return jsonObject;
 	}
+
 	protected void finalize() throws Throwable {
 		con.close();
 		System.out.println("DB connection closed");
 	}
-
 
 }

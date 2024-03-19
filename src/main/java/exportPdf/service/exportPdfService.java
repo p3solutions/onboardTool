@@ -40,6 +40,7 @@ import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.VerticalAlignment;
 import IntakeDetails.IntakePreviewDetails.service.intakePreviewHtmlContentService;
 import NewArchiveRequirements.archiveRequirementReview.service.archivePreviewHtmlContentService;
+import common.constant.COMMON_CONSTANTS;
 import common.constant.MODULE_NAME;
 import common.resource.resourceUtils;
 import exportPdf.waterMarkConditions;
@@ -82,8 +83,8 @@ public class exportPdfService extends jsonToHtmlContent {
     this.appName = appName;
     this.appId = appId;
     this.htmlContent = getHtmlContentFromJson(jsonArray,modulename);
-    this.properties = new resourceUtils("/fileUpload.properties").loadProperties();
-    this.pdfPath = properties.getProperty("FILE.PDF.PATH")+File.separator;
+    this.properties = new resourceUtils("/"+COMMON_CONSTANTS.FILE_UPLOAD_PROPS).loadProperties();
+    this.pdfPath = properties.getProperty(COMMON_CONSTANTS.FILE_PROPS_PDF_PATH)+File.separator;
     this.modulename=modulename;
     dBconnection = new DBconnection();
     con = (Connection) dBconnection.getConnection();

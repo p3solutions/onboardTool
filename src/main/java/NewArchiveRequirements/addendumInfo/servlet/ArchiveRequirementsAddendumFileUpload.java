@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import File_Utility.FileUtils;
+import common.constant.COMMON_CONSTANTS;
 import common.constant.EMAIL_SERVICE_CONSTANT;
 import common.email.service.EmailApprovalService;
 import onboard.DBconnection;
@@ -37,7 +38,7 @@ import java.util.Properties;
  */
 @WebServlet("/ArchiveRequirementsAddendumFileUpload")
 public class ArchiveRequirementsAddendumFileUpload extends HttpServlet {
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		JsonObject jsonObj = new JsonObject();
@@ -47,16 +48,17 @@ public class ArchiveRequirementsAddendumFileUpload extends HttpServlet {
 			String Id = (String) details.getAttribute("ID");
 			String seqNoSection = request.getParameter("section_no");
 			Properties properties = new Properties();
-			String workingDir = System.getProperty("catalina.base") + File.separator
-					+ EMAIL_SERVICE_CONSTANT.D3SIXTY_CONF;
-			File configFile = new File(workingDir, "fileUpload.properties");
+			String workingDir = System.getProperty(COMMON_CONSTANTS.CATALINA_BASE) + File.separator
+					+ COMMON_CONSTANTS.D3SIXTY_CONF;
+			File configFile = new File(workingDir, COMMON_CONSTANTS.FILE_UPLOAD_PROPS);
 			if (configFile.exists()) {
 				properties.load(new FileReader(configFile));
 			} else {
-				fileInput = ArchiveRequirementsAddendumFileUpload.class.getResourceAsStream("/fileUpload.properties");
+				fileInput = ArchiveRequirementsAddendumFileUpload.class
+						.getResourceAsStream(COMMON_CONSTANTS.FILE_UPLOAD_PROPS_STREAM);
 				properties.load(fileInput);
 			}
-			String path = properties.getProperty("FILE.REQUIREMENTS.SCREENSHOT.PATH");
+			String path = properties.getProperty(COMMON_CONSTANTS.FILE_PROPS_SCREENSHOT_PATH);
 			File directory = FileUtils.createFile(path + File.separator + Id);
 			if (!directory.exists())
 				directory.mkdir();
@@ -121,5 +123,5 @@ public class ArchiveRequirementsAddendumFileUpload extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(json);
 	}
-	
+
 }

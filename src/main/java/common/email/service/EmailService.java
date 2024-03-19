@@ -20,6 +20,7 @@ import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig;
 
 import common.bean.Mailbean;
+import common.constant.COMMON_CONSTANTS;
 import common.constant.EMAIL_SERVICE_CONSTANT;
 
 public class EmailService {
@@ -29,13 +30,13 @@ public class EmailService {
 	public Properties loadProperties() throws IOException {
 		InputStream fileInput = null;
 		try {
-			String workingDir = System.getProperty("catalina.base") + File.separator
-					+ EMAIL_SERVICE_CONSTANT.D3SIXTY_CONF;
-			File configFile = new File(workingDir, "mail.properties");
+			String workingDir = System.getProperty(COMMON_CONSTANTS.CATALINA_BASE) + File.separator
+					+ COMMON_CONSTANTS.D3SIXTY_CONF;
+			File configFile = new File(workingDir, COMMON_CONSTANTS.MAIL_PROPS);
 			if (configFile.exists()) {
 				properties.load(new FileReader(configFile));
 			} else {
-				fileInput = EmailApprovalService.class.getResourceAsStream(EMAIL_SERVICE_CONSTANT.MAIL_PROPS);
+				fileInput = EmailApprovalService.class.getResourceAsStream(COMMON_CONSTANTS.MAIL_PROPS_STREAM);
 				properties.load(fileInput);
 			}
 		} catch (Exception e) {
@@ -57,10 +58,10 @@ public class EmailService {
 		config.setAlgorithm("PBEWITHHMACSHA512AndAES_256");
 		encryptor.setConfig(config);
 		encryptor.setKeyObtentionIterations(1000);
-		mailPwd=properties.getProperty("EMAIL.PASSWORD");	
-		if(mailPwd.startsWith("ENC("))
+		mailPwd=properties.getProperty(COMMON_CONSTANTS.MAIL_PROPS_EMAIL_PWD);	
+		if(mailPwd.startsWith(COMMON_CONSTANTS.ENC_PREFIX))
 		{
-			String separator =")";
+			String separator =COMMON_CONSTANTS.CLOSER;
 			String s=mailPwd.substring(4);
 			int sepPos = s.lastIndexOf(separator);
 			String lc=s.substring(0,sepPos);
@@ -72,7 +73,7 @@ public class EmailService {
 
 			protected PasswordAuthentication getPasswordAuthentication() {
 
-				return new PasswordAuthentication(properties.getProperty("EMAIL.TOOL"), mailPwd);
+				return new PasswordAuthentication(properties.getProperty(COMMON_CONSTANTS.MAIL_PROPS_EMAIL_TOOL), mailPwd);
 
 			}
 
@@ -82,7 +83,7 @@ public class EmailService {
 
 		MimeMessage message = new MimeMessage(session);
 
-		message.setFrom(new InternetAddress(properties.getProperty("EMAIL.TOOL")));
+		message.setFrom(new InternetAddress(properties.getProperty(COMMON_CONSTANTS.MAIL_PROPS_EMAIL_TOOL)));
 
 		message.addRecipient(Message.RecipientType.TO, new InternetAddress(uEmail, uEmail));
 
@@ -96,11 +97,11 @@ public class EmailService {
 	public static boolean sendemail(MimeMessage message,Mailbean mbn) {
 		try {
 
-			properties.setProperty("mail.smtp.host", properties.getProperty("EMAIL.SERVER"));
-			properties.setProperty("mail.smtp.port", properties.getProperty("EMAIL.PORT"));
-			properties.put("mail.debug", properties.getProperty("SMTP_DEBUG"));
-			properties.put("mail.smtp.starttls.enable", properties.getProperty("SMTP_STARTTLS"));
-			properties.put("mail.smtp.auth",properties.getProperty("SMTP_AUTH"));
+			properties.setProperty("mail.smtp.host", properties.getProperty(COMMON_CONSTANTS.MAIL_PROPS_EMAIL_SERVER));
+			properties.setProperty("mail.smtp.port", properties.getProperty(COMMON_CONSTANTS.MAIL_PROPS_EMAIL_PORT));
+			properties.put("mail.debug", properties.getProperty(COMMON_CONSTANTS.MAIL_PROPS_SMTP_DEBUG));
+			properties.put("mail.smtp.starttls.enable", properties.getProperty(COMMON_CONSTANTS.MAIL_PROPS_SMTP_STARTTLS));
+			properties.put("mail.smtp.auth",properties.getProperty(COMMON_CONSTANTS.MAIL_PROPS_SMTP_AUTH));
 			Transport.send(message);
 			System.out.println("sending...");
 			System.out.println("Sent message successfully....");
@@ -114,13 +115,13 @@ public class EmailService {
 
 	private static Mailbean getMailProps() {
 		Mailbean mbn = new Mailbean();
-		mbn.setSmtpPwd(properties.getProperty("EMAIL.PASSWORD"));
-		mbn.setSmtpFrom(properties.getProperty("EMAIL.TOOL"));
-		mbn.setSmtpPort(properties.getProperty("EMAIL.PORT"));
-		mbn.setSmtpServer(properties.getProperty("EMAIL.SERVER"));
-		mbn.setSMTP_AUTH(properties.getProperty("SMTP_AUTH"));
-		mbn.setSMTP_DEBUG(properties.getProperty("SMTP_DEBUG"));
-		mbn.setSMTP_STARTTLS(properties.getProperty("SMTP_STARTTLS"));
+		mbn.setSmtpPwd(properties.getProperty(COMMON_CONSTANTS.MAIL_PROPS_EMAIL_PWD));
+		mbn.setSmtpFrom(properties.getProperty(COMMON_CONSTANTS.MAIL_PROPS_EMAIL_TOOL));
+		mbn.setSmtpPort(properties.getProperty(COMMON_CONSTANTS.MAIL_PROPS_EMAIL_PORT));
+		mbn.setSmtpServer(properties.getProperty(COMMON_CONSTANTS.MAIL_PROPS_EMAIL_SERVER));
+		mbn.setSMTP_AUTH(properties.getProperty(COMMON_CONSTANTS.MAIL_PROPS_SMTP_AUTH));
+		mbn.setSMTP_DEBUG(properties.getProperty(COMMON_CONSTANTS.MAIL_PROPS_SMTP_DEBUG));
+		mbn.setSMTP_STARTTLS(properties.getProperty(COMMON_CONSTANTS.MAIL_PROPS_SMTP_STARTTLS));
 
 		return mbn;
 	}

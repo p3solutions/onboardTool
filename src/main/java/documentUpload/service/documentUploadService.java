@@ -22,6 +22,7 @@ import org.apache.commons.fileupload.FileItem;
 import File_Utility.FileUtils;
 import common.constant.ARCHIVE_REQUIREMENTS_SECTION;
 import common.constant.ARCHIVE_REQUIREMENT_TABLE;
+import common.constant.COMMON_CONSTANTS;
 import common.constant.INTAKE_SECTIONS;
 import common.constant.INTAKE_TABLE;
 import common.constant.MODULE_NAME;
@@ -29,13 +30,13 @@ import onboard.DBconnection;
 
 public class documentUploadService {
 
-	private String moduleName,sectionName;
+	private String moduleName, sectionName;
 	private String appId;
 	private DBconnection dBconnection;
-	private Connection	con;
+	private Connection con;
 	private String tableName;
-	private static final String D3SIXTY_CONF="D3Sixty_conf";
-	public documentUploadService(String appId,String sectionName) throws ClassNotFoundException, SQLException {
+
+	public documentUploadService(String appId, String sectionName) throws ClassNotFoundException, SQLException {
 		this.appId = appId;
 		this.sectionName = sectionName;
 		dBconnection = new DBconnection();
@@ -44,87 +45,88 @@ public class documentUploadService {
 	}
 
 	private void selectModule() {
-		
-		switch(sectionName) {
-		
+
+		switch (sectionName) {
+
 		case ARCHIVE_REQUIREMENTS_SECTION.LEGACY_APPLICATION_SCREENSHOT:
 			moduleName = MODULE_NAME.ARCHIVE_REQUIREMENTS_MODULE;
 			tableName = ARCHIVE_REQUIREMENT_TABLE.LEGACY_APPLICATION_SCREENSHOT_TABLE;
 			break;
-			
+
 		case INTAKE_SECTIONS.ASSESSMENT_APPLICATION_INFO:
 			moduleName = MODULE_NAME.INTAKE_MODULE;
 			tableName = INTAKE_TABLE.ASSESSMENT_APPlICATION_INFO_BLOB_TABLE;
 			break;
-			
+
 		}
 	}
-	
+
 	public boolean uploadDocuments(List<FileItem> multiFiles) {
 		try {
-			 int seq_num = 1;
-			 for(FileItem item : multiFiles)
-			 {
-				 System.out.println("Table Name : "+tableName);
-				 String selectQuery ="SELECT * FROM `"+tableName+"` WHERE appId=? and seq_num =?";
-				 PreparedStatement st = con.prepareStatement(selectQuery);
-					st.setString(1, appId);
-					st.setInt(2, seq_num);
-					ResultSet rs = st.executeQuery();
-				 if(rs.next()) {
-					 String insertQuery = "UPDATE `"+tableName+"` SET doc = ?, File_name = ? WHERE appId = ? AND  seq_num = ?";
-					 InputStream is  = (InputStream) item.getInputStream();
-					 PreparedStatement pstmt = con.prepareStatement(insertQuery);
-					 pstmt.setBinaryStream(1, is);
-					 pstmt.setString(2, item.getName());
-					 pstmt.setString(3, appId);
-					 pstmt.setInt(4, seq_num++ );
-					 pstmt.executeUpdate();
-					 pstmt.close();
-					 is.close();
-				 }
-				 else {
-				 String insertQuery = "INSERT INTO `"+tableName+"` SET doc = ?, File_name = ?, seq_num = ?, appId = ?";
-				 InputStream is  = (InputStream) item.getInputStream();
-				 PreparedStatement pstmt = con.prepareStatement(insertQuery);
-				 pstmt.setBinaryStream(1, is);
-				 pstmt.setString(2, item.getName());
-				 pstmt.setInt(3, seq_num++ );
-				 pstmt.setString(4, appId);
-				 pstmt.executeUpdate();
-				 pstmt.close();
-				 is.close();
-				 }
-				 st.close();
-				 rs.close();
-				 //item.write(new File(directory.getAbsolutePath()+File.separator+item.getName()));
-			 }
-		}
-		catch(Exception e) {
+			int seq_num = 1;
+			for (FileItem item : multiFiles) {
+				System.out.println("Table Name : " + tableName);
+				String selectQuery = "SELECT * FROM `" + tableName + "` WHERE appId=? and seq_num =?";
+				PreparedStatement st = con.prepareStatement(selectQuery);
+				st.setString(1, appId);
+				st.setInt(2, seq_num);
+				ResultSet rs = st.executeQuery();
+				if (rs.next()) {
+					String insertQuery = "UPDATE `" + tableName
+							+ "` SET doc = ?, File_name = ? WHERE appId = ? AND  seq_num = ?";
+					InputStream is = (InputStream) item.getInputStream();
+					PreparedStatement pstmt = con.prepareStatement(insertQuery);
+					pstmt.setBinaryStream(1, is);
+					pstmt.setString(2, item.getName());
+					pstmt.setString(3, appId);
+					pstmt.setInt(4, seq_num++);
+					pstmt.executeUpdate();
+					pstmt.close();
+					is.close();
+				} else {
+					String insertQuery = "INSERT INTO `" + tableName
+							+ "` SET doc = ?, File_name = ?, seq_num = ?, appId = ?";
+					InputStream is = (InputStream) item.getInputStream();
+					PreparedStatement pstmt = con.prepareStatement(insertQuery);
+					pstmt.setBinaryStream(1, is);
+					pstmt.setString(2, item.getName());
+					pstmt.setInt(3, seq_num++);
+					pstmt.setString(4, appId);
+					pstmt.executeUpdate();
+					pstmt.close();
+					is.close();
+				}
+				st.close();
+				rs.close();
+				// item.write(new
+				// File(directory.getAbsolutePath()+File.separator+item.getName()));
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
 		return true;
 	}
-	
+
 	public boolean retrieveBlob() {
 		InputStream resourceStream = null;
 		try {
 			Properties prop = new Properties();
-			String workingDir = System.getProperty("catalina.base") + File.separator + D3SIXTY_CONF;
-			File configFile = new File(workingDir, "fileUpload.properties");
+			String workingDir = System.getProperty(COMMON_CONSTANTS.CATALINA_BASE) + File.separator
+					+ COMMON_CONSTANTS.D3SIXTY_CONF;
+			File configFile = new File(workingDir, COMMON_CONSTANTS.FILE_UPLOAD_PROPS);
 			if (configFile.exists()) {
 				prop.load(new FileReader(configFile));
 			} else {
 				// Load from resources folder using class loader
-				resourceStream = getClass().getClassLoader().getResourceAsStream("fileUpload.properties");
+				resourceStream = getClass().getClassLoader().getResourceAsStream(COMMON_CONSTANTS.FILE_UPLOAD_PROPS);
 				if (resourceStream != null) {
 					prop.load(new InputStreamReader(resourceStream));
 				} else {
 					throw new IOException("fileUpload.properties file not found.");
 				}
 			}
-			String Path = prop.getProperty("FILE.REQUIREMENTS.SCREENSHOT.PATH");
+			String Path = prop.getProperty(COMMON_CONSTANTS.FILE_PROPS_SCREENSHOT_PATH);
 			System.out.println("Path : " + Path);
 			String selectQuery = "SELECT * FROM " + tableName + " WHERE appId=? AND seq_num=" + 1;
 			PreparedStatement st = con.prepareStatement(selectQuery);
@@ -163,27 +165,24 @@ public class documentUploadService {
 		}
 		return true;
 	}
-	
+
 	public boolean deleteDocuments() {
 		try {
-			String deleteQuery ="DELETE * FROM "+tableName+" WHERE appId=?";
+			String deleteQuery = "DELETE * FROM " + tableName + " WHERE appId=?";
 			PreparedStatement st = con.prepareStatement(deleteQuery);
-			st.setString(1,appId);
-			st.executeUpdate();	
+			st.setString(1, appId);
+			st.executeUpdate();
 			st.close();
-			
-		}
-		catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
 		return true;
 	}
-	
 
-	
 	@Override
 	protected void finalize() throws Throwable {
-	  con.close();
+		con.close();
 	}
 }

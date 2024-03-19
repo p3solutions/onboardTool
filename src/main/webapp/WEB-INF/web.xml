@@ -1,60 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee; http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>D3Sixty</display-name>
-  <servlet>
-  	<description>
-  	</description>
-  	<display-name>clear_Session_details</display-name>
-  	<servlet-name>clear_Session_details</servlet-name>
-  	<servlet-class>Finance.servlet.clear_Session_details</servlet-class>
-  </servlet>
-  <servlet>
-  	<description>
-  	</description>
-  	<display-name>ConsoleCaptureFilter</display-name>
-  	<servlet-name>ConsoleCaptureFilter</servlet-name>
-  	<servlet-class>log.ConsoleCaptureFilter</servlet-class>
-  </servlet>
-  <servlet>
-  	<description>
-  	</description>
-  	<display-name>LogFilterInitializer</display-name>
-  	<servlet-name>LogFilterInitializer</servlet-name>
-  	<servlet-class>log.LogFilterInitializer</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>clear_Session_details</servlet-name>
-  	<url-pattern>/clear_Session_details</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>ConsoleCaptureFilter</servlet-name>
-  	<url-pattern>/ConsoleCaptureFilter</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>LogFilterInitializer</servlet-name>
-  	<url-pattern>/LogFilterInitializer</url-pattern>
-  </servlet-mapping>
- <filter>
-    <filter-name>consoleCaptureFilter</filter-name>
-    <filter-class>log.ConsoleCaptureFilter</filter-class>
-</filter>
-<filter-mapping>
-    <filter-name>consoleCaptureFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-</filter-mapping>
-  <welcome-file-list>
-    <welcome-file>Home.jsp</welcome-file>
-  </welcome-file-list>
-  <context-param>
-    <description>Location to zstore uploaded file</description>
-    <param-name>file-upload</param-name>
-    <param-value>
+	<display-name>D3Sixty</display-name>
+	<welcome-file-list>
+		<welcome-file>Home.jsp</welcome-file>
+	</welcome-file-list>
+	<context-param>
+		<description>Location to zstore uploaded file</description>
+		<param-name>file-upload</param-name>
+		<param-value>
          C:\apache-tomcat-9.0.0.M20\webapps\data\
      </param-value>
-  </context-param>
-  <context-param>
-    <param-name>log4j-config-location</param-name>
-    <param-value>WEB-INF/log4j.properties</param-value>
-  </context-param>
-
+	</context-param>
+	<context-param>
+		<param-name>log4j-config-location</param-name>
+		<param-value>WEB-INF/log4j.properties</param-value>
+	</context-param>
 </web-app>
