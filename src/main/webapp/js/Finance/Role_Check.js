@@ -10,7 +10,7 @@ function userHide()
         data : {user_Name:user_Name},
         success: function (data) {
             console.log("Users List Retrieve",data);
-            if(data.User_Role=="D3SIXTY_FINANCE_CONTRIBUTOR"|| data.User_Role=="D3SIXTY_SUPER_ADMIN")
+            if(data.User_Role=="D3SIXTY_FINANCE_CONTRIBUTOR"|| data.User_Role=="D3SIXTY_SUPER_ADMIN" || data.User_Role =="D3SIXTY_FINANCE")
             {
                 $("#Allowed").show();
                 $("#userBlocked").hide();
