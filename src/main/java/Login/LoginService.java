@@ -256,9 +256,12 @@ public class LoginService {
                     preparedStmt.execute();
                     preparedStmt.close();
                 }
+                logger.info("Role_Details have been inserted");
             }
             rs8.close();
             st8.close();
+            logger.info("Role_Details data is available");
+
 
 //            if (dum == 0) {
 //                String q = " insert into dummy (value)" +
@@ -316,9 +319,11 @@ public class LoginService {
                     prestmt.close();
 
                 }
+                logger.info("Opportunity_Info_Template_Details have been inserted");
             }
             rs_opportunity.close();
             statement.close();
+            logger.info("Opportunity_Info_Template_Details data is available");
 
 
             String NewGovernanceQuery = "select * from Governance_Info_Template_Details";
@@ -348,9 +353,11 @@ public class LoginService {
                     prestmt.execute();
                     prestmt.close();
                 }
+                logger.info("Governance_Info_Template_Details have been inserted");
             }
             rs_governance.close();
             statements.close();
+            logger.info("Governance_Info_Template_Details data is available");
 
             // phase template info
             String NewPhaseQuery = "select * from Phase_Info_Template_Details";
@@ -380,9 +387,11 @@ public class LoginService {
                     prestmt.execute();
                     prestmt.close();
                 }
+                logger.info("Phase_Info_Template_Details have been inserted");
             }
             rs_phase.close();
             PhaseStatement.close();
+            logger.info("Phase_Info_Template_Details data is available");
 
             String Triage_Query = "select * from Triage_Info_Template_Details";
             PreparedStatement statement1 = con.prepareStatement(Triage_Query);
@@ -450,9 +459,11 @@ public class LoginService {
                     prestmt.execute();
                     prestmt.close();
                 }
+                logger.info("Triage_Info_Template_Details have been inserted");
             }
             rs_Triage.close();
             statement1.close();
+            logger.info("Triage_Info_Template_Details data is available");
 
             String TriageSummary = "select * from Triage_Summary_Info_Template_Details";
             stTriSumm = con.prepareStatement(TriageSummary);
@@ -483,11 +494,12 @@ public class LoginService {
                     prestmt1.setString(9, Trisumm[index].value);
                     prestmt1.execute();
                     prestmt1.close();
-
                 }
+                logger.info("Triage_Summary_Info_Template_Details have been inserted");
             }
             rsTriSumm.close();
             stTriSumm.close();
+            logger.info("Triage_Summary_Info_Template_Details data is available");
 
             String AbbreviationTemplate = "select * from decom3sixtytool.archivereq_abbreviations_template_details;";
             stAbbTemplate = con.prepareStatement(AbbreviationTemplate);
@@ -512,9 +524,11 @@ public class LoginService {
                     prestmt1.close();
 
                 }
+                logger.info("archivereq_abbreviations_template_details have been inserted");
             }
             rsAbbTemp.close();
             stAbbTemplate.close();
+            logger.info("archivereq_abbreviations_template_details data is available");
 
             // Archive Requirement - Role&Response
 
@@ -544,10 +558,11 @@ public class LoginService {
                     prestmtResponse.execute();
                     prestmtResponse.close();
                 }
+                logger.info("ArchiveReq_Roles_Info_Template_Details have been inserted");
             }
             RsroleRes.close();
             stRoleRes.close();
-
+            logger.info("ArchiveReq_Roles_Info_Template_Details data is available");
 
             String AssessmentDataChar = "select * from Assessment_Data_Char_Info_Template_Details";
             AssDataCharst = con.prepareStatement(AssessmentDataChar);
@@ -599,9 +614,11 @@ public class LoginService {
                     prestmt2.close();
 
                 }
+                logger.info("Assessment_Data_Char_Info_Template_Details have been inserted");
             }
             AssDataCharrs.close();
             AssDataCharst.close();
+            logger.info("Assessment_Data_Char_Info_Template_Details data is available");
 
             String AssessmentQuery = "Select * from Assessment_Compliance_Char_Info_Template_Details;";
             PreparedStatement AssessmentSt = con.prepareStatement(AssessmentQuery);
@@ -640,9 +657,11 @@ public class LoginService {
                     prestmt1.execute();
                     prestmt1.close();
                 }
+                logger.info("Assessment_Compliance_Char_Info_Template_Details have been inserted");
             }
             AssessmentRs.close();
             AssessmentSt.close();
+            logger.info("Assessment_Compliance_Char_Info_Template_Details data is available");
 
 
             String AssessmentArchival = "Select * from Assessment_Archival_Consumption_Info_Template_Details";
@@ -680,9 +699,11 @@ public class LoginService {
                     prestmt3.execute();
                     prestmt3.close();
                 }
+                logger.info("Assessment_Archival_Consumption_Info_Template_Details have been inserted");
             }
             AssArchivalrs.close();
             AssArchivalst.close();
+            logger.info("Assessment_Archival_Consumption_Info_Template_Details data is available");
 
 
             String AssessAppInfoQuery = "Select * from Assessment_Application_Info_Template_Details;";
@@ -730,9 +751,11 @@ public class LoginService {
                     prestmt1.execute();
                     prestmt1.close();
                 }
+                logger.info("Assessment_Application_Info_Template_Details have been inserted");
             }
             AssessAppInfoRs.close();
             AssessAppInfoSt.close();
+            logger.info("Assessment_Application_Info_Template_Details data is available");
 
             //Template tale for Assessment Contract Information
 
@@ -766,10 +789,11 @@ public class LoginService {
                     prestmt1.execute();
                     prestmt1.close();
                 }
+                logger.info("Assessment_Contract_Info_Template_Details have been inserted");
             }
             AssessContractInfoRs.close();
             AssessContractInfoSt.close();
-
+            logger.info("Assessment_Contract_Info_Template_Details data is available");
 
             // Business Requirements
 
@@ -792,9 +816,11 @@ public class LoginService {
                     prestmtBusReq.execute();
                     prestmtBusReq.close();
                 }
+                logger.info("BusinessReqinscope_Info_template_details have been inserted");
             }
             RsBusReqInScope.close();
             stBusReqInScope.close();
+            logger.info("BusinessReqinscope_Info_template_details data is available");
 
             //View creation
             availabilityOfView availability = new availabilityOfView();
