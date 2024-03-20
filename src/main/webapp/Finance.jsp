@@ -43,6 +43,19 @@
         overflow-y:auto;
         /*margin-left: -10px;*/
     }
+    div.suggestion {
+        border: 1px solid #d4d4d4;
+        border-top: none;
+        max-height: 150px;
+        overflow-y: auto;
+    }
+    div.suggestion {
+        padding: 10px;
+        cursor: pointer;
+    }
+    div.suggestion:hover {
+        background-color: #e9e9e9;
+    }
 </style>
 <body>
 

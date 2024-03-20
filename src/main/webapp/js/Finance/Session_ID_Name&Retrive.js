@@ -29,47 +29,53 @@ $(document).on('keyup focus', '#financeappname', function () {
     }
 
     function displaySuggestions(suggestions) {
-    //    enableDropdownStyles();
         var suggestionDropdown = $("#suggestionDropdown");
         suggestionDropdown.empty();
 
         if (suggestions.length > 0) {
-            var ol = $("<ol>");
-
             for (var i = 0; i < suggestions.length; i++) {
                 (function (suggestion) {
-                var suggestion = suggestions[i];
-                var li = $("<li class='suggestion'>" + suggestion.Application_Name + "</li>");
+                    var suggestionText = suggestion.Application_Name;
+                    var suggestionId = suggestion.Id;
 
-                li.on('click', function () {
-                    $(".hidden-contents").show();
-                    $("#inputFieldsRoles").show();
-                    var selectedName = suggestion.Application_Name;
-                    var selectedId = suggestion.Id;
-                    //setting the value to session in jsp
-                    $("#selectedName").val(selectedName);
-                    $("#selectedId").val(selectedId);
-                    console.log("check the application name & Id");
-                    console.log(selectedName);
-                    console.log(selectedId);
-                    // end of setting session attribute
-                    $("#financeappname").val(selectedName);
-                    var nameIn = $("#financeappname").val();
-                    suggestionDropdown.empty();
-                    if (selectedName === nameIn) {
-                        financeSetSessionAttribute(selectedId,selectedName);
+                    var suggestionElement = $("<div class='suggestion'>" + suggestionText + "</div>");
+                    suggestionElement.on('click', function () {
+                        $(".hidden-contents").show();
+                        $("#inputFieldsRoles").show();
+                        var selectedName = suggestionText;
+                        var selectedId = suggestionId;
+
+                        // Set values to session in JSP
+                        $("#selectedName").val(selectedName);
+                        $("#selectedId").val(selectedId);
+
+                        console.log("Check the application name & Id");
+                        console.log(selectedName);
+                        console.log(selectedId);
+                        // End of setting session attribute
+
+                        $("#financeappname").val(selectedName);
+                        financeSetSessionAttribute(selectedId, selectedName);
                         ajaxTemplateCallNoData("Retrieve");
                         ajaxscrcall(selectedId);
                         $("#suggestionDropdown").removeClass("financeSuggestionScrollBar");
                         $("#suggestionDropdown").hide();
                         $("#financeappname").prop('disabled', true);
-                    }
-                });
-                ol.append(li);
+                    });
+
+                    // Highlight matching letters
+                    var inputText = $("#financeappname").val();
+                    var startIndex = suggestionText.toLowerCase().indexOf(inputText.toLowerCase());
+                    var highlightedText = suggestionText.substring(0, startIndex) +
+                        "<Strong>" + suggestionText.substring(startIndex, startIndex + inputText.length) + "</Strong>" +
+                        suggestionText.substring(startIndex + inputText.length);
+                    suggestionElement.html(highlightedText);
+
+                    suggestionDropdown.append(suggestionElement);
                 })(suggestions[i]);
             }
+
             enableDropdownStyles();
-            suggestionDropdown.append(ol);
         }
     }
 
