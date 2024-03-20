@@ -15,6 +15,8 @@ $(document).on('keyup focus', '#financeappname', function () {
             type: "POST",
             data: {name: inputText},
             success: function (data) {
+                console.log("AppNameFilter data : ")
+                console.log(data)
                 displaySuggestions(data);
             }
         });
@@ -93,15 +95,14 @@ $(document).on('keyup focus', '#financeappname', function () {
         suggestionDropdown.addClass("financeSuggestionScrollBar");
         suggestionDropdown.show();
 
-        var inputPosition = $("#financeappname").position();
+        // var inputPosition = $("#financeappname").position();
         var inputWidth = $("#financeappname").outerWidth();
         suggestionDropdown.css({
-            position: "absolute",
-            top: inputPosition.top + $("#financeappname").outerHeight(),
-            left: inputPosition.left,
-            background: "white",
-            width: inputWidth + "px",
-            zIndex: 1000
+            // top: inputPosition.top + $("#financeappname").outerHeight(),
+            // left: inputPosition.left,
+            // background: "white",
+            width: inputWidth + "px"
+            // zIndex: 1000
         });
     }
 });

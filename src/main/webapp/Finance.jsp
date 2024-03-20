@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>D3Sixty - Finance </title>
 
-<%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>--%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
           referrerpolicy="no-referrer" />
     <!-- ========== Toastr ========== -->
@@ -39,21 +38,10 @@
         box-shadow: none !important;
     }
 
-    /*.icon-float {*/
-    /*    float: right;*/
-    /*}*/
-
-    /*.hidepencil {*/
-    /*    display: none;*/
-    /*}*/
-
-    /*.hidedelete {*/
-    /*    display: none;*/
-    /*}*/
     div.financeSuggestionScrollBar {
         height: 110px;
         overflow-y:auto;
-        margin-left: -10px;
+        /*margin-left: -10px;*/
     }
 </style>
 <body>
@@ -95,7 +83,7 @@
                     <a href="#" class="text-decoration-none breadcrumbtextinactive">Home</a>
                 </li>
                 <li class="breadcrumb-item inactive my-3 text-light ">
-                    <a href="#" class="text-decoration-none breadcrumbtextinactive">Finance List</a>
+                    <a href="FinanceList.jsp" class="text-decoration-none breadcrumbtextinactive">Finance List</a>
                 </li>
                 <li class="breadcrumb-item active my-3 breadcrumbtextactive" id="Current-page" aria-current="page"></li>
             </ol>
@@ -132,6 +120,7 @@
     <div class="card">
         <div class="card-header Card-Header" id="cd-header">Finance Information
         </div>
+
         <div class="accordion m-3 " id="accordionExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
@@ -144,13 +133,13 @@
                      data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <div class="row row-cols-1 row-cols-md-2 gx-5 g-3" id="inputFieldsAppInfo">
-                            <div id="suggestionDropdown" class=" col financeSuggestionScrollBar">
-
-                            </div>
+<%--                            <div id="suggestionDropdown" class="financeSuggestionScrollBar">--%>
 
                         </div>
-                        <div class="row my-3 mx-1">
-                            <div class="col-12  d-flex justify-content-center ">
+                            <div id="suggestionDropdown" >
+                        </div>
+                        <div class="row my-3 mx-1 hidden-contents">
+                            <div class="col-12  d-flex justify-content-center " >
                                 <div class="dropdown">
 
                                     <button class="btn secondaryButton text-center dropdown-toggle" type="button"
@@ -194,7 +183,7 @@
                     </div>
                 </div>
             </div>
-            <div class="accordion-item">
+            <div class="accordion-item hidden-contents">
                 <h2 class="accordion-header" id="headingTwo">
                     <button class="accordion-button collapsed " type="button"
                             data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
