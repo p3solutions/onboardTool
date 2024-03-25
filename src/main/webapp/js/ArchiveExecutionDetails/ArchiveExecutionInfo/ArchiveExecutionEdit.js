@@ -52,7 +52,7 @@ function archiveExecutionEditFunction(seqNum, taskGroup, taskName){
         		 notification("success","Selected Node is updated.","Note");
         		}
         	else{
-        		notification("error","Error occured while editing.","Error");
+        		notification("error","Error occurred while editing.","Error");
         	}
         },
         error: function (e) {

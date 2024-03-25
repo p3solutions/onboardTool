@@ -595,6 +595,8 @@ e.printStackTrace();
         </div>
         /.container-fluid
     </nav > -->
+		</div>
+		</div>
 			<div class="content-wrapper">
 				<div class="content-container">
 

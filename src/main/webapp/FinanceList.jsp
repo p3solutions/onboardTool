@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>--%>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
           referrerpolicy="no-referrer" />
     <!-- ========== Toastr ========== -->
@@ -21,9 +21,45 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <style>
+    .add-finance-button{
+ width: 110px !important;
+    }
+    .custom-show-entities {
+        box-shadow: none !important;
+        min-width: 50px !important;
+        border: none !important;
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+        border-bottom: 1px solid black !important;
+    }
     div.item-label{
         margin-right: -17px !important;
         margin-top: 9px !important; ;
+    }
+
+    .search-cancel-button{
+        color: red !important;
+    }
+    span.btn1 {
+        border: 1px solid #CED0D2 !important;
+        border-top-left-radius: 0px !important;
+        border-bottom-left-radius: 0px !important;
+        border-top-right-radius: 6px !important;
+        border-bottom-right-radius: 6px !important;
+    }
+    .form-control,.btn1{
+        color: #2A3F57;
+        font-family: 'Roboto';
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 0em;
+        text-align: left;
+        border: 1px solid #CED0D2;
+        border-top-left-radius: 6px !important;
+        border-bottom-left-radius: 6px !important;
+        border-top-right-radius: 0px !important;
+        border-bottom-right-radius: 0px !important;
+
     }
 </style>
 <body>
@@ -46,24 +82,54 @@
 <div class="container-fluid px-4 pt-4" id="Allowed">
     <button type="button" class="btn" id="deletepopup_btn" data-bs-toggle="modal" data-bs-target="#DeletePopUp"
             style="display: none;">Delete PopUp</button>
+    <div class="row mb-3 " >
+        <div class="col-5 col-sm-4 col-md-3 col-lg-2 col-xl-2 col-xxl-1  d-flex justify-content-start">
+            <div class="input-group"  id="ExitSearch">
+                <span class=" px-2 form-control">clear search</span>
+                <span class="input-group-text btn1 btn search-cancel-button" ><i class="fa-solid fa-xmark"></i></span>
+            </div>
 
-    <div class="row my-3 ">
-        <div class="col-9 d-flex justify-content-start">
-            <a href="Finance.jsp"> <button type="button" id="add_user_btn" class="p-0 btn primaryButton text-center"
-                                           data-bs-toggle="modal" style="display: none;">Add Finance</button></a>
-            <button type="button" class="btn primaryButton text-center mx-2 njm " id="searchToggleButton"
-                    data-bs-toggle="modal" data-bs-target="#searchModal">Filter</button>
-            <button type="button" id="ExitSearch" class="btn buttonFrame tertiaryButton text-center "
-                    style="padding-top: 4px;">
-                Exit Search</button>
+        </div>
+        <div class="col-4 col-sm-5 col-md-6 col-lg-7 col-xl-7 col-xxl-8 d-flex justify-content-start">
+
         </div>
 
         <div class="col-3 d-flex justify-content-end ">
+            <a href="Finance.jsp" > <button type="button" id="add_user_btn" class=" btn primaryButton add-finance-button text-center"
+                                           data-bs-toggle="modal" style="display: none;">Add Finance</button></a>
+            <button type="button" class="btn primaryButton text-center mx-2 " id="searchToggleButton"
+                    data-bs-toggle="modal" data-bs-target="#searchModal">Filter</button>
             <button type="button" class="btn primaryButton text-center" id="exportButton" data-bs-toggle="modal"
                     data-bs-target="#exportModal">Export</button>
         </div>
+    </div>
+
+
+<%--    for small screen --%>
+    <div class="row mb-3 d-block  " >
+    <div class="col-5 col-sm-4 col-md-3 col-lg-2 col-xl-2 col-xxl-1  d-flex justify-content-start">
+        <div class="input-group"  id="ExitSearch">
+            <span class=" px-2 form-control">clear search</span>
+            <span class="input-group-text btn1 btn search-cancel-button" ><i class="fa-solid fa-xmark"></i></span>
+        </div>
 
     </div>
+    <div class="col-4 col-sm-5 col-md-6 col-lg-7 col-xl-7 col-xxl-8 d-flex justify-content-start">
+
+    </div>
+
+    <div class="col-3 d-flex justify-content-end ">
+        <a href="Finance.jsp" > <button type="button" id="add_user_btn" class=" btn primaryButton add-finance-button text-center"
+                                        data-bs-toggle="modal" style="display: none;">Add Finance</button></a>
+        <button type="button" class="btn primaryButton text-center mx-2 " id="searchToggleButton"
+                data-bs-toggle="modal" data-bs-target="#searchModal">Filter</button>
+        <button type="button" class="btn primaryButton text-center" id="exportButton" data-bs-toggle="modal"
+                data-bs-target="#exportModal">Export</button>
+    </div>
+    </div>
+
+
+
     <div class="card mb-5">
         <div class="card-header Card-Header" id="cd-header">Finance Module</div>
 
@@ -73,7 +139,7 @@
                     <span class="spinner"></span>
                 </div>
             </div>
-            <table class="table table-bordered  table-hover caption-top" id="admin_userslist">
+            <table class="table table-bordered caption-top" id="admin_userslist">
                 <thead class="Table-Header text-center">
 
                 </thead>
@@ -85,7 +151,7 @@
 
 
         <div class="row d-flex justify-content-end m-2 mt-3" id="footer">
-            <div class="col-auto Table-Body mt-1 item-label">items per page:</div>
+            <div class="col-auto Table-Body mt-1 item-label">Items per page:</div>
             <div class="col-auto mt-2 ">
                 <select class="form-select form-select-sm custom-show-entities p-0" id="maxRows">
                     <option value="5">5</option>
@@ -95,7 +161,7 @@
                     <option value="50">50</option>
                     <option value="70">70</option>
                     <option value="100">100</option>
-                    <option value="5000">Show All</option>
+<%--                    <option value="5000">Show All</option>--%>
                 </select>
             </div>
             <div class="col-auto Table-Body mt-2 mx-3"  id="recordInfo"></div>
@@ -184,7 +250,7 @@
                     <option value="Select">--Select--</option>
                 </select>
 <%--                <br>--%>
-                <label for=22"SearchOprerators" style="display:none;">Select Operator:</label>
+                <label for="SearchOprerators" style="display:none;">Select Operator:</label>
                 <select class="form-control mb-1" id="SearchOperators" style="display:none;">
                     <option value="Select" Selected>--Select--</option>
                     <option value="="> = </option>

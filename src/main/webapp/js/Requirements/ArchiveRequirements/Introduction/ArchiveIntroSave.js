@@ -99,7 +99,7 @@ var typingTimer;                //timer identifier
             var checkDuplicateRole = true;
             for(var i = 0; i<$('.rowClass').length; i++){
                 var inputs = {};
-                var role = $('.role').eq(i).val();
+                var role = $('.role .selectpicker').eq(i).val();
                 var name = $('.name').eq(i).val();
                 var emailId = $('.emailId').eq(i).val();
                 var username = $('.username').eq(i).val();

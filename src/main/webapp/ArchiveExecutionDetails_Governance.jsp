@@ -4,19 +4,15 @@
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>D3Sixty - Intake</title>
-<%--&lt;%&ndash;	<!-- Page Spinner -->&ndash;%&gt;--%>
-<%--&lt;%&ndash;	<link rel="stylesheet" href="css/pageSpinner/pageSpinner.css">&ndash;%&gt;--%>
-<%--	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>--%>
+	<title>D3Sixty - Archive_Details_Governance</title>
+    <!-- ========== CSS FILES ========== -->
 	<link rel="stylesheet" href="css/ArchiveExecutionCss/archiveCircleStatus/circle.css" />
-	<!-- ========== COMMON JS FILES ========== -->
+	<!-- ========== JQuery FILES ========== -->
 	<script src="js/jquery/jquery-2.2.4.min.js"></script>
 	<!-- ========== Data retrieve JS FILES ========== -->
-<%--	<script src="js/ArchiveExecutionDetailsGovernance/ArchiveExecutionGovernanceInfo/ArchiveExecutionGovernanceDataRetrieve.js"></script>--%>
-
-	<script src="js/ArchiveExecutionDetailsGovernance/try1.js"></script>
-
-<%--    select tag--%>
+	<script src="js/ArchiveExecutionDetailsGovernance/ArchiveExecutionGovernanceInfo/ArchiveExecutionGovernanceDataRetrieve.js"></script>
+<%--	<script src="js/ArchiveExecutionDetailsGovernance/try1.js"></script>--%>
+    <!-- ========== Select picker CSS FILES ========== -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
 		  referrerpolicy="no-referrer" />
 </head>
@@ -47,10 +43,6 @@
 		color: white !important;
 		box-shadow: none !important;
 	}
-	.top-scroll-lock{
-		background-color: #FFFFFF !important;
-		box-shadow: 0px 2px 8px 0px #0000001A;
-	}
 </style>
 
 <%@include file="Nav-Bar.jspf"%>
@@ -58,7 +50,7 @@
 	<div class="col p-0">
 <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%23f1f1f1'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
 	<ol class="breadcrumb px-4 m-0 ">
-		<li class="breadcrumb-item inactive my-3 text-light "><a href="DashBoard.jsp"
+		<li class="breadcrumb-item inactive my-3 text-light "><a href="OpportunityList.jsp"
 																 class="text-decoration-none breadcrumbtextinactive">Home</a></li>
 		<li class="breadcrumb-item inactive my-3 text-light "><a href="Governance_Home.jsp"
 		                                                                  class="text-decoration-none breadcrumbtextinactive">Governance</a></li>
@@ -67,103 +59,63 @@
 </nav>
 </div>
 </div>
-<div class="row m-0">
-	<div class="col p-0">
-		<div class="row d-flex justify-content-center m-0 pt-3 pb-2" id="Filter-container">
-			<div class="col-auto ">
-				phase:
-				<select class="selectpicker selectInput filter form-control" id="phase">
+<%--<div class="row m-0">--%>
+<%--	<div class="col p-0">--%>
+<%--		<div class="row d-flex justify-content-center m-0 pt-3 pb-2" id="Filter-container">--%>
+<%--			<div class="col-auto ">--%>
+<%--				phase:--%>
+<%--				<select class="selectpicker selectInput filter form-control" id="phase">--%>
 
-				</select>
-			</div>
-			<div class="col-auto">
-				wave:
-				<select class="selectpicker selectInput filter form-control" id="wave">
+<%--				</select>--%>
+<%--			</div>--%>
+<%--			<div class="col-auto">--%>
+<%--				wave:--%>
+<%--				<select class="selectpicker selectInput filter form-control" id="wave">--%>
 
-				</select>
-			</div>
+<%--				</select>--%>
+<%--			</div>--%>
+<%--		</div>--%>
+<%--	</div>--%>
+<%--</div>--%>
+<%--</div>--%>
+</div>
+<div class="container-fluid px-3 my-4">
+	<div class="row mx-3 d-flex justify-content-end">
+		<div class="col-auto p-0 mx-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Phase">
+			<select class="selectpicker selectInput filter form-control" id="phase">
+
+			</select>
+		</div>
+		<div class="col-auto p-0" data-bs-toggle="tooltip" data-bs-placement="top"  data-bs-title="Wave">
+			<select class="selectpicker selectInput filter form-control" id="wave">
+
+			</select>
 		</div>
 	</div>
+	<div class="accordion m-3 " id="ArchiveExecutionList">
+
+	</div>
 </div>
-</div>
-
-<div class="container-fluid px-3 my-4">
-	<center><label id="govmsg"style="color:#888888; margin-top:15px;">Please select Phase and Wave to view the details</label></center>
-	<%--     Title cards--%>
-	<form class="form-signin" name="loginForm" method="post" id="demo" style="display: none;">
-		<form action="" method="post" role="form">
 
 
-			<div class="row row-cols-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-4  row-cols-xxl-4 g-4 mx-1 bg-white p-0 mb-4 m-0 py-3">
-				<div class="col m-auto">
-					<div class="text-muted">
-						Phase Name:
-					</div>
-					<div class="text-bold" id = "phaseName">
-
-					</div>
-				</div>
-				<div class="col m-auto">
-					<div class="text-muted">
-						Wave Name:
-					</div>
-					<div class="text-bold" id = "waveName">
-
-					</div>
-				</div>
-				<div class="col m-auto">
-					<div class="text-muted">
-						Creation Date:
-					</div>
-					<div class="text-bold" id = "creation_date">
-
-					</div>
-				</div>
-				<div class="col m-auto">
-					<div class="text-muted">
-						Planned Completion Date:
-					</div>
-					<div class="text-bold" id = "completion_date">
-
-					</div>
-				</div>
-			</div>
-
-			<div class="card">
-				<div class="card-header Card-Header">
-					Archive Execution Application
-				</div>
-<%--				<td colspan='10' id="notfound" style="text-align: center;"><label style="color: black;">No Apps Found in this Wave.</label></td>--%>
-				<div class="accordion m-3 " id="ArchiveExecutionList">
-
-				</div>
-				<!-- </div> -->
-					<button type="button" class="btn btn-primary pull-right" id="ArchExecParentId"
-							data-bs-toggle="modal" data-bs-target="#ArchiveParentAddPopUp" style="display: none;">Parent
-						Add PopUp</button>
-					<!-- Child  -->
-					<button type="button" class="btn btn-primary pull-right" id="ArchExecChildId"
-							data-bs-toggle="modal" data-bs-target="#ArchiveChildAddPopUp" style="display: none;">Child Add
-						PopUp</button>
-					<!-- Edit Button -->
-					<button type="button" class="btn btn-primary pull-right" id="ArchExecEditId"
-							data-bs-toggle="modal" data-bs-target="#ArchiveEditPopUp" style="display: none;">Edit
-						PopUp</button>
-					<!-- Delete Button -->
-					<button type="button" class="btn btn-primary pull-right" id="ArchExecDeleteId"
-							data-bs-toggle="modal" data-bs-target="#ArchiveDeletePopUp" style="display: none;">Delete
-						PopUp</button>
-					<!-- Remarks Button -->
-					<button type="button" class="btn btn-primary pull-right" id="ArchExecRemarksId"
-							data-bs-toggle="modal" data-bs-target="#ArchiveRemarksPopUp" style="display: none;">Remark popup</button>
-			</div>
-
-		</form>
-	</form>
-</div>
-<%--<footer class="text-center">--%>
-<%--	D3Sixty Copyright &copy; 2022 <a href="" class="text-dark">Platform 3 Solutions</a>. All Rights Reserved.--%>
-<%--</footer>--%>
+<button type="button" class="btn btn-primary pull-right" id="ArchExecParentId"
+		data-bs-toggle="modal" data-bs-target="#ArchiveParentAddPopUp" style="display: none;">Parent
+	Add PopUp</button>
+<!-- Child  -->
+<button type="button" class="btn btn-primary pull-right" id="ArchExecChildId"
+		data-bs-toggle="modal" data-bs-target="#ArchiveChildAddPopUp" style="display: none;">Child Add
+	PopUp</button>
+<!-- Edit Button -->
+<button type="button" class="btn btn-primary pull-right" id="ArchExecEditId"
+		data-bs-toggle="modal" data-bs-target="#ArchiveEditPopUp" style="display: none;">Edit
+	PopUp</button>
+<!-- Delete Button -->
+<button type="button" class="btn btn-primary pull-right" id="ArchExecDeleteId"
+		data-bs-toggle="modal" data-bs-target="#ArchiveDeletePopUp" style="display: none;">Delete
+	PopUp</button>
+<!-- Remarks Button -->
+<button type="button" class="btn btn-primary pull-right" id="ArchExecRemarksId"
+		data-bs-toggle="modal" data-bs-target="#ArchiveRemarksPopUp" style="display: none;">Remark popup</button>
 
 
 <!-- Archive Execution Parent Add PopUp -->
@@ -445,20 +397,13 @@
 </script>
 <script src="js/navigation/navigation.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js" integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script
-		src="js/ArchiveExecutionDetailsGovernance/ArchiveExecutionGovernanceInfo/ArchiveExecutionGovernanceSaveValidation.js"></script>
-<script
-		src="js/ArchiveExecutionDetailsGovernance/ArchiveExecutionGovernanceInfo/ArchiveExecutionGovernanceSave.js"></script>
-<script
-		src="js/ArchiveExecutionDetailsGovernance/ArchiveExecutionGovernanceInfo/ArchiveExecutionGovernanceAddAjaxCall.js"></script>
-<script
-		src="js/ArchiveExecutionDetailsGovernance/ArchiveExecutionGovernanceInfo/ArchiveExecutionGovernanceEdit.js"></script>
-<script
-		src="js/ArchiveExecutionDetailsGovernance/ArchiveExecutionGovernanceInfo/ArchiveExecutionGovernanceDeleteAjaxCall.js"></script>
-<script
-		src="js/ArchiveExecutionDetailsGovernance/ArchiveExecutionGovernanceInfo/ArchiveExecutionRemarks.js"></script>
-<script
-		src="js/ArchiveExecutionDetailsGovernance/ArchiveExecutionGovernanceInfo/waveFilter.js"></script>
+<script src="js/ArchiveExecutionDetailsGovernance/ArchiveExecutionGovernanceInfo/ArchiveExecutionGovernanceSaveValidation.js"></script>
+<script src="js/ArchiveExecutionDetailsGovernance/ArchiveExecutionGovernanceInfo/ArchiveExecutionGovernanceSave.js"></script>
+<script src="js/ArchiveExecutionDetailsGovernance/ArchiveExecutionGovernanceInfo/ArchiveExecutionGovernanceAddAjaxCall.js"></script>
+<script src="js/ArchiveExecutionDetailsGovernance/ArchiveExecutionGovernanceInfo/ArchiveExecutionGovernanceEdit.js"></script>
+<script src="js/ArchiveExecutionDetailsGovernance/ArchiveExecutionGovernanceInfo/ArchiveExecutionGovernanceDeleteAjaxCall.js"></script>
+<script src="js/ArchiveExecutionDetailsGovernance/ArchiveExecutionGovernanceInfo/ArchiveExecutionRemarks.js"></script>
+<script src="js/ArchiveExecutionDetailsGovernance/ArchiveExecutionGovernanceInfo/waveFilter.js"></script>
 
 
 <script src="js/notification/notification.js"></script>

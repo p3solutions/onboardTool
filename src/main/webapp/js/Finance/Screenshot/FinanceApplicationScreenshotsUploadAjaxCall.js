@@ -27,9 +27,12 @@ $("#UploadFiles").click(function(){
                 notification("success","File uploaded successfully.","Note:");
                 $("#fileUpload").val('');
                 $("#UploadFiles").attr('disabled',true);
+                financeScreenshotRetrive();
             }
-            else
+            else{
                 notification("error","Problem occurred while file uploading.","Error:");
+                financeScreenshotRetrive();
+            }
         }
     });
 });

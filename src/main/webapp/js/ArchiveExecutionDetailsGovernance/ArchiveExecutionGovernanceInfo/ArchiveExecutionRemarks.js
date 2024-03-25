@@ -14,7 +14,7 @@ remarks = remarks.split(":=:");
 $("#govremarks").val(remarks);
 var taskGroup =$("#taskGroup"+seq_num+"").text();
 console.log("TASK GROUP",taskGroup);
-$("#remarksTaskGroup").html("Task Group : "+((taskGroup=="")?"NA":taskGroup));
+$("#remarksTaskGroup").html("Task Group : "+((taskGroup==="")?"NA":taskGroup));
 $("#ArchExecRemarksId").click();
 });
 

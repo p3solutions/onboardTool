@@ -72,15 +72,15 @@ function getAppList(data)
         "</div>" +
         "<div class=\"col-1 mt-2 m-auto\">" +
         "<div class=\" d-flex justify-content-end\">" +
-        "<a class=\"btn btn-outline-none addClass \" style ='"+optionWave+"' >" +
-        "<i class=\"fa-solid fa-circle-plus fa-xl addWaveIcon Card-Icon\"></i></a>" +
-        "<button type=\"button\" class=\" Card-Icon btn btn-outline-none border-0 dropdown-toggle-split\"" +
-        "data-bs-toggle=\"dropdown\" aria-expanded=\"false\">" +
+        "<a class=\"btn btn-outline-none addClass \" style = '"+optionWave+"'>" +
+        "<i class=\"fa-solid fa-circle-plus fa-xl addWaveIcon Card-Icon \"></i></a>" +
+        "<button type=\"button\" class=\"Card-Icon btn btn-outline-none border-0 dropdown-toggle-split\"" +
+        " data-bs-toggle=\"dropdown\" aria-expanded=\"false\">" +
         "<i class=\"fa-solid fa-ellipsis-vertical fa-lg \"></i>" +
         "</button>" +
         "<ul class=\"dropdown-menu p-0\">" +
-        "<li><a class=\"dropdown-item dropdown-styles\" onClick=\"edit('"+OpportunityId+"','"+opportunityName+"')\" >" +
-        "<i class= 'fa-solid fa-pencil iconColor' ></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
+        "<li><a class=\"dropdown-item dropdown-styles\"  onClick=\"edit('"+OpportunityId+"','"+opportunityName+"')\" >" +
+        "<i class= 'fa-solid fa-pencil iconColor'></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
         "</li>" +
         "<li>" +
         "<hr class=\"dropdown-divider m-0\">" +
@@ -92,10 +92,9 @@ function getAppList(data)
         "</div>" +
         "</div>" +
         "</div>" +
-        "<div class=\"row\">" +
         "<input type = 'hidden' class = 'oppName' value = '"+opportunityName+"'>"+
         "<input type = 'hidden' class = 'oppId' value = '"+OpportunityId+"'>"+
-        "<p class=\"card-text col-11 mt-3 m-auto AppCardBody\">"+Appdesc+"</p>"+
+        "<div class=\"row card-text col-11 mt-3 m-auto AppCardBody scrollbar\">" +Appdesc+
         "</div>" +
         "</div>" +
         "</div>";

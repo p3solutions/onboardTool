@@ -1,5 +1,3 @@
-
-
 // Assuming you are using jQuery
 $(document).ready(function() {
 	$("#inputFieldsRoles").hide();
@@ -154,17 +152,17 @@ function ajaxTemplateCallNoData(status) {
 				if (value.mandatory == "No") {
 					manadatory = "class = 'LabelName'";
 					disable_property = "";
-					delete_icon = "<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span>";
+					delete_icon = "<span class='fa-solid fa-trash-can text-danger deletepopup hidedelete' style='float:right;display:none;' ></span>";
 				}
 				if (value.mandatory == "Yes" && value.umandatory == "Yes") {
 					//manadatory="class = 'LabelName'";
 					//disable_property = "";
-					delete_icon = "<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span>";
+					delete_icon = "<span class='fa-solid fa-trash-can text-danger deletepopup hidedelete' style='float:right;display:none;' ></span>";
 				}
 				if (Type == "Text box") {
 					var template_check = "";
 					var inputtext = "<div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
-						"<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil ' style='float:right;display:none;'></span>\n";
+						"<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='fa-solid fa-pencil iconColor editpopup hidepencil ' style='float:right;display:none;'></span>\n";
 
 
 					if (ColumnName === 'cba' || ColumnName === 'infrastructurecostsavings' || ColumnName === 'costavoidance' || ColumnName === 'costarchive') {
@@ -173,7 +171,7 @@ function ajaxTemplateCallNoData(status) {
 					}
 					else if (ColumnName === 'softlicensecost') {
 						var inputtext1 = "<div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
-							"<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span>" + " <span class='info-icon' title=' It is software and licensing part of CBA.' style='margin-left: 5px;'>&#9432;</span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil ' style='float:right;display:none;'></span>\n";
+							"<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span>" + " <span class='fa-solid fa-circle-info iconColor' title=' It is software and licensing part of CBA.'></span></label>" + delete_icon + "<span class='fa-solid fa-pencil iconColor editpopup hidepencil ' style='float:right;display:none;'></span>\n";
 
 						inputtext1 = inputtext1 + "<input type='number' class='form-control' size='35' id='" + ColumnName + "' placeholder='$' name='" + ColumnName + "' value='" + Value + "' onkeypress='return isNumber(event)'" +
 							"</div>";
@@ -186,7 +184,7 @@ function ajaxTemplateCallNoData(status) {
 					else if (ColumnName === "phase") {
 						disable_property = "disabled='disabled'";
 						var inputtext1 = "<div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
-							"<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span>" + " <span class='info-icon' title='Phase gets populated once assigned application is assigned to a phase in governance module.' style='margin-left: 5px;'>&#9432;</span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil ' style='float:right;display:none;'></span>\n";
+							"<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span>" + " <span class='fa-solid fa-circle-info iconColor' title='Phase gets populated once assigned application is assigned to a phase in governance module.' ></span></label>" + delete_icon + "<span class='fa-solid fa-pencil iconColor editpopup hidepencil ' style='float:right;display:none;'></span>\n";
 
 						inputtext1 = inputtext1 + "<input type='text' " + disable_property + " class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
 							"</div>";
@@ -203,7 +201,7 @@ function ajaxTemplateCallNoData(status) {
 				}
 				else if (Type == "Datepicker") {
 					var inputdate = "<div class='form-group InputField' id='" + ColumnName + "_Row'>" +
-						"<label class='control-label' for= 'archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>\n" +
+						"<label class='control-label' for= 'archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='float:right;display:none;'></span>\n" +
 						"<input type='text' onchange='dateChangeFunction(this.value)' Class='form-control datepicker1' id='" + ColumnName + "' placeholder='mm/dd/yyyy' name='" + ColumnName + "' value='" + Value + "'/>" +
 						"</div>";
 					$('#inputFieldsAppInfo').append(inputdate);
@@ -211,7 +209,7 @@ function ajaxTemplateCallNoData(status) {
 				else if (Type == "Dropdown") {
 					var template_check = "";
 
-					var inputdrop = "<div class='form-group InputField' id = '" + ColumnName + "_Row'><label class='control-label' for= 'archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>" +
+					var inputdrop = "<div class='form-group InputField' id = '" + ColumnName + "_Row'><label class='control-label' for= 'archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='float:right;display:none;'></span>" +
 						"<select style = 'width:100%;' class ='form-select' id='" + ColumnName + "'name='" + ColumnName + "'>";
 					var Options = value.options;
 					var sub_option = Options.substring(0, Options.length);
@@ -228,7 +226,7 @@ function ajaxTemplateCallNoData(status) {
 				}
 				else if (Type == "Check box") {
 					var inputcheck = "<div class='form-group InputField'>" +
-						"<label class='control-label' for= 'archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span><br/>";
+						"<label class='control-label' for= 'archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='float:right;display:none;'></span><br/>";
 					var Options = value.options;
 					var sub_option = Options.substring(0, Options.length - 1);
 					var option = Options.split(",");
@@ -248,7 +246,7 @@ function ajaxTemplateCallNoData(status) {
 				}
 				else if (Type == "Radio box") {
 					var inputdrop = "<div class='form-group InputField'>" +
-						"<label class='control-label' for= 'archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;' '></span><br/>";
+						"<label class='control-label' for= 'archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='float:right;display:none;' '></span><br/>";
 					var Options = value.options;
 					var sub_option = Options.substring(0, Options.length - 1);
 					var option = Options.split(",");
@@ -266,7 +264,7 @@ function ajaxTemplateCallNoData(status) {
 				}
 				else if (Type == "file") {
 					inputfile = "<div class='form-group InputField'>\n" +
-						"<label class='control-label' for='archiveLegacy'><div class='required_fie'>" + LabelName + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'' ></span></div></label>\n" +
+						"<label class='control-label' for='archiveLegacy'><div class='required_fie'>" + LabelName + delete_icon + "<span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='float:right;display:none;'' ></span></div></label>\n" +
 						"<input type='file' name='" + ColumnName + "' accept='image/!*' id ='choosen_file_name'>\n" +
 						"</div>";
 					$('#inputFieldsAppInfo').append(inputfile);
@@ -274,7 +272,7 @@ function ajaxTemplateCallNoData(status) {
 				}
 				else if (Type == "Text area") {
 					var inputtext = "<div class='form-group InputField'>\n" +
-						"<label class='control-label' for='archiveLegacy'><div " + manadatory + ">" + LabelName + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>\n" +
+						"<label class='control-label' for='archiveLegacy'><div " + manadatory + ">" + LabelName + delete_icon + "<span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='float:right;display:none;'></span></div></label>\n" +
 						/*"<input type='text' class='form-control' id='"+ColumnName+"' placeholder='' name='"+ColumnName+"' value='"+Value+"'/>\n" +*/
 						"<textarea class='form-control' name='" + ColumnName + "' id='" + ColumnName + "'>" + Value + "</textarea>" +
 						"</div>";
@@ -284,7 +282,7 @@ function ajaxTemplateCallNoData(status) {
 					var style = (dependencyValue == "Internal") ? "style='display:block;'" : "style='display:none;'";//var style = (dependencyValue=="Internally Developed" || dependencyValue=="Yes")?"style='display:block;'":"style='display:none;'";
 					dependencyValue = "";
 					var inputtext = "<div class='form-group InputField hiddenText1' id ='" + ColumnName + "_Row' " + style + ">\n" +
-						"<label class='control-label' for='archiveLegacy'><div " + manadatory + ">" + LabelName + "<div class='deletepopup' style='display:none;'></div><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>\n" +
+						"<label class='control-label' for='archiveLegacy'><div " + manadatory + ">" + LabelName + "<div class='deletepopup' style='display:none;'></div><span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='float:right;display:none;'></span></div></label>\n" +
 						"<input type='text' class='form-control hiddenText' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
 						"</div>";
 					$('#inputFieldsAppInfo').append(inputtext);
@@ -354,22 +352,22 @@ function ajaxTemplateCall(status, Id, AppName) {
 				if (value.mandatory == "No") {
 					manadatory = "class = 'LabelName'";
 					disable_property = "";
-					delete_icon = "<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span>";
+					delete_icon = "<span class='fa-solid fa-trash-can text-danger deletepopup hidedelete' style='float:right;display:none;' ></span>";
 				}
 				if (value.mandatory == "Yes" && value.umandatory == "Yes") {
-					delete_icon = "<span class='glyphicon glyphicon-trash deletepopup hidedelete' style='float:right;display:none;' ></span>";
+					delete_icon = "<span class='fa-solid fa-trash-can text-danger deletepopup hidedelete' style='float:right;display:none;' ></span>";
 				}
 				if (Type == "Text box") {
 					var template_check = "";
 					var inputtext = "<div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
-						"<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil ' style='float:right;display:none;'></span>\n";
+						"<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='fa-solid fa-pencil iconColor editpopup hidepencil ' style='float:right;display:none;'></span>\n";
 					if (ColumnName === 'cba' || ColumnName === 'infrastructurecostsavings' || ColumnName === 'costavoidance' || ColumnName === 'costarchive') {
 						inputtext = inputtext + "<input type='number' class='form-control' size='35' id='" + ColumnName + "' placeholder='$' name='" + ColumnName + "' value='" + Value + "' onkeypress='return isNumber(event)'" +
 							"</div>";
 					}
 					else if (ColumnName === 'softlicensecost') {
 						var inputtext1 = "<div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
-							"<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span>" + " <span class='info-icon' title=' It is software and licensing part of CBA.' style='margin-left: 5px;'>&#9432;</span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil ' style='float:right;display:none;'></span>\n";
+							"<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span>" + " <span class='fa-solid fa-circle-info iconColor' title=' It is software and licensing part of CBA.' ></span></label>" + delete_icon + "<span class='fa-solid fa-pencil iconColor editpopup hidepencil ' style='float:right;display:none;'></span>\n";
 
 						inputtext1 = inputtext1 + "<input type='number' class='form-control' size='35' id='" + ColumnName + "' placeholder='$' name='" + ColumnName + "' value='" + Value + "' onkeypress='return isNumber(event)'" +
 							"</div>";
@@ -382,7 +380,7 @@ function ajaxTemplateCall(status, Id, AppName) {
 					else if (ColumnName === "phase") {
 						disable_property = "disabled='disabled'";
 						var inputtext1 = "<div class='form-group InputField' id ='" + ColumnName + "_Row'>\n" +
-							"<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span>" + " <span class='info-icon' title='Phase gets populated once assigned application is assigned to a phase in governance module.' style='margin-left: 5px;'>&#9432;</span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil ' style='float:right;display:none;'></span>\n";
+							"<label class='control-label' for='archiveLegacy'>" + LabelName + "<span " + manadatory + "></span>" + " <span class='fa-solid fa-circle-info iconColor' title='Phase gets populated once assigned application is assigned to a phase in governance module.' ></span></label>" + delete_icon + "<span class='fa-solid fa-pencil iconColor editpopup hidepencil ' style='float:right;display:none;'></span>\n";
 
 						inputtext1 = inputtext1 + "<input type='text' " + disable_property + " class='form-control' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
 							"</div>";
@@ -401,7 +399,7 @@ function ajaxTemplateCall(status, Id, AppName) {
 				else if (Type == "Datepicker") {
 
 					var inputdate = "<div class='form-group InputField' id='" + ColumnName + "_Row'>" +
-						"<label class='control-label' for= 'archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>\n" +
+						"<label class='control-label' for= 'archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='float:right;display:none;'></span>\n" +
 						"<input type='text' onchange='dateChangeFunction(this.value)' Class='form-control datepicker1' id='" + ColumnName + "' placeholder='mm/dd/yyyy' name='" + ColumnName + "' value='" + Value + "'/>" +
 						"</div>";
 					$('#inputFieldsAppInfo').append(inputdate);
@@ -412,7 +410,7 @@ function ajaxTemplateCall(status, Id, AppName) {
 				else if (Type == "Dropdown") {
 					var template_check = "";
 
-					var inputdrop = "<div class='form-group InputField' id = '" + ColumnName + "_Row'><label class='control-label' for= 'archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span>" +
+					var inputdrop = "<div class='form-group InputField' id = '" + ColumnName + "_Row'><label class='control-label' for= 'archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='float:right;display:none;'></span>" +
 						"<select style = 'width:100%;' class ='form-select' id='" + ColumnName + "'name='" + ColumnName + "'>";
 					var Options = value.options;
 					var sub_option = Options.substring(0, Options.length);
@@ -429,7 +427,7 @@ function ajaxTemplateCall(status, Id, AppName) {
 				}
 				else if (Type == "Check box") {
 					var inputcheck = "<div class='form-group InputField'>" +
-						"<label class='control-label' for= 'archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span><br/>";
+						"<label class='control-label' for= 'archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='float:right;display:none;'></span><br/>";
 					var Options = value.options;
 					var sub_option = Options.substring(0, Options.length - 1);
 					var option = Options.split(",");
@@ -449,7 +447,7 @@ function ajaxTemplateCall(status, Id, AppName) {
 				}
 				else if (Type == "Radio box") {
 					var inputdrop = "<div class='form-group InputField'>" +
-						"<label class='control-label' for= 'archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;' '></span><br/>";
+						"<label class='control-label' for= 'archiveLegacy'>" + LabelName + "<span " + manadatory + "></span></label>" + delete_icon + "<span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='float:right;display:none;' '></span><br/>";
 					var Options = value.options;
 					var sub_option = Options.substring(0, Options.length - 1);
 					var option = Options.split(",");
@@ -467,7 +465,7 @@ function ajaxTemplateCall(status, Id, AppName) {
 				}
 				else if (Type == "file") {
 					inputfile = "<div class='form-group InputField'>\n" +
-						"<label class='control-label' for='archiveLegacy'><div class='required_fie'>" + LabelName + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'' ></span></div></label>\n" +
+						"<label class='control-label' for='archiveLegacy'><div class='required_fie'>" + LabelName + delete_icon + "<span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='float:right;display:none;'' ></span></div></label>\n" +
 						"<input type='file' name='" + ColumnName + "' accept='image/!*' id ='choosen_file_name'>\n" +
 						"</div>";
 					$('#inputFieldsAppInfo').append(inputfile);
@@ -475,7 +473,7 @@ function ajaxTemplateCall(status, Id, AppName) {
 				}
 				else if (Type == "Text area") {
 					var inputtext = "<div class='form-group InputField'>\n" +
-						"<label class='control-label' for='archiveLegacy'><div " + manadatory + ">" + LabelName + delete_icon + "<span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>\n" +
+						"<label class='control-label' for='archiveLegacy'><div " + manadatory + ">" + LabelName + delete_icon + "<span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='float:right;display:none;'></span></div></label>\n" +
 						/*"<input type='text' class='form-control' id='"+ColumnName+"' placeholder='' name='"+ColumnName+"' value='"+Value+"'/>\n" +*/
 						"<textarea class='form-control' name='" + ColumnName + "' id='" + ColumnName + "'>" + Value + "</textarea>" +
 						"</div>";
@@ -485,7 +483,7 @@ function ajaxTemplateCall(status, Id, AppName) {
 					var style = (dependencyValue == "Internal") ? "style='display:block;'" : "style='display:none;'";//var style = (dependencyValue=="Internally Developed" || dependencyValue=="Yes")?"style='display:block;'":"style='display:none;'";
 					dependencyValue = "";
 					var inputtext = "<div class='form-group InputField hiddenText1' id ='" + ColumnName + "_Row' " + style + ">\n" +
-						"<label class='control-label' for='archiveLegacy'><div " + manadatory + ">" + LabelName + "<div class='deletepopup' style='display:none;'></div><span class='glyphicon glyphicon-pencil editpopup hidepencil' style='float:right;display:none;'></span></div></label>\n" +
+						"<label class='control-label' for='archiveLegacy'><div " + manadatory + ">" + LabelName + "<div class='deletepopup' style='display:none;'></div><span class='fa-solid fa-pencil iconColor editpopup hidepencil' style='float:right;display:none;'></span></div></label>\n" +
 						"<input type='text' class='form-control hiddenText' size='35' id='" + ColumnName + "' placeholder='' name='" + ColumnName + "' value='" + Value + "'/>\n" +
 						"</div>";
 					$('#inputFieldsAppInfo').append(inputtext);

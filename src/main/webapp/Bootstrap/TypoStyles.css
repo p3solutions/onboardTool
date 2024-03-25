@@ -1,3 +1,181 @@
+body {
+    font-family: "Roboto";
+    background-color: #f1f9ff;
+}
+
+.breadcrumb {
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    background: #4B92CE !important;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1019607843);
+}
+
+.breadcrumbtextinactive {
+    color: #FFFFFF !important;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    cursor: pointer;
+}
+
+.breadcrumbtextactive {
+    color: #FFFFFF !important;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.nav-theme {
+    background-color: White;
+}
+
+.selectednav > a {
+    background-color: #4B92CE !important;
+    color: #FFFFFF !important;
+}
+
+.iconColor {
+    color: #237DCA !important;
+}
+
+.iconColor:hover {
+    color: #0B619C;
+}
+
+.navdrop {
+    margin-left: -150px;
+    max-width: 200px;
+}
+
+@media screen and (max-width: 991px) {
+    .navdrop {
+        margin-left: 0px;
+        max-width: 100%;
+    }
+}
+footer, a {
+    color: #595959;
+}
+
+.required_fie:after {
+    content: " *";
+    color: red;
+}
+
+.primaryButton {
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    background-color: #237dca;
+    color: #FFFFFF;
+    width: 75px;
+    height: 35px;
+    border-radius: 6px;
+}
+
+.primaryButton:hover {
+    background-color: #3a9aee;
+    color: #FFFFFF;
+}
+
+.secondaryButton {
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    background-color: #2a3f57;
+    color: #FFFFFF;
+    width: 75px !important;
+    height: 35px !important;
+    border-radius: 6px;
+}
+
+.secondaryButton:hover {
+    background-color: #1c252c;
+    color: #FFFFFF;
+}
+
+.tertiaryButton {
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    background-color: #F6FAFD !important;
+    border: 1px solid #BCBFC2 !important;
+    color: #2A3F57;
+    width: 75px;
+    height: 35px;
+    border-radius: 6px;
+}
+
+.tertiaryButton:hover{
+    border-color: #BCBFC2 !important;
+    background-color: #a9c7e6;
+}
+
+/*.buttonFrame {*/
+/*    font-family: "Roboto";*/
+/*    font-size: 14px;*/
+/*    font-weight: 500;*/
+/*    line-height: 16px;*/
+/*    letter-spacing: 0em;*/
+/*    text-align: left;*/
+/*    padding: 10px;*/
+/*    background-color: linear-gradient(0deg, #BCBFC2, #BCBFC2), linear-gradient(0deg, #F6FAFD, #F6FAFD);*/
+/*    border: 1px solid #BCBFC2;*/
+/*}*/
+.dangerButton{
+        font-family: "Roboto";
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16px;
+        letter-spacing: 0em;
+        text-align: left;
+    border-color: #DE3922 !important;
+    background-color: #DE3922 !important;
+    color: #FFFFFF;
+    width: 50px;
+    height: 30px;
+    border-radius: 6px;
+}
+.dangerButton:hover{
+    border-color: #b81c07 !important;
+    background-color: #eb280e !important;
+}
+
+.dangerButtonCancel{
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    border-color: #BCBFC2 !important;
+    background-color: #e3e3e3 !important;
+    color: #474747;
+    width: 50px;
+    height: 30px;
+    border-radius: 6px;
+}
+.dangerButtonCancel:hover{
+    border-color: #c4c3c2 !important;
+    background-color: #d9d9d9 !important;
+}
+
 .Card-Header {
     background-color: #d9edff !important;
     font-family: "Roboto";
@@ -17,26 +195,42 @@
     font-weight: 500;
     line-height: 19px;
 }
+.bg-danger {
+    background-color: #D33922 !important;
+}
 
-.Table-Header, th {
-    font-family: "Roboto";
+.btn-primary {
+    background-color: #237DCA !important;
+}
+
+.btn-primary:hover {
+    background-color: #3a9aee !important;
+}
+
+.btn-secondary {
+    background-color: #2A3F57 !important;
+}
+
+.btn-secondary:hover {
+    background-color: #1c252c !important;
+}
+.btn-tertiary {
+    border: 1;
+    border-color: #BCBFC2 !important;
+    background-color: #F6FAFD !important;
+}
+
+.btn-tertiary:hover {
+    border: 1;
+    border-color: #BCBFC2 !important;
+    background-color: #a9c7e6 !important;
+}
+
+.modal-content {
+    font-family: "Roboto" !important;
     font-size: 14px !important;
-    font-weight: 700 !important;
-    line-height: 19px;
+    font-weight: 400 !important;
     color: #474747 !important;
-}
-
-.Table-Body, td {
-    font-family: "Roboto";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 19px;
-    color: #474747 !important;
-}
-
-.required_fie:after {
-    content: " *";
-    color: red;
 }
 
 .accordion-button {
@@ -48,30 +242,141 @@
     line-height: 25px !important;
     letter-spacing: 0em !important;
 }
-.dropdown-styles{
+
+.dropdown-item.dropdown-styles {
+    background-color: #FFFFFF!important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
 }
-.dropdown-styles:hover{
+
+.dropdown-item.dropdown-styles:hover {
     background-color: #d9edff !important;
     color: #474747 !important;
 }
-.btn-light{
-    background-color: #FFFFFF !important;
-    color: #2A3F57 !important;
-    font-family: "Roboto";
-    font-size: 14px !important;
-    font-weight: 400 !important;
-    letter-spacing: 0em !important;
-    text-align: left;
-    border-style: none !important;
-    border: 1px solid #CED0D2 !important;
-    border-radius: 6px !important;
-    min-height: 38px !important;
-}
-.bootstrap-select .dropdown-toggle:focus, .bootstrap-select>select.mobile-device:focus+.dropdown-toggle{
+
+.bootstrap-select .dropdown-toggle:focus, .bootstrap-select > select.mobile-device:focus + .dropdown-toggle {
     outline: none !important;
 }
-.dropdown-menu{
+
+.dropdown-menu {
     padding: 0px !important;
+}
+
+.custom-show-entities {
+    box-shadow: none !important;
+    min-width: 50px !important;
+    border: none !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom: 1px solid black !important;
+}
+
+.versioninfo {
+    font-family: "Roboto";
+    font-weight: 600;
+
+}
+
+footer {
+    background-color: #d8d8d8;
+    font-size: 11px;
+    line-height: 20px;
+    color: #595959;
+}
+
+.form-group1 {
+    color: #474747;
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.modal-close-btn {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23FFFFFFFF'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") !important;
+    opacity: 1 !important;
+}
+
+.custom-tooltip {
+    --bs-tooltip-bg: rgb(69, 69, 69) !important;
+    font-size: 12px !important;
+}
+
+.form-control::-moz-placeholder {
+    font-size: 14px;
+}
+
+.form-control::placeholder {
+    font-size: 14px;
+}
+
+.form-control {
+    font-family: "Roboto", sans-serif !important;
+    font-size: 14px !important;
+    color: #474747 !important;
+}
+h5.modal-title{
+    font-size: 16px!important;
+}
+.modal-header {
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0em;
+    text-align: left;
+    box-shadow: -1px 2px 4px 0px rgba(0, 0, 0, 0.0784313725) !important;
+    color: #FFFFFF !important;
+    height: 50px;
+    background-color: #6BB5F4;
+    border-radius: 8px, 8px, 0px, 0px !important;
+}
+
+.Table-Header, th {
+    background-color: #f2f7fc !important;
+    font-family: "Roboto";
+    font-weight: bold !important;;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    line-height: 19px;
+    color: #474747 !important;
+    padding: 5px 5px 5px 8px !important;
+    vertical-align: middle;
+}
+
+.Table-Body, td {
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19px;
+    color: #474747 !important;
+    /*padding: 5px 5px 5px 8px !important;*/
+    vertical-align: middle;
+}
+.pagination-entities{
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19px;
+    color: #474747 !important;
+}
+a.dropdown-item{
+    padding-top: 5px ;
+    padding-bottom: 5px;
+}
+a.dropdown-item:hover{
+    background-color: rgb(245, 245, 245) !important;
+}
+/*pagination*/
+ul.pagination{
+    cursor: pointer;
+}
+.page-link.active{
+    background-color: #d9edff ;
+    color: #474747 ;
+    border-color: #d9edff ;
+}
+.page-link{
+    color: #474747;
 }

@@ -255,7 +255,7 @@ function appendRowFunction(data){
                     "<td><input type='text' Class='form-control planEnd' placeholder='mm/dd/yyyy' value='" + planEnd + "' disabled/></td>" +
                     "<td><input type='text' Class='form-control actStart' placeholder='mm/dd/yyyy' value='" + actStart + "' disabled/></td>" +
                     "<td><input type='text' Class='form-control actEnd' placeholder='mm/dd/yyyy' value='" + actEnd + "' disabled/></td>" +
-                    "<td>" +
+                    "<td class='px-0'>" +
                     "<div class='clearfix completion'>" +
                     "<input type='text' style='display:none;width:40px; height:40px;'class='per pro' id='perc_" + i + "'value=" + completion + ">" +
                     "<div class='c100 p" + completion + " small circle' id='pperc_" + i + "'>" +
@@ -335,7 +335,7 @@ function appendRowFunction(data){
                     "<td><input type='text' Class='form-control datepicker1 planEnd' placeholder='mm/dd/yyyy' value='" + planEnd + "' maxlength='0' id='pln_end" + t + "'/></td>" +
                     "<td><input type='text' Class='form-control datepicker1 actStart' placeholder='mm/dd/yyyy' value='" + actStart + "' maxlength='0' id='act_srt" + t + "'/></td>" +
                     "<td><input type='text' Class='form-control datepicker1 actEnd' placeholder='mm/dd/yyyy' value='" + actEnd + "' maxlength='0' id='act_end" + t + "'/></td>" +
-                    "<td>" +
+                    "<td class='px-0'>" +
                     "<div class='clearfix completion'>" +
                     "<input type='text' style='display:none;width:40px; height:40px;'class='per pro' id='perc_" + i + "'value=" + completion + ">" +
                     "<div class='c100 p" + completion + " small circle' id='pperc_" + i + "'>" +
@@ -415,7 +415,7 @@ function appendRowFunction(data){
                     "<td><input type='text' Class='form-control datepicker1 planEnd' placeholder='mm/dd/yyyy' value='" + planEnd + "' maxlength='0' id='pln_end" + t + "'/></td>" +
                     "<td><input type='text' Class='form-control datepicker1 actStart' placeholder='mm/dd/yyyy' value='" + actStart + "' maxlength='0' id='act_srt" + t + "'/></td>" +
                     "<td><input type='text' Class='form-control datepicker1 actEnd' placeholder='mm/dd/yyyy' value='" + actEnd + "' maxlength='0' id='act_end" + t + "'/></td>" +
-                    "<td>" +
+                    "<td class='px-0'>" +
                     "<div class='clearfix completion'>" +
                     "<input type='text' style='display:none;width:40px; height:40px;'class='per pro' id='perc_" + i + "'value=" + completion + ">" +
                     "<div class='c100 p" + completion + " small circle' id='pperc_" + i + "'>" +

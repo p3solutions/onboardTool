@@ -2,18 +2,23 @@
 // map the table with id
 var taskTypeArr = [];
 var n;
-$(document).ready(function()
-{
-    var phasename="";
-    var waveid = "";
-    var wavename = "";
-    console.log("WA",wavename);
-    var creation_date="";
-    var completion_date="";
-    $('#phaseName').html(phasename);
-    $('#waveName').html(wavename);
-    $('#creation_date').html(creation_date);
-    $('#completion_date').html(completion_date);
+var phasename="";
+var waveid = "";
+var wavename = "";
+console.log("WA",wavename);
+var creation_date="";
+var completion_date="";
+$(document).ready(function() {
+    // var phasename="";
+    // var waveid = "";
+    // var wavename = "";
+    // console.log("WA",wavename);
+    // var creation_date="";
+    // var completion_date="";
+    // $('.phaseName').html(phasename);
+    // $('.waveName').html(wavename);
+    // $('.creation_date').html(creation_date);
+    // $('.completion_date').html(completion_date);
     $('#spinner').hide();
     users=[];
     taskTypeArr = [];
@@ -38,6 +43,10 @@ $(document).ready(function()
                 console.log("DATA ---> : ",data.length);
                 var s=data.length;
                 appendRowFunction(data);
+                $('.phaseName').html(phasename);
+                $('.waveName').html(wavename);
+                $('.creation_date').html(creation_date);
+                $('.completion_date').html(completion_date);
 
                 // $('.assignedToDrop').selectpicker();
                 var script="<script>$('.datepicker1').datepicker({\n" +
@@ -65,7 +74,7 @@ $(document).ready(function()
             }
         });
         var phasename = phase == false ? "" : phase;
-        $('#phaseName').html(phasename);
+        $('.phaseName').html(phasename);
     });
 
 
@@ -176,6 +185,36 @@ function appendRowFunction(data) {
                     "      </button>" +
                     "    </h2>"+"<div id='" + collapse1 + "' class='accordion-collapse collapse ' aria-labelledby='" + heading + "' data-bs-parent='#ArchiveExecutionList'>" +
                     "      <div class='accordion-body'>" +
+                    "<div class=\"row row-cols-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-4  row-cols-xxl-4 g-4 mx-1 bg-white p-0 mb-4 m-0 py-3\">\n" +
+                    "<div class=\"col m-auto\">" +
+                    "<div class=\"text-muted\">" +
+                    "Phase Name:" +
+                    "</div>" +
+                    "<div class=\"text-bold phaseName\">" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class=\"col m-auto\">" +
+                    "<div class=\"text-muted\">" +
+                    "Wave Name:" +
+                    "</div>" +
+                    "<div class=\"text-bold waveName\" >" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class=\"col m-auto\">" +
+                    "<div class=\"text-muted\">" +
+                    "Creation Date:" +
+                    "</div>" +
+                    "<div class=\"text-bold creation_date\" >" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class=\"col m-auto\">" +
+                    "<div class=\"text-muted\">" +
+                    "Planned Completion Date:" +
+                    "</div>" +
+                    "<div class=\"text-bold completion_date\">" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"+
                     "<div class=\"table-responsive\">" +
                     "                                <table class=\"table table-bordered\">" +
                     "                                    <thead class=\"text-center Table-Header\">" +
@@ -243,6 +282,7 @@ function appendRowFunction(data) {
             }
             num++;
             noDataFound(num)
+
         }
 
         else {
@@ -250,13 +290,13 @@ function appendRowFunction(data) {
             taskTypeArr = ['', 'Activity', 'Deliverable'];
             checkIndex = true;
             var waveid = value.waveId == false ? "" : value.waveId;
-            var wavename = value.waveName == false ? "" : value.waveName;
+            wavename = value.waveName == false ? "" : value.waveName;
 
-            var creation_date = value.creation_date == false ? "" : value.creation_date;
-            var completion_date = value.completion_date == false ? "" : value.completion_date;
-            $('#waveName').html(wavename);
-            $('#creation_date').html(creation_date);
-            $('#completion_date').html(completion_date);
+             creation_date = value.creation_date == false ? "" : value.creation_date;
+            completion_date = value.completion_date == false ? "" : value.completion_date;
+            $('.waveName').html(wavename);
+            $('.creation_date').html(creation_date);
+            $('.completion_date').html(completion_date);
         }
         if (level == 1 && Id !== previousoppID) {
             var row ="</tbody></table>  </div>  </div>  </div>";
@@ -265,6 +305,7 @@ function appendRowFunction(data) {
         i++;
     });
     getData();
+
 }
 
 

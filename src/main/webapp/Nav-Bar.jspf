@@ -5,25 +5,12 @@
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 
 </head>
-<style>
-    .nav-theme{
-        background-color: White;
-    }
-    .selectednav>a{
-        background-color: #4B92CE !important;
-        color: #FFFFFF !important;
-    }
-</style>
 <body>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Date" %>
-<%
-    SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    Date newDate1 = new Date();
-    System.out.println("[INFO]-----" + formatter1.format(newDate1) + "-----Accessed OpportunityList JSP PAGE-----[INFO]");
-%>
 <%@page language="java" %>
 <%@page import="java.text.DateFormat" %>
 <%@page import="java.text.SimpleDateFormat" %>
@@ -111,39 +98,39 @@
     <div class="row m-0">
         <div class="col p-0">
             <nav class="navbar navbar-expand-lg nav-theme py-0">
-                <div class="container-fluid">
-                    <a class="navbar-brand mx-2" href="#">
+                <div class="container-fluid px-0">
+                    <a class="navbar-brand mx-2" href="DashBoard.jsp">
                         <img src="./images/D3-Logo.png" class="w-50 h-50" alt="D360 logo">
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                    <button class="navbar-toggler mx-2 btn-outline-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarText">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-2">
-                            <li class="nav-item moduleIcon mx-1 ">
-                                <a class="nav-link iconColor text-start text-lg-center fs-6" aria-current="page"
+                            <li class="nav-item moduleIcon ">
+                                <a class="nav-link px-1 iconColor text-start text-lg-center fs-6" aria-current="page"
                                    href="OpportunityList.jsp"><i
                                         class="fa-solid fa-laptop iconAlign iconColor fa-2x"
                                         title="Applications"></i><br>Applications</a>
                             </li>
-                            <li class="nav-item moduleIcon mx-1 mx-lg-2">
-                                <a class="nav-link iconColor text-start text-lg-center fs-6" href="Admin_Userslist.jsp"><i
+                            <li class="nav-item moduleIcon ">
+                                <a class="nav-link iconColor px-1 px-lg-2 text-start text-lg-center fs-6" href="Admin_Userslist.jsp"><i
                                         class="fa-solid fa-user-gear iconAlign iconColor fa-2x"
                                         title="Administration"></i><br>Administration</a>
                             </li>
-                            <li class="nav-item moduleIcon mx-1 mx-lg-2">
-                                <a class="nav-link iconColor text-start text-lg-center fs-6" href="Governance_Home.jsp"><i
+                            <li class="nav-item moduleIcon">
+                                <a class="nav-link iconColor px-1 px-lg-2 text-start text-lg-center fs-6" href="Governance_Home.jsp"><i
                                         class="fa-solid fa-file-shield iconAlign iconColor fa-2x"
                                         title="Governance"></i><br>Governance</a>
                             </li>
-                            <li class="nav-item moduleIcon mx-1 mx-lg-2">
-                                <a class="nav-link iconColor text-start text-lg-center fs-6" href="FinanceList.jsp"><i
+                            <li class="nav-item moduleIcon ">
+                                <a class="nav-link iconColor px-1 px-lg-2 text-start text-lg-center fs-6" href="FinanceList.jsp"><i
                                         class="fa-solid fa-money-check-dollar iconAlign iconColor fa-2x"
                                         title="Finance"></i><br>Finance</a>
                             </li>
-                            <li class="nav-item moduleIcon mx-1 mx-lg-2">
-                                <a class="nav-link iconColor text-start text-lg-center fs-6" href="DashBoard.jsp">
+                            <li class="nav-item moduleIcon">
+                                <a class="nav-link iconColor px-1 px-lg-2 text-start text-lg-center fs-6" href="DashBoard.jsp">
                                     <i class="fa-solid fa-chart-simple iconAlign iconColor fa-2x"
                                        title="Dashboards"></i><br>Dashboards
                                 </a>
@@ -152,13 +139,13 @@
                         <span class="navbar-text mx-md-3 p-0">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
                         <li class="nav-item dropdown">
-                            <a class="nav-link iconColor" href="#" role="button"
+                            <a class="nav-link iconColor"  role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-user-circle  iconColor fa-2x"></i>
                                 <span class=" dropdown-toggle iconColor"></span><br>Profile
                             </a>
                             <ul class="dropdown-menu navdrop text-center">
-                                <li><a class="dropdown-item" href="#"><i
+                                <li><a class="dropdown-item"><i
                                         class="fas fa-user-circle fa-3x iconColor"></i><br/>Signed
                                     in as <br/> <b class="user-ellipsis "><%=Encode.forHtml(userName)%></b></a></li>
                                 <li>
@@ -167,7 +154,7 @@
 
 							    </li>
 								<hr class="dropdown-divider m-0">
-                                <li><a class="dropdown-item" href="#" data-bs-target="#changepwd"
+                                <li><a class="dropdown-item" data-bs-target="#changepwd"
                                        data-bs-toggle="modal">Change Password</a></li>
                                 <li>
                                     <hr class="dropdown-divider m-0">
@@ -217,6 +204,10 @@
 	%>
 
 </body>
+<script>
+    tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
 <script src="js/admin_modify_module/admin_role.js"></script>
 <%--<script src="js/Finance/Role_Check.js"></script>--%>
 <%--<script src="js/admin_modify_module/changepwd.js"></script>--%>

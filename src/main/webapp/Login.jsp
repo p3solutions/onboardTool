@@ -528,8 +528,8 @@ font-family:sans-serif;
 	
 	
 <%
-    Logger logger =  Logger.getRootLogger();
-    logger.info("====================Accessed Login.Jsp =========================");
+    Logger logger =  Logger.getLogger("Login.jsp");
+    logger.info("Accessed Login.Jsp");
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     Date date = new Date();
     System.out.println("[INFO]-----" + formatter.format(date) + "-----Accessed Login JSP PAGE-----[INFO]"); %>

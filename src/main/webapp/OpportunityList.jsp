@@ -12,14 +12,13 @@
     <!-- ========== SELECT TAG IMPORT ========== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
           referrerpolicy="no-referrer" />
-<%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>--%>
 </head>
 <style>
     .addApplication {
         border: none !important;
     }
-    div.scrollbar {
-        height: 110px;
+        div.scrollbar {
+        height: 90px ;
         overflow-y: auto;
     }
 
@@ -148,7 +147,7 @@
                         <span class="input-group-append btn1 btn search-button">
                                 <i class="fa fa-search iconColor"></i>
                         </span>
-                            <input class="form-control" 1type="search" placeholder="Search..." id="appFilter">
+                            <input class="form-control" type="search" placeholder="Search..." id="appFilter" >
                         </div>
                     </div>
                     <div class="col-1 px-0 mb-3 mb-lg-0">
@@ -335,7 +334,13 @@
     </div>
 </div>
 <%@include file="Footer.jspf"%>
-
+<script>
+    $(document).ready(function() {
+        $('#category').selectpicker({
+            title: ''
+        });
+    });
+</script>
 <script>
     $(document)
         .ready(

@@ -219,7 +219,7 @@
                         <div>
                             <input type="button" value="Upload" class="btn primaryButton text-center" name="submit"
                                    id="UploadFiles" />
-                            <button type="button" id="add_btn" class="btn primaryButton text-center w-auto mx-2" href="#"
+                            <button type="button" id="add_btn" class="btn primaryButton text-center w-auto mx-2"
                                     data-bs-toggle="modal" data-bs-target="#Legacy_ScrPopUp">View Uploaded
                                 Files</button>
                         </div>
@@ -414,13 +414,13 @@
             </div>
             <div class="modal-body">
                 <table class="table table-bordered table-striped" id="legacy_datatable">
-                    <thead class="Table-Header text-center">
+                    <thead class="Table-Header">
                     <tr>
                         <th>File Name</th>
                         <th>Action</th>
                     </tr>
                     </thead>
-                    <tbody class="Table-Body text-center mx-5" id="Legacy_Scr_List">
+                    <tbody class="Table-Body" id="Legacy_Scr_List">
                     </tbody>
                 </table>
                 <div class="modal-footer">
@@ -511,6 +511,8 @@
 <script type="text/javascript" src="js/Finance/Screenshot/FinanceAppInfoFileUpload.js"></script>
 <script src="js/navigation/navigation.js"></script>
 
-
+<!-- ========== Toastr ========== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"  rel="stylesheet">
 </body>
 </html>

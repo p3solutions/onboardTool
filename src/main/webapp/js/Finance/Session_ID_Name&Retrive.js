@@ -56,8 +56,7 @@ $(document).on('keyup focus', '#financeappname', function () {
 
                         $("#financeappname").val(selectedName);
                         financeSetSessionAttribute(selectedId, selectedName);
-                        ajaxTemplateCallNoData("Retrieve");
-                        ajaxscrcall(selectedId);
+
                         $("#suggestionDropdown").removeClass("financeSuggestionScrollBar");
                         $("#suggestionDropdown").hide();
                         $("#financeappname").prop('disabled', true);
@@ -87,6 +86,8 @@ $(document).on('keyup focus', '#financeappname', function () {
             type: "POST",
             data: {selectedId: selectedId,selectedName:selectedName },
             success: function (data) {
+                ajaxTemplateCallNoData("Retrieve");
+                ajaxscrcall(selectedId);
                 // Handle success if needed
                 $("#UploadFiles").attr('disabled',false);
             },

@@ -91,11 +91,17 @@ var phaseName = $(this).val();
 if(phaseName!="Select")
     {
    GovBindWave();
+        var check =  $("#wave option:").val();
+        console.log("check wave phase !-select val  : " + check);
     $("#wave").val("Select");
+           // var check =  $("#wave").val($("#mySelect option:first").val());
+
     }
     if(phaseName=="Select")
     {
    GovBindWaveAll();
+        var check1 =  $("#wave option:first").val();
+        console.log("check wave phase == select val  : " + check1);
     $("#wave").val("Select");
     }
 });

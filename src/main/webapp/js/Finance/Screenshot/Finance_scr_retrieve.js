@@ -1,5 +1,8 @@
 $(document).ready(function()
 {
+    financeScreenshotRetrive();
+});
+function financeScreenshotRetrive(){
     $.ajax({
         url: "Finance_Scr_Retrieve_Servlet",
         type: 'POST',
@@ -9,10 +12,10 @@ $(document).ready(function()
             if (!$.isArray(data)) {
                 data = [data];
             }
-            appendRowFunction(data);
+            FinanceScreenShotAppendRowFunction(data);
         },
     });
-});
+}
 function ajaxscrcall(Id){
     $.ajax({
         url: "Finance_Scr_Retrieve_Servlet",
@@ -24,20 +27,21 @@ function ajaxscrcall(Id){
             if (!$.isArray(data)) {
                 data = [data];
             }
-            appendRowFunction(data);
+            FinanceScreenShotAppendRowFunction(data);
         },
     });
 }
-function appendRowFunction(data){
+function FinanceScreenShotAppendRowFunction(data){
     $.each(data, function(key, value){
         var Id = value.AppId;
         var File_Name = value.File_Name;
         var row = "<tr>"+
-            "<td style='text-align:center;vertical-align: middle; display:none;'><label class='control-label' for=''>"+Id+"</label>" +
+            "<td style='display:none;'><label class='control-label' for=''>"+Id+"</label>" +
             "</td>"+
-            "<td style='text-align:center;vertical-align: middle;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;max-width:10ch;' data-bs-toggle='tooltip' data-bs-placement='top' title='"+File_Name+"'><label class='control-label ' for=''>"+File_Name+"</label>" +
+            "<td style='white-space:nowrap;text-overflow:ellipsis;overflow:hidden;max-width:10ch;' data-bs-toggle='tooltip' data-bs-placement='top' title='"+File_Name+"'><label class='control-label ' for=''>"+File_Name+"</label>" +
             "</td>"+
-            "<td style='text-align:center;vertical-align: middle;'><span class='glyphicon glyphicon-download-alt download_btn'style='display:block; margin-left:-15px;'></span><span class='glyphicon glyphicon-trash legacy_scr_deletepopup'id='legacy_scr_delete_icon'style='display:block;float:right;margin-top:-13px; margin-right:18px; margin-left:10px;'></span>"+
+            "<td class='text-center'><span class='fa fa-download iconColor download_btn'></span><span class='mx-4'</span><span class='fa-solid fa-trash-can text-danger legacy_scr_deletepopup' id='legacy_scr_delete_icon' " +
+            "></span>"+
             "</td>"+
             "</tr>";
         $("#Legacy_Scr_List").append(row);

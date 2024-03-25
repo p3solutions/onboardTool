@@ -106,10 +106,10 @@
                         <div class="accordion-body" id="inputFieldsPurpose">
                             Purpose <br>
                             <textarea rows="3"
-                                      class="changeText Purpose my-2 w-100">The scope of this document is to gather information pertinent for data archiving, including creating custom screen/display views, with data that is specified to be non-transactional and is static/read-only. Retention policies will be applied according to Company Policies. A job aid will be provided for general navigation, performing searches, and basic functionality within the Archive.   </textarea>
+                                      class="changeText form-control Purpose my-2 w-100">The scope of this document is to gather information pertinent for data archiving, including creating custom screen/display views, with data that is specified to be non-transactional and is static/read-only. Retention policies will be applied according to Company Policies. A job aid will be provided for general navigation, performing searches, and basic functionality within the Archive.   </textarea>
                             <br>
                             Scope <br>
-                            <textarea id="todolist" class="changeText Scope my-2 w-100" name="todolist" rows="3"
+                            <textarea id="todolist" class="changeText form-control Scope my-2 w-100" name="todolist" rows="3"
                                       id="scope_temp">Read-only data will be archived</textarea> <br>
                             <div class="row my-2">
                                 <div class="col-12 d-flex justify-content-center">
