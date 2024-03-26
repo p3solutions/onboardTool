@@ -126,7 +126,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn buttonFrame tertiaryButton text-center" data-bs-dismiss="modal">
+				<button type="button" class="btn  tertiaryButton text-center" data-bs-dismiss="modal">
 					Close
 				</button>
 				<button type="button" class="btn primaryButton text-center w-auto" id="change_PWD">Change

@@ -4,23 +4,20 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>D3Sixty - Intake</title>
-<%--    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">--%>
-
+<title>D3Sixty - ArchiveExecutionDetails</title>
+    <!-- ========== Page Custom CSS ========== -->
     <link rel="stylesheet" href="css/ArchiveExecutionCss/archiveCircleStatus/circle.css" />
     <!-- ========== JQuery FILES ========== -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- ========== Data retrieve JS FILES ========== -->
+
     <!-- ========== DATE PICKER IMPORT========== -->
 <%--    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">--%>
-    <link href=”https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css” rel=”stylesheet” type=”text/css” />
+<%--    <link href=”https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css” rel=”stylesheet” type=”text/css” />--%>
 
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- ========== Data retrieve JS FILES ========== -->
     <script src="js/ArchiveExecutionDetails/ArchiveExecutionInfo/ArchiveExecutionDataRetrieve.js"></script>
-<%--        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>--%>
-    <!-- ========== SELECT TAG IMPORT ========== -->
-
-
+    <!-- ========== SELECT Picker CSS ========== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
           referrerpolicy="no-referrer" />
 </head>
@@ -284,7 +281,7 @@
                  </form>
              </div>
              <div class="modal-footer">
-                 <button type="button" class="btn buttonFrame tertiaryButton text-center" id="closeIdParent"
+                 <button type="button" class="btn  tertiaryButton text-center" id="closeIdParent"
                          data-bs-dismiss="modal">Close</button>
                  <button type="button" id="ArchiveParentSubmit"
                          class="btn primaryButton text-center submitDisable">Add
@@ -348,7 +345,7 @@
                  </form>
              </div>
              <div class="modal-footer">
-                 <button type="button" class="btn buttonFrame tertiaryButton text-center" id="closeIdChild"
+                 <button type="button" class="btn  tertiaryButton text-center" id="closeIdChild"
                          data-bs-dismiss="modal">Close</button>
                  <button type="button" id="ArchiveChildSubmit" class="btn primaryButton text-center submitDisable">Add
                      Fields</button>
@@ -396,7 +393,7 @@
                  </form>
              </div>
              <div class="modal-footer">
-                 <button type="button" class="btn buttonFrame tertiaryButton text-center" id="closeIdEdit"
+                 <button type="button" class="btn  tertiaryButton text-center" id="closeIdEdit"
                          data-bs-dismiss="modal">Close</button>
                  <button type="button" id="ArchiveEditSubmit"
                          class="btn primaryButton text-center submitEditDisable">Submit</button>
@@ -411,9 +408,9 @@
  <div class="modal fade" id="ArchiveDeletePopUp" tabindex="-1" role="dialog">
      <div class="modal-dialog modal-dialog-centered" role="document">
          <div class="modal-content">
-             <div class="modal-header modal-font-label">
+             <div class="modal-header modal-font-label bg-danger">
                  <h5 class="modal-title">Delete Field</h5>
-                 <button type="button" class="btn-close" id="ArchiveDeleteClose" data-bs-dismiss="modal"
+                 <button type="button" class="btn-close modal-close-btn" id="ArchiveDeleteClose" data-bs-dismiss="modal"
                          aria-label="Close"></button>
              </div>
              <div class="modal-body">
@@ -425,10 +422,10 @@
                  </form>
              </div>
              <div class="modal-footer">
-                 <button type="button" class="btn  buttonFrame tertiaryButton text-center" id="closeIdDelete"
+                 <button type="button" class="btn dangerButtonCancel text-center" id="closeIdDelete"
                          data-bs-dismiss="modal" aria-label="Close">No</button>
                  <button type="button" id="ArchiveDeleteSubmit"
-                         class="btn primaryButton text-center submitDisableDelete">Yes</button>
+                         class="btn dangerButton text-center submitDisableDelete">Yes</button>
              </div>
          </div>
      </div>
@@ -457,7 +454,7 @@
                  </form>
              </div>
              <div class="modal-footer">
-                 <button type="button" class="btn  buttonFrame tertiaryButton text-center" id="closeIdRemarks"
+                 <button type="button" class="btn   tertiaryButton text-center" id="closeIdRemarks"
                          data-bs-dismiss="modal" aria-label="Close">Close</button>
              </div>
          </div>
@@ -482,9 +479,6 @@
      }
  </script>
 
-
-<%-- <script src="js/toastr/toastr.min.js"></script>--%>
- <script src="js/notification/notification.js"></script>
  <script src="js/ArchiveExecutionDetails/ArchiveExecutionInfo/ArchiveExecutionSaveValidation.js"></script>
  <script src="js/ArchiveExecutionDetails/ArchiveExecutionInfo/ArchiveExecutionSave.js"></script>
  <script src="js/ArchiveExecutionDetails/ArchiveExecutionInfo/ArchiveExecutionAddAjaxCall.js"></script>
@@ -499,7 +493,7 @@
          src="js/date-picker/bootstrap-datepicker.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js" integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
+ <script src="js/notification/notification.js"></script>
  <script src="js/navigation/navigation.js"></script>
 <!-- ========== Toastr ========== -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

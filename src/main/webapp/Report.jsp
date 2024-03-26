@@ -14,17 +14,55 @@
           integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q=="
           crossorigin="anonymous"
           referrerpolicy="no-referrer"/>
+<%--    <link rel="stylesheet" href="Bootstrap/SelectPicker.css">--%>
 
     <!-- ========== JQuery FILES ========== -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <style>
-    .custom-show-entities {
-        border: none !important;
-        border-bottom-left-radius: 0 !important;
-        border-bottom-right-radius: 0 !important;
-        border-bottom: 1px solid black !important;
+    .bootstrap-select .dropdown-menu{
+        max-height: 150px !important;
+    }
+    .bootstrap-select>.dropdown-toggle {
+        padding-inline-start: 7px !important;
+        padding-inline-end: 7px !important;
+    }
+
+    .dropdown-menu.show {
+        padding: 0 !important;
+        background-color: #ffffff !important;
+    }
+    .filter-option-inner-inner{
+        font-size: 13px !important;
+        font-family: "Roboto", sans-serif;
+        color: #474747 !important;
+    }
+    .selected.active{
+        color: #237DCA !important;
+        background-color: rgb(245, 245, 245) !important;
+    }
+    .dropdown-item.options:hover{
+        background-color: #FFFFFF !important;
+    }
+    .dropdown-item.select-font-style.fixed-bottom:hover{
+        background-color: #4a9fe8 !important;
+    }
+    .dropdown-header{
+        padding : 0% !important;
+    }
+    .dropdown-menu{
+        --bs-dropdown-link-active-bg: #e7e7e7 !important;
+    }
+    .bs-searchbox{
+        padding: 2% !important;
+    }
+    li.no-results{
+        font-size: 14px !important;
+        font-family: "Roboto" !important;
+        color: #474747 !important;
+        background-color: #FFFFFF !important;
+        font-weight: 400 !important;
     }
 
     div.item-label {
@@ -61,7 +99,7 @@
                     data-bs-toggle="modal" data-bs-target="#searchModal">Filter
             </button>
             <a href="Report.jsp">
-                <button type="button" id="ExitSearch" class="btn buttonFrame tertiaryButton text-center mx-1 w-auto">
+                <button type="button" id="ExitSearch" class="btn  tertiaryButton text-center mx-1 w-auto">
                     Exit Search
                 </button>
             </a>
@@ -107,17 +145,17 @@
             </table>
         </div>
         <div class="row d-flex justify-content-end m-2 mt-3" id="footer">
-            <div class="col-auto pagination-entities mt-1 item-label">items per page:</div>
-            <div class="col-auto mt-2 ">
-                <select class="form-select form-select-sm custom-show-entities p-0" id="maxRows">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                    <option value="50">50</option>
-                    <option value="70">70</option>
-                    <option value="100">100</option>
-                    <option value="5000">Show All</option>
+            <div class="col-auto pagination-entities mt-2 item-label">Items per page:</div>
+            <div class="col-auto mt-1 ">
+                <select class="form-control selectpicker p-0" id="maxRows">
+                    <option class='options' value="5">5</option>
+                    <option class='options' value="10">10</option>
+                    <option class='options' value="15">15</option>
+                    <option class='options' value="20">20</option>
+                    <option class='options' value="50">50</option>
+                    <option class='options' value="70">70</option>
+                    <option class='options' value="100">100</option>
+<%--                    <option value="5000">Show All</option>--%>
                 </select>
             </div>
             <div class="col-auto pagination-entities mt-2 mx-3" id="recordInfo"></div>
@@ -152,7 +190,7 @@
                 </select>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center" data-bs-dismiss="modal">Close
+                <button type="button" class="btn  tertiaryButton text-center" data-bs-dismiss="modal">Close
                 </button>
                 <button type="button" class="btn primaryButton text-center" id="submitExport">Export</button>
             </div>
@@ -208,7 +246,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center pull-left"
+                <button type="button" class="btn  tertiaryButton text-center pull-left"
                         data-bs-dismiss="modal">Close
                 </button>
                 <button type="button" class="btn primaryButton text-center" id="submitSearch">Search</button>

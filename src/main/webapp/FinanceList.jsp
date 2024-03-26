@@ -22,16 +22,16 @@
 </head>
 <style>
     .add-finance-button{
- width: 110px !important;
+       width: 110px !important;
     }
-    .custom-show-entities {
-        box-shadow: none !important;
-        min-width: 50px !important;
-        border: none !important;
-        border-bottom-left-radius: 0 !important;
-        border-bottom-right-radius: 0 !important;
-        border-bottom: 1px solid black !important;
-    }
+    /*.custom-show-entities {*/
+    /*    box-shadow: none !important;*/
+    /*    min-width: 50px !important;*/
+    /*    border: none !important;*/
+    /*    border-bottom-left-radius: 0 !important;*/
+    /*    border-bottom-right-radius: 0 !important;*/
+    /*    border-bottom: 1px solid black !important;*/
+    /*}*/
     div.item-label{
         margin-right: -17px !important;
         margin-top: 9px !important; ;
@@ -42,24 +42,25 @@
     }
     span.btn1 {
         border: 1px solid #CED0D2 !important;
-        border-top-left-radius: 0px !important;
-        border-bottom-left-radius: 0px !important;
-        border-top-right-radius: 6px !important;
-        border-bottom-right-radius: 6px !important;
+        border-radius: 0px 6px 6px 0px;
     }
-    .form-control,.btn1{
-        color: #2A3F57;
+    /*.form-control,.btn1{*/
+    /*    color: #2A3F57;*/
+    /*    font-family: 'Roboto';*/
+    /*    font-size: 14px;*/
+    /*    font-weight: 400;*/
+    /*    letter-spacing: 0em;*/
+    /*    text-align: left;*/
+    /*    border: 1px solid #CED0D2;*/
+    /*    border-top-left-radius: 6px !important;*/
+    /*    border-bottom-left-radius: 6px !important;*/
+    /*    border-top-right-radius: 0px !important;*/
+    /*    border-bottom-right-radius: 0px !important;*/
+    /*}*/
+    span.clearSearch{
         font-family: 'Roboto';
         font-size: 14px;
-        font-weight: 400;
-        letter-spacing: 0em;
-        text-align: left;
-        border: 1px solid #CED0D2;
-        border-top-left-radius: 6px !important;
-        border-bottom-left-radius: 6px !important;
-        border-top-right-radius: 0px !important;
-        border-bottom-right-radius: 0px !important;
-
+        font-weight: 500;
     }
 </style>
 <body>
@@ -82,52 +83,36 @@
 <div class="container-fluid px-4 pt-4" id="Allowed">
     <button type="button" class="btn" id="deletepopup_btn" data-bs-toggle="modal" data-bs-target="#DeletePopUp"
             style="display: none;">Delete PopUp</button>
-    <div class="row mb-3 " >
-        <div class="col-5 col-sm-4 col-md-3 col-lg-2 col-xl-2 col-xxl-1  d-flex justify-content-start">
+    <div class="row mb-3" >
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 col-xxl-1  d-flex justify-content-start">
             <div class="input-group"  id="ExitSearch">
-                <span class=" px-2 form-control">clear search</span>
+                <span class=" px-2 form-control clearSearch">clear search</span>
                 <span class="input-group-text btn1 btn search-cancel-button" ><i class="fa-solid fa-xmark"></i></span>
             </div>
 
         </div>
-        <div class="col-4 col-sm-5 col-md-6 col-lg-7 col-xl-7 col-xxl-8 d-flex justify-content-start">
+        <div class="col-3 col-sm-5 col-md-6 col-lg-7 col-xl-7 col-xxl-8 d-flex justify-content-start">
 
         </div>
 
         <div class="col-3 d-flex justify-content-end ">
             <a href="Finance.jsp" > <button type="button" id="add_user_btn" class=" btn primaryButton add-finance-button text-center"
                                            data-bs-toggle="modal" style="display: none;">Add Finance</button></a>
-            <button type="button" class="btn primaryButton text-center mx-2 " id="searchToggleButton"
+            <button type="button" class="btn primaryButton text-center mx-2 d-none d-md-block" id="searchToggleButton"
                     data-bs-toggle="modal" data-bs-target="#searchModal">Filter</button>
-            <button type="button" class="btn primaryButton text-center" id="exportButton" data-bs-toggle="modal"
+            <button type="button" class="btn primaryButton text-center d-none d-md-block" id="exportButton" data-bs-toggle="modal"
                     data-bs-target="#exportModal">Export</button>
         </div>
-    </div>
-
-
-<%--    for small screen --%>
-    <div class="row mb-3 d-block  " >
-    <div class="col-5 col-sm-4 col-md-3 col-lg-2 col-xl-2 col-xxl-1  d-flex justify-content-start">
-        <div class="input-group"  id="ExitSearch">
-            <span class=" px-2 form-control">clear search</span>
-            <span class="input-group-text btn1 btn search-cancel-button" ><i class="fa-solid fa-xmark"></i></span>
+<%--        for small screen--%>
+        <div class="col-12 my-3  d-md-none  mx-0" >
+            <div class="d-flex justify-content-end">
+                <button type="button" class="btn primaryButton text-center mx-2 " id="searchToggleButton"
+                        data-bs-toggle="modal" data-bs-target="#searchModal">Filter</button>
+                <button type="button" class="btn primaryButton text-center" id="exportButton" data-bs-toggle="modal"
+                        data-bs-target="#exportModal">Export</button>
+            </div>
         </div>
-
     </div>
-    <div class="col-4 col-sm-5 col-md-6 col-lg-7 col-xl-7 col-xxl-8 d-flex justify-content-start">
-
-    </div>
-
-    <div class="col-3 d-flex justify-content-end ">
-        <a href="Finance.jsp" > <button type="button" id="add_user_btn" class=" btn primaryButton add-finance-button text-center"
-                                        data-bs-toggle="modal" style="display: none;">Add Finance</button></a>
-        <button type="button" class="btn primaryButton text-center mx-2 " id="searchToggleButton"
-                data-bs-toggle="modal" data-bs-target="#searchModal">Filter</button>
-        <button type="button" class="btn primaryButton text-center" id="exportButton" data-bs-toggle="modal"
-                data-bs-target="#exportModal">Export</button>
-    </div>
-    </div>
-
 
 
     <div class="card mb-5">
@@ -152,15 +137,15 @@
 
         <div class="row d-flex justify-content-end m-2 mt-3" id="footer">
             <div class="col-auto Table-Body mt-1 item-label">Items per page:</div>
-            <div class="col-auto mt-2 ">
-                <select class="form-select form-select-sm custom-show-entities p-0" id="maxRows">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                    <option value="50">50</option>
-                    <option value="70">70</option>
-                    <option value="100">100</option>
+            <div class="col-auto mt-1 ">
+                <select class="form-control selectpicker custom-show-entities p-0" id="maxRows">
+                    <option class='options' value="5">5</option>
+                    <option class='options' value="10">10</option>
+                    <option class='options' value="15">15</option>
+                    <option class='options' value="20">20</option>
+                    <option class='options' value="50">50</option>
+                    <option class='options' value="70">70</option>
+                    <option class='options' value="100">100</option>
 <%--                    <option value="5000">Show All</option>--%>
                 </select>
             </div>
@@ -186,9 +171,9 @@
 <div class="modal fade" id="DeletePopUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header modal-font-label">
+            <div class="modal-header modal-font-label bg-danger">
                 <h5 class="modal-title" id="exampleModalLabel">Delete Finance Information</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close modal-close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form name="DeleteForm">
@@ -199,9 +184,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center" data-bs-dismiss="modal">No
+                <button type="button" class="btn dangerButtonCancel text-center" data-bs-dismiss="modal">No
                 </button>
-                <button type="button" class="btn primaryButton text-center" data-bs-dismiss="modal"
+                <button type="button" class="btn dangerButton text-center" data-bs-dismiss="modal"
                         id="delete_submit">Yes
                 </button>
             </div>
@@ -227,7 +212,7 @@
                 </select>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn  tertiaryButton text-center"
                         data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn primaryButton text-center" id="submitExport">Export</button>
             </div>
@@ -282,7 +267,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn  tertiaryButton text-center"
                         data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn primaryButton text-center" id="submitSearch">Search</button>
                 <button type="button" class="btn primaryButton text-center" id="resetButton">Reset</button>

@@ -137,7 +137,7 @@ e.printStackTrace();
                 <!-- button section -->
                 <div class="row my-3 mx-1">
                     <div class="col-12  d-flex justify-content-center ">
-                        <button type="button" class="btn buttonFrame tertiaryButton text-center mx-2" onclick="location.href='archiveRequirementsReviewDetails.jsp';">Prev</button>
+                        <button type="button" class="btn  tertiaryButton text-center mx-2" onclick="location.href='archiveRequirementsReviewDetails.jsp';">Prev</button>
                         <button type="button" class="btn primaryButton text-center" id="ApprovalSave">Finish</button>
 <%--                        hidden button--%>
                         <button type="button" class="btn btn-primary pull-right" id="archiveReqConfirmationPopUp_Btn" data-bs-toggle="modal" data-bs-target="#ConfirmationPopUp" style="display: none;">Confirmation PopUp</button>
@@ -172,7 +172,7 @@ e.printStackTrace();
             </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn buttonFrame tertiaryButton text-center" id="archiveReqConfirmationNo" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn  tertiaryButton text-center" id="archiveReqConfirmationNo" data-bs-dismiss="modal">No</button>
           <button type="button" id="archiveReqConfirmationYes" class="btn primaryButton text-center" data-bs-dismiss="modal">Yes</button>
       </div>
     </div>
@@ -198,7 +198,7 @@ e.printStackTrace();
              <input type="hidden" id="ApprovalCommentSeq"/>
         </div>
         <div class="modal-footer">
-        <button type="button" class="btn buttonFrame tertiaryButton text-center" id = "ApprovalCommentCancelBtn" >Cancel</button>
+        <button type="button" class="btn  tertiaryButton text-center" id = "ApprovalCommentCancelBtn" >Cancel</button>
             <button type="button" class="btn primaryButton text-center" id = "ApprovalCommentOKBtn" >Ok</button>
       </div>
       </div>

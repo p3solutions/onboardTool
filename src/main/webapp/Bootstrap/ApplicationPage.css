@@ -9,18 +9,18 @@
     box-shadow: -1px 2px 4px 0px rgba(0, 0, 0, 0.0784313725);
 }
 
-.addApplication {
+a.addApplication {
     border: none !important;
 }
 
 div.scrollbar {
-    height: 110px;
+    height: 90px;
     overflow-y: auto;
 }
 
 div.scroll-up {
     position: fixed;
-    bottom: 20px !important;
+    bottom: 40px !important;
     right: 20px;
     background-color: #4B92CE;
     border-radius: 50%;
@@ -40,10 +40,7 @@ div.scroll-up {
     letter-spacing: 0em;
     text-align: left;
     border: 1px solid #CED0D2;
-    border-top-left-radius: 0px !important;
-    border-bottom-left-radius: 0px !important;
-    border-top-right-radius: 6px !important;
-    border-bottom-right-radius: 6px !important;
+    border-radius: 0px 6px 6px 0px;
 }
 
 .search-button {
@@ -93,7 +90,55 @@ div.scroll-up {
     text-align: left;
     height: 16px;
 }
+.btn-light{
+    min-height: 38px !important;
+}
 
 .Card-Icon {
     margin-right: -10px !important;
 }
+#appFilter{
+    box-shadow: none;
+}
+/*select picker*/
+.bootstrap-select>.dropdown-toggle {
+    padding-inline-start: 7px !important;
+    padding-inline-end: 7px !important;
+}
+.dropdown-menu.show {
+    padding: 0 !important;
+    background-color: #ffffff !important;
+}
+.filter-option-inner-inner{
+    font-size: 13px !important;
+    font-family: "Roboto", sans-serif;
+    color: #474747 !important;
+}
+.selected.active{
+    color: #237DCA !important;
+    background-color: rgb(245, 245, 245) !important;
+}
+.dropdown-item:hover{
+    background-color: #FFFFFF !important;
+}
+.dropdown-item.select-font-style.fixed-bottom:hover{
+    background-color: #4a9fe8 !important;
+}
+.dropdown-header{
+    padding : 0% !important;
+}
+.dropdown-menu{
+    --bs-dropdown-link-active-bg: #e7e7e7 !important;
+}
+.bs-searchbox{
+    padding: 2% !important;
+}
+li.no-results{
+    font-size: 14px !important;
+    font-family: "Roboto" !important;
+    color: #474747 !important;
+    background-color: #FFFFFF !important;
+    font-weight: 400 !important;
+}
+
+

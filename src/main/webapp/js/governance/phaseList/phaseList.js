@@ -323,11 +323,11 @@ function phaseListAjaxCall()
             	 var phaseName = value.phaseName; 
             	 var phaseId = value.phaseId;
 				 var Appdesc ="";
-				 var li_element ="<div class=\"col phaseCard\">" +
+				 var li_element ="<div class=\"col \">" +
 					 "<div class=\"card\">" +
 					 "<div class=\"row\">" +
 					 "<div class=\"col-9 mt-3 m-auto\">" +
-					 "<h5 class=\"card-title AppCardTitle waveHeadingName\">"+phaseName+"</h5>" +
+					 "<h5 class=\"card-title AppCardTitle waveHeadingName phaseCard\">"+phaseName+"</h5>" +
 					 "</div>" +
 					 "<div class=\"col-1 mt-2 m-auto\">" +
 					 "<div class=\" d-flex justify-content-end\">" +
@@ -352,7 +352,7 @@ function phaseListAjaxCall()
 					 "</div>" +
 					 "<input type = 'hidden' class = 'phaseName' value = '"+phaseName+"'>"+
 					 "<input type = 'hidden' class = 'phaseId' value = '"+phaseId+"'>"+
-					 "<div class=\"row card-text col-11 mt-3 m-auto AppCardBody scrollbar\">" +Appdesc+
+					 "<div class=\"row card-text col-11 mt-3 m-auto AppCardBody scrollbar phaseCard \">" +Appdesc+
 					 "</div>" +
 					 "</div>" +
 					 "</div>";

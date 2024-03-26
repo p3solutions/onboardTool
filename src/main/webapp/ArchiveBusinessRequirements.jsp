@@ -387,7 +387,7 @@ e.printStackTrace();
 					data-bs-target="#screenInfoDeletePopUp" style="display: none;">Delete PopUp</button>
 			<div class="row my-3 mx-1">
 				<div class="col-12 d-flex justify-content-center">
-					<button type="button" class="btn buttonFrame tertiaryButton text-center mx-2"
+					<button type="button" class="btn  tertiaryButton text-center mx-2"
 							onclick="location.href='archiveRequirementsRetentionDetails.jsp';">Prev</button>
 					<button type="submit" class="btn secondaryButton text-center" id="edit">Edit</button>
 					<button type="submit" class="btn primaryButton text-center px-1 mx-2" id="complete"
@@ -433,7 +433,7 @@ e.printStackTrace();
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn buttonFrame tertiaryButton text-center"
+					<button type="button" class="btn  tertiaryButton text-center"
 						id="closeDataIdDelete" data-bs-dismiss="modal" aria-label="Close">No</button>
 					<button type="button" id="DataDeleteSubmit"
 							class="btn primaryButton text-center submitDisableData" data-bs-dismiss="modal">Yes</button>
@@ -470,7 +470,7 @@ e.printStackTrace();
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn buttonFrame tertiaryButton text-center"
+					<button type="button" class="btn  tertiaryButton text-center"
 						data-bs-dismiss="modal" id="closeIdScreenInfo" aria-label="Close">Cancel</button>
 					<button type="button" id="screenReqAddSubmit"
 							class="btn primaryButton text-center" data-bs-dismiss="modal">Submit</button>
@@ -506,7 +506,7 @@ e.printStackTrace();
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn buttonFrame tertiaryButton text-center"
+					<button type="button" class="btn  tertiaryButton text-center"
 						data-bs-dismiss="modal" id="closeIdsearchForm" aria-label="Close">Cancel</button>
 					<button type="button" id="searchFormAddSubmit"
 							class="btn primaryButton text-center" data-bs-dismiss="modal">Submit</button>
@@ -533,7 +533,7 @@ e.printStackTrace();
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn buttonFrame tertiaryButton text-center"
+					<button type="button" class="btn  tertiaryButton text-center"
 						id="closeScreenInfoDelete" data-bs-dismiss="modal"
 						aria-label="Close">No</button>
 					<button type="button" id="screenInfoDeleteSubmit"

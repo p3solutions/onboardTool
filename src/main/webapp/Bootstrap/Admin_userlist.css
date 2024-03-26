@@ -12,11 +12,6 @@
     justify-content: center;
     align-items: center;
 }
-.pagination{
-    cursor: pointer;
-    background-color: aqua;
-    color: black;
-}
 
 .search-button {
     background-color: #FFFFFF !important;
@@ -59,3 +54,4 @@ div.item-label{
     margin-right: -17px !important;
     margin-top: 9px !important; ;
 }
+

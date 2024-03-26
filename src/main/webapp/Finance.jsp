@@ -7,10 +7,6 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
           referrerpolicy="no-referrer" />
-    <!-- ========== Toastr ========== -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
-
     <!-- ========== COMMON JS FILES ========== -->
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -48,10 +44,9 @@
         border-top: none;
         max-height: 150px;
         overflow-y: auto;
-    }
-    div.suggestion {
-        padding: 10px;
+        padding: 5px;
         cursor: pointer;
+        font-size: 12px;
     }
     div.suggestion:hover {
         background-color: #e9e9e9;
@@ -191,6 +186,7 @@
                                 <button type="button" class="btn btn-primary pull-right" id="deletepopup_btn"
                                         data-bs-toggle="modal" data-bs-target="#LegacyDeletePopUp"
                                         style="display: none;">Delete PopUp</button>
+
                             </div>
                         </div>
                     </div>
@@ -229,7 +225,7 @@
         </div>
         <div class="row my-3 mx-1">
             <div class="col-12  d-flex justify-content-center ">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn  tertiaryButton text-center"
                         onclick="clearSessionItem()">Back</button>
                 <button type="submit" class="btn primaryButton text-center mx-2" id="complete"
                         onclick="clearSessionItem()">Submit</button>
@@ -238,7 +234,7 @@
     </div>
 </div>
 
-
+<button type="button" class="btn" id="finance_scr_delete_popup" data-bs-toggle="modal" data-bs-target="#financeSCRDeletePopUp" style="display: none;"></button>
 
             <%
 
@@ -332,7 +328,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center" data-bs-dismiss="modal"
+                <button type="button" class="btn  tertiaryButton text-center" data-bs-dismiss="modal"
                         id="Legacyclose">Close</button>
                 <button type="button" id="Legacysubmit" class="btn primaryButton text-center">Add
                     Fields</button>
@@ -367,7 +363,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center" data-bs-dismiss="modal"
+                <button type="button" class="btn  tertiaryButton text-center" data-bs-dismiss="modal"
                         aria-label="Close">Cancel</button>
                 <button type="button" id="LegacyEditSubmit" class="btn primaryButton text-center"
                         data-bs-dismiss="modal">Submit</button>
@@ -380,9 +376,9 @@
 <div class="modal fade" id="LegacyDeletePopUp" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header modal-font-label">
+            <div class="modal-header modal-font-label bg-danger">
                 <h5 class="modal-title" id="exampleModalLabel">Delete Field</h5>
-                <button type="button" id="LegacyEditClose" class="btn-close" data-bs-dismiss="modal"
+                <button type="button" id="LegacyEditClose" class="btn-close modal-close-btn" data-bs-dismiss="modal"
                         aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -394,23 +390,22 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center" id="closeLegacyIdDelete"
+                <button type="button" class="btn dangerButtonCancel text-center" id="closeLegacyIdDelete"
                         data-bs-dismiss="modal" aria-label="Close">No</button>
                 <button type="button" id="LegacyDeleteSubmit"
-                        class="btn primaryButton text-center submitDisableDelete" data-bs-dismiss="modal">Yes</button>
+                        class="btn dangerButton text-center submitDisableDelete" data-bs-dismiss="modal">Yes</button>
             </div>
         </div>
     </div>
 </div>
 
-
+<%--finance screenshot view--%>
 <div class="modal fade" id="Legacy_ScrPopUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header modal-font-label">
-                <h5 class="modal-title" id="exampleModalLabel">Finance Application Screenshots
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title">Finance Application Screenshots</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" ></button>
             </div>
             <div class="modal-body">
                 <table class="table table-bordered table-striped" id="legacy_datatable">
@@ -424,18 +419,45 @@
                     </tbody>
                 </table>
                 <div class="modal-footer">
-                    <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                    <button type="button" class="btn  tertiaryButton text-center"
                             data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
+</div>
     <form action="Finance_scr_download" method="post">
         <input type="hidden" id="File_Name" name="File_Name"> <input type="submit" id="scr_submit"
                                                                      style="display: none;">
     </form>
     <input type="submit" id="deletegrid_update" style="display: none;">
-</div>
+
+    <%--    Finance Screenshot--%>
+    <div class="modal fade" id="financeSCRDeletePopUp" tabindex="-1"  aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header modal-font-label bg-danger" >
+                    <h5 class="modal-title" >Delete File</h5>
+                    <button type="button" class="btn-close modal-close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form name="DeleteForm">
+                        <div class="modal-body">
+                            <p>Do you want to Delete this File
+                                Permanently?</p>
+                            <input type="text" id="random_id" style="display: none;" />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn dangerButtonCancel text-center"
+                            data-bs-dismiss="modal">No</button>
+                    <button type="button" class="btn dangerButton text-center"
+                            data-bs-dismiss="modal" id="legacy_scr_delete_submit">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 <%@include file="Footer.jspf"%>
@@ -510,7 +532,7 @@
 <script type="text/javascript" src="js/Finance/Screenshot/Finance_scr_delete.js"></script>
 <script type="text/javascript" src="js/Finance/Screenshot/FinanceAppInfoFileUpload.js"></script>
 <script src="js/navigation/navigation.js"></script>
-
+<script src="js/notification/notification.js"></script>
 <!-- ========== Toastr ========== -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"  rel="stylesheet">

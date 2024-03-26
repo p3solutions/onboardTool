@@ -52,11 +52,11 @@ function FinanceScreenShotAppendRowFunction(data){
     })
 }
 $(document).on('click', '.legacy_scr_deletepopup', function () {
-    $('#legacy_scr_delete_popup').click();
-    var File_Name=$("#File_Name").val();
-    var seqnum=$(this).index('.download_btn');
-    var currentRow=$(this).closest("tr");
-    var File_Name=currentRow.find("td:eq(1)").text();
-    $('#File_Name').val(File_Name);
+    $('#finance_scr_delete_popup').click();
+    // var File_Name=$("#File_Name").val();
+    // var seqnum=$(this).index('.download_btn');
+    // var currentRow=$(this).closest("tr");
+    // var File_Name=currentRow.find("td:eq(1)").text();
+    // $('#File_Name').val(File_Name);
 
 });

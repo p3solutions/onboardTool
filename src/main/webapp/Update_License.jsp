@@ -62,7 +62,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn buttonFrame tertiaryButton text-center" data-bs-dismiss="modal"
+				<button type="button" class="btn  tertiaryButton text-center" data-bs-dismiss="modal"
 						onclick="location.href='Login.jsp'">Close</button>
 				<button type="button" class="btn primaryButton text-center" id="license_update_submit"
 						style="padding-top: 2px;">Update License</button>

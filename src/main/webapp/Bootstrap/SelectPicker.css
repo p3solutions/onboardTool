@@ -23,7 +23,7 @@
     color: #237DCA !important;
     background-color: rgb(245, 245, 245) !important;
 }
-.dropdown-item:hover{
+.dropdown-item.options:hover{
     background-color: #FFFFFF !important;
 }
 .dropdown-item.select-font-style.fixed-bottom:hover{
@@ -45,4 +45,6 @@ li.no-results{
     background-color: #FFFFFF !important;
     font-weight: 400 !important;
 }
+
+
 

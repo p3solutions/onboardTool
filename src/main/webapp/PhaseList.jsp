@@ -283,7 +283,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn buttonFrame tertiaryButton text-center" data-bs-dismiss="modal" id = "closeIdExistWave" aria-label="Close">Cancel</button>
+                    <button type="button" class="btn  tertiaryButton text-center" data-bs-dismiss="modal" id = "closeIdExistWave" aria-label="Close">Cancel</button>
                     <button type="button" id="existWaveSubmit" class="btn primaryButton text-center" >Submit</button>
                 </div>
             </div>
@@ -313,7 +313,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn buttonFrame tertiaryButton text-center" data-bs-dismiss="modal" id = "closeIdDeleteApp" aria-label="Close">No</button>
+                    <button type="button" class="btn  tertiaryButton text-center" data-bs-dismiss="modal" id = "closeIdDeleteApp" aria-label="Close">No</button>
                     <button type="button" id="deleteYesBtn" class="btn primaryButton text-center" >Yes</button>
                 </div>
             </div>
@@ -345,7 +345,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center" id="closeIdDeleteApp"
+                <button type="button" class="btn  tertiaryButton text-center" id="closeIdDeleteApp"
                         data-bs-dismiss="modal">No</button>
                 <button type="button" id="deletePhaseYesBtn" class="btn primaryButton text-center"
                         data-bs-dismiss="modal">Yes</button>

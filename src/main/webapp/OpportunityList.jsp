@@ -5,8 +5,8 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="./Bootstrap/ApplicationPage.css">
-    <title>Application Page</title>
-
+    <title>D3SIXTY - Application Page</title>
+<%--     JQuery Files--%>
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- ========== SELECT TAG IMPORT ========== -->
@@ -14,47 +14,33 @@
           referrerpolicy="no-referrer" />
 </head>
 <style>
-    .addApplication {
-        border: none !important;
+    div.dropdown-menu.show{
+        max-height: 100px !important;
+        overflow-y: auto !important;
     }
-        div.scrollbar {
-        height: 90px ;
-        overflow-y: auto;
+    #appFilter:focus{
+        border-color: #CED0D2 !important;
     }
-
-    div.scroll-up{
-        position: fixed;
-        bottom: 20px !important;
-        right: 20px;
-        background-color: #4B92CE;
-        border-radius: 50%;
-        opacity: 70% !important;
+    a.options{
+        border: 1px none #d4d4d4;
+        border-bottom-style: solid;
     }
-    .top-scroll-lock{
-        background-color: #FFFFFF !important;
-        box-shadow: 0px 2px 8px 0px #0000001A;
-    }
-
 </style>
 <body>
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.Date" %>
-<%
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    Date date1 = new Date();
-    System.out.println("[INFO]-----" + formatter.format(date1) + "-----Accessed OpportunityList JSP PAGE-----[INFO]");
-%>
 <%@page language="java" %>
 <%@page import="java.text.DateFormat" %>
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="java.util.Date" %>
 <%@page import="java.sql.*" %>
 <%@ page import="onboard.DBconnection" %>
+<%@ page import="org.apache.log4j.Logger" %>
 <%
+    Logger logger = Logger.getLogger("OpportunityList.jsp");
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Pragma", "no-cache");
     response.setHeader("Expires", "0");
     if (session.getAttribute("username") == null) {
+        logger.info("Session time out");
         response.sendRedirect("Login.jsp");
     }
 %>
@@ -69,7 +55,7 @@
         String query;
         HttpSession details = request.getSession();
         String Projets = (String) details.getAttribute("projects");
-        System.out.println("projects-------------" + Projets);
+        logger.info("Projects ------"+Projets);
         String roles = (String) details.getAttribute("role");
         DBconnection d = new DBconnection();
         Connection con = (Connection) d.getConnection();
@@ -140,9 +126,9 @@
 <section class="container-fluid p-0 ">
     <div class="row m-0 ">
         <div class="col p-0">
-            <div class="filter-Container py-3 mb-0 mb-lg-4" id="Filter-container">
+            <div class="filter-Container py-3 mb-0 mb-lg-2" id="Filter-container">
                 <div class="row mx-1 p-0">
-                    <div class="col-lg-4 col-xl-3 col-md-11 col-10 my-lg-0 ">
+                    <div class="col-lg-4 col-xl-3 col-md-11 col-10 my-lg-0 me-2 me-md-0 ">
                         <div class="input-group ">
                         <span class="input-group-append btn1 btn search-button">
                                 <i class="fa fa-search iconColor"></i>
@@ -266,9 +252,9 @@
 <div class="modal fade" id="deletePopUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header modal-font-label">
+            <div class="modal-header modal-font-label bg-danger">
                 <h5 class="modal-title" id="exampleModalLabel">Delete Application</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close modal-close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form name="PopUpform">
@@ -285,9 +271,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center" data-bs-dismiss="modal">No
+                <button type="button" class="btn  dangerButtonCancel text-center" data-bs-dismiss="modal">No
                 </button>
-                <button type="button" id="deleteYesBtn" class="btn primaryButton  text-center" data-bs-dismiss="modal">
+                <button type="button" id="deleteYesBtn" class="btn dangerButton  text-center" data-bs-dismiss="modal">
                     Yes
                 </button>
             </div>
@@ -323,7 +309,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center" data-bs-dismiss="modal"
+                <button type="button" class="btn  tertiaryButton text-center" data-bs-dismiss="modal"
                         id="closeIdExistWave" aria-label="Close">Cancel
                 </button>
                 <button type="button" id="existWaveSubmit" class="btn primaryButton text-center"
@@ -403,9 +389,9 @@
         $(window).scrollTop(0);
     }
 </script>
-
+<%--select picker js file--%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js" integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<%--<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>--%>
+<%--Data Manipulation JS files --%>
 <script type="text/javascript" src="./js_in_pages/project.js"></script>
 <script src="./js/Opportunity/OpportunityList/OpportunityList.js"></script>
 <script src="./js/Opportunity/OpportunityList/opportunityFilterList.js"></script>
@@ -413,7 +399,7 @@
 <script src="./js/Opportunity/OpportunityList/deleteOpportunity.js"></script>
 <script src="./js/Opportunity/OpportunityList/opportunitySearchList.js"></script>
 <script src="./js/navigation/navigation.js"></script>
-
+<script src="js/notification/notification.js"></script>
 <!-- ========== Toastr ========== -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">

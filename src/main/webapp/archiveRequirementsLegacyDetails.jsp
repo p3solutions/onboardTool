@@ -301,7 +301,7 @@
             </div>
             <div class="row my-3 mx-1">
                 <div class="col-12  d-flex justify-content-center ">
-                    <button type="button" class="btn buttonFrame tertiaryButton text-center mx-2"
+                    <button type="button" class="btn  tertiaryButton text-center mx-2"
                             onclick="location.href='ArchiveRequirementsIntroDetails.jsp';">Prev
                     </button>
                     <button type="submit" class="btn secondaryButton text-center" id="edit">Edit</button>
@@ -437,7 +437,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn  buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn   tertiaryButton text-center"
                         data-bs-dismiss="modal" id="Legacyclose">Close
                 </button>
                 <button type="button" id="Legacysubmit" class="btn primaryButton text-center">Add
@@ -477,7 +477,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn  buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn   tertiaryButton text-center"
                         data-bs-dismiss="modal" aria-label="Close">Cancel
                 </button>
                 <button type="button" id="LegacyEditSubmit" class="btn primaryButton text-center"
@@ -507,7 +507,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn  buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn   tertiaryButton text-center"
                         id="closeLegacyIdDelete" data-bs-dismiss="modal"
                         aria-label="Close">No
                 </button>
@@ -539,7 +539,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn  tertiaryButton text-center"
                         id="closeEnvmntNameIdDelete" data-bs-dismiss="modal"
                         aria-label="Close">No
                 </button>
@@ -576,7 +576,7 @@
                     </tbody>
                 </table>
                 <div class="modal-footer">
-                    <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                    <button type="button" class="btn  tertiaryButton text-center"
                             data-bs-dismiss="modal">Close
                     </button>
                 </div>
@@ -610,7 +610,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn  tertiaryButton text-center"
                         id="closeEnvmntServerIdDelete" data-bs-dismiss="modal"
                         aria-label="Close">No
                 </button>
@@ -646,7 +646,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn  tertiaryButton text-center"
                         data-bs-dismiss="modal">No
                 </button>
                 <button type="button" class="btn primaryButton text-center"

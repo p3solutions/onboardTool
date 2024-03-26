@@ -134,7 +134,7 @@
 
             <div class="row my-3 mx-1">
                 <div class="col-12  d-flex justify-content-center ">
-                    <button type="button" class="btn buttonFrame tertiaryButton text-center mx-2"
+                    <button type="button" class="btn  tertiaryButton text-center mx-2"
                             onclick="location.href='archiveReqAbbrevation.jsp';">Prev
                     </button>
                     <button class="btn secondaryButton text-center" type="button" id="docRevAdd">Add</button>
@@ -185,7 +185,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn  tertiaryButton text-center"
                         id="closedocRevIdDelete" data-bs-dismiss="modal"
                         aria-label="Close">No
                 </button>

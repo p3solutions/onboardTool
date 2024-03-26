@@ -14,6 +14,11 @@ $(document).on('keyup','#appFilter', function () {
 $(document).on('keydown','#appFilter',function () {
  clearTimeout(typingTimer);
 });
+$(document).on('search', '#appFilter', function() {
+	filterBySearchAjaxCall("")
+	clearTimeout(typingTimer);
+
+});
 
 function doneTyping(obj)
 {

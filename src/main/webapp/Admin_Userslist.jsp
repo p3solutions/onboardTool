@@ -117,15 +117,15 @@
         </div>
         <div class="row d-flex justify-content-end m-2 mt-3" id="footer">
             <div class="col-auto pagination-entities mt-1 item-label">Items per page:</div>
-            <div class="col-auto mt-2 ">
-                <select class="form-select form-select-sm custom-show-entities p-0" id="maxRows">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                    <option value="50">50</option>
-                    <option value="70">70</option>
-                    <option value="100">100</option>
+            <div class="col-auto mt-1 ">
+                <select class="selectpicker form-control  p-0" id="maxRows">
+                    <option class='options' value="5">5</option>
+                    <option class='options' value="10">10</option>
+                    <option class='options' value="15">15</option>
+                    <option class='options' value="20">20</option>
+                    <option class='options' value="50">50</option>
+                    <option class='options' value="70">70</option>
+                    <option class='options' value="100">100</option>
 <%--                    <option value="5000">Show All</option>--%>
                 </select>
             </div>
@@ -199,7 +199,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn  tertiaryButton text-center"
                         data-bs-dismiss="modal">Close
                 </button>
                 <button type="button" class="btn primaryButton text-center w-auto" id="add_usersubmit" data-dismiss="modal">Add
@@ -249,7 +249,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center" data-bs-dismiss="modal">
+                <button type="button" class="btn  tertiaryButton text-center" data-bs-dismiss="modal">
                     Cancel
                 </button>
                 <button type="button" class="btn primaryButton text-center" id="update_submit">Update</button>

@@ -126,7 +126,7 @@
             </button>
             <div class="row my-3 mx-1">
                 <div class="col-12 d-flex justify-content-center">
-                    <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                    <button type="button" class="btn  tertiaryButton text-center"
                             onclick="location.href='ArchiveBusinessRequirements.jsp';">Prev
                     </button>
                     <button class="btn secondaryButton text-center mx-2" type="button" id="addabbreviationbtn" href="#"
@@ -195,7 +195,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn  tertiaryButton text-center"
                         data-bs-dismiss="modal">Cancel
                 </button>
                 <button type="button" class="btn primaryButton  text-center"
@@ -246,7 +246,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn  tertiaryButton text-center"
                         data-bs-dismiss="modal">Cancel
                 </button>
                 <button type="button" class="btn primaryButton text-center"
@@ -279,7 +279,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn  tertiaryButton text-center"
                         data-bs-dismiss="modal">No
                 </button>
                 <button type="button" class="btn primaryButton text-center"

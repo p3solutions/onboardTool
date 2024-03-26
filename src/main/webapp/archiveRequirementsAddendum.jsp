@@ -130,7 +130,7 @@
         <%--button section--%>
         <div class="row my-3 mx-1">
             <div class="col-12  d-flex justify-content-center ">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn  tertiaryButton text-center"
                         onclick="location.href='archiveRequirementsDocumentRevisions.jsp';">Prev
                 </button>
                 <div class="dropdown mx-2">
@@ -198,7 +198,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn  buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn   tertiaryButton text-center"
                         data-bs-dismiss="modal" id="closeIdAddendum" aria-label="Close">Cancel
                 </button>
                 <button type="button" id="addendumAddSubmit"
@@ -226,7 +226,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn  tertiaryButton text-center"
                         id="closeAddendumIdDelete" data-bs-dismiss="modal"
                         aria-label="Close">No
                 </button>
@@ -271,7 +271,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btnbuttonFrame tertiaryButton text-center"
+                    <button type="button" class="btn tertiaryButton text-center"
                             data-bs-dismiss="modal">Close
                     </button>
                 </div>
@@ -322,7 +322,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn  tertiaryButton text-center"
                         data-bs-dismiss="modal">Close
                 </button>
             </div>
@@ -355,7 +355,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn  tertiaryButton text-center"
                         data-bs-dismiss="modal">No
                 </button>
                 <button type="button" class="btn primaryButton text-center"

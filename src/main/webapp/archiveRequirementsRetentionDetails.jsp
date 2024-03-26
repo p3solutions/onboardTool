@@ -124,7 +124,7 @@
 
             <div class="row my-3 mx-1">
                 <div class="col-sm-12 d-flex justify-content-center">
-                    <button type="button" class="btn buttonFrame tertiaryButton text-center d-none d-sm-block"
+                    <button type="button" class="btn  tertiaryButton text-center d-none d-sm-block"
                             onclick="location.href='archiveRequirementsLegacyDetails.jsp';">Back
                     </button>
                     <button type="submit" class="btn secondaryButton text-center mx-2 d-none d-sm-block" id="edit">
@@ -142,7 +142,7 @@
             </div>
             <div class="row mb-3 mx-1 d-block d-sm-none">
                 <div class="col-12 d-flex justify-content-center">
-                    <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                    <button type="button" class="btn  tertiaryButton text-center"
                             onclick="location.href='archiveRequirementsLegacyDetails.jsp';">Back
                     </button>
                     <button type="submit" class="btn secondaryButton text-center mx-2" id="edit">Edit</button>

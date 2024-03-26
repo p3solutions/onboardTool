@@ -418,7 +418,7 @@
         <!-- button section -->
         <div class="row my-3 mx-4">
             <div class="col-12 d-flex justify-content-center">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center mx-1" id="ReviewPrevBtn" onclick="location.href='archiveRequirementsAddendum.jsp';">Prev</button>
+                <button type="button" class="btn  tertiaryButton text-center mx-1" id="ReviewPrevBtn" onclick="location.href='archiveRequirementsAddendum.jsp';">Prev</button>
                 <button type="button" id="button_id" name="button_id" class="btn requestButton text-center mx-1">
                     Request Sign </button>
                 <button type="button" class="btn primaryButton text-center mx-1"
@@ -446,7 +446,7 @@
 
             </div>
             <div class="modal-footer" >
-                <button type="button" class="btn buttonFrame tertiaryButton text-center" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn  tertiaryButton text-center" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn primaryButton text-center" name="email_id" id="email_id"
                         data-bs-dismiss="modal">Send Email
                 </button>

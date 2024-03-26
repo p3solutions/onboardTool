@@ -282,25 +282,27 @@ function appendRowFunction(data){
                     "<td><i class='fas fa-comment-alt fa-2x remarksIcon' style='color:#87CEEB;' role='button' ></i><input type='hidden' class ='remark changeText' value='" + remark + "' disabled></td>" +
                     "<td>" +
                     "<div class='dropdown dropstart'>" +
-                    " <img src='images/icons8-expand-arrow-25.png' data-bs-toggle='dropdown' " +
-                    " alt='dropdown'>" +
-                    "<ul class='dropdown-menu' aria-labelledby='Drop-option'>" +
+                    "<button class=\"btn btn-outline-light\" " +
+                    " data-bs-toggle=\"dropdown\"> " +
+                    " <i class=\"fa-solid fa-ellipsis-vertical iconColor fa-lg \"></i>" +
+                    "</button>" +
+                    "<ul class='dropdown-menu p-0' >" +
                     "<li>" +
-                    "<a class='dropdown-item AddRow' ><i" +
+                    "<a class='dropdown-item dropdown-styles AddRow' ><i" +
                     " class='fa-solid fa-plus  iconColor'></i>&nbsp;&nbsp;&nbsp;Add</a>" +
                     "</li>" +
                     "<li>" +
-                    "<hr class='dropdown-divider'>" +
+                    "<hr class='dropdown-divider m-0'>" +
                     "</li>" +
                     "<li>" +
-                    "<a class='dropdown-item EditRow' ><i" +
+                    "<a class='dropdown-item dropdown-styles EditRow' ><i" +
                     " class='fa-solid fa-pencil  iconColor'></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
                     "</li>" +
                     "<li>" +
-                    "<hr class='dropdown-divider'>\n" +
+                    "<hr class='dropdown-divider m-0'>" +
                     "</li>" +
                     "<li>" +
-                    "<a class='dropdown-item DeleteRow' ><i " +
+                    "<a class='dropdown-item dropdown-styles DeleteRow' ><i " +
                     " class='fa-solid fa-trash-can  text-danger'></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
                     "</li>" +
                     "</ul>" +
@@ -362,25 +364,27 @@ function appendRowFunction(data){
                     "<td><i class='fas fa-comment-alt fa-2x remarksIcon' style='color:#87CEEB;' role='button'></i><input type='hidden' class ='remark changeText' value='" + remark + "'></td>" +
                     "<td>" +
                     "<div class='dropdown dropstart'>" +
-                    " <img src='images/icons8-expand-arrow-25.png' data-bs-toggle='dropdown'" +
-                    " alt='dropdown'>" +
-                    "<ul class='dropdown-menu' aria-labelledby='Drop-option'>" +
+                    "<button class=\"btn btn-outline-light\" " +
+                    " data-bs-toggle=\"dropdown\" > " +
+                    " <i class=\"fa-solid fa-ellipsis-vertical iconColor fa-lg \"></i>" +
+                    "</button>" +
+                    "<ul class='dropdown-menu p-0'>" +
                     "<li>" +
-                    "<a class='dropdown-item AddRow'" + lvlflag + "><i" +
+                    "<a class='dropdown-item dropdown-styles AddRow'" + lvlflag + "><i" +
                     " class='fa-solid fa-plus  iconColor'></i>&nbsp;&nbsp;&nbsp;Add</a>" +
                     "</li>" +
                     "<li>" +
-                    "<hr class='dropdown-divider'>" +
+                    "<hr class='dropdown-divider m-0 '>" +
                     "</li>" +
                     "<li>" +
-                    "<a class='dropdown-item EditRow' ><i" +
+                    "<a class='dropdown-item dropdown-styles EditRow' ><i" +
                     " class='fa-solid fa-pencil  iconColor'></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
                     "</li>" +
                     "<li>" +
-                    "<hr class='dropdown-divider'>" +
+                    "<hr class='dropdown-divider m-0'>" +
                     "</li>" +
                     "<li>" +
-                    "<a class='dropdown-item DeleteRow' '><i " +
+                    "<a class='dropdown-item dropdown-styles DeleteRow' '><i " +
                     " class='fa-solid fa-trash-can  text-danger'></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
                     "</li>" +
                     "</ul>" +
@@ -443,25 +447,27 @@ function appendRowFunction(data){
                     "<td><i class='fas fa-comment-alt fa-2x remarksIcon' style='color:#87CEEB;' role='button'></i><input type='hidden' class ='remark changeText' value='" + remark + "'></td>" +
                     "<td>" +
                     "<div class='dropdown dropstart'>" +
-                    "<img src='images/icons8-expand-arrow-25.png' data-bs-toggle='dropdown' " +
-                    " alt='dropdown'>" +
-                    "<ul class='dropdown-menu' aria-labelledby='Drop-option'>" +
+                    "<button class=\"btn btn-outline-light\" " +
+                    " data-bs-toggle=\"dropdown\" > " +
+                    " <i class=\"fa-solid fa-ellipsis-vertical iconColor fa-lg \"></i>" +
+                    "</button>" +
+                    "<ul class='dropdown-menu p-0'>" +
                     "<li>" +
-                    "<a class='dropdown-item AddRow' " + lvlflag + "" +
+                    "<a class='dropdown-item dropdown-styles AddRow' " + lvlflag + "" +
                     "><i class='fa-solid fa-plus iconColor '></i>&nbsp;&nbsp;&nbsp;Add</a>" +
                     "</li>" +
                     "<li>" +
-                    "<hr class='dropdown-divider'>" +
+                    "<hr class='dropdown-divider m-0'>" +
                     "</li>" +
                     "<li>" +
-                    "<a class='dropdown-item EditRow' " +
+                    "<a class='dropdown-item dropdown-styles EditRow' " +
                     "><i class='fa-solid fa-pencil iconColor '></i>&nbsp;&nbsp;&nbsp;Edit</a>" +
                     "</li>" +
                     "<li>" +
-                    "<hr class='dropdown-divider'>" +
+                    "<hr class='dropdown-divider m-0'>" +
                     "</li>" +
                     "<li>" +
-                    "<a class='dropdown-item DeleteRow' > " +
+                    "<a class='dropdown-item dropdown-styles DeleteRow' > " +
                     "<i class='fa-solid fa-trash-can text-danger '></i>&nbsp;&nbsp;&nbsp;Delete</a>" +
                     "</li>" +
                     "</ul>" +

@@ -109,28 +109,28 @@
                     <div class="collapse navbar-collapse" id="navbarText">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-2">
                             <li class="nav-item moduleIcon ">
-                                <a class="nav-link px-1 iconColor text-start text-lg-center fs-6" aria-current="page"
+                                <a class="nav-link px-1 px-lg-3 iconColor text-start text-lg-center fs-6" aria-current="page"
                                    href="OpportunityList.jsp"><i
                                         class="fa-solid fa-laptop iconAlign iconColor fa-2x"
                                         title="Applications"></i><br>Applications</a>
                             </li>
                             <li class="nav-item moduleIcon ">
-                                <a class="nav-link iconColor px-1 px-lg-2 text-start text-lg-center fs-6" href="Admin_Userslist.jsp"><i
+                                <a class="nav-link iconColor px-1 px-lg-3 text-start text-lg-center fs-6" href="Admin_Userslist.jsp"><i
                                         class="fa-solid fa-user-gear iconAlign iconColor fa-2x"
                                         title="Administration"></i><br>Administration</a>
                             </li>
                             <li class="nav-item moduleIcon">
-                                <a class="nav-link iconColor px-1 px-lg-2 text-start text-lg-center fs-6" href="Governance_Home.jsp"><i
+                                <a class="nav-link iconColor px-1 px-lg-3 text-start text-lg-center fs-6" href="Governance_Home.jsp"><i
                                         class="fa-solid fa-file-shield iconAlign iconColor fa-2x"
                                         title="Governance"></i><br>Governance</a>
                             </li>
                             <li class="nav-item moduleIcon ">
-                                <a class="nav-link iconColor px-1 px-lg-2 text-start text-lg-center fs-6" href="FinanceList.jsp"><i
+                                <a class="nav-link iconColor px-1 px-lg-3 text-start text-lg-center fs-6" href="FinanceList.jsp"><i
                                         class="fa-solid fa-money-check-dollar iconAlign iconColor fa-2x"
                                         title="Finance"></i><br>Finance</a>
                             </li>
                             <li class="nav-item moduleIcon">
-                                <a class="nav-link iconColor px-1 px-lg-2 text-start text-lg-center fs-6" href="DashBoard.jsp">
+                                <a class="nav-link iconColor px-1 px-lg-3 text-start text-lg-center fs-6" href="DashBoard.jsp">
                                     <i class="fa-solid fa-chart-simple iconAlign iconColor fa-2x"
                                        title="Dashboards"></i><br>Dashboards
                                 </a>
@@ -144,28 +144,27 @@
                                 <i class="fas fa-user-circle  iconColor fa-2x"></i>
                                 <span class=" dropdown-toggle iconColor"></span><br>Profile
                             </a>
-                            <ul class="dropdown-menu navdrop text-center">
-                                <li><a class="dropdown-item"><i
-                                        class="fas fa-user-circle fa-3x iconColor"></i><br/>Signed
-                                    in as <br/> <b class="user-ellipsis "><%=Encode.forHtml(userName)%></b></a></li>
+                            <ul class="dropdown-menu navdrop text-left">
+                                <li><a class="dropdown-item text-wrap px-1"><i
+                                        class="fas fa-user-circle iconColor px-1"></i><%=Encode.forHtml(userName)%></a></li>
                                 <li>
 								<hr class="dropdown-divider m-0">
-								<li><a class="dropdown-item" href="viewprofile.jsp">View Profile</a>
+								<li><a class="dropdown-item px-1" href="viewprofile.jsp"><i class="fa-regular fa-user iconColor px-1"></i>View Profile</a>
 
 							    </li>
 								<hr class="dropdown-divider m-0">
-                                <li><a class="dropdown-item" data-bs-target="#changepwd"
-                                       data-bs-toggle="modal">Change Password</a></li>
+                                <li><a class="dropdown-item text-wrap px-1" data-bs-target="#changepwd"
+                                       data-bs-toggle="modal"><i class="fa-solid fa-key iconColor px-1"></i>Change Password</a></li>
                                 <li>
                                     <hr class="dropdown-divider m-0">
                                 </li>
-                                <li><a class="dropdown-item" id="open-modal-btn" data-bs-target="#verModal1"
-                                       data-bs-toggle="modal">About D3Sixty</a></li>
+                                <li><a class="dropdown-item px-1" id="open-modal-btn" data-bs-target="#verModal1"
+                                       data-bs-toggle="modal"><i class="fa-solid fa-circle-info iconColor px-1"></i>About D3Sixty</a></li>
                                 <li>
                                     <hr class="dropdown-divider m-0">
                                 </li>
-                                <li><a class="dropdown-item" href="logout.jsp"><i
-                                        class="fa-solid fa-right-from-bracket"></i>Logout</a></li>
+                                <li><a class="dropdown-item px-1" href="logout.jsp"><i
+                                        class="fa-solid fa-right-from-bracket iconColor px-1"></i>Logout</a></li>
                             </ul>
                         </li>
                     </ul>

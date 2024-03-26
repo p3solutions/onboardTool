@@ -15,27 +15,20 @@
 <%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>--%>
 </head>
 <body>
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.Date" %>
-<%
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    Date date = new Date();
-    System.out.println("[INFO]-----" + formatter.format(date) + "-----Accessed Grid JSP PAGE-----[INFO]"); %>
 <%@page language="java" %>
 <%@page import="java.sql.*" %>
-<%@page import="java.text.DateFormat" %>
-<%@page import="java.text.SimpleDateFormat" %>
-<%@page import="java.util.Date" %>
 <%@page import="onboard.DBconnection" %>
-<%@page import="java.util.Calendar" %>
 <%@page import="org.owasp.encoder.Encode" %>
+<%@ page import="org.apache.log4j.Logger" %>
 <%
+    Logger logger = Logger.getLogger("ArchiveRequirementsIntroDetails.jsp");
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
     response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
     response.setHeader("Expires", "0"); // Proxies.
     DBconnection dBconnection = new DBconnection();
 
     if (session.getAttribute("username") == null) {
+        logger.info("Session time out");
         response.sendRedirect("Login.jsp");
 
     } else {
@@ -46,8 +39,8 @@
         String roles = (String) details.getAttribute("role");
         String OpportunityName = (String) details.getAttribute("SelectedOpportunity");
         String s = OpportunityName;
-        System.out.println("Welcome" + OpportunityName);
-
+        logger.info("Accessed Archive Requirements into Details");
+        logger.info("Opportunity name : "+ OpportunityName);
         int sumcount = 0;
         Statement st, st2;
         try {
@@ -82,7 +75,7 @@
 
 <%
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.debug("Exception in Archive Requirements into Details");
         }
 
 
@@ -265,7 +258,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center" id="closeIdDelete"
+                <button type="button" class="btn  tertiaryButton text-center" id="closeIdDelete"
                         data-bs-dismiss="modal" aria-label="Close">No
                 </button>
                 <button type="button" id="ArchiveDeleteSubmit"

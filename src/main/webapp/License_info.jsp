@@ -10,10 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>D3Sixty - License_Info</title>
 
-    <!-- ========== COMMON JS FILES ========== -->
+    <!-- ========== JQUERY  FILES ========== -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <%--	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>--%>
 
 </head>
 <style>
@@ -25,6 +24,10 @@
         line-height: 16px;
         letter-spacing: 0em;
         text-align: left;
+    }
+    .top-scroll-lock {
+        background-color: #FFFFFF !important;
+        box-shadow: 0px 2px 8px 0px #0000001A;
     }
 </style>
 
@@ -126,7 +129,7 @@
                 </form>
             </div>
             <div class="modal-footer px-0 pb-0">
-                <button type="button" class="btn buttonFrame tertiaryButton text-center"
+                <button type="button" class="btn  tertiaryButton text-center"
                         data-bs-dismiss="modal">Close
                 </button>
                 <button type="button" class="btn primaryButton text-center w-auto" id="license_update_submit"
